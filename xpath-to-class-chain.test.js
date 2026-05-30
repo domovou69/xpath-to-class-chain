@@ -358,6 +358,48 @@ const OPTIMIZE_CHAIN_CASES = [
     input: `${CC}**/XCUIElementTypeButton[\`visible == 1 AND name == "OK"\`]`,
     fixed: `${CC}**/XCUIElementTypeButton[\`visible == 1 AND name == "OK"\`]`,
   },
+
+  // --- Rule 6: merge adjacent backtick predicate blocks on the same step ---
+  // Two backtick blocks merged with AND (acceptance-criteria case)
+  {
+    input: `${CC}**/XCUIElementTypeCell[\`name == "x"\`][\`visible == 1\`]`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`name == "x" AND visible == 1\`]`,
+  },
+  // Three consecutive backtick blocks merged into one
+  {
+    input: `${CC}**/XCUIElementTypeCell[\`name == "x"\`][\`visible == 1\`][\`enabled == 1\`]`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`name == "x" AND visible == 1 AND enabled == 1\`]`,
+  },
+  // Backtick + numeric index — left unmerged (acceptance-criteria case)
+  {
+    input: `${CC}**/XCUIElementTypeCell[\`name == "x"\`][2]`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`name == "x"\`][2]`,
+  },
+  // Numeric index + backtick — left unmerged
+  {
+    input: `${CC}**/XCUIElementTypeCell[2][\`name == "x"\`]`,
+    fixed: `${CC}**/XCUIElementTypeCell[2][\`name == "x"\`]`,
+  },
+  // Non-consecutive backtick blocks (index between them) — not merged across index
+  {
+    input: `${CC}**/XCUIElementTypeCell[\`name == "x"\`][2][\`visible == 1\`]`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`name == "x"\`][2][\`visible == 1\`]`,
+  },
+  // Single backtick predicate — no-op (fixed point)
+  {
+    input: `${CC}**/XCUIElementTypeCell[\`name == "x"\`]`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`name == "x"\`]`,
+  },
+  // Lone index bracket — no-op (fixed point)
+  {
+    input: `${CC}**/XCUIElementTypeCell[2]`,
+    fixed: `${CC}**/XCUIElementTypeCell[2]`,
+  },
+  // Multi-step: only the step with two backtick blocks is merged
+  {
+    input: `${CC}**/XCUIElementTypeTable/XCUIElementTypeCell[\`name == "row"\`][\`visible == 1\`]`,
+    fixed: `${CC}**/XCUIElementTypeTable/XCUIElementTypeCell[\`name == "row" AND visible == 1\`]`,
+  },
 ];
 
 // =====================================================================
