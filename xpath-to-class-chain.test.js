@@ -642,6 +642,26 @@ console.log('— SCANNER: processFile —');
 }
 
 {
+  // locator under an `android:` key is skipped even without android. in the value
+  const root = makeTempRoot('xpath-android-key-');
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, [
+      `const loc = { ios: '//XCUIElementTypeButton[@name="OK"]', android: '//XCUIElementTypeButton[@name="OK"]' };`,
+    ].join('\n'));
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: true, quiet: true }, records, stats);
+
+    if (stats.locatorsFound === 2 && stats.locatorsUpdated === 1 && stats.skipped.android === 1) ok();
+    else fail(`processFile android-key: stats wrong ${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
   // multiple locators in one file accumulate into the same stats object
   const root = makeTempRoot('xpath-multi-');
   try {
