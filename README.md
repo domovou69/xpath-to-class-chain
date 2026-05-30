@@ -161,7 +161,7 @@ The scanner also gates strings starting with `//` through `isLikelyIosLocator` �
 Top of [xpath-to-class-chain.js](xpath-to-class-chain.js) — change in place or override via CLI:
 
 ```js
-const DEFAULT_TARGET_DIR = './test2';  // used when no folder is passed
+const DEFAULT_TARGET_DIR = './tests';  // used when no folder is passed
 const DRY_RUN = true;                  // safety-first default; --write overrides
 ```
 
@@ -227,9 +227,11 @@ Add a row to the relevant `*_CASES` array and re-run.
 ## File layout
 
 ```
+README.md                     ← this file
+docs/
+  optimization-rules.md  ← the optimizer rule spec (--optimize)
 xpath-to-class-chain.js       ← entry / CLI / re-exports
 xpath-to-class-chain.test.js  ← all tests in one file
-xpath-to-class-chain.md       ← this file
 lib/
   status.js        ← STATUS enum
   predicates.js    ← PREDICATE_REGEX + shared rewrites (rewriteStringFunctions, upperCaseLogicOps)
