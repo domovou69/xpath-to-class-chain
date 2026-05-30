@@ -71,6 +71,13 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeStaticText[contains(@text, "Section")]', `${CC}**/XCUIElementTypeStaticText[\`text CONTAINS "Section"\`]`],
   // a literal '|' inside a quoted value is NOT a union — must still convert
   ['//XCUIElementTypeStaticText[@label="a|b"]', `${CC}**/XCUIElementTypeStaticText[\`label == "a|b"\`]`],
+
+  // axis-like / function-like / android-like text INSIDE a quoted value must NOT
+  // trigger a structural skip — gates look at syntax, not attribute-value text
+  ['//XCUIElementTypeStaticText[@label="parent::root info"]', `${CC}**/XCUIElementTypeStaticText[\`label == "parent::root info"\`]`],
+  ['//XCUIElementTypeStaticText[@name="my.android.helper"]', `${CC}**/XCUIElementTypeStaticText[\`name == "my.android.helper"\`]`],
+  ['//XCUIElementTypeStaticText[@label="following-sibling node"]', `${CC}**/XCUIElementTypeStaticText[\`label == "following-sibling node"\`]`],
+  ['//XCUIElementTypeStaticText[@value="count(items) total"]', `${CC}**/XCUIElementTypeStaticText[\`value == "count(items) total"\`]`],
 ];
 
 // =====================================================================
@@ -103,6 +110,11 @@ const SKIP_CASES = [
 
   // android selector
   ['//android.widget.TextView', 'android.'],
+
+  // masking must not hide a GENUINE structural axis/android that lives outside
+  // the quotes, even when a quoted value also carries misleading text
+  ['//XCUIElementTypeStaticText[@label="plain"]/following-sibling::XCUIElementTypeButton', 'real axis + benign value'],
+  ['//android.widget.TextView[@text="parent::x"]', 'real android + axis-like value'],
 
   // grouping parens — XPath (...)[n] is not expressible inline; leading '(' is not an XPath start
   ['(//XCUIElementTypeButton[@name="Widget.backButton"])[1]', 'grouped + index'],
