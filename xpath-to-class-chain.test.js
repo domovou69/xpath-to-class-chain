@@ -69,6 +69,8 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeStaticText[@name="Line one\nLine two"]', `${CC}**/XCUIElementTypeStaticText[\`name == "Line one\nLine two"\`]`], // newline in value
   // @text is an attribute named "text", not the text() node-test
   ['//XCUIElementTypeStaticText[contains(@text, "Section")]', `${CC}**/XCUIElementTypeStaticText[\`text CONTAINS "Section"\`]`],
+  // a literal '|' inside a quoted value is NOT a union — must still convert
+  ['//XCUIElementTypeStaticText[@label="a|b"]', `${CC}**/XCUIElementTypeStaticText[\`label == "a|b"\`]`],
 ];
 
 // =====================================================================
@@ -93,8 +95,11 @@ const SKIP_CASES = [
   ['//*[contains(@label, "x") and not (contains(@label, "y"))]', 'not ( with space'], // caught by leftover-paren validation
   ['//XCUIElementTypeStaticText[@name="First field"]/following-sibling::XCUIElementTypeStaticText[1]', 'sibling'],
 
-  // unions
-  ['//*[@a="1"] | //*[@b="2"]', 'union |'],
+  // unions — must skip regardless of whitespace around '|'
+  ['//*[@a="1"] | //*[@b="2"]', 'union | (space-padded)'],
+  ['//*[@a="1"]|//*[@b="2"]', 'union | (no space)'],
+  ['//*[@a="1"] |//*[@b="2"]', 'union | (space before only)'],
+  ['//*[@a="1"]| //*[@b="2"]', 'union | (space after only)'],
 
   // android selector
   ['//android.widget.TextView', 'android.'],
