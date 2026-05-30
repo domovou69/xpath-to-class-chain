@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /* eslint-disable @typescript-eslint/no-require-imports */
 // Entry point: CLI orchestration + the public surface tests import. All real
 // work lives in ./lib/ — this file only wires modules to the command line.

@@ -8,59 +8,114 @@ Use it as:
 
 ## Requirements
 
-Node.js ≥ 20 (uses `fs.rmSync`). No npm dependencies.
+Node.js ≥ 20. No npm dependencies.
+
+---
+
+## Installation
+
+**Run once without installing** (fetches from registry on the fly):
+
+```bash
+npx xpath-to-class-chain ./tests/e2e --write --optimize
+pnpm dlx xpath-to-class-chain ./tests/e2e --write --optimize
+yarn dlx xpath-to-class-chain ./tests/e2e --write --optimize
+```
+
+**Install as a dev dependency**
+
+```bash
+npm install --save-dev xpath-to-class-chain
+yarn add --dev xpath-to-class-chain
+pnpm add -D xpath-to-class-chain
+```
+
+Then run via your package manager:
+
+```bash
+npx xpath-to-class-chain ./tests/e2e --write --optimize
+yarn xpath-to-class-chain ./tests/e2e --write --optimize
+pnpm xpath-to-class-chain ./tests/e2e --write --optimize
+```
+
+**Install globally** (convenient for one-off use across many projects):
+
+```bash
+npm install -g xpath-to-class-chain
+yarn global add xpath-to-class-chain
+pnpm add -g xpath-to-class-chain
+```
+
+Then run directly:
+
+```bash
+xpath-to-class-chain ./tests/e2e --write --optimize
+```
 
 ---
 
 ## Quick start
 
-### 1. Default: dry-run a folder (safe — no files touched)
+### 1. Write + optimize — the main migration command
 
 ```bash
-node xpath-to-class-chain.js ./tests/e2e
-node xpath-to-class-chain.js ./tests/e2e --dry-run
+npx xpath-to-class-chain ./tests/e2e --write --optimize
 ```
 
-Walks the folder, prints a `- old / + new` diff for every locator it would change, prints a summary, **writes nothing**. This is the default mode (`DRY_RUN = true`). Always run this first.
+Scans the folder, converts every XPath locator to a Class Chain, applies all optimizer rules, and **saves files in place**. This is the command you run when you're ready to commit the migration.
 
-### 2. Write mode — apply the rewrites
+### 2. Dry run first (safe — no files touched)
 
 ```bash
-node xpath-to-class-chain.js ./tests/e2e --write
+npx xpath-to-class-chain ./tests/e2e --dry-run --optimize
 ```
 
-Same scan, but each modified file is saved in place. `--dry-run` wins if you pass both.
+Same scan, same output, **writes nothing**. Prints a `- old / + new` diff for every locator it would change. Always run this before `--write`.
 
-### 3. With `--optimize`
+### 3. JSON report
 
 ```bash
-node xpath-to-class-chain.js ./tests/e2e --write --optimize
-```
-
-Recovers locators that the validator would normally reject and applies extra cleanup rules. See [The `--optimize` flag](#the---optimize-flag) below.
-
-### 4. JSON output
-```bash
-node xpath-to-class-chain.js ./tests/e2e --json
+npx xpath-to-class-chain ./tests/e2e --json --optimize
 # → Report written to <script-dir>/xpath-to-class-chain.report.json
 ```
 
-The full report is written to `xpath-to-class-chain.report.json` next to the script (so the path is stable regardless of CWD). Stdout only carries a single confirmation line; `--json` still implies `--quiet` so the per-match noise is suppressed.
+Writes a machine-readable JSON report next to the script. `--json` implies `--quiet` so stdout stays clean.
+
+---
+
+## npm scripts (contributors / cloned repo)
+
+Shortcuts for running the tool without typing `node xpath-to-class-chain.js` each time. Not needed by consumers — use the CLI directly via `npx` or the installed binary. All scripts accept an optional path via `--`; without one they fall back to `DEFAULT_TARGET_DIR` (`./tests`).
+
+```bash
+npm run write:optimize               # apply rewrites + optimize (most useful)
+npm run write                        # apply rewrites only
+
+npm run dry:optimize                 # preview with optimizer (safe, no writes)
+npm run dry                          # preview without optimizer
+
+npm run json:optimize                # JSON report + optimize
+npm run json                         # JSON report only
+
+npm run write:optimize -- ./src/e2e  # override the target directory
+npm run dry -- ./src/e2e
+```
 
 ---
 
 ## The `--optimize` flag
 
-Eight rules, run together inside an idempotent loop until the chain stops changing:
+Nine rules, run together inside an idempotent loop until the chain stops changing:
 
 1. **`==` with wildcard → `LIKE`**. NSPredicate's `==` is exact-match (no wildcards), so `@name="abc*"` would otherwise fail validation. With `--optimize` it becomes `name LIKE "abc*"`.
 2. **`XCUIElementTypeAny` → `*`**. Normalises the verbose API name to the idiomatic wildcard symbol.
 3. **`IN {"single"}` → `==`**. A one-item set degrades to a hash lookup anyway; `==` is clearer and avoids the set-iteration path.
 4. **`**/` deduplication**. `**/**/` is equivalent to `**/`; the second recursive scan adds no filtering but does add overhead.
 5. **Strip meaningless intermediates**. No-predicate `XCUIElementTypeOther` and `XCUIElementTypeWindow` steps force XCTest to materialise an intermediate result set for zero filtering benefit. They are removed; any gap becomes `/**/` so depth is not accidentally asserted.
-6. **Defer `visible == 1` to the final step**. Evaluating visibility triggers a layout pass per element. On intermediate steps this means a pass for every candidate before the chain continues. `visible == 1` is stripped from non-terminal steps and merged onto the final target's predicate.
-7. **Strip redundant `type ==` from concrete-typed nodes**. XCTest pre-filters by node type before evaluating the predicate, so `XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "OK"\`]` → `XCUIElementTypeButton[\`name == "OK"\`]`. (The wildcard case `*[\`type == "X"\`]` → `X` is handled by the validator in all modes.)
-8. **AND condition cost reordering**. Compound AND predicates short-circuit on the first false condition. Conditions are sorted cheapest-first: `==`/`!=` → `BEGINSWITH` → `ENDSWITH` → `CONTAINS` → `LIKE` → `MATCHES`.
+6. **Merge sibling predicate blocks**. Adjacent `[\`a\`][\`b\`]` on the same step can be misread by the engine as an index. They are merged into `[\`a AND b\`]`. Numeric index brackets like `[2]` are never merged.
+7. **Defer `visible == 1` to the final step**. Evaluating visibility triggers a layout pass per element. On intermediate steps this means a pass for every candidate before the chain continues. `visible == 1` is stripped from non-terminal steps and merged onto the final target's predicate.
+8. **Strip redundant `type ==` from concrete-typed nodes**. XCTest pre-filters by node type before evaluating the predicate, so `XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "OK"\`]` → `XCUIElementTypeButton[\`name == "OK"\`]`. (The wildcard case `*[\`type == "X"\`]` → `X` is handled by the validator in all modes.)
+9. **AND condition cost reordering**. Compound AND predicates short-circuit on the first false condition. Conditions are sorted cheapest-first: `==`/`!=` → `BEGINSWITH` → `ENDSWITH` → `CONTAINS` → `LIKE` → `MATCHES`.
 
 **Idempotency**. The validator and optimizer re-run until the output is stable. Matters when one rewrite *unlocks* another — e.g.:
    ```
@@ -69,10 +124,6 @@ Eight rules, run together inside an idempotent loop until the chain stops changi
      → pass 2 (optimizer LIKE rule):     XCUIElementTypeButton[`name LIKE "abc*"`]
      → pass 3 (stable, returned)
    ```
-
-```bash
-node xpath-to-class-chain.js ./tests --optimize --write
-```
 
 Without `--optimize`, wildcard inputs are skipped with `skipped_validation_failed`.
 
@@ -158,19 +209,17 @@ The scanner also gates strings starting with `//` through `isLikelyIosLocator` �
 
 ## Configuration
 
-Top of [xpath-to-class-chain.js](xpath-to-class-chain.js) — change in place or override via CLI:
+The target directory is always passed as a CLI argument. Defaults (for contributors running scripts directly):
 
-```js
-const DEFAULT_TARGET_DIR = './tests';  // used when no folder is passed
-const DRY_RUN = true;                  // safety-first default; --write overrides
-```
+- **`DEFAULT_TARGET_DIR`** — `./tests` — used when no path argument is given
+- **`DRY_RUN`** — `true` — safe default; `--write` overrides it
 
-In [lib/scanner.js](lib/scanner.js):
+Scanner behaviour (not configurable via CLI):
 
-- `FILE_EXTENSIONS` — `.js .ts .mjs .cjs .mts .cts .jsx .tsx .java .kt .kts .groovy .py .rb .cs .php .swift .m .json .yaml .yml .xml .feature .properties .txt`
-- `IGNORE_DIRS` — `node_modules .git dist build .next coverage .cache`
+- **`FILE_EXTENSIONS`** — `.js .ts .mjs .cjs .mts .cts .jsx .tsx .java .kt .kts .groovy .py .rb .cs .php .swift .m .json .yaml .yml .xml .feature .properties .txt`
+- **`IGNORE_DIRS`** — `node_modules .git dist build .next coverage .cache`
 
-Files outside `FILE_EXTENSIONS` are not even read.
+Files outside `FILE_EXTENSIONS` are not read.
 
 ---
 
@@ -183,7 +232,7 @@ const {
   optimizeClassChain,
   isLikelyIosLocator,
   STATUS,
-} = require('./xpath-to-class-chain');
+} = require('xpath-to-class-chain');
 
 // One-shot XPath → class chain
 const { locator, status } = convertXpathToClassChain('//XCUIElementTypeButton[@name="OK"]');
@@ -197,7 +246,7 @@ const { valid, fixedLocator, reason } = validateAndFixClassChain(
   '-ios class chain:**/Btn[`name == "OK"`]'
 );
 
-// Optimize an existing chain (idempotent + LIKE)
+// Optimize an existing chain (idempotent + all optimizer rules)
 optimizeClassChain('-ios class chain:**/Btn[`name == "a*"`]');
 ```
 
@@ -207,8 +256,6 @@ optimizeClassChain('-ios class chain:**/Btn[`name == "a*"`]');
 
 ```bash
 npm test
-# equivalently:
-node xpath-to-class-chain.test.js
 ```
 
 Zero-dependency runner, exits non-zero on any failure. Sections:
@@ -229,16 +276,13 @@ Add a row to the relevant `*_CASES` array and re-run.
 ## File layout
 
 ```
-README.md                     ← this file
-docs/
-  optimization-rules.md  ← the optimizer rule spec (--optimize)
 xpath-to-class-chain.js       ← entry / CLI / re-exports
 xpath-to-class-chain.test.js  ← all tests in one file
 lib/
   status.js        ← STATUS enum
   predicates.js    ← PREDICATE_REGEX + shared rewrites (rewriteStringFunctions, upperCaseLogicOps)
   validator.js     ← validateAndFixClassChain
-  optimizer.js     ← optimizeClassChain + LIKE recovery rule
+  optimizer.js     ← optimizeClassChain + all optimizer rules
   converter.js     ← tokenizeXpath + convertXpathToClassChain
   scanner.js       ← walkDir + processFile + isLikelyIosLocator + makeStats
 ```
