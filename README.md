@@ -206,6 +206,8 @@ optimizeClassChain('-ios class chain:**/Btn[`name == "a*"`]');
 ## Tests
 
 ```bash
+npm test
+# equivalently:
 node xpath-to-class-chain.test.js
 ```
 
