@@ -189,10 +189,11 @@ Status values used in `skipped[]`:
 | `//XCUIElementTypeButton[@name="OK"]` | ``**/XCUIElementTypeButton[`name == "OK"`]`` |
 | `//*[contains(@label, "Save")]` | ``**/*[`label CONTAINS "Save"`]`` |
 | `//XCUIElementTypeStaticText[starts-with(@label,"Welcome")]` | ``**/XCUIElementTypeStaticText[`label BEGINSWITH "Welcome"`]`` |
+| `//XCUIElementTypeButton[text()="OK"]` | ``**/XCUIElementTypeButton[`label == "OK" OR value == "OK"`]`` (`text()` maps to label OR value) |
 | `//*[contains(@type,"XCUIElementTypeOther")]` | `**/XCUIElementTypeOther` (type-collapse) |
-| `//Btn[@a="1"][@b="2"][3]` | ``**/Btn[`a == "1" AND b == "2"`][3]`` (merge + index) |
-| `//Cell[@name="a/b"]` | ``**/Cell[`name == "a/b"`]`` (slashes inside values are safe) |
-| `//Btn[@name="abc*"]` *(with `--optimize`)* | ``**/Btn[`name LIKE "abc*"`]`` |
+| `//XCUIElementTypeCell[@a="1"][@b="2"][3]` | ``**/XCUIElementTypeCell[`a == "1" AND b == "2"`][3]`` (merge + index) |
+| `//XCUIElementTypeCell[@name="a/b"]` | ``**/XCUIElementTypeCell[`name == "a/b"`]`` (slashes inside values are safe) |
+| `//XCUIElementTypeButton[@name="abc*"]` *(with `--optimize`)* | ``**/XCUIElementTypeButton[`name LIKE "abc*"`]`` |
 | `(//XCUIElementTypeButton[@name="OK"])` | ``**/XCUIElementTypeButton[`name == "OK"`]`` (outer parens stripped) |
 | `(//XCUIElementTypeButton[@name="OK"])[2]` | ``**/XCUIElementTypeButton[`name == "OK"`][2]`` (outer position index appended) |
 | `(//XCUIElementTypeOther[@name="row"])[${index}]` | ``**/XCUIElementTypeOther[`name == "row"`][${index}]`` (template expression preserved) |
@@ -203,9 +204,10 @@ Status values used in `skipped[]`:
 |---|---|
 | `following-sibling::`, `preceding-sibling::`, `parent::`, `following::`, `preceding::`, `ancestor::`, `self::` | `skipped_unsupported_logic` |
 | `not()`, `count()`, `last()`, `position()` | `skipped_unsupported_logic` |
+| Element type that isn't `*` or `XCUIElementType*` (e.g. `//Btn[...]`, `//div[...]`) — not a valid iOS node | `skipped_unsupported_logic` |
 | Union `a \| b` | `skipped_unsupported_logic` |
-| Grouped XPath with a function outer index `(//Btn[@name="x"])[last()]` — XPath function, not a static position | `skipped_not_xpath` |
-| Grouped `(//Type[n])[m>1]` where the inner chain ends with a positional index and has no named parent to anchor the outer position (e.g. parent reduces to `**`) | `skipped_unsupported_logic` |
+| Grouped XPath with a function outer index `(//XCUIElementTypeButton[@name="x"])[last()]` — XPath function, not a static position | `skipped_not_xpath` |
+| Grouped `(//XCUIElementTypeCell[2])[3]` where the inner chain ends with a positional index and has no named parent to anchor the outer position (parent reduces to `**`) | `skipped_unsupported_logic` |
 | `//android.widget.*` | `skipped_android` |
 | Already a valid `-ios class chain:…` | `skipped_no_change` |
 
@@ -245,7 +247,7 @@ const { locator, status } = convertXpathToClassChain('//XCUIElementTypeButton[@n
 if (status === STATUS.SUCCESS) { /* … */ }
 
 // With LIKE recovery
-convertXpathToClassChain('//Btn[@name="a*"]', { optimize: true });
+convertXpathToClassChain('//XCUIElementTypeButton[@name="a*"]', { optimize: true });
 
 // Lint an existing chain
 const { valid, fixedLocator, reason } = validateAndFixClassChain(
