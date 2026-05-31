@@ -44,6 +44,28 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeButton[contains(@label, "Confirm") and @enabled="true"]', `${CC}**/XCUIElementTypeButton[\`label CONTAINS "Confirm" AND enabled == true\`]`],
   ['//*[@name="Widget.actionButton" and @enabled="false"]', `${CC}**/*[\`name == "Widget.actionButton" AND enabled == false\`]`],
 
+  // --- grouped XPath: (//inner)[n] and bare (//inner) ---
+  // bare parens without index — semantically identical to the unwrapped XPath
+  ['(//XCUIElementTypeStaticText[@label="Not available"])', `${CC}**/XCUIElementTypeStaticText[\`label == "Not available"\`]`],
+  ['(//XCUIElementTypeImage[@name="right_arrow"])', `${CC}**/XCUIElementTypeImage[\`name == "right_arrow"\`]`],
+  // literal integer index — the outer [n] selects the n-th global result
+  ['(//XCUIElementTypeButton[@name="Widget.backButton"])[1]', `${CC}**/XCUIElementTypeButton[\`name == "Widget.backButton"\`][1]`],
+  ['(//XCUIElementTypeButton[@name="Widget.backButton"])[3]', `${CC}**/XCUIElementTypeButton[\`name == "Widget.backButton"\`][3]`],
+  ['(//XCUIElementTypeOther[@name="unselected, radio button"])[1]', `${CC}**/XCUIElementTypeOther[\`name == "unselected, radio button"\`][1]`],
+  ['(//XCUIElementTypeOther[@name="unselected, radio button"])[2]', `${CC}**/XCUIElementTypeOther[\`name == "unselected, radio button"\`][2]`],
+  // template-expression index — passed through as-is so the JS runtime evaluates
+  // it inside the template literal; the class chain engine then uses the resolved number
+  ['(//XCUIElementTypeOther[@name="unselected, radio button"])[${option + 1}]', `${CC}**/XCUIElementTypeOther[\`name == "unselected, radio button"\`][${'${option + 1}'}]`],
+
+  // inner ends with a child index AND outer provides a position index —
+  // Strategy A (outer [1]): drop it; driver.findElement() returns first match
+  ['(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[1])[1]', `${CC}**/XCUIElementTypeStaticText/XCUIElementTypeStaticText[1]`],
+  ['(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[2])[1]', `${CC}**/XCUIElementTypeStaticText/XCUIElementTypeStaticText[2]`],
+  // Strategy B (outer [n>1] or template): move outer index to the parent element.
+  // Valid for flat list/table patterns where each parent has one child at position n.
+  // e.g. row[${t}]/2nd-child  ≡  (all rows' 2nd children)[${t}] when rows are flat siblings
+  ['(//*[contains(@name, "Balance,")]/child::*[2])[${transaction}]', `${CC}**/*[\`name CONTAINS "Balance,"\`][${'${transaction}'}]/*[2]`],
+
   // --- true/false on a NON-boolean attr stays a quoted string: a label whose
   //     literal text is "true" must NOT be coerced to the boolean `== true` ---
   ['//XCUIElementTypeStaticText[@name="true"]', `${CC}**/XCUIElementTypeStaticText[\`name == "true"\`]`],
@@ -103,7 +125,11 @@ const SKIP_CASES = [
 
   // XPath functions with no Class Chain equivalent
   ['//*[last()]', 'last()'],
-  ['(//XCUIElementTypeStaticText[@name="icon"])[last()]', 'last() + grouping'],
+  // [last()] as the OUTER index of a grouped XPath: unwrapGrouped rejects it
+  // (not a digit and not a ${} expression), so the whole thing falls through
+  // as SKIPPED_NOT_XPATH. last() is an XPath function with no static value —
+  // there is no equivalent in Class Chain; must be converted manually.
+  ['(//XCUIElementTypeStaticText[@name="icon"])[last()]', 'grouped outer last()'],
   ['//*[contains(@name, "Item")]/following-sibling::*[1][position() <= 15]', 'position()'],
   ['//*[contains(@label,"x") and not(contains(@label,"y"))]', 'not()'],
   ['//*[contains(@label, "x") and not (contains(@label, "y"))]', 'not ( with space'], // caught by leftover-paren validation
@@ -123,9 +149,14 @@ const SKIP_CASES = [
   ['//XCUIElementTypeStaticText[@label="plain"]/following-sibling::XCUIElementTypeButton', 'real axis + benign value'],
   ['//android.widget.TextView[@text="parent::x"]', 'real android + axis-like value'],
 
-  // grouping parens — XPath (...)[n] is not expressible inline; leading '(' is not an XPath start
-  ['(//XCUIElementTypeButton[@name="Widget.backButton"])[1]', 'grouped + index'],
-  ['(//XCUIElementTypeStaticText[@label="Some label"])', 'unnecessary wrapping parens'],
+  // grouping + unsupported inner content — union inside parens propagates SKIPPED_UNSUPPORTED_LOGIC
+  ['(//XCUIElementTypeButton[@name="x"] | //XCUIElementTypeButton[@name="y"])[1]', 'grouped union'],
+
+  // grouped outer [n>1] when the inner chain reduces to just **/Type[m] with no
+  // named parent to attach the outer index to. Strategy B (move index to parent)
+  // needs a concrete parent element; ** alone is not a valid attachment point.
+  // e.g. (//Type[1])[2] → inner = **/Type[1], parentChain = ** → skip.
+  ['(//XCUIElementTypeStaticText[1])[2]', 'grouped outer [n>1] + inner has no parent segment'],
 
   // wildcard inside an exact match — invalid in NSPredicate (use LIKE/MATCHES)
   ['//*[@name="abc*"]', 'wildcard in =='],
@@ -161,6 +192,11 @@ const DETECT_CASES = [
   ['//XCUIElementTypeWebView', true], // element type, no predicate
   ['//XCUIElementTypeTextField[1]', true], // index-only predicate
   [`${CC}**/XCUIElementTypeButton[\`name == "x"\`]`, true], // existing class chain
+
+  // grouped XPath patterns — detected via the unwrapped core
+  ['(//XCUIElementTypeButton[@name="OK"])[1]', true],
+  ['(//XCUIElementTypeButton[@name="OK"])', true],
+  ['(//XCUIElementTypeOther[@name="x"])[${option + 1}]', true],
 
   // NOT locators — must be left alone even though they start with '//'
   ['//cdn.example.com/lib.js', false], // protocol-relative URL
@@ -686,6 +722,50 @@ console.log('— SCANNER: processFile —');
 
     if (stats.locatorsFound === 3 && stats.locatorsUpdated === 2 && stats.skipped.android === 1) ok();
     else fail(`processFile multi: stats wrong ${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
+  // grouped XPath (//...)[n] in write mode: scanner captures and converts
+  const root = makeTempRoot('xpath-grouped-');
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, `const locator = '(//XCUIElementTypeOther[@name="radio button"])[2]';`);
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: false, quiet: true }, records, stats);
+
+    const after = readFileSync(file, 'utf8');
+    const expected = `const locator = '-ios class chain:**/XCUIElementTypeOther[\`name == "radio button"\`][2]';`;
+    if (after === expected) ok();
+    else fail(`processFile grouped [n]: rewrite mismatch\n     expected: ${expected}\n     got:      ${after}`);
+    if (stats.locatorsFound === 1 && stats.locatorsUpdated === 1) ok();
+    else fail(`processFile grouped [n]: stats wrong ${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
+  // bare grouped XPath (//...) without an outer index
+  const root = makeTempRoot('xpath-grouped-bare-');
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, `const locator = '(//XCUIElementTypeImage[@name="right_arrow"])';`);
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: false, quiet: true }, records, stats);
+
+    const after = readFileSync(file, 'utf8');
+    const expected = `const locator = '-ios class chain:**/XCUIElementTypeImage[\`name == "right_arrow"\`]';`;
+    if (after === expected) ok();
+    else fail(`processFile grouped bare: rewrite mismatch\n     expected: ${expected}\n     got:      ${after}`);
+    if (stats.locatorsFound === 1 && stats.locatorsUpdated === 1) ok();
+    else fail(`processFile grouped bare: stats wrong ${JSON.stringify(stats)}`);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
