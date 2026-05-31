@@ -20,6 +20,12 @@ const CONVERT_CASES = [
   ['//*[@label="Continue"]', `${CC}**/*[\`label == "Continue"\`]`],
   ['//*[@value="Total"]', `${CC}**/*[\`value == "Total"\`]`],
 
+  // --- text() node function: maps to label OR value ---
+  ['//XCUIElementTypeButton[text()="Submit"]', `${CC}**/XCUIElementTypeButton[\`label == "Submit" OR value == "Submit"\`]`],
+  ['//XCUIElementTypeCell[contains(text(), "Save")]', `${CC}**/XCUIElementTypeCell[\`label CONTAINS "Save" OR value CONTAINS "Save"\`]`],
+  ['//XCUIElementTypeStaticText[starts-with(text(), "Nav")]', `${CC}**/XCUIElementTypeStaticText[\`label BEGINSWITH "Nav" OR value BEGINSWITH "Nav"\`]`],
+  ['(//*[text()="Submit"])[1]', `${CC}**/*[\`label == "Submit" OR value == "Submit"\`][1]`],
+
   // --- string functions: contains / starts-with / ends-with ---
   ['//*[contains(@name, "alpha")]', `${CC}**/*[\`name CONTAINS "alpha"\`]`],
   ['//XCUIElementTypeButton[contains(@label,"Save")]', `${CC}**/XCUIElementTypeButton[\`label CONTAINS "Save"\`]`],
@@ -89,7 +95,7 @@ const CONVERT_CASES = [
   // two attribute predicates merge into ONE with AND
   ['//XCUIElementTypeButton[@name="ok"][@label="OK"]', `${CC}**/XCUIElementTypeButton[\`name == "ok" AND label == "OK"\`]`],
   // merge + index together
-  ['//foo[@a="1"][@b="2"][3]', `${CC}**/foo[\`a == "1" AND b == "2"\`][3]`],
+  ['//XCUIElementTypeCell[@a="1"][@b="2"][3]', `${CC}**/XCUIElementTypeCell[\`a == "1" AND b == "2"\`][3]`],
 
   // --- tricky literals that must NOT trip the parser/validator ---
   ['//XCUIElementTypeCell[@name="a/b"]', `${CC}**/XCUIElementTypeCell[\`name == "a/b"\`]`], // slash inside value
