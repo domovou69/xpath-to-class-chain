@@ -76,10 +76,10 @@ Same scan, same output, **writes nothing**. Prints a `- old / + new` diff for ev
 
 ```bash
 npx xpath-to-class-chain ./tests/e2e --json --optimize
-# → Report written to <script-dir>/xpath-to-class-chain.report.json
+# → Report written to <cwd>/xpath-to-class-chain.report.json
 ```
 
-Writes a machine-readable JSON report next to the script. `--json` implies `--quiet` so stdout stays clean.
+Writes a machine-readable JSON report named `xpath-to-class-chain.report.json` in the current working directory. `--json` implies `--quiet` so stdout stays clean.
 
 ---
 
@@ -136,14 +136,14 @@ Without `--optimize`, wildcard inputs are skipped with `skipped_validation_faile
 | `--dry-run` | **ON** | Preview only, never write. Wins if combined with `--write`. |
 | `--write` | — | Actually rewrite files. Overrides the safe default. |
 | `--optimize` | OFF | Run the optimizer pass (LIKE recovery + idempotency loop). |
-| `--json` | OFF | Write a JSON report file next to the script and print its path. Implies `--quiet`. |
+| `--json` | OFF | Write a JSON report file in the current working directory and print its path. Implies `--quiet`. |
 | `--quiet` | OFF | Drop per-match diffs and banner; keep the final summary. |
 
 ---
 
 ## JSON report shape
 
-Written to `<script-dir>/xpath-to-class-chain.report.json`:
+Written to `xpath-to-class-chain.report.json` in the current working directory:
 
 ```json
 {

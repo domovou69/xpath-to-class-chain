@@ -5,9 +5,11 @@
 const { existsSync, writeFileSync } = require('fs');
 const { basename, resolve, join } = require('path');
 
-// Where the --json report lands. Co-located with the script so the path is
-// stable regardless of what the caller's CWD is when they invoke node.
-const JSON_REPORT_PATH = join(__dirname, 'xpath-to-class-chain.report.json');
+// Where the --json report lands: the caller's working directory. Using cwd (not
+// __dirname) matters once the tool is installed as a dependency — __dirname then
+// points inside node_modules/, which is the wrong place to write a report (it's
+// invisible to the user and may be read-only).
+const JSON_REPORT_PATH = join(process.cwd(), 'xpath-to-class-chain.report.json');
 
 const STATUS = require('./lib/status');
 const { tokenizeXpath, convertXpathToClassChain } = require('./lib/converter');

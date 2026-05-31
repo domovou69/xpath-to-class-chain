@@ -44,6 +44,13 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeButton[contains(@label, "Confirm") and @enabled="true"]', `${CC}**/XCUIElementTypeButton[\`label CONTAINS "Confirm" AND enabled == true\`]`],
   ['//*[@name="Widget.actionButton" and @enabled="false"]', `${CC}**/*[\`name == "Widget.actionButton" AND enabled == false\`]`],
 
+  // --- true/false on a NON-boolean attr stays a quoted string: a label whose
+  //     literal text is "true" must NOT be coerced to the boolean `== true` ---
+  ['//XCUIElementTypeStaticText[@name="true"]', `${CC}**/XCUIElementTypeStaticText[\`name == "true"\`]`],
+  ['//XCUIElementTypeStaticText[@label="false"]', `${CC}**/XCUIElementTypeStaticText[\`label == "false"\`]`],
+  // …but a real boolean attr is still coerced to the unquoted form
+  ['//XCUIElementTypeButton[@selected="true"]', `${CC}**/XCUIElementTypeButton[\`selected == true\`]`],
+
   // --- template-literal interpolation preserved; boolean attrs are intentionally
   //     unquoted (NSPredicate wants `enabled == true`, so `${isActive}` -> bool) ---
   ['//*[@label="Save" and @enabled="${isActive}"]', `${CC}**/*[\`label == "Save" AND enabled == ${'${isActive}'}\`]`],
