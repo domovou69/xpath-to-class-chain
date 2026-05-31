@@ -203,7 +203,7 @@ Status values used in `skipped[]`:
 |---|---|
 | `following-sibling::`, `preceding-sibling::`, `parent::`, `following::`, `preceding::`, `ancestor::`, `self::` | `skipped_unsupported_logic` |
 | `not()`, `count()`, `last()`, `position()` | `skipped_unsupported_logic` |
-| Union `a | b` | `skipped_unsupported_logic` |
+| Union `a \| b` | `skipped_unsupported_logic` |
 | Grouped XPath with a function outer index `(//Btn[@name="x"])[last()]` — XPath function, not a static position | `skipped_not_xpath` |
 | Grouped `(//Type[n])[m>1]` where the inner chain ends with a positional index and has no named parent to anchor the outer position (e.g. parent reduces to `**`) | `skipped_unsupported_logic` |
 | `//android.widget.*` | `skipped_android` |
