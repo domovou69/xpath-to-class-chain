@@ -1,4 +1,6 @@
 # xpath-to-class-chain
+[![CI](https://github.com/domovou69/xpath-to-class-chain/actions/workflows/ci.yml/badge.svg)](https://github.com/domovou69/xpath-to-class-chain/actions/workflows/ci.yml)
+
 Convert and optimize iOS XPath locators to iOS Class Chain selectors for Appium
 with a built-in linter and an optional optimizer pass for chains that would otherwise be rejected.
 
