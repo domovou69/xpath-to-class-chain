@@ -711,6 +711,30 @@ console.log('— SCANNER: processFile —');
 }
 
 {
+  // locator on an `android:` line inside a ternary is skipped; ios: on the same
+  // line is NOT affected (regression guard for the "last platform key" fix)
+  const root = makeTempRoot('xpath-android-ternary-');
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, [
+      `const loc = {`,
+      `  android: single ? someCode : '//XCUIElementTypeButton[@name="OK"]',`,
+      `  ios: '//XCUIElementTypeButton[@name="OK"]',`,
+      `};`,
+    ].join('\n'));
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: true, quiet: true }, records, stats);
+
+    if (stats.locatorsFound === 2 && stats.locatorsUpdated === 1 && stats.skipped.android === 1) ok();
+    else fail(`processFile android-ternary: stats wrong ${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
   // multiple locators in one file accumulate into the same stats object
   const root = makeTempRoot('xpath-multi-');
   try {
