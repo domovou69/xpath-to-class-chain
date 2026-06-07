@@ -169,6 +169,7 @@ const SKIP_CASES = [
 
   // wildcard inside an exact match — invalid in NSPredicate (use LIKE/MATCHES)
   ['//*[@name="abc*"]', 'wildcard in =='],
+  ['//*[@name!="abc*"]', 'wildcard in !='],
 
   // already a Class Chain fragment mislabelled as XPath
   ['//XCUIElementTypeButton[`label == "Done"`]', 'backtick fragment'],
