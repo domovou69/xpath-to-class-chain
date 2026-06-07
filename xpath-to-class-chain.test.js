@@ -805,6 +805,24 @@ console.log('— SCANNER: processFile —');
 }
 
 {
+  // multiline template literal locator is matched and converted (dotAll fix)
+  const root = makeTempRoot('xpath-multiline-');
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, 'const loc = `//XCUIElementTypeStaticText\n  [@name="hello"]`;');
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: true, quiet: true }, records, stats);
+
+    if (stats.locatorsFound === 1) ok();
+    else fail(`processFile multiline: locatorsFound=${stats.locatorsFound}, expected 1`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
   // 'android.' inside a quoted attribute value must NOT trigger the android skip
   const root = makeTempRoot('xpath-android-in-value-');
   try {
