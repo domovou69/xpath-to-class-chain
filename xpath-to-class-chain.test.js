@@ -804,5 +804,27 @@ console.log('— SCANNER: processFile —');
   }
 }
 
+{
+  // 'android.' inside a quoted attribute value must NOT trigger the android skip
+  const root = makeTempRoot('xpath-android-in-value-');
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, `const loc = '//XCUIElementTypeStaticText[@name="my.android.helper"]';`);
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: false, quiet: true }, records, stats);
+
+    const after = readFileSync(file, 'utf8');
+    const expected = `const loc = '-ios class chain:**/XCUIElementTypeStaticText[\`name == "my.android.helper"\`]';`;
+    if (after === expected) ok();
+    else fail(`processFile android-in-value: rewrite mismatch\n     expected: ${expected}\n     got:      ${after}`);
+    if (stats.skipped.android === 0 && stats.locatorsUpdated === 1) ok();
+    else fail(`processFile android-in-value: stats wrong ${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
 console.log(`\n${failed === 0 ? '✅' : '⚠️'} ${passed} passed, ${failed} failed`);
 process.exit(failed === 0 ? 0 : 1);
