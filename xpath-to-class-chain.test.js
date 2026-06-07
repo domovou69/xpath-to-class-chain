@@ -824,6 +824,52 @@ console.log('— SCANNER: processFile —');
 }
 
 {
+  // android: key on preceding line (key and value split across lines) — must skip
+  const root = makeTempRoot('xpath-android-prevline-');
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, [
+      'const x = {',
+      "  android:",
+      "    '//XCUIElementTypeStaticText[@name=\"Hello\"]',",
+      '};',
+    ].join('\n'));
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: true, quiet: true }, records, stats);
+
+    if (stats.skipped.android === 1 && stats.locatorsUpdated === 0) ok();
+    else fail(`android prev-line key: expected android=1 updated=0, got ${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
+  // ios: key on preceding line (key and value split across lines) — must convert
+  const root = makeTempRoot('xpath-ios-prevline-');
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, [
+      'const x = {',
+      "  ios:",
+      "    '//XCUIElementTypeStaticText[@name=\"Hello\"]',",
+      '};',
+    ].join('\n'));
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: true, quiet: true }, records, stats);
+
+    if (stats.locatorsUpdated === 1 && stats.skipped.android === 0) ok();
+    else fail(`ios prev-line key: expected updated=1, got ${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
   // 'android.' inside a quoted attribute value must NOT trigger the android skip
   const root = makeTempRoot('xpath-android-in-value-');
   try {
