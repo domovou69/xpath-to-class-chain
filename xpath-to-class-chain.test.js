@@ -106,6 +106,9 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeStaticText[contains(@text, "Section")]', `${CC}**/XCUIElementTypeStaticText[\`text CONTAINS "Section"\`]`],
   // a literal '|' inside a quoted value is NOT a union — must still convert
   ['//XCUIElementTypeStaticText[@label="a|b"]', `${CC}**/XCUIElementTypeStaticText[\`label == "a|b"\`]`],
+  // apostrophe inside a double-quoted value must not break the regex match
+  ['//XCUIElementTypeButton[contains(@label, "it\'s fine")]', `${CC}**/XCUIElementTypeButton[\`label CONTAINS "it\'s fine"\`]`],
+  ['//XCUIElementTypeButton[@label="Don\'t Allow"]', `${CC}**/XCUIElementTypeButton[\`label == "Don\'t Allow"\`]`],
 
   // axis-like / function-like / android-like text INSIDE a quoted value must NOT
   // trigger a structural skip — gates look at syntax, not attribute-value text
