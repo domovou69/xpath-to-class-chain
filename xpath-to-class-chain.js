@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 // Entry point: CLI orchestration + the public surface tests import. All real
 // work lives in ./lib/ — this file only wires modules to the command line.
-const { existsSync, writeFileSync } = require('fs');
-const { basename, resolve, join } = require('path');
+const { existsSync, statSync, writeFileSync } = require('fs');
+const { resolve, join } = require('path');
 
 // Where the --json report lands: the caller's working directory. Using cwd (not
 // __dirname) matters once the tool is installed as a dependency — __dirname then
@@ -26,10 +26,17 @@ const DRY_RUN = true;
 function main(targetDir = DEFAULT_TARGET_DIR, opts) {
   const fullPath = resolve(targetDir);
 
-  if (!existsSync(targetDir)) {
+  if (!existsSync(fullPath)) {
     console.error(`Error: directory not found: ${fullPath}`);
-    console.error(`  - Edit DEFAULT_TARGET_DIR at the top of this file, OR`);
-    console.error(`  - Pass a folder:   node ${basename(__filename)} ./src`);
+    console.error(`Pass the folder holding your locators, e.g.  xpath-to-class-chain ./src`);
+    process.exit(1);
+  }
+
+  // A file target would otherwise reach readdirSync and die with a raw ENOTDIR
+  // stack trace.
+  if (!statSync(fullPath).isDirectory()) {
+    console.error(`Error: not a directory: ${fullPath}`);
+    console.error(`This tool scans a folder tree. Pass the containing folder instead.`);
     process.exit(1);
   }
 
@@ -41,9 +48,12 @@ function main(targetDir = DEFAULT_TARGET_DIR, opts) {
 
   const stats = makeStats();
   const records = [];
-  walkDir(targetDir, filePath => {
+  // rootDir lets the scanner report paths relative to the scan root rather than
+  // as bare filenames.
+  const scanOpts = { ...opts, rootDir: fullPath };
+  walkDir(fullPath, filePath => {
     try {
-      processFile(filePath, opts, records, stats);
+      processFile(filePath, scanOpts, records, stats);
     } catch (e) {
       console.error(`❌ Error in ${filePath}:`, e);
     }
@@ -81,6 +91,7 @@ function main(targetDir = DEFAULT_TARGET_DIR, opts) {
   console.log(`  android:        ${stats.skipped.android}`);
   console.log(`  validation:     ${stats.skipped.validationFailed}`);
   console.log(`  unsupported:    ${stats.skipped.unsupportedLogic}`);
+  console.log(`  not xpath:      ${stats.skipped.notXpath}`);
   console.log(`  no change:      ${stats.skipped.noChangeNeeded}`);
   console.log(bar);
   return { stats, records };
@@ -101,11 +112,40 @@ function resolveBool(flags, onFlag, offFlag, fallback) {
   return fallback;
 }
 
+// Every flag the CLI understands. An unrecognised flag is rejected rather than
+// ignored: silently dropping a typo'd `--optimise` runs the UNOPTIMISED path
+// while the user believes the optimizer ran, and `--wirte` would preview
+// instead of writing.
+const KNOWN_FLAGS = new Set([
+  '--dry-run', '--write', '--optimize', '--json', '--quiet', '--help', '-h', '--version', '-V',
+]);
+
+const USAGE = `xpath-to-class-chain — convert iOS XPath locators to Class Chain selectors
+
+Usage:
+  xpath-to-class-chain <folder> [flags]
+
+Flags:
+  --dry-run    Preview only, never write. ON by default; wins over --write.
+  --write      Rewrite the files in place.
+  --optimize   Run the optimizer pass (LIKE recovery, chain simplification).
+  --json       Write xpath-to-class-chain.report.json in the current directory. Implies --quiet.
+  --quiet      Drop per-match diffs and banner; keep the final summary.
+  -h, --help   Show this help.
+  -V, --version  Show the version.
+
+Examples:
+  xpath-to-class-chain ./src --dry-run --optimize   # preview, safe
+  xpath-to-class-chain ./src --write --optimize     # apply the migration`;
+
 function parseFlags(argv) {
-  const flags = new Set(argv.filter(a => a.startsWith('--')));
+  const flags = new Set(argv.filter(a => a.startsWith('-')));
   const json = flags.has('--json');
   return {
-    positionals: argv.filter(a => !a.startsWith('--')),
+    positionals: argv.filter(a => !a.startsWith('-')),
+    unknown: [...flags].filter(f => !KNOWN_FLAGS.has(f)),
+    help: flags.has('--help') || flags.has('-h'),
+    version: flags.has('--version') || flags.has('-V'),
     json,
     quiet: json || flags.has('--quiet'),
     dryRun: resolveBool(flags, '--dry-run', '--write', DRY_RUN),
@@ -118,7 +158,17 @@ function parseFlags(argv) {
 //   node xpath-to-class-chain.js ./src [--dry-run|--json] → scan a folder
 if (require.main === module) {
   const opts = parseFlags(process.argv.slice(2));
-  main(opts.positionals[0], opts);
+  if (opts.help) {
+    console.log(USAGE);
+  } else if (opts.version) {
+    console.log(require('./package.json').version);
+  } else if (opts.unknown.length) {
+    console.error(`Error: unknown flag${opts.unknown.length > 1 ? 's' : ''}: ${opts.unknown.join(', ')}`);
+    console.error(`Run with --help to see the supported flags.`);
+    process.exit(1);
+  } else {
+    main(opts.positionals[0], opts);
+  }
 }
 
 module.exports = {
