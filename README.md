@@ -8,6 +8,24 @@ Use it as:
 - A **bulk scanner** that rewrites locators across a folder tree
 - A **library** when you need to validate / optimize chains from your own code
 
+## Try it now 
+
+Runs straight from this GitHub repo.
+
+Preview only, nothing written:
+
+```bash
+npx github:domovou69/xpath-to-class-chain ./tests --dry-run --optimize
+```
+
+Happy with the diff? Rewrite the files in place:
+
+```bash
+npx github:domovou69/xpath-to-class-chain ./tests --write --optimize
+```
+
+Point `./tests` at the folder with your Appium/XCUITest locators.
+
 ## Requirements
 
 Node.js ≥ 20. No npm dependencies.
