@@ -1,30 +1,28 @@
 # xpath-to-class-chain
 [![CI](https://github.com/domovou69/xpath-to-class-chain/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/domovou69/xpath-to-class-chain/actions/workflows/test.yml)
 
-Convert and optimize iOS XPath locators to iOS Class Chain selectors for Appium
-with a built-in linter and an optional optimizer pass for chains that would otherwise be rejected.
+Convert and optimize iOS XPath locators to iOS Class Chain selectors for Appium,
+with a built-in linter and an optimizer pass that recovers chains which would otherwise be rejected.
 
 Use it as:
 - A **bulk scanner** that rewrites locators across a folder tree
 - A **library** when you need to validate / optimize chains from your own code
 
-## Try it now 
+## Try it now
 
-Runs straight from this GitHub repo.
-
-Preview only, nothing written:
-
-```bash
-npx github:domovou69/xpath-to-class-chain ./tests --dry-run --optimize
-```
-
-Happy with the diff? Rewrite the files in place:
+One command. Runs straight from this GitHub repo — nothing to install.
+Try dry-run first to review the changes
 
 ```bash
-npx github:domovou69/xpath-to-class-chain ./tests --write --optimize
+npx github:domovou69/xpath-to-class-chain ./tests --dry-run
+npx github:domovou69/xpath-to-class-chain ./tests
 ```
 
-Point `./tests` at the folder with your Appium/XCUITest locators.
+Point `./tests` at the folder holding your Appium/XCUITest locators. It scans the tree, converts every XPath locator to a Class Chain, applies all optimizer rules, and **saves the files in place**.
+
+
+
+The optimizer runs in both modes, so the preview is exactly what the real run produces.
 
 ## Requirements
 
@@ -37,65 +35,35 @@ Node.js ≥ 20. No npm dependencies.
 **Run once without installing** (fetches from registry on the fly):
 
 ```bash
-npx xpath-to-class-chain ./tests/e2e --write --optimize
-pnpm dlx xpath-to-class-chain ./tests/e2e --write --optimize
-yarn dlx xpath-to-class-chain ./tests/e2e --write --optimize
-```
-
-**Install as a dev dependency**
-
-```bash
-npm install --save-dev xpath-to-class-chain
-yarn add --dev xpath-to-class-chain
-pnpm add -D xpath-to-class-chain
-```
-
-Then run via your package manager:
-
-```bash
-npx xpath-to-class-chain ./tests/e2e --write --optimize
-yarn xpath-to-class-chain ./tests/e2e --write --optimize
-pnpm xpath-to-class-chain ./tests/e2e --write --optimize
-```
-
-**Install globally** (convenient for one-off use across many projects):
-
-```bash
-npm install -g xpath-to-class-chain
-yarn global add xpath-to-class-chain
-pnpm add -g xpath-to-class-chain
-```
-
-Then run directly:
-
-```bash
-xpath-to-class-chain ./tests/e2e --write --optimize
+npx xpath-to-class-chain ./tests/e2e
+pnpm dlx xpath-to-class-chain ./tests/e2e
+yarn dlx xpath-to-class-chain ./tests/e2e
 ```
 
 ---
 
 ## Quick start
 
-### 1. Write + optimize — the main migration command
+### 1. The migration command
 
 ```bash
-npx xpath-to-class-chain ./tests/e2e --write --optimize
+npx xpath-to-class-chain ./tests/e2e
 ```
 
-Scans the folder, converts every XPath locator to a Class Chain, applies all optimizer rules, and **saves files in place**. This is the command you run when you're ready to commit the migration.
+Scans the folder, converts every XPath locator to a Class Chain, applies all optimizer rules, and **saves files in place**. This one command is the whole migration.
 
-### 2. Dry run first (safe — no files touched)
+### 2. Preview instead (no files touched)
 
 ```bash
-npx xpath-to-class-chain ./tests/e2e --dry-run --optimize
+npx xpath-to-class-chain ./tests/e2e --dry-run
 ```
 
-Same scan, same output, **writes nothing**. Prints a `- old / + new` diff for every locator it would change. Always run this before `--write`.
+Same scan, same optimizer, **writes nothing**. Prints a `- old / + new` diff for every locator it would change. The output is exactly what the command above would write.
 
 ### 3. JSON report
 
 ```bash
-npx xpath-to-class-chain ./tests/e2e --json --optimize
+npx xpath-to-class-chain ./tests/e2e --json
 # → Report written to <cwd>/xpath-to-class-chain.report.json
 ```
 
@@ -108,26 +76,18 @@ Writes a machine-readable JSON report named `xpath-to-class-chain.report.json` i
 Shortcuts for running the tool without typing `node xpath-to-class-chain.js` each time. Not needed by consumers — use the CLI directly via `npx` or the installed binary. **Pass the target folder via `--`**; without one they fall back to `DEFAULT_TARGET_DIR` (`./tests`), which does not exist in a fresh clone.
 
 ```bash
-npm run write:optimize               # apply rewrites + optimize (most useful)
-npm run write                        # apply rewrites only
-
-npm run dry:optimize                 # preview with optimizer (safe, no writes)
-npm run dry                          # preview without optimizer
-
-npm run json:optimize                # JSON report + optimize
-npm run json                         # JSON report only
-
-npm run write:optimize -- ./src/e2e  # override the target directory
-npm run dry -- ./src/e2e
+npm start -- ./src/e2e      # migrate: convert, optimize, write
+npm run dry -- ./src/e2e    # preview the same result, write nothing
+npm run json -- ./src/e2e   # JSON report
 ```
 
 ---
 
-## The `--optimize` flag
+## The optimizer
 
-Nine rules, run together inside an idempotent loop until the chain stops changing. (These are the rules that actually ship — [docs/optimization-rules.md](docs/optimization-rules.md) records the wider 14-rule research spec and marks which of those are deliberately not implemented.)
+The optimizer always runs — in both the write and `--dry-run` paths, so the preview never disagrees with the result. Nine rules run together inside an idempotent loop until the chain stops changing. (These are the rules that actually ship — [docs/optimization-rules.md](docs/optimization-rules.md) records the wider 14-rule research spec and marks which of those are deliberately not implemented.)
 
-1. **`==` with wildcard → `LIKE`**. NSPredicate's `==` is exact-match (no wildcards), so `@name="abc*"` would otherwise fail validation. With `--optimize` it becomes `name LIKE "abc*"`.
+1. **`==` with wildcard → `LIKE`**. NSPredicate's `==` is exact-match (no wildcards), so `@name="abc*"` would otherwise fail validation outright; it becomes `name LIKE "abc*"` instead.
 2. **`XCUIElementTypeAny` → `*`**. Normalises the verbose API name to the idiomatic wildcard symbol.
 3. **`IN {"single"}` → `==`**. A one-item set degrades to a hash lookup anyway; `==` is clearer and avoids the set-iteration path.
 4. **`**/` deduplication**. `**/**/` is equivalent to `**/`; the second recursive scan adds no filtering but does add overhead.
@@ -146,19 +106,21 @@ Nine rules, run together inside an idempotent loop until the chain stops changin
      → pass 3 (stable, returned)
    ```
 
-Without `--optimize`, wildcard inputs are skipped with `skipped_validation_failed`.
+Without the optimizer, wildcard inputs would be skipped with `skipped_validation_failed` — which is why it is no longer opt-in.
 
 ---
 
 ## Flags reference
 
+**Writing is the default.** The bare command converts, optimizes and saves in one pass; `--dry-run` is how you opt out of writing.
+
 | Flag | Default | Effect |
 |---|---|---|
-| `--dry-run` | **ON** | Preview only, never write. Wins if combined with `--write`. |
-| `--write` | — | Actually rewrite files. Overrides the safe default. |
-| `--optimize` | OFF | Run the optimizer pass (LIKE recovery + idempotency loop). |
+| `--dry-run` | OFF | Preview only, write nothing. Wins if combined with `--write`. |
 | `--json` | OFF | Write a JSON report file in the current working directory and print its path. Implies `--quiet`. |
 | `--quiet` | OFF | Drop per-match diffs and banner; keep the final summary. |
+| `--write` | **implied** | Accepted for compatibility — writing is already the default. |
+| `--optimize` | **implied** | Accepted for compatibility — the optimizer always runs. |
 | `-h`, `--help` | — | Print usage and exit. |
 | `-V`, `--version` | — | Print the version and exit. |
 

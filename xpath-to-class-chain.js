@@ -19,8 +19,12 @@ const { isLikelyIosLocator, walkDir, processFile, makeStats } = require('./lib/s
 // ⚠️ REQUIRED: point this at your source folder, or pass one on the command line:
 //      node xpath-to-class-chain.js ./src
 const DEFAULT_TARGET_DIR = './tests';
-// Safety-first default — previewing only; --write overrides.
-const DRY_RUN = true;
+// The bare command performs the migration: `xpath-to-class-chain ./src` scans,
+// optimizes and WRITES. One command should do the whole job.
+//
+// This means the default is destructive — pass --dry-run to preview instead.
+// Run it on a clean working tree so `git diff` is the undo.
+const DRY_RUN = false;
 
 function main(targetDir = DEFAULT_TARGET_DIR, opts) {
   const fullPath = resolve(targetDir);
@@ -124,18 +128,25 @@ const USAGE = `xpath-to-class-chain — convert iOS XPath locators to Class Chai
 Usage:
   xpath-to-class-chain <folder> [flags]
 
+The bare command REWRITES YOUR FILES IN PLACE. It scans, converts, optimizes and
+saves in one pass. Run it on a clean working tree so \`git diff\` is your undo,
+or use --dry-run first.
+
+The optimizer always runs, in preview and write alike, so --dry-run shows
+exactly what the write would produce.
+
 Flags:
-  --dry-run    Preview only, never write. ON by default; wins over --write.
-  --write      Rewrite the files in place.
-  --optimize   Run the optimizer pass (LIKE recovery, chain simplification).
+  --dry-run    Preview only, write nothing. Wins if combined with --write.
   --json       Write xpath-to-class-chain.report.json in the current directory. Implies --quiet.
   --quiet      Drop per-match diffs and banner; keep the final summary.
+  --write      Accepted for compatibility; writing is the default.
+  --optimize   Accepted for compatibility; the optimizer is on by default.
   -h, --help   Show this help.
   -V, --version  Show the version.
 
 Examples:
-  xpath-to-class-chain ./src --dry-run --optimize   # preview, safe
-  xpath-to-class-chain ./src --write --optimize     # apply the migration`;
+  xpath-to-class-chain ./src             # migrate: converts, optimizes, WRITES
+  xpath-to-class-chain ./src --dry-run   # preview the same result, write nothing`;
 
 function parseFlags(argv) {
   const flags = new Set(argv.filter(a => a.startsWith('-')));
@@ -148,7 +159,16 @@ function parseFlags(argv) {
     json,
     quiet: json || flags.has('--quiet'),
     dryRun: resolveBool(flags, '--dry-run', '--write', DRY_RUN),
-    optimize: flags.has('--optimize'),
+    // The optimizer always runs. It is what makes the output worth adopting, so
+    // requiring a flag for it just meant most users got the worse result.
+    //
+    // Critically it must be on in BOTH modes: --dry-run is documented as the
+    // safe preview of --write, so if the two disagreed about optimization the
+    // preview would no longer predict what gets written.
+    //
+    // `--optimize` is still accepted as a no-op — it is all over existing docs
+    // and shell history, and rejecting it as unknown would be a pointless break.
+    optimize: true,
   };
 }
 

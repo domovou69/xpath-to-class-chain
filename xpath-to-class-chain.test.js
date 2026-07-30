@@ -220,7 +220,10 @@ const DETECT_CASES = [
 // (dryRun default is the script's DRY_RUN = true — safer; --write to opt in)
 // =====================================================================
 const FLAGS_CASES = [
-  { argv: ['./src'], expect: { positionals: ['./src'], dryRun: true, json: false, quiet: false, optimize: false } },
+  // The bare command writes, and the optimizer is on by default in both modes,
+  // so --dry-run predicts exactly what the bare command would produce.
+  { argv: ['./src'], expect: { positionals: ['./src'], dryRun: false, json: false, quiet: false, optimize: true } },
+  { argv: ['./src', '--write'], expect: { dryRun: false, optimize: true } },
   { argv: ['./src', '--dry-run'], expect: { positionals: ['./src'], dryRun: true } },
   { argv: ['--write'], expect: { dryRun: false } },
   { argv: ['--dry-run', '--write'], expect: { dryRun: true } }, // --dry-run wins
@@ -236,8 +239,11 @@ const FLAGS_CASES = [
   { argv: ['-V'], expect: { version: true } },
   // Unknown flags are collected, never silently ignored. A typo'd --optimise
   // must NOT come back as optimize:true, and must be reported.
-  { argv: ['./src', '--optimise'], expect: { unknown: ['--optimise'], optimize: false, positionals: ['./src'] } },
-  { argv: ['--wirte'], expect: { unknown: ['--wirte'], dryRun: true } },
+  { argv: ['./src', '--optimise'], expect: { unknown: ['--optimise'], positionals: ['./src'] } },
+  // --optimize is still accepted (no-op) so existing commands keep working.
+  { argv: ['./src', '--optimize'], expect: { unknown: [], optimize: true } },
+  // A typo'd write flag is caught as unknown and the CLI exits before scanning.
+  { argv: ['--wirte'], expect: { unknown: ['--wirte'] } },
   { argv: ['--nope', '-x'], expect: { unknown: ['--nope', '-x'] } },
   // Short flags must not be mistaken for positionals.
   { argv: ['./src', '-h'], expect: { positionals: ['./src'] } },
