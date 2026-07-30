@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 // Zero-dependency test runner: `node xpath-to-class-chain.test.js`
 // Exit code is non-zero on any failure. Cases use synthetic, app-neutral data
 // and cover the documented iOS Class Chain / NSPredicate conversion rules.

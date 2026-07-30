@@ -1,4 +1,35 @@
-Optimization Rules to Apply:
+# Optimization rules — design notes
+
+This is the **full research spec** of 14 candidate rules, kept as background for
+why the optimizer does what it does. It is **not** a description of what
+`--optimize` currently does: 6 of the 14 rules are deliberately not implemented
+because they need knowledge of the running app's element hierarchy, which a
+static source-code rewrite cannot have.
+
+For what actually ships, see [the `--optimize` section of the README](../README.md#the---optimize-flag).
+
+| Spec rule | Status | Implementation |
+|---|---|---|
+| 1. Remove meaningless `XCUIElementTypeOther` chains | ✅ Implemented | `stripMeaninglessIntermediates()` |
+| 2. Never index an intermediate step | ❌ Not implemented | Needs app hierarchy knowledge |
+| 3. `**/` → `/` for direct-child relationships | ❌ Not implemented | Needs app hierarchy knowledge |
+| 4. Collapse `**/**/` → `**/` | ✅ Implemented | `collapseDoublestar()` |
+| 5. `XCUIElementTypeAny` → `*` | ✅ Implemented | `normalizeXCUIElementTypeAny()` |
+| 6. Merge sibling predicate blocks | ✅ Implemented | `mergeSiblingPredicates()` |
+| 7. Defer `visible == 1` to the final step | ✅ Implemented | `deferVisibleToFinalStep()` — see the README caveat, this can change which element matches |
+| 8. Strip redundant `type ==` | ✅ Implemented | `stripRedundantTypePredicates()` |
+| 9. Parent-contains transform | ❌ Not implemented | Lossy — changes the returned element |
+| 10. Tighten string operator (`CONTAINS` → `==`) | ❌ Not implemented | Needs to know if the value is a full match |
+| 11. Reorder AND conditions cheapest-first | ✅ Implemented | `reorderAndConditions()` |
+| 12. Anchor on nearest stable ancestor | ❌ Not implemented | Needs runtime app structure |
+| 13. Drop `[cd]` case modifier | ❌ Not implemented | Needs to know if casing is stable |
+| 14. `attr IN {"x"}` → `attr == "x"` | ✅ Implemented | `simplifyInSets()` |
+
+The optimizer also applies one rule that is **not** in this spec: rewriting
+wildcard equality (`name == "abc*"`) to `name LIKE "abc*"`, which recovers
+chains that would otherwise fail NSPredicate validation outright.
+
+---
 
 HIGH IMPACT
 

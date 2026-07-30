@@ -105,7 +105,7 @@ Writes a machine-readable JSON report named `xpath-to-class-chain.report.json` i
 
 ## npm scripts (contributors / cloned repo)
 
-Shortcuts for running the tool without typing `node xpath-to-class-chain.js` each time. Not needed by consumers — use the CLI directly via `npx` or the installed binary. All scripts accept an optional path via `--`; without one they fall back to `DEFAULT_TARGET_DIR` (`./tests`).
+Shortcuts for running the tool without typing `node xpath-to-class-chain.js` each time. Not needed by consumers — use the CLI directly via `npx` or the installed binary. **Pass the target folder via `--`**; without one they fall back to `DEFAULT_TARGET_DIR` (`./tests`), which does not exist in a fresh clone.
 
 ```bash
 npm run write:optimize               # apply rewrites + optimize (most useful)
@@ -125,7 +125,7 @@ npm run dry -- ./src/e2e
 
 ## The `--optimize` flag
 
-Nine rules, run together inside an idempotent loop until the chain stops changing:
+Nine rules, run together inside an idempotent loop until the chain stops changing. (These are the rules that actually ship — [docs/optimization-rules.md](docs/optimization-rules.md) records the wider 14-rule research spec and marks which of those are deliberately not implemented.)
 
 1. **`==` with wildcard → `LIKE`**. NSPredicate's `==` is exact-match (no wildcards), so `@name="abc*"` would otherwise fail validation. With `--optimize` it becomes `name LIKE "abc*"`.
 2. **`XCUIElementTypeAny` → `*`**. Normalises the verbose API name to the idiomatic wildcard symbol.
@@ -134,6 +134,7 @@ Nine rules, run together inside an idempotent loop until the chain stops changin
 5. **Strip meaningless intermediates**. No-predicate `XCUIElementTypeOther` and `XCUIElementTypeWindow` steps force XCTest to materialise an intermediate result set for zero filtering benefit. They are removed; any gap becomes `/**/` so depth is not accidentally asserted.
 6. **Merge sibling predicate blocks**. Adjacent `[\`a\`][\`b\`]` on the same step can be misread by the engine as an index. They are merged into `[\`a AND b\`]`. Numeric index brackets like `[2]` are never merged.
 7. **Defer `visible == 1` to the final step**. Evaluating visibility triggers a layout pass per element. On intermediate steps this means a pass for every candidate before the chain continues. `visible == 1` is stripped from non-terminal steps and merged onto the final target's predicate.
+   > ⚠️ This is not purely a performance change. The original chain required each *ancestor* to be visible; the rewritten one only requires the final element to be. If an intermediate container can be off-screen while the target is not, the optimized chain can match elements the original would have excluded.
 8. **Strip redundant `type ==` from concrete-typed nodes**. XCTest pre-filters by node type before evaluating the predicate, so `XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "OK"\`]` → `XCUIElementTypeButton[\`name == "OK"\`]`. (The wildcard case `*[\`type == "X"\`]` → `X` is handled by the validator in all modes.)
 9. **AND condition cost reordering**. Compound AND predicates short-circuit on the first false condition. Conditions are sorted cheapest-first: `==`/`!=` → `BEGINSWITH` → `ENDSWITH` → `CONTAINS` → `LIKE` → `MATCHES`.
 
@@ -158,6 +159,17 @@ Without `--optimize`, wildcard inputs are skipped with `skipped_validation_faile
 | `--optimize` | OFF | Run the optimizer pass (LIKE recovery + idempotency loop). |
 | `--json` | OFF | Write a JSON report file in the current working directory and print its path. Implies `--quiet`. |
 | `--quiet` | OFF | Drop per-match diffs and banner; keep the final summary. |
+| `-h`, `--help` | — | Print usage and exit. |
+| `-V`, `--version` | — | Print the version and exit. |
+
+Unknown flags are rejected with exit code 1 rather than ignored — a typo'd `--optimise` would otherwise run the *unoptimised* path while looking like it worked.
+
+## What it will not touch
+
+- **Symlinks and Windows junctions are never followed.** A link inside the target folder can point anywhere on disk, and `--write` would then rewrite files outside the folder you named. Skipped links are reported.
+- **Files that aren't valid UTF-8 are left alone.** Rewriting a latin-1 or UTF-16 file as UTF-8 would corrupt the whole file, not just the locator. Skipped files are reported.
+- **Unreadable folders are stepped over,** not fatal — one permission-denied directory won't discard the rest of the scan.
+- `node_modules`, `.git`, `dist`, `build`, `.next`, `coverage`, and `.cache` are never descended into.
 
 ---
 
@@ -173,17 +185,19 @@ Written to `xpath-to-class-chain.report.json` in the current working directory:
     "filesScanned": 12,
     "locatorsFound": 47,
     "locatorsUpdated": 38,
-    "skipped": { "android": 0, "validationFailed": 2, "unsupportedLogic": 5, "noChangeNeeded": 2 }
+    "skipped": { "android": 0, "validationFailed": 2, "unsupportedLogic": 5, "notXpath": 0, "noChangeNeeded": 2 }
   },
   "updated": [
-    { "file": "login.spec.ts", "old": "//XCUIElementTypeButton[@name=\"OK\"]", "new": "-ios class chain:**/XCUIElementTypeButton[`name == \"OK\"`]" }
+    { "file": "login/login.spec.ts", "old": "//XCUIElementTypeButton[@name=\"OK\"]", "new": "-ios class chain:**/XCUIElementTypeButton[`name == \"OK\"`]" }
   ],
   "skipped": [
-    { "file": "nav.spec.ts", "locator": "//*[last()]", "status": "skipped_unsupported_logic" },
-    { "file": "page.spec.ts", "locator": "-ios class chain:**/Btn[`name == \"x`]", "status": "skipped_validation_failed", "reason": "Unbalanced backticks" }
+    { "file": "nav/nav.spec.ts", "locator": "//*[last()]", "status": "skipped_unsupported_logic" },
+    { "file": "pages/page.spec.ts", "locator": "-ios class chain:**/Btn[`name == \"x`]", "status": "skipped_validation_failed", "reason": "Unbalanced backticks" }
   ]
 }
 ```
+
+`file` is relative to the scanned folder and always uses `/` separators, so reports match across Windows and POSIX.
 
 `reason` is only present on `skipped[]` entries where the validator produced a diagnostic (typically class-chain lint failures). It's omitted otherwise — most XPath-conversion skips fall into this category.
 
@@ -192,7 +206,7 @@ Status values used in `skipped[]`:
 | Status | Meaning |
 |---|---|
 | `success` | Converted or lint-fixed; appears in `updated[]`. |
-| `skipped_not_xpath` | String starts with `//` but isn't an XPath (e.g. a URL). |
+| `skipped_not_xpath` | Grouped XPath whose outer index isn't a static position, e.g. `(//XCUIElementTypeButton[@name="x"])[last()]`. (Non-locator strings such as URLs are filtered out earlier and never counted at all.) |
 | `skipped_android` | Locator targets Android UI (`android.widget.*`). |
 | `skipped_unsupported_logic` | XPath uses an axis or function Class Chain can't express. |
 | `skipped_validation_failed` | Output didn't pass NSPredicate validation — often recoverable with `--optimize`. |
@@ -215,6 +229,8 @@ Status values used in `skipped[]`:
 | `(//XCUIElementTypeButton[@name="OK"])` | ``**/XCUIElementTypeButton[`name == "OK"`]`` (outer parens stripped) |
 | `(//XCUIElementTypeButton[@name="OK"])[2]` | ``**/XCUIElementTypeButton[`name == "OK"`][2]`` (outer position index appended) |
 | `(//XCUIElementTypeOther[@name="row"])[${index}]` | ``**/XCUIElementTypeOther[`name == "row"`][${index}]`` (template expression preserved) |
+
+> ⚠️ **Positional indexes are not equivalent between the two languages.** In XPath, `//X[2]` means "every `X` that is the 2nd `X` child of its parent" — it can match many elements. In a Class Chain, `**/X[2]` means "the 2nd element of the matched set" — it matches at most one. Indexes are passed through unchanged, so a converted locator that uses `[n]` may select a different element than the original. Review indexed locators by hand after converting.
 
 ## What it skips on purpose
 
