@@ -53,6 +53,10 @@ export function isLikelyIosLocator(str: string): boolean;
 
 export interface ParsedFlags {
   positionals: string[];
+  /** Flags that are not recognised. Non-empty means the CLI should refuse to run. */
+  unknown: string[];
+  help: boolean;
+  version: boolean;
   json: boolean;
   quiet: boolean;
   dryRun: boolean;
@@ -62,5 +66,51 @@ export interface ParsedFlags {
 /** Parse CLI argv (without `node`/script) into the flag object the CLI uses. */
 export function parseFlags(argv: string[]): ParsedFlags;
 
-/** Frozen map of status string constants. */
-export const STATUS: Readonly<Record<string, Status>>;
+export interface ScanStats {
+  filesScanned: number;
+  locatorsFound: number;
+  locatorsUpdated: number;
+  skipped: {
+    android: number;
+    validationFailed: number;
+    unsupportedLogic: number;
+    notXpath: number;
+    noChangeNeeded: number;
+  };
+}
+
+export interface ScanRecord {
+  /** Path relative to the scan root, with `/` separators on every platform. */
+  file: string;
+  changed: boolean;
+  /** The locator as found in the file. */
+  old: string;
+  /** The rewritten locator; present only when `changed`. */
+  new?: string;
+  status: Status;
+  reason: string | null;
+}
+
+export interface MainResult {
+  stats: ScanStats;
+  records: ScanRecord[];
+}
+
+/**
+ * Scan `targetDir` and convert every locator found. Honours `opts.dryRun`;
+ * exits the process on an unusable target directory.
+ */
+export function main(targetDir: string | undefined, opts: ParsedFlags): MainResult;
+
+/**
+ * Frozen map of status string constants. Keys are declared literally so a typo
+ * such as `STATUS.SUCESS` is a compile error rather than `undefined`.
+ */
+export const STATUS: Readonly<{
+  SUCCESS: 'success';
+  SKIPPED_NOT_XPATH: 'skipped_not_xpath';
+  SKIPPED_ANDROID: 'skipped_android';
+  SKIPPED_UNSUPPORTED_LOGIC: 'skipped_unsupported_logic';
+  SKIPPED_VALIDATION_FAILED: 'skipped_validation_failed';
+  SKIPPED_NO_CHANGE: 'skipped_no_change';
+}>;

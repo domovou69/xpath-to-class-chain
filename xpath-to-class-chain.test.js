@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 // Zero-dependency test runner: `node xpath-to-class-chain.test.js`
 // Exit code is non-zero on any failure. Cases use synthetic, app-neutral data
 // and cover the documented iOS Class Chain / NSPredicate conversion rules.
@@ -221,7 +220,10 @@ const DETECT_CASES = [
 // (dryRun default is the script's DRY_RUN = true — safer; --write to opt in)
 // =====================================================================
 const FLAGS_CASES = [
-  { argv: ['./src'], expect: { positionals: ['./src'], dryRun: true, json: false, quiet: false, optimize: false } },
+  // The bare command previews. The optimizer is on in both modes, so the
+  // preview predicts exactly what --write would save.
+  { argv: ['./src'], expect: { positionals: ['./src'], dryRun: true, json: false, quiet: false, optimize: true } },
+  { argv: ['./src', '--write'], expect: { dryRun: false, optimize: true } },
   { argv: ['./src', '--dry-run'], expect: { positionals: ['./src'], dryRun: true } },
   { argv: ['--write'], expect: { dryRun: false } },
   { argv: ['--dry-run', '--write'], expect: { dryRun: true } }, // --dry-run wins
@@ -230,6 +232,23 @@ const FLAGS_CASES = [
   { argv: ['//XCUIElementTypeButton', '--json'], expect: { positionals: ['//XCUIElementTypeButton'], json: true } },
   { argv: ['--optimize'], expect: { optimize: true } },
   { argv: ['./src', '--optimize', '--write'], expect: { optimize: true, dryRun: false } },
+  // --help / --version, long and short forms
+  { argv: ['--help'], expect: { help: true, version: false, unknown: [] } },
+  { argv: ['-h'], expect: { help: true } },
+  { argv: ['--version'], expect: { version: true, help: false } },
+  { argv: ['-V'], expect: { version: true } },
+  // Unknown flags are collected, never silently ignored. A typo'd --optimise
+  // must NOT come back as optimize:true, and must be reported.
+  { argv: ['./src', '--optimise'], expect: { unknown: ['--optimise'], positionals: ['./src'] } },
+  // --optimize is still accepted (no-op) so existing commands keep working.
+  { argv: ['./src', '--optimize'], expect: { unknown: [], optimize: true } },
+  // A typo'd write flag is caught as unknown and the CLI exits before scanning.
+  { argv: ['--wirte'], expect: { unknown: ['--wirte'] } },
+  { argv: ['--nope', '-x'], expect: { unknown: ['--nope', '-x'] } },
+  // Short flags must not be mistaken for positionals.
+  { argv: ['./src', '-h'], expect: { positionals: ['./src'] } },
+  // A fully valid invocation reports nothing unknown.
+  { argv: ['./src', '--write', '--optimize'], expect: { unknown: [] } },
 ];
 
 // =====================================================================
@@ -295,6 +314,16 @@ const OPTIMIZE_CHAIN_CASES = [
   {
     input: `${CC}**/XCUIElementTypeButton[\`label IN {"Submit"}\`]`,
     fixed: `${CC}**/XCUIElementTypeButton[\`label == "Submit"\`]`,
+  },
+
+  // An ESCAPED backtick inside the predicate value — Appium's way of writing a
+  // literal ` in an NSPredicate block. PREDICATE_REGEX must not treat it as the
+  // end of the backtick block: when it did, this predicate matched NOTHING and
+  // every optimizer rule routed through that regex silently skipped it, so the
+  // wildcard never became LIKE and the chain came back invalid instead.
+  {
+    input: `${CC}**/XCUIElementTypeCell[\`label == "a\\\`b*"\`]`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`label LIKE "a\\\`b*"\`]`,
   },
   // Multi-value IN stays untouched — semantics differ
   {
@@ -453,6 +482,42 @@ const OPTIMIZE_CHAIN_CASES = [
     input: `${CC}**/XCUIElementTypeTable/XCUIElementTypeCell[\`name == "row"\`][\`visible == 1\`]`,
     fixed: `${CC}**/XCUIElementTypeTable/XCUIElementTypeCell[\`name == "row" AND visible == 1\`]`,
   },
+
+  // --- `/**/` separator must survive every rule that re-parses the chain. ---
+  // Regression: parseChainSteps consumed the `/` then broke on `**/`, emitting
+  // an empty node that was discarded — so the `/` was silently dropped and
+  // `Table/**/Cell` came back as `Table**/Cell`, still reported valid.
+  {
+    input: `${CC}**/XCUIElementTypeTable/**/XCUIElementTypeCell`,
+    fixed: `${CC}**/XCUIElementTypeTable/**/XCUIElementTypeCell`,
+  },
+  // …and while mergeSiblingPredicates rewrites the same chain.
+  {
+    input: `${CC}**/XCUIElementTypeTable/**/XCUIElementTypeCell[\`a == "1"\`][\`b == "2"\`]`,
+    fixed: `${CC}**/XCUIElementTypeTable/**/XCUIElementTypeCell[\`a == "1" AND b == "2"\`]`,
+  },
+  // …and while deferVisibleToFinalStep moves a predicate across the gap.
+  {
+    input: `${CC}**/XCUIElementTypeTable[\`visible == 1\`]/**/XCUIElementTypeCell/XCUIElementTypeButton[\`name == "OK"\`]`,
+    fixed: `${CC}**/XCUIElementTypeTable/**/XCUIElementTypeCell/XCUIElementTypeButton[\`name == "OK" AND visible == 1\`]`,
+  },
+  // Multiple gaps in one chain.
+  {
+    input: `${CC}**/XCUIElementTypeTable/**/XCUIElementTypeCell/**/XCUIElementTypeButton`,
+    fixed: `${CC}**/XCUIElementTypeTable/**/XCUIElementTypeCell/**/XCUIElementTypeButton`,
+  },
+
+  // --- Rule 11 costs the operator, not the data. ---
+  // Regression: `\bLIKE\b` was tested against the whole condition, so a value
+  // containing the word LIKE was costed 5 and sorted last instead of first.
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`name CONTAINS "z" AND label == "I LIKE it"\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`label == "I LIKE it" AND name CONTAINS "z"\`]`,
+  },
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`name MATCHES "^a" AND label == "we CONTAINS it"\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`label == "we CONTAINS it" AND name MATCHES "^a"\`]`,
+  },
 ];
 
 // =====================================================================
@@ -541,10 +606,11 @@ for (const { input, fixed } of OPTIMIZE_CHAIN_CASES) {
 // Uses os.tmpdir() so the host repo is never touched; each block cleans up
 // its own directory at the end.
 // =====================================================================
-const { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } = require('fs');
+const { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync } = require('fs');
 const { tmpdir } = require('os');
 const { join } = require('path');
 const { makeStats, walkDir, processFile } = require('./lib/scanner');
+const { PREDICATE_REGEX } = require('./lib/predicates');
 
 function makeTempRoot(prefix = 'xpath-test-') {
   return mkdtempSync(join(tmpdir(), prefix));
@@ -889,6 +955,241 @@ console.log('— SCANNER: processFile —');
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
+}
+
+// =====================================================================
+// SCANNER: refusals — inputs the scanner must decline to touch rather than
+// process. Each of these was a real failure mode: silently corrupting a file,
+// rewriting files outside the target tree, or aborting the whole scan.
+// =====================================================================
+console.log('— SCANNER: refusals —');
+
+{
+  // A file that is not valid UTF-8 must be left byte-for-byte alone. Decoding
+  // latin-1 as utf8 turns every undecodable byte into U+FFFD across the WHOLE
+  // file, so writing it back destroyed the file instead of editing a locator.
+  const root = makeTempRoot('xpath-latin1-');
+  try {
+    const file = join(root, 'legacy.properties');
+    // 0xE9 is 'é' in latin-1 and is not valid UTF-8 on its own.
+    const before = Buffer.concat([
+      Buffer.from('x=//XCUIElementTypeButton[@name="caf'),
+      Buffer.from([0xe9]),
+      Buffer.from('"]\n'),
+    ]);
+    writeFileSync(file, before);
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: false, quiet: true }, records, stats);
+
+    if (readFileSync(file).equals(before)) ok();
+    else fail(`processFile non-UTF-8: file was modified (data loss)`);
+    if (stats.filesScanned === 0 && records.length === 0) ok();
+    else fail(`processFile non-UTF-8: should not be scanned; stats=${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
+  // A UTF-8 file with a BOM is valid and must still be processed — the
+  // non-UTF-8 guard must not over-reject.
+  const root = makeTempRoot('xpath-bom-');
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, '﻿' + `const l = '//XCUIElementTypeButton[@name="OK"]';`);
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: false, quiet: true }, records, stats);
+
+    if (stats.locatorsUpdated === 1) ok();
+    else fail(`processFile BOM: expected the file to be processed; stats=${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
+  // walkDir must never follow a symlink out of the target tree: with --write
+  // that rewrote files the user never pointed the tool at. Skipped when the
+  // platform/account can't create links (Windows without Developer Mode).
+  const root = makeTempRoot('xpath-symlink-');
+  try {
+    const target = join(root, 'target');
+    const outside = join(root, 'outside');
+    mkdirSync(target);
+    mkdirSync(outside);
+    writeFileSync(join(target, 'a.js'), '// in tree');
+    writeFileSync(join(outside, 'secret.js'), '// out of tree');
+
+    let linked = true;
+    try {
+      symlinkSync(outside, join(target, 'escape'), 'junction');
+    } catch {
+      linked = false;
+    }
+
+    if (linked) {
+      const visited = [];
+      walkDir(target, p => visited.push(p.slice(target.length + 1).replace(/\\/g, '/')));
+      if (!visited.some(p => p.includes('secret'))) ok();
+      else fail(`walkDir: followed a symlink out of the target tree, visited ${JSON.stringify(visited)}`);
+    } else {
+      ok(); // cannot create links here; nothing to assert
+    }
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
+  // An unreadable/missing directory is reported and stepped over. Previously
+  // the raw error escaped walkDir and killed the entire scan.
+  let threw = false;
+  try {
+    walkDir(join(tmpdir(), 'xpath-does-not-exist-' + Date.now()), () => {});
+  } catch {
+    threw = true;
+  }
+  if (!threw) ok();
+  else fail('walkDir: an unreadable directory aborted the scan instead of being skipped');
+}
+
+{
+  // Records identify files by path relative to the scan root, so a repo with
+  // many same-named files does not produce indistinguishable rows.
+  const root = makeTempRoot('xpath-relpath-');
+  try {
+    mkdirSync(join(root, 'pages'));
+    const file = join(root, 'pages', 'index.ts');
+    writeFileSync(file, `const l = '//XCUIElementTypeButton[@name="OK"]';`);
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: true, quiet: true, rootDir: root }, records, stats);
+
+    if (records.length === 1 && records[0].file === 'pages/index.ts') ok();
+    else fail(`processFile rootDir: expected file='pages/index.ts', got '${records[0] && records[0].file}'`);
+
+    // Without rootDir the bare filename is still used (library callers).
+    const bare = [];
+    processFile(file, { dryRun: true, quiet: true }, bare, makeStats());
+    if (bare.length === 1 && bare[0].file === 'index.ts') ok();
+    else fail(`processFile no rootDir: expected file='index.ts', got '${bare[0] && bare[0].file}'`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
+  // skipped_not_xpath has its own counter. Folding it into noChangeNeeded made
+  // the console summary contradict the JSON report for the same run.
+  const stats = makeStats();
+  if (stats.skipped.notXpath === 0) ok();
+  else fail(`makeStats: missing notXpath counter, got ${JSON.stringify(stats.skipped)}`);
+}
+
+// =====================================================================
+// CLI SAFETY — the tool rewrites source in place with no built-in undo, so the
+// two ways it could touch a folder the user never named are asserted here.
+// These run the real binary: the guards live in the `require.main` block, which
+// importing the module deliberately does not execute.
+// =====================================================================
+console.log('— CLI SAFETY —');
+{
+  const { execFileSync } = require('child_process');
+  const cli = join(__dirname, 'xpath-to-class-chain.js');
+
+  // Run the CLI from inside a scratch dir holding ./tests (DEFAULT_TARGET_DIR),
+  // and report whether that fixture survived untouched.
+  const runInFixture = (args) => {
+    const root = mkdtempSync(join(tmpdir(), 'xpath-cli-'));
+    try {
+      mkdirSync(join(root, 'tests'));
+      const file = join(root, 'tests', 'spec.js');
+      const before = 'const a = "//XCUIElementTypeButton[@name=\'Go\']";\n';
+      writeFileSync(file, before);
+      let status = 0;
+      try {
+        execFileSync(process.execPath, [cli, ...args], { cwd: root, stdio: 'pipe', timeout: 20000 });
+      } catch (e) {
+        status = e.status === undefined ? -1 : e.status;
+      }
+      return { status, untouched: readFileSync(file, 'utf8') === before };
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  };
+
+  // No arguments at all: previewing DEFAULT_TARGET_DIR is fine, editing it is
+  // not. Typing the bare command to see what a new tool does must be safe.
+  {
+    const { status, untouched } = runInFixture([]);
+    if (status === 0 && untouched) ok();
+    else fail(`CLI SAFETY bare command: exit ${status}, file ${untouched ? 'untouched' : 'MODIFIED'} (expected exit 0, untouched)`);
+  }
+
+  // --write with no folder must be refused outright rather than quietly
+  // promoting DEFAULT_TARGET_DIR into a write target.
+  {
+    const { status, untouched } = runInFixture(['--write']);
+    if (status === 1 && untouched) ok();
+    else fail(`CLI SAFETY bare --write: exit ${status}, file ${untouched ? 'untouched' : 'MODIFIED'} (expected exit 1, untouched)`);
+  }
+
+  // The guard must not block the legitimate form: an explicit folder writes.
+  {
+    const { status, untouched } = runInFixture(['./tests', '--write']);
+    if (status === 0 && !untouched) ok();
+    else fail(`CLI SAFETY explicit --write: exit ${status}, file ${untouched ? 'NOT written' : 'written'} (expected exit 0, written)`);
+  }
+}
+
+// =====================================================================
+// REGEX SAFETY — both scanning regexes previously had two ways to match the
+// same character, so a run of them backtracked exponentially and the scan hung
+// on ordinary files. Each of these completed in ~20s+ before the fix.
+// =====================================================================
+console.log('— REGEX SAFETY —');
+{
+  // Run each probe in a child process with a hard timeout. Backtracking that
+  // has gone exponential does not return slowly — it does not return at all,
+  // so an in-process timing assertion would hang the suite instead of failing
+  // it. execFileSync throws on timeout, turning a hang into a clean failure.
+  const { execFileSync } = require('child_process');
+  const budgetMs = 5000;
+
+  const probe = (label, script) => {
+    try {
+      execFileSync(process.execPath, ['-e', script], { timeout: budgetMs, stdio: 'pipe' });
+      ok();
+    } catch (e) {
+      const why = e.killed || e.signal ? `did not finish within ${budgetMs}ms — catastrophic backtracking` : e.message;
+      fail(`REGEX SAFETY ${label}: ${why}`);
+    }
+  };
+
+  probe('PREDICATE_REGEX (200 backticks)', `
+    const { PREDICATE_REGEX } = require(${JSON.stringify(join(__dirname, 'lib', 'predicates'))});
+    ('[' + '\\u0060'.repeat(200)).match(new RegExp(PREDICATE_REGEX.source, 'g'));
+  `);
+
+  probe('scanner strictRegex (200 backslashes)', `
+    const { processFile, makeStats } = require(${JSON.stringify(join(__dirname, 'lib', 'scanner'))});
+    const { mkdtempSync, writeFileSync, rmSync } = require('fs');
+    const { tmpdir } = require('os');
+    const { join } = require('path');
+    const root = mkdtempSync(join(tmpdir(), 'xpath-redos-'));
+    try {
+      const f = join(root, 'a.js');
+      writeFileSync(f, 'const l = "//XCUIElementTypeButton' + '\\\\'.repeat(200));
+      processFile(f, { dryRun: true, quiet: true }, [], makeStats());
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  `);
 }
 
 console.log(`\n${failed === 0 ? '✅' : '⚠️'} ${passed} passed, ${failed} failed`);

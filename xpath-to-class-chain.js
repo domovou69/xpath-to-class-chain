@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-require-imports */
 // Entry point: CLI orchestration + the public surface tests import. All real
 // work lives in ./lib/ — this file only wires modules to the command line.
-const { existsSync, writeFileSync } = require('fs');
-const { basename, resolve, join } = require('path');
+const { existsSync, statSync, writeFileSync } = require('fs');
+const { resolve, join } = require('path');
 
 // Where the --json report lands: the caller's working directory. Using cwd (not
 // __dirname) matters once the tool is installed as a dependency — __dirname then
@@ -20,16 +19,27 @@ const { isLikelyIosLocator, walkDir, processFile, makeStats } = require('./lib/s
 // ⚠️ REQUIRED: point this at your source folder, or pass one on the command line:
 //      node xpath-to-class-chain.js ./src
 const DEFAULT_TARGET_DIR = './tests';
-// Safety-first default — previewing only; --write overrides.
+// Preview by default; --write opts in to modifying files. The tool rewrites
+// source in place with no built-in undo, so the cost of the two defaults is not
+// symmetric: defaulting to preview wastes one command, defaulting to write can
+// damage a tree the user never named. The optimizer runs in BOTH modes, so the
+// preview is byte-for-byte what --write would save.
 const DRY_RUN = true;
 
 function main(targetDir = DEFAULT_TARGET_DIR, opts) {
   const fullPath = resolve(targetDir);
 
-  if (!existsSync(targetDir)) {
+  if (!existsSync(fullPath)) {
     console.error(`Error: directory not found: ${fullPath}`);
-    console.error(`  - Edit DEFAULT_TARGET_DIR at the top of this file, OR`);
-    console.error(`  - Pass a folder:   node ${basename(__filename)} ./src`);
+    console.error(`Pass the folder holding your locators, e.g.  xpath-to-class-chain ./src`);
+    process.exit(1);
+  }
+
+  // A file target would otherwise reach readdirSync and die with a raw ENOTDIR
+  // stack trace.
+  if (!statSync(fullPath).isDirectory()) {
+    console.error(`Error: not a directory: ${fullPath}`);
+    console.error(`This tool scans a folder tree. Pass the containing folder instead.`);
     process.exit(1);
   }
 
@@ -41,9 +51,12 @@ function main(targetDir = DEFAULT_TARGET_DIR, opts) {
 
   const stats = makeStats();
   const records = [];
-  walkDir(targetDir, filePath => {
+  // rootDir lets the scanner report paths relative to the scan root rather than
+  // as bare filenames.
+  const scanOpts = { ...opts, rootDir: fullPath };
+  walkDir(fullPath, filePath => {
     try {
-      processFile(filePath, opts, records, stats);
+      processFile(filePath, scanOpts, records, stats);
     } catch (e) {
       console.error(`❌ Error in ${filePath}:`, e);
     }
@@ -81,18 +94,17 @@ function main(targetDir = DEFAULT_TARGET_DIR, opts) {
   console.log(`  android:        ${stats.skipped.android}`);
   console.log(`  validation:     ${stats.skipped.validationFailed}`);
   console.log(`  unsupported:    ${stats.skipped.unsupportedLogic}`);
+  console.log(`  not xpath:      ${stats.skipped.notXpath}`);
   console.log(`  no change:      ${stats.skipped.noChangeNeeded}`);
   console.log(bar);
   return { stats, records };
 }
 
-// --dry-run   preview only, never write (overrides the DRY_RUN default)
-// --write     force writing       (overrides the DRY_RUN default)
+// --dry-run   preview only, never write (the default; the flag is explicit opt-in)
+// --write     save changes in place    (overrides the DRY_RUN default)
 // --json      emit machine-readable JSON (implies --quiet so stdout stays pure JSON)
 // --quiet     drop per-match diffs and banners; keep the final summary
-// --optimize  run the optimizer pass: idempotent re-validation + `== "abc*"`
-//             rewritten as `LIKE "abc*"` (recovers wildcard-equality cases
-//             that would otherwise fail validation)
+// --optimize  accepted as a no-op — the optimizer always runs
 // --dry-run wins if both --dry-run and --write are passed.
 
 function resolveBool(flags, onFlag, offFlag, fallback) {
@@ -101,24 +113,88 @@ function resolveBool(flags, onFlag, offFlag, fallback) {
   return fallback;
 }
 
+// Every flag the CLI understands. An unrecognised flag is rejected rather than
+// ignored: silently dropping a typo'd `--optimise` runs the UNOPTIMISED path
+// while the user believes the optimizer ran, and `--wirte` would preview
+// instead of writing.
+const KNOWN_FLAGS = new Set([
+  '--dry-run', '--write', '--optimize', '--json', '--quiet', '--help', '-h', '--version', '-V',
+]);
+
+const USAGE = `xpath-to-class-chain — convert iOS XPath locators to Class Chain selectors
+
+Usage:
+  xpath-to-class-chain <folder> [flags]
+
+The bare command PREVIEWS ONLY and writes nothing. Add --write once the diff
+looks right; it rewrites the files in place, so run it on a clean working tree
+and let \`git diff\` be your undo.
+
+The optimizer always runs, in preview and write alike, so the preview is exactly
+what --write would save.
+
+Flags:
+  --dry-run    Preview only, write nothing. The default. Wins if combined with --write.
+  --write      Save the changes in place. Requires an explicit target folder.
+  --json       Write xpath-to-class-chain.report.json in the current directory. Implies --quiet.
+  --quiet      Drop per-match diffs and banner; keep the final summary.
+  --optimize   Accepted for compatibility; the optimizer is on by default.
+  -h, --help   Show this help.
+  -V, --version  Show the version.
+
+Examples:
+  xpath-to-class-chain ./src            # preview: converts and optimizes, writes nothing
+  xpath-to-class-chain ./src --write    # same result, saved in place`;
+
 function parseFlags(argv) {
-  const flags = new Set(argv.filter(a => a.startsWith('--')));
+  const flags = new Set(argv.filter(a => a.startsWith('-')));
   const json = flags.has('--json');
   return {
-    positionals: argv.filter(a => !a.startsWith('--')),
+    positionals: argv.filter(a => !a.startsWith('-')),
+    unknown: [...flags].filter(f => !KNOWN_FLAGS.has(f)),
+    help: flags.has('--help') || flags.has('-h'),
+    version: flags.has('--version') || flags.has('-V'),
     json,
     quiet: json || flags.has('--quiet'),
     dryRun: resolveBool(flags, '--dry-run', '--write', DRY_RUN),
-    optimize: flags.has('--optimize'),
+    // The optimizer always runs. It is what makes the output worth adopting, so
+    // requiring a flag for it just meant most users got the worse result.
+    //
+    // Critically it must be on in BOTH modes: --dry-run is documented as the
+    // safe preview of --write, so if the two disagreed about optimization the
+    // preview would no longer predict what gets written.
+    //
+    // `--optimize` is still accepted as a no-op — it is all over existing docs
+    // and shell history, and rejecting it as unknown would be a pointless break.
+    optimize: true,
   };
 }
 
 // Entry point. When required from a test, the pure functions are exported instead.
-//   node xpath-to-class-chain.js                          → scan DEFAULT_TARGET_DIR
-//   node xpath-to-class-chain.js ./src [--dry-run|--json] → scan a folder
+//   node xpath-to-class-chain.js                       → preview DEFAULT_TARGET_DIR
+//   node xpath-to-class-chain.js ./src [--write|--json] → scan a folder
 if (require.main === module) {
   const opts = parseFlags(process.argv.slice(2));
-  main(opts.positionals[0], opts);
+  if (opts.help) {
+    console.log(USAGE);
+  } else if (opts.version) {
+    console.log(require('./package.json').version);
+  } else if (opts.unknown.length) {
+    console.error(`Error: unknown flag${opts.unknown.length > 1 ? 's' : ''}: ${opts.unknown.join(', ')}`);
+    console.error(`Run with --help to see the supported flags.`);
+    process.exit(1);
+  } else if (!opts.dryRun && !opts.positionals.length) {
+    // Never modify a folder the user did not name. DEFAULT_TARGET_DIR is a
+    // convenience for previewing, and quietly promoting it to a write target
+    // would rewrite ./tests on a bare `--write` — the one directory a test repo
+    // can least afford to have silently edited.
+    console.error(`Error: --write needs an explicit target folder.`);
+    console.error(`Refusing to rewrite the default (${DEFAULT_TARGET_DIR}) when you did not name it.`);
+    console.error(`  xpath-to-class-chain ./src --write`);
+    process.exit(1);
+  } else {
+    main(opts.positionals[0], opts);
+  }
 }
 
 module.exports = {

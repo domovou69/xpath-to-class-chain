@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Convert and optimize iOS XPath locators to iOS Class Chain selectors for Appium, with a built-in linter and an optional optimizer pass",
   "license": "MIT",
-  "author": "mikhail.yesipchuk",
+  "author": "Mikhail Yesipchuk (https://github.com/domovou69)",
   "keywords": ["appium", "ios", "xpath", "class-chain", "locator", "migration", "xcuitest"],
   "repository": {
     "type": "git",
@@ -22,12 +22,9 @@
     "node": ">=20"
   },
   "scripts": {
-    "write": "node xpath-to-class-chain.js --write",
-    "write:optimize": "node xpath-to-class-chain.js --write --optimize",
     "dry": "node xpath-to-class-chain.js",
-    "dry:optimize": "node xpath-to-class-chain.js --optimize",
+    "write": "node xpath-to-class-chain.js --write",
     "json": "node xpath-to-class-chain.js --json",
-    "json:optimize": "node xpath-to-class-chain.js --json --optimize",
     "test": "node xpath-to-class-chain.test.js",
     "prepublishOnly": "npm test"
   },
