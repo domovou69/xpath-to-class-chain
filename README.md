@@ -10,19 +10,17 @@ Use it as:
 
 ## Try it now
 
-One command. Runs straight from this GitHub repo — nothing to install.
-Try dry-run first to review the changes
+Runs straight from this GitHub repo — nothing to install. The bare command only
+previews; review the diff, then add `--write`.
 
 ```bash
-npx github:domovou69/xpath-to-class-chain ./tests --dry-run
-npx github:domovou69/xpath-to-class-chain ./tests
+npx github:domovou69/xpath-to-class-chain ./tests            # preview
+npx github:domovou69/xpath-to-class-chain ./tests --write    # save it
 ```
 
-Point `./tests` at the folder holding your Appium/XCUITest locators. It scans the tree, converts every XPath locator to a Class Chain, applies all optimizer rules, and **saves the files in place**.
+Point `./tests` at the folder holding your Appium/XCUITest locators. It scans the tree, converts every XPath locator to a Class Chain and applies all optimizer rules — printing a `- old / + new` diff, or **saving the files in place** with `--write`.
 
-
-
-The optimizer runs in both modes, so the preview is exactly what the real run produces.
+The optimizer runs in both modes, so the preview is exactly what `--write` produces.
 
 ## Requirements
 
@@ -35,30 +33,32 @@ Node.js ≥ 20. No npm dependencies.
 **Run once without installing** (fetches from registry on the fly):
 
 ```bash
-npx xpath-to-class-chain ./tests/e2e
-pnpm dlx xpath-to-class-chain ./tests/e2e
-yarn dlx xpath-to-class-chain ./tests/e2e
+npx xpath-to-class-chain ./tests/e2e --write
+pnpm dlx xpath-to-class-chain ./tests/e2e --write
+yarn dlx xpath-to-class-chain ./tests/e2e --write
 ```
 
 ---
 
 ## Quick start
 
-### 1. The migration command
+### 1. Preview first (safe — no files touched)
 
 ```bash
 npx xpath-to-class-chain ./tests/e2e
 ```
 
-Scans the folder, converts every XPath locator to a Class Chain, applies all optimizer rules, and **saves files in place**. This one command is the whole migration.
+Scans the folder, converts every XPath locator to a Class Chain and applies all optimizer rules, then prints a `- old / + new` diff for every locator it would change. **Writes nothing.** `--dry-run` names this mode explicitly, but it is already the default.
 
-### 2. Preview instead (no files touched)
+### 2. Apply the migration
 
 ```bash
-npx xpath-to-class-chain ./tests/e2e --dry-run
+npx xpath-to-class-chain ./tests/e2e --write
 ```
 
-Same scan, same optimizer, **writes nothing**. Prints a `- old / + new` diff for every locator it would change. The output is exactly what the command above would write.
+Same scan, same optimizer, **saved in place**. The output is exactly what the preview showed. There is no built-in undo — run it on a clean working tree so `git diff` is your undo.
+
+`--write` requires an explicit folder: a bare `--write` is refused rather than falling back to `DEFAULT_TARGET_DIR`.
 
 ### 3. JSON report
 
@@ -73,19 +73,19 @@ Writes a machine-readable JSON report named `xpath-to-class-chain.report.json` i
 
 ## npm scripts (contributors / cloned repo)
 
-Shortcuts for running the tool without typing `node xpath-to-class-chain.js` each time. Not needed by consumers — use the CLI directly via `npx` or the installed binary. **Pass the target folder via `--`**; without one they fall back to `DEFAULT_TARGET_DIR` (`./tests`), which does not exist in a fresh clone.
+Shortcuts for running the tool without typing `node xpath-to-class-chain.js` each time. Not needed by consumers — use the CLI directly via `npx` or the installed binary. **Pass the target folder via `--`**; without one they fall back to `DEFAULT_TARGET_DIR` (`./tests`), which does not exist in a fresh clone (and `npm run write` refuses to run at all without an explicit folder).
 
 ```bash
-npm start -- ./src/e2e      # migrate: convert, optimize, write
-npm run dry -- ./src/e2e    # preview the same result, write nothing
-npm run json -- ./src/e2e   # JSON report
+npm run dry -- ./src/e2e    # preview, write nothing
+npm run write -- ./src/e2e  # migrate: convert, optimize, save in place
+npm run json -- ./src/e2e   # JSON report (preview unless you add --write)
 ```
 
 ---
 
 ## The optimizer
 
-The optimizer always runs — in both the write and `--dry-run` paths, so the preview never disagrees with the result. Nine rules run together inside an idempotent loop until the chain stops changing. (These are the rules that actually ship — [docs/optimization-rules.md](docs/optimization-rules.md) records the wider 14-rule research spec and marks which of those are deliberately not implemented.)
+The optimizer always runs — in both the preview and `--write` paths, so the preview never disagrees with the result. Nine rules run together inside an idempotent loop until the chain stops changing. (These are the rules that actually ship — [docs/optimization-rules.md](docs/optimization-rules.md) records the wider 14-rule research spec and marks which of those are deliberately not implemented.)
 
 1. **`==` with wildcard → `LIKE`**. NSPredicate's `==` is exact-match (no wildcards), so `@name="abc*"` would otherwise fail validation outright; it becomes `name LIKE "abc*"` instead.
 2. **`XCUIElementTypeAny` → `*`**. Normalises the verbose API name to the idiomatic wildcard symbol.
@@ -112,14 +112,14 @@ Without the optimizer, wildcard inputs would be skipped with `skipped_validation
 
 ## Flags reference
 
-**Writing is the default.** The bare command converts, optimizes and saves in one pass; `--dry-run` is how you opt out of writing.
+**Previewing is the default.** The bare command converts and optimizes but writes nothing; `--write` is how you opt in to modifying files.
 
 | Flag | Default | Effect |
 |---|---|---|
-| `--dry-run` | OFF | Preview only, write nothing. Wins if combined with `--write`. |
+| `--dry-run` | **ON** | Preview only, write nothing. Already the default; wins if combined with `--write`. |
+| `--write` | OFF | Save the changes in place. Requires an explicit target folder. |
 | `--json` | OFF | Write a JSON report file in the current working directory and print its path. Implies `--quiet`. |
 | `--quiet` | OFF | Drop per-match diffs and banner; keep the final summary. |
-| `--write` | **implied** | Accepted for compatibility — writing is already the default. |
 | `--optimize` | **implied** | Accepted for compatibility — the optimizer always runs. |
 | `-h`, `--help` | — | Print usage and exit. |
 | `-V`, `--version` | — | Print the version and exit. |
@@ -171,7 +171,7 @@ Status values used in `skipped[]`:
 | `skipped_not_xpath` | Grouped XPath whose outer index isn't a static position, e.g. `(//XCUIElementTypeButton[@name="x"])[last()]`. (Non-locator strings such as URLs are filtered out earlier and never counted at all.) |
 | `skipped_android` | Locator targets Android UI (`android.widget.*`). |
 | `skipped_unsupported_logic` | XPath uses an axis or function Class Chain can't express. |
-| `skipped_validation_failed` | Output didn't pass NSPredicate validation — often recoverable with `--optimize`. |
+| `skipped_validation_failed` | Output didn't pass NSPredicate validation, even after the optimizer pass. |
 | `skipped_no_change` | Already a valid class chain; nothing to do. |
 
 ---
@@ -187,7 +187,7 @@ Status values used in `skipped[]`:
 | `//*[contains(@type,"XCUIElementTypeOther")]` | `**/XCUIElementTypeOther` (type-collapse) |
 | `//XCUIElementTypeCell[@a="1"][@b="2"][3]` | ``**/XCUIElementTypeCell[`a == "1" AND b == "2"`][3]`` (merge + index) |
 | `//XCUIElementTypeCell[@name="a/b"]` | ``**/XCUIElementTypeCell[`name == "a/b"`]`` (slashes inside values are safe) |
-| `//XCUIElementTypeButton[@name="abc*"]` *(with `--optimize`)* | ``**/XCUIElementTypeButton[`name LIKE "abc*"`]`` |
+| `//XCUIElementTypeButton[@name="abc*"]` | ``**/XCUIElementTypeButton[`name LIKE "abc*"`]`` (optimizer wildcard rule) |
 | `(//XCUIElementTypeButton[@name="OK"])` | ``**/XCUIElementTypeButton[`name == "OK"`]`` (outer parens stripped) |
 | `(//XCUIElementTypeButton[@name="OK"])[2]` | ``**/XCUIElementTypeButton[`name == "OK"`][2]`` (outer position index appended) |
 | `(//XCUIElementTypeOther[@name="row"])[${index}]` | ``**/XCUIElementTypeOther[`name == "row"`][${index}]`` (template expression preserved) |
@@ -215,8 +215,8 @@ The scanner also gates strings starting with `//` through `isLikelyIosLocator` �
 
 The target directory is always passed as a CLI argument. Defaults (for contributors running scripts directly):
 
-- **`DEFAULT_TARGET_DIR`** — `./tests` — used when no path argument is given
-- **`DRY_RUN`** — `true` — safe default; `--write` overrides it
+- **`DEFAULT_TARGET_DIR`** — `./tests` — previewed when no path argument is given. Never written to: `--write` without an explicit folder is an error, not a fallback.
+- **`DRY_RUN`** — `true` — preview by default; `--write` overrides it
 
 Scanner behaviour (not configurable via CLI):
 
@@ -270,7 +270,7 @@ Zero-dependency runner, exits non-zero on any failure. Sections:
 - `TOKENIZER` — `tokenizeXpath` bracket/quote awareness
 - `DETECT` — `isLikelyIosLocator` gating
 - `FLAGS` — `parseFlags` CLI parsing
-- `OPTIMIZE` — `--optimize` recovers wildcard equality + idempotency
+- `OPTIMIZE` — the optimizer pass: wildcard equality recovery + idempotency
 - `SCANNER` — `walkDir`, `processFile`, `makeStats` against real on-disk fixtures
 
 Add a row to the relevant `*_CASES` array and re-run.

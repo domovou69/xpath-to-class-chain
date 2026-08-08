@@ -19,12 +19,12 @@ const { isLikelyIosLocator, walkDir, processFile, makeStats } = require('./lib/s
 // ⚠️ REQUIRED: point this at your source folder, or pass one on the command line:
 //      node xpath-to-class-chain.js ./src
 const DEFAULT_TARGET_DIR = './tests';
-// The bare command performs the migration: `xpath-to-class-chain ./src` scans,
-// optimizes and WRITES. One command should do the whole job.
-//
-// This means the default is destructive — pass --dry-run to preview instead.
-// Run it on a clean working tree so `git diff` is the undo.
-const DRY_RUN = false;
+// Preview by default; --write opts in to modifying files. The tool rewrites
+// source in place with no built-in undo, so the cost of the two defaults is not
+// symmetric: defaulting to preview wastes one command, defaulting to write can
+// damage a tree the user never named. The optimizer runs in BOTH modes, so the
+// preview is byte-for-byte what --write would save.
+const DRY_RUN = true;
 
 function main(targetDir = DEFAULT_TARGET_DIR, opts) {
   const fullPath = resolve(targetDir);
@@ -100,13 +100,11 @@ function main(targetDir = DEFAULT_TARGET_DIR, opts) {
   return { stats, records };
 }
 
-// --dry-run   preview only, never write (overrides the DRY_RUN default)
-// --write     force writing       (overrides the DRY_RUN default)
+// --dry-run   preview only, never write (the default; the flag is explicit opt-in)
+// --write     save changes in place    (overrides the DRY_RUN default)
 // --json      emit machine-readable JSON (implies --quiet so stdout stays pure JSON)
 // --quiet     drop per-match diffs and banners; keep the final summary
-// --optimize  run the optimizer pass: idempotent re-validation + `== "abc*"`
-//             rewritten as `LIKE "abc*"` (recovers wildcard-equality cases
-//             that would otherwise fail validation)
+// --optimize  accepted as a no-op — the optimizer always runs
 // --dry-run wins if both --dry-run and --write are passed.
 
 function resolveBool(flags, onFlag, offFlag, fallback) {
@@ -128,25 +126,25 @@ const USAGE = `xpath-to-class-chain — convert iOS XPath locators to Class Chai
 Usage:
   xpath-to-class-chain <folder> [flags]
 
-The bare command REWRITES YOUR FILES IN PLACE. It scans, converts, optimizes and
-saves in one pass. Run it on a clean working tree so \`git diff\` is your undo,
-or use --dry-run first.
+The bare command PREVIEWS ONLY and writes nothing. Add --write once the diff
+looks right; it rewrites the files in place, so run it on a clean working tree
+and let \`git diff\` be your undo.
 
-The optimizer always runs, in preview and write alike, so --dry-run shows
-exactly what the write would produce.
+The optimizer always runs, in preview and write alike, so the preview is exactly
+what --write would save.
 
 Flags:
-  --dry-run    Preview only, write nothing. Wins if combined with --write.
+  --dry-run    Preview only, write nothing. The default. Wins if combined with --write.
+  --write      Save the changes in place. Requires an explicit target folder.
   --json       Write xpath-to-class-chain.report.json in the current directory. Implies --quiet.
   --quiet      Drop per-match diffs and banner; keep the final summary.
-  --write      Accepted for compatibility; writing is the default.
   --optimize   Accepted for compatibility; the optimizer is on by default.
   -h, --help   Show this help.
   -V, --version  Show the version.
 
 Examples:
-  xpath-to-class-chain ./src             # migrate: converts, optimizes, WRITES
-  xpath-to-class-chain ./src --dry-run   # preview the same result, write nothing`;
+  xpath-to-class-chain ./src            # preview: converts and optimizes, writes nothing
+  xpath-to-class-chain ./src --write    # same result, saved in place`;
 
 function parseFlags(argv) {
   const flags = new Set(argv.filter(a => a.startsWith('-')));
@@ -173,8 +171,8 @@ function parseFlags(argv) {
 }
 
 // Entry point. When required from a test, the pure functions are exported instead.
-//   node xpath-to-class-chain.js                          → scan DEFAULT_TARGET_DIR
-//   node xpath-to-class-chain.js ./src [--dry-run|--json] → scan a folder
+//   node xpath-to-class-chain.js                       → preview DEFAULT_TARGET_DIR
+//   node xpath-to-class-chain.js ./src [--write|--json] → scan a folder
 if (require.main === module) {
   const opts = parseFlags(process.argv.slice(2));
   if (opts.help) {
@@ -184,6 +182,15 @@ if (require.main === module) {
   } else if (opts.unknown.length) {
     console.error(`Error: unknown flag${opts.unknown.length > 1 ? 's' : ''}: ${opts.unknown.join(', ')}`);
     console.error(`Run with --help to see the supported flags.`);
+    process.exit(1);
+  } else if (!opts.dryRun && !opts.positionals.length) {
+    // Never modify a folder the user did not name. DEFAULT_TARGET_DIR is a
+    // convenience for previewing, and quietly promoting it to a write target
+    // would rewrite ./tests on a bare `--write` — the one directory a test repo
+    // can least afford to have silently edited.
+    console.error(`Error: --write needs an explicit target folder.`);
+    console.error(`Refusing to rewrite the default (${DEFAULT_TARGET_DIR}) when you did not name it.`);
+    console.error(`  xpath-to-class-chain ./src --write`);
     process.exit(1);
   } else {
     main(opts.positionals[0], opts);

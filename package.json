@@ -22,8 +22,8 @@
     "node": ">=20"
   },
   "scripts": {
-    "start": "node xpath-to-class-chain.js",
-    "dry": "node xpath-to-class-chain.js --dry-run",
+    "dry": "node xpath-to-class-chain.js",
+    "write": "node xpath-to-class-chain.js --write",
     "json": "node xpath-to-class-chain.js --json",
     "test": "node xpath-to-class-chain.test.js",
     "prepublishOnly": "npm test"

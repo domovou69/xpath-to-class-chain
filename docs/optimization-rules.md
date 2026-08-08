@@ -1,12 +1,12 @@
 # Optimization rules — design notes
 
 This is the **full research spec** of 14 candidate rules, kept as background for
-why the optimizer does what it does. It is **not** a description of what
-`--optimize` currently does: 6 of the 14 rules are deliberately not implemented
+why the optimizer does what it does. It is **not** a description of what the
+optimizer currently does: 6 of the 14 rules are deliberately not implemented
 because they need knowledge of the running app's element hierarchy, which a
 static source-code rewrite cannot have.
 
-For what actually ships, see [the `--optimize` section of the README](../README.md#the---optimize-flag).
+For what actually ships, see [the optimizer section of the README](../README.md#the-optimizer).
 
 | Spec rule | Status | Implementation |
 |---|---|---|

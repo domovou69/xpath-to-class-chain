@@ -220,9 +220,9 @@ const DETECT_CASES = [
 // (dryRun default is the script's DRY_RUN = true — safer; --write to opt in)
 // =====================================================================
 const FLAGS_CASES = [
-  // The bare command writes, and the optimizer is on by default in both modes,
-  // so --dry-run predicts exactly what the bare command would produce.
-  { argv: ['./src'], expect: { positionals: ['./src'], dryRun: false, json: false, quiet: false, optimize: true } },
+  // The bare command previews. The optimizer is on in both modes, so the
+  // preview predicts exactly what --write would save.
+  { argv: ['./src'], expect: { positionals: ['./src'], dryRun: true, json: false, quiet: false, optimize: true } },
   { argv: ['./src', '--write'], expect: { dryRun: false, optimize: true } },
   { argv: ['./src', '--dry-run'], expect: { positionals: ['./src'], dryRun: true } },
   { argv: ['--write'], expect: { dryRun: false } },
@@ -314,6 +314,16 @@ const OPTIMIZE_CHAIN_CASES = [
   {
     input: `${CC}**/XCUIElementTypeButton[\`label IN {"Submit"}\`]`,
     fixed: `${CC}**/XCUIElementTypeButton[\`label == "Submit"\`]`,
+  },
+
+  // An ESCAPED backtick inside the predicate value — Appium's way of writing a
+  // literal ` in an NSPredicate block. PREDICATE_REGEX must not treat it as the
+  // end of the backtick block: when it did, this predicate matched NOTHING and
+  // every optimizer rule routed through that regex silently skipped it, so the
+  // wildcard never became LIKE and the chain came back invalid instead.
+  {
+    input: `${CC}**/XCUIElementTypeCell[\`label == "a\\\`b*"\`]`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`label LIKE "a\\\`b*"\`]`,
   },
   // Multi-value IN stays untouched — semantics differ
   {
@@ -1079,6 +1089,62 @@ console.log('— SCANNER: refusals —');
   const stats = makeStats();
   if (stats.skipped.notXpath === 0) ok();
   else fail(`makeStats: missing notXpath counter, got ${JSON.stringify(stats.skipped)}`);
+}
+
+// =====================================================================
+// CLI SAFETY — the tool rewrites source in place with no built-in undo, so the
+// two ways it could touch a folder the user never named are asserted here.
+// These run the real binary: the guards live in the `require.main` block, which
+// importing the module deliberately does not execute.
+// =====================================================================
+console.log('— CLI SAFETY —');
+{
+  const { execFileSync } = require('child_process');
+  const cli = join(__dirname, 'xpath-to-class-chain.js');
+
+  // Run the CLI from inside a scratch dir holding ./tests (DEFAULT_TARGET_DIR),
+  // and report whether that fixture survived untouched.
+  const runInFixture = (args) => {
+    const root = mkdtempSync(join(tmpdir(), 'xpath-cli-'));
+    try {
+      mkdirSync(join(root, 'tests'));
+      const file = join(root, 'tests', 'spec.js');
+      const before = 'const a = "//XCUIElementTypeButton[@name=\'Go\']";\n';
+      writeFileSync(file, before);
+      let status = 0;
+      try {
+        execFileSync(process.execPath, [cli, ...args], { cwd: root, stdio: 'pipe', timeout: 20000 });
+      } catch (e) {
+        status = e.status === undefined ? -1 : e.status;
+      }
+      return { status, untouched: readFileSync(file, 'utf8') === before };
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  };
+
+  // No arguments at all: previewing DEFAULT_TARGET_DIR is fine, editing it is
+  // not. Typing the bare command to see what a new tool does must be safe.
+  {
+    const { status, untouched } = runInFixture([]);
+    if (status === 0 && untouched) ok();
+    else fail(`CLI SAFETY bare command: exit ${status}, file ${untouched ? 'untouched' : 'MODIFIED'} (expected exit 0, untouched)`);
+  }
+
+  // --write with no folder must be refused outright rather than quietly
+  // promoting DEFAULT_TARGET_DIR into a write target.
+  {
+    const { status, untouched } = runInFixture(['--write']);
+    if (status === 1 && untouched) ok();
+    else fail(`CLI SAFETY bare --write: exit ${status}, file ${untouched ? 'untouched' : 'MODIFIED'} (expected exit 1, untouched)`);
+  }
+
+  // The guard must not block the legitimate form: an explicit folder writes.
+  {
+    const { status, untouched } = runInFixture(['./tests', '--write']);
+    if (status === 0 && !untouched) ok();
+    else fail(`CLI SAFETY explicit --write: exit ${status}, file ${untouched ? 'NOT written' : 'written'} (expected exit 0, written)`);
+  }
 }
 
 // =====================================================================
