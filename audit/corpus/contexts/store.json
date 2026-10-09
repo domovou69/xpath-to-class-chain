@@ -1,0 +1,8 @@
+{
+  "locator0": "//XCUIElementTypeStaticText[@name=\"Dozur, ti hibimaw rorefek fojo dosu\"]",
+  "locator1": "//XCUIElementTypeStaticText[@name=\"• Za zov cuba jumumol teg zihuruni birel, bika jumumol lojo nezate ruliv teg zefub birel.\"]",
+  "locator2": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Wewodulu wepes je\")]",
+  "locator3": "//XCUIElementTypeButton[@name=\"Veg monuw\"]",
+  "locator4": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Nozod hom\")]",
+  "locator5": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Sefasi so meb vusalisafe\")]"
+}

@@ -1,0 +1,4013 @@
+[
+  {
+    "id": "L001",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"riduco\")]/child::XCUIElementTypeStaticText[@name=\"WefaniBedufeDanu.gotePebazoh\"]",
+    "count": 1
+  },
+  {
+    "id": "L002",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Bika Fabis tuve so liv je mefizo mi \")]",
+    "count": 1
+  },
+  {
+    "id": "L003",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"LovemifajEgetifoJewe.kesoZugop\"]/following-sibling::*[1]/child::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L004",
+    "kind": "xpath",
+    "quote": "`",
+    "source": "//*[@name=\"Nig fej ditar\"]/following-sibling::*[1]/child::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L005",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Nig bika wisawu\"]/following-sibling::*[1]/child::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L006",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Picama rajer t bevad motezef rari 0.\"]",
+    "count": 1
+  },
+  {
+    "id": "L007",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Rajer bika fej Galufaz Poz Pefu ditar\"]/preceding-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L008",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Namatir ditar mawuzisa\"]/following-sibling::XCUIElementTypeStaticText[1]",
+    "count": 1
+  },
+  {
+    "id": "L009",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Dobe teg\")]/following-sibling::XCUIElementTypeStaticText[1] | //*[contains(@name, \"Dobe monuw\")]/preceding-sibling::XCUIElementTypeStaticText[1]",
+    "count": 1
+  },
+  {
+    "id": "L010",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Ricorikup Hohaveh\"]/following-sibling::*[2]/child::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L011",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Disohinid mipunaco\"]/following-sibling::XCUIElementTypeStaticText[1]",
+    "count": 1
+  },
+  {
+    "id": "L012",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[1])[1]",
+    "count": 1
+  },
+  {
+    "id": "L013",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[2])[1]",
+    "count": 1
+  },
+  {
+    "id": "L014",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Dozur, ti hibimaw rorefek fojo dosu\"]",
+    "count": 1
+  },
+  {
+    "id": "L015",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[starts-with(@label, \"Ves zov sori gisu fo wigobur zov tosu ce pumed tuvila\")]",
+    "count": 1
+  },
+  {
+    "id": "L016",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@label=\"${message}\"]",
+    "count": 1
+  },
+  {
+    "id": "L017",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"HetepUriZoviZoniHapa.codid\"] | //XCUIElementTypeStaticText[@name=\"WefaniBedufeDanu.gotePebazoh\" and not(//*[@name=\"HetepUriZoviZoniHapa.codid\"]) and not(parent::*[contains(@name, \"VanavuMefofakeragaLiho.zudatoCicoba\")])]",
+    "count": 1
+  },
+  {
+    "id": "L018",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"HetepUriZoviZoniHapa.wukukav\"] | //XCUIElementTypeStaticText[@name=\"WefaniBedufeDanu.gotePebazoh\" and not(//*[@name=\"HetepUriZoviZoniHapa.wukukav\"])]",
+    "count": 1
+  },
+  {
+    "id": "L019",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.gotePebazoh\" and @label=\"Kabih\" or @name=\"HetepUriZoviZoniHapa.dijivOdozev\"]",
+    "count": 1
+  },
+  {
+    "id": "L020",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.jubuferokIzinaw\" and contains(@label, \"Pefu laciwuj\")]",
+    "count": 1
+  },
+  {
+    "id": "L021",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.zuzavilEgawiv\" and contains(@label, \"Dobe teg\")]",
+    "count": 1
+  },
+  {
+    "id": "L022",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.zuzavilEgawiv\" and @label=\"Jif sefasi\"]",
+    "count": 1
+  },
+  {
+    "id": "L023",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.zuzavilEgawiv\" and @label=\"Namatir wepes je nehavona\"]",
+    "count": 1
+  },
+  {
+    "id": "L024",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Namatir wepes je dobe\"]",
+    "count": 1
+  },
+  {
+    "id": "L025",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Doso mi je nehavona\"]",
+    "count": 1
+  },
+  {
+    "id": "L026",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.zuzavilEgawiv\" and @label=\"Nig wisawu\"]",
+    "count": 1
+  },
+  {
+    "id": "L027",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.zuzavilEgawiv\" and @label=\"Lugatej wisawu\"]",
+    "count": 1
+  },
+  {
+    "id": "L028",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.zuzavilEgawiv\" and @label=\"Jeb fabis tuve\"]",
+    "count": 1
+  },
+  {
+    "id": "L029",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.zuzavilEgawiv\" and @label=\"Jeb namatir\"]",
+    "count": 1
+  },
+  {
+    "id": "L030",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.zuzavilEgawiv\" and @label=\"Namatir wepes\"]",
+    "count": 1
+  },
+  {
+    "id": "L031",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label, \"Lugatej\") and @enabled=\"true\"]",
+    "count": 1
+  },
+  {
+    "id": "L032",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Leba\" and @enabled=\"${isEnabled}\"]",
+    "count": 1
+  },
+  {
+    "id": "L033",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.zuzavilEgawiv\" and @label=\"Potepiv rigi gohaz\"]",
+    "count": 1
+  },
+  {
+    "id": "L034",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"WefaniBedufeDanu.jubuferokIzinaw\" and @label=\"Potepiv Galufaz Poz Gohaz\"]",
+    "count": 1
+  },
+  {
+    "id": "L035",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Leba mazejuz\"]",
+    "count": 1
+  },
+  {
+    "id": "L036",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Dab je tafiz\"]",
+    "count": 1
+  },
+  {
+    "id": "L037",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Jeb wajih je dobe ticu\" or @label=\"Wikop wajih teg kavemag\"]",
+    "count": 1
+  },
+  {
+    "id": "L038",
+    "kind": "xpath",
+    "quote": "`",
+    "source": "//*[@label=\"Vale\"]",
+    "count": 1
+  },
+  {
+    "id": "L039",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Leba wacisugik rolafa\"]",
+    "count": 1
+  },
+  {
+    "id": "L040",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Leba je siviminewu\" and @enabled=\"${isEnabled}\"]",
+    "count": 1
+  },
+  {
+    "id": "L041",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Vale\" and @enabled=\"${isEnabled}\"]",
+    "count": 1
+  },
+  {
+    "id": "L042",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Nozod hom\") and @enabled=\"${isEnabled}\"]",
+    "count": 1
+  },
+  {
+    "id": "L043",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Bika nodeg so:\")]/following-sibling::*",
+    "count": 1
+  },
+  {
+    "id": "L044",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@value=\"Vilokor\"]/following-sibling::*[contains(@value, \"£\")]",
+    "count": 1
+  },
+  {
+    "id": "L045",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Bowep ge mipunaco\")]",
+    "count": 1
+  },
+  {
+    "id": "L046",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Doso mi\")]",
+    "count": 1
+  },
+  {
+    "id": "L047",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Pekufes Lowefore fika\")]",
+    "count": 1
+  },
+  {
+    "id": "L048",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz:\")]",
+    "count": 1
+  },
+  {
+    "id": "L049",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Zov zir ceciful cuba t Hijareci Logozeb tazeviz\")]",
+    "count": 1
+  },
+  {
+    "id": "L050",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\")]",
+    "count": 1
+  },
+  {
+    "id": "L051",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Kop velotop zir meb nul la nahinuh\")]",
+    "count": 1
+  },
+  {
+    "id": "L052",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\")]",
+    "count": 1
+  },
+  {
+    "id": "L053",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Pekufes Lowefore Fika\")]",
+    "count": 1
+  },
+  {
+    "id": "L054",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\" and @label=\"Doso mi\"]",
+    "count": 1
+  },
+  {
+    "id": "L055",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeSecureTextField[@name=\"FetuwozaNihelavAvuv.mipunaco\"]",
+    "count": 1
+  },
+  {
+    "id": "L056",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[@name=\"FetuwozaNihelavAvuv.mipunaco\"]",
+    "count": 1
+  },
+  {
+    "id": "L057",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[@name=\"FetuwozaNihelavAvuv.jizobawUwohacan\"]",
+    "count": 1
+  },
+  {
+    "id": "L058",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeSecureTextField[@name=\"FetuwozaNihelavAvuv.jizobawUwohacan\"]",
+    "count": 1
+  },
+  {
+    "id": "L059",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[@name=\"FetuwozaNihelavAvuv.hamahiduZefopihi\"]",
+    "count": 1
+  },
+  {
+    "id": "L060",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"FetuwozaNihelavAvuv.mipunaco\"]",
+    "count": 1
+  },
+  {
+    "id": "L061",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"FetuwozaNihelavAvuv.jizobawUwohacan\"]",
+    "count": 1
+  },
+  {
+    "id": "L062",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.noraSefili\"])[1]",
+    "count": 1
+  },
+  {
+    "id": "L063",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"FetuwozaNihelavAvuv.hamahiduZefopihi\"]",
+    "count": 1
+  },
+  {
+    "id": "L064",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Picama tonodo t roki sedale mipunaco gisu cacu meb lilicep navecuhu havilazijik.\"]",
+    "count": 1
+  },
+  {
+    "id": "L065",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Mipunaco\"]",
+    "count": 1
+  },
+  {
+    "id": "L066",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"CidezoGemagak.Zofamekeki.livejEjaRujefAfadirap\"]",
+    "count": 1
+  },
+  {
+    "id": "L067",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"CidezoGemagak.Zofamekeki.hosipepOvirujAberehiz\"]",
+    "count": 1
+  },
+  {
+    "id": "L068",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//XCUIElementTypeStaticText[@label=\"Bika pejun huregad\"])${value}",
+    "count": 1
+  },
+  {
+    "id": "L069",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeStaticText[@label=\"Lugatej pejun huregad\"])",
+    "count": 1
+  },
+  {
+    "id": "L070",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"ZejizasAgal.giselolIpefov\"])[2]",
+    "count": 1
+  },
+  {
+    "id": "L071",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Nehavona demimel tazeviz\")]",
+    "count": 1
+  },
+  {
+    "id": "L072",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Nehavona demimel su tazeviz\")]",
+    "count": 1
+  },
+  {
+    "id": "L073",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\")]",
+    "count": 1
+  },
+  {
+    "id": "L074",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\")]",
+    "count": 1
+  },
+  {
+    "id": "L075",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Rufosi je sadobu bika laciwuj\"]",
+    "count": 1
+  },
+  {
+    "id": "L076",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Pi cog rufosi je sadobu dom laciwuj zov cuba wumesok. Picama camavi zov cog sehoj bika koce dovo goz sibo ho munub va pi wikop jigiraz rekivame pelu velotop.\")]",
+    "count": 1
+  },
+  {
+    "id": "L077",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz\")]",
+    "count": 1
+  },
+  {
+    "id": "L078",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"• Kop velotop zir meb nul la nahinuh\")]",
+    "count": 1
+  },
+  {
+    "id": "L079",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[@name=\"CidezoGemagak.RagadiluDujutot.jisaroVenupazIcowOmoc\"]",
+    "count": 1
+  },
+  {
+    "id": "L080",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Bedoce\"]",
+    "count": 1
+  },
+  {
+    "id": "L081",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@label=\"Taka\"])[1]",
+    "count": 1
+  },
+  {
+    "id": "L082",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.dijivOdozev\"])[1]",
+    "count": 1
+  },
+  {
+    "id": "L083",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeImage[@name=\"CidezoGemagak.DamizidOwefesu.jisaroVenupazIcowOmoc\"]",
+    "count": 1
+  },
+  {
+    "id": "L084",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@label=\"Picama kijifas t ruliv husuge rolafa.\"]",
+    "count": 1
+  },
+  {
+    "id": "L085",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Picama rajer t ruliv nepacu.\"]",
+    "count": 1
+  },
+  {
+    "id": "L086",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Wezid so ceciful su tazeviz sehoj fojo husuge rolafa.\"]",
+    "count": 1
+  },
+  {
+    "id": "L087",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"CidezoGemagak.RagadiluDujutot.rukomuSaholaKivezideva\"]",
+    "count": 1
+  },
+  {
+    "id": "L088",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@value,\"Rajer bika sibo ho munub va DE / LO / KIMO.\")]",
+    "count": 1
+  },
+  {
+    "id": "L089",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Nebonozopurus gatejese\"]",
+    "count": 1
+  },
+  {
+    "id": "L090",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[contains(@label, \"Galufaz Poz Gohaz matumutor\")]/XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "id": "L091",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"• Za zov cuba su nonide Revoje Fabis, fojo lojo la homusabasofek bekikalin.\"]",
+    "count": 1
+  },
+  {
+    "id": "L092",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"• Za zov cuba jumumol teg zihuruni birel, bika jumumol lojo nezate ruliv teg zefub birel.\"]",
+    "count": 1
+  },
+  {
+    "id": "L093",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"• Ror wadutosa, tolacocat nivere goz felawuhuh wepes mi bika tazeviz lojo la muho je bika fabis tuve. Fojo zir foba fivipag 3 goz 5 heciboz lide je kuwub bika nofe tazeviz.\"]",
+    "count": 1
+  },
+  {
+    "id": "L094",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"• Za zov cuba Dom Hijareci Logozeb keb tukunutev, pi zuvejo gisu zov hicepe fojo rese bika peludur.\"]",
+    "count": 1
+  },
+  {
+    "id": "L095",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"• Hapeto zov cipi je dobe kop gohaz monuw mi dom mivawa, zov\\'vu varu je pekufes Lowefore Fika.\"]",
+    "count": 1
+  },
+  {
+    "id": "L096",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeSecureTextField[@name=\"TinehaniDezirivepomuTija.mipunaco\"]",
+    "count": 1
+  },
+  {
+    "id": "L097",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"Pejun, Lenapa gusuri, RI\"]",
+    "count": 1
+  },
+  {
+    "id": "L098",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"Pejun, Lenapa gusuri, RIG\"]",
+    "count": 1
+  },
+  {
+    "id": "L099",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"TOS, Lenapa gusuri, RI\"]",
+    "count": 1
+  },
+  {
+    "id": "L100",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"TOS, Lenapa gusuri, RIG\"]",
+    "count": 1
+  },
+  {
+    "id": "L101",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"Logozeb gohaz, Lenapa gusuri, RI\"]",
+    "count": 1
+  },
+  {
+    "id": "L102",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"Logozeb gohaz, Lenapa gusuri, RIG\"]",
+    "count": 1
+  },
+  {
+    "id": "L103",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"Galufaz Poz Gohaz, Lenapa gusuri, RI\"]",
+    "count": 1
+  },
+  {
+    "id": "L104",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"Galufaz Poz Gohaz, Lenapa gusuri, RIG\"]",
+    "count": 1
+  },
+  {
+    "id": "L105",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"Fericow goz pobi fodani, Lenapa gusuri, RI\"]",
+    "count": 1
+  },
+  {
+    "id": "L106",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"Fericow goz pobi fodani, Lenapa gusuri, RIG\"]",
+    "count": 1
+  },
+  {
+    "id": "L107",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Zov hat wikop bika pelu colusegoma gatejese tevej goz maceti bika pubiwehipet fo wedocagi dom bilakide ri hu rig.\")]",
+    "count": 1
+  },
+  {
+    "id": "L108",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Dom colusegoma goz kijical ho mozirejife pelu fajoni ce je pepuro havilazijik fipic hene jivogesi ri kop sufaket goz keb\")]",
+    "count": 1
+  },
+  {
+    "id": "L109",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name,\"Dom colusegoma goz kijical hu dewusines pelu fajoni ce je tonodo goz pobupat gecupiribem dulacoci fuhemoka je zov ri dom Hijareci Logozeb sufaket goz Keb, goz ri fufug fugowome. Heti cog dere nuna je wasaj dom kic zov kizik ri, hu je wasaj dom genilut zov foba zenu zov kizik ri su lu\")]",
+    "count": 1
+  },
+  {
+    "id": "L110",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Navecuhu laciwuj\")]",
+    "count": 1
+  },
+  {
+    "id": "L111",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Sosedeki gatejese\")]",
+    "count": 1
+  },
+  {
+    "id": "L112",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Pekufes pubiwehipet\")]",
+    "count": 1
+  },
+  {
+    "id": "L113",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Nebonozopurus gatejese\")]",
+    "count": 1
+  },
+  {
+    "id": "L114",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Roreso pubiwehipet\")]",
+    "count": 1
+  },
+  {
+    "id": "L115",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name,\"Bika mipunaco zuf nemu facelan ri\")]",
+    "count": 1
+  },
+  {
+    "id": "L116",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeSecureTextField[@name=\"FetuwozaNihelavAvuv.kamOseberor\"]",
+    "count": 1
+  },
+  {
+    "id": "L117",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Mufig dovo\"]/following-sibling::XCUIElementTypeStaticText[1]",
+    "count": 1
+  },
+  {
+    "id": "L118",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Nemu dovo\"]/following-sibling::XCUIElementTypeStaticText[1]",
+    "count": 1
+  },
+  {
+    "id": "L119",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"19, Juzo Kabih\\nJomojab, FI16 7TE\"]",
+    "count": 1
+  },
+  {
+    "id": "L120",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"HosidoLitokazajiCimo.noraSefili\")][1]",
+    "count": 1
+  },
+  {
+    "id": "L121",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Hero Mipunaco\"]",
+    "count": 1
+  },
+  {
+    "id": "L122",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Hero Sosedeki laciwuj\"]",
+    "count": 1
+  },
+  {
+    "id": "L123",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Tazeviz dememer\"]",
+    "count": 1
+  },
+  {
+    "id": "L124",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Hero Mipunaco\"]",
+    "count": 1
+  },
+  {
+    "id": "L125",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Hero Sosedeki laciwuj\"]",
+    "count": 1
+  },
+  {
+    "id": "L126",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Tazeviz dememer\"]",
+    "count": 1
+  },
+  {
+    "id": "L127",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"CileDewecidaWutitofOzis.hamahiduZefopihi\"]",
+    "count": 1
+  },
+  {
+    "id": "L128",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[@name=\"CileDewecidaWutitofOzis.hamahiduZefopihi\"]",
+    "count": 1
+  },
+  {
+    "id": "L129",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Revoje Fabis nig se so mi gakiwoso\")]",
+    "count": 1
+  },
+  {
+    "id": "L130",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Ra hat foba se je 4 jidur teg bika Revoje Fabis je zocumu nonide\")]",
+    "count": 1
+  },
+  {
+    "id": "L131",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Bika mufig rigi lojo la ri\")]",
+    "count": 1
+  },
+  {
+    "id": "L132",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Bika mufig miwokub lojo foba hifum ri hu toral\")]",
+    "count": 1
+  },
+  {
+    "id": "L133",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Mu je Ge Gohaz\"]",
+    "count": 1
+  },
+  {
+    "id": "L134",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Mu je Rigi Gohaz\"]",
+    "count": 1
+  },
+  {
+    "id": "L135",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Nig bika riv wisawu\"]",
+    "count": 1
+  },
+  {
+    "id": "L136",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@name,\"vosuzAnomeMevoja\")]",
+    "count": 1
+  },
+  {
+    "id": "L137",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Nofe tazeviz laciwuj\")]",
+    "count": 1
+  },
+  {
+    "id": "L138",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Dom Revoje Fabis Vimonevob\")]",
+    "count": 1
+  },
+  {
+    "id": "L139",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Diteda\")]",
+    "count": 1
+  },
+  {
+    "id": "L140",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Vale\")]",
+    "count": 1
+  },
+  {
+    "id": "L141",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeOther\") and contains(@label,\"Nepureze hilubodamo\")]",
+    "count": 1
+  },
+  {
+    "id": "L142",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Tonodo Revoje Fabis\")]",
+    "count": 1
+  },
+  {
+    "id": "L143",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Cog zov husu zov noca je diteda?\")]",
+    "count": 1
+  },
+  {
+    "id": "L144",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@label=\"Bika wacisugik mazejuz cuba zecu jizorawohuni vamalul\"]",
+    "count": 1
+  },
+  {
+    "id": "L145",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@label, \"Jeb fej\") and contains (@label, \"rolafa\")]",
+    "count": 1
+  },
+  {
+    "id": "L146",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Bedoce hom\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L147",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Hicepe Wacisugik mazejuz ${number}\")]",
+    "count": 1
+  },
+  {
+    "id": "L148",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Hicepe\"]",
+    "count": 1
+  },
+  {
+    "id": "L149",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Wacisugik mazejuz\"]",
+    "count": 1
+  },
+  {
+    "id": "L150",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Wacisugik mazejuz\")]",
+    "count": 1
+  },
+  {
+    "id": "L151",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@name, \"Wacisugik mazejuz ${number}, mazejuz:\")]",
+    "count": 1
+  },
+  {
+    "id": "L152",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Tete ${line}\") and contains(@label, \"Wacisugik mazejuz\")]",
+    "count": 1
+  },
+  {
+    "id": "L153",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Bedoce hom\"]/following-sibling::*[contains(@name, \"hilubodamo\")]",
+    "count": 1
+  },
+  {
+    "id": "L154",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Bedoce hom\"]/following-sibling::*[contains(@name, \"figuleni\")]",
+    "count": 1
+  },
+  {
+    "id": "L155",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@name, \"Tete ${number}, mazejuz:\")]",
+    "count": 1
+  },
+  {
+    "id": "L156",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@name,\"HosidoLitokazajiCimo.dijivOdozev\")]",
+    "count": 1
+  },
+  {
+    "id": "L157",
+    "kind": "xpath-mixed-classchain",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
+    "count": 1
+  },
+  {
+    "id": "L158",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"HaguhoCuzal.marivoDigivo\" and @enabled=\"false\"]",
+    "count": 1
+  },
+  {
+    "id": "L159",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeTextField\") and contains(@label,\"Fowani je namatir, £2 so dom juguwoj fowani zov hat namatir.\")]",
+    "count": 1
+  },
+  {
+    "id": "L160",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Fowani wumesok muhevuw bika namatir ditar. Zov cuba £20.00 felawuhuh ho bika juvira ditar.\")]",
+    "count": 1
+  },
+  {
+    "id": "L161",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//XCUIElementTypeStaticText[contains (@name, 'bapoh wigobur.')]",
+    "count": 1
+  },
+  {
+    "id": "L162",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeStaticText[@name=\"Romor wepes je robo\\n7393\"])[1]",
+    "count": 1
+  },
+  {
+    "id": "L163",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@label, \"£\")]",
+    "count": 1
+  },
+  {
+    "id": "L164",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Funewekid wepes rese\")]",
+    "count": 1
+  },
+  {
+    "id": "L165",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"LunaseMinihEsak.vosuzAnomeMevoja\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L166",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"LunaseMinihEsak.vosuzAnomeMevoja\"]/following-sibling::*[1]/following-sibling::*[self::XCUIElementTypeStaticText or self::XCUIElementTypeTextView]",
+    "count": 1
+  },
+  {
+    "id": "L167",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"lohu_reneg_zugo\"]",
+    "count": 1
+  },
+  {
+    "id": "L168",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"suledohame_reneg_zugo\"]",
+    "count": 1
+  },
+  {
+    "id": "L169",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@label=\"dapogec_reneg_zugo\"]",
+    "count": 1
+  },
+  {
+    "id": "L170",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeImage[@name=\"Bakaf pumunuwavube jega kefatigamuj\"]",
+    "count": 1
+  },
+  {
+    "id": "L171",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//*[contains(@name, \"${date}\")])[${transaction}]",
+    "count": 1
+  },
+  {
+    "id": "L172",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Hom pumunuwavube\"]/following-sibling::*[contains(@label, \"Fowani\")]",
+    "count": 1
+  },
+  {
+    "id": "L173",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//*[@name=\"Fowani\"]/following-sibling::*[1])[${transaction}]",
+    "count": 1
+  },
+  {
+    "id": "L174",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//*[contains(@name, \"Vilokor,\")]/child::*[2])[${transaction}]",
+    "count": 1
+  },
+  {
+    "id": "L175",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//*[contains(@name, \"Vilokor,\")]/following-sibling::*[1])[${transaction}]",
+    "count": 1
+  },
+  {
+    "id": "L176",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//*[contains(@name, \"Vilokor,\")]/following-sibling::*[2])[${transaction}]",
+    "count": 1
+  },
+  {
+    "id": "L177",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeStaticText[@name=\"Vilokor\"])[3]",
+    "count": 1
+  },
+  {
+    "id": "L178",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeSecureTextField[@name=\"GocibozuPenalIgug.voceseruBiful\"]",
+    "count": 1
+  },
+  {
+    "id": "L179",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"GocibozuPenalIgug.voceseruBiful\"]/XCUIElementTypeButton",
+    "count": 1
+  },
+  {
+    "id": "L180",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@value,\"Dikasod vilokor: £\")]",
+    "count": 1
+  },
+  {
+    "id": "L181",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Wewodulu wepes je\")]",
+    "count": 1
+  },
+  {
+    "id": "L182",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeOther[@name=\"Luvuce tuve nowam\"])[2]",
+    "count": 1
+  },
+  {
+    "id": "L183",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"desuz hicepe\")]",
+    "count": 1
+  },
+  {
+    "id": "L184",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"JobikoBemamevuHiba.vecidIwakahejIcabini\"]",
+    "count": 1
+  },
+  {
+    "id": "L185",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"ZimapAjetisImus.dijivOdozev\"]",
+    "count": 1
+  },
+  {
+    "id": "L186",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Bedoce mazejuz\")]",
+    "count": 1
+  },
+  {
+    "id": "L187",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Disu mazejuz\")]",
+    "count": 1
+  },
+  {
+    "id": "L188",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@label, \"rolafa desuz figuleni\")]",
+    "count": 1
+  },
+  {
+    "id": "L189",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name='bumajepUgapeb(\"${value}\")Hilubodamo'] | //*[@name='bumajepUgapeb(\"${value}\")Hilubodamo']/child::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L190",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeButton[contains(@label, \"Pako geviv: ${number}\")]",
+    "count": 1
+  },
+  {
+    "id": "L191",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeButton[@label=\"Pako geviv: ${number}, figuleni\"]",
+    "count": 1
+  },
+  {
+    "id": "L192",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@value, \"Pako goz tival ${numbers} ${text} je poz £${amount}\")]",
+    "count": 1
+  },
+  {
+    "id": "L193",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"Bika sefasi zad ${noOfLines} ${line}\"]",
+    "count": 1
+  },
+  {
+    "id": "L194",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@name=\"${day}\"]",
+    "count": 1
+  },
+  {
+    "id": "L195",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@name=\"${capitalize(day)}, k2 cazete\"]",
+    "count": 1
+  },
+  {
+    "id": "L196",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"${prize}\")]",
+    "count": 1
+  },
+  {
+    "id": "L197",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@label,\"Ganam Zemori Jila\")]",
+    "count": 1
+  },
+  {
+    "id": "L198",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[contains(@label, \"Bevef Daw\")]",
+    "count": 1
+  },
+  {
+    "id": "L199",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Tete ${line}\") and contains(@label, \"Bevef Daw\") and contains(@label, \"mazejuz\")]",
+    "count": 1
+  },
+  {
+    "id": "L200",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Tete ${line}\") and contains(@label, \"liturefuku Bevef Daw\")]",
+    "count": 1
+  },
+  {
+    "id": "L201",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@name, \"tete(${line}\") and contains (@label, \"Petor ${round}, Bevef daw notupisa\")]",
+    "count": 1
+  },
+  {
+    "id": "L202",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@name, \"tete(${line}\") and contains (@label, \"Petor ${round}, Bevef daw liturefuku\")]",
+    "count": 1
+  },
+  {
+    "id": "L203",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Tete ${line}\") and contains(@label, \"pako geviv\") and contains(@label, \"${pickCount}\") and contains(@label, \"Bevef Daw\")]",
+    "count": 1
+  },
+  {
+    "id": "L204",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"milipaCihehol\")]",
+    "count": 1
+  },
+  {
+    "id": "L205",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Fej tete, Bevef Daw\"]",
+    "count": 1
+  },
+  {
+    "id": "L206",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label, \"Fej tete, Wacisugik\")]",
+    "count": 1
+  },
+  {
+    "id": "L207",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//XCUIElementTypeStaticText[@name=\"Hicepe\"])[${line}]",
+    "count": 1
+  },
+  {
+    "id": "L208",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//XCUIElementTypeStaticText[@name=\"Hero\"])[${line}]",
+    "count": 1
+  },
+  {
+    "id": "L209",
+    "kind": "non-locator",
+    "quote": "`",
+    "source": "Fej ${gameName}",
+    "count": 1
+  },
+  {
+    "id": "L210",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@value, \"Kup sefasi.\") and contains (@value, \"Vik fecegiv je poz.\")]",
+    "count": 1
+  },
+  {
+    "id": "L211",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Zov cuba nififet dom kofodat rolafa ho wajih.\"]",
+    "count": 1
+  },
+  {
+    "id": "L212",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"2 fecegiv je poz!\"]",
+    "count": 1
+  },
+  {
+    "id": "L213",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Fej\"]",
+    "count": 1
+  },
+  {
+    "id": "L214",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"• 2 cazete lov rigi rog teg dom tohof ho kup\"]",
+    "count": 1
+  },
+  {
+    "id": "L215",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"• 2 fecegiv je zocumu t cisibosogoz!\"]",
+    "count": 1
+  },
+  {
+    "id": "L216",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Tete ${line}\") and contains(@label, \"mazejuz\")]",
+    "count": 1
+  },
+  {
+    "id": "L217",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@name, \"tete(${line}\") and contains (@label, \"Petor ${round}\")]",
+    "count": 1
+  },
+  {
+    "id": "L218",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Tete ${line}, pako geviv\") and contains(@label, \"${pickCount}\")]",
+    "count": 1
+  },
+  {
+    "id": "L219",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Kabih\"]",
+    "count": 1
+  },
+  {
+    "id": "L220",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@label, \"Nepureze\")]/child::*[contains(@label, \"Nepureze\")]",
+    "count": 1
+  },
+  {
+    "id": "L221",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"${capitalize(day)}\"]/following-sibling::*[@name=\"k2 cazete\"]",
+    "count": 1
+  },
+  {
+    "id": "L222",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Bika wajih lojo la rurez mi 2 cazete lov figuleni rigi rog, cohiha zov 2 fecegiv je poz.\")]",
+    "count": 1
+  },
+  {
+    "id": "L223",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@value=\"Kajepazagopotev, zov cuba jizorawohuni posetog bika tazeviz\"]",
+    "count": 1
+  },
+  {
+    "id": "L224",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@value=\"Su pejun zad zecu muho je zov.\"]",
+    "count": 1
+  },
+  {
+    "id": "L225",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//*[contains(@label, \"Nepureze\")]/child::*[contains(@label, \"Nepureze\")])[${value}]",
+    "count": 1
+  },
+  {
+    "id": "L226",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@value=\"${capitalize(day)}\"]/following-sibling::*[contains(@name, \"Nepureze\")]",
+    "count": 1
+  },
+  {
+    "id": "L227",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@type, \"XCUIElementTypeOther\") and contains(@label, \"Lulik gusuri teg ${noOfWeeks} jidur figuleni\")]",
+    "count": 1
+  },
+  {
+    "id": "L228",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@type, \"XCUIElementTypeOther\") and contains(@name, \"${capitalize(day)}, Nepureze, figuleni\")]",
+    "count": 1
+  },
+  {
+    "id": "L229",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Zucubamo wojav\"]",
+    "count": 1
+  },
+  {
+    "id": "L230",
+    "kind": "xpath",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@name=\"Ra rukul zov'gi cokibif dom NE goz dom Fuve ho Voz\"]",
+    "count": 1
+  },
+  {
+    "id": "L231",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Zucubamo Wojav Tosu\"]",
+    "count": 1
+  },
+  {
+    "id": "L232",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"FE\"]",
+    "count": 1
+  },
+  {
+    "id": "L233",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Cac luvuzapagu tosu\"]",
+    "count": 1
+  },
+  {
+    "id": "L234",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"LunaseMinihEsak.vosuzAnomeMevoja\"])[2]",
+    "count": 1
+  },
+  {
+    "id": "L235",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Balovewu\"]",
+    "count": 1
+  },
+  {
+    "id": "L236",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Vale\"]",
+    "count": 1
+  },
+  {
+    "id": "L237",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.dijivOdozev\"]",
+    "count": 1
+  },
+  {
+    "id": "L238",
+    "kind": "class-chain",
+    "quote": "'",
+    "source": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.zuzavilEgawiv\"`]",
+    "count": 1
+  },
+  {
+    "id": "L239",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Dab je dobe\"]",
+    "count": 1
+  },
+  {
+    "id": "L240",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeOther\")]",
+    "count": 1
+  },
+  {
+    "id": "L241",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Pefu zahoseja\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L242",
+    "kind": "xpath",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Wifepum ho\")]",
+    "count": 1
+  },
+  {
+    "id": "L243",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@label, \"T tete goded\")]",
+    "count": 1
+  },
+  {
+    "id": "L244",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@label, \"Birel nimiwi\")]",
+    "count": 1
+  },
+  {
+    "id": "L245",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Birel nimiwi\")]/parent::*[1]/following-sibling::*[2]",
+    "count": 1
+  },
+  {
+    "id": "L246",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@label,\"Jeb bika wajih\")]",
+    "count": 1
+  },
+  {
+    "id": "L247",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Jolezu mazejuz - rajer bika riv mazejuz\"]",
+    "count": 1
+  },
+  {
+    "id": "L248",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Bevef Daw - foba bika fecegiv votu conuwafi figuleni mazejuz\"]",
+    "count": 1
+  },
+  {
+    "id": "L249",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Wacisugik mazejuz - leba goz dobe votu bika siviminewu\"]",
+    "count": 1
+  },
+  {
+    "id": "L250",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"KE\"]",
+    "count": 1
+  },
+  {
+    "id": "L251",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"jila\"]",
+    "count": 1
+  },
+  {
+    "id": "L252",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Fiwit Hoj\"]",
+    "count": 1
+  },
+  {
+    "id": "L253",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"waviseh risepa\"]",
+    "count": 1
+  },
+  {
+    "id": "L254",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"mi pefu risepa\"]",
+    "count": 1
+  },
+  {
+    "id": "L255",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"kabih pefu\"]",
+    "count": 1
+  },
+  {
+    "id": "L256",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"buwupudaSomukac\"]",
+    "count": 1
+  },
+  {
+    "id": "L257",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Hom gohaz figuleni\")]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView",
+    "count": 1
+  },
+  {
+    "id": "L258",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[contains(@name, \"Dobe teg\")])[1]",
+    "count": 1
+  },
+  {
+    "id": "L259",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Hom gohaz\")]",
+    "count": 1
+  },
+  {
+    "id": "L260",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Gohaz wige\")]",
+    "count": 1
+  },
+  {
+    "id": "L261",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Zekohilodug\"]",
+    "count": 1
+  },
+  {
+    "id": "L262",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeOther[contains(@label, \"Dobe teg\")])[1]",
+    "count": 1
+  },
+  {
+    "id": "L263",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Dew Deguw: Fana je Pel\"]",
+    "count": 1
+  },
+  {
+    "id": "L264",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\" and @label=\"Doso mi je dobe\"]",
+    "count": 1
+  },
+  {
+    "id": "L265",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\" and @label=\"Veg\"]",
+    "count": 1
+  },
+  {
+    "id": "L266",
+    "kind": "xpath-composed",
+    "quote": "`",
+    "source": "${containerLocator_iOS}//XCUIElementTypeStaticText[contains(@label, \"${name}\")]",
+    "count": 1
+  },
+  {
+    "id": "L267",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//XCUIElementTypeStaticText[contains(@label, \"${name}\")])",
+    "count": 1
+  },
+  {
+    "id": "L268",
+    "kind": "xpath-composed",
+    "quote": "`",
+    "source": "${containerLocator_iOS}//XCUIElementTypeButton",
+    "count": 1
+  },
+  {
+    "id": "L269",
+    "kind": "xpath-composed",
+    "quote": "`",
+    "source": "${containerLocator_iOS}/XCUIElementTypeButton",
+    "count": 1
+  },
+  {
+    "id": "L270",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeStaticText[@name=\"jila_zugo\"])[last()]",
+    "count": 1
+  },
+  {
+    "id": "L271",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"])[last()]",
+    "count": 1
+  },
+  {
+    "id": "L272",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeOther[contains(@label, \"Lenapa gusuri\")]/XCUIElementTypeStaticText)[last()]",
+    "count": 1
+  },
+  {
+    "id": "L273",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Kop gohaz cog gujowuma je la kuluso votu matumutor. Dufapil, za zov cog sehoj t rodote wogifo, zov hat keco rig pewipakamo sehoj fojo lenapa. Votu pefu matumutor tecijo rig, zov hat rawi nasavaje je dom rosapo\")]",
+    "count": 1
+  },
+  {
+    "id": "L274",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Dobe teg\") and @enabled=\"${isEnabled}\"]",
+    "count": 1
+  },
+  {
+    "id": "L275",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Namatir wepes je dobe\") and @enabled=\"${isEnabled}\"]",
+    "count": 1
+  },
+  {
+    "id": "L276",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Veg\" and @enabled=\"${isEnabled}\"]",
+    "count": 1
+  },
+  {
+    "id": "L277",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Kihare pefu\" and @label=\"Kihare pefu\"]",
+    "count": 1
+  },
+  {
+    "id": "L278",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Dobe monuw teg \") and contains(@enabled,\"false\")]",
+    "count": 1
+  },
+  {
+    "id": "L279",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Pefu Loresisagi goz dab je dobe\")]",
+    "count": 1
+  },
+  {
+    "id": "L280",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Galufaz Poz Gohaz Ruwoz\")]",
+    "count": 1
+  },
+  {
+    "id": "L281",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Nebonozopurus havilazijik\")]",
+    "count": 1
+  },
+  {
+    "id": "L282",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Vilokor\"]",
+    "count": 1
+  },
+  {
+    "id": "L283",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@name=\"${game}\"]",
+    "count": 1
+  },
+  {
+    "id": "L284",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Bika fabis tuve devihib\")]",
+    "count": 1
+  },
+  {
+    "id": "L285",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Je nehavona je dobe, picama lotahu bika fabis tuve laciwuj tefoku bavori wepes\")]",
+    "count": 1
+  },
+  {
+    "id": "L286",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Dobe monuw teg\") and @enabled=\"${isEnabled}\"]",
+    "count": 1
+  },
+  {
+    "id": "L287",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Zov retoh cuba sab\")]",
+    "count": 1
+  },
+  {
+    "id": "L288",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Jif fojo pefu teg t rurulo je poz koce nivere\")]",
+    "count": 1
+  },
+  {
+    "id": "L289",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name,\"Zov cuba sab\")]",
+    "count": 1
+  },
+  {
+    "id": "L290",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Gohaz wige\") or contains(@name, \"Hom gohaz\")]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView",
+    "count": 1
+  },
+  {
+    "id": "L291",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@name=\"${section}\"]",
+    "count": 1
+  },
+  {
+    "id": "L292",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeButton[@name=\"Balovewu kared, ${section}\"]",
+    "count": 1
+  },
+  {
+    "id": "L293",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeButton[@name=\"Vale kared, ${section}\"]",
+    "count": 1
+  },
+  {
+    "id": "L294",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@name=\"${section}\"]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView",
+    "count": 1
+  },
+  {
+    "id": "L295",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@name=\"${section}\"]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView//XCUIElementTypeButton",
+    "count": 1
+  },
+  {
+    "id": "L296",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@name=\"${section}\"]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView//XCUIElementTypeButton[contains(@name, '${name}')]",
+    "count": 1
+  },
+  {
+    "id": "L297",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"${name}\")]",
+    "count": 1
+  },
+  {
+    "id": "L298",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Veg monuw\"]",
+    "count": 1
+  },
+  {
+    "id": "L299",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Weten hom\"]",
+    "count": 1
+  },
+  {
+    "id": "L300",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Raf ra\" or @name=\"HinefovigocEzehefuc.honeGolepu\"]",
+    "count": 1
+  },
+  {
+    "id": "L301",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[contains(@name,\"WimazatOzuv.kumogigafOsen\")]",
+    "count": 1
+  },
+  {
+    "id": "L302",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Menob\"]",
+    "count": 1
+  },
+  {
+    "id": "L303",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Kabih\"]",
+    "count": 1
+  },
+  {
+    "id": "L304",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"je vap bika zucubamo?\")]",
+    "count": 1
+  },
+  {
+    "id": "L305",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Zucubamo lenino dutovopa\"]",
+    "count": 1
+  },
+  {
+    "id": "L306",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@text, \"Tazeviz\")]",
+    "count": 1
+  },
+  {
+    "id": "L307",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Namatir\")]",
+    "count": 1
+  },
+  {
+    "id": "L308",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Doso poj\"]",
+    "count": 1
+  },
+  {
+    "id": "L309",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Taka\")]",
+    "count": 1
+  },
+  {
+    "id": "L310",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeLink[@name=\"Bemat roki\"])[2]",
+    "count": 1
+  },
+  {
+    "id": "L311",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeLink[@name=\"pajap goz dobe gatejese\"]",
+    "count": 1
+  },
+  {
+    "id": "L312",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Dab je tafiz\"]",
+    "count": 1
+  },
+  {
+    "id": "L313",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Tolacocat nivere\"]",
+    "count": 1
+  },
+  {
+    "id": "L314",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Tosu goz Pekufes ce\")]",
+    "count": 1
+  },
+  {
+    "id": "L315",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Zufeh & Hezujolu\"]",
+    "count": 1
+  },
+  {
+    "id": "L316",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Tefoku zov bapoh wigobur, wezid cog t mag pujap zov varu je zaruzegi mufig.\"]",
+    "count": 1
+  },
+  {
+    "id": "L317",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Picama minevili dom fabis tuve zov\\'vu la wigobur kop gohaz votu. Kame gisu pi kevoza nilani luvuce kesur.\"]",
+    "count": 1
+  },
+  {
+    "id": "L318",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Sehoj dom fabis tuve cejewazipi votu ce, jeb dom namatir zov varu je dobe votu.\"]",
+    "count": 1
+  },
+  {
+    "id": "L319",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeProgressIndicator\") and contains(@label,\"Bizinovib\")]",
+    "count": 1
+  },
+  {
+    "id": "L320",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeProgressIndicator\") and contains(@label,\"1 ho 3\")]",
+    "count": 1
+  },
+  {
+    "id": "L321",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeProgressIndicator\") and contains(@label,\"2 ho 3\")]",
+    "count": 1
+  },
+  {
+    "id": "L322",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Namatir\"]",
+    "count": 1
+  },
+  {
+    "id": "L323",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Jeb fabis tuve\"]",
+    "count": 1
+  },
+  {
+    "id": "L324",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Pajap goz dobe gatejese\")]",
+    "count": 1
+  },
+  {
+    "id": "L325",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name,\"Rofozopevol Dobe\")]",
+    "count": 1
+  },
+  {
+    "id": "L326",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name,\"Dab je tafiz\")]",
+    "count": 1
+  },
+  {
+    "id": "L327",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name,\"Tolacocat nivere\")]",
+    "count": 1
+  },
+  {
+    "id": "L328",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name,\"Pekufes Ce\")]",
+    "count": 1
+  },
+  {
+    "id": "L329",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name,\"Zufeh & Hezujolu\")]",
+    "count": 1
+  },
+  {
+    "id": "L330",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Leba Mipunaco?\"]",
+    "count": 1
+  },
+  {
+    "id": "L331",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Cocutozu cupiz bika mipunaco mi dom Vufutopim keb bi ra’v jebura mi homusabasofek dom vale dosu zov varu ra.\"]",
+    "count": 1
+  },
+  {
+    "id": "L332",
+    "kind": "class-chain",
+    "quote": "'",
+    "source": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]",
+    "count": 1
+  },
+  {
+    "id": "L333",
+    "kind": "class-chain",
+    "quote": "'",
+    "source": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Je mope bika tazeviz befa, pi’di gapufo zov poj.\\nPicama doso mi monuw je nehavona.\"`]",
+    "count": 1
+  },
+  {
+    "id": "L334",
+    "kind": "class-chain",
+    "quote": "'",
+    "source": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\" AND label CONTAINS[c] \"zezo\"`]",
+    "count": 1
+  },
+  {
+    "id": "L335",
+    "kind": "class-chain",
+    "quote": "'",
+    "source": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\" AND label CONTAINS[c] \"doso mi\"`]",
+    "count": 1
+  },
+  {
+    "id": "L336",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Zov’gi mi dom pefu\"]/preceding-sibling::*[@label=\"Kabih\"]",
+    "count": 1
+  },
+  {
+    "id": "L337",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Pobi sopi goz bogici teg wigobur\")]",
+    "count": 1
+  },
+  {
+    "id": "L338",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"limazene migewovig.\")]",
+    "count": 1
+  },
+  {
+    "id": "L339",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Dobe teg\")]",
+    "count": 1
+  },
+  {
+    "id": "L340",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@name, \"${game}\") and contains(@name, \"Dobe teg\")]",
+    "count": 1
+  },
+  {
+    "id": "L341",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Fecirim\")]",
+    "count": 1
+  },
+  {
+    "id": "L342",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@value,\"di milif dom keb t bafot fej tapu. Foba t wocega je potepiv kop sepuwep, hu gure nasavaje nofu lebojemi.\")]",
+    "count": 1
+  },
+  {
+    "id": "L343",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@name,\"HinefovigocEzehefuc.wivEtociliLunuci\")]",
+    "count": 1
+  },
+  {
+    "id": "L344",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextView[@value=\"Dobe Dubow - dom febafuto cisibosogoz jufoz - hu SukuViduguwa teg zefub jogu marohawe. Poz ri tajeto votu Nig Teg Ruda hu wikop poj kop povup ho Galufaz Poz Gohaz.\"]",
+    "count": 1
+  },
+  {
+    "id": "L345",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextView[@value=\"Kop sufaket goz keb cog gujowuma bi hom kop werunez hat gogama nozebiwi dom tamu, dobe gohaz goz cac dom havilazijik heti varu.\"]",
+    "count": 1
+  },
+  {
+    "id": "L346",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextView[contains(@value, \"Rofozopevol dobe goz jotobap kop werunez befa so kop vuvodegu\")]",
+    "count": 1
+  },
+  {
+    "id": "L347",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Potepiv dom keb\"]",
+    "count": 1
+  },
+  {
+    "id": "L348",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Zaruzegi tazeviz gatejese\"]",
+    "count": 1
+  },
+  {
+    "id": "L349",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[1]",
+    "count": 1
+  },
+  {
+    "id": "L350",
+    "kind": "xpath",
+    "quote": "`",
+    "source": "//XCUIElementTypeTextField[2]",
+    "count": 1
+  },
+  {
+    "id": "L351",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[@value=\"LO\"]",
+    "count": 1
+  },
+  {
+    "id": "L352",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[@value=\"KO\"]",
+    "count": 1
+  },
+  {
+    "id": "L353",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[contains(@name, \"Sosedeki bihi\")]",
+    "count": 1
+  },
+  {
+    "id": "L354",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name,\"Meli bika tazeviz\") or contains(@name,\"Jeb fabis tuve\")]",
+    "count": 1
+  },
+  {
+    "id": "L355",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Veg monuw\"] | //*[@name=\"LipohUgicolu.codid\"]",
+    "count": 1
+  },
+  {
+    "id": "L356",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"Sefasi rolafa:\"]/following-sibling::*[contains(@value, \"${id}\")]",
+    "count": 1
+  },
+  {
+    "id": "L357",
+    "kind": "xpath",
+    "quote": "`",
+    "source": "//*[@name=\"Limazene sibo goz dosu:\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L358",
+    "kind": "xpath",
+    "quote": "`",
+    "source": "//*[@name=\"Birel:\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L359",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"Jidur:\"]/following-sibling::*[contains(@value, \"${weeks}\")]",
+    "count": 1
+  },
+  {
+    "id": "L360",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"Rigi nufuhil:\"]/following-sibling::*[contains(@value, \"${date}\") and position()=1]",
+    "count": 1
+  },
+  {
+    "id": "L361",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"Rigi pobes:\"]/following-sibling::*[contains(@value, \"${date}\")]",
+    "count": 1
+  },
+  {
+    "id": "L362",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"Pelo:\"]/following-sibling::*[contains(@value, \"£${value}\")]",
+    "count": 1
+  },
+  {
+    "id": "L363",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Sori bika wisawu\"]",
+    "count": 1
+  },
+  {
+    "id": "L364",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Hijareci Logozeb tazeviz\"]",
+    "count": 1
+  },
+  {
+    "id": "L365",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Rofozopevol dobe\"]",
+    "count": 1
+  },
+  {
+    "id": "L366",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Hijareci Logozeb gohaz hapeto lorope la sih, wigobur mi t loh gisu so kasoc teg zov.\"]",
+    "count": 1
+  },
+  {
+    "id": "L367",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeLink[@name=\"Kefov GohUdip\"]",
+    "count": 1
+  },
+  {
+    "id": "L368",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@name=\"Tulej fopekemu\"]/following-sibling::XCUIElementTypeOther/XCUIElementTypeLink",
+    "count": 1
+  },
+  {
+    "id": "L369",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@name=\"Sori bika wisawu\"]/following-sibling::XCUIElementTypeOther/XCUIElementTypeLink",
+    "count": 1
+  },
+  {
+    "id": "L370",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@name=\"Bemat dab je dobe\"]/following-sibling::XCUIElementTypeOther/XCUIElementTypeLink",
+    "count": 1
+  },
+  {
+    "id": "L371",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[@name=\"Vap kop pihuz\"]/following-sibling::XCUIElementTypeOther/XCUIElementTypeLink",
+    "count": 1
+  },
+  {
+    "id": "L372",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeWebView",
+    "count": 1
+  },
+  {
+    "id": "L373",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeLink[@name=\"Bujulo Gugitum\"]",
+    "count": 1
+  },
+  {
+    "id": "L374",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeLink[@name=\"Des Zukefam Nebonozopurus Bifogilenu (GOCU) 2.2JU\"]",
+    "count": 1
+  },
+  {
+    "id": "L375",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Gokowuto Nebonozopurus Zih\"]",
+    "count": 1
+  },
+  {
+    "id": "L376",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeLink[@name=\"Nebonozopurus gatejese\"]",
+    "count": 1
+  },
+  {
+    "id": "L377",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Vagohap Runero\"]",
+    "count": 1
+  },
+  {
+    "id": "L378",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Tazeviz Tawod & Ruwoz\"]",
+    "count": 1
+  },
+  {
+    "id": "L379",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Vebavuh Zumeh\"]",
+    "count": 1
+  },
+  {
+    "id": "L380",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Nebonozopurus\"]",
+    "count": 1
+  },
+  {
+    "id": "L381",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@label=\"${status}\"]",
+    "count": 1
+  },
+  {
+    "id": "L382",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"taka_vawotub_giwap\"])[1]",
+    "count": 1
+  },
+  {
+    "id": "L383",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Dobe sid\"]",
+    "count": 1
+  },
+  {
+    "id": "L384",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"${status}\"]/following-sibling::*[contains(@name, \"Laciwuj\")]",
+    "count": 1
+  },
+  {
+    "id": "L385",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//XCUIElementTypeStaticText[@label=\"Sefasi PO: ${[...id].join(' ')}\"]/following-sibling::*[contains(@label, \"Laciwuj\")])[1]",
+    "count": 1
+  },
+  {
+    "id": "L386",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Gojo fo\")]",
+    "count": 1
+  },
+  {
+    "id": "L387",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Ceces\")]",
+    "count": 1
+  },
+  {
+    "id": "L388",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name = \"${option}\"]/following-sibling::*[contains(@label, \"Nepureze\")]",
+    "count": 1
+  },
+  {
+    "id": "L389",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@value=\"${option}\"]/following-sibling::*[contains(@name, \"lulik gusuri\")]",
+    "count": 1
+  },
+  {
+    "id": "L390",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Nozod hom\")]",
+    "count": 1
+  },
+  {
+    "id": "L391",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Sefasi PO:\")]",
+    "count": 1
+  },
+  {
+    "id": "L392",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Sefasi PO:\")]",
+    "count": 1
+  },
+  {
+    "id": "L393",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"0 hopetanatiden jumumol\"]",
+    "count": 1
+  },
+  {
+    "id": "L394",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Begeraw kavemag\")]",
+    "count": 1
+  },
+  {
+    "id": "L395",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Hibimaw tival\")]",
+    "count": 1
+  },
+  {
+    "id": "L396",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"taka_vawotub_giwap\"])[3]",
+    "count": 1
+  },
+  {
+    "id": "L397",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"taka_vawotub_giwap\"])[10]",
+    "count": 1
+  },
+  {
+    "id": "L398",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeImage[@name=\"sibo_gasupe\"]",
+    "count": 1
+  },
+  {
+    "id": "L399",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name,\"Ge gohaz\")]",
+    "count": 1
+  },
+  {
+    "id": "L400",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Ge birel\")]",
+    "count": 1
+  },
+  {
+    "id": "L401",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Dobe rolafa: \")]",
+    "count": 1
+  },
+  {
+    "id": "L402",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"${game}\")]",
+    "count": 1
+  },
+  {
+    "id": "L403",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Galufaz Poz Gohaz figuleni\")]",
+    "count": 1
+  },
+  {
+    "id": "L404",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@name, \"Galufaz Poz Gohaz hilubodamo\")]",
+    "count": 1
+  },
+  {
+    "id": "L405",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Riza Vozime Dina\"]",
+    "count": 1
+  },
+  {
+    "id": "L406",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Riza Vozime Dina\"]",
+    "count": 1
+  },
+  {
+    "id": "L407",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@label=\"Dobe Dubow teg £2.00\"])[2]",
+    "count": 1
+  },
+  {
+    "id": "L408",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label, \"Kajosa Podu Pefu 2 - Tival t Setizur - Poz £1L-£5L\")]",
+    "count": 1
+  },
+  {
+    "id": "L409",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Dom mipunaco zov wumesok so disohinid.\"]",
+    "count": 1
+  },
+  {
+    "id": "L410",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Pefu mosagesotefetuk\"]",
+    "count": 1
+  },
+  {
+    "id": "L411",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeSecureTextField[@name=\"FogigIpavoWibi.mipunaco\"]",
+    "count": 1
+  },
+  {
+    "id": "L412",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\"]",
+    "count": 1
+  },
+  {
+    "id": "L413",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Zov sugah’f jukupoja wigobur\")]",
+    "count": 1
+  },
+  {
+    "id": "L414",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[contains(@label, \"Limazene sibo: ${date}\")]",
+    "count": 1
+  },
+  {
+    "id": "L415",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@label=\"${price}\"]",
+    "count": 1
+  },
+  {
+    "id": "L416",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Sefasi meb ruliv\")]",
+    "count": 1
+  },
+  {
+    "id": "L417",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Bokipefij, fuh fojo sefasi so ti cujowe ruliv, goz zov kevoza lenino luvuzapagu laciwuj.\")]",
+    "count": 1
+  },
+  {
+    "id": "L418",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"cuba jizorawohuni honamib bika deguw.\")]",
+    "count": 1
+  },
+  {
+    "id": "L419",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Picama lugatej bika tuve laciwuj bi pi hat wekukos bika miwokub. Zov cuba 180 lide rese dom rog toral dom rigi sibo je tafiz.\")]",
+    "count": 1
+  },
+  {
+    "id": "L420",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Puba sefasi\"]",
+    "count": 1
+  },
+  {
+    "id": "L421",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Dobe monuw\"]",
+    "count": 1
+  },
+  {
+    "id": "L422",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Jovime\")]",
+    "count": 1
+  },
+  {
+    "id": "L423",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Meja\")]",
+    "count": 1
+  },
+  {
+    "id": "L424",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name, \"${title}\")]",
+    "count": 1
+  },
+  {
+    "id": "L425",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@name,\"HosidoLitokazajiCimo.noraSefili\")]",
+    "count": 1
+  },
+  {
+    "id": "L426",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Hicepe\"]",
+    "count": 1
+  },
+  {
+    "id": "L427",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\" and @label=\"Kizik Nabu\"]",
+    "count": 1
+  },
+  {
+    "id": "L428",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeOther[@name=\", Nepureze, hilubodamo\"])[1]",
+    "count": 1
+  },
+  {
+    "id": "L429",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Cog zov husu zov noca je hicepe hom dulacoci?\"]",
+    "count": 1
+  },
+  {
+    "id": "L430",
+    "kind": "xpath",
+    "quote": "`",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"lojo la peworumezop vamalul rese bika razuw.\")]",
+    "count": 1
+  },
+  {
+    "id": "L431",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@name,\"Diteda\")]",
+    "count": 1
+  },
+  {
+    "id": "L432",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Hicepe hom\"]",
+    "count": 1
+  },
+  {
+    "id": "L433",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Vagu sefasi\"]",
+    "count": 1
+  },
+  {
+    "id": "L434",
+    "kind": "xpath",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Fecirim\")]",
+    "count": 1
+  },
+  {
+    "id": "L435",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Galufaz poz\"]",
+    "count": 1
+  },
+  {
+    "id": "L436",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"${gameName.toUpperCase()}\"]/preceding-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L437",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"Rigi gohaz gusuri\")]",
+    "count": 1
+  },
+  {
+    "id": "L438",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"Galufaz gohaz gusuri\")]",
+    "count": 1
+  },
+  {
+    "id": "L439",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Doso mi\"]",
+    "count": 1
+  },
+  {
+    "id": "L440",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Minevili\"]",
+    "count": 1
+  },
+  {
+    "id": "L441",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"FetuwozaNihelavAvuv.mipunaco\")]",
+    "count": 1
+  },
+  {
+    "id": "L442",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"FetuwozaNihelavAvuv.jizobawUwohacan\")]",
+    "count": 1
+  },
+  {
+    "id": "L443",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"FetuwozaNihelavAvuv.funelaFecotu\" and @enabled=\"false\"]",
+    "count": 1
+  },
+  {
+    "id": "L444",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"FetuwozaNihelavAvuv.mipunaco\") and contains(@label,\"Kuki mipunaco\")]",
+    "count": 1
+  },
+  {
+    "id": "L445",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"FetuwozaNihelavAvuv.mipunaco\") and contains(@label,\"Comu mipunaco\")]",
+    "count": 1
+  },
+  {
+    "id": "L446",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"FetuwozaNihelavAvuv.jizobawUwohacan\") and contains(@label,\"Kuki mipunaco\")]",
+    "count": 1
+  },
+  {
+    "id": "L447",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"ZejizasAgal.giselolIpefov\"]",
+    "count": 1
+  },
+  {
+    "id": "L448",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Fej mipunaco\")]",
+    "count": 1
+  },
+  {
+    "id": "L449",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Lugatej fej mipunaco\")]",
+    "count": 1
+  },
+  {
+    "id": "L450",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@label, \"Hicepe bihi\")]",
+    "count": 1
+  },
+  {
+    "id": "L451",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//*[@name=\"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"])[2]",
+    "count": 1
+  },
+  {
+    "id": "L452",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Kimiz ma M saki ge pamul?\"]",
+    "count": 1
+  },
+  {
+    "id": "L453",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Hero bihi ${codeNumber}\"]",
+    "count": 1
+  },
+  {
+    "id": "L454",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Hicepe bihi ${codeNumber}\"]",
+    "count": 1
+  },
+  {
+    "id": "L455",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"Fej bihi tete ${codeNumber}, jeb t fej bihi\" and @accessible=\"true\"]|//*[@name=\"Bihi ${codeNumber}\" and @accessible=\"true\"]",
+    "count": 1
+  },
+  {
+    "id": "L456",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Bihi ${codeNumber}\"]",
+    "count": 1
+  },
+  {
+    "id": "L457",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Bihi ${codeNumber}\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L458",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@label, \"NE Cisibosogoz Jufoz bihi\") and not (contains(@label, \"Bika\"))]",
+    "count": 1
+  },
+  {
+    "id": "L459",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"Dew deguw fericow:\")]",
+    "count": 1
+  },
+  {
+    "id": "L460",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[contains(@label, \"Cijahil: ${prize}\") or contains(@label, \"Dew deguw: ${prize}\")]",
+    "count": 1
+  },
+  {
+    "id": "L461",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"${count} ${count == 1 ? 'winner' : 'winners'}\"] | //*[@label=\"Nodeg: ${count}\"]",
+    "count": 1
+  },
+  {
+    "id": "L462",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"£${prize}\")]",
+    "count": 1
+  },
+  {
+    "id": "L463",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"Nodeg hom fericow\"]/following-sibling::*[@label=\"${formattedWinners}\"]",
+    "count": 1
+  },
+  {
+    "id": "L464",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"Nodeg hom NE fericow\"]/following-sibling::*[@label=\"${winners}\"]",
+    "count": 1
+  },
+  {
+    "id": "L465",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Nodeg deguw meli\" or @label=\"Nodeg NE fofo deguw meli\"]/following-sibling::*[contains(@label, \"£${prize}\")]",
+    "count": 1
+  },
+  {
+    "id": "L466",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"3398\")]",
+    "count": 1
+  },
+  {
+    "id": "L467",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Cijahil:\")]",
+    "count": 1
+  },
+  {
+    "id": "L468",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Rigi buromut:\")]",
+    "count": 1
+  },
+  {
+    "id": "L469",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeOther\") and contains(@name,\"CizuBubezotOcahijaLenu.sedunElerozegaCawogeg\")]",
+    "count": 1
+  },
+  {
+    "id": "L470",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"fericow\")]",
+    "count": 1
+  },
+  {
+    "id": "L471",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"LohenobEcohazoLasi.sewanecAbifub\"])[1]",
+    "count": 1
+  },
+  {
+    "id": "L472",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name, \"hibimaw pamul\")]",
+    "count": 1
+  },
+  {
+    "id": "L473",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[contains(@label, \"${jackpotPrize}\")]",
+    "count": 1
+  },
+  {
+    "id": "L474",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Bika kavemag\" or @label=\"Bika rorefek\"]",
+    "count": 1
+  },
+  {
+    "id": "L475",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Begeraw kavemag, sepura rigi mazejuz\")]",
+    "count": 1
+  },
+  {
+    "id": "L476",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[${condition('label')}]",
+    "count": 1
+  },
+  {
+    "id": "L477",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"${game}\"]/following::*[${condition('label')}][1]",
+    "count": 1
+  },
+  {
+    "id": "L478",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@label, \"Rurez\") and contains(@label, \"mazejuz:\")]",
+    "count": 1
+  },
+  {
+    "id": "L479",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//*[@label=\"${game}\"]/following-sibling::*[contains(@label, \"mazejuz:\")])[1]",
+    "count": 1
+  },
+  {
+    "id": "L480",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"${game}\"]/following-sibling::*[contains(@label, \"Petor ${round}, Rurez\")][1]",
+    "count": 1
+  },
+  {
+    "id": "L481",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Petor ${round}, Rurez\") and contains(@label, \"mazejuz:\")]",
+    "count": 1
+  },
+  {
+    "id": "L482",
+    "kind": "non-locator",
+    "quote": "expr",
+    "source": "jifote ? `~${codes[0].split('').join(' ')}` : `~Puba ${codes.length} pamul`",
+    "count": 1
+  },
+  {
+    "id": "L483",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Tete ${line}\")]//*[contains(@label, \"${match}\")]",
+    "count": 1
+  },
+  {
+    "id": "L484",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Tete ${line}\")]//*[contains(@label, \"${prize}\")]",
+    "count": 1
+  },
+  {
+    "id": "L485",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeOther[contains(@name, \"PofuJiwirupIpuj.tete(${line}\")]",
+    "count": 1
+  },
+  {
+    "id": "L486",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@label, \"Petor ${round}, Tete ${line}\")]",
+    "count": 1
+  },
+  {
+    "id": "L487",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"Bihi ${codeNumber}\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L488",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Bihi ${codeNumber}\"]/../following-sibling:: *[@label=\"${match}\"]",
+    "count": 1
+  },
+  {
+    "id": "L489",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@label=\"Bihi ${codeNumber}\"]/../following-sibling:: *[contains(@label, \"${prize}\")]",
+    "count": 1
+  },
+  {
+    "id": "L490",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//*[contains(@name, \"Rigi\")]/following-sibling::*[1])[position() <= 15]",
+    "count": 1
+  },
+  {
+    "id": "L491",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Sefasi so meb vusalisafe\")]",
+    "count": 1
+  },
+  {
+    "id": "L492",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Ti hibimaw tival\")]",
+    "count": 1
+  },
+  {
+    "id": "L493",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Hibimaw tival\")]",
+    "count": 1
+  },
+  {
+    "id": "L494",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@label, \"Honamib deguw\")]",
+    "count": 1
+  },
+  {
+    "id": "L495",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@label=\"Rigi ${drawNo}\"]",
+    "count": 1
+  },
+  {
+    "id": "L496",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"Zov cuba hibimaw rorefek mi\")]",
+    "count": 1
+  },
+  {
+    "id": "L497",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@name, \"${pastDate} je ${currentDate}.\")]",
+    "count": 1
+  },
+  {
+    "id": "L498",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.dijivOdozev\"])[3]",
+    "count": 1
+  },
+  {
+    "id": "L499",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"SihiBi.pusasePejazuweVobofe\"]",
+    "count": 1
+  },
+  {
+    "id": "L500",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@value,\"Zov cuba wedahaviwejofa kudez je doso mi bunuv werog. Teg sosedeki camenup, fojo tazeviz so sid juraja.\")]",
+    "count": 1
+  },
+  {
+    "id": "L501",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@value,\"Picama bowep bika mipunaco hu pekufes kop Lowefore Fika riba je gepohe lenino je bika tazeviz.\")]",
+    "count": 1
+  },
+  {
+    "id": "L502",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Dozur, wezid zuf t lufotoh votu bika gebison. Za zov cog wuneko je lenino bika tazeviz picama pekufes Lowefore Fika\")]",
+    "count": 1
+  },
+  {
+    "id": "L503",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"Fecirim!\")]",
+    "count": 1
+  },
+  {
+    "id": "L504",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@label,\"Doso mi\")]",
+    "count": 1
+  },
+  {
+    "id": "L505",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[contains(@label,\"Fabateli vulasemab hat nehavona je vap nihekomeg\")]",
+    "count": 1
+  },
+  {
+    "id": "L506",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[@name=\"${value}\"]",
+    "count": 1
+  },
+  {
+    "id": "L507",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeStaticText[contains(@name, \"${value}\")]",
+    "count": 1
+  },
+  {
+    "id": "L508",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//XCUIElementTypeButton[@label=\"${value}\"]",
+    "count": 1
+  },
+  {
+    "id": "L509",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeTextField\") and contains(@name,\"VegAluGezamIrez.kusibEtapAjijo\")]",
+    "count": 1
+  },
+  {
+    "id": "L510",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Fowani wumesok muhevuw bika 75 gohaz kofodat ditar.\"]",
+    "count": 1
+  },
+  {
+    "id": "L511",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@name, \"${testData.messages.items}\")]",
+    "count": 1
+  },
+  {
+    "id": "L512",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"Lahe:\")]",
+    "count": 1
+  },
+  {
+    "id": "L513",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeImage[@name=\"kasoc_jijun\"])",
+    "count": 1
+  },
+  {
+    "id": "L514",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@value, \"${gameName}\")]",
+    "count": 1
+  },
+  {
+    "id": "L515",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeTextField[@name=\"WidafajivaTorukepumobIpas.bulitiLitopicol\"]",
+    "count": 1
+  },
+  {
+    "id": "L516",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@label=\"Lugatej\"]",
+    "count": 1
+  },
+  {
+    "id": "L517",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@value, \"${gameName}\") and @enabled=\"${isEnabled}\"]",
+    "count": 1
+  },
+  {
+    "id": "L518",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[contains(@name,\"WefaniBedufeDanu.gotePebazoh\") and @enabled=\"${isEnabled}\"]",
+    "count": 1
+  },
+  {
+    "id": "L519",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"Tefoku zov hat namatir wepes, zov lojo varu je nig bika juvira wisawu\"]",
+    "count": 1
+  },
+  {
+    "id": "L520",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca\") and contains(@enabled,\"false\")]",
+    "count": 1
+  },
+  {
+    "id": "L521",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro\") and contains(@enabled,\"false\")]",
+    "count": 1
+  },
+  {
+    "id": "L522",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Rajer bika juvira namatir ditar\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L523",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Rajer bika juvira pajap ditar\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L524",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Namatir ditar\")]",
+    "count": 1
+  },
+  {
+    "id": "L525",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Pajap ditar\")]",
+    "count": 1
+  },
+  {
+    "id": "L526",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Ricorikup Hohaveh\")]",
+    "count": 1
+  },
+  {
+    "id": "L527",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Wuwisivopu Galufaz Poz Gohaz dobe\")]",
+    "count": 1
+  },
+  {
+    "id": "L528",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Foba t jutal\")]",
+    "count": 1
+  },
+  {
+    "id": "L529",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[contains(@label,\"Giji Galufaz Poz Gohaz dobe ditar\")]",
+    "count": 1
+  },
+  {
+    "id": "L530",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Nig ditar\"]/preceding-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L531",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"DacinIjaVudaKecemoRisu.jibikIhofe\") and contains(@label, \"Dikasod ditar: £\")]",
+    "count": 1
+  },
+  {
+    "id": "L532",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name, \"DacinIjaVudaKecemoRisu.jecejIvoge\") and contains(@label, \"Dikasod ditar: £\")]",
+    "count": 1
+  },
+  {
+    "id": "L533",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Galufaz Poz Gohaz dobe ditar\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L534",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"DacinIjaVudaKecemoRisu.jibikIhofe\") and contains(@label,\"Namatir ditar\")]",
+    "count": 1
+  },
+  {
+    "id": "L535",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"DacinIjaVudaKecemoRisu.jibikIhofe\") and contains(@label,\"Nig dab veca zov hat namatir ruhe here.\")]",
+    "count": 1
+  },
+  {
+    "id": "L536",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"DacinIjaVudaKecemoRisu.jecejIvoge\") and contains(@label,\"Pajap ditar\")]",
+    "count": 1
+  },
+  {
+    "id": "L537",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"DacinIjaVudaKecemoRisu.jecejIvoge\") and contains(@label,\"Nig dab veca zov hat pajap ruhe here.\")]",
+    "count": 1
+  },
+  {
+    "id": "L538",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"DacinIjaVudaKecemoRisu.fiwobozokeZutaralEboBerutOzok\") and contains(@label,\"Wuwisivopu Galufaz Poz Gohaz dobe\")]",
+    "count": 1
+  },
+  {
+    "id": "L539",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Wuwisivopu Galufaz Poz Gohaz dobe\"]/following-sibling::*[not(@label=\"Jaluzamiv\")][1]",
+    "count": 1
+  },
+  {
+    "id": "L540",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeStaticText[@name=\"DacinIjaVudaKecemoRisu.fiwobozokeZutaralEboBerutOzok\" and @label=\"Jaluzamiv\"]",
+    "count": 1
+  },
+  {
+    "id": "L541",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"DacinIjaVudaKecemoRisu.lekiPum\") and contains(@label,\"Foba t jutal\")]",
+    "count": 1
+  },
+  {
+    "id": "L542",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"DacinIjaVudaKecemoRisu.lekiPum\") and contains(@label,\"Foba t jutal rese wigobur hom gohaz dapisusurel hu peworumezop.\")]",
+    "count": 1
+  },
+  {
+    "id": "L543",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Galufaz Poz Gohaz dobe ditar\"]",
+    "count": 1
+  },
+  {
+    "id": "L544",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Giji Galufaz Poz Gohaz dobe ditar\"]/preceding-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L545",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Galufaz Poz Gohaz dobe ditar\"]/following-sibling::*[not(@label=\"Jaluzamiv\")][1]",
+    "count": 1
+  },
+  {
+    "id": "L546",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"DacinIjaVudaKecemoRisu.kerumemUbiSojuzUlacArewo\" and @label=\"Jaluzamiv\"]",
+    "count": 1
+  },
+  {
+    "id": "L547",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"DacinIjaVudaKecemoRisu.vufeputekUgucelu\") and contains(@label,\"Ricorikup Hohaveh\")]",
+    "count": 1
+  },
+  {
+    "id": "L548",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@name,\"DacinIjaVudaKecemoRisu.vufeputekUgucelu\") and contains(@label,\"Nig bika tazeviz va t Ricorikup Hohaveh je jif jumumol teg bika ricorikup.\")]",
+    "count": 1
+  },
+  {
+    "id": "L549",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeTextField\") and contains(@name, \"VegAluGezamIrez.kusibEtapAjijo\")]",
+    "count": 1
+  },
+  {
+    "id": "L550",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Nig ditar\"]",
+    "count": 1
+  },
+  {
+    "id": "L551",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeStaticText[@label=\"Meb cumetakov\"])",
+    "count": 1
+  },
+  {
+    "id": "L552",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@label=\"Meb cumetakov\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L553",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@name=\"Dikasod ditar:\"]/following-sibling::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L554",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[contains(@label,\"TI\")]",
+    "count": 1
+  },
+  {
+    "id": "L555",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeOther[contains(@label,\"WOJ\")]",
+    "count": 1
+  },
+  {
+    "id": "L556",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//*[@name=\"VavepaGomudatepUvepajImar.lawupe(${value - 1})\"]/child::*[1]",
+    "count": 1
+  },
+  {
+    "id": "L557",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Luzaf jutal (1 rog je 5 banadi)\")]",
+    "count": 1
+  },
+  {
+    "id": "L558",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Lefe jutal (6 banadi je 5 weboc)\")]",
+    "count": 1
+  },
+  {
+    "id": "L559",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Dewujumu wezujewab\")]",
+    "count": 1
+  },
+  {
+    "id": "L560",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Luzaf jutal (1 rog je 5 banadi)\"]",
+    "count": 1
+  },
+  {
+    "id": "L561",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Lefe jutal (6 banadi je 5 weboc)\"]",
+    "count": 1
+  },
+  {
+    "id": "L562",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeButton[@name=\"Dewujumu wezujewab\"]",
+    "count": 1
+  },
+  {
+    "id": "L563",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Nig bika jutal\")]",
+    "count": 1
+  },
+  {
+    "id": "L564",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[1]",
+    "count": 1
+  },
+  {
+    "id": "L565",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[2]",
+    "count": 1
+  },
+  {
+    "id": "L566",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[3]",
+    "count": 1
+  },
+  {
+    "id": "L567",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[${option + 1}]",
+    "count": 1
+  },
+  {
+    "id": "L568",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Zov’di nofezi je foba t jutal ho\")]",
+    "count": 1
+  },
+  {
+    "id": "L569",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Zov’di nofezi je foba t lefe jutal ho\")]",
+    "count": 1
+  },
+  {
+    "id": "L570",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//XCUIElementTypeSecureTextField[@name=\"FohuVeluHasIkucilelerovUgit.voceseruBiful\"]",
+    "count": 1
+  },
+  {
+    "id": "L571",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeOther[@name=\"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"])[2]",
+    "count": 1
+  },
+  {
+    "id": "L572",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\"])[1]",
+    "count": 1
+  },
+  {
+    "id": "L573",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\"])[2]",
+    "count": 1
+  }
+]

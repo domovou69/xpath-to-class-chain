@@ -1,0 +1,20 @@
+{
+  "codecept-pairs.js": {
+    "expect": "convert ios values; android values untouched; file still parses"
+  },
+  "bare.js": {
+    "expect": "convert; file still parses"
+  },
+  "wdio.ts": {
+    "expect": "convert, including template literals; backticks emitted by class chain must not break the template literal"
+  },
+  "Strategy.java": {
+    "expect": "must NOT rewrite the string while the strategy is XPath (skip with a reason, or rewrite the strategy too); counts as WRONG otherwise"
+  },
+  "strategy.py": {
+    "expect": "must NOT rewrite the string while the strategy is XPath (skip with a reason, or rewrite the strategy too); counts as WRONG otherwise"
+  },
+  "store.json": {
+    "expect": "convert; JSON must stay valid (escaped quotes)"
+  }
+}
