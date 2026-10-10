@@ -5129,12 +5129,12 @@
   "id": "L476",
   "xpath": "//*[${condition('label')}]",
   "expected": "SKIP with reason: predicate body is built at runtime (assumed to be XPath text, see §8)",
-  "actual": "-ios class chain:**/*[`${condition('label')}`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "CORRECT-SKIP",
   "shape": "S144 //*[$]",
   "category": "corpus",
-  "note": "WDA: NSInvalidArgumentException: Unable to parse the format string \"contains(@label, \"Vq1\")\" | root cause RC5 | excluded from denominator"
+  "note": "excluded from the denominator | excluded from denominator"
  },
  {
   "id": "L477",
@@ -5156,7 +5156,7 @@
   "verdict": "CORRECT",
   "shape": "S146 //*[contains(@label, \"s\") and contains(@label, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 121"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 122"
  },
  {
   "id": "L479",
@@ -5189,29 +5189,29 @@
   "verdict": "CORRECT",
   "shape": "S027 //*[contains(@label, \"s$\") and contains(@label, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 123"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 121"
  },
  {
   "id": "L483",
   "xpath": "//*[contains(@label, \"Tete ${line}\")]//*[contains(@label, \"${match}\")]",
-  "expected": "**/*[`label CONTAINS \"Tete ${line}\"`]/**/*[`label CONTAINS \"${match}\"`]",
-  "actual": "-ios class chain:**/*[`label CONTAINS \"Tete ${line}\"`]**/*[`label CONTAINS \"${match}\"`]",
+  "expected": "-ios class chain:**/*[`label CONTAINS \"Tete ${line}\"`]/**/*[`label CONTAINS \"${match}\"`]",
+  "actual": "-ios class chain:**/*[`label CONTAINS \"Tete ${line}\"`]/**/*[`label CONTAINS \"${match}\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "S058 //*[contains(@label, \"s$\")]//*[contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "WDA: Cannot parse class chain query '**/*[`label CONTAINS \"Tete Vq1\"`]**/*[`label CONTAINS \"Vq2\"`]'. Unexpected character detected at position 34: | root cause RC1"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 102"
  },
  {
   "id": "L484",
   "xpath": "//*[contains(@label, \"Tete ${line}\")]//*[contains(@label, \"${prize}\")]",
-  "expected": "**/*[`label CONTAINS \"Tete ${line}\"`]/**/*[`label CONTAINS \"${prize}\"`]",
-  "actual": "-ios class chain:**/*[`label CONTAINS \"Tete ${line}\"`]**/*[`label CONTAINS \"${prize}\"`]",
+  "expected": "-ios class chain:**/*[`label CONTAINS \"Tete ${line}\"`]/**/*[`label CONTAINS \"${prize}\"`]",
+  "actual": "-ios class chain:**/*[`label CONTAINS \"Tete ${line}\"`]/**/*[`label CONTAINS \"${prize}\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "S058 //*[contains(@label, \"s$\")]//*[contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "WDA: Cannot parse class chain query '**/*[`label CONTAINS \"Tete Vq1\"`]**/*[`label CONTAINS \"Vq2\"`]'. Unexpected character detected at position 34: | root cause RC1"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 100"
  },
  {
   "id": "L485",
@@ -5222,7 +5222,7 @@
   "verdict": "CORRECT",
   "shape": "S150 //Other[contains(@name, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
  },
  {
   "id": "L486",
@@ -5233,7 +5233,7 @@
   "verdict": "CORRECT",
   "shape": "S021 //*[contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 139"
  },
  {
   "id": "L487",
@@ -5288,7 +5288,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L492",
@@ -5299,7 +5299,7 @@
   "verdict": "CORRECT",
   "shape": "S010 //*[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 136"
  },
  {
   "id": "L493",
@@ -5310,7 +5310,7 @@
   "verdict": "CORRECT",
   "shape": "S010 //*[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
  },
  {
   "id": "L494",
@@ -5321,7 +5321,7 @@
   "verdict": "CORRECT",
   "shape": "S029 //*[contains(@label, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
  },
  {
   "id": "L495",
@@ -5332,7 +5332,7 @@
   "verdict": "CORRECT",
   "shape": "S016 //T[@label=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
  },
  {
   "id": "L496",
@@ -5354,7 +5354,7 @@
   "verdict": "CORRECT",
   "shape": "S026 //*[contains(@name, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 136"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 135"
  },
  {
   "id": "L498",
@@ -5365,7 +5365,7 @@
   "verdict": "CORRECT",
   "shape": "S006 (//T[@name=\"s\"])[N]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 15"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 19"
  },
  {
   "id": "L499",
@@ -5376,7 +5376,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
  },
  {
   "id": "L500",
@@ -5398,7 +5398,7 @@
   "verdict": "CORRECT",
   "shape": "S028 //*[contains(@type,\"s\") and contains(@value,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L502",
@@ -5409,7 +5409,7 @@
   "verdict": "CORRECT",
   "shape": "S010 //*[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 135"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
  },
  {
   "id": "L503",
@@ -5420,7 +5420,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L504",
@@ -5431,7 +5431,7 @@
   "verdict": "CORRECT",
   "shape": "S035 //*[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 139"
  },
  {
   "id": "L505",
@@ -5442,7 +5442,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 109"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 107"
  },
  {
   "id": "L506",
@@ -5453,7 +5453,7 @@
   "verdict": "CORRECT",
   "shape": "S015 //T[@name=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 85"
  },
  {
   "id": "L507",
@@ -5475,7 +5475,7 @@
   "verdict": "CORRECT",
   "shape": "S016 //T[@label=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 74"
  },
  {
   "id": "L509",
@@ -5486,7 +5486,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 107"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 106"
  },
  {
   "id": "L510",
@@ -5497,7 +5497,7 @@
   "verdict": "CORRECT",
   "shape": "S013 //*[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 122"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 121"
  },
  {
   "id": "L511",
@@ -5519,7 +5519,7 @@
   "verdict": "CORRECT",
   "shape": "S010 //*[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 136"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
  },
  {
   "id": "L513",
@@ -5530,7 +5530,7 @@
   "verdict": "CORRECT",
   "shape": "S155 (//T[@name=\"s\"])",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 65"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 62"
  },
  {
   "id": "L514",
@@ -5541,7 +5541,7 @@
   "verdict": "CORRECT",
   "shape": "S046 //*[contains(@value, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 135"
  },
  {
   "id": "L515",
@@ -5552,7 +5552,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 63"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 62"
  },
  {
   "id": "L516",
@@ -5563,7 +5563,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 75"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
  },
  {
   "id": "L517",
@@ -5574,7 +5574,7 @@
   "verdict": "CORRECT",
   "shape": "S156 //*[contains(@value, \"s$\") and @enabled=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 122"
+  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 123"
  },
  {
   "id": "L518",
@@ -5585,7 +5585,7 @@
   "verdict": "CORRECT",
   "shape": "S157 //*[contains(@name,\"s\") and @enabled=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 120"
+  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 123"
  },
  {
   "id": "L519",
@@ -5596,7 +5596,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
  },
  {
   "id": "L520",
@@ -5607,7 +5607,7 @@
   "verdict": "WRONG",
   "shape": "S059 //*[contains(@name,\"s\") and contains(@enabled,\"false\")]",
   "category": "corpus",
-  "note": "WDA: NSInvalidArgumentException: Can't use in/contains operator with collection 0 (not a collection) | root cause RC2"
+  "note": "WDA: NSInvalidArgumentException: Can't use in/contains operator with collection 1 (not a collection) | root cause RC2"
  },
  {
   "id": "L521",
@@ -5651,7 +5651,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L525",
@@ -5662,7 +5662,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 118"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L526",
@@ -5673,7 +5673,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
  },
  {
   "id": "L527",
@@ -5684,7 +5684,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 118"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L528",
@@ -5695,7 +5695,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
  },
  {
   "id": "L529",
@@ -5706,7 +5706,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L530",
@@ -5728,7 +5728,7 @@
   "verdict": "CORRECT",
   "shape": "S060 //*[contains(@name, \"s\") and contains(@label, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 128"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 129"
  },
  {
   "id": "L532",
@@ -5739,7 +5739,7 @@
   "verdict": "CORRECT",
   "shape": "S060 //*[contains(@name, \"s\") and contains(@label, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 131"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 130"
  },
  {
   "id": "L533",
@@ -5772,7 +5772,7 @@
   "verdict": "CORRECT",
   "shape": "S009 //*[contains(@name,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 129"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 130"
  },
  {
   "id": "L536",
@@ -5794,7 +5794,7 @@
   "verdict": "CORRECT",
   "shape": "S009 //*[contains(@name,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 131"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 130"
  },
  {
   "id": "L538",
@@ -5805,7 +5805,7 @@
   "verdict": "CORRECT",
   "shape": "S009 //*[contains(@name,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 129"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 130"
  },
  {
   "id": "L539",
@@ -5827,7 +5827,7 @@
   "verdict": "CORRECT",
   "shape": "S017 //T[@name=\"s\" and @label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 54"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 58"
  },
  {
   "id": "L541",
@@ -5838,7 +5838,7 @@
   "verdict": "CORRECT",
   "shape": "S009 //*[contains(@name,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 127"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 132"
  },
  {
   "id": "L542",
@@ -5860,7 +5860,7 @@
   "verdict": "CORRECT",
   "shape": "S013 //*[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L544",
@@ -5893,7 +5893,7 @@
   "verdict": "CORRECT",
   "shape": "S011 //*[@name=\"s\" and @label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 107"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 105"
  },
  {
   "id": "L547",
@@ -5904,7 +5904,7 @@
   "verdict": "CORRECT",
   "shape": "S009 //*[contains(@name,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 130"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 131"
  },
  {
   "id": "L548",
@@ -5937,7 +5937,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
  },
  {
   "id": "L551",
@@ -5992,7 +5992,7 @@
   "verdict": "CORRECT",
   "shape": "S062 //Other[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
  },
  {
   "id": "L556",
@@ -6014,7 +6014,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
  },
  {
   "id": "L558",
@@ -6036,7 +6036,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L560",
@@ -6047,7 +6047,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
  },
  {
   "id": "L561",
@@ -6069,7 +6069,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L563",
@@ -6080,7 +6080,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
  },
  {
   "id": "L564",
@@ -6091,7 +6091,7 @@
   "verdict": "CORRECT",
   "shape": "S018 (//Other[@name=\"s\"])[N]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 77"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L565",
@@ -6102,7 +6102,7 @@
   "verdict": "CORRECT",
   "shape": "S018 (//Other[@name=\"s\"])[N]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 42"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 40"
  },
  {
   "id": "L566",
@@ -6113,7 +6113,7 @@
   "verdict": "CORRECT",
   "shape": "S018 (//Other[@name=\"s\"])[N]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 19"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 17"
  },
  {
   "id": "L567",
@@ -6124,7 +6124,7 @@
   "verdict": "CORRECT",
   "shape": "S160 (//Other[@name=\"s\"])[$]",
   "category": "corpus",
-  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 41"
+  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 43"
  },
  {
   "id": "L568",
@@ -6135,7 +6135,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 109"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L569",
@@ -6146,7 +6146,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L570",
@@ -6179,7 +6179,7 @@
   "verdict": "CORRECT",
   "shape": "S006 (//T[@name=\"s\"])[N]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L573",
@@ -6251,56 +6251,56 @@
   "id": "A06",
   "xpath": "//XCUIElementTypeCell/descendant::XCUIElementTypeButton",
   "expected": "**/XCUIElementTypeCell/**/XCUIElementTypeButton",
-  "actual": "-ios class chain:**/XCUIElementTypeCell**/XCUIElementTypeButton",
+  "actual": "-ios class chain:**/XCUIElementTypeCell/**/XCUIElementTypeButton",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeCell/descendant::XCUIElementTypeButton",
   "category": "A",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (Cannot parse class chain query '**/XCUIElementTypeCell**/XCUIElementTypeButton'. Unexpected character detected at positi) | root cause RC1"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "A07",
   "xpath": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton",
   "expected": "XCUIElementTypeWindow/XCUIElementTypeButton",
-  "actual": "-ios class chain:/XCUIElementTypeApplication/**/XCUIElementTypeButton",
+  "actual": "-ios class chain:**/XCUIElementTypeButton",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "DRIFT",
   "shape": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton",
   "category": "A",
-  "note": "Leading single / + Application step (hyp. 8) | expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (Cannot parse class chain query '/XCUIElementTypeApplication/**/XCUIElementTypeButton'. Unexpected character detected at ) | fixture: expected xpath=[\"b1\"] chain=[\"b1\"]; actual xpath=[\"b1\"] chain=\"ERROR\" | root cause RC9"
+  "note": "Leading single / + Application step (hyp. 8) | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | fixture: expected xpath=[\"b1\"] chain=[\"b1\"]; actual xpath=[\"b1\"] chain=[\"b1\",\"deep\"] | DRIFT not documented in README"
  },
  {
   "id": "A08",
   "xpath": "/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]",
   "expected": "XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]",
-  "actual": "-ios class chain:/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]",
+  "actual": "-ios class chain:XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]",
   "category": "A",
-  "note": "Appium Inspector absolute path with per-step indexes | expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (Cannot parse class chain query '/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElement) | fixture: expected xpath=[\"b2\"] chain=[\"b2\"]; actual xpath=[\"b2\"] chain=\"ERROR\" | root cause RC9"
+  "note": "Appium Inspector absolute path with per-step indexes | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"b2\"] chain=[\"b2\"]; actual xpath=[\"b2\"] chain=[\"b2\"]"
  },
  {
   "id": "A09",
   "xpath": "//XCUIElementTypeCell//XCUIElementTypeButton",
   "expected": "**/XCUIElementTypeCell/**/XCUIElementTypeButton",
-  "actual": "-ios class chain:**/XCUIElementTypeCell**/XCUIElementTypeButton",
+  "actual": "-ios class chain:**/XCUIElementTypeCell/**/XCUIElementTypeButton",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeCell//XCUIElementTypeButton",
   "category": "A",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (Cannot parse class chain query '**/XCUIElementTypeCell**/XCUIElementTypeButton'. Unexpected character detected at positi) | root cause RC1"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "A10",
   "xpath": "//XCUIElementTypeCell[@name=\"a\"]//XCUIElementTypeButton[@label=\"b\"]",
   "expected": "**/XCUIElementTypeCell[`name == \"a\"`]/**/XCUIElementTypeButton[`label == \"b\"`]",
-  "actual": "-ios class chain:**/XCUIElementTypeCell[`name == \"a\"`]**/XCUIElementTypeButton[`label == \"b\"`]",
+  "actual": "-ios class chain:**/XCUIElementTypeCell[`name == \"a\"`]/**/XCUIElementTypeButton[`label == \"b\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeCell[@name=\"s\"]//XCUIElementTypeButton[@label=\"s\"]",
   "category": "A",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (Cannot parse class chain query '**/XCUIElementTypeCell[`name == \"a\"`]**/XCUIElementTypeButton[`label == \"b\"`]'. Unexpect) | fixture: expected xpath=[\"t1\"] chain=[\"t1\"]; actual xpath=[\"t1\"] chain=\"ERROR\" | root cause RC1"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"t1\"] chain=[\"t1\"]; actual xpath=[\"t1\"] chain=[\"t1\"]"
  },
  {
   "id": "A11",
@@ -6471,12 +6471,12 @@
   "id": "B10",
   "xpath": "//XCUIElementTypeButton[@name]",
   "expected": "**/XCUIElementTypeButton[`name != nil`]",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`name`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//XCUIElementTypeButton[@name]",
   "category": "B",
-  "note": "hyp. 9 | expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse the format string \"name\") | root cause RC6"
+  "note": "hyp. 9 | expected vs XPath: 300/300 equal"
  },
  {
   "id": "B11",
@@ -6614,56 +6614,56 @@
   "id": "C05",
   "xpath": "//XCUIElementTypeButton[contains(., \"a\")]",
   "expected": "SKIP: string-value of a WDA XML element is always empty",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`contains(., \"a\")`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "CORRECT-SKIP",
   "shape": "//XCUIElementTypeButton[contains(., \"s\")]",
   "category": "C",
-  "note": "actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse the format string \"contains(., \"a\")\") | root cause RC6 | excluded from denominator"
+  "note": "XPath-only hits in 0/300 trials | excluded from denominator"
  },
  {
   "id": "C06",
   "xpath": "//*[normalize-space(@label)=\"a b\"]",
   "expected": "**/*[`label MATCHES \"\\\\s*a\\\\s+b\\\\s*\"`]",
-  "actual": "-ios class chain:**/*[`normalize-space(label)=\"a b\"`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//*[normalize-space(@label)=\"s\"]",
   "category": "C",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse function name 'space:' into supported selector (space:) ) | root cause RC6"
+  "note": "expected vs XPath: 300/300 equal"
  },
  {
   "id": "C07",
   "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
   "expected": "**/XCUIElementTypeButton[`label.length > 3`]",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`string-length(label)>3`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//XCUIElementTypeButton[string-length(@label)>3]",
   "category": "C",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSUnknownKeyException: [<Node 0x…> valueForUndefinedKey:]: this class is not key value coding-compliant for the ) | root cause RC6"
+  "note": "expected vs XPath: 300/300 equal"
  },
  {
   "id": "C08",
   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ab\")]",
   "expected": "**/*[`label CONTAINS[c] \"ab\"`]",
-  "actual": "-ios class chain:**/*[`contains(translate(label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ab\")`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//*[contains(translate(@label,\"s\",\"s\"),\"s\")]",
   "category": "C",
-  "note": "ASCII-only translate == [c] for ASCII literals | expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse the format string \"contains(translate(label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"ab) | root cause RC6"
+  "note": "ASCII-only translate == [c] for ASCII literals | expected vs XPath: 300/300 equal"
  },
  {
   "id": "C09",
   "xpath": "//*[@label=concat(\"a\",\"b\")]",
   "expected": "**/*[`label == \"ab\"`]",
-  "actual": "-ios class chain:**/*[`label == concat(\"a\",\"b\")`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//*[@label=concat(\"s\",\"s\")]",
   "category": "C",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse function name 'concat' into supported selector (concat) ) | root cause RC6"
+  "note": "expected vs XPath: 300/300 equal"
  },
  {
   "id": "C10",
@@ -6999,12 +6999,12 @@
   "id": "F02",
   "xpath": "//XCUIElementTypeCell[XCUIElementTypeButton]",
   "expected": "INEXPRESSIBLE: child-existence; $…$ tests any descendant",
-  "actual": "-ios class chain:**/XCUIElementTypeCell[`XCUIElementTypeButton`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "CORRECT-SKIP",
   "shape": "//XCUIElementTypeCell[XCUIElementTypeButton]",
   "category": "F",
-  "note": "actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse the format string \"XCUIElementTypeButton\") | root cause RC6 | excluded from denominator"
+  "note": "XPath-only hits in 44/300 trials | excluded from denominator"
  },
  {
   "id": "F03",
@@ -7065,12 +7065,12 @@
   "id": "F08",
   "xpath": "//XCUIElementTypeCell[@name=\"a\"][.//XCUIElementTypeButton]",
   "expected": "**/XCUIElementTypeCell[`name == \"a\"`][$type == \"XCUIElementTypeButton\"$]",
-  "actual": "-ios class chain:**/XCUIElementTypeCell[`name == \"a\" AND .//XCUIElementTypeButton`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//XCUIElementTypeCell[@name=\"s\"][.//XCUIElementTypeButton]",
   "category": "F",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse the format string \"name == \"a\" AND .//XCUIElementTypeButton\") | fixture: expected xpath=[\"c1\"] chain=[\"c1\"]; actual xpath=[\"c1\"] chain=\"ERROR\" | root cause RC6"
+  "note": "expected vs XPath: 300/300 equal | fixture: expected xpath=[\"c1\"] chain=[\"c1\"]"
  },
  {
   "id": "G01",
@@ -7241,67 +7241,67 @@
   "id": "H02",
   "xpath": "//*[matches(@name,\"^a.c$\")]",
   "expected": "**/*[`name MATCHES \"a.c\"`]",
-  "actual": "-ios class chain:**/*[`matches(name,\"^a.c$\")`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//*[matches(@name,\"s\")]",
   "category": "H",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse the format string \"matches(name,\"^a.c$\")\") | fixture: expected xpath=[\"b1\"] chain=[\"b1\"]; actual xpath=[\"b1\"] chain=\"ERROR\" | root cause RC6"
+  "note": "expected vs XPath: 300/300 equal | fixture: expected xpath=[\"b1\"] chain=[\"b1\"]"
  },
  {
   "id": "H03",
   "xpath": "//*[matches(@name,\"b\")]",
   "expected": "**/*[`name MATCHES \"(?s).*(?:b).*\"`]",
-  "actual": "-ios class chain:**/*[`matches(name,\"b\")`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//*[matches(@name,\"s\")]",
   "category": "H",
-  "note": "XPath matches() is a search, MATCHES is full-match | expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse the format string \"matches(name,\"b\")\") | root cause RC6"
+  "note": "XPath matches() is a search, MATCHES is full-match | expected vs XPath: 300/300 equal"
  },
  {
   "id": "H04",
   "xpath": "//*[matches(@name,\"ab\",\"i\")]",
   "expected": "**/*[`name MATCHES \"(?si).*(?:ab).*\"`]",
-  "actual": "-ios class chain:**/*[`matches(name,\"ab\",\"i\")`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//*[matches(@name,\"s\",\"s\")]",
   "category": "H",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse the format string \"matches(name,\"ab\",\"i\")\") | root cause RC6"
+  "note": "expected vs XPath: 300/300 equal"
  },
  {
   "id": "H05",
   "xpath": "//*[lower-case(@label)=\"ab\"]",
   "expected": "**/*[`label ==[c] \"ab\"`]",
-  "actual": "-ios class chain:**/*[`lower-case(label)=\"ab\"`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//*[lower-case(@label)=\"s\"]",
   "category": "H",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse function name 'case:' into supported selector (case:) ) | root cause RC6"
+  "note": "expected vs XPath: 300/300 equal"
  },
  {
   "id": "H06",
   "xpath": "//*[contains(upper-case(@label),\"AB\")]",
   "expected": "**/*[`label CONTAINS[c] \"AB\"`]",
-  "actual": "-ios class chain:**/*[`contains(upper-case(label),\"AB\")`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "GAP",
   "shape": "//*[contains(upper-case(@label),\"s\")]",
   "category": "H",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse the format string \"contains(upper-case(label),\"AB\")\") | root cause RC6"
+  "note": "expected vs XPath: 300/300 equal"
  },
  {
   "id": "H07",
   "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
   "expected": "INEXPRESSIBLE: NSPredicate has no string replacement",
-  "actual": "-ios class chain:**/*[`replace(label,\"a\",\"b\")=\"bb\"`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "CORRECT-SKIP",
   "shape": "//*[replace(@label,\"s\",\"s\")=\"s\"]",
   "category": "H",
-  "note": "actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse function name 'replace' into supported selector (replace) ) | root cause RC6 | excluded from denominator"
+  "note": "XPath-only hits in 48/300 trials | excluded from denominator"
  },
  {
   "id": "H08",
@@ -7318,12 +7318,12 @@
   "id": "H09",
   "xpath": "//*[string-join(tokenize(@label,\" \"),\"-\")=\"a-b\"]",
   "expected": "INEXPRESSIBLE: no string-join in NSPredicate",
-  "actual": "-ios class chain:**/*[`string-join(tokenize(label,\" \"),\"-\")=\"a-b\"`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_validation_failed",
+  "verdict": "CORRECT-SKIP",
   "shape": "//*[string-join(tokenize(@label,\"s\"),\"s\")=\"s\"]",
   "category": "H",
-  "note": "actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse function name 'join' into supported selector (join) ) | root cause RC6 | excluded from denominator"
+  "note": "XPath-only hits in 92/300 trials | excluded from denominator"
  },
  {
   "id": "H10",
@@ -7494,7 +7494,7 @@
   "id": "CTX-Strategy.java",
   "xpath": null,
   "expected": "must NOT rewrite while the strategy is XPath",
-  "actual": "all 8 rewritten to \"-ios class chain:…\" inside AppiumBy/By/MobileBy.xpath and @iOSXCUITFindBy(xpath=…); 5/8 chains also unparseable (RC-S3); javac unavailable (no JRE): syntax checked by inspection",
+  "actual": "3/8 rewritten to \"-ios class chain:…\" inside AppiumBy/By/MobileBy.xpath and @iOSXCUITFindBy(xpath=…); the 5 escaped-quote entries are now skipped by the validator; javac unavailable (no JRE)",
   "status": "scanner",
   "verdict": "WRONG",
   "shape": "scanner-context",
@@ -7505,7 +7505,7 @@
   "id": "CTX-strategy.py",
   "xpath": null,
   "expected": "must NOT rewrite while the strategy is XPath",
-  "actual": "all 8 rewritten while AppiumBy.XPATH / By.XPATH stays; py_compile OK; 1/8 also unparseable (RC-S3)",
+  "actual": "7/8 rewritten while AppiumBy.XPATH / By.XPATH stays (the escaped-quote entry is now skipped); parses OK",
   "status": "scanner",
   "verdict": "WRONG",
   "shape": "scanner-context",
@@ -7516,11 +7516,11 @@
   "id": "CTX-store.json",
   "xpath": null,
   "expected": "convert; JSON stays valid",
-  "actual": "JSON.parse OK; 6 converted but 3/6 are rejected by WDA: `contains(type,\"…\") AND contains(name,\"…\")` left inside backticks",
+  "actual": "JSON.parse OK; 3/6 converted and parse; the 3 escaped-quote entries (`contains(@type,\\\"…\\\")`) are skipped by the validator instead of shipping a chain WDA rejects (RC-S3 is now a gap, not a wrong output)",
   "status": "scanner",
-  "verdict": "WRONG",
+  "verdict": "GAP",
   "shape": "scanner-context",
   "category": "context",
-  "note": "root cause RC-S3"
+  "note": ""
  }
 ]

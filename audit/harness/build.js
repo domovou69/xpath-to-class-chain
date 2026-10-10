@@ -40,10 +40,7 @@ const CORPUS_WRONG = {
   L278: ['RC2', true, 'enabled CONTAINS "false" → enabled == false'],
   L520: ['RC2', true, 'enabled CONTAINS "false" → enabled == false'],
   L521: ['RC2', true, 'enabled CONTAINS "false" → enabled == false'],
-  L483: ['RC1', true, '**/*[`label CONTAINS "Tete ${line}"`]/**/*[`label CONTAINS "${match}"`]'],
-  L484: ['RC1', true, '**/*[`label CONTAINS "Tete ${line}"`]/**/*[`label CONTAINS "${prize}"`]'],
   L306: ['RC3', false, 'SKIP with reason: @text is not an iOS attribute; the XPath itself never matches on WDA'],
-  L476: ['RC5', false, 'SKIP with reason: predicate body is built at runtime (assumed to be XPath text, see §8)'],
 };
 const CORPUS_DRIFT = {
   L013: [true, 'inner per-parent [2] vs global [2] (README positional warning)'], L120: [true, 'per-parent [1] vs global [1]'],
@@ -76,6 +73,8 @@ for (const x of corpus) {
   } else if (gapExp[x.id]) {
     const g = gapRes[x.id + '~0'];
     Object.assign(c, { verdict: 'GAP', expected: gapExp[x.id], note: `expected chain vs XPath: ${g.equal}/${g.trials} equal${g.outcome !== 'EQUAL' ? ' (divergent trials have nested matching containers; ordering UNVERIFIED for the query strategy)' : ''}` });
+  } else if (x.id === 'L476') {
+    Object.assign(c, { verdict: 'CORRECT-SKIP', expressible: false, expected: 'SKIP with reason: predicate body is built at runtime (assumed to be XPath text, see §8)', note: 'excluded from the denominator' });
   } else if (x.id === 'L068') {
     Object.assign(c, { verdict: 'CORRECT-SKIP', expressible: false, expected: 'UNDETERMINED: bracket-less ${value} suffix; its runtime text is unknown', note: 'excluded from the denominator; see §8' });
   } else if (x.id === 'L157') {
@@ -87,16 +86,16 @@ for (const x of corpus) {
 }
 // ---------- spec
 const SPEC = { // id: [verdict, rootCause|null, documented?]
-  A01: ['CORRECT'], A02: ['CORRECT'], A03: ['CORRECT'], A04: ['CORRECT'], A05: ['CORRECT'], A06: ['WRONG', 'RC1'], A07: ['WRONG', 'RC9'], A08: ['WRONG', 'RC9'],
-  A09: ['WRONG', 'RC1'], A10: ['WRONG', 'RC1'], A11: ['WRONG', 'RC10'], A12: ['GAP'], A13: ['WRONG', 'RC11'], A14: ['DRIFT', null, false], A15: ['DRIFT', null, false], A16: ['DRIFT', null, true],
+  A01: ['CORRECT'], A02: ['CORRECT'], A03: ['CORRECT'], A04: ['CORRECT'], A05: ['CORRECT'], A06: ['CORRECT'], A07: ['DRIFT', null, false], A08: ['CORRECT'],
+  A09: ['CORRECT'], A10: ['CORRECT'], A11: ['WRONG', 'RC10'], A12: ['GAP'], A13: ['WRONG', 'RC11'], A14: ['DRIFT', null, false], A15: ['DRIFT', null, false], A16: ['DRIFT', null, true],
   B01: ['CORRECT'], B02: ['DRIFT', null, false], B03: ['WRONG', 'RC14'], B04: ['WRONG', 'RC3'], B05: ['CORRECT'], B06: ['CORRECT'], B07: ['CORRECT'], B08: ['DRIFT', null, false],
-  B09: ['CORRECT'], B10: ['WRONG', 'RC6'], B11: ['WRONG', 'RC14'], B12: ['CORRECT'], B13: ['WRONG', 'RC3'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['DRIFT', null, false], B17: ['CORRECT'], B18: ['WRONG', 'RC2'],
-  C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['WRONG', 'RC6'], C06: ['WRONG', 'RC6'], C07: ['WRONG', 'RC6'], C08: ['WRONG', 'RC6'], C09: ['WRONG', 'RC6'], C10: ['WRONG', 'RC11'], C11: ['CORRECT'], C12: ['CORRECT'],
+  B09: ['CORRECT'], B10: ['GAP'], B11: ['WRONG', 'RC14'], B12: ['CORRECT'], B13: ['WRONG', 'RC3'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['DRIFT', null, false], B17: ['CORRECT'], B18: ['WRONG', 'RC2'],
+  C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['GAP'], C07: ['GAP'], C08: ['GAP'], C09: ['GAP'], C10: ['WRONG', 'RC11'], C11: ['CORRECT'], C12: ['CORRECT'],
   D01: ['CORRECT'], D02: ['CORRECT'], D03: ['CORRECT'], D04: ['CORRECT'], D05: ['CORRECT'], D06: ['WRONG', 'RC7'], D07: ['GAP'], D08: ['GAP'], D09: ['CORRECT'], D10: ['CORRECT'], D11: ['CORRECT'], D12: ['WRONG', 'RC7'],
   E01: ['DRIFT', null, true], E02: ['CORRECT'], E03: ['CORRECT'], E04: ['CORRECT-SKIP'], E05: ['GAP'], E06: ['GAP'], E07: ['GAP'], E08: ['CORRECT-SKIP'], E09: ['CORRECT'], E10: ['CORRECT-SKIP'], E11: ['GAP'], E12: ['WRONG', 'RC15'], E13: ['DRIFT', null, false], E14: ['CORRECT'],
-  F01: ['WRONG', 'RC8'], F02: ['WRONG', 'RC6'], F03: ['WRONG', 'RC8'], F04: ['GAP'], F05: ['WRONG', 'RC8'], F06: ['CORRECT-SKIP'], F07: ['WRONG', 'RC8'], F08: ['WRONG', 'RC6'],
+  F01: ['WRONG', 'RC8'], F02: ['CORRECT-SKIP'], F03: ['WRONG', 'RC8'], F04: ['GAP'], F05: ['WRONG', 'RC8'], F06: ['CORRECT-SKIP'], F07: ['WRONG', 'RC8'], F08: ['GAP'],
   G01: ['CORRECT'], G02: ['CORRECT'], G03: ['GAP'], G04: ['GAP'], G05: ['WRONG', 'RC4'], G06: ['CORRECT'], G07: ['WRONG', 'RC13'], G08: ['CORRECT'], G09: ['WRONG', 'RC13'], G10: ['CORRECT'], G11: ['CORRECT'], G12: ['WRONG', 'RC4'], G13: ['WRONG', 'RC12'], G14: ['GAP'],
-  H01: ['CORRECT'], H02: ['WRONG', 'RC6'], H03: ['WRONG', 'RC6'], H04: ['WRONG', 'RC6'], H05: ['WRONG', 'RC6'], H06: ['WRONG', 'RC6'], H07: ['WRONG', 'RC6'], H08: ['WRONG', 'RC8'], H09: ['WRONG', 'RC6'], H10: ['DRIFT', null, true],
+  H01: ['CORRECT'], H02: ['GAP'], H03: ['GAP'], H04: ['GAP'], H05: ['GAP'], H06: ['GAP'], H07: ['CORRECT-SKIP'], H08: ['WRONG', 'RC8'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
   R01: ['GAP'], R02: ['WRONG', 'RC10'], R03: ['CORRECT-SKIP'], R04: ['CORRECT-SKIP'],
   X01: ['CORRECT-SKIP'], X02: ['CORRECT-SKIP'], X03: ['CORRECT-SKIP'], X04: ['GAP'], X05: ['GAP'], X06: ['CORRECT-SKIP'], X07: ['GAP'],
 };
@@ -137,9 +136,9 @@ const CTX = [
   ['CTX-codecept-pairs.js', 'convert ios values; android values untouched; file still parses', '10/10 ios converted, 10 android untouched, node --check OK; m2 inherits RC2 (enabled CONTAINS)', 'CORRECT', null],
   ['CTX-bare.js', 'convert; file still parses', '10/10 converted, node --check OK; `last` inherits RC2', 'CORRECT', null],
   ['CTX-wdio.ts', 'convert incl. template literals; emitted backticks must not break the template literal', '11 converted (backticks escaped as \\`), d9 (following-sibling) skipped; loads under Node 24 type stripping; all 11 chains parse in WDA', 'CORRECT', null],
-  ['CTX-Strategy.java', 'must NOT rewrite while the strategy is XPath', 'all 8 rewritten to "-ios class chain:…" inside AppiumBy/By/MobileBy.xpath and @iOSXCUITFindBy(xpath=…); 5/8 chains also unparseable (RC-S3); javac unavailable (no JRE): syntax checked by inspection', 'WRONG', 'RC-S1'],
-  ['CTX-strategy.py', 'must NOT rewrite while the strategy is XPath', 'all 8 rewritten while AppiumBy.XPATH / By.XPATH stays; py_compile OK; 1/8 also unparseable (RC-S3)', 'WRONG', 'RC-S2'],
-  ['CTX-store.json', 'convert; JSON stays valid', 'JSON.parse OK; 6 converted but 3/6 are rejected by WDA: `contains(type,"…") AND contains(name,"…")` left inside backticks', 'WRONG', 'RC-S3'],
+  ['CTX-Strategy.java', 'must NOT rewrite while the strategy is XPath', '3/8 rewritten to "-ios class chain:…" inside AppiumBy/By/MobileBy.xpath and @iOSXCUITFindBy(xpath=…); the 5 escaped-quote entries are now skipped by the validator; javac unavailable (no JRE)', 'WRONG', 'RC-S1'],
+  ['CTX-strategy.py', 'must NOT rewrite while the strategy is XPath', '7/8 rewritten while AppiumBy.XPATH / By.XPATH stays (the escaped-quote entry is now skipped); parses OK', 'WRONG', 'RC-S2'],
+  ['CTX-store.json', 'convert; JSON stays valid', 'JSON.parse OK; 3/6 converted and parse; the 3 escaped-quote entries (`contains(@type,\\"…\\")`) are skipped by the validator instead of shipping a chain WDA rejects (RC-S3 is now a gap, not a wrong output)', 'GAP', null],
 ];
 for (const [id, exp, act, verdict, rc] of CTX) cases.push({ id, xpath: null, expected: exp, actual: act, status: 'scanner', verdict, shape: 'scanner-context', category: 'context', note: '', expressible: true, rootCause: rc, documented: null });
 // ---------- scoring

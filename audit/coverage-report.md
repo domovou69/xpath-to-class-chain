@@ -11,6 +11,33 @@ Audit date 2026-10-09/10. Target platform pinned per `audit/prompts/coverage.md`
 
 The harness and all scripts are in `audit/harness/`; `./run.sh` reproduces this report's numbers and `coverage-cases.json` byte for byte (see its README). Project code was not modified.
 
+## Progress since Phase 1
+
+Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix branch adds a row here. The numbers come from `audit/harness/run.sh`, and `coverage-cases.json` holds the current verdicts.
+
+| Branch | Root causes fixed | R | C | S (raw) | Corpus WRONG | Spec WRONG |
+|---|---|---|---|---|---|---|
+| Phase 1 baseline | — | 72.2 | 86.9 % | 7.7 (37.7) | 9 | 42 |
+| `fix/class-chain-parse-errors` | RC1, RC6, RC9; RC5 and RC-S3 no longer ship broken chains | 81.6 | 86.9 % | 11.7 (41.7) | 6 | 22 |
+
+Notes on `fix/class-chain-parse-errors`:
+
+- **RC1** `//` after a step now emits `/**/`. A06, A09, A10, L483 and L484 are CORRECT.
+- **RC9** An absolute `/XCUIElementTypeApplication/…` path drops the root step, which makes A08 CORRECT. Other absolute roots are skipped with a reason.
+  - A07 still differs from its XPath, but now for a different reason. Its output is `**/XCUIElementTypeButton` because optimizer rule 1 drops the `Window` step, so the verdict is DRIFT (not documented), the same as A14 and A15.
+- **RC6** The validator now checks the inside of every backtick or `$` block, with string literals blanked out:
+  - no XPath function names, `@`, `/` or `::`;
+  - at least one comparison;
+  - predicates outside a block must be an index.
+
+  Every rule was checked against the WDA parser in mini-WDA. As a result:
+  - 11 spec cases went from WRONG to GAP (the tool skips them, and a correct chain exists).
+  - 4 spec cases went from WRONG to CORRECT-SKIP.
+  - L476 (RC5, `[${…}]` body) is now skipped.
+  - The escaped-quote JSON/Java/Python entries (RC-S3) are skipped instead of emitted unparseable.
+- The S penalty is still capped at −30: 13 root causes remain. S will move once fewer than 10 are left.
+- Regression tests: 32 rows in `xpath-to-class-chain.test.js` marked `audit regressions`.
+
 ## 1. Headline
 
 > **The converter handles 72% of what is possible. 87% of real locators can be expressed as a class chain at all; the rest stay XPath by design.**

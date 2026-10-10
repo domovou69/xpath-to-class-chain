@@ -115,6 +115,18 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeStaticText[@name="my.android.helper"]', `${CC}**/XCUIElementTypeStaticText[\`name == "my.android.helper"\`]`],
   ['//XCUIElementTypeStaticText[@label="following-sibling node"]', `${CC}**/XCUIElementTypeStaticText[\`label == "following-sibling node"\`]`],
   ['//XCUIElementTypeStaticText[@value="count(items) total"]', `${CC}**/XCUIElementTypeStaticText[\`value == "count(items) total"\`]`],
+
+  // --- audit regressions (audit/coverage-report.md; ids from audit/coverage-cases.json) ---
+  // RC1: `//` after a step needs its own '/' separator: `A/**/B`, never `A**/B` (WDA rejects it)
+  ['//XCUIElementTypeCell//XCUIElementTypeButton', `${CC}**/XCUIElementTypeCell/**/XCUIElementTypeButton`], // A09
+  ['//XCUIElementTypeCell/descendant::XCUIElementTypeButton', `${CC}**/XCUIElementTypeCell/**/XCUIElementTypeButton`], // A06
+  ['//XCUIElementTypeCell[@name="a"]//XCUIElementTypeButton[@label="b"]', `${CC}**/XCUIElementTypeCell[\`name == "a"\`]/**/XCUIElementTypeButton[\`label == "b"\`]`], // A10
+  ['//*[contains(@label, "Row 1")]//*[contains(@label, "Win")]', `${CC}**/*[\`label CONTAINS "Row 1"\`]/**/*[\`label CONTAINS "Win"\`]`], // L483, L484
+  // RC9: an absolute path starts at the Application root; the chain is evaluated from it, so the root step is dropped
+  ['/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton', `${CC}XCUIElementTypeWindow/XCUIElementTypeButton`], // A07
+  ['/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]', `${CC}XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]`], // A08
+  ['/XCUIElementTypeApplication//XCUIElementTypeButton[@name="x"]', `${CC}**/XCUIElementTypeButton[\`name == "x"\`]`],
+  ['/*/XCUIElementTypeWindow', `${CC}XCUIElementTypeWindow`],
 ];
 
 // =====================================================================
@@ -177,6 +189,24 @@ const SKIP_CASES = [
   ['', 'empty string'],
   ['Some plain string', 'plain text'],
   ['-ios class chain:**/XCUIElementTypeButton[`name == "x"`]', 'already a class chain'],
+
+  // --- audit regressions ---
+  // RC1: a grouped outer index cannot attach to a `**` step
+  ['(//XCUIElementTypeCell//XCUIElementTypeButton[2])[3]', 'RC1: grouped outer index would land on **'],
+  // RC9: absolute paths the chain cannot express
+  ['/XCUIElementTypeApplication', 'RC9: selects the application element itself'],
+  ['/XCUIElementTypeWindow/XCUIElementTypeButton', 'RC9: the root element is always the Application'],
+  ['/XCUIElementTypeApplication[@name="App"]/XCUIElementTypeWindow', 'RC9: predicate on the root step'],
+  // RC6: leftover XPath inside the backtick block must fail validation, not ship as "success"
+  ['//XCUIElementTypeButton[@name]', 'RC6: bare attribute (B10)'],
+  ['//XCUIElementTypeButton[contains(., "a")]', 'RC6: contains(.) (C05)'],
+  ['//*[normalize-space(@label)="a b"]', 'RC6: normalize-space (C06)'],
+  ['//XCUIElementTypeButton[string-length(@label)>3]', 'RC6: string-length (C07)'],
+  ['//*[@label=concat("a","b")]', 'RC6: concat (C09)'],
+  ['//XCUIElementTypeCell[XCUIElementTypeButton]', 'RC6: child-existence test (F02)'],
+  ['//XCUIElementTypeCell[@name="a"][.//XCUIElementTypeButton]', 'RC6: descendant path in predicate (F08)'],
+  ['//*[matches(@name,"^a.c$")]', 'RC6: matches (H02)'],
+  ['//*[lower-case(@label)="ab"]', 'RC6: lower-case (H05)'],
 ];
 
 // =====================================================================
@@ -188,6 +218,19 @@ const LINT_CASES = [
   { chain: `${CC}**/XCUIElementTypeButton[\`name == "x"\`][1]`, valid: true },
   // case-insensitive CONTAINS[c] modifier must survive untouched
   { chain: `${CC}**/XCUIElementTypeButton[\`name == "Widget.primaryButton" AND label CONTAINS[c] "okay"\`]`, valid: true },
+
+  // --- audit RC6: what WDA rejects must fail; valid NSPredicate must not be flagged (both checked in mini-WDA) ---
+  { chain: `${CC}**/*[\`name\`]`, valid: false },                       // no comparison
+  { chain: `${CC}**/*[\`1\`]`, valid: false },                          // index inside a backtick block
+  { chain: `${CC}**/*[\`matches(name, "a")\`]`, valid: false },         // XPath function
+  { chain: `${CC}**/XCUIElementTypeCell[\`name == "a" AND .//XCUIElementTypeButton\`]`, valid: false }, // XPath path
+  { chain: `${CC}**/*[name == "a"]`, valid: false },                      // predicate without backticks
+  { chain: `${CC}**/*[\`NOT (name == "a")\`]`, valid: true },
+  { chain: `${CC}**/*[\`name CONTAINS ("a")\`]`, valid: true },
+  { chain: `${CC}**/*[\`label.length > 3 AND rect.x >= 0\`]`, valid: true },
+  { chain: `${CC}**/*[\`name IN {"a","b"}\`]`, valid: true },
+  { chain: `${CC}**/*[$name == "a"$]`, valid: true },
+  { chain: `${CC}**/*[\`name == "f(x) a/b"\`][-1]`, valid: true },  // syntax inside a string is just text
 ];
 
 // =====================================================================
