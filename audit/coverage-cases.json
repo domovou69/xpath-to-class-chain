@@ -7494,23 +7494,23 @@
   "id": "CTX-Strategy.java",
   "xpath": null,
   "expected": "must NOT rewrite while the strategy is XPath",
-  "actual": "8/8 rewritten to \"-ios class chain:…\" inside AppiumBy/By/MobileBy.xpath and @iOSXCUITFindBy(xpath=…); all 8 chains parse in WDA, but the strategy stays XPath; javac unavailable (no JRE)",
+  "actual": "0/8 rewritten: all 8 skipped as skipped_xpath_strategy (\"xpath strategy: AppiumBy.xpath(\" ×3, \"By.xpath(\" ×2, \"@iOSXCUITFindBy(xpath =\" ×2, \"MobileBy.xpath(\" ×1); file byte-identical; javac unavailable (no JRE)",
   "status": "scanner",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "scanner-context",
   "category": "context",
-  "note": "root cause RC-S1"
+  "note": ""
  },
  {
   "id": "CTX-strategy.py",
   "xpath": null,
   "expected": "must NOT rewrite while the strategy is XPath",
-  "actual": "8/8 rewritten while AppiumBy.XPATH / By.XPATH stays; parses OK",
+  "actual": "0/8 rewritten: all 8 skipped as skipped_xpath_strategy (\"xpath strategy: AppiumBy.XPATH\" ×6, \"By.XPATH\" ×2); file byte-identical, parses OK",
   "status": "scanner",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "scanner-context",
   "category": "context",
-  "note": "root cause RC-S2"
+  "note": ""
  },
  {
   "id": "CTX-store.json",

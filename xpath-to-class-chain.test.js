@@ -728,6 +728,7 @@ const { tmpdir } = require('os');
 const { join } = require('path');
 const { makeStats, walkDir, processFile } = require('./lib/scanner');
 const { PREDICATE_REGEX } = require('./lib/predicates');
+const STATUS = require('./lib/status');
 
 function makeTempRoot(prefix = 'xpath-test-') {
   return mkdtempSync(join(tmpdir(), prefix));
@@ -1071,6 +1072,144 @@ console.log('— SCANNER: processFile —');
     else fail(`processFile android-in-value: stats wrong ${JSON.stringify(stats)}`);
   } finally {
     rmSync(root, { recursive: true, force: true });
+  }
+}
+
+// --- audit regressions (RC-S1, RC-S2): a locator passed to an explicit XPath
+// strategy must not be rewritten. Only the string would change, the strategy
+// would stay XPath, and the locator would break at runtime. ---
+console.log('— SCANNER: audit regressions —');
+{
+  const DQ = `//XCUIElementTypeButton[@name='OK']`; // for double-quoted strings
+  const SQ = `//XCUIElementTypeButton[@name="OK"]`; // for single-quoted strings
+  // [file, source, marker shown in the skip reason]
+  const XPATH_STRATEGY_CASES = [
+    // Java (RC-S1)
+    ['A.java', `e = driver.findElement(AppiumBy.xpath("${DQ}"));`, 'AppiumBy.xpath('],
+    ['A.java', `e = driver.findElement(By.xpath("${DQ}"));`, 'By.xpath('],
+    ['A.java', `e = driver.findElement(MobileBy.xpath("${DQ}"));`, 'MobileBy.xpath('],
+    ['A.java', `@iOSXCUITFindBy(xpath = "${DQ}")\nWebElement e;`, '@iOSXCUITFindBy(xpath ='],
+    ['A.java', `@iOSXCUITFindBy(priority = 1, xpath = "${DQ}")\nWebElement e;`, '@iOSXCUITFindBy(priority = 1, xpath ='],
+    ['A.java', `@iOSXCUITFindBys({@iOSXCUITBy(xpath = "${DQ}")})\nWebElement e;`, '@iOSXCUITBy(xpath ='],
+    ['A.java', `@FindBy(xpath = "${DQ}")\nWebElement e;`, '@FindBy(xpath ='],
+    ['A.java', `@FindBy(how = How.XPATH, using = "${DQ}")\nWebElement e;`, 'How.XPATH, using ='],
+    ['A.java', `e = driver.findElementByXPath("${DQ}");`, 'findElementByXPath('],
+    ['A.java', `e = driver.findElement(\n    AppiumBy.xpath(\n        "${DQ}"));`, 'AppiumBy.xpath('],
+    ['A.java', `@iOSXCUITFindBy(\n    xpath = "${DQ}"\n)\nWebElement e;`, '@iOSXCUITFindBy(xpath ='],
+    // an earlier run of this tool may already have put a chain under an XPath strategy
+    ['A.java', `e = driver.findElement(By.xpath("-ios class chain:**/XCUIElementTypeButton[\`name == 'OK'\`]"));`, 'By.xpath('],
+    // Kotlin / Groovy: same client APIs as Java
+    ['A.kt', `val e = driver.findElement(AppiumBy.xpath("${DQ}"))`, 'AppiumBy.xpath('],
+    ['A.kt', `@iOSXCUITFindBy(xpath = "${DQ}")\nlateinit var e: WebElement`, '@iOSXCUITFindBy(xpath ='],
+    ['A.groovy', `def e = driver.findElement(By.xpath('${SQ}'))`, 'By.xpath('],
+    // Python (RC-S2)
+    ['a.py', `e = driver.find_element(AppiumBy.XPATH, '${SQ}')`, 'AppiumBy.XPATH'],
+    ['a.py', `B0 = (By.XPATH, "${DQ}")`, 'By.XPATH'],
+    ['a.py', `e = driver.find_element(MobileBy.XPATH, '${SQ}')`, 'MobileBy.XPATH'],
+    ['a.py', `e = driver.find_element("xpath", '${SQ}')`, '"xpath"'],
+    ['a.py', `e = driver.find_element(by=AppiumBy.XPATH, value='${SQ}')`, 'AppiumBy.XPATH'],
+    ['a.py', `e = driver.find_element(\n    AppiumBy.XPATH,\n    '${SQ}',\n)`, 'AppiumBy.XPATH'],
+    ['a.py', `e = driver.find_element_by_xpath('${SQ}')`, 'find_element_by_xpath('],
+    // C#
+    ['A.cs', `var e = driver.FindElement(MobileBy.XPath("${DQ}"));`, 'MobileBy.XPath('],
+    ['A.cs', `var e = driver.FindElement(By.XPath("${DQ}"));`, 'By.XPath('],
+    ['A.cs', `var e = driver.FindElement("xpath", "${DQ}");`, '"xpath"'],
+    ['A.cs', `[FindsByIOSUIAutomation(XPath = "${DQ}")]\nprivate IWebElement e;`, 'FindsByIOSUIAutomation(XPath ='],
+    ['A.cs', `[FindsBy(How = How.XPath, Using = "${DQ}")]\nprivate IWebElement e;`, 'How.XPath, Using ='],
+    ['A.cs', `var e = driver.FindElementByXPath("${DQ}");`, 'FindElementByXPath('],
+    // Ruby
+    ['a.rb', `e = driver.find_element(:xpath, '${SQ}')`, ':xpath'],
+    ['a.rb', `e = driver.find_element :xpath => '${SQ}'`, ':xpath'],
+    ['a.rb', `e = driver.find_element(xpath: '${SQ}')`, 'xpath:'],
+    ['a.rb', `e = xpath('${SQ}')`, 'xpath('],
+    ['a.rb', `e = xpaths '${SQ}'`, 'xpaths'],
+    // JS / TS
+    ['a.js', `I.click({ xpath: '${SQ}' });`, 'xpath:'],
+    ['a.js', `const loc = {\n  xpath:\n    '${SQ}',\n};`, 'xpath:'],
+    ['a.js', 'I.click({ xpath: `//XCUIElementTypeButton[@name="${name}"]` });', 'xpath:'],
+    ['a.js', `const e = await driver.findElement('xpath', '${SQ}');`, "'xpath'"],
+    ['a.js', `const e = await driver.findElement(By.xpath('${SQ}'));`, 'By.xpath('],
+    ['a.ts', `const e = await driver.findElements('xpath', '${SQ}');`, "'xpath'"],
+    // PHP
+    ['a.php', `$e = $driver->findElement(WebDriverBy::xpath('${SQ}'));`, 'WebDriverBy::xpath('],
+  ];
+
+  // Every one of these has no explicit XPath strategy and must keep converting.
+  const CONVERT_CASES_SCANNER = [
+    ['a.js', `const a = '${SQ}';`],
+    ['a.js', `I.click('${SQ}');`],
+    ['a.js', `const p = { ios: '${SQ}', android: '//android.widget.Button' };`],
+    ['a.js', `const xpath = '${SQ}';`], // a variable name is not a strategy
+    ['a.ts', `export const s = () => $('${SQ}');`],
+    ['a.ts', 'export const d = () => $(`//XCUIElementTypeButton[@name="${name}"]`);'],
+    ['A.java', `static final String LOC = "${DQ}";`],
+    ['A.java', `String xpath = "${DQ}";`],
+    ['a.py', `LOC = '${SQ}'`],
+    ['a.rb', `LOC = '${SQ}'`],
+  ];
+
+  const run = (name, source) => {
+    const root = makeTempRoot('xpath-strategy-');
+    try {
+      const file = join(root, name);
+      writeFileSync(file, source);
+      const records = [];
+      const stats = makeStats();
+      processFile(file, { dryRun: false, quiet: true }, records, stats);
+      return { records, stats, after: readFileSync(file, 'utf8') };
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  };
+
+  for (const [name, source, marker] of XPATH_STRATEGY_CASES) {
+    const { records, stats, after } = run(name, source);
+    const rec = records[0] || {};
+    const reason = `xpath strategy: ${marker}`;
+    if (after === source && stats.locatorsUpdated === 0 && stats.skipped.xpathStrategy === 1
+      && records.length === 1 && rec.status === STATUS.SKIPPED_XPATH_STRATEGY && rec.reason === reason) ok();
+    else fail(`xpath strategy (${name}) ${JSON.stringify(source)}\n     expected: untouched, skip reason ${JSON.stringify(reason)}\n     got:      ${after === source ? 'untouched' : 'REWRITTEN'}, records=${JSON.stringify(records)} stats=${JSON.stringify(stats.skipped)}`);
+  }
+
+  for (const [name, source] of CONVERT_CASES_SCANNER) {
+    const { stats, after } = run(name, source);
+    if (after !== source && after.includes('-ios class chain:') && stats.locatorsUpdated === 1 && !stats.skipped.xpathStrategy) ok();
+    else fail(`no xpath strategy (${name}) ${JSON.stringify(source)}\n     expected: converted\n     got:      ${after}  stats=${JSON.stringify(stats)}`);
+  }
+
+  // Android detection still runs first: an android locator under an XPath
+  // strategy stays an Android skip.
+  {
+    const { stats } = run('A.java', `@AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")\nWebElement e;`);
+    if (stats.skipped.android === 1 && !stats.skipped.xpathStrategy) ok();
+    else fail(`xpath strategy android: expected android=1 xpathStrategy=0, got ${JSON.stringify(stats.skipped)}`);
+  }
+
+  // Only the call the string is passed to counts: an XPath call that closed
+  // earlier on the same line must not affect the next string.
+  {
+    const source = `driver.findElement(By.xpath("//a")); String loc = "${DQ}";`;
+    const { stats, after } = run('A.java', source);
+    if (after !== source && stats.locatorsUpdated === 1 && !stats.skipped.xpathStrategy) ok();
+    else fail(`xpath strategy closed call: expected converted, got ${after}  stats=${JSON.stringify(stats)}`);
+  }
+
+  // The --json report lists the skip with its reason and counts it in stats.
+  {
+    const { execFileSync } = require('child_process');
+    const root = makeTempRoot('xpath-strategy-json-');
+    try {
+      mkdirSync(join(root, 'src'));
+      writeFileSync(join(root, 'src', 'a.py'), `e = driver.find_element(AppiumBy.XPATH, '${SQ}')\n`);
+      execFileSync(process.execPath, [join(__dirname, 'xpath-to-class-chain.js'), './src', '--json'], { cwd: root, stdio: 'pipe', timeout: 20000 });
+      const report = JSON.parse(readFileSync(join(root, 'xpath-to-class-chain.report.json'), 'utf8'));
+      const want = { file: 'a.py', locator: SQ, status: STATUS.SKIPPED_XPATH_STRATEGY, reason: 'xpath strategy: AppiumBy.XPATH' };
+      if (report.stats.skipped.xpathStrategy === 1 && report.updated.length === 0
+        && JSON.stringify(report.skipped) === JSON.stringify([want])) ok();
+      else fail(`xpath strategy --json: expected skipped=[${JSON.stringify(want)}], got stats=${JSON.stringify(report.stats)} skipped=${JSON.stringify(report.skipped)}`);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   }
 }
 

@@ -144,15 +144,16 @@ Written to `xpath-to-class-chain.report.json` in the current working directory:
   "directory": "D:/repos/your-app/tests",
   "stats": {
     "filesScanned": 12,
-    "locatorsFound": 47,
+    "locatorsFound": 48,
     "locatorsUpdated": 38,
-    "skipped": { "android": 0, "validationFailed": 2, "unsupportedLogic": 5, "notXpath": 0, "noChangeNeeded": 2 }
+    "skipped": { "android": 0, "xpathStrategy": 1, "validationFailed": 2, "unsupportedLogic": 5, "notXpath": 0, "noChangeNeeded": 2 }
   },
   "updated": [
     { "file": "login/login.spec.ts", "old": "//XCUIElementTypeButton[@name=\"OK\"]", "new": "-ios class chain:**/XCUIElementTypeButton[`name == \"OK\"`]" }
   ],
   "skipped": [
     { "file": "nav/nav.spec.ts", "locator": "//*[last()]", "status": "skipped_unsupported_logic" },
+    { "file": "pages/LoginPage.java", "locator": "//XCUIElementTypeButton[@name=\"OK\"]", "status": "skipped_xpath_strategy", "reason": "xpath strategy: AppiumBy.xpath(" },
     { "file": "pages/page.spec.ts", "locator": "-ios class chain:**/Btn[`name == \"x`]", "status": "skipped_validation_failed", "reason": "Unbalanced backticks" }
   ]
 }
@@ -160,7 +161,7 @@ Written to `xpath-to-class-chain.report.json` in the current working directory:
 
 `file` is relative to the scanned folder and always uses `/` separators, so reports match across Windows and POSIX.
 
-`reason` is only present on `skipped[]` entries where the validator produced a diagnostic (typically class-chain lint failures). It's omitted otherwise — most XPath-conversion skips fall into this category.
+`reason` is only present on `skipped[]` entries where the validator produced a diagnostic (typically class-chain lint failures) and on `skipped_xpath_strategy` entries, where it names the strategy found. It's omitted otherwise — most XPath-conversion skips fall into this category.
 
 Status values used in `skipped[]`:
 
@@ -169,6 +170,7 @@ Status values used in `skipped[]`:
 | `success` | Converted or lint-fixed; appears in `updated[]`. |
 | `skipped_not_xpath` | Grouped XPath whose outer index isn't a static position, e.g. `(//XCUIElementTypeButton[@name="x"])[last()]`. (Non-locator strings such as URLs are filtered out earlier and never counted at all.) |
 | `skipped_android` | Locator targets Android UI (`android.widget.*`). |
+| `skipped_xpath_strategy` | The string is passed to an explicit XPath strategy (`AppiumBy.xpath(…)`, `(By.XPATH, …)`, …); `reason` names it. |
 | `skipped_unsupported_logic` | XPath uses an axis or function Class Chain can't express. |
 | `skipped_validation_failed` | Output didn't pass NSPredicate validation, even after the optimizer pass. |
 | `skipped_no_change` | Already a valid class chain; nothing to do. |
@@ -218,6 +220,7 @@ Status values used in `skipped[]`:
 | A path inside a predicate other than `.//Type[…]`: child existence `[./X]` / `[X]`, nested descendant paths, `[.//X[2]]` | `skipped_unsupported_logic` |
 | An index before a filter, `//XCUIElementTypeCell[2][@name="a"]` — XPath indexes each parent's children first; a chain filters first | `skipped_unsupported_logic` |
 | `//android.widget.*` | `skipped_android` |
+| A string passed straight to an explicit XPath strategy: `AppiumBy.xpath("…")`, `@iOSXCUITFindBy(xpath = "…")` (Java, Kotlin, Groovy), `find_element(AppiumBy.XPATH, '…')` (Python), `MobileBy.XPath("…")` (C#), `find_element(:xpath, '…')` (Ruby), `{ xpath: '…' }` / `findElement('xpath', '…')` (JS/TS), `WebDriverBy::xpath('…')` (PHP). Rewriting only the string would leave the strategy at XPath and break the locator. The full list is in [`lib/strategy.js`](lib/strategy.js). A string kept in a variable or constant and passed to the call later is not recognised and still converts | `skipped_xpath_strategy` |
 | Already a valid `-ios class chain:…` | `skipped_no_change` |
 
 The scanner also gates strings starting with `//` through `isLikelyIosLocator` — protocol-relative URLs (`//cdn.example.com/lib.js`), comments lifted into strings, and plain paths are left untouched even if they live inside a `'…'`/`"…"`/`` `…` `` literal.

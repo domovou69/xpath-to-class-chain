@@ -22,6 +22,7 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/silent-wrong-selection` | RC7, RC8, RC15 | 81.6 | 86.9 % | 21.3 (51.3) | 6 | 14 |
 | `fix/predicate-literals` | RC2, RC10, RC11, RC12, RC13; RC7 in the optimizer | 85.2 | 86.9 % | 42.0 (57.0) | 3 | 6 |
 | `fix/attribute-semantics` | RC3, RC4, RC14; RC-S3 | 91.6 | 86.9 % | 57.2 (63.2) | 0 | 0 |
+| `fix/scanner-xpath-strategy` | RC-S1, RC-S2 | 97.6 | 86.9 % | 63.2 (63.2) | 0 | 0 |
 
 Notes on `fix/class-chain-parse-errors`:
 
@@ -75,6 +76,23 @@ Notes on `fix/attribute-semantics`:
 - **RC-S3** String values delimited by escaped quotes (`\"…\"`, raw JSON / Java source) now convert; the escaped quotes are kept. `store.json` converts 6/6 and is CORRECT. The Java and Python fixtures convert 8/8 each, which raises the count of rewrites inside an XPath strategy (RC-S1, RC-S2 — next).
 - Corpus and spec WRONG are both 0. What is left: RC-S1, RC-S2 (penalty −6).
 - Regression tests: 28 more rows (100 in total); four older rows that encoded the old behaviour were updated (`@a`/`@b` attributes, an unescaped newline, `@text`, `!=` without the nil check).
+
+Notes on `fix/scanner-xpath-strategy`:
+
+- **RC-S1, RC-S2** Before converting, the scanner looks at the text in front of the opening quote (`lib/strategy.js`). If the string is passed straight to an explicit XPath strategy, it is left untouched and reported as `skipped_xpath_strategy` with the reason `xpath strategy: <marker>`, for example `xpath strategy: AppiumBy.xpath(`. It is counted in `stats.skipped.xpathStrategy` and listed in the `--json` report. The strategy itself is not rewritten (`AppiumBy.xpath` → `AppiumBy.iOSClassChain` is out of scope). An existing `-ios class chain:…` string under an XPath strategy is reported the same way, since it is already broken.
+- Markers are per language, and each one was checked against the client source:
+  - Java, Kotlin, Groovy: `By.xpath(`, `AppiumBy.xpath(`, `MobileBy.xpath(` (both extend `By`), `xpath =` in any annotation (`@iOSXCUITFindBy`, `@iOSXCUITBy`, `@AndroidFindBy`, `@FindBy`), `How.XPATH, using =`, Selenium 3 `findElement(s)ByXPath(`.
+  - Python: `By.XPATH`, `AppiumBy.XPATH`, `MobileBy.XPATH` and the string `"xpath"` as the strategy argument (also with `value=`); Selenium 3 `find_element(s)_by_xpath(`.
+  - C#: `By.XPath(`, `MobileBy.XPath(`, `FindElement("xpath", …)`, `XPath =` on the dotnet-client 4.x `FindsBy*` attributes, `How.XPath, Using =`, Selenium 3 `FindElement(s)ByXPath(`.
+  - Ruby: `:xpath,`, `:xpath =>`, `xpath:`, `"xpath",`, and the appium_lib helpers `xpath` / `xpaths`.
+  - JS/TS: CodeceptJS strict locator `{ xpath: … }`, WebdriverIO `findElement(s)('xpath', …)`, selenium-webdriver `By.xpath(`.
+  - PHP: php-webdriver `WebDriverBy::xpath(`.
+  - Data and config files and Swift/Objective-C have no markers. Plain strings, WebdriverIO `$('//…')` and CodeceptJS `{ ios: '//…' }` still convert.
+- A marker counts only when it ends right before the string, but it may sit on an earlier line (multi-line calls and annotations). An XPath call that closed earlier on the same line does not count. Android detection still runs first.
+- Limitation: a string held in a variable or constant and passed to `By.xpath(…)` elsewhere is not recognised and is still rewritten.
+- `Strategy.java` and `strategy.py`: 0/8 rewritten each, both files byte-identical after `--write`; `insideXpathStrategy` 8 → 0. Both are CORRECT. The other four context files are unchanged.
+- No corpus or spec verdict changed. No root causes are left, so the penalty is 0 and R and S equal their raw scores.
+- Regression tests: 53 more checks in the scanner section (`SCANNER: audit regressions`): 40 strategy markers across all languages, 10 strings that must still convert, the Android and closed-call cases, and the `--json` report.
 
 ## 1. Headline
 
