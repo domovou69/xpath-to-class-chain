@@ -35,9 +35,6 @@ const cases = [], review = [];
 // ---------- corpus
 const shapeOf = {}; coarse.forEach((g, i) => g.ids.forEach(id => shapeOf[id] = `S${String(i + 1).padStart(3, '0')} ${g.key.split('  =>  ')[0]}`));
 const CORPUS_WRONG = {
-  L119: ['RC4', true, '**/XCUIElementTypeStaticText[`name == "19, Juzo Kabih\\\\nJomojab, FI16 7TE"`] (newline escaped as \\\\n in the source literal)'],
-  L162: ['RC4', true, '**/XCUIElementTypeStaticText[`name == "Romor wepes je robo\\\\n7393"`][1] (newline escaped)'],
-  L306: ['RC3', false, 'SKIP with reason: @text is not an iOS attribute; the XPath itself never matches on WDA'],
 };
 const CORPUS_DRIFT = {
   L013: [true, 'inner per-parent [2] vs global [2] (README positional warning)'], L120: [true, 'per-parent [1] vs global [1]'],
@@ -85,13 +82,13 @@ for (const x of corpus) {
 const SPEC = { // id: [verdict, rootCause|null, documented?]
   A01: ['CORRECT'], A02: ['CORRECT'], A03: ['CORRECT'], A04: ['CORRECT'], A05: ['CORRECT'], A06: ['CORRECT'], A07: ['DRIFT', null, false], A08: ['CORRECT'],
   A09: ['CORRECT'], A10: ['CORRECT'], A11: ['CORRECT'], A12: ['GAP'], A13: ['CORRECT-SKIP'], A14: ['DRIFT', null, false], A15: ['DRIFT', null, false], A16: ['DRIFT', null, true],
-  B01: ['CORRECT'], B02: ['DRIFT', null, false], B03: ['WRONG', 'RC14'], B04: ['WRONG', 'RC3'], B05: ['CORRECT'], B06: ['CORRECT'], B07: ['CORRECT'], B08: ['DRIFT', null, false],
-  B09: ['CORRECT'], B10: ['GAP'], B11: ['WRONG', 'RC14'], B12: ['CORRECT'], B13: ['WRONG', 'RC3'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['DRIFT', null, false], B17: ['CORRECT'], B18: ['CORRECT'],
+  B01: ['CORRECT'], B02: ['CORRECT'], B03: ['CORRECT'], B04: ['CORRECT'], B05: ['CORRECT'], B06: ['CORRECT'], B07: ['CORRECT'], B08: ['DRIFT', null, false],
+  B09: ['CORRECT'], B10: ['CORRECT'], B11: ['CORRECT'], B12: ['CORRECT'], B13: ['CORRECT-SKIP'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['DRIFT', null, false], B17: ['CORRECT'], B18: ['CORRECT'],
   C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['GAP'], C07: ['GAP'], C08: ['GAP'], C09: ['GAP'], C10: ['CORRECT'], C11: ['CORRECT'], C12: ['CORRECT'],
   D01: ['CORRECT'], D02: ['CORRECT'], D03: ['CORRECT'], D04: ['CORRECT'], D05: ['CORRECT'], D06: ['CORRECT'], D07: ['GAP'], D08: ['GAP'], D09: ['CORRECT'], D10: ['CORRECT'], D11: ['CORRECT'], D12: ['CORRECT'],
   E01: ['DRIFT', null, true], E02: ['CORRECT'], E03: ['CORRECT'], E04: ['CORRECT-SKIP'], E05: ['GAP'], E06: ['GAP'], E07: ['GAP'], E08: ['CORRECT-SKIP'], E09: ['CORRECT'], E10: ['CORRECT-SKIP'], E11: ['GAP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['CORRECT'],
   F01: ['CORRECT'], F02: ['CORRECT-SKIP'], F03: ['CORRECT'], F04: ['GAP'], F05: ['CORRECT-SKIP'], F06: ['CORRECT-SKIP'], F07: ['CORRECT'], F08: ['CORRECT'],
-  G01: ['CORRECT'], G02: ['CORRECT'], G03: ['GAP'], G04: ['GAP'], G05: ['WRONG', 'RC4'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['CORRECT'], G12: ['WRONG', 'RC4'], G13: ['CORRECT'], G14: ['GAP'],
+  G01: ['CORRECT'], G02: ['CORRECT'], G03: ['GAP'], G04: ['GAP'], G05: ['CORRECT'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['CORRECT'], G12: ['CORRECT'], G13: ['CORRECT'], G14: ['GAP'],
   H01: ['CORRECT'], H02: ['GAP'], H03: ['GAP'], H04: ['GAP'], H05: ['GAP'], H06: ['GAP'], H07: ['CORRECT-SKIP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
   R01: ['GAP'], R02: ['CORRECT-SKIP'], R03: ['CORRECT-SKIP'], R04: ['CORRECT-SKIP'],
   X01: ['CORRECT-SKIP'], X02: ['CORRECT-SKIP'], X03: ['CORRECT-SKIP'], X04: ['GAP'], X05: ['GAP'], X06: ['CORRECT-SKIP'], X07: ['GAP'],
@@ -130,12 +127,12 @@ for (const r of spec) {
 }
 // ---------- scanner contexts
 const CTX = [
-  ['CTX-codecept-pairs.js', 'convert ios values; android values untouched; file still parses', '10/10 ios converted, 10 android untouched, node --check OK; m2 inherits RC2 (enabled CONTAINS)', 'CORRECT', null],
-  ['CTX-bare.js', 'convert; file still parses', '10/10 converted, node --check OK; `last` inherits RC2', 'CORRECT', null],
+  ['CTX-codecept-pairs.js', 'convert ios values; android values untouched; file still parses', '10/10 ios converted, 10 android untouched, node --check OK', 'CORRECT', null],
+  ['CTX-bare.js', 'convert; file still parses', '10/10 converted, node --check OK', 'CORRECT', null],
   ['CTX-wdio.ts', 'convert incl. template literals; emitted backticks must not break the template literal', '11 converted (backticks escaped as \\`), d9 (following-sibling) skipped; loads under Node 24 type stripping; all 11 chains parse in WDA', 'CORRECT', null],
-  ['CTX-Strategy.java', 'must NOT rewrite while the strategy is XPath', '3/8 rewritten to "-ios class chain:…" inside AppiumBy/By/MobileBy.xpath and @iOSXCUITFindBy(xpath=…); the 5 escaped-quote entries are now skipped by the validator; javac unavailable (no JRE)', 'WRONG', 'RC-S1'],
-  ['CTX-strategy.py', 'must NOT rewrite while the strategy is XPath', '7/8 rewritten while AppiumBy.XPATH / By.XPATH stays (the escaped-quote entry is now skipped); parses OK', 'WRONG', 'RC-S2'],
-  ['CTX-store.json', 'convert; JSON stays valid', 'JSON.parse OK; 3/6 converted and parse; the 3 escaped-quote entries (`contains(@type,\\"…\\")`) are skipped by the validator instead of shipping a chain WDA rejects (RC-S3 is now a gap, not a wrong output)', 'GAP', null],
+  ['CTX-Strategy.java', 'must NOT rewrite while the strategy is XPath', '8/8 rewritten to "-ios class chain:…" inside AppiumBy/By/MobileBy.xpath and @iOSXCUITFindBy(xpath=…); all 8 chains parse in WDA, but the strategy stays XPath; javac unavailable (no JRE)', 'WRONG', 'RC-S1'],
+  ['CTX-strategy.py', 'must NOT rewrite while the strategy is XPath', '8/8 rewritten while AppiumBy.XPATH / By.XPATH stays; parses OK', 'WRONG', 'RC-S2'],
+  ['CTX-store.json', 'convert; JSON stays valid', 'JSON.parse OK; 6/6 converted and parse in WDA, including the 3 escaped-quote entries (`contains(@type,\\"…\\")`, RC-S3)', 'CORRECT', null],
 ];
 for (const [id, exp, act, verdict, rc] of CTX) cases.push({ id, xpath: null, expected: exp, actual: act, status: 'scanner', verdict, shape: 'scanner-context', category: 'context', note: '', expressible: true, rootCause: rc, documented: null });
 // ---------- scoring

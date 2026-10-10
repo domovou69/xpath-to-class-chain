@@ -21,6 +21,7 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/class-chain-parse-errors` | RC1, RC6, RC9; RC5 and RC-S3 no longer ship broken chains | 81.6 | 86.9 % | 11.7 (41.7) | 6 | 22 |
 | `fix/silent-wrong-selection` | RC7, RC8, RC15 | 81.6 | 86.9 % | 21.3 (51.3) | 6 | 14 |
 | `fix/predicate-literals` | RC2, RC10, RC11, RC12, RC13; RC7 in the optimizer | 85.2 | 86.9 % | 42.0 (57.0) | 3 | 6 |
+| `fix/attribute-semantics` | RC3, RC4, RC14; RC-S3 | 91.6 | 86.9 % | 57.2 (63.2) | 0 | 0 |
 
 Notes on `fix/class-chain-parse-errors`:
 
@@ -64,6 +65,16 @@ Notes on `fix/predicate-literals`:
 - Directed fuzzing: CC_ERROR 6 → 3 (the three RC2 corpus shapes now evaluate and agree); no other shape changed.
 - Penalty: 5 root causes left (RC3, RC4, RC14, RC-S1, RC-S2) → −15, no longer capped.
 - Regression tests: 27 more rows (72 in total); the LIKE-recovery tests now check that `*` stays literal.
+
+Notes on `fix/attribute-semantics`:
+
+- **RC3** XPath attributes are mapped by kind: text (`name`, `label`, `value`, `type`, `placeholderValue`, `traits`), boolean, and number (`index`; `x`/`y`/`width`/`height` → `rect.*`). Any other attribute is absent from the page source and unknown to WDA's predicate parser, so it is skipped. B04 is CORRECT; B13 and corpus L306 (`@text`) are CORRECT-SKIP.
+- **RC14** Numbers compare as numbers: `@index="1"` → `index == 1` (B11). On a text attribute, `>`/`>=` become `value.doubleValue > n` only where XPath's NaN and NSPredicate's 0 for non-numeric text agree (`> n` with n ≥ 0, `>= n` with n > 0); other numeric comparisons are skipped. B03 is CORRECT.
+- **RC4** Backslashes and control characters inside string values are escaped for NSPredicate. Host-literal escapes in raw source text (`\'`, `\"`, `` \` ``, `\$`, `\uXXXX`, `\xXX`) are left for the host language, so the same rule is right for API input and for scanner input: G05, G12 and corpus L119, L162 are CORRECT. Limitation: a raw (unescaped) newline inside a multi-line template literal becomes `\n` in the source, i.e. a real newline at run time, which NSPredicate rejects.
+- **B02** (DRIFT before): an XPath `!=` needs the attribute to exist, so `@label!="a"` → `label != nil AND label != "a"`. **B10** (GAP before): `[@name]` → `name != nil`.
+- **RC-S3** String values delimited by escaped quotes (`\"…\"`, raw JSON / Java source) now convert; the escaped quotes are kept. `store.json` converts 6/6 and is CORRECT. The Java and Python fixtures convert 8/8 each, which raises the count of rewrites inside an XPath strategy (RC-S1, RC-S2 — next).
+- Corpus and spec WRONG are both 0. What is left: RC-S1, RC-S2 (penalty −6).
+- Regression tests: 28 more rows (100 in total); four older rows that encoded the old behaviour were updated (`@a`/`@b` attributes, an unescaped newline, `@text`, `!=` without the nil check).
 
 ## 1. Headline
 

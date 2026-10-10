@@ -94,15 +94,13 @@ const CONVERT_CASES = [
   // two attribute predicates merge into ONE with AND
   ['//XCUIElementTypeButton[@name="ok"][@label="OK"]', `${CC}**/XCUIElementTypeButton[\`name == "ok" AND label == "OK"\`]`],
   // merge + index together
-  ['//XCUIElementTypeCell[@a="1"][@b="2"][3]', `${CC}**/XCUIElementTypeCell[\`a == "1" AND b == "2"\`][3]`],
+  ['//XCUIElementTypeCell[@name="1"][@label="2"][3]', `${CC}**/XCUIElementTypeCell[\`name == "1" AND label == "2"\`][3]`],
 
   // --- tricky literals that must NOT trip the parser/validator ---
   ['//XCUIElementTypeCell[@name="a/b"]', `${CC}**/XCUIElementTypeCell[\`name == "a/b"\`]`], // slash inside value
   ['//XCUIElementTypeOther[contains(@name, "Widget.item(1")]', `${CC}**/XCUIElementTypeOther[\`name CONTAINS "Widget.item(1"\`]`], // unbalanced '(' inside value
   ['//XCUIElementTypeStaticText[contains(@label, "£")]', `${CC}**/XCUIElementTypeStaticText[\`label CONTAINS "£"\`]`], // currency / unicode
-  ['//XCUIElementTypeStaticText[@name="Line one\nLine two"]', `${CC}**/XCUIElementTypeStaticText[\`name == "Line one\nLine two"\`]`], // newline in value
-  // @text is an attribute named "text", not the text() node-test
-  ['//XCUIElementTypeStaticText[contains(@text, "Section")]', `${CC}**/XCUIElementTypeStaticText[\`text CONTAINS "Section"\`]`],
+  ['//XCUIElementTypeStaticText[@name="Line one\nLine two"]', `${CC}**/XCUIElementTypeStaticText[\`name == "Line one\\nLine two"\`]`], // newline in value: escaped for NSPredicate (RC4)
   // a literal '|' inside a quoted value is NOT a union — must still convert
   ['//XCUIElementTypeStaticText[@label="a|b"]', `${CC}**/XCUIElementTypeStaticText[\`label == "a|b"\`]`],
   // apostrophe inside a double-quoted value must not break the regex match
@@ -146,7 +144,30 @@ const CONVERT_CASES = [
   // RC13: XPath `=` is literal, and so is NSPredicate `==`; `*` is not a wildcard in either
   ['//*[@name="a*b"]', `${CC}**/*[\`name == "a*b"\`]`], // G07
   ['//*[@name="abc*"]', `${CC}**/*[\`name == "abc*"\`]`],
-  ['//*[@name!="abc*"]', `${CC}**/*[\`name != "abc*"\`]`],
+  ['//*[@name!="abc*"]', `${CC}**/*[\`name != nil AND name != "abc*"\`]`],
+  // RC3: page-source attributes map to what WDA evaluates in a chain
+  ['//XCUIElementTypeButton[@x>60]', `${CC}**/XCUIElementTypeButton[\`rect.x > 60\`]`], // B04
+  ['//*[@width="100" and @height>=44]', `${CC}**/*[\`rect.width == 100 AND rect.height >= 44\`]`],
+  // RC14: numbers compare as numbers
+  ['//*[@index="1"]', `${CC}**/*[\`index == 1\`]`], // B11
+  ['//*[@index!=0]', `${CC}**/*[\`index != 0\`]`],
+  ['//XCUIElementTypeButton[@value>5]', `${CC}**/XCUIElementTypeButton[\`value.doubleValue > 5\`]`], // B03
+  ['//XCUIElementTypeSlider[@value>="0.5"]', `${CC}**/XCUIElementTypeSlider[\`value.doubleValue >= 0.5\`]`],
+  // an XPath `!=` needs the attribute to exist; NSPredicate's would also match nil
+  ['//XCUIElementTypeButton[@label!="a"]', `${CC}**/XCUIElementTypeButton[\`label != nil AND label != "a"\`]`], // B02
+  // attribute existence
+  ['//XCUIElementTypeButton[@name]', `${CC}**/XCUIElementTypeButton[\`name != nil\`]`], // B10
+  ['//*[@name and @label="x"]', `${CC}**/*[\`name != nil AND label == "x"\`]`],
+  // RC4: NSPredicate decodes backslash escapes, so `\` and control characters are escaped
+  ['//*[@label="a\nb"]', `${CC}**/*[\`label == "a\\nb"\`]`], // G05: a real newline
+  ['//*[@label="C:\\dir"]', `${CC}**/*[\`label == "C:\\\\dir"\`]`], // G12: a real backslash
+  ['//*[@label="a\tb"]', `${CC}**/*[\`label == "a\\tb"\`]`],
+  ['//*[contains(@label,"a\\b")]', `${CC}**/*[\`label CONTAINS "a\\\\b"\`]`],
+  // host-literal escapes (raw source text from the scanner) are left as they are
+  ["//*[@label=\"Don\\'t\"]", `${CC}**/*[\`label == "Don\\'t"\`]`],
+  ['//*[@label="caf\\u00e9"]', `${CC}**/*[\`label == "caf\\u00e9"\`]`],
+  // type collapse also works on JSON-escaped quotes (raw .json / .java source)
+  ['//*[contains(@type,\\"XCUIElementTypeButton\\") and contains(@label,\\"Nozod\\")]', `${CC}**/XCUIElementTypeButton[\`label CONTAINS \\"Nozod\\"\`]`],
   // RC7: predicates joined with AND keep each OR group intact
   ['//*[@name="a" or @label="b"][@value="c"]', `${CC}**/*[\`(name == "a" OR label == "b") AND value == "c"\`]`], // D06
   ['//*[@name="a" or @name="b"][@label="c" or @label="d"]', `${CC}**/*[\`(name == "a" OR name == "b") AND (label == "c" OR label == "d")\`]`], // D12
@@ -224,7 +245,6 @@ const SKIP_CASES = [
   ['/XCUIElementTypeWindow/XCUIElementTypeButton', 'RC9: the root element is always the Application'],
   ['/XCUIElementTypeApplication[@name="App"]/XCUIElementTypeWindow', 'RC9: predicate on the root step'],
   // RC6: leftover XPath inside the backtick block must fail validation, not ship as "success"
-  ['//XCUIElementTypeButton[@name]', 'RC6: bare attribute (B10)'],
   ['//XCUIElementTypeButton[contains(., "a")]', 'RC6: contains(.) (C05)'],
   ['//*[normalize-space(@label)="a b"]', 'RC6: normalize-space (C06)'],
   ['//XCUIElementTypeButton[string-length(@label)>3]', 'RC6: string-length (C07)'],
@@ -245,6 +265,15 @@ const SKIP_CASES = [
   ['//XCUIElementTypeCell/../XCUIElementTypeButton', 'RC10: parent step mid-path'],
   // RC11: WDA maps an unknown type name to Other; in XPath it matches nothing
   ['//XCUIElementTypeLabel[@name="a"]', 'RC11: not an iOS element type (A13)'],
+  // RC3: not an attribute WDA knows; the chain would raise FBUnknownAttributeException
+  ['//XCUIElementTypeStaticText[@text="a"]', 'RC3: @text (B13)'],
+  ['//XCUIElementTypeStaticText[contains(@text, "a")]', 'RC3: @text in a function (L306)'],
+  ['//*[contains(@x, "1")]', 'RC3: string function on a number'],
+  // RC14: comparisons with no safe NSPredicate form
+  ['//*[@value<5]', 'RC14: text below a number (non-numeric text reads as 0)'],
+  ['//*[@index="a"]', 'RC14: index against text'],
+  ['//*[@value=5]', 'RC14: text equal to a number'],
+  ['//*[@enabled>0]', 'RC14: ordering a boolean'],
   // RC15: XPath filters after the per-parent index; the chain cannot
   ['//XCUIElementTypeCell[2][@name="a"]', 'RC15: index before a filter (E12)'],
 ];
