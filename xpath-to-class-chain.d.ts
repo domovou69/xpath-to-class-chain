@@ -27,6 +27,11 @@ export interface ConvertResult {
   status: Status;
   /** Diagnostic message when available; absent for the common skip cases. */
   reason?: string | null;
+  /**
+   * Set on a successful conversion that may still select a different element:
+   * a grouped position `(//X)[n]`, which WDA counts breadth-first.
+   */
+  warning?: string;
 }
 
 export interface ValidateResult {
@@ -71,6 +76,8 @@ export interface ScanStats {
   filesScanned: number;
   locatorsFound: number;
   locatorsUpdated: number;
+  /** Updated locators that carry a `warning` (grouped positions). */
+  warnings: number;
   skipped: {
     android: number;
     /** Locators passed to an explicit XPath strategy (`AppiumBy.xpath(…)`, `(By.XPATH, …)`), left untouched. */
@@ -92,6 +99,8 @@ export interface ScanRecord {
   new?: string;
   status: Status;
   reason: string | null;
+  /** The conversion's `warning`; present only when `changed`. */
+  warning?: string | null;
 }
 
 export interface MainResult {

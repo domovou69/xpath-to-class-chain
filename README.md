@@ -146,10 +146,12 @@ Written to `xpath-to-class-chain.report.json` in the current working directory:
     "filesScanned": 12,
     "locatorsFound": 48,
     "locatorsUpdated": 38,
+    "warnings": 1,
     "skipped": { "android": 0, "xpathStrategy": 1, "validationFailed": 2, "unsupportedLogic": 5, "notXpath": 0, "noChangeNeeded": 2 }
   },
   "updated": [
-    { "file": "login/login.spec.ts", "old": "//XCUIElementTypeButton[@name=\"OK\"]", "new": "-ios class chain:**/XCUIElementTypeButton[`name == \"OK\"`]" }
+    { "file": "login/login.spec.ts", "old": "//XCUIElementTypeButton[@name=\"OK\"]", "new": "-ios class chain:**/XCUIElementTypeButton[`name == \"OK\"`]" },
+    { "file": "cart/cart.spec.ts", "old": "(//XCUIElementTypeButton[@name=\"Remove\"])[2]", "new": "-ios class chain:**/XCUIElementTypeButton[`name == \"Remove\"`][2]", "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths" }
   ],
   "skipped": [
     { "file": "nav/nav.spec.ts", "locator": "//*[last()]", "status": "skipped_unsupported_logic" },
@@ -160,6 +162,8 @@ Written to `xpath-to-class-chain.report.json` in the current working directory:
 ```
 
 `file` is relative to the scanned folder and always uses `/` separators, so reports match across Windows and POSIX.
+
+`warning` is present only on `updated[]` entries whose chain may still select a different element than the XPath. Today that is a grouped position, `(//X)[n]` (see [On the device](#on-the-device)). `stats.warnings` counts them, and the console prints the warning under the diff (`! …`).
 
 `reason` is only present on `skipped[]` entries where the validator produced a diagnostic (typically class-chain lint failures) and on `skipped_xpath_strategy` entries, where it names the strategy found. It's omitted otherwise — most XPath-conversion skips fall into this category.
 
@@ -203,6 +207,8 @@ Status values used in `skipped[]`:
 | `(//XCUIElementTypeOther[@name="row"])[${index}]` | ``**/XCUIElementTypeOther[`name == "row"`][${index}]`` (template expression preserved) |
 
 > ⚠️ **Positional indexes are not equivalent between the two languages.** In XPath, `//X[2]` means "every `X` that is the 2nd `X` child of its parent" — it can match many elements. In a Class Chain, `**/X[2]` means "the 2nd element of the matched set" — it matches at most one. Indexes are passed through unchanged, so a converted locator that uses `[n]` may select a different element than the original. Review indexed locators by hand after converting.
+>
+> A grouped position `(//X)[n]` converts to `**/X[n]` and is flagged with a `warning`. XPath counts the matches in document order, while WDA counts a chain's matches breadth-first, so the two pick the same element only when all matches sit at the same depth (for example, the rows of one list). See [On the device](#on-the-device).
 
 ## What it skips on purpose
 
@@ -227,6 +233,14 @@ Status values used in `skipped[]`:
 The scanner also gates strings starting with `//` through `isLikelyIosLocator` — protocol-relative URLs (`//cdn.example.com/lib.js`), comments lifted into strings, and plain paths are left untouched even if they live inside a `'…'`/`"…"`/`` `…` `` literal.
 
 ---
+
+## On the device
+
+Checked on Appium 3.8.0, appium-xcuitest-driver 12.16.0 and WebDriverAgent 16.14.1, on an iOS 27.0 simulator. The method and the results are in [`audit/coverage-report.md`](audit/coverage-report.md) ("Device verification").
+
+- **Grouped positions count breadth-first.** XCTest returns query matches breadth-first, for XPath lookups as well as for class chains. An XPath position `(//X)[n]` is still counted in document order. So `(//XCUIElementTypeButton)[2]` → `**/XCUIElementTypeButton[2]` can return a shallower button further down the screen. No class chain counts in document order. These locators are still converted and are flagged with a `warning` in the console and in the `--json` report; check each one on the screen it is used on. `findElement` without a position returns the same first element on both sides whenever the matched sets are equal.
+- **Selector errors look like "element not found".** appium-xcuitest-driver 12.16.0 catches the error WDA returns for an invalid XPath or class chain (`400 invalid selector`). `findElements` then returns `[]` and `findElement` fails with "no such element". A chain that does not parse therefore looks like a missing element in a test run. This is one reason the tool validates every chain it emits and skips what it cannot convert exactly.
+- **`visible` on the final step can be much slower as a chain.** `**/XCUIElementTypeButton[\`visible == true\`]` took 12.6 s against 2.0 s for `//XCUIElementTypeButton[@visible='true']` on a screen where 32 buttons are visible, because WDA reads visibility for each candidate. Prefer a locator that does not depend on `visible` where lookup time matters. On an intermediate step it is the other way round, which is why the optimizer moves `visible` to the final step (rule 6). Over all checked locators the chain was faster, ×1.11 (geometric mean).
 
 ## Configuration
 

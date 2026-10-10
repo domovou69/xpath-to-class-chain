@@ -676,6 +676,26 @@ for (const [xpath, why] of SKIP_CASES) {
   else fail(`SKIP (${why}) ${xpath}\n     expected: skip+unchanged\n     got:      status=${status} locator=${locator}`);
 }
 
+// RC-D1: a grouped position is converted, but WDA counts class chain matches in
+// XCTest query order (breadth-first) and XPath in document order, so the result
+// carries a warning that the --json report passes on.
+console.log('— WARNINGS —');
+const POSITION_WARNING = /grouped position/;
+for (const [xpath, warned] of [
+  ['(//XCUIElementTypeButton)[2]', true], // E02
+  ['(//XCUIElementTypeOther[@name="row"])[${index}]', true],
+  ['(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[2])[1]', true], // outer [1] dropped
+  ['(//*[contains(@name, "Balance,")]/child::*[2])[${transaction}]', true], // outer index moved to the parent
+  ['(//XCUIElementTypeButton[@name="OK"])', false],
+  ['//XCUIElementTypeButton[2]', false],
+  ['//XCUIElementTypeButton[@name="OK"]', false],
+]) {
+  const res = convertXpathToClassChain(xpath);
+  const got = res.status === 'success' && POSITION_WARNING.test(res.warning || '');
+  if (res.status === 'success' && got === warned && (warned || res.warning === undefined)) ok();
+  else fail(`WARNING ${xpath}\n     expected: ${warned ? 'a grouped-position warning' : 'no warning'}\n     got:      status=${res.status} warning=${res.warning}`);
+}
+
 console.log('— LINT —');
 for (const { chain, valid, fixed } of LINT_CASES) {
   const res = validateAndFixClassChain(chain);
@@ -1217,6 +1237,26 @@ console.log('— SCANNER: audit regressions —');
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
+  }
+}
+
+// RC-D1: the --json report keeps the grouped-position warning on the updated
+// entry and counts it in stats.
+{
+  const { execFileSync } = require('child_process');
+  const root = makeTempRoot('grouped-position-json-');
+  try {
+    mkdirSync(join(root, 'src'));
+    writeFileSync(join(root, 'src', 'a.js'), `const a = '(//XCUIElementTypeButton)[2]';\nconst b = '//XCUIElementTypeButton[@name="OK"]';\n`);
+    execFileSync(process.execPath, [join(__dirname, 'xpath-to-class-chain.js'), './src', '--json'], { cwd: root, stdio: 'pipe', timeout: 20000 });
+    const report = JSON.parse(readFileSync(join(root, 'xpath-to-class-chain.report.json'), 'utf8'));
+    const [first, second] = report.updated;
+    if (report.updated.length === 2 && report.stats.warnings === 1
+      && first.new === '-ios class chain:**/XCUIElementTypeButton[2]' && POSITION_WARNING.test(first.warning || '')
+      && !('warning' in second)) ok();
+    else fail(`grouped position --json: expected one warning on the first updated entry, got stats=${JSON.stringify(report.stats)} updated=${JSON.stringify(report.updated)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
   }
 }
 
