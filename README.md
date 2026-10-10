@@ -186,6 +186,8 @@ Status values used in `skipped[]`:
 | `//XCUIElementTypeButton[text()="OK"]` | ``**/XCUIElementTypeButton[`label == "OK" OR value == "OK"`]`` (`text()` maps to label OR value) |
 | `//*[contains(@type,"XCUIElementTypeOther")]` | `**/XCUIElementTypeOther` (type-collapse) |
 | `//XCUIElementTypeCell[@a="1"][@b="2"][3]` | ``**/XCUIElementTypeCell[`a == "1" AND b == "2"`][3]`` (merge + index) |
+| `//*[@name="a" or @label="b"][@value="c"]` | ``**/*[`(name == "a" OR label == "b") AND value == "c"`]`` (each `or` group keeps its parentheses) |
+| `//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"]]` | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` (descendant predicate: a Cell that contains such a Button) |
 | `//XCUIElementTypeCell[@name="a/b"]` | ``**/XCUIElementTypeCell[`name == "a/b"`]`` (slashes inside values are safe) |
 | `//XCUIElementTypeButton[@name="abc*"]` | ``**/XCUIElementTypeButton[`name LIKE "abc*"`]`` (optimizer wildcard rule) |
 | `(//XCUIElementTypeButton[@name="OK"])` | ``**/XCUIElementTypeButton[`name == "OK"`]`` (outer parens stripped) |
@@ -204,6 +206,8 @@ Status values used in `skipped[]`:
 | Union `a \| b` | `skipped_unsupported_logic` |
 | Grouped XPath with a function outer index `(//XCUIElementTypeButton[@name="x"])[last()]` — XPath function, not a static position | `skipped_not_xpath` |
 | Grouped `(//XCUIElementTypeCell[2])[3]` where the inner chain ends with a positional index and has no named parent to anchor the outer position (parent reduces to `**`) | `skipped_unsupported_logic` |
+| A path inside a predicate other than `.//Type[…]`: child existence `[./X]` / `[X]`, nested descendant paths, `[.//X[2]]` | `skipped_unsupported_logic` |
+| An index before a filter, `//XCUIElementTypeCell[2][@name="a"]` — XPath indexes each parent's children first; a chain filters first | `skipped_unsupported_logic` |
 | `//android.widget.*` | `skipped_android` |
 | Already a valid `-ios class chain:…` | `skipped_no_change` |
 

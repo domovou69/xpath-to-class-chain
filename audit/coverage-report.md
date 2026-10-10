@@ -19,6 +19,7 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 |---|---|---|---|---|---|---|
 | Phase 1 baseline | — | 72.2 | 86.9 % | 7.7 (37.7) | 9 | 42 |
 | `fix/class-chain-parse-errors` | RC1, RC6, RC9; RC5 and RC-S3 no longer ship broken chains | 81.6 | 86.9 % | 11.7 (41.7) | 6 | 22 |
+| `fix/silent-wrong-selection` | RC7, RC8, RC15 | 81.6 | 86.9 % | 21.3 (51.3) | 6 | 14 |
 
 Notes on `fix/class-chain-parse-errors`:
 
@@ -37,6 +38,18 @@ Notes on `fix/class-chain-parse-errors`:
   - The escaped-quote JSON/Java/Python entries (RC-S3) are skipped instead of emitted unparseable.
 - The S penalty is still capped at −30: 13 root causes remain. S will move once fewer than 10 are left.
 - Regression tests: 32 rows in `xpath-to-class-chain.test.js` marked `audit regressions`.
+
+Notes on `fix/silent-wrong-selection`:
+
+- **RC7** Logic predicates joined with ` AND ` keep each `OR` group in parentheses, so D06 and D12 are CORRECT. The same precedence bug hit the `text()` expansion: `[contains(text(),"a") and @enabled="true"]` became `label CONTAINS "a" OR value CONTAINS "a" AND enabled == true`, which in mini-WDA also selects a disabled button. That expansion is now grouped whenever AND or NOT sits next to it.
+- **RC8** Predicates are split by bracket depth, so a nested `[…]` is no longer read as a filter on the outer step.
+  - `[.//Type[cond]]`, `[.//*[cond]]` and `[.//Type]` become the descendant predicate `[$…$]`. F01, F03, F07 and F08 are CORRECT; F08 was a GAP.
+  - Any other path inside a predicate is skipped with a reason: `[./X]` and `[X]` (child existence), nested descendant paths, an index inside the path, and functions with an indexed argument. F05 and H08 are CORRECT-SKIP.
+- **RC15** An index followed by a filter (`Cell[2][@name="a"]`) is skipped: XPath indexes per parent before filtering, a chain cannot. E12 is CORRECT-SKIP.
+- A step with text after its predicates (`Cell[1]extra`) is now skipped instead of being truncated to `Cell[1]`.
+- No corpus verdict changed; the directed and gap fuzz results are identical to the previous run.
+- S rose because its raw score rose; the penalty is exactly −30 with 10 root causes left (8 spec, 2 context), so each further fix now lowers it.
+- Regression tests: 13 more rows (45 in total); F08 moved from the skip list to the convert list.
 
 ## 1. Headline
 
