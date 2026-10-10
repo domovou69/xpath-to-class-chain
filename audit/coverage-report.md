@@ -24,6 +24,7 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/attribute-semantics` | RC3, RC4, RC14; RC-S3 | 91.6 | 86.9 % | 57.2 (63.2) | 0 | 0 |
 | `fix/scanner-xpath-strategy` | RC-S1, RC-S2 | 97.6 | 86.9 % | 63.2 (63.2) | 0 | 0 |
 | `audit/phase2` (device verification) | none fixed; found RC-D1 (DRIFT) and RC-D2 (WRONG), corrected mini-WDA | 92.3 | 86.3 % | 54.5 (57.5) | 0 | 1 |
+| `fix/rc-d2-descendant-self` | RC-D2 | 92.3 | 86.3 % | 57.5 (57.5) | 0 | 0 |
 
 Notes on `fix/class-chain-parse-errors`:
 
@@ -94,6 +95,14 @@ Notes on `fix/scanner-xpath-strategy`:
 - `Strategy.java` and `strategy.py`: 0/8 rewritten each, both files byte-identical after `--write`; `insideXpathStrategy` 8 → 0. Both are CORRECT. The other four context files are unchanged.
 - No corpus or spec verdict changed. No root causes are left, so the penalty is 0 and R and S equal their raw scores.
 - Regression tests: 53 more checks in the scanner section (`SCANNER: audit regressions`): 40 strategy markers across all languages, 10 strings that must still convert, the Android and closed-call cases, and the `--json` report.
+
+Notes on `fix/rc-d2-descendant-self`:
+
+- **RC-D2** `[.//Type[cond]]` becomes `[$type == "Type" AND cond$]` only when the step itself names a type and that type differs from `Type`. Then the element cannot pass its own `$…$` test, so XCTest's `containingPredicate` (which also tests the element itself) and XPath's `.//` (which never does) select the same elements. Otherwise the locator is skipped with the reason `descendant predicate would also match the element itself: [.//…]`: `.//*` inside, a `*` or `XCUIElementTypeAny` step outside, or the same type on both sides. F03 is CORRECT-SKIP.
+- F01, F07, F08 and the corpus are unchanged. No corpus entry has the skipped shapes, so R and C stay the same.
+- No root causes are left in the spec matrix, so the penalty is 0 and S equals its raw score, 57.5.
+- Regression tests: F03 moved from the convert list to the skip list, and 5 more skip rows (`XCUIElementTypeAny` inside and outside, `*` outside, the same type on both sides, a grouped form).
+- Device re-run (`device/run.js`, 246 cases, same simulator and versions): `--diff` against `results.json` shows one change, F03 SET_DIFFERS → XPATH_ONLY (now skipped). `--verdicts` against the updated `coverage-cases.json`: 241 agree, 4 not exercised, 1 is the A1 check, as in Phase 2. No chain was rejected by WDA. `results.json` stays the Phase 2 run that the device section describes.
 
 ## Device verification (Phase 2)
 
