@@ -2994,13 +2994,13 @@
  {
   "id": "L278",
   "xpath": "//XCUIElementTypeButton[contains(@name, \"Dobe monuw teg \") and contains(@enabled,\"false\")]",
-  "expected": "enabled CONTAINS \"false\" → enabled == false",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Dobe monuw teg \" AND enabled CONTAINS \"false\"`]",
+  "expected": "-ios class chain:**/XCUIElementTypeButton[`enabled == false AND name CONTAINS \"Dobe monuw teg \"`]",
+  "actual": "-ios class chain:**/XCUIElementTypeButton[`enabled == false AND name CONTAINS \"Dobe monuw teg \"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "S112 //T[contains(@name, \"s\") and contains(@enabled,\"false\")]",
   "category": "corpus",
-  "note": "WDA: NSInvalidArgumentException: Can't use in/contains operator with collection 0 (not a collection) | root cause RC2"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 103"
  },
  {
   "id": "L279",
@@ -5601,24 +5601,24 @@
  {
   "id": "L520",
   "xpath": "//*[contains(@name,\"LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca\") and contains(@enabled,\"false\")]",
-  "expected": "enabled CONTAINS \"false\" → enabled == false",
-  "actual": "-ios class chain:**/*[`name CONTAINS \"LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca\" AND enabled CONTAINS \"false\"`]",
+  "expected": "-ios class chain:**/*[`enabled == false AND name CONTAINS \"LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca\"`]",
+  "actual": "-ios class chain:**/*[`enabled == false AND name CONTAINS \"LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "S059 //*[contains(@name,\"s\") and contains(@enabled,\"false\")]",
   "category": "corpus",
-  "note": "WDA: NSInvalidArgumentException: Can't use in/contains operator with collection 1 (not a collection) | root cause RC2"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 128"
  },
  {
   "id": "L521",
   "xpath": "//*[contains(@name,\"LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro\") and contains(@enabled,\"false\")]",
-  "expected": "enabled CONTAINS \"false\" → enabled == false",
-  "actual": "-ios class chain:**/*[`name CONTAINS \"LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro\" AND enabled CONTAINS \"false\"`]",
+  "expected": "-ios class chain:**/*[`enabled == false AND name CONTAINS \"LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro\"`]",
+  "actual": "-ios class chain:**/*[`enabled == false AND name CONTAINS \"LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "S059 //*[contains(@name,\"s\") and contains(@enabled,\"false\")]",
   "category": "corpus",
-  "note": "WDA: NSInvalidArgumentException: Can't use in/contains operator with collection 0 (not a collection) | root cause RC2"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 130"
  },
  {
   "id": "L522",
@@ -6306,12 +6306,12 @@
   "id": "A11",
   "xpath": "//XCUIElementTypeCell/./XCUIElementTypeButton",
   "expected": "**/XCUIElementTypeCell/XCUIElementTypeButton",
-  "actual": "-ios class chain:**/XCUIElementTypeCell/./XCUIElementTypeButton",
+  "actual": "-ios class chain:**/XCUIElementTypeCell/XCUIElementTypeButton",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeCell/./XCUIElementTypeButton",
   "category": "A",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (Cannot parse class chain query '**/XCUIElementTypeCell/./XCUIElementTypeButton'. Unexpected character detected at positi) | root cause RC10"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "A12",
@@ -6328,12 +6328,12 @@
   "id": "A13",
   "xpath": "//XCUIElementTypeLabel[@name=\"a\"]",
   "expected": "SKIP: XCUIElementTypeLabel is not an iOS element type; WDA maps unknown XCUIElementType* names to Other in class chain",
-  "actual": "-ios class chain:**/XCUIElementTypeLabel[`name == \"a\"`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "//XCUIElementTypeLabel[@name=\"s\"]",
   "category": "A",
-  "note": "XPath matches nothing | actual vs XPath: SET_DIFFERS | fixture: actual xpath=[] chain=[\"o1\"] | root cause RC11 | excluded from denominator"
+  "note": "XPath matches nothing | fixture: xpath xpath=[] chain=undefined | XPath-only hits in 0/300 trials | excluded from denominator"
  },
  {
   "id": "A14",
@@ -6383,7 +6383,7 @@
   "id": "B02",
   "xpath": "//XCUIElementTypeButton[@label!=\"a\"]",
   "expected": "**/XCUIElementTypeButton[`label != nil AND label != \"a\"`]",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`label!=\"a\"`]",
+  "actual": "-ios class chain:**/XCUIElementTypeButton[`label != \"a\"`]",
   "status": "success",
   "verdict": "DRIFT",
   "shape": "//XCUIElementTypeButton[@label!=\"s\"]",
@@ -6559,12 +6559,12 @@
   "id": "B18",
   "xpath": "//XCUIElementTypeButton[contains(@enabled,\"false\")]",
   "expected": "**/XCUIElementTypeButton[`enabled == false`]",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`enabled CONTAINS \"false\"`]",
+  "actual": "-ios class chain:**/XCUIElementTypeButton[`enabled == false`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeButton[contains(@enabled,\"s\")]",
   "category": "B",
-  "note": "hyp. 5 | expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Can't use in/contains operator with collection 1 (not a collection)) | root cause RC2"
+  "note": "hyp. 5 | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "C01",
@@ -6669,12 +6669,12 @@
   "id": "C10",
   "xpath": "//*[contains(@type,\"XCUIElementTypeText\")]",
   "expected": "**/*[`type CONTAINS \"XCUIElementTypeText\"`]",
-  "actual": "-ios class chain:**/XCUIElementTypeText",
+  "actual": "-ios class chain:**/*[`type CONTAINS \"XCUIElementTypeText\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//*[contains(@type,\"s\")]",
   "category": "C",
-  "note": "partial type name | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | fixture: expected xpath=[\"t1\",\"t2\"] chain=[\"t1\",\"t2\"]; actual xpath=[\"t1\",\"t2\"] chain=[\"o1\"] | root cause RC11"
+  "note": "partial type name | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"t1\",\"t2\"] chain=[\"t1\",\"t2\"]; actual xpath=[\"t1\",\"t2\"] chain=[\"t1\",\"t2\"]"
  },
  {
   "id": "C11",
@@ -7142,12 +7142,12 @@
   "id": "G07",
   "xpath": "//*[@name=\"a*b\"]",
   "expected": "**/*[`name == \"a*b\"`]",
-  "actual": "-ios class chain:**/*[`name LIKE \"a*b\"`]",
+  "actual": "-ios class chain:**/*[`name == \"a*b\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//*[@name=\"s\"]",
   "category": "G",
-  "note": "literal * | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | root cause RC13"
+  "note": "literal * | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "G08",
@@ -7164,12 +7164,12 @@
   "id": "G09",
   "xpath": "//*[@name=\"a*?\"]",
   "expected": "**/*[`name == \"a*?\"`]",
-  "actual": "-ios class chain:**/*[`name LIKE \"a*?\"`]",
+  "actual": "-ios class chain:**/*[`name == \"a*?\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//*[@name=\"s\"]",
   "category": "G",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | root cause RC13"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "G10",
@@ -7208,12 +7208,12 @@
   "id": "G13",
   "xpath": "//*[@label=\"$5 and @x\"]",
   "expected": "**/*[`label == \"$5 and @x\"`]",
-  "actual": "-ios class chain:**/*[`label == \"$5 and x\"`]",
+  "actual": "-ios class chain:**/*[`label == \"$5 and @x\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//*[@label=\"s\"]",
   "category": "G",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | root cause RC12"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "G14",
@@ -7351,12 +7351,12 @@
   "id": "R02",
   "xpath": "//XCUIElementTypeButton/..",
   "expected": "INEXPRESSIBLE: parent axis: no child-existence predicate",
-  "actual": "-ios class chain:**/XCUIElementTypeButton/..",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "//XCUIElementTypeButton/..",
   "category": "R",
-  "note": "actual vs XPath: CC_ERROR (Cannot parse class chain query '**/XCUIElementTypeButton/..'. Unexpected character detected at position 26:) | root cause RC10 | excluded from denominator"
+  "note": "XPath-only hits in 151/300 trials | excluded from denominator"
  },
  {
   "id": "R03",
