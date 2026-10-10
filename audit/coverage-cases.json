@@ -7010,12 +7010,12 @@
   "id": "F03",
   "xpath": "//XCUIElementTypeCell[.//*[@name=\"x\"]]",
   "expected": "INEXPRESSIBLE: $…$ (XCTest containingPredicate) also tests the Cell itself; .//* cannot match it (RC-D2, Phase 2)",
-  "actual": "-ios class chain:**/XCUIElementTypeCell[$name == \"x\"$]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "//XCUIElementTypeCell[.//*[@name=\"s\"]]",
   "category": "F",
-  "note": "actual vs XPath: SET_DIFFERS | root cause RC-D2 | excluded from denominator"
+  "note": "XPath-only hits in 32/300 trials | excluded from denominator"
  },
  {
   "id": "F04",

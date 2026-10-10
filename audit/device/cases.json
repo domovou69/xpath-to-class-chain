@@ -1824,7 +1824,7 @@
   "screen": "lists",
   "xpath": "//XCUIElementTypeCell[.//*[@name=\"row.pay\"]]",
   "original": "//XCUIElementTypeCell[.//*[@name=\"x\"]]",
-  "verdict": "WRONG",
+  "verdict": "CORRECT-SKIP",
   "category": "F"
  },
  {

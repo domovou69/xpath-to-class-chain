@@ -120,7 +120,7 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
   C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['GAP'], C07: ['GAP'], C08: ['GAP'], C09: ['GAP'], C10: ['CORRECT'], C11: ['CORRECT'], C12: ['CORRECT'],
   D01: ['CORRECT'], D02: ['CORRECT'], D03: ['CORRECT'], D04: ['CORRECT'], D05: ['CORRECT'], D06: ['CORRECT'], D07: ['GAP'], D08: ['GAP'], D09: ['CORRECT'], D10: ['CORRECT'], D11: ['CORRECT'], D12: ['CORRECT'],
   E01: ['DRIFT', null, true], E02: ['DRIFT', null, false], E03: ['DRIFT', null, false], E04: ['CORRECT-SKIP'], E05: ['CORRECT-SKIP'], E06: ['CORRECT-SKIP'], E07: ['CORRECT-SKIP'], E08: ['CORRECT-SKIP'], E09: ['DRIFT', null, false], E10: ['CORRECT-SKIP'], E11: ['CORRECT-SKIP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['DRIFT', null, false],
-  F01: ['CORRECT'], F02: ['CORRECT-SKIP'], F03: ['WRONG', 'RC-D2'], F04: ['GAP'], F05: ['CORRECT-SKIP'], F06: ['CORRECT-SKIP'], F07: ['CORRECT'], F08: ['CORRECT'],
+  F01: ['CORRECT'], F02: ['CORRECT-SKIP'], F03: ['CORRECT-SKIP'], F04: ['GAP'], F05: ['CORRECT-SKIP'], F06: ['CORRECT-SKIP'], F07: ['CORRECT'], F08: ['CORRECT'],
   G01: ['CORRECT'], G02: ['CORRECT'], G03: ['GAP'], G04: ['GAP'], G05: ['CORRECT'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['DRIFT', null, false], G12: ['CORRECT'], G13: ['CORRECT'], G14: ['GAP'],
   H01: ['CORRECT'], H02: ['GAP'], H03: ['GAP'], H04: ['GAP'], H05: ['GAP'], H06: ['GAP'], H07: ['CORRECT-SKIP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
   R01: ['GAP'], R02: ['CORRECT-SKIP'], R03: ['CORRECT-SKIP'], R04: ['CORRECT-SKIP'],

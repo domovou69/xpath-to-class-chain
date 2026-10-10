@@ -174,7 +174,6 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeButton[contains(text(),"a") and @enabled="true"]', `${CC}**/XCUIElementTypeButton[\`(label CONTAINS "a" OR value CONTAINS "a") AND enabled == true\`]`],
   // RC8: a descendant path in a predicate becomes a `$…$` descendant predicate, not a filter on the outer element
   ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"]]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]`], // F01
-  ['//XCUIElementTypeCell[.//*[@name="x"]]', `${CC}**/XCUIElementTypeCell[$name == "x"$]`], // F03
   ['//XCUIElementTypeTable/XCUIElementTypeCell[.//XCUIElementTypeStaticText[@label="x"]]/XCUIElementTypeButton', `${CC}**/XCUIElementTypeTable/XCUIElementTypeCell[$type == "XCUIElementTypeStaticText" AND label == "x"$]/XCUIElementTypeButton`], // F07
   ['//XCUIElementTypeCell[@name="a"][.//XCUIElementTypeButton]', `${CC}**/XCUIElementTypeCell[\`name == "a"\`][$type == "XCUIElementTypeButton"$]`], // F08
   ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x" or @label="y"]][2]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND (name == "x" OR label == "y")$][2]`],
@@ -258,6 +257,14 @@ const SKIP_CASES = [
   ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"] and @name="a"]', 'RC8: descendant path mixed with a filter'],
   ['//XCUIElementTypeCell[.//XCUIElementTypeButton[.//XCUIElementTypeImage]]', 'RC8: nested descendant predicates'],
   ['//XCUIElementTypeCell[.//*]', 'RC8: any descendant'],
+  // RC-D2: XCTest's containingPredicate ($…$) also tests the element itself, so the
+  // chain is exact only when both steps name a type and the types differ
+  ['//XCUIElementTypeCell[.//*[@name="x"]]', 'RC-D2: any descendant could be the Cell itself (F03)'],
+  ['//XCUIElementTypeCell[.//XCUIElementTypeAny[@name="x"]]', 'RC-D2: XCUIElementTypeAny descendant'],
+  ['//*[.//XCUIElementTypeButton[@name="x"]]', 'RC-D2: the Button itself would match'],
+  ['//XCUIElementTypeAny[.//XCUIElementTypeButton]', 'RC-D2: XCUIElementTypeAny step'],
+  ['//XCUIElementTypeCell[.//XCUIElementTypeCell[@name="x"]]', 'RC-D2: same type outside and inside'],
+  ['(//*[.//XCUIElementTypeButton[@name="x"]])[2]', 'RC-D2: grouped'],
   // RC2: any other value on a boolean attribute has no NSPredicate form
   ['//XCUIElementTypeButton[contains(@enabled,"rue")]', 'RC2: partial text of a boolean'],
   // RC10: the parent step has no class chain form

@@ -31,11 +31,11 @@ Specified in [`prompts/coverage.md`](prompts/coverage.md#phase-2--on-device-veri
 
 - [`device/`](device/) holds the LocatorLab SwiftUI app (XcodeGen), `run.js` and `results.json`. 246 cases ran twice on Appium 3.8.0 / xcuitest-driver 12.16.0 / WDA 16.14.1, Xcode 27.0, iOS 27.0 simulator (iPhone 17). See its [README](device/README.md).
 - The device disagreed with mini-WDA on result order (XCTest returns matches breadth-first) and on `$…$` (it also tests the element itself). mini-WDA was corrected and `coverage-cases.json` updated: R = 92.3, C = 86.3 %, S = 54.5.
-- New root causes, not fixed yet:
+- New root causes:
   - **RC-D1.** Grouped positions `(//X)[n]` count in a different order than XPath (DRIFT, 29 corpus entries).
-  - **RC-D2.** `[.//*[…]]` → `$…$` also matches the element itself (WRONG, F03).
+  - **RC-D2.** `[.//*[…]]` → `$…$` also matches the element itself (WRONG, F03). Fixed in `fix/rc-d2-descendant-self`: skipped unless both steps name different types; S = 57.5.
 
-Next: fix RC-D2 and decide RC-D1 (document in the README or skip), each in its own branch with the steps listed under Phase 1; re-run `device/run.js` after converter changes that affect positions or nested predicates.
+Next: RC-D1 (decided: keep converting, document in the README and flag in the `--json` report), in its own branch with the steps listed under Phase 1; re-run `device/run.js` after converter changes that affect positions or nested predicates.
 
 ## Phase 2b — real device (planned)
 

@@ -12,3 +12,6 @@ audit/device/.appium/
 audit/device/DerivedData/
 audit/device/LocatorLab.xcodeproj/
 audit/device/out/
+
+# macOS Finder metadata
+.DS_Store
