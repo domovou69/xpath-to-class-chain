@@ -127,6 +127,26 @@ const CONVERT_CASES = [
   ['/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]', `${CC}XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]`], // A08
   ['/XCUIElementTypeApplication//XCUIElementTypeButton[@name="x"]', `${CC}**/XCUIElementTypeButton[\`name == "x"\`]`],
   ['/*/XCUIElementTypeWindow', `${CC}XCUIElementTypeWindow`],
+  // RC2: contains()/starts-with() on a boolean attribute compares the "true"/"false" text
+  ['//XCUIElementTypeButton[contains(@enabled,"false")]', `${CC}**/XCUIElementTypeButton[\`enabled == false\`]`], // B18
+  ['//*[contains(@name,"n") and contains(@enabled,"false")]', `${CC}**/*[\`name CONTAINS "n" AND enabled == false\`]`], // L278, L520
+  ['//*[starts-with(@visible,"true")]', `${CC}**/*[\`visible == true\`]`],
+  // RC10: a `.` step is the same element
+  ['//XCUIElementTypeCell/./XCUIElementTypeButton', `${CC}**/XCUIElementTypeCell/XCUIElementTypeButton`], // A11
+  ['//XCUIElementTypeCell//./XCUIElementTypeButton', `${CC}**/XCUIElementTypeCell/**/XCUIElementTypeButton`],
+  ['//XCUIElementTypeCell/.//XCUIElementTypeButton', `${CC}**/XCUIElementTypeCell/**/XCUIElementTypeButton`],
+  ['//XCUIElementTypeCell/.', `${CC}**/XCUIElementTypeCell`],
+  // RC11: a type test collapses into a step only when exactly one WDA type matches
+  ['//*[contains(@type,"XCUIElementTypeText")]', `${CC}**/*[\`type CONTAINS "XCUIElementTypeText"\`]`], // C10
+  ['//*[@type="XCUIElementTypeButton" or @name="x"]', `${CC}**/*[\`type == "XCUIElementTypeButton" OR name == "x"\`]`],
+  ['//XCUIElementTypeAny[@name="a"]', `${CC}**/*[\`name == "a"\`]`], // A04: WDA treats XCUIElementTypeAny as `*` in XPath too
+  // RC12: `@` inside a value is text
+  ['//*[@label="$5 and @x"]', `${CC}**/*[\`label == "$5 and @x"\`]`], // G13
+  ['//*[@label="a @b=c"]', `${CC}**/*[\`label == "a @b=c"\`]`],
+  // RC13: XPath `=` is literal, and so is NSPredicate `==`; `*` is not a wildcard in either
+  ['//*[@name="a*b"]', `${CC}**/*[\`name == "a*b"\`]`], // G07
+  ['//*[@name="abc*"]', `${CC}**/*[\`name == "abc*"\`]`],
+  ['//*[@name!="abc*"]', `${CC}**/*[\`name != "abc*"\`]`],
   // RC7: predicates joined with AND keep each OR group intact
   ['//*[@name="a" or @label="b"][@value="c"]', `${CC}**/*[\`(name == "a" OR label == "b") AND value == "c"\`]`], // D06
   ['//*[@name="a" or @name="b"][@label="c" or @label="d"]', `${CC}**/*[\`(name == "a" OR name == "b") AND (label == "c" OR label == "d")\`]`], // D12
@@ -188,10 +208,6 @@ const SKIP_CASES = [
   // e.g. (//Type[1])[2] → inner = **/Type[1], parentChain = ** → skip.
   ['(//XCUIElementTypeStaticText[1])[2]', 'grouped outer [n>1] + inner has no parent segment'],
 
-  // wildcard inside an exact match — invalid in NSPredicate (use LIKE/MATCHES)
-  ['//*[@name="abc*"]', 'wildcard in =='],
-  ['//*[@name!="abc*"]', 'wildcard in !='],
-
   // already a Class Chain fragment mislabelled as XPath
   ['//XCUIElementTypeButton[`label == "Done"`]', 'backtick fragment'],
 
@@ -222,6 +238,13 @@ const SKIP_CASES = [
   ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"] and @name="a"]', 'RC8: descendant path mixed with a filter'],
   ['//XCUIElementTypeCell[.//XCUIElementTypeButton[.//XCUIElementTypeImage]]', 'RC8: nested descendant predicates'],
   ['//XCUIElementTypeCell[.//*]', 'RC8: any descendant'],
+  // RC2: any other value on a boolean attribute has no NSPredicate form
+  ['//XCUIElementTypeButton[contains(@enabled,"rue")]', 'RC2: partial text of a boolean'],
+  // RC10: the parent step has no class chain form
+  ['//XCUIElementTypeButton/..', 'RC10: parent step (R02)'],
+  ['//XCUIElementTypeCell/../XCUIElementTypeButton', 'RC10: parent step mid-path'],
+  // RC11: WDA maps an unknown type name to Other; in XPath it matches nothing
+  ['//XCUIElementTypeLabel[@name="a"]', 'RC11: not an iOS element type (A13)'],
   // RC15: XPath filters after the per-parent index; the chain cannot
   ['//XCUIElementTypeCell[2][@name="a"]', 'RC15: index before a filter (E12)'],
 ];
@@ -248,6 +271,13 @@ const LINT_CASES = [
   { chain: `${CC}**/*[\`name IN {"a","b"}\`]`, valid: true },
   { chain: `${CC}**/*[$name == "a"$]`, valid: true },
   { chain: `${CC}**/*[\`name == "f(x) a/b"\`][-1]`, valid: true },  // syntax inside a string is just text
+  // --- audit RC11/RC12/RC13 ---
+  { chain: `${CC}**/*[\`label == "$5 and @x"\`]`, valid: true },                   // `@` in a value stays
+  { chain: `${CC}**/XCUIElementTypeButton[\`name == "abc*"\`]`, valid: true },       // `==` with `*` is a literal match
+  { chain: `${CC}**/*[\`type CONTAINS "XCUIElementTypeText"\`]`, valid: true },      // TextField and TextView both match: no collapse
+  { chain: `${CC}**/*[\`type == "XCUIElementTypeButton" OR name == "x"\`]`, valid: true }, // OR: dropping the type clause would widen it
+  { chain: `${CC}**/*[\`type == "XCUIElementTypeLabel"\`]`, valid: true },         // unknown type name: WDA would read the step as Other
+  { chain: `${CC}**/*[\`type BEGINSWITH "XCUIElementTypeButton" AND name == "x"\`]`, valid: true, fixed: `${CC}**/XCUIElementTypeButton[\`name == "x"\`]` },
 ];
 
 // =====================================================================
@@ -312,43 +342,39 @@ const FLAGS_CASES = [
 ];
 
 // =====================================================================
-// OPTIMIZE_CASES — convertXpathToClassChain WITH { optimize: true } recovers
-// inputs that fail validation by default. Each row asserts both directions:
-// without optimize → skipped; with optimize → success with the LIKE form.
+// OPTIMIZE_CASES — convertXpathToClassChain WITH { optimize: true }.
+// `*` in a value is a literal character in both XPath `=` and NSPredicate
+// `==`, so it stays `==` (audit RC13: rewriting to LIKE widened the match).
 // =====================================================================
 const OPTIMIZE_CASES = [
-  // wildcard-equality is invalid in NSPredicate; LIKE is the right operator
   {
     xpath: '//XCUIElementTypeButton[@name="abc*"]',
-    optimized: `${CC}**/XCUIElementTypeButton[\`name LIKE "abc*"\`]`,
+    optimized: `${CC}**/XCUIElementTypeButton[\`name == "abc*"\`]`,
   },
-  // wildcard at the front of the value, and in a non-Button element
   {
     xpath: '//XCUIElementTypeStaticText[@label="*done"]',
-    optimized: `${CC}**/XCUIElementTypeStaticText[\`label LIKE "*done"\`]`,
+    optimized: `${CC}**/XCUIElementTypeStaticText[\`label == "*done"\`]`,
   },
-  // Wildcard combined with an AND clause — both predicates merge under one
-  // backtick; the optimizer touches the wildcard side (LIKE) and also reorders
-  // conditions cheapest-first: enabled == (cost 1) before name LIKE (cost 5).
+  // the optimizer reorders conditions cheapest-first: the boolean before the string
   {
-    xpath: '//XCUIElementTypeButton[@name="login*" and @enabled="true"]',
-    optimized: `${CC}**/XCUIElementTypeButton[\`enabled == true AND name LIKE "login*"\`]`,
+    xpath: '//XCUIElementTypeButton[contains(@name,"login") and @enabled="true"]',
+    optimized: `${CC}**/XCUIElementTypeButton[\`enabled == true AND name CONTAINS "login"\`]`,
   },
-  // Cross-cutting case: type-collapse (validator) + LIKE (optimizer) on the
-  // same chain — the idempotency loop is what guarantees both fire.
+  // type-collapse (validator) on the same chain
   {
     xpath: '//*[contains(@type,"XCUIElementTypeButton") and @name="abc*"]',
-    optimized: `${CC}**/XCUIElementTypeButton[\`name LIKE "abc*"\`]`,
+    optimized: `${CC}**/XCUIElementTypeButton[\`name == "abc*"\`]`,
   },
 ];
 
-// Existing-class-chain cases: optimizeClassChain healing wildcards in-place.
+// Existing-class-chain cases: optimizeClassChain on chains already in the code.
 const OPTIMIZE_CHAIN_CASES = [
+  // `==` with `*` is a valid literal match — left alone
   {
     input: `${CC}**/XCUIElementTypeButton[\`name == "abc*"\`]`,
-    fixed: `${CC}**/XCUIElementTypeButton[\`name LIKE "abc*"\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`name == "abc*"\`]`,
   },
-  // Already-LIKE chain is a no-op (fixed point reached immediately)
+  // LIKE written by the user is a no-op (fixed point reached immediately)
   {
     input: `${CC}**/XCUIElementTypeButton[\`name LIKE "abc*"\`]`,
     fixed: `${CC}**/XCUIElementTypeButton[\`name LIKE "abc*"\`]`,
@@ -379,11 +405,19 @@ const OPTIMIZE_CHAIN_CASES = [
   // An ESCAPED backtick inside the predicate value — Appium's way of writing a
   // literal ` in an NSPredicate block. PREDICATE_REGEX must not treat it as the
   // end of the backtick block: when it did, this predicate matched NOTHING and
-  // every optimizer rule routed through that regex silently skipped it, so the
-  // wildcard never became LIKE and the chain came back invalid instead.
+  // every optimizer rule routed through that regex silently skipped it.
   {
-    input: `${CC}**/XCUIElementTypeCell[\`label == "a\\\`b*"\`]`,
-    fixed: `${CC}**/XCUIElementTypeCell[\`label LIKE "a\\\`b*"\`]`,
+    input: `${CC}**/XCUIElementTypeCell[\`label IN {"a\\\`b"}\`]`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`label == "a\\\`b"\`]`,
+  },
+  // audit RC7 in the optimizer: AND binds tighter than OR, so merged OR blocks keep their parentheses
+  {
+    input: `${CC}**/*[\`name == "a" OR label == "b"\`][\`value == "c"\`]`,
+    fixed: `${CC}**/*[\`(name == "a" OR label == "b") AND value == "c"\`]`,
+  },
+  {
+    input: `${CC}**/XCUIElementTypeCell[\`visible == 1\`]/XCUIElementTypeButton[\`name == "a" OR label == "b"\`]`,
+    fixed: `${CC}**/XCUIElementTypeCell/XCUIElementTypeButton[\`(name == "a" OR label == "b") AND visible == 1\`]`,
   },
   // Multi-value IN stays untouched — semantics differ
   {
@@ -643,12 +677,6 @@ for (const { argv, expect } of FLAGS_CASES) {
 
 console.log('— OPTIMIZE: XPath path —');
 for (const { xpath, optimized } of OPTIMIZE_CASES) {
-  // Without --optimize: validator rejects the wildcard, source XPath returned unchanged.
-  const baseline = convertXpathToClassChain(xpath);
-  if (baseline.status === 'skipped_validation_failed' && baseline.locator === xpath) ok();
-  else fail(`OPTIMIZE baseline ${xpath}\n     expected: skipped_validation_failed (unchanged)\n     got:      status=${baseline.status} locator=${baseline.locator}`);
-
-  // With --optimize: LIKE recovery succeeds.
   const opt = convertXpathToClassChain(xpath, { optimize: true });
   if (opt.status === 'success' && opt.locator === optimized) ok();
   else fail(`OPTIMIZE ${xpath}\n     expected: ${optimized}\n     got:      ${opt.locator}  (status: ${opt.status})`);
@@ -798,19 +826,19 @@ console.log('— SCANNER: processFile —');
 }
 
 {
-  // opts.optimize plumbs through processFile end-to-end: a wildcard XPath that
-  // would be skipped by default gets rewritten to a LIKE class chain on disk.
+  // opts.optimize plumbs through processFile end-to-end: the optimizer's
+  // cheapest-first reordering shows up in the rewritten file.
   const root = makeTempRoot('xpath-opt-');
   try {
     const file = join(root, 'a.js');
-    writeFileSync(file, `const locator = '//XCUIElementTypeButton[@name="abc*"]';`);
+    writeFileSync(file, `const locator = '//XCUIElementTypeButton[contains(@name,"login") and @enabled="true"]';`);
 
     const records = [];
     const stats = makeStats();
     processFile(file, { dryRun: false, quiet: true, optimize: true }, records, stats);
 
     const after = readFileSync(file, 'utf8');
-    const expected = `const locator = '-ios class chain:**/XCUIElementTypeButton[\`name LIKE "abc*"\`]';`;
+    const expected = `const locator = '-ios class chain:**/XCUIElementTypeButton[\`enabled == true AND name CONTAINS "login"\`]';`;
     if (after === expected) ok();
     else fail(`processFile --optimize: rewrite mismatch\n     expected: ${expected}\n     got:      ${after}`);
     if (stats.locatorsUpdated === 1 && stats.skipped.validationFailed === 0) ok();

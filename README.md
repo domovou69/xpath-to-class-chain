@@ -85,28 +85,27 @@ npm run json -- ./src/e2e   # JSON report (preview unless you add --write)
 
 ## The optimizer
 
-The optimizer always runs — in both the preview and `--write` paths, so the preview never disagrees with the result. Nine rules run together inside an idempotent loop until the chain stops changing. (These are the rules that actually ship — [docs/optimization-rules.md](docs/optimization-rules.md) records the wider 14-rule research spec and marks which of those are deliberately not implemented.)
+The optimizer always runs — in both the preview and `--write` paths, so the preview never disagrees with the result. Eight rules run together inside an idempotent loop until the chain stops changing. (These are the rules that actually ship — [docs/optimization-rules.md](docs/optimization-rules.md) records the wider 14-rule research spec and marks which of those are deliberately not implemented.)
 
-1. **`==` with wildcard → `LIKE`**. NSPredicate's `==` is exact-match (no wildcards), so `@name="abc*"` would otherwise fail validation outright; it becomes `name LIKE "abc*"` instead.
-2. **`XCUIElementTypeAny` → `*`**. Normalises the verbose API name to the idiomatic wildcard symbol.
-3. **`IN {"single"}` → `==`**. A one-item set degrades to a hash lookup anyway; `==` is clearer and avoids the set-iteration path.
-4. **`**/` deduplication**. `**/**/` is equivalent to `**/`; the second recursive scan adds no filtering but does add overhead.
-5. **Strip meaningless intermediates**. No-predicate `XCUIElementTypeOther` and `XCUIElementTypeWindow` steps force XCTest to materialise an intermediate result set for zero filtering benefit. They are removed; any gap becomes `/**/` so depth is not accidentally asserted.
-6. **Merge sibling predicate blocks**. Adjacent `[\`a\`][\`b\`]` on the same step can be misread by the engine as an index. They are merged into `[\`a AND b\`]`. Numeric index brackets like `[2]` are never merged.
-7. **Defer `visible == 1` to the final step**. Evaluating visibility triggers a layout pass per element. On intermediate steps this means a pass for every candidate before the chain continues. `visible == 1` is stripped from non-terminal steps and merged onto the final target's predicate.
+1. **`XCUIElementTypeAny` → `*`**. Normalises the verbose API name to the idiomatic wildcard symbol.
+2. **`IN {"single"}` → `==`**. A one-item set degrades to a hash lookup anyway; `==` is clearer and avoids the set-iteration path.
+3. **`**/` deduplication**. `**/**/` is equivalent to `**/`; the second recursive scan adds no filtering but does add overhead.
+4. **Strip meaningless intermediates**. No-predicate `XCUIElementTypeOther` and `XCUIElementTypeWindow` steps force XCTest to materialise an intermediate result set for zero filtering benefit. They are removed; any gap becomes `/**/` so depth is not accidentally asserted.
+5. **Merge sibling predicate blocks**. Adjacent `[\`a\`][\`b\`]` on the same step can be misread by the engine as an index. They are merged into `[\`a AND b\`]`; a block with `OR` keeps its parentheses, `[\`a OR b\`][\`c\`]` → `[\`(a OR b) AND c\`]`. Numeric index brackets like `[2]` are never merged.
+6. **Defer `visible == 1` to the final step**. Evaluating visibility triggers a layout pass per element. On intermediate steps this means a pass for every candidate before the chain continues. `visible == 1` is stripped from non-terminal steps and merged onto the final target's predicate.
    > ⚠️ This is not purely a performance change. The original chain required each *ancestor* to be visible; the rewritten one only requires the final element to be. If an intermediate container can be off-screen while the target is not, the optimized chain can match elements the original would have excluded.
-8. **Strip redundant `type ==` from concrete-typed nodes**. XCTest pre-filters by node type before evaluating the predicate, so `XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "OK"\`]` → `XCUIElementTypeButton[\`name == "OK"\`]`. (The wildcard case `*[\`type == "X"\`]` → `X` is handled by the validator in all modes.)
-9. **AND condition cost reordering**. Compound AND predicates short-circuit on the first false condition. Conditions are sorted cheapest-first: `==`/`!=` → `BEGINSWITH` → `ENDSWITH` → `CONTAINS` → `LIKE` → `MATCHES`.
+7. **Strip redundant `type ==` from concrete-typed nodes**. XCTest pre-filters by node type before evaluating the predicate, so `XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "OK"\`]` → `XCUIElementTypeButton[\`name == "OK"\`]`. (The wildcard case `*[\`type == "X"\`]` → `X` is handled by the validator in all modes.)
+8. **AND condition cost reordering**. Compound AND predicates short-circuit on the first false condition. Conditions are sorted cheapest-first: `==`/`!=` → `BEGINSWITH` → `ENDSWITH` → `CONTAINS` → `LIKE` → `MATCHES`.
 
 **Idempotency**. The validator and optimizer re-run until the output is stable. Matters when one rewrite *unlocks* another — e.g.:
    ```
-   //*[contains(@type,"XCUIElementTypeButton") and @name="abc*"]
-     → pass 1 (validator type-collapse): XCUIElementTypeButton[`name == "abc*"`]
-     → pass 2 (optimizer LIKE rule):     XCUIElementTypeButton[`name LIKE "abc*"`]
-     → pass 3 (stable, returned)
+   //*[contains(@type,"XCUIElementTypeButton") and contains(@name,"ab") and @enabled="true"]
+     → validator type-collapse: XCUIElementTypeButton[`name CONTAINS "ab" AND enabled == true`]
+     → cost reordering:         XCUIElementTypeButton[`enabled == true AND name CONTAINS "ab"`]
+     → stable, returned
    ```
 
-Without the optimizer, wildcard inputs would be skipped with `skipped_validation_failed` — which is why it is no longer opt-in.
+   The type collapse fires only when exactly one WDA element type matches the test and the clause is ANDed with the rest: `type CONTAINS "XCUIElementTypeText"` (TextField and TextView) or a type test under `OR` stays a predicate.
 
 ---
 
@@ -189,7 +188,9 @@ Status values used in `skipped[]`:
 | `//*[@name="a" or @label="b"][@value="c"]` | ``**/*[`(name == "a" OR label == "b") AND value == "c"`]`` (each `or` group keeps its parentheses) |
 | `//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"]]` | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` (descendant predicate: a Cell that contains such a Button) |
 | `//XCUIElementTypeCell[@name="a/b"]` | ``**/XCUIElementTypeCell[`name == "a/b"`]`` (slashes inside values are safe) |
-| `//XCUIElementTypeButton[@name="abc*"]` | ``**/XCUIElementTypeButton[`name LIKE "abc*"`]`` (optimizer wildcard rule) |
+| `//XCUIElementTypeButton[@name="abc*"]` | ``**/XCUIElementTypeButton[`name == "abc*"`]`` (`*` is a literal character in both languages) |
+| `//XCUIElementTypeButton[contains(@enabled,"false")]` | ``**/XCUIElementTypeButton[`enabled == false`]`` (boolean attributes compare as booleans) |
+| `//XCUIElementTypeCell/./XCUIElementTypeButton` | `**/XCUIElementTypeCell/XCUIElementTypeButton` (`.` steps dropped) |
 | `(//XCUIElementTypeButton[@name="OK"])` | ``**/XCUIElementTypeButton[`name == "OK"`]`` (outer parens stripped) |
 | `(//XCUIElementTypeButton[@name="OK"])[2]` | ``**/XCUIElementTypeButton[`name == "OK"`][2]`` (outer position index appended) |
 | `(//XCUIElementTypeOther[@name="row"])[${index}]` | ``**/XCUIElementTypeOther[`name == "row"`][${index}]`` (template expression preserved) |
@@ -202,7 +203,8 @@ Status values used in `skipped[]`:
 |---|---|
 | `following-sibling::`, `preceding-sibling::`, `parent::`, `following::`, `preceding::`, `ancestor::`, `self::` | `skipped_unsupported_logic` |
 | `not()`, `count()`, `last()`, `position()` | `skipped_unsupported_logic` |
-| Element type that isn't `*` or `XCUIElementType*` (e.g. `//Btn[...]`, `//div[...]`) — not a valid iOS node | `skipped_unsupported_logic` |
+| Element type that isn't `*` or one of WDA's `XCUIElementType*` names (e.g. `//Btn[...]`, `//XCUIElementTypeLabel[...]`) — WDA would read an unknown name as `Other` | `skipped_unsupported_logic` |
+| Parent step `..` | `skipped_unsupported_logic` |
 | Union `a \| b` | `skipped_unsupported_logic` |
 | Grouped XPath with a function outer index `(//XCUIElementTypeButton[@name="x"])[last()]` — XPath function, not a static position | `skipped_not_xpath` |
 | Grouped `(//XCUIElementTypeCell[2])[3]` where the inner chain ends with a positional index and has no named parent to anchor the outer position (parent reduces to `**`) | `skipped_unsupported_logic` |
@@ -246,8 +248,8 @@ const {
 const { locator, status } = convertXpathToClassChain('//XCUIElementTypeButton[@name="OK"]');
 if (status === STATUS.SUCCESS) { /* … */ }
 
-// With LIKE recovery
-convertXpathToClassChain('//XCUIElementTypeButton[@name="a*"]', { optimize: true });
+// With the optimizer pass (what the CLI always runs)
+convertXpathToClassChain('//XCUIElementTypeButton[@name="a" and @enabled="true"]', { optimize: true });
 
 // Lint an existing chain
 const { valid, fixedLocator, reason } = validateAndFixClassChain(
@@ -274,7 +276,7 @@ Zero-dependency runner, exits non-zero on any failure. Sections:
 - `TOKENIZER` — `tokenizeXpath` bracket/quote awareness
 - `DETECT` — `isLikelyIosLocator` gating
 - `FLAGS` — `parseFlags` CLI parsing
-- `OPTIMIZE` — the optimizer pass: wildcard equality recovery + idempotency
+- `OPTIMIZE` — the optimizer pass: rewrite rules + idempotency
 - `SCANNER` — `walkDir`, `processFile`, `makeStats` against real on-disk fixtures
 
 Add a row to the relevant `*_CASES` array and re-run.

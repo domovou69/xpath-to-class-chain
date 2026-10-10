@@ -20,6 +20,7 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | Phase 1 baseline | — | 72.2 | 86.9 % | 7.7 (37.7) | 9 | 42 |
 | `fix/class-chain-parse-errors` | RC1, RC6, RC9; RC5 and RC-S3 no longer ship broken chains | 81.6 | 86.9 % | 11.7 (41.7) | 6 | 22 |
 | `fix/silent-wrong-selection` | RC7, RC8, RC15 | 81.6 | 86.9 % | 21.3 (51.3) | 6 | 14 |
+| `fix/predicate-literals` | RC2, RC10, RC11, RC12, RC13; RC7 in the optimizer | 85.2 | 86.9 % | 42.0 (57.0) | 3 | 6 |
 
 Notes on `fix/class-chain-parse-errors`:
 
@@ -50,6 +51,19 @@ Notes on `fix/silent-wrong-selection`:
 - No corpus verdict changed; the directed and gap fuzz results are identical to the previous run.
 - S rose because its raw score rose; the penalty is exactly −30 with 10 root causes left (8 spec, 2 context), so each further fix now lowers it.
 - Regression tests: 13 more rows (45 in total); F08 moved from the skip list to the convert list.
+
+Notes on `fix/predicate-literals`:
+
+- **RC2** `contains()`, `starts-with()` and `ends-with()` on a boolean attribute with the full text `"true"`/`"false"` become `attr == true|false`; any other value is skipped (a string operator on a boolean raises in WDA). B18 and corpus L278, L520, L521 are CORRECT.
+- **RC10** `.` steps are dropped and their separators merged (`A/./B` → `A/B`, `A//./B` → `A/**/B`); `..` and a trailing `//.` are skipped. A11 is CORRECT, R02 is CORRECT-SKIP. A step the converter does not recognise is now skipped instead of copied into the chain.
+- **RC11** Element type names are checked against WDA's `FBElementTypeTransformer` table (`lib/elementTypes.js`). A13 (`XCUIElementTypeLabel`) is CORRECT-SKIP. The validator collapses `*[type OP "X" AND …]` into a step only when exactly one WDA type matches and no `OR`/`NOT` is involved, so C10 (`type CONTAINS "XCUIElementTypeText"`) is CORRECT. `XCUIElementTypeAny` stays the wildcard, because WDA rewrites it to `*` in XPath as well (A04 unchanged).
+- **RC12** `@` is stripped only outside string literals. G13 is CORRECT.
+- **RC13** The optimizer's `==` → `LIKE` rule and the validator's wildcard check are removed: `*` is literal in both languages, and `name == "a*b"` is a valid chain. G07 and G09 are CORRECT. This removes a documented rule; README and `docs/optimization-rules.md` are updated.
+- **RC7 in the optimizer** (found during this fix): merging `[\`a OR b\`][\`c\`]` on an existing chain gave `a OR b AND c`, and the `visible == 1` deferral appended `AND visible == 1` to an OR block the same way. Both now keep the OR group in parentheses.
+- B02 output changed only in spacing (`label != "a"`); its verdict is still DRIFT.
+- Directed fuzzing: CC_ERROR 6 → 3 (the three RC2 corpus shapes now evaluate and agree); no other shape changed.
+- Penalty: 5 root causes left (RC3, RC4, RC14, RC-S1, RC-S2) → −15, no longer capped.
+- Regression tests: 27 more rows (72 in total); the LIKE-recovery tests now check that `*` stays literal.
 
 ## 1. Headline
 

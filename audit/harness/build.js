@@ -37,9 +37,6 @@ const shapeOf = {}; coarse.forEach((g, i) => g.ids.forEach(id => shapeOf[id] = `
 const CORPUS_WRONG = {
   L119: ['RC4', true, '**/XCUIElementTypeStaticText[`name == "19, Juzo Kabih\\\\nJomojab, FI16 7TE"`] (newline escaped as \\\\n in the source literal)'],
   L162: ['RC4', true, '**/XCUIElementTypeStaticText[`name == "Romor wepes je robo\\\\n7393"`][1] (newline escaped)'],
-  L278: ['RC2', true, 'enabled CONTAINS "false" → enabled == false'],
-  L520: ['RC2', true, 'enabled CONTAINS "false" → enabled == false'],
-  L521: ['RC2', true, 'enabled CONTAINS "false" → enabled == false'],
   L306: ['RC3', false, 'SKIP with reason: @text is not an iOS attribute; the XPath itself never matches on WDA'],
 };
 const CORPUS_DRIFT = {
@@ -87,16 +84,16 @@ for (const x of corpus) {
 // ---------- spec
 const SPEC = { // id: [verdict, rootCause|null, documented?]
   A01: ['CORRECT'], A02: ['CORRECT'], A03: ['CORRECT'], A04: ['CORRECT'], A05: ['CORRECT'], A06: ['CORRECT'], A07: ['DRIFT', null, false], A08: ['CORRECT'],
-  A09: ['CORRECT'], A10: ['CORRECT'], A11: ['WRONG', 'RC10'], A12: ['GAP'], A13: ['WRONG', 'RC11'], A14: ['DRIFT', null, false], A15: ['DRIFT', null, false], A16: ['DRIFT', null, true],
+  A09: ['CORRECT'], A10: ['CORRECT'], A11: ['CORRECT'], A12: ['GAP'], A13: ['CORRECT-SKIP'], A14: ['DRIFT', null, false], A15: ['DRIFT', null, false], A16: ['DRIFT', null, true],
   B01: ['CORRECT'], B02: ['DRIFT', null, false], B03: ['WRONG', 'RC14'], B04: ['WRONG', 'RC3'], B05: ['CORRECT'], B06: ['CORRECT'], B07: ['CORRECT'], B08: ['DRIFT', null, false],
-  B09: ['CORRECT'], B10: ['GAP'], B11: ['WRONG', 'RC14'], B12: ['CORRECT'], B13: ['WRONG', 'RC3'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['DRIFT', null, false], B17: ['CORRECT'], B18: ['WRONG', 'RC2'],
-  C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['GAP'], C07: ['GAP'], C08: ['GAP'], C09: ['GAP'], C10: ['WRONG', 'RC11'], C11: ['CORRECT'], C12: ['CORRECT'],
+  B09: ['CORRECT'], B10: ['GAP'], B11: ['WRONG', 'RC14'], B12: ['CORRECT'], B13: ['WRONG', 'RC3'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['DRIFT', null, false], B17: ['CORRECT'], B18: ['CORRECT'],
+  C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['GAP'], C07: ['GAP'], C08: ['GAP'], C09: ['GAP'], C10: ['CORRECT'], C11: ['CORRECT'], C12: ['CORRECT'],
   D01: ['CORRECT'], D02: ['CORRECT'], D03: ['CORRECT'], D04: ['CORRECT'], D05: ['CORRECT'], D06: ['CORRECT'], D07: ['GAP'], D08: ['GAP'], D09: ['CORRECT'], D10: ['CORRECT'], D11: ['CORRECT'], D12: ['CORRECT'],
   E01: ['DRIFT', null, true], E02: ['CORRECT'], E03: ['CORRECT'], E04: ['CORRECT-SKIP'], E05: ['GAP'], E06: ['GAP'], E07: ['GAP'], E08: ['CORRECT-SKIP'], E09: ['CORRECT'], E10: ['CORRECT-SKIP'], E11: ['GAP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['CORRECT'],
   F01: ['CORRECT'], F02: ['CORRECT-SKIP'], F03: ['CORRECT'], F04: ['GAP'], F05: ['CORRECT-SKIP'], F06: ['CORRECT-SKIP'], F07: ['CORRECT'], F08: ['CORRECT'],
-  G01: ['CORRECT'], G02: ['CORRECT'], G03: ['GAP'], G04: ['GAP'], G05: ['WRONG', 'RC4'], G06: ['CORRECT'], G07: ['WRONG', 'RC13'], G08: ['CORRECT'], G09: ['WRONG', 'RC13'], G10: ['CORRECT'], G11: ['CORRECT'], G12: ['WRONG', 'RC4'], G13: ['WRONG', 'RC12'], G14: ['GAP'],
+  G01: ['CORRECT'], G02: ['CORRECT'], G03: ['GAP'], G04: ['GAP'], G05: ['WRONG', 'RC4'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['CORRECT'], G12: ['WRONG', 'RC4'], G13: ['CORRECT'], G14: ['GAP'],
   H01: ['CORRECT'], H02: ['GAP'], H03: ['GAP'], H04: ['GAP'], H05: ['GAP'], H06: ['GAP'], H07: ['CORRECT-SKIP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
-  R01: ['GAP'], R02: ['WRONG', 'RC10'], R03: ['CORRECT-SKIP'], R04: ['CORRECT-SKIP'],
+  R01: ['GAP'], R02: ['CORRECT-SKIP'], R03: ['CORRECT-SKIP'], R04: ['CORRECT-SKIP'],
   X01: ['CORRECT-SKIP'], X02: ['CORRECT-SKIP'], X03: ['CORRECT-SKIP'], X04: ['GAP'], X05: ['GAP'], X06: ['CORRECT-SKIP'], X07: ['GAP'],
 };
 // cases whose XPath never matches anything on WDA (dead) or that have no exact form -> excluded from the denominator

@@ -25,9 +25,9 @@ For what actually ships, see [the optimizer section of the README](../README.md#
 | 13. Drop `[cd]` case modifier | ❌ Not implemented | Needs to know if casing is stable |
 | 14. `attr IN {"x"}` → `attr == "x"` | ✅ Implemented | `simplifyInSets()` |
 
-The optimizer also applies one rule that is **not** in this spec: rewriting
-wildcard equality (`name == "abc*"`) to `name LIKE "abc*"`, which recovers
-chains that would otherwise fail NSPredicate validation outright.
+An earlier version also rewrote `name == "abc*"` to `name LIKE "abc*"`. It was
+removed: `*` is a literal character in both XPath `=` and NSPredicate `==`, so
+the rewrite widened the match (coverage audit, RC13).
 
 ---
 
