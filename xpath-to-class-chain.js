@@ -63,12 +63,12 @@ function main(targetDir = DEFAULT_TARGET_DIR, opts) {
   });
 
   // --json: emit the full machine-readable result (converted + skipped) to a
-  // file next to this script. `reason` is omitted when null so downstream
-  // consumers don't have to special-case a key that's mostly absent.
+  // file next to this script. `reason` and `warning` are omitted when null so
+  // downstream consumers don't have to special-case a key that's mostly absent.
   if (opts.json) {
     const updated = records
       .filter(r => r.changed)
-      .map(({ file, old, new: newLocator }) => ({ file, old, new: newLocator }));
+      .map(({ file, old, new: newLocator, warning }) => (warning ? { file, old, new: newLocator, warning } : { file, old, new: newLocator }));
     const skipped = records
       .filter(r => !r.changed && r.status !== STATUS.SKIPPED_NO_CHANGE)
       .map(({ file, old, status, reason }) => {
@@ -90,6 +90,7 @@ function main(targetDir = DEFAULT_TARGET_DIR, opts) {
   console.log(`Files scanned:    ${stats.filesScanned}`);
   console.log(`Locators found:   ${stats.locatorsFound}`);
   console.log(`Locators updated: ${stats.locatorsUpdated}`);
+  console.log(`  with warning:   ${stats.warnings}`);
   console.log(`Total skipped:    ${stats.locatorsFound - stats.locatorsUpdated}`);
   console.log(`  android:        ${stats.skipped.android}`);
   console.log(`  xpath strategy: ${stats.skipped.xpathStrategy}`);

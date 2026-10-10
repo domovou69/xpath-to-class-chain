@@ -25,6 +25,7 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/scanner-xpath-strategy` | RC-S1, RC-S2 | 97.6 | 86.9 % | 63.2 (63.2) | 0 | 0 |
 | `audit/phase2` (device verification) | none fixed; found RC-D1 (DRIFT) and RC-D2 (WRONG), corrected mini-WDA | 92.3 | 86.3 % | 54.5 (57.5) | 0 | 1 |
 | `fix/rc-d2-descendant-self` | RC-D2 | 92.3 | 86.3 % | 57.5 (57.5) | 0 | 0 |
+| `fix/rc-d1-grouped-position` | RC-D1 documented (DRIFT, no exact chain) | 95.3 | 86.3 % | 61.9 (61.9) | 0 | 0 |
 
 Notes on `fix/class-chain-parse-errors`:
 
@@ -103,6 +104,15 @@ Notes on `fix/rc-d2-descendant-self`:
 - No root causes are left in the spec matrix, so the penalty is 0 and S equals its raw score, 57.5.
 - Regression tests: F03 moved from the convert list to the skip list, and 5 more skip rows (`XCUIElementTypeAny` inside and outside, `*` outside, the same type on both sides, a grouped form).
 - Device re-run (`device/run.js`, 246 cases, same simulator and versions): `--diff` against `results.json` shows one change, F03 SET_DIFFERS → XPATH_ONLY (now skipped). `--verdicts` against the updated `coverage-cases.json`: 241 agree, 4 not exercised, 1 is the A1 check, as in Phase 2. No chain was rejected by WDA. `results.json` stays the Phase 2 run that the device section describes.
+
+Notes on `fix/rc-d1-grouped-position`:
+
+- **RC-D1** has no exact class chain, so grouped positions still convert. The README now says that WDA counts a chain's matches breadth-first and XPath counts `(//X)[n]` in document order (the positional warning and a new "On the device" section).
+- Every grouped position is flagged: the conversion result has a `warning`, the console prints it under the diff, and the `--json` report puts it on the `updated[]` entry and counts it in `stats.warnings`. This covers all three grouped forms: index appended, outer `[1]` dropped, outer index moved to the parent.
+- The 29 corpus entries and E02, E03, E09, E14 and G11 are DRIFT documented. R_raw = 100 × (446 + 0.5 × 34) / 486 = **95.27**; S gains 4.0 in positional and 0.36 in literals, **61.9**. No verdict changed, and neither did any chain, so `device/run.js` was not re-run.
+- Still DRIFT undocumented: L174 and E13 (outer index moved onto the parent) and L225 (nested matching containers). The new warning is shown for L174 and E13, but the README does not describe the move itself.
+- README also has two more device facts from Phase 2: appium-xcuitest-driver 12.16.0 turns WDA's `invalid selector` into "not found", and `visible` on the final step is much slower as a chain (B07: 12.6 s vs 2.0 s; 12.9 s vs 2.1 s in the RC-D2 re-run).
+- Regression tests: 7 conversion rows check the warning (4 grouped forms flagged, 3 plain or index-free forms not), plus 1 `--json` report check.
 
 ## Device verification (Phase 2)
 

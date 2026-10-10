@@ -35,7 +35,7 @@ Specified in [`prompts/coverage.md`](prompts/coverage.md#phase-2--on-device-veri
   - **RC-D1.** Grouped positions `(//X)[n]` count in a different order than XPath (DRIFT, 29 corpus entries).
   - **RC-D2.** `[.//*[…]]` → `$…$` also matches the element itself (WRONG, F03). Fixed in `fix/rc-d2-descendant-self`: skipped unless both steps name different types; S = 57.5.
 
-Next: RC-D1 (decided: keep converting, document in the README and flag in the `--json` report), in its own branch with the steps listed under Phase 1; re-run `device/run.js` after converter changes that affect positions or nested predicates.
+RC-D1 is documented in `fix/rc-d1-grouped-position` (README, plus a `warning` in the console and `--json` report): R = 95.3, S = 61.9. Next: Phase 2b. As before, each further fix gets its own branch with the steps listed under Phase 1; re-run `device/run.js` after converter changes that affect positions or nested predicates.
 
 ## Phase 2b — real device (planned)
 
