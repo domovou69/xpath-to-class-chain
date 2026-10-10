@@ -1300,13 +1300,13 @@
  {
   "id": "L119",
   "xpath": "//XCUIElementTypeStaticText[@name=\"19, Juzo Kabih\\nJomojab, FI16 7TE\"]",
-  "expected": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\\\\nJomojab, FI16 7TE\"`] (newline escaped as \\\\n in the source literal)",
-  "actual": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\\nJomojab, FI16 7TE\"`]",
+  "expected": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\\\\nJomojab, FI16 7TE\"`]",
+  "actual": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\\\\nJomojab, FI16 7TE\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "WDA: NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih | root cause RC4"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
  },
  {
   "id": "L120",
@@ -1773,13 +1773,13 @@
  {
   "id": "L162",
   "xpath": "(//XCUIElementTypeStaticText[@name=\"Romor wepes je robo\\n7393\"])[1]",
-  "expected": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\\\\n7393\"`][1] (newline escaped)",
-  "actual": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\\n7393\"`][1]",
+  "expected": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\\\\n7393\"`][1]",
+  "actual": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\\\\n7393\"`][1]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "S006 (//T[@name=\"s\"])[N]",
   "category": "corpus",
-  "note": "WDA: NSInvalidArgumentException: Unable to parse the format string \"name == \"Romor wepes je robo | root cause RC4"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
  },
  {
   "id": "L163",
@@ -3302,13 +3302,13 @@
  {
   "id": "L306",
   "xpath": "//XCUIElementTypeStaticText[contains(@text, \"Tazeviz\")]",
-  "expected": "SKIP with reason: @text is not an iOS attribute; the XPath itself never matches on WDA",
-  "actual": "-ios class chain:**/XCUIElementTypeStaticText[`text CONTAINS \"Tazeviz\"`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "expected": "INEXPRESSIBLE: other",
+  "actual": null,
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "S120 //T[contains(@text, \"s\")]",
   "category": "corpus",
-  "note": "WDA: FBUnknownAttributeException: The attribute 'text' is unknown. Valid attribute names are: ( | root cause RC3 | excluded from denominator"
+  "note": "excluded from denominator"
  },
  {
   "id": "L307",
@@ -3319,7 +3319,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 109"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L308",
@@ -3330,7 +3330,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 75"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
  },
  {
   "id": "L309",
@@ -3352,7 +3352,7 @@
   "verdict": "CORRECT",
   "shape": "S006 (//T[@name=\"s\"])[N]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 22"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 23"
  },
  {
   "id": "L311",
@@ -3363,7 +3363,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 62"
  },
  {
   "id": "L312",
@@ -3374,7 +3374,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L313",
@@ -3396,7 +3396,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
  },
  {
   "id": "L315",
@@ -3407,7 +3407,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L316",
@@ -3418,7 +3418,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L317",
@@ -3429,7 +3429,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 84"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
  },
  {
   "id": "L318",
@@ -3440,7 +3440,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 77"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
  },
  {
   "id": "L319",
@@ -3451,7 +3451,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 106"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 111"
  },
  {
   "id": "L320",
@@ -3473,7 +3473,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 108"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 107"
  },
  {
   "id": "L322",
@@ -3484,7 +3484,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
  },
  {
   "id": "L323",
@@ -3495,7 +3495,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 85"
  },
  {
   "id": "L324",
@@ -3506,7 +3506,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 109"
  },
  {
   "id": "L325",
@@ -3517,7 +3517,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L326",
@@ -3528,7 +3528,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L327",
@@ -3539,7 +3539,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L328",
@@ -3550,7 +3550,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L329",
@@ -3572,7 +3572,7 @@
   "verdict": "CORRECT",
   "shape": "S121 //*[@name=\"s*\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 118"
  },
  {
   "id": "L331",
@@ -3583,7 +3583,7 @@
   "verdict": "CORRECT",
   "shape": "S048 //*[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 127"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 125"
  },
  {
   "id": "L336",
@@ -3605,7 +3605,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L338",
@@ -3616,7 +3616,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L339",
@@ -3627,7 +3627,7 @@
   "verdict": "CORRECT",
   "shape": "S010 //*[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 135"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
  },
  {
   "id": "L340",
@@ -3638,7 +3638,7 @@
   "verdict": "CORRECT",
   "shape": "S124 //*[contains(@name, \"s$\") and contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 123"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 126"
  },
  {
   "id": "L341",
@@ -3649,7 +3649,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L342",
@@ -3660,7 +3660,7 @@
   "verdict": "CORRECT",
   "shape": "S028 //*[contains(@type,\"s\") and contains(@value,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L343",
@@ -3671,7 +3671,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L344",
@@ -3682,7 +3682,7 @@
   "verdict": "CORRECT",
   "shape": "S019 //T[@value=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 63"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 67"
  },
  {
   "id": "L345",
@@ -3693,7 +3693,7 @@
   "verdict": "CORRECT",
   "shape": "S019 //T[@value=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 67"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
  },
  {
   "id": "L346",
@@ -3704,7 +3704,7 @@
   "verdict": "CORRECT",
   "shape": "S125 //T[contains(@value, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 105"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 108"
  },
  {
   "id": "L347",
@@ -3715,7 +3715,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 72"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 71"
  },
  {
   "id": "L348",
@@ -3726,7 +3726,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
  },
  {
   "id": "L349",
@@ -3737,7 +3737,7 @@
   "verdict": "DRIFT",
   "shape": "S054 //T[N]",
   "category": "corpus",
-  "note": "per-parent [1] vs global [1]. Minimal page source: <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" label=\"Vq1\" value=\"Vq1\"></XCUIElementTypeTextField><XCUIElementTypeTextField k=\"n2\" value=\"other\"><XCUIElementTypeTextField k=\"n3\" name=\"Vq2\" label=\"false\" value=\"false\"></XCUIElementTypeTextField><XCUIElementTypeWindow k=\"n4\" name=\"Vq2\" value=\"true\"></XCUIElementTypeWindow></XCUIElementTypeTextField></XCUIElementTypeApplication> → XPath [\"n1\",\"n3\"] vs chain [\"n1\"] | DRIFT documented in README"
+  "note": "per-parent [1] vs global [1]. Minimal page source: <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" label=\"Vq2\" value=\"false\"><XCUIElementTypeStaticText k=\"n2\" label=\"Vq2\"><XCUIElementTypeStaticText k=\"n3\" name=\"other\" value=\"false\"><XCUIElementTypeButton k=\"n4\" name=\"other\" label=\"Vq1\" value=\"Vq2\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n5\"></XCUIElementTypeTextField></XCUIElementTypeStaticText><XCUIElementTypeWindow k=\"n6\" name=\"false\"></XCUIElementTypeWindow></XCUIElementTypeStaticText></XCUIElementTypeTextField></XCUIElementTypeApplication> → XPath [\"n1\",\"n5\"] vs chain [\"n1\"] | DRIFT documented in README"
  },
  {
   "id": "L350",
@@ -3759,7 +3759,7 @@
   "verdict": "CORRECT",
   "shape": "S019 //T[@value=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 67"
  },
  {
   "id": "L352",
@@ -3770,7 +3770,7 @@
   "verdict": "CORRECT",
   "shape": "S019 //T[@value=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 71"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 68"
  },
  {
   "id": "L353",
@@ -3781,7 +3781,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 104"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 108"
  },
  {
   "id": "L354",
@@ -3792,7 +3792,7 @@
   "verdict": "CORRECT",
   "shape": "S126 //T[contains(@name,\"s\") or contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 103"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 102"
  },
  {
   "id": "L355",
@@ -3891,7 +3891,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L364",
@@ -3902,7 +3902,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L365",
@@ -3913,7 +3913,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 85"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
  },
  {
   "id": "L366",
@@ -3924,7 +3924,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
  },
  {
   "id": "L367",
@@ -3935,7 +3935,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 67"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 66"
  },
  {
   "id": "L368",
@@ -3990,7 +3990,7 @@
   "verdict": "CORRECT",
   "shape": "S129 //T",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 100"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 97"
  },
  {
   "id": "L373",
@@ -4001,7 +4001,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 63"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 65"
  },
  {
   "id": "L374",
@@ -4012,7 +4012,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 63"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 60"
  },
  {
   "id": "L375",
@@ -4023,7 +4023,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L376",
@@ -4045,7 +4045,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
  },
  {
   "id": "L378",
@@ -4056,7 +4056,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L379",
@@ -4067,7 +4067,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 85"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L380",
@@ -4078,7 +4078,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L381",
@@ -4089,7 +4089,7 @@
   "verdict": "CORRECT",
   "shape": "S016 //T[@label=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 75"
  },
  {
   "id": "L382",
@@ -4100,7 +4100,7 @@
   "verdict": "CORRECT",
   "shape": "S006 (//T[@name=\"s\"])[N]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
  },
  {
   "id": "L383",
@@ -4111,7 +4111,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L384",
@@ -4144,7 +4144,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 119"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L387",
@@ -4155,7 +4155,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L388",
@@ -4221,7 +4221,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L394",
@@ -4232,7 +4232,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L395",
@@ -4243,7 +4243,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L396",
@@ -4276,7 +4276,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 65"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 66"
  },
  {
   "id": "L399",
@@ -4287,7 +4287,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
  },
  {
   "id": "L400",
@@ -4298,7 +4298,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L401",
@@ -4320,7 +4320,7 @@
   "verdict": "CORRECT",
   "shape": "S021 //*[contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
  },
  {
   "id": "L403",
@@ -4331,7 +4331,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L404",
@@ -4342,7 +4342,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L405",
@@ -4386,7 +4386,7 @@
   "verdict": "CORRECT",
   "shape": "S022 //T[contains(@label, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 121"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 119"
  },
  {
   "id": "L409",
@@ -6383,34 +6383,34 @@
   "id": "B02",
   "xpath": "//XCUIElementTypeButton[@label!=\"a\"]",
   "expected": "**/XCUIElementTypeButton[`label != nil AND label != \"a\"`]",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`label != \"a\"`]",
+  "actual": "-ios class chain:**/XCUIElementTypeButton[`label != nil AND label != \"a\"`]",
   "status": "success",
-  "verdict": "DRIFT",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeButton[@label!=\"s\"]",
   "category": "B",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | DRIFT not documented in README"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "B03",
   "xpath": "//XCUIElementTypeButton[@value>5]",
   "expected": "**/XCUIElementTypeButton[`value.doubleValue > 5`]",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`value>5`]",
+  "actual": "-ios class chain:**/XCUIElementTypeButton[`value.doubleValue > 5`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeButton[@value>5]",
   "category": "B",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: -[__NSCFNumber _fastCStringContents:]: unrecognized selector sent to instance 0x…) | root cause RC14"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "B04",
   "xpath": "//XCUIElementTypeButton[@x>60]",
   "expected": "**/XCUIElementTypeButton[`rect.x > 60`]",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`x>60`]",
+  "actual": "-ios class chain:**/XCUIElementTypeButton[`rect.x > 60`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeButton[@x>60]",
   "category": "B",
-  "note": "x/y/width/height are XML-only; rect.x is queryable | expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (FBUnknownAttributeException: The attribute 'x' is unknown. Valid attribute names are: () | root cause RC3"
+  "note": "x/y/width/height are XML-only; rect.x is queryable | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "B05",
@@ -6471,23 +6471,23 @@
   "id": "B10",
   "xpath": "//XCUIElementTypeButton[@name]",
   "expected": "**/XCUIElementTypeButton[`name != nil`]",
-  "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "actual": "-ios class chain:**/XCUIElementTypeButton[`name != nil`]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeButton[@name]",
   "category": "B",
-  "note": "hyp. 9 | expected vs XPath: 300/300 equal"
+  "note": "hyp. 9 | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "B11",
   "xpath": "//*[@index=\"1\"]",
   "expected": "**/*[`index == 1`]",
-  "actual": "-ios class chain:**/*[`index == \"1\"`]",
+  "actual": "-ios class chain:**/*[`index == 1`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//*[@index=\"s\"]",
   "category": "B",
-  "note": "hyp. 9 | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | root cause RC14"
+  "note": "hyp. 9 | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "B12",
@@ -6504,12 +6504,12 @@
   "id": "B13",
   "xpath": "//XCUIElementTypeStaticText[@text=\"a\"]",
   "expected": "SKIP: @text does not exist in the WDA XML or as a class chain attribute (hyp. 6)",
-  "actual": "-ios class chain:**/XCUIElementTypeStaticText[`text == \"a\"`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "//XCUIElementTypeStaticText[@text=\"s\"]",
   "category": "B",
-  "note": "actual vs XPath: CC_ERROR (FBUnknownAttributeException: The attribute 'text' is unknown. Valid attribute names are: () | root cause RC3 | excluded from denominator"
+  "note": "XPath-only hits in 0/300 trials | excluded from denominator"
  },
  {
   "id": "B14",
@@ -7120,12 +7120,12 @@
   "id": "G05",
   "xpath": "//*[@label=\"a\nb\"]",
   "expected": "**/*[`label == \"a\\nb\"`]",
-  "actual": "-ios class chain:**/*[`label == \"a\nb\"`]",
+  "actual": "-ios class chain:**/*[`label == \"a\\nb\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//*[@label=\"s\"]",
   "category": "G",
-  "note": "runtime newline in the value | expected vs XPath: 300/300 equal | actual vs XPath: CC_ERROR (NSInvalidArgumentException: Unable to parse the format string \"label == \"a) | root cause RC4"
+  "note": "runtime newline in the value | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "G06",
@@ -7197,12 +7197,12 @@
   "id": "G12",
   "xpath": "//*[@label=\"C:\\dir\"]",
   "expected": "**/*[`label == \"C:\\\\dir\"`]",
-  "actual": "-ios class chain:**/*[`label == \"C:\\dir\"`]",
+  "actual": "-ios class chain:**/*[`label == \"C:\\\\dir\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//*[@label=\"s\"]",
   "category": "G",
-  "note": "runtime value contains one backslash | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | root cause RC4"
+  "note": "runtime value contains one backslash | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "G13",
@@ -7461,7 +7461,7 @@
   "id": "CTX-codecept-pairs.js",
   "xpath": null,
   "expected": "convert ios values; android values untouched; file still parses",
-  "actual": "10/10 ios converted, 10 android untouched, node --check OK; m2 inherits RC2 (enabled CONTAINS)",
+  "actual": "10/10 ios converted, 10 android untouched, node --check OK",
   "status": "scanner",
   "verdict": "CORRECT",
   "shape": "scanner-context",
@@ -7472,7 +7472,7 @@
   "id": "CTX-bare.js",
   "xpath": null,
   "expected": "convert; file still parses",
-  "actual": "10/10 converted, node --check OK; `last` inherits RC2",
+  "actual": "10/10 converted, node --check OK",
   "status": "scanner",
   "verdict": "CORRECT",
   "shape": "scanner-context",
@@ -7494,7 +7494,7 @@
   "id": "CTX-Strategy.java",
   "xpath": null,
   "expected": "must NOT rewrite while the strategy is XPath",
-  "actual": "3/8 rewritten to \"-ios class chain:…\" inside AppiumBy/By/MobileBy.xpath and @iOSXCUITFindBy(xpath=…); the 5 escaped-quote entries are now skipped by the validator; javac unavailable (no JRE)",
+  "actual": "8/8 rewritten to \"-ios class chain:…\" inside AppiumBy/By/MobileBy.xpath and @iOSXCUITFindBy(xpath=…); all 8 chains parse in WDA, but the strategy stays XPath; javac unavailable (no JRE)",
   "status": "scanner",
   "verdict": "WRONG",
   "shape": "scanner-context",
@@ -7505,7 +7505,7 @@
   "id": "CTX-strategy.py",
   "xpath": null,
   "expected": "must NOT rewrite while the strategy is XPath",
-  "actual": "7/8 rewritten while AppiumBy.XPATH / By.XPATH stays (the escaped-quote entry is now skipped); parses OK",
+  "actual": "8/8 rewritten while AppiumBy.XPATH / By.XPATH stays; parses OK",
   "status": "scanner",
   "verdict": "WRONG",
   "shape": "scanner-context",
@@ -7516,9 +7516,9 @@
   "id": "CTX-store.json",
   "xpath": null,
   "expected": "convert; JSON stays valid",
-  "actual": "JSON.parse OK; 3/6 converted and parse; the 3 escaped-quote entries (`contains(@type,\\\"…\\\")`) are skipped by the validator instead of shipping a chain WDA rejects (RC-S3 is now a gap, not a wrong output)",
+  "actual": "JSON.parse OK; 6/6 converted and parse in WDA, including the 3 escaped-quote entries (`contains(@type,\\\"…\\\")`, RC-S3)",
   "status": "scanner",
-  "verdict": "GAP",
+  "verdict": "CORRECT",
   "shape": "scanner-context",
   "category": "context",
   "note": ""

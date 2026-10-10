@@ -184,13 +184,18 @@ Status values used in `skipped[]`:
 | `//XCUIElementTypeStaticText[starts-with(@label,"Welcome")]` | ``**/XCUIElementTypeStaticText[`label BEGINSWITH "Welcome"`]`` |
 | `//XCUIElementTypeButton[text()="OK"]` | ``**/XCUIElementTypeButton[`label == "OK" OR value == "OK"`]`` (`text()` maps to label OR value) |
 | `//*[contains(@type,"XCUIElementTypeOther")]` | `**/XCUIElementTypeOther` (type-collapse) |
-| `//XCUIElementTypeCell[@a="1"][@b="2"][3]` | ``**/XCUIElementTypeCell[`a == "1" AND b == "2"`][3]`` (merge + index) |
+| `//XCUIElementTypeCell[@name="a"][@label="b"][3]` | ``**/XCUIElementTypeCell[`name == "a" AND label == "b"`][3]`` (merge + index) |
 | `//*[@name="a" or @label="b"][@value="c"]` | ``**/*[`(name == "a" OR label == "b") AND value == "c"`]`` (each `or` group keeps its parentheses) |
 | `//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"]]` | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` (descendant predicate: a Cell that contains such a Button) |
 | `//XCUIElementTypeCell[@name="a/b"]` | ``**/XCUIElementTypeCell[`name == "a/b"`]`` (slashes inside values are safe) |
 | `//XCUIElementTypeButton[@name="abc*"]` | ``**/XCUIElementTypeButton[`name == "abc*"`]`` (`*` is a literal character in both languages) |
 | `//XCUIElementTypeButton[contains(@enabled,"false")]` | ``**/XCUIElementTypeButton[`enabled == false`]`` (boolean attributes compare as booleans) |
 | `//XCUIElementTypeCell/./XCUIElementTypeButton` | `**/XCUIElementTypeCell/XCUIElementTypeButton` (`.` steps dropped) |
+| `//XCUIElementTypeButton[@x>60]`, `//*[@index="1"]` | ``**/XCUIElementTypeButton[`rect.x > 60`]``, ``**/*[`index == 1`]`` (`x`/`y`/`width`/`height` are `rect.*`; numbers compare as numbers) |
+| `//XCUIElementTypeSlider[@value>0.5]` | ``**/XCUIElementTypeSlider[`value.doubleValue > 0.5`]`` |
+| `//XCUIElementTypeButton[@label!="a"]` | ``**/XCUIElementTypeButton[`label != nil AND label != "a"`]`` (XPath `!=` needs the attribute to exist) |
+| `//XCUIElementTypeButton[@name]` | ``**/XCUIElementTypeButton[`name != nil`]`` |
+| `//*[@label="C:\dir"]` | ``**/*[`label == "C:\\dir"`]`` (NSPredicate decodes `\`, so backslashes and newlines are escaped) |
 | `(//XCUIElementTypeButton[@name="OK"])` | ``**/XCUIElementTypeButton[`name == "OK"`]`` (outer parens stripped) |
 | `(//XCUIElementTypeButton[@name="OK"])[2]` | ``**/XCUIElementTypeButton[`name == "OK"`][2]`` (outer position index appended) |
 | `(//XCUIElementTypeOther[@name="row"])[${index}]` | ``**/XCUIElementTypeOther[`name == "row"`][${index}]`` (template expression preserved) |
@@ -205,6 +210,8 @@ Status values used in `skipped[]`:
 | `not()`, `count()`, `last()`, `position()` | `skipped_unsupported_logic` |
 | Element type that isn't `*` or one of WDA's `XCUIElementType*` names (e.g. `//Btn[...]`, `//XCUIElementTypeLabel[...]`) — WDA would read an unknown name as `Other` | `skipped_unsupported_logic` |
 | Parent step `..` | `skipped_unsupported_logic` |
+| An attribute WDA does not have, e.g. `@text` — the XPath matches nothing and the chain would raise `FBUnknownAttributeException` | `skipped_unsupported_logic` |
+| A numeric comparison with no exact chain form: `@value<5` (non-numeric text reads as 0 in NSPredicate, NaN in XPath), `@value=5`, `@index="a"`, ordering a boolean | `skipped_unsupported_logic` |
 | Union `a \| b` | `skipped_unsupported_logic` |
 | Grouped XPath with a function outer index `(//XCUIElementTypeButton[@name="x"])[last()]` — XPath function, not a static position | `skipped_not_xpath` |
 | Grouped `(//XCUIElementTypeCell[2])[3]` where the inner chain ends with a positional index and has no named parent to anchor the outer position (parent reduces to `**`) | `skipped_unsupported_logic` |
