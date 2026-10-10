@@ -1,0 +1,20 @@
+--- a/NSPredicate+FBFormat.m
++++ b/NSPredicate+FBFormat.m
+@@ -9,7 +9,7 @@
+ #import "NSPredicate+FBFormat.h"
+ 
+ #import "NSExpression+FBFormat.h"
+-#import "FBXCElementSnapshotWrapper+Helpers.h"
++#import "Node.h"
+ 
+ @implementation NSPredicate (FBFormat)
+ 
+@@ -59,7 +59,7 @@
+   return [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject,
+                                                NSDictionary<NSString *,id> * _Nullable bindings) {
+     @autoreleasepool {
+-      FBXCElementSnapshotWrapper *wrappedSnapshot = [FBXCElementSnapshotWrapper ensureWrapped:evaluatedObject];
++      id wrappedSnapshot = evaluatedObject;
+       return [wdPredicate evaluateWithObject:wrappedSnapshot];
+     }
+   }];
