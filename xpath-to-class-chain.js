@@ -92,6 +92,7 @@ function main(targetDir = DEFAULT_TARGET_DIR, opts) {
   console.log(`Locators updated: ${stats.locatorsUpdated}`);
   console.log(`Total skipped:    ${stats.locatorsFound - stats.locatorsUpdated}`);
   console.log(`  android:        ${stats.skipped.android}`);
+  console.log(`  xpath strategy: ${stats.skipped.xpathStrategy}`);
   console.log(`  validation:     ${stats.skipped.validationFailed}`);
   console.log(`  unsupported:    ${stats.skipped.unsupportedLogic}`);
   console.log(`  not xpath:      ${stats.skipped.notXpath}`);

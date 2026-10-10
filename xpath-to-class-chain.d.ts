@@ -7,6 +7,7 @@ export type Status =
   | 'success'
   | 'skipped_not_xpath'
   | 'skipped_android'
+  | 'skipped_xpath_strategy'
   | 'skipped_unsupported_logic'
   | 'skipped_validation_failed'
   | 'skipped_no_change';
@@ -72,6 +73,8 @@ export interface ScanStats {
   locatorsUpdated: number;
   skipped: {
     android: number;
+    /** Locators passed to an explicit XPath strategy (`AppiumBy.xpath(…)`, `(By.XPATH, …)`), left untouched. */
+    xpathStrategy: number;
     validationFailed: number;
     unsupportedLogic: number;
     notXpath: number;
@@ -110,6 +113,7 @@ export const STATUS: Readonly<{
   SUCCESS: 'success';
   SKIPPED_NOT_XPATH: 'skipped_not_xpath';
   SKIPPED_ANDROID: 'skipped_android';
+  SKIPPED_XPATH_STRATEGY: 'skipped_xpath_strategy';
   SKIPPED_UNSUPPORTED_LOGIC: 'skipped_unsupported_logic';
   SKIPPED_VALIDATION_FAILED: 'skipped_validation_failed';
   SKIPPED_NO_CHANGE: 'skipped_no_change';

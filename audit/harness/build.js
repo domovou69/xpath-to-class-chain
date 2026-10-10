@@ -130,8 +130,8 @@ const CTX = [
   ['CTX-codecept-pairs.js', 'convert ios values; android values untouched; file still parses', '10/10 ios converted, 10 android untouched, node --check OK', 'CORRECT', null],
   ['CTX-bare.js', 'convert; file still parses', '10/10 converted, node --check OK', 'CORRECT', null],
   ['CTX-wdio.ts', 'convert incl. template literals; emitted backticks must not break the template literal', '11 converted (backticks escaped as \\`), d9 (following-sibling) skipped; loads under Node 24 type stripping; all 11 chains parse in WDA', 'CORRECT', null],
-  ['CTX-Strategy.java', 'must NOT rewrite while the strategy is XPath', '8/8 rewritten to "-ios class chain:…" inside AppiumBy/By/MobileBy.xpath and @iOSXCUITFindBy(xpath=…); all 8 chains parse in WDA, but the strategy stays XPath; javac unavailable (no JRE)', 'WRONG', 'RC-S1'],
-  ['CTX-strategy.py', 'must NOT rewrite while the strategy is XPath', '8/8 rewritten while AppiumBy.XPATH / By.XPATH stays; parses OK', 'WRONG', 'RC-S2'],
+  ['CTX-Strategy.java', 'must NOT rewrite while the strategy is XPath', '0/8 rewritten: all 8 skipped as skipped_xpath_strategy ("xpath strategy: AppiumBy.xpath(" ×3, "By.xpath(" ×2, "@iOSXCUITFindBy(xpath =" ×2, "MobileBy.xpath(" ×1); file byte-identical; javac unavailable (no JRE)', 'CORRECT', null],
+  ['CTX-strategy.py', 'must NOT rewrite while the strategy is XPath', '0/8 rewritten: all 8 skipped as skipped_xpath_strategy ("xpath strategy: AppiumBy.XPATH" ×6, "By.XPATH" ×2); file byte-identical, parses OK', 'CORRECT', null],
   ['CTX-store.json', 'convert; JSON stays valid', 'JSON.parse OK; 6/6 converted and parse in WDA, including the 3 escaped-quote entries (`contains(@type,\\"…\\")`, RC-S3)', 'CORRECT', null],
 ];
 for (const [id, exp, act, verdict, rc] of CTX) cases.push({ id, xpath: null, expected: exp, actual: act, status: 'scanner', verdict, shape: 'scanner-context', category: 'context', note: '', expressible: true, rootCause: rc, documented: null });
