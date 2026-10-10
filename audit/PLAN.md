@@ -25,8 +25,31 @@ Not all 684 cases are copied. Selected ones are added alongside each fix:
 
 `npm test` stays fast, dependency-free and cross-platform. The full corpus and the semantic check (does the chain find the same element?) stay in `harness/`.
 
-## Phase 2 — on-device verification
+## Phase 2 — on-device verification (done)
 
-Phase 2 runs in a separate session and is specified in [`prompts/coverage.md`](prompts/coverage.md#phase-2--on-device-verification-separate-session-only-on-request). It uses the LocatorLab SwiftUI app and `audit/device/run.js` against a real Appium + WDA on the iOS simulator. Where device results disagree with Phase 1, the device wins: R and S are recomputed, and mini-WDA is corrected where its stand-ins (XML writer, snapshot walk) were wrong.
+Specified in [`prompts/coverage.md`](prompts/coverage.md#phase-2--on-device-verification-separate-session-only-on-request); results in the "Device verification" section of [`coverage-report.md`](coverage-report.md).
 
-Environment as of 2026-10-10: Xcode 27.0 (27A266a), iOS 27 simulator runtime.
+- [`device/`](device/) holds the LocatorLab SwiftUI app (XcodeGen), `run.js` and `results.json`. 246 cases ran twice on Appium 3.8.0 / xcuitest-driver 12.16.0 / WDA 16.14.1, Xcode 27.0, iOS 27.0 simulator (iPhone 17). See its [README](device/README.md).
+- The device disagreed with mini-WDA on result order (XCTest returns matches breadth-first) and on `$…$` (it also tests the element itself). mini-WDA was corrected and `coverage-cases.json` updated: R = 92.3, C = 86.3 %, S = 54.5.
+- New root causes, not fixed yet:
+  - **RC-D1.** Grouped positions `(//X)[n]` count in a different order than XPath (DRIFT, 29 corpus entries).
+  - **RC-D2.** `[.//*[…]]` → `$…$` also matches the element itself (WRONG, F03).
+
+Next: fix RC-D2 and decide RC-D1 (document in the README or skip), each in its own branch with the steps listed under Phase 1; re-run `device/run.js` after converter changes that affect positions or nested predicates.
+
+## Phase 2b — real device (planned)
+
+Repeat the device run on a physical iPhone 13 Pro Max with the same `device/cases.json`, so simulator and hardware can be compared.
+
+- Prerequisites:
+  - an Apple development team for signing: `DEVELOPMENT_TEAM` in `device/project.yml` for LocatorLab, and `appium:xcodeOrgId` / `appium:xcodeSigningId` / `appium:updatedWDABundleId` for WDA;
+  - the phone in developer mode, trusted by this Mac;
+  - an iOS version that Xcode 27.0 supports.
+- Pins stay as they are (Appium 3.8.0, xcuitest-driver 12.16.0, WDA 16.14.1). Record the iOS version and model in `results.json`/`env.json` (a second env entry, keyed by UDID).
+- Run twice (`--diff`), check the outcomes against the simulator run, and compare timings with `run.js --compare device/results.json <device run>`.
+- Watch in particular:
+  - the breadth-first result order (RC-D1);
+  - `$…$` including the element itself (RC-D2);
+  - `visible` on off-screen cells;
+  - lookup times on real hardware.
+

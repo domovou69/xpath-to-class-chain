@@ -27,6 +27,18 @@ static Node *buildTree(xmlNodePtr x, Node *parent, NSString *path, NSUInteger *o
   return n;
 }
 
+// XCTest returns query results breadth-first (observed on iOS 27 with WDA 16.14.1, Phase 2), and
+// WDA hands XPath matches back through such a query (fb_filterDescendantsWithSnapshots), so both
+// sides come back in this order. Positions inside an XPath are still document order (libxml2).
+static void numberBFS(Node *root) {
+  NSMutableArray<Node *> *q = [NSMutableArray arrayWithObject:root]; NSUInteger i = 0, k = 0;
+  while (i < q.count) { Node *n = q[i++]; n.bfs = k++; [q addObjectsFromArray:n.children]; }
+}
+static NSArray<Node *> *inBFSOrder(NSArray<Node *> *a) {
+  return [[[NSOrderedSet orderedSetWithArray:a] array] sortedArrayUsingComparator:^NSComparisonResult(Node *x, Node *y) {
+    return x.bfs < y.bfs ? NSOrderedAscending : (x.bfs > y.bfs ? NSOrderedDescending : NSOrderedSame); }];
+}
+
 // ---- XPath side: mirrors FBXPath.m (attribute order, query-driven attribute inclusion, bool strings)
 static NSArray *ATTRS;
 static NSSet *attrsForQuery(NSString *q) {
@@ -90,7 +102,7 @@ static id runXPath(Node *root, NSString *q) {
       Node *n = store[[NSString stringWithUTF8String:(const char *)p]]; xmlFree(p);
       if (n && n != root) [nodes addObject:n]; else if (n) [nodes addObject:n];
     }
-    if (!result) result = nodes;
+    if (!result) result = inBFSOrder(nodes);
     xmlXPathFreeObject(obj);
   }
   xmlXPathFreeContext(ctx); xmlFreeDoc(doc);
@@ -138,11 +150,48 @@ static NSArray<Node *> *matchingWithItem(FBClassChainItem *item, NSArray<Node *>
     return item.position.integerValue > 0 ? @[cands[item.position.integerValue - 1]] : @[cands[cands.count + item.position.integerValue]];
   return @[];
 }
+// fb_queryDescendantsMatchingChainItems: the strategy WDA uses unless an intermediate step has a
+// position (XCUIElement+FBClassChain.m:38-40). Each step is an XCUIElementQuery:
+// descendantsMatchingType / childrenMatchingType, matchingPredicate for `…`, containingPredicate for
+// $…$. Observed on device: results come back breadth-first, and containingPredicate also tests the
+// element itself (XPath's .// does not).
+static NSArray<Node *> *queryMatchingItem(FBClassChainItem *item, NSArray<Node *> *roots) {
+  NSMutableArray<Node *> *m = [NSMutableArray array];
+  for (Node *root in roots) {
+    if (item.isDescendant) {
+      [m addObjectsFromArray:[root descendantsByFilteringWithBlock:^BOOL(Node *s) {
+        return s != root && (item.type == XCUIElementTypeAny || s.elementType == item.type); }]];
+    } else {
+      for (Node *child in root.children)
+        if (item.type == XCUIElementTypeAny || child.elementType == item.type) [m addObject:child];
+    }
+  }
+  NSArray<Node *> *cands = inBFSOrder(m);
+  for (FBAbstractPredicateItem *pi in item.predicates) {
+    if ([pi isKindOfClass:FBSelfPredicateItem.class]) {
+      cands = [cands filteredArrayUsingPredicate:pi.value];
+    } else {
+      NSMutableArray *cm = [NSMutableArray array];
+      for (Node *cand in cands)
+        if ([cand descendantsByFilteringWithBlock:^BOOL(Node *d) { return [pi.value evaluateWithObject:d]; }].count > 0) [cm addObject:cand];
+      cands = cm;
+    }
+  }
+  return cands;
+}
 static id runChain(Node *root, NSString *chain) {
   @try {
     NSError *err;
     FBClassChain *parsed = [FBClassChainQueryParser parseQuery:chain error:&err];
     if (!parsed) return @{@"error": err.localizedDescription ?: @"parse error"};
+    BOOL intermediatePosition = NO;
+    for (NSUInteger i = 0; i + 1 < parsed.elements.count; i++) if (nil != parsed.elements[i].position) intermediatePosition = YES;
+    if (!intermediatePosition) {
+      NSArray *cands = @[root];
+      for (FBClassChainItem *it in parsed.elements) cands = queryMatchingItem(it, cands);
+      return inBFSOrder(matchingWithItem(parsed.elements.lastObject, cands, @NO));
+    }
+    // snapshot strategy (fb_snapshotDescendantsMatchingChainItems): breadth-first walk per root
     NSMutableArray *lookup = parsed.elements.mutableCopy;
     NSArray *currentRoots = @[root];
     FBClassChainItem *item = lookup.firstObject;
@@ -158,9 +207,8 @@ static id runChain(Node *root, NSString *chain) {
       cands = snapshotsMatchingItem(item, currentRoots);
       [lookup removeObjectAtIndex:0];
     }
-    NSArray *res = matchingWithItem(item, cands, @NO);
-    // fb_filterDescendantsWithSnapshots re-queries descendants -> document order, de-duplicated
-    return [[[NSOrderedSet orderedSetWithArray:res] array] sortedArrayUsingComparator:^NSComparisonResult(Node *a, Node *b) { return a.order < b.order ? NSOrderedAscending : (a.order > b.order ? NSOrderedDescending : NSOrderedSame); }];
+    // fb_filterDescendantsWithSnapshots re-queries descendants -> query (breadth-first) order, de-duplicated
+    return inBFSOrder(matchingWithItem(item, cands, @NO));
   } @catch (NSException *e) {
     return @{@"error": [NSString stringWithFormat:@"%@: %@", e.name, e.reason]};
   }
@@ -185,6 +233,7 @@ int main(int argc, const char *argv[]) {
         if (!src) { [out addObject:@{@"id": c[@"id"], @"error": @"bad fixture xml"}]; continue; }
         NSUInteger ord = 0;
         Node *root = buildTree(xmlDocGetRootElement(src), nil, @"top", &ord);
+        numberBFS(root);
         xmlFreeDoc(src);
         NSMutableDictionary *r = [NSMutableDictionary dictionaryWithObject:c[@"id"] forKey:@"id"];
         if ([c[@"xpath"] isKindOfClass:NSString.class]) r[@"xpath"] = render(runXPath(root, c[@"xpath"]));

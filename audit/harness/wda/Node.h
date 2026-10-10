@@ -9,7 +9,8 @@
 @property (nonatomic, weak) Node *parent;
 @property (nonatomic, copy) NSString *key;      // test-only label, never visible to WDA code
 @property (nonatomic, copy) NSString *indexPath;
-@property (nonatomic) NSUInteger order;         // pre-order position
+@property (nonatomic) NSUInteger order;         // pre-order (document) position
+@property (nonatomic) NSUInteger bfs;           // breadth-first position: the order XCTest queries return elements in
 - (void)setAttr:(NSString *)name value:(NSString *)value;
 - (NSArray<Node *> *)descendantsByFilteringWithBlock:(BOOL (^)(Node *))block;
 @end

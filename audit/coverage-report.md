@@ -13,7 +13,7 @@ The harness and all scripts are in `audit/harness/`; `./run.sh` reproduces this 
 
 ## Progress since Phase 1
 
-Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix branch adds a row here. The numbers come from `audit/harness/run.sh`, and `coverage-cases.json` holds the current verdicts.
+Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix branch adds a row here. The `audit/phase2` row is not a fix: it applies what the device showed (see Device verification below). The numbers come from `audit/harness/run.sh`, and `coverage-cases.json` holds the current verdicts.
 
 | Branch | Root causes fixed | R | C | S (raw) | Corpus WRONG | Spec WRONG |
 |---|---|---|---|---|---|---|
@@ -23,6 +23,7 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/predicate-literals` | RC2, RC10, RC11, RC12, RC13; RC7 in the optimizer | 85.2 | 86.9 % | 42.0 (57.0) | 3 | 6 |
 | `fix/attribute-semantics` | RC3, RC4, RC14; RC-S3 | 91.6 | 86.9 % | 57.2 (63.2) | 0 | 0 |
 | `fix/scanner-xpath-strategy` | RC-S1, RC-S2 | 97.6 | 86.9 % | 63.2 (63.2) | 0 | 0 |
+| `audit/phase2` (device verification) | none fixed; found RC-D1 (DRIFT) and RC-D2 (WRONG), corrected mini-WDA | 92.3 | 86.3 % | 54.5 (57.5) | 0 | 1 |
 
 Notes on `fix/class-chain-parse-errors`:
 
@@ -93,6 +94,194 @@ Notes on `fix/scanner-xpath-strategy`:
 - `Strategy.java` and `strategy.py`: 0/8 rewritten each, both files byte-identical after `--write`; `insideXpathStrategy` 8 → 0. Both are CORRECT. The other four context files are unchanged.
 - No corpus or spec verdict changed. No root causes are left, so the penalty is 0 and R and S equal their raw scores.
 - Regression tests: 53 more checks in the scanner section (`SCANNER: audit regressions`): 40 strategy markers across all languages, 10 strings that must still convert, the Android and closed-call cases, and the `--json` report.
+
+## Device verification (Phase 2)
+
+Run 2026-10-10. Each selected XPath and the class chain the converter makes from it ran against the same screen of a purpose-built SwiftUI app (LocatorLab), under a real Appium + WDA on the iOS simulator. Where the device disagreed with the verdict, the device won. The harness, the app and the raw results are in `audit/device/` (see its README).
+
+### Setup
+
+| Component | Version |
+|---|---|
+| Xcode | 27.0 (27A266a) |
+| iOS simulator runtime | iOS 27.0 (24A434) |
+| Simulator | iPhone 17 (`LocatorLab iPhone 17`, UDID `208FA758-C937-49C4-ADE6-E16B0D7E0630`) |
+| Appium | 3.8.0, installed locally in `audit/device/` |
+| appium-xcuitest-driver | 12.16.0 |
+| WebDriverAgent | 16.14.1 (as bundled, and as reported by the running WDA) |
+| Node | 24.21.0 |
+| XcodeGen | 2.46.0 |
+
+- **WDA settings.** All defaults. The only non-minimal capability is `appium:derivedDataPath`, which keeps the WDA build inside `audit/device/`.
+- **Newer than the pin, not used:** `appium-webdriveragent` 16.14.2 (2026-10-08). The driver pins 16.14.1 exactly. Appium 3.8.0 and driver 12.16.0 are still the latest releases.
+- **Cases (246).** They come from `coverage-cases.json` and comprise:
+  - one representative per corpus shape;
+  - every DRIFT and GAP case;
+  - every case that was WRONG in Phase 1: the 42 spec ids of §4 and corpus L119, L162, L278, L306, L476, L483, L484, L520, L521;
+  - 15 inexpressible corpus entries;
+  - all 115 spec cases.
+- **Values.** Values were adapted to the app only where the case is not about the literal; `make-cases.js` fails if an XPath's structure changes. Corpus cases keep their JS quote and `${…}` text and are converted the way the scanner converts source text.
+- **Two full runs.** Run A (24.5 min) and run B (12.4 min, after the timing change below) gave identical outcomes and hits for all 246 cases (`run.js --diff`, both directions). `results.json` is run B.
+
+### Outcomes
+
+246 cases: EQUAL 146 · SET_DIFFERS 33 · XPATH_ONLY 61 · DEAD 4 · XPATH_ERROR 2 · FIRST_DIFFERS 0 · CC_ERROR 0 · NONE 0. No chain the converter emitted was rejected by WDA.
+
+| Verdict (current) | Device outcome | Cases |
+|---|---|---|
+| CORRECT | EQUAL | 142 |
+| CORRECT | SET_DIFFERS | 1 (A03~app-root, assumption A1, below) |
+| DRIFT | SET_DIFFERS | 31 |
+| DRIFT | EQUAL (not exercised) | 4 |
+| WRONG | SET_DIFFERS | 1 (F03) |
+| GAP | XPath only; Phase 1 hand-written chain EQUAL | 25 |
+| CORRECT-SKIP | XPath only; Phase 1 hand-written chain SET_DIFFERS | 7 (E05–E07, E11, L270–L272) |
+| CORRECT-SKIP | XPath only | 29 |
+| CORRECT-SKIP | DEAD | 4 |
+| CORRECT-SKIP | XPATH_ERROR | 2 |
+
+Against the current `coverage-cases.json`: 241 agree, 4 DRIFT not exercised, 1 is the A1 check.
+
+- **DEAD** means the XPath can never match on WDA: `@text` (L306, B13), `contains(., …)` (C05), `XCUIElementTypeLabel` (A13). It is the expected observation.
+- **XPATH_ERROR** cases are L157 (backtick syntax inside XPath) and H08 (`tokenize(…)[2]`). WDA reports `invalid selector`, as mini-WDA did.
+- **Not exercised:** A15~modal, A16~lists, L207, E13. In each of them the screen happened to give the same result for both sides; the same mechanism is shown diverging by a sibling case (A15 on `nesting`, A16 on `states`, L207's shape by L062/L171/L182, E13's by L174). A16~lists diverged in one earlier run and not in the final two: off-screen table buttons on that screen do not get a stable `visible` value (see platform facts).
+
+### Where the device disagreed with the verdicts before Phase 2
+
+These are compared with `coverage-cases.json` on `main` at 7858ec3. All of them are now reflected in `coverage-cases.json`.
+
+| Case | Verdict before | Device | Cause | Verdict now |
+|---|---|---|---|---|
+| E02 `(//Button)[2]`, E03, E09, E14, G11; corpus L062, L081, L162, L171, L182, L258, L262, L451, L567 | CORRECT | SET_DIFFERS | RC-D1 | DRIFT (undocumented) |
+| E05 `(//Button)[last()]`, E06, E07, E11; corpus L270, L271, L272 | GAP | XPath only; the Phase 1 hand-written chain `[-1]` / `[2]` gives a different element | RC-D1 | CORRECT-SKIP (no exact chain) |
+| F03 `//Cell[.//*[@name="x"]]` | CORRECT | SET_DIFFERS: the chain also returns the Cell named `x` | RC-D2 | WRONG |
+| A03~app-root `//*[@name="LL"]` (the app's own name) | CORRECT under assumption A1 | SET_DIFFERS: XPath also returns the Application, the chain cannot | A1 confirmed | unchanged (A1 is the stated scoring assumption) |
+
+- **Same shape, scored with these.** 15 more corpus entries of the same grouped-position shapes (S006, S018, S043, S047, S084, S105, S106, S136, S160) moved with them: L070, L082, L177, L207, L208, L234, L310, L382, L396, L397, L407, L428, L471, L498, L564–L566, L571–L573.
+- **How they were found.** The corrected mini-WDA found a counter-example for each of these entries, except L397, which is judged by its shape.
+
+Everything else agreed, including every DRIFT the earlier phases predicted:
+- the optimizer's rule 1 broadening (A07, A14, A15: the dropped `Window`/`Other` step also finds the `Close` buttons in the navigation bar and directly in the window);
+- rule 7 (A16: a table cell clipped by its scroll view is `visible`, its button is not; the optimized chain tests the button);
+- per-parent `[n]` (E01, L013, L120, L349, L350, L556);
+- the outer index moved to the parent (L174);
+- nested matching containers (L225, UNVERIFIED in Phase 1);
+- `text()` → label/value (C03, C04, H10), `@enabled=true()` (B16), and `@selected` (B08: `selected` is not in WDA's XML, so the XPath never matches while the chain finds the selected button).
+
+### mini-WDA corrections
+
+The device showed two stand-ins in `audit/harness/wda/` to be wrong. Both are fixed; `wda/upstream/` is unchanged and the self-test is still 43/43.
+
+1. **Result order.** WDA 16.14.1 resolves a chain with an `XCUIElementQuery` unless an intermediate step has a position (`XCUIElement+FBClassChain.m:38-40`), and XCTest returns query results **breadth-first**. WDA hands XPath matches back through a query too, so both sides come back in that order (checked against the page source on six screens, all but `siblings`: every element with a unique key is in breadth-first order). XCTest's `descendantsByFilteringWithBlock`, which the snapshot strategy uses, is breadth-first as well (E11). XPath positions are still evaluated by libxml2 in document order.
+   - mini-WDA ran the snapshot walk for every chain, pre-order, and sorted all results into document order.
+   - It now runs the query strategy for chains without an intermediate position, numbers nodes breadth-first, and walks breadth-first.
+2. **`$…$` and the element itself.** In the query strategy `$…$` is `containingPredicate`, which on the device also tests the element itself. WDA's snapshot strategy excludes it (`descendant != candidate`), as mini-WDA did everywhere. mini-WDA now follows the strategy WDA picks.
+
+Then `./run.sh` and `./run.sh --update`. Changed against `main`:
+- 34 CORRECT → DRIFT (29 corpus entries, E02, E03, E09, E14, G11);
+- 7 GAP → CORRECT-SKIP (L270–L272, E05–E07, E11);
+- 1 CORRECT → WRONG (F03).
+
+The spec fixtures for E03 and E09 now include a deeper match placed first, and `gapexpected.js` no longer lists L270–L272. A second `./run.sh` reports no changes.
+
+### New root causes (converter not changed in this branch)
+
+| Id | Sev. | Repro: input → output → device | Location | Suggested fix |
+|---|---|---|---|---|
+| RC-D1 | major | `(//XCUIElementTypeButton)[2]` → `**/XCUIElementTypeButton[2]`. On `lists` the XPath returns the second button in document order (`Delete` in the first row), the chain the second button breadth-first (`Pako geviv: 12`, a shallower button further down). Same for `(//X)[1]`, `[${i}]` and Phase 1's `[last()]` → `[-1]`. Equal only when every match sits at the same depth (rows of one list). | `lib/converter.js:393` (outer index appended), `:378` (moved onto the parent) | No exact class chain exists. Either document it next to the README positional warning (grouped positions count in XCTest's breadth-first order), or skip grouped positions with a reason. The first keeps today's conversions and earns half credit; see the gap list. |
+| RC-D2 | major | `//XCUIElementTypeCell[.//*[@name="x"]]` → `**/XCUIElementTypeCell[$name == "x"$]` also returns a Cell that is itself named `x`. The same holds for `//*[.//Button[@name="x"]]` (the button itself matches) and `//Cell[.//Cell[@name="x"]]`. | `lib/converter.js:508` (`descendantPredicate`), emitted at `:533` | Emit `[$…$]` only when the outer step and the inner step both name a type and the types differ (then the element cannot match its own predicate); otherwise skip with a reason. F01, F07, F08, R01 and F04's hand-written chain already have that form and are exact on the device. |
+
+RC-D1 is scored as DRIFT, not WRONG. No exact chain exists, and the difference depends on the page, as with the per-parent index (E01) and the outer-index move (L174), which Phase 1 also scored as DRIFT. RC-D2 is WRONG: the affected inputs can be recognised statically and skipped, as with RC15.
+
+### Platform facts found on the device
+
+- **appium-xcuitest-driver 12.16.0 hides selector errors.** `doNativeFind` (`build/lib/commands/find.js:66-72`) catches every WDA error: `findElements` returns `[]` and `findElement` "no such element" for an invalid XPath or class chain, although WDA answers `400 invalid selector`. A broken chain therefore looks like "element not found" in a test run. `run.js` sends the same request straight to WDA whenever Appium returns nothing. This also means that a WRONG class chain that does not parse fails silently on this platform, which makes the linter's checks more valuable.
+- **Result order is breadth-first on both sides** (above). `findElement` returns the same first element for an XPath and its chain whenever the sets are equal.
+- **Assumption A1 holds:** `//*` also matches the `Application` element (name = the app's display name); `**/*` never does.
+- **`visible`** in `/source` can disagree with what a `visible` predicate sees at lookup time. For example, table buttons on screen were reported `visible="false"` in one page source while the queries treated them as visible. Cases that depend on visibility use a clipped cell, which both agree on.
+- **SwiftUI on iOS 27** wraps content in several identifier-less `XCUIElementTypeOther` (some `visible="false"`) and collapses nested `.contain` containers, even with identifiers. `List` is `CollectionView`/`Cell` with three wrapper levels; direct `Cell/Button` children need UIKit.
+
+### Ratings recomputed
+
+Weights unchanged. `audit/harness/run.sh` with the corrected mini-WDA reproduces every device outcome above, so these are the numbers of the current `coverage-cases.json`.
+
+**R (real corpus).**
+- Scored 563, CORRECT-SKIP 77 (L270–L272 added), so expressible = **486**.
+- CORRECT 446; DRIFT documented 5 (L013, L120, L349, L350, L556); DRIFT undocumented 31 (29 × RC-D1, L174, L225); GAP 4 (L355, L455, L458, L461); WRONG 0.
+- R_raw = 100 × (446 + 0.5 × 5) / 486 = 100 × 448.5 / 486 = **92.28**.
+- Root causes in the corpus or contexts: 0, so the penalty is 0.
+- **R = 92.3** (was 97.6). **C = 486 / 563 = 86.3 %** (was 86.9 %).
+
+**S (spec matrix).**
+
+| Cat. | Weight | Calculation | Score | Change against `main` |
+|---|---|---|---|---|
+| Steps, axes, absolute paths, Application root | 15 | 15 × (10 + 0.5·1) / 15 | 10.50 | — |
+| Attributes, comparisons, booleans | 15 | 15 × 15 / 16 | 14.06 | — |
+| XPath 1.0 string functions | 15 | 15 × 5 / 9 | 8.33 | — |
+| Logic and precedence | 12 | 12 × 10 / 15 | 8.00 | — |
+| Positional | 12 | 12 × (0 + 0.5·1) / 6 | 1.00 | E02, E03, E09, E14 → DRIFT; E05–E07, E11 excluded |
+| Nested / descendant predicates | 10 | 10 × 3 / 4 | 7.50 | F03 → WRONG, excluded |
+| Literals and escaping | 10 | 10 × 10 / 14 | 7.14 | G11 → DRIFT |
+| WDA XPath extension functions | 6 | 6 × 1 / 6 | 1.00 | — |
+| Rewritable reverse axes | 5 | 5 × 0 / 1 | 0.00 | — |
+| **Sum** | 100 | | **57.54** | |
+
+- Penalty: 1 root cause (RC-D2) → −3.
+- **S = 57.54 − 3 = 54.5** (was 63.2).
+
+**Gap list (R).** Each expressible entry is worth 100/486 = 0.206 points.
+
+| Change | Entries | Point gain |
+|---|---|---|
+| Document RC-D1 in the README (grouped positions count breadth-first) | 29 | +2.98 → R 95.3 |
+| *or* skip grouped positions with a reason (no exact chain, so they leave the denominator) | 29 | R = 100 × 448.5 / 457 = 98.1 |
+| Single-step unions → one `OR` predicate | L355, L455, L461 | +0.62 |
+| `not(…)` → `NOT (…)` | L458 | +0.21 |
+| Document the outer-index move and nested-match ordering | L174, L225 | +0.21 |
+
+For S, fixing RC-D2 (skip) removes the −3 penalty, and documenting RC-D1 would add 0.5 credit to E02, E03, E09, E14 and G11 (+4.0 in positional, +0.4 in literals).
+
+### Lookup time: XPath vs converted class chain
+
+Each case times the two lookups that are compared: one cold `findElements` call per side, Appium → WDA → back, the side that goes first alternating between cases. This is what a test does, so no warm-up or repetition. Run A used a warm-up and the median of 5 lookups per side; both methods give the same summary (B/A time ratio ×0.97 for both sides), and the full run takes half the time.
+
+Over the 179 cases where both sides found the same thing or a comparable set (`results.json` → `perf`):
+
+| | XPath | Class chain |
+|---|---|---|
+| Median | 150 ms | 118 ms |
+| p95 | 1238 ms | 1596 ms |
+
+- **Speedup** (XPath time / chain time, geometric mean over cases): **×1.11**; median ×1.18; the class chain is faster in 130 of 179 cases.
+- **Order effect:** small. ×1.13 when XPath went first, ×1.08 when the chain went first; the second lookup gains a few percent from WDA's cache.
+
+| Screen | Cases | XPath median | Chain median | Speedup (geomean) |
+|---|---|---|---|---|
+| identity | 54 | 150 ms | 109 ms | ×1.34 |
+| modal | 5 | 157 ms | 153 ms | ×1.01 |
+| lists | 45 | 245 ms | 248 ms | ×1.06 |
+| states | 28 | 136 ms | 101 ms | ×0.98 |
+| nesting | 32 | 113 ms | 90 ms | ×1.07 |
+| functions | 15 | 80 ms | 95 ms | ×0.88 |
+
+- **Where the chain is much slower:**
+  - `visible == true` on a final step (B07: 12.6 s vs 2.0 s): WDA asks for visibility per candidate.
+  - An intermediate position, which forces WDA's snapshot walk (L174 `[2]/*[2]`: 729 vs 241 ms).
+  - `**/XCUIElementTypeButton` on a screen with buttons in two windows (A07: 749 vs 121 ms).
+  - OR over label and value (C04, H10).
+- **Where it is much faster:** positional chains on big screens (L120 ×3.8, E01 ×2.5) and `visible` on an intermediate step (A16 ×2.0, optimizer rule 7).
+- **What the gain depends on.** On these screens (35–250 elements) the gain is modest because Appium's proxy round trip dominates. It is largest where XPath has to serialise a big page source; `run.js --compare` measures it on other devices or iOS versions.
+
+### Not verified, and why
+
+- **Simulator only.** One device type (iPhone 17), one iOS version (27.0), portrait. No physical device, no iPad. `run.js --compare` is ready for runs on other devices or iOS versions.
+- **Coverage.** One representative per corpus shape, plus every DRIFT, GAP and Phase 1 WRONG. The other 400+ corpus entries are judged by shape through the corrected mini-WDA, which now agrees with every device outcome.
+- **Scanner contexts (§3)** are about rewriting source files, not about lookups; they were not run on the device.
+- **Three DRIFT cases** did not diverge on their screen (listed above); the mechanism is shown by sibling cases.
+- **Breadth-first order** was checked on six LocatorLab screens (SwiftUI and UIKit content, a sheet and an alert). It is an observation of XCTest on iOS 27, not a documented guarantee.
+- **`${…}` values** are the same assumptions as Phase 1 (plain text, `true`/`false`, small integers). `${condition('label')}` was instantiated as XPath text.
+- **Timing** includes the Appium proxy round trip and depends on screen size. It was measured on the simulator of one Mac, with no other jobs running during the final two runs.
 
 ## 1. Headline
 
