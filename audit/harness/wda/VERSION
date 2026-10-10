@@ -1,0 +1,4 @@
+repo:   https://github.com/appium/WebDriverAgent
+tag:    v16.14.1
+commit: 2e98ac0ad4dbc99ab7c8bb01b7216fde252afb54
+pinned: Appium 3.8.0 / appium-xcuitest-driver 12.16.0 bundle WDA 16.14.1
