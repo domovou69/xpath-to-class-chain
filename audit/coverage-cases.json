@@ -6757,12 +6757,12 @@
   "id": "D06",
   "xpath": "//*[@name=\"a\" or @label=\"b\"][@value=\"c\"]",
   "expected": "**/*[`(name == \"a\" OR label == \"b\") AND value == \"c\"`]",
-  "actual": "-ios class chain:**/*[`name == \"a\" OR label == \"b\" AND value == \"c\"`]",
+  "actual": "-ios class chain:**/*[`(name == \"a\" OR label == \"b\") AND value == \"c\"`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//*[@name=\"s\" or @label=\"s\"][@value=\"s\"]",
   "category": "D",
-  "note": "hyp. 1 | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | fixture: expected xpath=[\"b2\"] chain=[\"b2\"]; actual xpath=[\"b2\"] chain=[\"b1\",\"b2\"] | root cause RC7"
+  "note": "hyp. 1 | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"b2\"] chain=[\"b2\"]; actual xpath=[\"b2\"] chain=[\"b2\"]"
  },
  {
   "id": "D07",
@@ -6823,12 +6823,12 @@
   "id": "D12",
   "xpath": "//*[@name=\"a\" or @name=\"b\"][@label=\"c\" or @label=\"d\"]",
   "expected": "**/*[`(name == \"a\" OR name == \"b\") AND (label == \"c\" OR label == \"d\")`]",
-  "actual": "-ios class chain:**/*[`name == \"a\" OR name == \"b\" AND label == \"c\" OR label == \"d\"`]",
+  "actual": "-ios class chain:**/*[`(name == \"a\" OR name == \"b\") AND (label == \"c\" OR label == \"d\")`]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//*[@name=\"s\" or @name=\"s\"][@label=\"s\" or @label=\"s\"]",
   "category": "D",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | root cause RC7"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "E01",
@@ -6955,12 +6955,12 @@
   "id": "E12",
   "xpath": "//XCUIElementTypeCell[2][@name=\"a\"]",
   "expected": "INEXPRESSIBLE: per-parent index then filter",
-  "actual": "-ios class chain:**/XCUIElementTypeCell[`name == \"a\"`][2]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "//XCUIElementTypeCell[2][@name=\"s\"]",
   "category": "E",
-  "note": "predicate order matters in XPath | actual vs XPath: EQUAL | fixture: actual xpath=[\"c2\"] chain=[\"c3\"] | root cause RC15 | excluded from denominator"
+  "note": "predicate order matters in XPath | fixture: xpath xpath=[\"c2\"] chain=undefined | XPath-only hits in 0/300 trials | excluded from denominator"
  },
  {
   "id": "E13",
@@ -6988,12 +6988,12 @@
   "id": "F01",
   "xpath": "//XCUIElementTypeCell[.//XCUIElementTypeButton[@name=\"x\"]]",
   "expected": "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"x\"$]",
-  "actual": "-ios class chain:**/XCUIElementTypeCell[`name == \"x\"`]",
+  "actual": "-ios class chain:**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"x\"$]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeCell[.//XCUIElementTypeButton[@name=\"s\"]]",
   "category": "F",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | fixture: expected xpath=[\"c1\"] chain=[\"c1\"]; actual xpath=[\"c1\"] chain=[\"c2\"] | root cause RC8"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"c1\"] chain=[\"c1\"]; actual xpath=[\"c1\"] chain=[\"c1\"]"
  },
  {
   "id": "F02",
@@ -7010,12 +7010,12 @@
   "id": "F03",
   "xpath": "//XCUIElementTypeCell[.//*[@name=\"x\"]]",
   "expected": "**/XCUIElementTypeCell[$name == \"x\"$]",
-  "actual": "-ios class chain:**/XCUIElementTypeCell[`name == \"x\"`]",
+  "actual": "-ios class chain:**/XCUIElementTypeCell[$name == \"x\"$]",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeCell[.//*[@name=\"s\"]]",
   "category": "F",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | root cause RC8"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "F04",
@@ -7032,12 +7032,12 @@
   "id": "F05",
   "xpath": "//XCUIElementTypeCell[./XCUIElementTypeButton[@name=\"x\"]]",
   "expected": "INEXPRESSIBLE: child-existence",
-  "actual": "-ios class chain:**/XCUIElementTypeCell[`name == \"x\"`]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "//XCUIElementTypeCell[./XCUIElementTypeButton[@name=\"s\"]]",
   "category": "F",
-  "note": "actual vs XPath: SET_DIFFERS | fixture: actual xpath=[\"c1\"] chain=[\"c2\"] | root cause RC8 | excluded from denominator"
+  "note": "fixture: xpath xpath=[\"c1\"] chain=undefined | XPath-only hits in 0/300 trials | excluded from denominator"
  },
  {
   "id": "F06",
@@ -7054,23 +7054,23 @@
   "id": "F07",
   "xpath": "//XCUIElementTypeTable/XCUIElementTypeCell[.//XCUIElementTypeStaticText[@label=\"x\"]]/XCUIElementTypeButton",
   "expected": "**/XCUIElementTypeTable/XCUIElementTypeCell[$type == \"XCUIElementTypeStaticText\" AND label == \"x\"$]/XCUIElementTypeButton",
-  "actual": "-ios class chain:**/XCUIElementTypeTable/XCUIElementTypeCell[`label == \"x\"`]/XCUIElementTypeButton",
+  "actual": "-ios class chain:**/XCUIElementTypeTable/XCUIElementTypeCell[$type == \"XCUIElementTypeStaticText\" AND label == \"x\"$]/XCUIElementTypeButton",
   "status": "success",
-  "verdict": "WRONG",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeTable/XCUIElementTypeCell[.//XCUIElementTypeStaticText[@label=\"s\"]]/XCUIElementTypeButton",
   "category": "F",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"b1\"] chain=[\"b1\"]; actual xpath=[\"b1\"] chain=[\"b2\"] | root cause RC8"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"b1\"] chain=[\"b1\"]; actual xpath=[\"b1\"] chain=[\"b1\"]"
  },
  {
   "id": "F08",
   "xpath": "//XCUIElementTypeCell[@name=\"a\"][.//XCUIElementTypeButton]",
   "expected": "**/XCUIElementTypeCell[`name == \"a\"`][$type == \"XCUIElementTypeButton\"$]",
-  "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "actual": "-ios class chain:**/XCUIElementTypeCell[`name == \"a\"`][$type == \"XCUIElementTypeButton\"$]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeCell[@name=\"s\"][.//XCUIElementTypeButton]",
   "category": "F",
-  "note": "expected vs XPath: 300/300 equal | fixture: expected xpath=[\"c1\"] chain=[\"c1\"]"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"c1\"] chain=[\"c1\"]; actual xpath=[\"c1\"] chain=[\"c1\"]"
  },
  {
   "id": "G01",
@@ -7307,12 +7307,12 @@
   "id": "H08",
   "xpath": "//*[tokenize(@label,\" \")[2]=\"b\"]",
   "expected": "INEXPRESSIBLE: no tokenization in NSPredicate",
-  "actual": "-ios class chain:**/*[2]",
-  "status": "success",
-  "verdict": "WRONG",
+  "actual": null,
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "//*[tokenize(@label,\"s\")[2]=\"s\"]",
   "category": "H",
-  "note": "actual vs XPath: XPATH_ERROR | root cause RC8 | excluded from denominator"
+  "note": "XPath-only hits in 0/300 trials | excluded from denominator"
  },
  {
   "id": "H09",

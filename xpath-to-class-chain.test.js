@@ -127,6 +127,16 @@ const CONVERT_CASES = [
   ['/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]', `${CC}XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]`], // A08
   ['/XCUIElementTypeApplication//XCUIElementTypeButton[@name="x"]', `${CC}**/XCUIElementTypeButton[\`name == "x"\`]`],
   ['/*/XCUIElementTypeWindow', `${CC}XCUIElementTypeWindow`],
+  // RC7: predicates joined with AND keep each OR group intact
+  ['//*[@name="a" or @label="b"][@value="c"]', `${CC}**/*[\`(name == "a" OR label == "b") AND value == "c"\`]`], // D06
+  ['//*[@name="a" or @name="b"][@label="c" or @label="d"]', `${CC}**/*[\`(name == "a" OR name == "b") AND (label == "c" OR label == "d")\`]`], // D12
+  ['//XCUIElementTypeButton[contains(text(),"a") and @enabled="true"]', `${CC}**/XCUIElementTypeButton[\`(label CONTAINS "a" OR value CONTAINS "a") AND enabled == true\`]`],
+  // RC8: a descendant path in a predicate becomes a `$…$` descendant predicate, not a filter on the outer element
+  ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"]]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]`], // F01
+  ['//XCUIElementTypeCell[.//*[@name="x"]]', `${CC}**/XCUIElementTypeCell[$name == "x"$]`], // F03
+  ['//XCUIElementTypeTable/XCUIElementTypeCell[.//XCUIElementTypeStaticText[@label="x"]]/XCUIElementTypeButton', `${CC}**/XCUIElementTypeTable/XCUIElementTypeCell[$type == "XCUIElementTypeStaticText" AND label == "x"$]/XCUIElementTypeButton`], // F07
+  ['//XCUIElementTypeCell[@name="a"][.//XCUIElementTypeButton]', `${CC}**/XCUIElementTypeCell[\`name == "a"\`][$type == "XCUIElementTypeButton"$]`], // F08
+  ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x" or @label="y"]][2]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND (name == "x" OR label == "y")$][2]`],
 ];
 
 // =====================================================================
@@ -204,9 +214,16 @@ const SKIP_CASES = [
   ['//XCUIElementTypeButton[string-length(@label)>3]', 'RC6: string-length (C07)'],
   ['//*[@label=concat("a","b")]', 'RC6: concat (C09)'],
   ['//XCUIElementTypeCell[XCUIElementTypeButton]', 'RC6: child-existence test (F02)'],
-  ['//XCUIElementTypeCell[@name="a"][.//XCUIElementTypeButton]', 'RC6: descendant path in predicate (F08)'],
   ['//*[matches(@name,"^a.c$")]', 'RC6: matches (H02)'],
   ['//*[lower-case(@label)="ab"]', 'RC6: lower-case (H05)'],
+  // RC8: nested paths the chain cannot express
+  ['//XCUIElementTypeCell[./XCUIElementTypeButton[@name="x"]]', 'RC8: child-existence test (F05)'],
+  ['//*[tokenize(@label," ")[2]="b"]', 'RC8: nested index inside a function (H08)'],
+  ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"] and @name="a"]', 'RC8: descendant path mixed with a filter'],
+  ['//XCUIElementTypeCell[.//XCUIElementTypeButton[.//XCUIElementTypeImage]]', 'RC8: nested descendant predicates'],
+  ['//XCUIElementTypeCell[.//*]', 'RC8: any descendant'],
+  // RC15: XPath filters after the per-parent index; the chain cannot
+  ['//XCUIElementTypeCell[2][@name="a"]', 'RC15: index before a filter (E12)'],
 ];
 
 // =====================================================================
