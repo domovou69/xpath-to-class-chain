@@ -101,7 +101,8 @@ To add a spec case, append `{ id, cat, xpath, expected }` to `speccases.js`. `ex
 - `main.m`, `Node.h/.m`: written for the harness.
   - Builds the element tree from XML.
   - XPath side: libxml2, run the way `FBXPath.m` does it (attribute order, only the attributes the query uses, `"true"`/`"false"` booleans, WDA's extension functions).
-  - Chain side: the snapshot lookup adapted from `XCUIElement+FBClassChain.m`.
+  - Chain side: both lookup strategies of `XCUIElement+FBClassChain.m`. WDA uses the snapshot walk only when an intermediate step has a position (`fb_hasIntermediatePosition`); every other chain is an `XCUIElementQuery`. The query stand-in returns matches breadth-first and lets `$…$` (`containingPredicate`) test the element itself, as observed on the iOS 27 simulator in Phase 2.
+  - Result order: WDA returns XPath matches through a query as well, so both sides come back breadth-first. Positions inside an XPath (`(//X)[2]`, `last()`) still count in document order (libxml2).
 - `build.sh`: copies `upstream/`, applies `patches/`, and compiles to `out/wdaemu`.
 - `fetch-wda.sh <tag>`: refreshes `upstream/` to another WDA release. Afterwards run `build.sh` (the patches must still apply), `node selftest.js` and `./run.sh`, then update `VERSION`.
 
@@ -109,4 +110,4 @@ Direct use: `out/wdaemu cases.json` where `cases.json` is `[{ "id", "xml", "xpat
 
 ## Limits
 
-This is not a device. Three parts of mini-WDA are stand-ins rather than WDA code: the XML writer, the snapshot walk and the `Node` attributes. Anything that depends on real XCTest behaviour is out of reach here: lookup order for nested matches under the query strategy, `hittable`, real `rect` values, and type mapping on a live app. The full list is in §8 of the report. On-device confirmation is Phase 2.
+This is not a device. Four parts of mini-WDA are stand-ins rather than WDA code: the XML writer, the snapshot walk, the XCTest query (order and `containingPredicate`) and the `Node` attributes. Phase 2 (`../device/`) checked them on the simulator and corrected the query stand-in: until then mini-WDA returned every chain in document order and excluded the element itself from `$…$`. Still out of reach here: `hittable`, real `rect` values, `visible` as XCTest computes it, and type mapping on a live app.

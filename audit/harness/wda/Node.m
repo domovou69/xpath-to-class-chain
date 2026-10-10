@@ -32,13 +32,15 @@ static BOOL B(NSString *v) { return [v isEqualToString:@"true"]; }
 - (NSDictionary *)wdRect { CGRect f = _wdFrame; return @{@"x": @(CGRectGetMinX(f)), @"y": @(CGRectGetMinY(f)), @"width": @(CGRectGetWidth(f)), @"height": @(CGRectGetHeight(f))}; }
 - (NSString *)wdType { return [FBElementTypeTransformer stringWithElementType:self.elementType]; }
 - (id)fb_valueForWDAttributeName:(NSString *)name { return nil; }
-// XCTest's descendantsByFilteringWithBlock: pre-order walk that includes the receiver (per WDA comment)
+// XCTest's descendantsByFilteringWithBlock: includes the receiver (per WDA comment) and walks
+// breadth-first (observed on the iOS 27 simulator in Phase 2: `**/Cell[2]/Button`, which WDA
+// resolves with this walk, picks the second Cell in breadth-first order, not document order)
 - (NSArray<Node *> *)descendantsByFilteringWithBlock:(BOOL (^)(Node *))block {
   NSMutableArray *r = [NSMutableArray array];
-  NSMutableArray *stack = [NSMutableArray arrayWithObject:self];
-  while (stack.count) { Node *n = stack.lastObject; [stack removeLastObject];
+  NSMutableArray *queue = [NSMutableArray arrayWithObject:self]; NSUInteger i = 0;
+  while (i < queue.count) { Node *n = queue[i++];
     if (block(n)) [r addObject:n];
-    for (Node *c in n.children.reverseObjectEnumerator) [stack addObject:c]; }
+    [queue addObjectsFromArray:n.children]; }
   return r;
 }
 @end

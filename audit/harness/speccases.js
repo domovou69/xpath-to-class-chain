@@ -10,7 +10,8 @@ const FIX = {
   A13: A(E('Other', 'k="o1" name="a"') + E('StaticText', 'k="s1" name="a"')),
   C10: A(E('TextField', 'k="t1"') + E('TextView', 'k="t2"') + E('Other', 'k="o1"') + E('StaticText', 'k="s1"')),
   D06: A(E('Button', 'k="b1" name="a" value="z"') + E('Button', 'k="b2" label="b" value="c"')),
-  E09: A(E('Button', 'k="b1" name="a"') + E('Other', '', E('Button', 'k="b2" name="a"'))),
+  // a deeper match first in document order: XPath positions count it first, XCTest (breadth-first) last
+  E09: A(E('Other', '', E('Button', 'k="d1" name="a"')) + E('Button', 'k="s1" name="a"') + E('Button', 'k="s2" name="a"')),
   E12: A(E('Table', '', E('Cell', 'k="c1" name="b"') + E('Cell', 'k="c2" name="a"') + E('Cell', 'k="c3" name="a"'))),
   E13: A(E('Table', '', E('Cell', 'k="c1" name="a"', E('Button', 'k="x1"') + E('Button', 'k="x2"')) + E('Cell', 'k="c2" name="a"', E('Button', 'k="y1"')) + E('Cell', 'k="c3" name="a"', E('Button', 'k="z1"') + E('Button', 'k="z2"')))),
   F01: A(E('Cell', 'k="c1"', E('Other', '', E('Button', 'name="x"'))) + E('Cell', 'k="c2" name="x"') + E('Cell', 'k="c3"')),
@@ -22,6 +23,7 @@ const FIX = {
   A07: A(E('Window', 'k="w"', E('Button', 'k="b1"') + E('Other', '', E('Button', 'k="deep"')))),
 };
 FIX.A15 = FIX.A14;
+FIX.E03 = FIX.E09;
 module.exports = [
   // A — steps, axes, absolute paths, Application root
   { id: 'A01', cat: 'A', xpath: `//${T('Button')}`, expected: `**/${T('Button')}` },
@@ -87,23 +89,23 @@ module.exports = [
   { id: 'D12', cat: 'D', xpath: `//*[@name="a" or @name="b"][@label="c" or @label="d"]`, expected: '**/*[`(name == "a" OR name == "b") AND (label == "c" OR label == "d")`]' },
   // E — positional
   { id: 'E01', cat: 'E', xpath: `//${T('Button')}[2]`, expected: `**/${T('Button')}[2]`, approx: 'per-parent [n] has no exact class chain form; global [n] is the documented approximation (README)' },
-  { id: 'E02', cat: 'E', xpath: `(//${T('Button')})[2]`, expected: `**/${T('Button')}[2]` },
-  { id: 'E03', cat: 'E', xpath: `(//${T('Button')}[@name="a"])[1]`, expected: `**/${T('Button')}[\`name == "a"\`][1]` },
+  { id: 'E02', cat: 'E', xpath: `(//${T('Button')})[2]`, expected: `**/${T('Button')}[2]`, approx: 'RC-D1: class chain positions count matches in XCTest query order (breadth-first), XPath in document order (Phase 2)' },
+  { id: 'E03', cat: 'E', xpath: `(//${T('Button')}[@name="a"])[1]`, expected: `**/${T('Button')}[\`name == "a"\`][1]`, approx: 'RC-D1: class chain positions count matches in XCTest query order (breadth-first), XPath in document order (Phase 2)' },
   { id: 'E04', cat: 'E', xpath: `//${T('Button')}[last()]`, expected: { inexpressible: 'per-parent last()' } },
-  { id: 'E05', cat: 'E', xpath: `(//${T('Button')})[last()]`, expected: `**/${T('Button')}[-1]` },
-  { id: 'E06', cat: 'E', xpath: `(//${T('Button')})[last()-1]`, expected: `**/${T('Button')}[-2]` },
-  { id: 'E07', cat: 'E', xpath: `(//${T('Button')})[position()=2]`, expected: `**/${T('Button')}[2]` },
+  { id: 'E05', cat: 'E', xpath: `(//${T('Button')})[last()]`, expected: { inexpressible: 'document-order position; [-1] counts in XCTest query order (RC-D1)' } },
+  { id: 'E06', cat: 'E', xpath: `(//${T('Button')})[last()-1]`, expected: { inexpressible: 'document-order position; [-2] counts in XCTest query order (RC-D1)' } },
+  { id: 'E07', cat: 'E', xpath: `(//${T('Button')})[position()=2]`, expected: { inexpressible: 'document-order position; [2] counts in XCTest query order (RC-D1)' } },
   { id: 'E08', cat: 'E', xpath: `(//${T('Button')})[position() <= 2]`, expected: { inexpressible: 'class chain selects one position or all, never a range' } },
-  { id: 'E09', cat: 'E', xpath: `(//${T('Button')}[@name="a"])[\${i}]`, expected: `**/${T('Button')}[\`name == "a"\`][\${i}]`, tmpl: { i: '2' } },
+  { id: 'E09', cat: 'E', xpath: `(//${T('Button')}[@name="a"])[\${i}]`, expected: `**/${T('Button')}[\`name == "a"\`][\${i}]`, tmpl: { i: '2' }, approx: 'RC-D1: class chain positions count matches in XCTest query order (breadth-first), XPath in document order (Phase 2)' },
   { id: 'E10', cat: 'E', xpath: `(//${T('Button')}[@name="a"])\${suffix}`, expected: { inexpressible: 'suffix unknown statically' }, tmpl: { suffix: '[2]' } },
-  { id: 'E11', cat: 'E', xpath: `(//${T('Cell')})[2]/${T('Button')}`, expected: `**/${T('Cell')}[2]/${T('Button')}` },
+  { id: 'E11', cat: 'E', xpath: `(//${T('Cell')})[2]/${T('Button')}`, expected: { inexpressible: 'document-order position on an intermediate step; WDA\'s snapshot walk counts breadth-first (RC-D1)' } },
   { id: 'E12', cat: 'E', xpath: `//${T('Cell')}[2][@name="a"]`, expected: { inexpressible: 'per-parent index then filter' }, note: 'predicate order matters in XPath' },
   { id: 'E13', cat: 'E', xpath: `(//${T('Cell')}[@name="a"]/${T('Button')}[2])[2]`, expected: { inexpressible: 'per-parent inner index + global outer index' }, note: 'hyp. 7' },
-  { id: 'E14', cat: 'E', xpath: `(//${T('Cell')})[1]`, expected: `**/${T('Cell')}[1]` },
+  { id: 'E14', cat: 'E', xpath: `(//${T('Cell')})[1]`, expected: `**/${T('Cell')}[1]`, approx: 'RC-D1: class chain positions count matches in XCTest query order (breadth-first), XPath in document order (Phase 2)' },
   // F — nested / descendant predicates
   { id: 'F01', cat: 'F', xpath: `//${T('Cell')}[.//${T('Button')}[@name="x"]]`, expected: `**/${T('Cell')}[$type == "${T('Button')}" AND name == "x"$]` },
   { id: 'F02', cat: 'F', xpath: `//${T('Cell')}[${T('Button')}]`, expected: { inexpressible: 'child-existence; $…$ tests any descendant' } },
-  { id: 'F03', cat: 'F', xpath: `//${T('Cell')}[.//*[@name="x"]]`, expected: `**/${T('Cell')}[$name == "x"$]` },
+  { id: 'F03', cat: 'F', xpath: `//${T('Cell')}[.//*[@name="x"]]`, expected: { inexpressible: '$…$ (XCTest containingPredicate) also tests the Cell itself; .//* cannot match it (RC-D2, Phase 2)' } },
   { id: 'F04', cat: 'F', xpath: `//${T('Cell')}[descendant::${T('Button')}]`, expected: `**/${T('Cell')}[$type == "${T('Button')}"$]` },
   { id: 'F05', cat: 'F', xpath: `//${T('Cell')}[./${T('Button')}[@name="x"]]`, expected: { inexpressible: 'child-existence' } },
   { id: 'F06', cat: 'F', xpath: `//${T('Cell')}[count(.//${T('Button')})=2]`, expected: { inexpressible: 'count()' } },
@@ -120,7 +122,7 @@ module.exports = [
   { id: 'G08', cat: 'G', xpath: '//*[@name="a?"]', expected: '**/*[`name == "a?"`]' },
   { id: 'G09', cat: 'G', xpath: '//*[@name="a*?"]', expected: '**/*[`name == "a*?"`]' },
   { id: 'G10', cat: 'G', xpath: '//*[@label="a/b|c(d)"]', expected: '**/*[`label == "a/b|c(d)"`]' },
-  { id: 'G11', cat: 'G', xpath: '(//*[@label="a)b"])[2]', expected: '**/*[`label == "a)b"`][2]' },
+  { id: 'G11', cat: 'G', xpath: '(//*[@label="a)b"])[2]', expected: '**/*[`label == "a)b"`][2]', approx: 'RC-D1: class chain positions count matches in XCTest query order (breadth-first), XPath in document order (Phase 2)' },
   { id: 'G12', cat: 'G', xpath: '//*[@label="C:\\dir"]', expected: '**/*[`label == "C:\\\\dir"`]', note: 'runtime value contains one backslash' },
   { id: 'G13', cat: 'G', xpath: '//*[@label="$5 and @x"]', expected: '**/*[`label == "$5 and @x"`]' },
   { id: 'G14', cat: 'G', xpath: '//*[contains(@label,"a]b")]', expected: '**/*[`label CONTAINS "a]b"`]' },

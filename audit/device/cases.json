@@ -1,0 +1,2099 @@
+[
+ {
+  "id": "L002",
+  "screen": "identity",
+  "xpath": "//*[contains(@name, \"Bika Fabis tuve so liv je mefizo mi \")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L006",
+  "screen": "identity",
+  "xpath": "//*[@label=\"Picama rajer t bevad motezef rari 0.\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L014",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[@name=\"Dozur, ti hibimaw rorefek fojo dosu\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L119",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[@name=\"19, Juzo Kabih\\nJomojab, FI16 7TE\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L162",
+  "screen": "identity",
+  "xpath": "(//XCUIElementTypeStaticText[@name=\"Romor wepes je robo\\n7393\"])[1]",
+  "quote": "'",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L015",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[starts-with(@label, \"Ves zov sori gisu fo wigobur zov tosu ce pumed tuvila\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L016",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[@label=\"${message}\"]",
+  "quote": "`",
+  "subst": {
+   "message": "Saved"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L045",
+  "screen": "identity",
+  "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Bowep ge mipunaco\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L048",
+  "screen": "identity",
+  "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz:\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L069",
+  "screen": "identity",
+  "xpath": "(//XCUIElementTypeStaticText[@label=\"Lugatej pejun huregad\"])",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L076",
+  "screen": "identity",
+  "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Pi cog rufosi je sadobu dom laciwuj zov cuba wumesok. Picama camavi zov cog sehoj bika koce dovo goz sibo ho munub va pi wikop jigiraz rekivame pelu velotop.\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L088",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[contains(@value,\"Rajer bika sibo ho munub va DE / LO / KIMO.\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L107",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Zov hat wikop bika pelu colusegoma gatejese tevej goz maceti bika pubiwehipet fo wedocagi dom bilakide ri hu rig.\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L109",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[contains(@name,\"Dom colusegoma goz kijical hu dewusines pelu fajoni ce je tonodo goz pobupat gecupiribem dulacoci fuhemoka je zov ri dom Hijareci Logozeb sufaket goz Keb, goz ri fufug fugowome. Heti cog dere nuna je wasaj dom kic zov kizik ri, hu je wasaj dom genilut zov foba zenu zov kizik ri su lu\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L110",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeButton[contains(@label,\"Giji Navecuhu laciwuj\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L143",
+  "screen": "identity",
+  "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Cog zov husu zov noca je diteda?\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L145",
+  "screen": "identity",
+  "xpath": "//*[contains(@label, \"Jeb fej\") and contains (@label, \"rolafa\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L161",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[contains (@name, 'bapoh wigobur.')]",
+  "quote": "\"",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L163",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[contains(@label, \"£\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L180",
+  "screen": "identity",
+  "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@value,\"Dikasod vilokor: £\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L188",
+  "screen": "identity",
+  "xpath": "//*[contains(@label, \"rolafa desuz figuleni\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L192",
+  "screen": "identity",
+  "xpath": "//*[contains(@value, \"Pako goz tival ${numbers} ${text} je poz £${amount}\")]",
+  "quote": "`",
+  "subst": {
+   "numbers": "3",
+   "text": "lines",
+   "amount": "2.50"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L194",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[@name=\"${day}\"]",
+  "quote": "`",
+  "subst": {
+   "day": "Monday"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L197",
+  "screen": "identity",
+  "xpath": "//*[contains(@label,\"Ganam Zemori Jila\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L210",
+  "screen": "identity",
+  "xpath": "//*[contains(@value, \"Kup sefasi.\") and contains (@value, \"Vik fecegiv je poz.\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L211",
+  "screen": "identity",
+  "xpath": "//*[@name=\"Zov cuba nififet dom kofodat rolafa ho wajih.\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L223",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[@value=\"Kajepazagopotev, zov cuba jizorawohuni posetog bika tazeviz\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L267",
+  "screen": "identity",
+  "xpath": "(//XCUIElementTypeStaticText[contains(@label, \"${name}\")])",
+  "quote": "`",
+  "subst": {
+   "name": "Alex"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L297",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[contains(@name, \"${name}\")]",
+  "quote": "`",
+  "subst": {
+   "name": "Alex"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L304",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[contains(@name, \"je vap bika zucubamo?\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L330",
+  "screen": "identity",
+  "xpath": "//*[@name=\"Leba Mipunaco?\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L354",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[contains(@name,\"Meli bika tazeviz\") or contains(@name,\"Jeb fabis tuve\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L355",
+  "screen": "identity",
+  "xpath": "//*[@name=\"Veg monuw\"] | //*[@name=\"LipohUgicolu.codid\"]",
+  "quote": "'",
+  "expectedChain": "**/*[`name == \"Veg monuw\" OR name == \"LipohUgicolu.codid\"`]",
+  "verdict": "GAP",
+  "category": "corpus"
+ },
+ {
+  "id": "L372",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeWebView",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L424",
+  "screen": "identity",
+  "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name, \"${title}\")]",
+  "quote": "`",
+  "subst": {
+   "title": "Alex"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L429",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[@name=\"Cog zov husu zov noca je hicepe hom dulacoci?\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L437",
+  "screen": "identity",
+  "xpath": "//*[contains(@name,\"Rigi gohaz gusuri\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L458",
+  "screen": "identity",
+  "xpath": "//*[contains(@label, \"NE Cisibosogoz Jufoz bihi\") and not (contains(@label, \"Bika\"))]",
+  "quote": "'",
+  "expectedChain": "**/*[`label CONTAINS \"NE Cisibosogoz Jufoz bihi\" AND NOT (label CONTAINS \"Bika\")`]",
+  "verdict": "GAP",
+  "category": "corpus"
+ },
+ {
+  "id": "L460",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[contains(@label, \"Cijahil: ${prize}\") or contains(@label, \"Dew deguw: ${prize}\")]",
+  "quote": "`",
+  "subst": {
+   "prize": "£5"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L472",
+  "screen": "identity",
+  "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name, \"hibimaw pamul\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L474",
+  "screen": "identity",
+  "xpath": "//*[@label=\"Bika kavemag\" or @label=\"Bika rorefek\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L478",
+  "screen": "identity",
+  "xpath": "//*[contains(@label, \"Rurez\") and contains(@label, \"mazejuz:\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L513",
+  "screen": "identity",
+  "xpath": "(//XCUIElementTypeImage[@name=\"kasoc_jijun\"])",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L531",
+  "screen": "identity",
+  "xpath": "//*[contains(@name, \"DacinIjaVudaKecemoRisu.jibikIhofe\") and contains(@label, \"Dikasod ditar: £\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L037",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeButton[@label=\"Jeb wajih je dobe ticu\" or @label=\"Wikop wajih teg kavemag\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L306",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeStaticText[contains(@text, \"Tazeviz\")]",
+  "quote": "'",
+  "dead": true,
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L157",
+  "screen": "identity",
+  "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L068",
+  "screen": "identity",
+  "xpath": "(//XCUIElementTypeStaticText[@label=\"Bika pejun huregad\"])${value}",
+  "quote": "`",
+  "subst": {
+   "value": "[1]"
+  },
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L024",
+  "screen": "modal",
+  "xpath": "//XCUIElementTypeButton[@label=\"Namatir wepes je dobe\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L300",
+  "screen": "modal",
+  "xpath": "//XCUIElementTypeButton[@name=\"Raf ra\" or @name=\"HinefovigocEzehefuc.honeGolepu\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L037",
+  "variant": "sheet",
+  "screen": "modal",
+  "xpath": "//XCUIElementTypeButton[@label=\"Jeb wajih je dobe ticu\" or @label=\"Wikop wajih teg kavemag\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L355",
+  "variant": "sheet",
+  "screen": "modal",
+  "xpath": "//*[@name=\"Veg monuw\"] | //*[@name=\"LipohUgicolu.codid\"]",
+  "quote": "'",
+  "expectedChain": "**/*[`name == \"Veg monuw\" OR name == \"LipohUgicolu.codid\"`]",
+  "verdict": "GAP",
+  "category": "corpus"
+ },
+ {
+  "id": "L062",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton[@name=\"row.edit\"])[1]",
+  "quote": "'",
+  "original": "(//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.noraSefili\"])[1]",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L081",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton[@label=\"Taka\"])[1]",
+  "quote": "'",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L120",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeButton[contains(@name, \"row.edit\")][1]",
+  "quote": "'",
+  "original": "//XCUIElementTypeButton[contains(@name, \"HosidoLitokazajiCimo.noraSefili\")][1]",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L147",
+  "screen": "lists",
+  "xpath": "//*[contains(@label, \"Line ${number}\")]",
+  "quote": "`",
+  "subst": {
+   "number": "2"
+  },
+  "expectedChain": "**/*[`label CONTAINS \"Line ${number}\"`]",
+  "original": "//*[contains(@label, \"Hicepe Wacisugik mazejuz ${number}\")]",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L151",
+  "screen": "lists",
+  "xpath": "//*[contains(@name, \"Code ${number}, total:\")]",
+  "quote": "`",
+  "subst": {
+   "number": "2"
+  },
+  "expectedChain": "**/*[`name CONTAINS \"Code ${number}, total:\"`]",
+  "original": "//*[contains(@name, \"Wacisugik mazejuz ${number}, mazejuz:\")]",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L152",
+  "screen": "lists",
+  "xpath": "//*[contains(@label, \"Tete ${line}\") and contains(@label, \"Wacisugik mazejuz\")]",
+  "quote": "`",
+  "subst": {
+   "line": "1"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L199",
+  "screen": "lists",
+  "xpath": "//*[contains(@label, \"Tete ${line}\") and contains(@label, \"Bevef Daw\") and contains(@label, \"mazejuz\")]",
+  "quote": "`",
+  "subst": {
+   "line": "1"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L201",
+  "screen": "lists",
+  "xpath": "//*[contains(@name, \"tete(${line}\") and contains (@label, \"Petor ${round}, Bevef daw notupisa\")]",
+  "quote": "`",
+  "subst": {
+   "line": "1",
+   "round": "2"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L203",
+  "screen": "lists",
+  "xpath": "//*[contains(@label, \"Tete ${line}\") and contains(@label, \"pako geviv\") and contains(@label, \"${pickCount}\") and contains(@label, \"Bevef Daw\")]",
+  "quote": "`",
+  "subst": {
+   "line": "1",
+   "pickCount": "4"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L218",
+  "screen": "lists",
+  "xpath": "//*[contains(@label, \"Tete ${line}, pako geviv\") and contains(@label, \"${pickCount}\")]",
+  "quote": "`",
+  "subst": {
+   "line": "1",
+   "pickCount": "4"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L483",
+  "screen": "lists",
+  "xpath": "//*[contains(@label, \"Tete ${line}\")]//*[contains(@label, \"${match}\")]",
+  "quote": "`",
+  "subst": {
+   "line": "1",
+   "match": "Kurez"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L484",
+  "screen": "lists",
+  "xpath": "//*[contains(@label, \"Tete ${line}\")]//*[contains(@label, \"${prize}\")]",
+  "quote": "`",
+  "subst": {
+   "line": "1",
+   "prize": "Prize"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L485",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeOther[contains(@name, \"PofuJiwirupIpuj.tete(${line}\")]",
+  "quote": "`",
+  "subst": {
+   "line": "1"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L171",
+  "screen": "lists",
+  "xpath": "(//*[contains(@name, \"${date}\")])[${transaction}]",
+  "quote": "`",
+  "subst": {
+   "date": "12 Oct",
+   "transaction": "2"
+  },
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L174",
+  "screen": "lists",
+  "xpath": "(//*[contains(@name, \"Vilokor,\")]/child::*[2])[${transaction}]",
+  "quote": "`",
+  "subst": {
+   "transaction": "2"
+  },
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L182",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeOther[@name=\"Luvuce tuve nowam\"])[2]",
+  "quote": "'",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L190",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeButton[contains(@label, \"Pako geviv: ${number}\")]",
+  "quote": "`",
+  "subst": {
+   "number": "1"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L193",
+  "screen": "lists",
+  "xpath": "//*[@name=\"Bika sefasi zad ${noOfLines} ${line}\"]",
+  "quote": "`",
+  "subst": {
+   "noOfLines": "3",
+   "line": "lines"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L207",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeStaticText[@name=\"Line 1\"])[${line}]",
+  "quote": "`",
+  "subst": {
+   "line": "3"
+  },
+  "original": "(//XCUIElementTypeStaticText[@name=\"Hicepe\"])[${line}]",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L258",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton[contains(@name, \"Dobe teg\")])[1]",
+  "quote": "'",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L262",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeOther[contains(@label, \"Dobe teg\")])[1]",
+  "quote": "'",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L340",
+  "screen": "lists",
+  "xpath": "//*[contains(@name, \"${game}\") and contains(@name, \"Dobe teg\")]",
+  "quote": "`",
+  "subst": {
+   "game": "Lotto"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L270",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeStaticText[@name=\"jila_zugo\"])[last()]",
+  "quote": "'",
+  "expectedChain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L271",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"])[last()]",
+  "quote": "'",
+  "expectedChain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L272",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeOther[contains(@label, \"Lenapa gusuri\")]/XCUIElementTypeStaticText)[last()]",
+  "quote": "'",
+  "expectedChain": "**/XCUIElementTypeOther[`label CONTAINS \"Lenapa gusuri\"`]/XCUIElementTypeStaticText[-1]",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L451",
+  "screen": "lists",
+  "xpath": "(//*[@name=\"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"])[2]",
+  "quote": "'",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L453",
+  "screen": "lists",
+  "xpath": "//*[@label=\"Hero bihi ${codeNumber}\"]",
+  "quote": "`",
+  "subst": {
+   "codeNumber": "7"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L455",
+  "screen": "lists",
+  "xpath": "//*[@name=\"Fej bihi tete ${codeNumber}, jeb t fej bihi\" and @accessible=\"true\"]|//*[@name=\"Bihi ${codeNumber}\" and @accessible=\"true\"]",
+  "quote": "`",
+  "subst": {
+   "codeNumber": "7"
+  },
+  "expectedChain": "**/*[`(name == \"Fej bihi tete ${codeNumber}, jeb t fej bihi\" AND accessible == true) OR (name == \"Bihi ${codeNumber}\" AND accessible == true)`]",
+  "verdict": "GAP",
+  "category": "corpus"
+ },
+ {
+  "id": "L461",
+  "screen": "lists",
+  "xpath": "//*[@label=\"${count} ${count == 1 ? 'winner' : 'winners'}\"] | //*[@label=\"Nodeg: ${count}\"]",
+  "quote": "`",
+  "subst": {
+   "count": "3",
+   "count == 1 ? 'winner' : 'winners'": "winners"
+  },
+  "expectedChain": "**/*[`label == \"${count} ${count == 1 ? 'winner' : 'winners'}\" OR label == \"Nodeg: ${count}\"`]",
+  "verdict": "GAP",
+  "category": "corpus"
+ },
+ {
+  "id": "L556",
+  "screen": "lists",
+  "xpath": "//*[@name=\"VavepaGomudatepUvepajImar.lawupe(${value - 1})\"]/child::*[1]",
+  "quote": "`",
+  "subst": {
+   "value - 1": "0"
+  },
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L567",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[${option + 1}]",
+  "quote": "`",
+  "subst": {
+   "option + 1": "2"
+  },
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L012",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[1])[1]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L013",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[2])[1]",
+  "quote": "'",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L031",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[contains(@label, \"Lugatej\") and @enabled=\"true\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L032",
+  "screen": "states",
+  "xpath": "//*[@label=\"Leba\" and @enabled=\"${isEnabled}\"]",
+  "quote": "`",
+  "subst": {
+   "isEnabled": "false"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L042",
+  "screen": "states",
+  "xpath": "//*[contains(@label, \"Nozod hom\") and @enabled=\"${isEnabled}\"]",
+  "quote": "`",
+  "subst": {
+   "isEnabled": "true"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L158",
+  "screen": "states",
+  "xpath": "//*[@name=\"HaguhoCuzal.marivoDigivo\" and @enabled=\"false\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L278",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[contains(@name, \"Dobe monuw teg \") and contains(@enabled,\"false\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L443",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@name=\"FetuwozaNihelavAvuv.funelaFecotu\" and @enabled=\"false\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L444",
+  "screen": "states",
+  "xpath": "//*[contains(@name,\"FetuwozaNihelavAvuv.mipunaco\") and contains(@label,\"Kuki mipunaco\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L517",
+  "screen": "states",
+  "xpath": "//*[contains(@value, \"${gameName}\") and @enabled=\"${isEnabled}\"]",
+  "quote": "`",
+  "subst": {
+   "gameName": "Lotto",
+   "isEnabled": "false"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L520",
+  "screen": "states",
+  "xpath": "//*[contains(@name,\"LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca\") and contains(@enabled,\"false\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L521",
+  "screen": "states",
+  "xpath": "//*[contains(@name,\"LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro\") and contains(@enabled,\"false\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L346",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeTextView[contains(@value, \"Rofozopevol dobe goz jotobap kop werunez befa so kop vuvodegu\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L349",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeTextField[1]",
+  "quote": "'",
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L350",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeTextField[2]",
+  "quote": "`",
+  "subst": {},
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L001",
+  "screen": "nesting",
+  "xpath": "//*[contains(@name, \"riduco\")]/child::XCUIElementTypeStaticText[@name=\"WefaniBedufeDanu.gotePebazoh\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L019",
+  "screen": "nesting",
+  "xpath": "//*[@name=\"WefaniBedufeDanu.gotePebazoh\" and @label=\"Kabih\" or @name=\"HetepUriZoviZoniHapa.dijivOdozev\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L020",
+  "screen": "nesting",
+  "xpath": "//*[@name=\"WefaniBedufeDanu.jubuferokIzinaw\" and contains(@label, \"Pefu laciwuj\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L022",
+  "screen": "nesting",
+  "xpath": "//*[@name=\"WefaniBedufeDanu.zuzavilEgawiv\" and @label=\"Jif sefasi\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L054",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\" and @label=\"Doso mi\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L518",
+  "screen": "nesting",
+  "xpath": "//*[contains(@name,\"WefaniBedufeDanu.gotePebazoh\") and @enabled=\"${isEnabled}\"]",
+  "quote": "`",
+  "subst": {
+   "isEnabled": "false"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L090",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeOther[contains(@label, \"Galufaz Poz Gohaz matumutor\")]/XCUIElementTypeStaticText",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L097",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeOther[@label=\"Pejun, Lenapa gusuri, RI\"]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L179",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeButton[@name=\"GocibozuPenalIgug.voceseruBiful\"]/XCUIElementTypeButton",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L198",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeOther[contains(@label, \"Bevef Daw\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L220",
+  "screen": "nesting",
+  "xpath": "//*[contains(@label, \"Nepureze\")]/child::*[contains(@label, \"Nepureze\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L225",
+  "screen": "nesting",
+  "xpath": "(//*[contains(@label, \"Nepureze\")]/child::*[contains(@label, \"Nepureze\")])[${value}]",
+  "quote": "`",
+  "subst": {
+   "value": "2"
+  },
+  "verdict": "DRIFT",
+  "category": "corpus"
+ },
+ {
+  "id": "L227",
+  "screen": "nesting",
+  "xpath": "//*[contains(@type, \"XCUIElementTypeOther\") and contains(@label, \"Lulik gusuri teg ${noOfWeeks} jidur figuleni\")]",
+  "quote": "`",
+  "subst": {
+   "noOfWeeks": "4"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L228",
+  "screen": "nesting",
+  "xpath": "//*[contains(@type, \"XCUIElementTypeOther\") and contains(@name, \"${capitalize(day)}, Nepureze, figuleni\")]",
+  "quote": "`",
+  "subst": {
+   "capitalize(day)": "Monday"
+  },
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L240",
+  "screen": "nesting",
+  "xpath": "//*[contains(@type,\"XCUIElementTypeOther\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L301",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeOther[contains(@name,\"WimazatOzuv.kumogigafOsen\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L554",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeOther[contains(@label,\"TI\")]",
+  "quote": "'",
+  "verdict": "CORRECT",
+  "category": "corpus"
+ },
+ {
+  "id": "L146",
+  "screen": "siblings",
+  "xpath": "//*[@name=\"Bedoce hom\"]/following-sibling::*[1]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L003",
+  "screen": "siblings",
+  "xpath": "//*[@name=\"LovemifajEgetifoJewe.kesoZugop\"]/following-sibling::*[1]/child::*[1]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L011",
+  "screen": "siblings",
+  "xpath": "//XCUIElementTypeStaticText[@name=\"Disohinid mipunaco\"]/following-sibling::XCUIElementTypeStaticText[1]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L153",
+  "screen": "siblings",
+  "xpath": "//*[@name=\"Bedoce hom\"]/following-sibling::*[contains(@name, \"hilubodamo\")]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L166",
+  "screen": "siblings",
+  "xpath": "//*[@name=\"LunaseMinihEsak.vosuzAnomeMevoja\"]/following-sibling::*[1]/following-sibling::*[self::XCUIElementTypeStaticText or self::XCUIElementTypeTextView]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L336",
+  "screen": "siblings",
+  "xpath": "//*[@label=\"Zov’gi mi dom pefu\"]/preceding-sibling::*[@label=\"Kabih\"]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L257",
+  "screen": "siblings",
+  "xpath": "//XCUIElementTypeButton[contains(@name, \"Hom gohaz figuleni\")]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L009",
+  "screen": "siblings",
+  "xpath": "//*[contains(@name, \"Dobe teg\")]/following-sibling::XCUIElementTypeStaticText[1] | //*[contains(@name, \"Dobe monuw\")]/preceding-sibling::XCUIElementTypeStaticText[1]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L017",
+  "screen": "siblings",
+  "xpath": "//*[@name=\"HetepUriZoviZoniHapa.codid\"] | //XCUIElementTypeStaticText[@name=\"WefaniBedufeDanu.gotePebazoh\" and not(//*[@name=\"HetepUriZoviZoniHapa.codid\"]) and not(parent::*[contains(@name, \"VanavuMefofakeragaLiho.zudatoCicoba\")])]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L189",
+  "screen": "siblings",
+  "xpath": "//*[@name='bumajepUgapeb(\"${value}\")Hilubodamo'] | //*[@name='bumajepUgapeb(\"${value}\")Hilubodamo']/child::*[1]",
+  "quote": "`",
+  "subst": {
+   "value": "7"
+  },
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L477",
+  "screen": "siblings",
+  "xpath": "//*[@label=\"${game}\"]/following::*[${condition('label')}][1]",
+  "quote": "`",
+  "subst": {
+   "game": "Lotto",
+   "condition('label')": "contains(@label, \"Draw\")"
+  },
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "L476",
+  "screen": "siblings",
+  "xpath": "//*[${condition('label')}]",
+  "quote": "`",
+  "subst": {
+   "condition('label')": "contains(@label, \"Draw\")"
+  },
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus"
+ },
+ {
+  "id": "A01",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A01",
+  "variant": "modal",
+  "screen": "modal",
+  "xpath": "//XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A02",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell/XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A03",
+  "screen": "functions",
+  "xpath": "//*[@name=\"a\"]",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A03",
+  "variant": "app-root",
+  "screen": "functions",
+  "xpath": "//*[@name=\"LL\"]",
+  "expectedChain": "**/*[`name == \"LL\"`]",
+  "original": "//*[@name=\"a\"]",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A04",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeAny[@name=\"a\"]",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A05",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell/child::XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A06",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell/descendant::XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A07",
+  "screen": "nesting",
+  "xpath": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton",
+  "expectedChain": "XCUIElementTypeWindow/XCUIElementTypeButton",
+  "verdict": "DRIFT",
+  "category": "A"
+ },
+ {
+  "id": "A08",
+  "screen": "nesting",
+  "xpath": "/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A09",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell//XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A10",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[@name=\"row.1\"]//XCUIElementTypeButton[@label=\"Taka\"]",
+  "expectedChain": "**/XCUIElementTypeCell[`name == \"row.1\"`]/**/XCUIElementTypeButton[`label == \"Taka\"`]",
+  "original": "//XCUIElementTypeCell[@name=\"a\"]//XCUIElementTypeButton[@label=\"b\"]",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A11",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell/./XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "A12",
+  "screen": "nesting",
+  "xpath": ".//XCUIElementTypeButton[@name=\"btnSave\"]",
+  "expectedChain": "**/XCUIElementTypeButton[`name == \"btnSave\"`]",
+  "original": ".//XCUIElementTypeButton[@name=\"a\"]",
+  "verdict": "GAP",
+  "category": "A"
+ },
+ {
+  "id": "A13",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeLabel[@name=\"a\"]",
+  "dead": true,
+  "verdict": "CORRECT-SKIP",
+  "category": "A"
+ },
+ {
+  "id": "A14",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[@name=\"Close\"]",
+  "expectedChain": "**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"Close\"`]",
+  "original": "//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[@name=\"a\"]",
+  "verdict": "DRIFT",
+  "category": "A"
+ },
+ {
+  "id": "A15",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeOther/XCUIElementTypeButton[@name=\"Close\"]",
+  "expectedChain": "**/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"Close\"`]",
+  "original": "//XCUIElementTypeOther/XCUIElementTypeButton[@name=\"a\"]",
+  "verdict": "DRIFT",
+  "category": "A"
+ },
+ {
+  "id": "A15",
+  "variant": "modal",
+  "screen": "modal",
+  "xpath": "//XCUIElementTypeOther/XCUIElementTypeButton[@name=\"Close\"]",
+  "expectedChain": "**/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"Close\"`]",
+  "original": "//XCUIElementTypeOther/XCUIElementTypeButton[@name=\"a\"]",
+  "verdict": "DRIFT",
+  "category": "A"
+ },
+ {
+  "id": "A16",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeCell[@visible=\"true\"]/XCUIElementTypeButton",
+  "expectedChain": "**/XCUIElementTypeCell[`visible == true`]/XCUIElementTypeButton",
+  "verdict": "DRIFT",
+  "category": "A"
+ },
+ {
+  "id": "A16",
+  "variant": "lists",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[@visible=\"true\"]/XCUIElementTypeButton",
+  "expectedChain": "**/XCUIElementTypeCell[`visible == true`]/XCUIElementTypeButton",
+  "verdict": "DRIFT",
+  "category": "A"
+ },
+ {
+  "id": "B01",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeButton[@name=\"a\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B02",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@label!=\"Qty\"]",
+  "expectedChain": "**/XCUIElementTypeButton[`label != nil AND label != \"Qty\"`]",
+  "original": "//XCUIElementTypeButton[@label!=\"a\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B03",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@value>5]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B04",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@x>60]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B05",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@enabled=\"true\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B06",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@enabled=\"false\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B07",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@visible='true']",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B08",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@selected=\"true\"]",
+  "verdict": "DRIFT",
+  "category": "B"
+ },
+ {
+  "id": "B09",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeStaticText[@name=\"true\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B10",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@name]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B11",
+  "screen": "functions",
+  "xpath": "//*[@index=\"1\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B12",
+  "screen": "functions",
+  "xpath": "//*[@type=\"XCUIElementTypeButton\" and @name=\"a\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B13",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeStaticText[@text=\"a\"]",
+  "dead": true,
+  "verdict": "CORRECT-SKIP",
+  "category": "B"
+ },
+ {
+  "id": "B14",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@hittable=\"true\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B15",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeTextField[@placeholderValue=\"Email\"]",
+  "expectedChain": "**/XCUIElementTypeTextField[`placeholderValue == \"Email\"`]",
+  "original": "//XCUIElementTypeTextField[@placeholderValue=\"a\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B16",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@enabled=true()]",
+  "expectedChain": "**/XCUIElementTypeButton",
+  "verdict": "DRIFT",
+  "category": "B"
+ },
+ {
+  "id": "B17",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@accessible=\"true\" and @enabled=\"false\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B18",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[contains(@enabled,\"false\")]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "C01",
+  "screen": "functions",
+  "xpath": "//*[contains(@label,\"ab\")]",
+  "verdict": "CORRECT",
+  "category": "C"
+ },
+ {
+  "id": "C02",
+  "screen": "functions",
+  "xpath": "//*[starts-with(@name,\"ab\")]",
+  "verdict": "CORRECT",
+  "category": "C"
+ },
+ {
+  "id": "C03",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeButton[text()=\"a\"]",
+  "verdict": "DRIFT",
+  "category": "C"
+ },
+ {
+  "id": "C04",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeButton[contains(text(),\"a\")]",
+  "verdict": "DRIFT",
+  "category": "C"
+ },
+ {
+  "id": "C05",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeButton[contains(., \"a\")]",
+  "dead": true,
+  "verdict": "CORRECT-SKIP",
+  "category": "C"
+ },
+ {
+  "id": "C06",
+  "screen": "functions",
+  "xpath": "//*[normalize-space(@label)=\"a b\"]",
+  "expectedChain": "**/*[`label MATCHES \"\\\\s*a\\\\s+b\\\\s*\"`]",
+  "verdict": "GAP",
+  "category": "C"
+ },
+ {
+  "id": "C07",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
+  "expectedChain": "**/XCUIElementTypeButton[`label.length > 3`]",
+  "verdict": "GAP",
+  "category": "C"
+ },
+ {
+  "id": "C08",
+  "screen": "functions",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ab\")]",
+  "expectedChain": "**/*[`label CONTAINS[c] \"ab\"`]",
+  "verdict": "GAP",
+  "category": "C"
+ },
+ {
+  "id": "C09",
+  "screen": "functions",
+  "xpath": "//*[@label=concat(\"a\",\"b\")]",
+  "expectedChain": "**/*[`label == \"ab\"`]",
+  "verdict": "GAP",
+  "category": "C"
+ },
+ {
+  "id": "C10",
+  "screen": "states",
+  "xpath": "//*[contains(@type,\"XCUIElementTypeText\")]",
+  "verdict": "CORRECT",
+  "category": "C"
+ },
+ {
+  "id": "C11",
+  "screen": "functions",
+  "xpath": "//*[starts-with(@type,\"XCUIElementTypeButton\")]",
+  "verdict": "CORRECT",
+  "category": "C"
+ },
+ {
+  "id": "C12",
+  "screen": "functions",
+  "xpath": "//*[contains(@name, 'ab')]",
+  "expectedChain": "**/*[`name CONTAINS \"ab\"`]",
+  "verdict": "CORRECT",
+  "category": "C"
+ },
+ {
+  "id": "D01",
+  "screen": "nesting",
+  "xpath": "//*[@name=\"promo\" and @label=\"Gift card\"]",
+  "expectedChain": "**/*[`name == \"promo\" AND label == \"Gift card\"`]",
+  "original": "//*[@name=\"a\" and @label=\"b\"]",
+  "verdict": "CORRECT",
+  "category": "D"
+ },
+ {
+  "id": "D02",
+  "screen": "nesting",
+  "xpath": "//*[@name=\"promo\" or @label=\"Gift card\"]",
+  "expectedChain": "**/*[`name == \"promo\" OR label == \"Gift card\"`]",
+  "original": "//*[@name=\"a\" or @label=\"b\"]",
+  "verdict": "CORRECT",
+  "category": "D"
+ },
+ {
+  "id": "D03",
+  "screen": "nesting",
+  "xpath": "//*[@name=\"promo\" and @label=\"Gift card\" or @value=\"applied\"]",
+  "expectedChain": "**/*[`(name == \"promo\" AND label == \"Gift card\") OR value == \"applied\"`]",
+  "original": "//*[@name=\"a\" and @label=\"b\" or @value=\"c\"]",
+  "verdict": "CORRECT",
+  "category": "D"
+ },
+ {
+  "id": "D04",
+  "screen": "nesting",
+  "xpath": "//*[@name=\"promo\" or @label=\"Gift card\" and @value=\"applied\"]",
+  "expectedChain": "**/*[`name == \"promo\" OR (label == \"Gift card\" AND value == \"applied\")`]",
+  "original": "//*[@name=\"a\" or @label=\"b\" and @value=\"c\"]",
+  "verdict": "CORRECT",
+  "category": "D"
+ },
+ {
+  "id": "D05",
+  "screen": "nesting",
+  "xpath": "//*[(@name=\"promo\" or @label=\"Gift card\") and @value=\"applied\"]",
+  "expectedChain": "**/*[`(name == \"promo\" OR label == \"Gift card\") AND value == \"applied\"`]",
+  "original": "//*[(@name=\"a\" or @label=\"b\") and @value=\"c\"]",
+  "verdict": "CORRECT",
+  "category": "D"
+ },
+ {
+  "id": "D06",
+  "screen": "nesting",
+  "xpath": "//*[@name=\"promo\" or @label=\"Gift card\"][@value=\"applied\"]",
+  "expectedChain": "**/*[`(name == \"promo\" OR label == \"Gift card\") AND value == \"applied\"`]",
+  "original": "//*[@name=\"a\" or @label=\"b\"][@value=\"c\"]",
+  "verdict": "CORRECT",
+  "category": "D"
+ },
+ {
+  "id": "D07",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeButton[not(@name=\"promo\")]",
+  "expectedChain": "**/XCUIElementTypeButton[`NOT (name == \"promo\")`]",
+  "original": "//XCUIElementTypeButton[not(@name=\"a\")]",
+  "verdict": "GAP",
+  "category": "D"
+ },
+ {
+  "id": "D08",
+  "screen": "nesting",
+  "xpath": "//*[contains(@label,\"Gift\") and not(contains(@label,\"card\"))]",
+  "expectedChain": "**/*[`label CONTAINS \"Gift\" AND NOT (label CONTAINS \"card\")`]",
+  "original": "//*[contains(@label,\"a\") and not(contains(@label,\"b\"))]",
+  "verdict": "GAP",
+  "category": "D"
+ },
+ {
+  "id": "D09",
+  "screen": "nesting",
+  "xpath": "//*[contains(@label,\"Gift\") and @name=\"promo\" or @value=\"applied\"]",
+  "expectedChain": "**/*[`(label CONTAINS \"Gift\" AND name == \"promo\") OR value == \"applied\"`]",
+  "original": "//*[contains(@label,\"a\") and @name=\"b\" or @value=\"c\"]",
+  "verdict": "CORRECT",
+  "category": "D"
+ },
+ {
+  "id": "D10",
+  "screen": "nesting",
+  "xpath": "//*[contains(@label,\"Gift\") and @name=\"promo\"]",
+  "expectedChain": "**/*[`name == \"promo\" AND label CONTAINS \"Gift\"`]",
+  "original": "//*[contains(@label,\"a\") and @name=\"b\"]",
+  "verdict": "CORRECT",
+  "category": "D"
+ },
+ {
+  "id": "D11",
+  "screen": "nesting",
+  "xpath": "//*[@name=\"promo\"][@label=\"Gift card\"]",
+  "expectedChain": "**/*[`name == \"promo\" AND label == \"Gift card\"`]",
+  "original": "//*[@name=\"a\"][@label=\"b\"]",
+  "verdict": "CORRECT",
+  "category": "D"
+ },
+ {
+  "id": "D12",
+  "screen": "nesting",
+  "xpath": "//*[@name=\"promo\" or @name=\"voucher\"][@label=\"Coupon\" or @label=\"Gift voucher\"]",
+  "expectedChain": "**/*[`(name == \"promo\" OR name == \"voucher\") AND (label == \"Coupon\" OR label == \"Gift voucher\")`]",
+  "original": "//*[@name=\"a\" or @name=\"b\"][@label=\"c\" or @label=\"d\"]",
+  "verdict": "CORRECT",
+  "category": "D"
+ },
+ {
+  "id": "X04",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeButton[@name=\"promo\"] | //XCUIElementTypeButton[@name=\"voucher\"]",
+  "expectedChain": "**/XCUIElementTypeButton[`name == \"promo\" OR name == \"voucher\"`]",
+  "original": "//XCUIElementTypeButton[@name=\"a\"] | //XCUIElementTypeButton[@name=\"b\"]",
+  "verdict": "GAP",
+  "category": "D"
+ },
+ {
+  "id": "X05",
+  "screen": "nesting",
+  "xpath": "//XCUIElementTypeButton[@name=\"promo\"] | //XCUIElementTypeStaticText[@name=\"voucher\"]",
+  "expectedChain": "**/*[`(type == \"XCUIElementTypeButton\" AND name == \"promo\") OR (type == \"XCUIElementTypeStaticText\" AND name == \"voucher\")`]",
+  "original": "//XCUIElementTypeButton[@name=\"a\"] | //XCUIElementTypeStaticText[@name=\"b\"]",
+  "verdict": "GAP",
+  "category": "D"
+ },
+ {
+  "id": "X06",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell/XCUIElementTypeButton | //XCUIElementTypeTable/XCUIElementTypeStaticText",
+  "verdict": "CORRECT-SKIP",
+  "category": "D"
+ },
+ {
+  "id": "X07",
+  "screen": "functions",
+  "xpath": "//*[self::XCUIElementTypeButton or self::XCUIElementTypeStaticText]",
+  "expectedChain": "**/*[`type == \"XCUIElementTypeButton\" OR type == \"XCUIElementTypeStaticText\"`]",
+  "verdict": "GAP",
+  "category": "D"
+ },
+ {
+  "id": "E01",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeButton[2]",
+  "verdict": "DRIFT",
+  "category": "E"
+ },
+ {
+  "id": "E02",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton)[2]",
+  "verdict": "DRIFT",
+  "category": "E"
+ },
+ {
+  "id": "E03",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton[@name=\"row.edit\"])[1]",
+  "expectedChain": "**/XCUIElementTypeButton[`name == \"row.edit\"`][1]",
+  "original": "(//XCUIElementTypeButton[@name=\"a\"])[1]",
+  "verdict": "DRIFT",
+  "category": "E"
+ },
+ {
+  "id": "E04",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeButton[last()]",
+  "verdict": "CORRECT-SKIP",
+  "category": "E"
+ },
+ {
+  "id": "E05",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton)[last()]",
+  "expectedChain": "**/XCUIElementTypeButton[-1]",
+  "verdict": "CORRECT-SKIP",
+  "category": "E"
+ },
+ {
+  "id": "E06",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton)[last()-1]",
+  "expectedChain": "**/XCUIElementTypeButton[-2]",
+  "verdict": "CORRECT-SKIP",
+  "category": "E"
+ },
+ {
+  "id": "E07",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton)[position()=2]",
+  "expectedChain": "**/XCUIElementTypeButton[2]",
+  "verdict": "CORRECT-SKIP",
+  "category": "E"
+ },
+ {
+  "id": "E08",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton)[position() <= 2]",
+  "verdict": "CORRECT-SKIP",
+  "category": "E"
+ },
+ {
+  "id": "E09",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton[@name=\"row.edit\"])[${i}]",
+  "quote": "`",
+  "subst": {
+   "i": "2"
+  },
+  "expectedChain": "**/XCUIElementTypeButton[`name == \"row.edit\"`][${i}]",
+  "original": "(//XCUIElementTypeButton[@name=\"a\"])[${i}]",
+  "verdict": "DRIFT",
+  "category": "E"
+ },
+ {
+  "id": "E10",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton[@name=\"row.edit\"])${suffix}",
+  "quote": "`",
+  "subst": {
+   "suffix": "[2]"
+  },
+  "original": "(//XCUIElementTypeButton[@name=\"a\"])${suffix}",
+  "verdict": "CORRECT-SKIP",
+  "category": "E"
+ },
+ {
+  "id": "E11",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeCell)[2]/XCUIElementTypeButton",
+  "expectedChain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+  "verdict": "CORRECT-SKIP",
+  "category": "E"
+ },
+ {
+  "id": "E12",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[2][@name=\"row.2\"]",
+  "original": "//XCUIElementTypeCell[2][@name=\"a\"]",
+  "verdict": "CORRECT-SKIP",
+  "category": "E"
+ },
+ {
+  "id": "E13",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeCell[@name=\"row.1\"]/XCUIElementTypeButton[2])[2]",
+  "original": "(//XCUIElementTypeCell[@name=\"a\"]/XCUIElementTypeButton[2])[2]",
+  "verdict": "DRIFT",
+  "category": "E"
+ },
+ {
+  "id": "E14",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeCell)[1]",
+  "verdict": "DRIFT",
+  "category": "E"
+ },
+ {
+  "id": "F01",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[.//XCUIElementTypeButton[@name=\"row.pay\"]]",
+  "expectedChain": "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"row.pay\"$]",
+  "original": "//XCUIElementTypeCell[.//XCUIElementTypeButton[@name=\"x\"]]",
+  "verdict": "CORRECT",
+  "category": "F"
+ },
+ {
+  "id": "F02",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[XCUIElementTypeButton]",
+  "verdict": "CORRECT-SKIP",
+  "category": "F"
+ },
+ {
+  "id": "F03",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[.//*[@name=\"row.pay\"]]",
+  "original": "//XCUIElementTypeCell[.//*[@name=\"x\"]]",
+  "verdict": "WRONG",
+  "category": "F"
+ },
+ {
+  "id": "F04",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[descendant::XCUIElementTypeButton]",
+  "expectedChain": "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\"$]",
+  "verdict": "GAP",
+  "category": "F"
+ },
+ {
+  "id": "F05",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[./XCUIElementTypeButton[@name=\"row.edit\"]]",
+  "original": "//XCUIElementTypeCell[./XCUIElementTypeButton[@name=\"x\"]]",
+  "verdict": "CORRECT-SKIP",
+  "category": "F"
+ },
+ {
+  "id": "F06",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[count(.//XCUIElementTypeButton)=2]",
+  "verdict": "CORRECT-SKIP",
+  "category": "F"
+ },
+ {
+  "id": "F07",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeTable/XCUIElementTypeCell[.//XCUIElementTypeStaticText[@label=\"Overdue\"]]/XCUIElementTypeButton",
+  "expectedChain": "**/XCUIElementTypeTable/XCUIElementTypeCell[$type == \"XCUIElementTypeStaticText\" AND label == \"Overdue\"$]/XCUIElementTypeButton",
+  "original": "//XCUIElementTypeTable/XCUIElementTypeCell[.//XCUIElementTypeStaticText[@label=\"x\"]]/XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "F"
+ },
+ {
+  "id": "F08",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[@name=\"row.1\"][.//XCUIElementTypeButton]",
+  "expectedChain": "**/XCUIElementTypeCell[`name == \"row.1\"`][$type == \"XCUIElementTypeButton\"$]",
+  "original": "//XCUIElementTypeCell[@name=\"a\"][.//XCUIElementTypeButton]",
+  "verdict": "CORRECT",
+  "category": "F"
+ },
+ {
+  "id": "G01",
+  "screen": "identity",
+  "xpath": "//*[@label=\"it's\"]",
+  "verdict": "CORRECT",
+  "category": "G"
+ },
+ {
+  "id": "G02",
+  "screen": "identity",
+  "xpath": "//*[@label='say \"hi\"']",
+  "verdict": "CORRECT",
+  "category": "G"
+ },
+ {
+  "id": "G03",
+  "screen": "identity",
+  "xpath": "//*[@label='a\"b']",
+  "expectedChain": "**/*[`label == 'a\"b'`]",
+  "verdict": "GAP",
+  "category": "G"
+ },
+ {
+  "id": "G04",
+  "screen": "identity",
+  "xpath": "//*[@label=\"a`b\"]",
+  "expectedChain": "**/*[`label == \"a``b\"`]",
+  "verdict": "GAP",
+  "category": "G"
+ },
+ {
+  "id": "G05",
+  "screen": "identity",
+  "xpath": "//*[@label=\"a\nb\"]",
+  "verdict": "CORRECT",
+  "category": "G"
+ },
+ {
+  "id": "G06",
+  "screen": "identity",
+  "xpath": "//*[@label=\"Zov’gi £5 • x\"]",
+  "verdict": "CORRECT",
+  "category": "G"
+ },
+ {
+  "id": "G07",
+  "screen": "identity",
+  "xpath": "//*[@name=\"a*b\"]",
+  "verdict": "CORRECT",
+  "category": "G"
+ },
+ {
+  "id": "G08",
+  "screen": "identity",
+  "xpath": "//*[@name=\"a?\"]",
+  "verdict": "CORRECT",
+  "category": "G"
+ },
+ {
+  "id": "G09",
+  "screen": "identity",
+  "xpath": "//*[@name=\"a*?\"]",
+  "verdict": "CORRECT",
+  "category": "G"
+ },
+ {
+  "id": "G10",
+  "screen": "identity",
+  "xpath": "//*[@label=\"a/b|c(d)\"]",
+  "verdict": "CORRECT",
+  "category": "G"
+ },
+ {
+  "id": "G11",
+  "screen": "identity",
+  "xpath": "(//*[@label=\"a)b\"])[2]",
+  "verdict": "DRIFT",
+  "category": "G"
+ },
+ {
+  "id": "G12",
+  "screen": "identity",
+  "xpath": "//*[@label=\"C:\\dir\"]",
+  "verdict": "CORRECT",
+  "category": "G"
+ },
+ {
+  "id": "G13",
+  "screen": "identity",
+  "xpath": "//*[@label=\"$5 and @x\"]",
+  "verdict": "CORRECT",
+  "category": "G"
+ },
+ {
+  "id": "G14",
+  "screen": "identity",
+  "xpath": "//*[contains(@label,\"a]b\")]",
+  "expectedChain": "**/*[`label CONTAINS \"a]b\"`]",
+  "verdict": "GAP",
+  "category": "G"
+ },
+ {
+  "id": "H01",
+  "screen": "functions",
+  "xpath": "//*[ends-with(@name,\"ab\")]",
+  "verdict": "CORRECT",
+  "category": "H"
+ },
+ {
+  "id": "H02",
+  "screen": "functions",
+  "xpath": "//*[matches(@name,\"^a.c$\")]",
+  "expectedChain": "**/*[`name MATCHES \"a.c\"`]",
+  "verdict": "GAP",
+  "category": "H"
+ },
+ {
+  "id": "H03",
+  "screen": "functions",
+  "xpath": "//*[matches(@name,\"b\")]",
+  "expectedChain": "**/*[`name MATCHES \"(?s).*(?:b).*\"`]",
+  "verdict": "GAP",
+  "category": "H"
+ },
+ {
+  "id": "H04",
+  "screen": "functions",
+  "xpath": "//*[matches(@name,\"ab\",\"i\")]",
+  "expectedChain": "**/*[`name MATCHES \"(?si).*(?:ab).*\"`]",
+  "verdict": "GAP",
+  "category": "H"
+ },
+ {
+  "id": "H05",
+  "screen": "functions",
+  "xpath": "//*[lower-case(@label)=\"ab\"]",
+  "expectedChain": "**/*[`label ==[c] \"ab\"`]",
+  "verdict": "GAP",
+  "category": "H"
+ },
+ {
+  "id": "H06",
+  "screen": "functions",
+  "xpath": "//*[contains(upper-case(@label),\"AB\")]",
+  "expectedChain": "**/*[`label CONTAINS[c] \"AB\"`]",
+  "verdict": "GAP",
+  "category": "H"
+ },
+ {
+  "id": "H07",
+  "screen": "functions",
+  "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
+  "verdict": "CORRECT-SKIP",
+  "category": "H"
+ },
+ {
+  "id": "H08",
+  "screen": "functions",
+  "xpath": "//*[tokenize(@label,\" \")[2]=\"b\"]",
+  "verdict": "CORRECT-SKIP",
+  "category": "H"
+ },
+ {
+  "id": "H09",
+  "screen": "functions",
+  "xpath": "//*[string-join(tokenize(@label,\" \"),\"-\")=\"a-b\"]",
+  "verdict": "CORRECT-SKIP",
+  "category": "H"
+ },
+ {
+  "id": "H10",
+  "screen": "functions",
+  "xpath": "//*[ends-with(text(),\"ab\")]",
+  "verdict": "DRIFT",
+  "category": "H"
+ },
+ {
+  "id": "R01",
+  "screen": "siblings",
+  "xpath": "//XCUIElementTypeButton[@name=\"sib.remove\"]/ancestor::XCUIElementTypeCell",
+  "expectedChain": "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"sib.remove\"$]",
+  "original": "//XCUIElementTypeButton[@name=\"x\"]/ancestor::XCUIElementTypeCell",
+  "verdict": "GAP",
+  "category": "R"
+ },
+ {
+  "id": "R02",
+  "screen": "siblings",
+  "xpath": "//XCUIElementTypeButton/..",
+  "verdict": "CORRECT-SKIP",
+  "category": "R"
+ },
+ {
+  "id": "R03",
+  "screen": "siblings",
+  "xpath": "//XCUIElementTypeButton/parent::XCUIElementTypeCell",
+  "verdict": "CORRECT-SKIP",
+  "category": "R"
+ },
+ {
+  "id": "R04",
+  "screen": "siblings",
+  "xpath": "//XCUIElementTypeButton[@name=\"sib.remove\"]/ancestor::XCUIElementTypeCell[1]",
+  "original": "//XCUIElementTypeButton[@name=\"x\"]/ancestor::XCUIElementTypeCell[1]",
+  "verdict": "CORRECT-SKIP",
+  "category": "R"
+ },
+ {
+  "id": "X01",
+  "screen": "siblings",
+  "xpath": "//*[@name=\"a\"]/following-sibling::*[1]",
+  "verdict": "CORRECT-SKIP",
+  "category": "A"
+ },
+ {
+  "id": "X02",
+  "screen": "siblings",
+  "xpath": "//*[@name=\"a\"]/preceding-sibling::*",
+  "verdict": "CORRECT-SKIP",
+  "category": "A"
+ },
+ {
+  "id": "X03",
+  "screen": "siblings",
+  "xpath": "//*[@name=\"a\"]/following::XCUIElementTypeButton",
+  "verdict": "CORRECT-SKIP",
+  "category": "A"
+ }
+]

@@ -1,0 +1,29 @@
+# XcodeGen spec for the LocatorLab reference app (Phase 2 on-device verification).
+# Generate with `xcodegen generate` in this directory; the .xcodeproj is git-ignored.
+name: LocatorLab
+options:
+  bundleIdPrefix: audit.xpath2cc
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "-"
+    DEVELOPMENT_TEAM: ""
+    GENERATE_INFOPLIST_FILE: YES
+    INFOPLIST_KEY_CFBundleDisplayName: "LL"
+    INFOPLIST_KEY_UILaunchScreen_Generation: YES
+    INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  LocatorLab:
+    type: application
+    platform: iOS
+    sources: [LocatorLab]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: audit.xpath2cc.LocatorLab
+        TARGETED_DEVICE_FAMILY: "1"

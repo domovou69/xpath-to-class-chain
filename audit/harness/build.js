@@ -28,6 +28,8 @@ const RC = {
   RC15: { sev: 'major', loc: 'lib/converter.js:314', title: 'an index predicate is moved after logic predicates: `//Cell[2][@name="a"]` becomes `Cell[name == "a"][2]`' },
   'RC-S1': { sev: 'critical', loc: 'lib/scanner.js:170', title: 'Java: strings inside `AppiumBy.xpath(…)`, `By.xpath(…)`, `MobileBy.xpath(…)`, `@iOSXCUITFindBy(xpath = …)` are rewritten while the XPath strategy stays' },
   'RC-S2': { sev: 'critical', loc: 'lib/scanner.js:170', title: 'Python: strings in `find_element(AppiumBy.XPATH, …)` / `(By.XPATH, …)` tuples are rewritten while the XPath strategy stays' },
+  'RC-D1': { sev: 'major', loc: 'lib/converter.js:393', title: 'grouped positions `(//X)[n]` become `**/X[n]`: WDA counts class chain positions in XCTest query order (breadth-first), XPath in document order (Phase 2, device). DRIFT: no exact class chain exists, so no penalty' },
+  'RC-D2': { sev: 'major', loc: 'lib/converter.js:508', title: '`[.//X[p]]` becomes `[$…$]`, but XCTest containingPredicate also tests the element itself: `//Cell[.//*[@name="x"]]` also selects a Cell named x (Phase 2, device)' },
   'RC-S3': { sev: 'major', loc: 'lib/predicates.js:34', title: 'escaped-quote contexts (JSON, Java, double-quoted strings): `contains(@a,\\"v\\")` is not rewritten (QUOTED_VALUE cannot close on `\\"`) and RC6 lets `contains(…)` through' },
 };
 
@@ -40,9 +42,39 @@ const CORPUS_DRIFT = {
   L013: [true, 'inner per-parent [2] vs global [2] (README positional warning)'], L120: [true, 'per-parent [1] vs global [1]'],
   L349: [true, 'per-parent [1] vs global [1]'], L350: [true, 'per-parent [2] vs global [2]'], L556: [true, 'child::*[1] per parent vs global [1]'],
   L174: [false, 'hyp. 7: outer index moved onto the parent; equal only when every matched parent has ≥2 children and matches do not nest'],
-  L225: [false, 'nested matching containers: snapshot-walk candidate order is not document order; UNVERIFIED for the query strategy WDA uses for this shape'],
+  L225: [false, 'nested matching containers: XCTest query order is breadth-first, not document order (confirmed on device, Phase 2)'],
+  L062: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L070: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L081: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L082: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L162: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L171: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L177: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L182: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L207: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L208: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L234: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L258: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L262: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L310: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L382: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L396: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L407: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L428: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L451: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L471: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L498: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L564: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L565: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L566: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L567: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L571: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L572: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L573: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  // same shape as L062 (S006); its random trees never had 10 matches, so the shape's counter-example applies
+  L397: [false, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order', 'L062'],
 };
-const SKIP_REASON = s => /\|/.test(s) ? 'union of different paths / page-level not()' : /following::/.test(s) ? 'following axis' : /sibling::/.test(s) ? 'sibling axis' : /parent::|\/\.\./.test(s) ? 'parent axis' : 'other';
+const SKIP_REASON = s => /last\(\)/.test(s) ? 'grouped last(): document-order position; [-1] counts in XCTest query order (RC-D1)' : /\|/.test(s) ? 'union of different paths / page-level not()' : /following::/.test(s) ? 'following axis' : /sibling::/.test(s) ? 'sibling axis' : /parent::|\/\.\./.test(s) ? 'parent axis' : 'other';
 for (const x of corpus) {
   if (!['xpath', 'xpath-dynamic', 'xpath-mixed-classchain'].includes(x.kind)) continue;
   const r = m.convertXpathToClassChain(x.source, { optimize: true });
@@ -53,9 +85,10 @@ for (const x of corpus) {
     if (CORPUS_WRONG[x.id] && outs.includes('CC_ERROR')) {
       const [rc, expr, exp] = CORPUS_WRONG[x.id];
       Object.assign(c, { verdict: 'WRONG', rootCause: rc, expressible: expr, expected: exp, note: 'WDA: ' + variants.find(v => v.ccError).ccError.split('\n')[0].slice(0, 160) });
-    } else if (CORPUS_DRIFT[x.id] && outs.includes('SET_DIFFERS')) {
-      const v = variants.find(v => v.example);
-      Object.assign(c, { verdict: 'DRIFT', documented: CORPUS_DRIFT[x.id][0], expected: 'no exact class chain; ' + CORPUS_DRIFT[x.id][1], note: `${CORPUS_DRIFT[x.id][1]}. Minimal page source: ${v.example.xml.replace(/ (enabled|visible|accessible)="[a-z]+"/g, '')} → XPath ${JSON.stringify(v.example.xpathHits)} vs chain ${JSON.stringify(v.example.chainHits)}` });
+    } else if (CORPUS_DRIFT[x.id] && (outs.includes('SET_DIFFERS') || CORPUS_DRIFT[x.id][2])) {
+      const [doc, why, sib] = CORPUS_DRIFT[x.id];
+      const v = variants.find(v => v.example) || Object.entries(fuzz).filter(([k]) => k.split('~')[0] === sib).map(([, b]) => b).find(b => b.example);
+      Object.assign(c, { verdict: 'DRIFT', documented: doc, expected: 'no exact class chain; ' + why, note: `${why}.${sib && !outs.includes('SET_DIFFERS') ? ` Judged by shape: counter-example from ${sib}.` : ''} Minimal page source: ${v.example.xml.replace(/ (enabled|visible|accessible)="[a-z]+"/g, '')} → XPath ${JSON.stringify(v.example.xpathHits)} vs chain ${JSON.stringify(v.example.chainHits)}` });
     } else if (outs.some(o => o !== 'EQUAL')) {
       // not in the baseline maps: a new failure — counted as WRONG with an unclassified root cause
       review.push(`${x.id}: fuzz outcome ${outs.join(',')} — classify by hand (CORPUS_WRONG / CORPUS_DRIFT)`);
@@ -86,15 +119,15 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
   B09: ['CORRECT'], B10: ['CORRECT'], B11: ['CORRECT'], B12: ['CORRECT'], B13: ['CORRECT-SKIP'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['DRIFT', null, false], B17: ['CORRECT'], B18: ['CORRECT'],
   C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['GAP'], C07: ['GAP'], C08: ['GAP'], C09: ['GAP'], C10: ['CORRECT'], C11: ['CORRECT'], C12: ['CORRECT'],
   D01: ['CORRECT'], D02: ['CORRECT'], D03: ['CORRECT'], D04: ['CORRECT'], D05: ['CORRECT'], D06: ['CORRECT'], D07: ['GAP'], D08: ['GAP'], D09: ['CORRECT'], D10: ['CORRECT'], D11: ['CORRECT'], D12: ['CORRECT'],
-  E01: ['DRIFT', null, true], E02: ['CORRECT'], E03: ['CORRECT'], E04: ['CORRECT-SKIP'], E05: ['GAP'], E06: ['GAP'], E07: ['GAP'], E08: ['CORRECT-SKIP'], E09: ['CORRECT'], E10: ['CORRECT-SKIP'], E11: ['GAP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['CORRECT'],
-  F01: ['CORRECT'], F02: ['CORRECT-SKIP'], F03: ['CORRECT'], F04: ['GAP'], F05: ['CORRECT-SKIP'], F06: ['CORRECT-SKIP'], F07: ['CORRECT'], F08: ['CORRECT'],
-  G01: ['CORRECT'], G02: ['CORRECT'], G03: ['GAP'], G04: ['GAP'], G05: ['CORRECT'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['CORRECT'], G12: ['CORRECT'], G13: ['CORRECT'], G14: ['GAP'],
+  E01: ['DRIFT', null, true], E02: ['DRIFT', null, false], E03: ['DRIFT', null, false], E04: ['CORRECT-SKIP'], E05: ['CORRECT-SKIP'], E06: ['CORRECT-SKIP'], E07: ['CORRECT-SKIP'], E08: ['CORRECT-SKIP'], E09: ['DRIFT', null, false], E10: ['CORRECT-SKIP'], E11: ['CORRECT-SKIP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['DRIFT', null, false],
+  F01: ['CORRECT'], F02: ['CORRECT-SKIP'], F03: ['WRONG', 'RC-D2'], F04: ['GAP'], F05: ['CORRECT-SKIP'], F06: ['CORRECT-SKIP'], F07: ['CORRECT'], F08: ['CORRECT'],
+  G01: ['CORRECT'], G02: ['CORRECT'], G03: ['GAP'], G04: ['GAP'], G05: ['CORRECT'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['DRIFT', null, false], G12: ['CORRECT'], G13: ['CORRECT'], G14: ['GAP'],
   H01: ['CORRECT'], H02: ['GAP'], H03: ['GAP'], H04: ['GAP'], H05: ['GAP'], H06: ['GAP'], H07: ['CORRECT-SKIP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
   R01: ['GAP'], R02: ['CORRECT-SKIP'], R03: ['CORRECT-SKIP'], R04: ['CORRECT-SKIP'],
   X01: ['CORRECT-SKIP'], X02: ['CORRECT-SKIP'], X03: ['CORRECT-SKIP'], X04: ['GAP'], X05: ['GAP'], X06: ['CORRECT-SKIP'], X07: ['GAP'],
 };
 // cases whose XPath never matches anything on WDA (dead) or that have no exact form -> excluded from the denominator
-const NOT_EXPRESSIBLE = new Set(['A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H07', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
+const NOT_EXPRESSIBLE = new Set(['E11', 'E05', 'E06', 'E07', 'F03', 'A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H07', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
 for (const r of spec) {
   let [verdict, rc, doc] = SPEC[r.id] || [];
   const e = r.runExpected, a = r.runActual, f = r.fixtureRun;
@@ -115,7 +148,7 @@ for (const r of spec) {
     else [verdict, rc, doc] = e && e.outcome === 'EQUAL' ? ['GAP'] : ['CORRECT-SKIP'];
     review.push(`${r.id}: baseline ${was}, runs now say ${verdict}${rc ? ' (classify root cause / DRIFT by hand)' : ''} — update SPEC`);
   }
-  if (e && verdict !== 'DRIFT' && e.outcome !== 'EQUAL' && !(r.id === 'E01')) review.push(`${r.id}: expected chain not proven (${e.outcome}) — fix speccases.js`);
+  if (e && verdict !== 'DRIFT' && e.outcome !== 'EQUAL' && !r.approx) review.push(`${r.id}: expected chain not proven (${e.outcome}) — fix speccases.js`);
   const ev = [];
   if (e) ev.push(`expected vs XPath: ${e.equal}/${e.trials} equal`);
   if (a) ev.push(`actual vs XPath: ${a.outcome}${a.ccErr ? ' (' + a.ccErr.split('\n')[0].slice(0, 120) + ')' : ''}`);
