@@ -6,17 +6,26 @@
 //
 //   node run.js                     all cases in cases.json → results.json
 //   node run.js --out other.json    same, written to another file (e.g. a second run to diff)
+//   node run.js --out f.json --resume   continue an interrupted run: f.json is saved after every
+//                                   screen (with "partial": true); screens already in it are skipped
 //   node run.js --only A07,L013     a subset (printed only, unless --out is given)
 //   node run.js --screen lists      one screen (printed only)
 //   node run.js --smoke             one session on the smoke screen: versions, two lookups, page source
 //   node run.js --source lists      page source of one screen
+//   node run.js --merge base.json fix.json... --out f.json   replace base cases with the same id from
+//                                   later partial runs (e.g. --only re-runs after a device drop)
 //   node run.js --diff a.json b.json     compare two runs' outcomes and hits (timings ignored)
 //   node run.js --compare a.json b.json  compare two runs' timings (e.g. another iOS or device)
 //   node run.js --verdicts results.json [coverage-cases.json]   device outcome vs verdict, per case
 //
 // Environment: APPIUM_URL (default http://127.0.0.1:4723), UDID (default: env.json's udid),
-// APP (default: the Debug-iphonesimulator build in DerivedData), REPS (extra timed lookups per side;
-// default 0 = time the single lookup each side makes anyway, as a real test does).
+// APP (default: the Debug-iphonesimulator build in DerivedData, or Debug-iphoneos for a real device),
+// REPS (extra timed lookups per side; default 0 = time the single lookup each side makes anyway,
+// as a real test does), XCODE_ORG_ID (real device only: the team that signs WDA; kept out of the repo).
+//
+// A UDID listed under env.json's `devices` is a real device (Phase 2b): WDA is signed with
+// XCODE_ORG_ID and the device's `wdaBundleId`, and built into DerivedData/WDA-device; LocatorLab
+// must already be installed as `appBundleId` (see README).
 'use strict';
 const fs = require('fs'), path = require('path'), { execFileSync } = require('child_process');
 const HERE = __dirname, ROOT = path.resolve(HERE, '../..');
@@ -26,7 +35,10 @@ const { scannerEscape, toRuntime } = require(path.join(ROOT, 'audit/harness/runt
 const ENV = JSON.parse(fs.readFileSync(path.join(HERE, 'env.json'), 'utf8'));
 const APPIUM = (process.env.APPIUM_URL || 'http://127.0.0.1:4723').replace(/\/$/, '');
 const UDID = process.env.UDID || ENV.udid;
-const APP = process.env.APP || path.join(HERE, 'DerivedData/Build/Products/Debug-iphonesimulator/LocatorLab.app');
+const DEVICE = (ENV.devices || {})[UDID] || null;
+// the simulator's WDA keeps 8100, so a real device forwards WDA to 8101
+const WDA_FALLBACK_URL = `http://127.0.0.1:${DEVICE ? 8101 : 8100}`;
+const APP = process.env.APP || path.join(HERE, `DerivedData/Build/Products/Debug-${DEVICE ? 'iphoneos' : 'iphonesimulator'}/LocatorLab.app`);
 const REPS = Number(process.env.REPS || 0);
 const args = process.argv.slice(2);
 const opt = n => { const i = args.indexOf(n); return i >= 0 ? args[i + 1] : undefined; };
@@ -47,15 +59,36 @@ class Session {
       platformName: 'iOS',
       'appium:automationName': 'XCUITest',
       'appium:udid': UDID,
-      'appium:app': APP,
+      // a real device runs the build installed once with devicectl: reinstalling it for every
+      // session races FrontBoard ("unknown to FrontBoard")
+      ...(DEVICE ? { 'appium:bundleId': DEVICE.appBundleId } : { 'appium:app': APP }),
       'appium:processArguments': { args: ['-screen', screen] },
       'appium:newCommandTimeout': 600,
       'appium:wdaLaunchTimeout': 600000,
-      'appium:derivedDataPath': path.join(HERE, 'DerivedData/WDA'),
+      'appium:derivedDataPath': path.join(HERE, DEVICE ? 'DerivedData/WDA-device' : 'DerivedData/WDA'),
     };
-    const v = await wd('POST', '/session', { capabilities: { alwaysMatch: caps, firstMatch: [{}] } });
+    if (DEVICE) {
+      if (!process.env.XCODE_ORG_ID) throw new Error('a real device needs XCODE_ORG_ID (the team that signs WDA)');
+      Object.assign(caps, {
+        'appium:xcodeOrgId': process.env.XCODE_ORG_ID,
+        'appium:xcodeSigningId': 'Apple Development',
+        'appium:updatedWDABundleId': DEVICE.wdaBundleId,
+        'appium:allowProvisioningUpdates': true,
+        'appium:wdaLocalPort': 8101,
+      });
+    }
+    // On a real device the app is sometimes launched before FrontBoard has registered the fresh
+    // install ("unknown to FrontBoard"); a new session a few seconds later succeeds.
+    let v;
+    for (let attempt = 1; ; attempt++) {
+      try { v = await wd('POST', '/session', { capabilities: { alwaysMatch: caps, firstMatch: [{}] } }); break; } catch (e) {
+        if (attempt >= 3) throw e;
+        console.warn(`session for ${screen} failed (attempt ${attempt}), retrying: ${String(e.message).slice(0, 160)}`);
+        await new Promise(r => setTimeout(r, 5000));
+      }
+    }
     const s = new Session(); s.id = v.sessionId; s.caps = v.capabilities;
-    s.wdaUrl = (v.capabilities.webDriverAgentUrl || 'http://127.0.0.1:8100').replace(/\/$/, '');
+    s.wdaUrl = (v.capabilities.webDriverAgentUrl || WDA_FALLBACK_URL).replace(/\/$/, '');
     s.wdaSession = (await (await fetch(s.wdaUrl + '/status')).json()).sessionId;
     return s;
   }
@@ -181,19 +214,31 @@ async function runCase(s, k, n = 0) {
 
 // versions as reported by the running components themselves
 async function versions(s) {
-  const w = (await (await fetch((s.caps.webDriverAgentUrl || 'http://127.0.0.1:8100').replace(/\/$/, '') + '/status')).json()).value;
+  const w = (await (await fetch((s.caps.webDriverAgentUrl || WDA_FALLBACK_URL).replace(/\/$/, '') + '/status')).json()).value;
   const pkg = p => readJson(path.join(HERE, '.appium/node_modules', p, 'package.json')).version;
-  const sim = JSON.parse(execFileSync('xcrun', ['simctl', 'list', '-j', 'devices', 'runtimes'], { encoding: 'utf8' }));
-  const [rt, d] = Object.entries(sim.devices).flatMap(([rt, ds]) => ds.map(d => [rt, d])).find(([, d]) => d.udid === UDID);
-  const v = {
+  const common = {
     xcode: execFileSync('xcodebuild', ['-version'], { encoding: 'utf8' }).trim().replace(/\n/g, ' '),
-    runtime: rt, runtimeBuild: (sim.runtimes.find(r => r.identifier === rt) || {}).buildversion,
-    simulator: d.name, deviceType: d.deviceTypeIdentifier, udid: UDID,
     appium: (await wd('GET', '/status')).build.version, xcuitestDriver: pkg('appium-xcuitest-driver'),
     wda: w.build.version, iosVersion: w.os.version, node: process.version,
   };
-  const diff = Object.keys(v).filter(k => k in ENV && k !== 'node' && ENV[k] !== v[k]);
-  if (diff.length) console.warn(`WARNING: environment differs from env.json: ${diff.map(k => `${k} ${ENV[k]} → ${v[k]}`).join(', ')}`);
+  let v, expected;
+  if (DEVICE) {
+    const out = path.join(HERE, 'out/devicectl-info.json');
+    execFileSync('xcrun', ['devicectl', 'device', 'info', 'details', '--device', UDID, '--json-output', out], { stdio: 'ignore' });
+    const { deviceProperties: dp, hardwareProperties: hp } = readJson(out).result;
+    v = { ...common, device: dp.name, model: hp.marketingName, productType: hp.productType, osBuild: dp.osBuildUpdate, udid: UDID };
+    expected = { ...ENV, ...DEVICE, udid: UDID };
+  } else {
+    const sim = JSON.parse(execFileSync('xcrun', ['simctl', 'list', '-j', 'devices', 'runtimes'], { encoding: 'utf8' }));
+    const [rt, d] = Object.entries(sim.devices).flatMap(([rt, ds]) => ds.map(d => [rt, d])).find(([, d]) => d.udid === UDID);
+    v = {
+      ...common, runtime: rt, runtimeBuild: (sim.runtimes.find(r => r.identifier === rt) || {}).buildversion,
+      simulator: d.name, deviceType: d.deviceTypeIdentifier, udid: UDID,
+    };
+    expected = ENV;
+  }
+  const diff = Object.keys(v).filter(k => k in expected && k !== 'node' && expected[k] !== v[k]);
+  if (diff.length) console.warn(`WARNING: environment differs from env.json: ${diff.map(k => `${k} ${expected[k]} → ${v[k]}`).join(', ')}`);
   return v;
 }
 
@@ -204,6 +249,21 @@ async function smoke() {
     for (const xpath of ['//XCUIElementTypeButton[@name="btnSecond"]', '//XCUIElementTypeButton']) console.log(JSON.stringify(await runCase(s, { id: 'smoke', screen: 'smoke', xpath }), null, 1));
     console.log(await s.source());
   } finally { await s.close(); }
+}
+
+// --merge: the base run with some cases taken from later re-runs; counts and perf are recomputed
+function mergeRuns([base, ...fixes], out) {
+  if (!base || !fixes.length || !out) throw new Error('usage: --merge base.json fix.json... --out merged.json');
+  const id = r => r.id + (r.variant ? '~' + r.variant : '');
+  const B = readJson(base), byId = new Map(B.cases.map(r => [id(r), r])), replaced = [];
+  for (const f of fixes) for (const r of readJson(f).cases) {
+    if (!byId.has(id(r))) throw new Error(`${f}: ${id(r)} is not in ${base}`);
+    byId.set(id(r), r); replaced.push(`${id(r)} (${f})`);
+  }
+  const cases = B.cases.map(r => byId.get(id(r)));
+  const counts = cases.reduce((a, r) => (a[r.outcome] = (a[r.outcome] || 0) + 1, a), {});
+  fs.writeFileSync(path.resolve(out), JSON.stringify({ ...B, counts, perf: perfSummary(cases), merged: { base, replaced }, cases }, null, 1) + '\n');
+  console.log(`${out}: ${cases.length} cases, ${replaced.length} replaced: ${replaced.join(', ')}\n${JSON.stringify(counts)}`);
 }
 
 // --diff: same cases, same outcomes, same hits? (timings are ignored)
@@ -219,7 +279,7 @@ function diffRuns(a, b) {
 // --compare: timings of two runs, e.g. another iOS version or device
 function compareRuns(a, b) {
   const A = readJson(a), B = readJson(b);
-  const env = r => `${r.env.simulator} iOS ${r.env.iosVersion}, WDA ${r.env.wda}`;
+  const env = r => `${r.env.simulator || r.env.model} iOS ${r.env.iosVersion}, WDA ${r.env.wda}`;
   const row = (label, f) => console.log(`${label.padEnd(26)} ${String(f(A.perf)).padStart(12)} ${String(f(B.perf)).padStart(12)}`);
   console.log(`A: ${a} (${env(A)})\nB: ${b} (${env(B)})\n${''.padEnd(26)} ${'A'.padStart(12)} ${'B'.padStart(12)}`);
   row('cases timed', p => p.cases);
@@ -262,6 +322,7 @@ function verdicts(file, covFile) {
 async function main() {
   if (args.includes('--verdicts')) return verdicts(opt('--verdicts'), args[args.indexOf('--verdicts') + 2]);
   if (args.includes('--smoke')) return smoke();
+  if (args.includes('--merge')) return mergeRuns(args.slice(args.indexOf('--merge') + 1).filter(a => !a.startsWith('--') && a !== opt('--out')), opt('--out'));
   if (args.includes('--diff')) return diffRuns(opt('--diff'), args[args.indexOf('--diff') + 2]);
   if (args.includes('--compare')) return compareRuns(opt('--compare'), args[args.indexOf('--compare') + 2]);
   if (opt('--source')) {
@@ -273,9 +334,16 @@ async function main() {
   const only = opt('--only') ? new Set(opt('--only').split(',')) : null, scr = opt('--screen');
   const cases = all.filter(k => (!only || only.has(k.id)) && (!scr || k.screen === scr));
   if (!cases.length) throw new Error('no cases selected');
-  const t0 = Date.now(), results = [];
-  let env = null;
-  for (const screen of [...new Set(cases.map(k => k.screen))]) {
+  const outFile = path.resolve(HERE, opt('--out') || 'results.json');
+  const save = (doc) => fs.writeFileSync(outFile, JSON.stringify(doc, null, 1) + '\n');
+  const writes = (!only && !scr) || opt('--out');
+  const prev = args.includes('--resume') && fs.existsSync(outFile) ? readJson(outFile) : null;
+  if (prev && !prev.partial) throw new Error(`${outFile} is a finished run; nothing to resume`);
+  const t0 = Date.now(), results = prev ? prev.cases : [];
+  const done = new Set(results.map(r => r.screen));
+  let env = prev ? prev.env : null;
+  if (prev) console.log(`resuming: ${results.length} cases from ${[...done].join(', ')}`);
+  for (const screen of [...new Set(cases.map(k => k.screen))].filter(sc => !done.has(sc))) {
     const s = await Session.open(screen);
     try {
       await s.settle();
@@ -289,11 +357,12 @@ async function main() {
         console.log(`${r.outcome.padEnd(13)} ${(r.id + (r.variant ? '~' + r.variant : '')).padEnd(16)} ${r.verdict.padEnd(12)} ${JSON.stringify(r.xpath)}${r.chain ? '  →  ' + r.chain : ''}${e}${t}`);
       }
     } finally { await s.close(); }
+    if (writes) save({ partial: true, env, seconds: (prev ? prev.seconds : 0) + Math.round((Date.now() - t0) / 1000), cases: results });
   }
   const counts = results.reduce((a, r) => (a[r.outcome] = (a[r.outcome] || 0) + 1, a), {});
-  const perf = perfSummary(results), seconds = Math.round((Date.now() - t0) / 1000);
+  const perf = perfSummary(results), seconds = (prev ? prev.seconds : 0) + Math.round((Date.now() - t0) / 1000);
   console.log(`\n${results.length} cases in ${seconds} s:`, JSON.stringify(counts));
   if (perf) console.log(`timing (${perf.cases} cases, ${perf.method}): XPath median ${perf.xpathMs.median} ms, p95 ${perf.xpathMs.p95} ms; class chain median ${perf.chainMs.median} ms, p95 ${perf.chainMs.p95} ms; speedup ×${perf.speedup.geomean} (geomean), class chain faster in ${perf.chainFaster}/${perf.cases}`);
-  if ((!only && !scr) || opt('--out')) fs.writeFileSync(path.resolve(HERE, opt('--out') || 'results.json'), JSON.stringify({ env, date: new Date().toISOString().slice(0, 10), seconds, counts, perf, cases: results }, null, 1) + '\n');
+  if (writes) save({ env, date: new Date().toISOString().slice(0, 10), seconds, counts, perf, cases: results });
 }
 main().catch(e => { console.error(e); process.exit(1); });

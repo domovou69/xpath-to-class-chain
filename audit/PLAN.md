@@ -35,21 +35,12 @@ Specified in [`prompts/coverage.md`](prompts/coverage.md#phase-2--on-device-veri
   - **RC-D1.** Grouped positions `(//X)[n]` count in a different order than XPath (DRIFT, 29 corpus entries).
   - **RC-D2.** `[.//*[…]]` → `$…$` also matches the element itself (WRONG, F03). Fixed in `fix/rc-d2-descendant-self`: skipped unless both steps name different types; S = 57.5.
 
-RC-D1 is documented in `fix/rc-d1-grouped-position` (README, plus a `warning` in the console and `--json` report): R = 95.3, S = 61.9. Next: Phase 2b. As before, each further fix gets its own branch with the steps listed under Phase 1; re-run `device/run.js` after converter changes that affect positions or nested predicates.
+RC-D1 is documented in `fix/rc-d1-grouped-position` (README, plus a `warning` in the console and `--json` report): R = 95.3, S = 61.9. Phase 2b is done (below). As before, each further fix gets its own branch with the steps listed under Phase 1; re-run `device/run.js` after converter changes that affect positions or nested predicates.
 
-## Phase 2b — real device (planned)
+## Phase 2b — real device (done)
 
-Repeat the device run on a physical iPhone 13 Pro Max with the same `device/cases.json`, so simulator and hardware can be compared.
+Results in the "Real device (Phase 2b)" section of [`coverage-report.md`](coverage-report.md) and in [`device/results-device.json`](device/results-device.json).
 
-- Prerequisites:
-  - an Apple development team for signing: `DEVELOPMENT_TEAM` in `device/project.yml` for LocatorLab, and `appium:xcodeOrgId` / `appium:xcodeSigningId` / `appium:updatedWDABundleId` for WDA;
-  - the phone in developer mode, trusted by this Mac;
-  - an iOS version that Xcode 27.0 supports.
-- Pins stay as they are (Appium 3.8.0, xcuitest-driver 12.16.0, WDA 16.14.1). Record the iOS version and model in `results.json`/`env.json` (a second env entry, keyed by UDID).
-- Run twice (`--diff`), check the outcomes against the simulator run, and compare timings with `run.js --compare device/results.json <device run>`.
-- Watch in particular:
-  - the breadth-first result order (RC-D1);
-  - `$…$` including the element itself (RC-D2);
-  - `visible` on off-screen cells;
-  - lookup times on real hardware.
-
+- iPhone 13 Pro Max, iOS 26.6, same pins (Appium 3.8.0, xcuitest-driver 12.16.0, WDA 16.14.1), free Apple ID signing.
+- All 246 outcomes are the same as on the simulator. No verdict or score changed. Lookups take about 2.2 times as long, and the XPath/chain ratio is the same (×1.14).
+- `device/run.js` has a real-device mode (`devices` in `env.json`, `XCODE_ORG_ID`), saves after every screen, and has `--resume` and `--merge`.

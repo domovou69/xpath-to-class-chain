@@ -294,13 +294,69 @@ Over the 179 cases where both sides found the same thing or a comparable set (`r
 
 ### Not verified, and why
 
-- **Simulator only.** One device type (iPhone 17), one iOS version (27.0), portrait. No physical device, no iPad. `run.js --compare` is ready for runs on other devices or iOS versions.
+- **Simulator only** in this phase: one device type (iPhone 17), one iOS version (27.0), portrait, no iPad. The physical-device run is in Phase 2b below.
 - **Coverage.** One representative per corpus shape, plus every DRIFT, GAP and Phase 1 WRONG. The other 400+ corpus entries are judged by shape through the corrected mini-WDA, which now agrees with every device outcome.
 - **Scanner contexts (§3)** are about rewriting source files, not about lookups; they were not run on the device.
 - **Three DRIFT cases** did not diverge on their screen (listed above); the mechanism is shown by sibling cases.
 - **Breadth-first order** was checked on six LocatorLab screens (SwiftUI and UIKit content, a sheet and an alert). It is an observation of XCTest on iOS 27, not a documented guarantee.
 - **`${…}` values** are the same assumptions as Phase 1 (plain text, `true`/`false`, small integers). `${condition('label')}` was instantiated as XPath text.
 - **Timing** includes the Appium proxy round trip and depends on screen size. It was measured on the simulator of one Mac, with no other jobs running during the final two runs.
+
+## Real device (Phase 2b)
+
+The same 246 cases on a physical iPhone, compared with the simulator run of `fix/rc-d2-descendant-self` (`device/out/rcd2.json`, the current converter). Results: `device/results-device.json`.
+
+### Setup
+
+| | |
+|---|---|
+| Device | iPhone 13 Pro Max (iPhone14,3), iOS 26.6 (23G71), British English locale, USB |
+| Appium / driver / WDA | 3.8.0 / 12.16.0 / 16.14.1, as in Phase 2 |
+| Xcode | 27.0 (27A266a) |
+| Signing | free Apple ID (Personal Team, automatic signing). WDA as `io.github.domovou69.WebDriverAgentRunner`, LocatorLab as `io.github.domovou69.LocatorLab`; the team id comes from `XCODE_ORG_ID` and is not in the repository |
+
+Differences from the simulator setup, all in `device/run.js` (real-device mode, chosen by a UDID listed under `devices` in `env.json`):
+- WDA is forwarded to port 8101, because the simulator's WDA keeps 8100.
+- LocatorLab is installed once with `devicectl` and each session starts it by `appium:bundleId`. With `appium:app`, Appium reinstalls the app for every session and launches it about 90 ms later. iOS then sometimes refuses the launch ("unknown to FrontBoard"), and a retry reinstalls and hits the same race. Installing is not timed, so the lookups are unaffected.
+
+### Outcomes
+
+246 cases: EQUAL 146 · SET_DIFFERS 32 · XPATH_ONLY 62 · DEAD 4 · XPATH_ERROR 2. These are the same counts as the simulator, case by case: **no outcome differs**. `--verdicts` against `coverage-cases.json`: 241 agree, 4 not exercised, 1 is the A1 check, as on the simulator. WDA rejected no chain.
+
+`--diff` reports most cases as different because hits include the element's rect, and the screen is larger (428 × 926 against 402 × 874). Without the rect, 5 cases differ in what both sides found, never between XPath and chain:
+- A16~lists, L240, B16: more rows fit on the larger screen, so both sides find more elements.
+- L513: the system image label is `Favourite` (en-GB) instead of `Favorite`.
+- B11 `//*[@index="1"]`: the second match is the scroll bar on the device and an unnamed container on the simulator.
+
+Everything the simulator showed holds on the device: breadth-first result order (RC-D1: the 29 corpus cases and E02, E03, E09, E14, G11 diverge the same way), `$…$` testing the element itself (F03 is now skipped, F01, F07, F08 EQUAL), A1, and the DRIFT cases. The 4 cases that were not exercised on the simulator are not exercised on the device either.
+
+### How the run was assembled
+
+- **Run A**, 246 cases, 1373 s. The USB connection dropped once, on the `states` screen right after B14–B16: Appium logged `Device with UDID … not found` for every request to WDA, and the connection was back within seconds (the next session needed one retry). The affected cases (B14 XPATH_ERROR; B15–B18, C10 CC_ERROR with `fetch failed`) were re-run with `--only` and merged into run A with `run.js --merge`.
+- In the first re-run (B14–B18, C10) the connection dropped again at the same point, after B16, so B17, B18 and C10 were re-run once more on their own. All 6 are now as on the simulator.
+- Both drops came right after the heaviest lookups of the run (B14 ~4.8 s, B16 ~3 s per side). They look like an environment problem (the USB tunnel), not WDA: WDA kept its session. It is noted here because a long test suite on a real device may hit it.
+- **Repeat.** No second full run. An earlier attempt stopped after 196 cases (the reinstall race above) and serves as the repeat: all 196 outcomes match run A.
+- `run.js` now saves the output file after every screen (`"partial": true`), and `--resume` continues an interrupted run.
+
+### Lookup time on the device
+
+| | Simulator (Mac) | iPhone 13 Pro Max |
+|---|---|---|
+| Cases timed | 178 | 178 |
+| XPath median / p95 | 153 / 1241 ms | 350 / 3201 ms |
+| Chain median / p95 | 121 / 1621 ms | 285 / 3240 ms |
+| Speedup (geomean) | ×1.11 | ×1.14 |
+| Chain faster in | 133 | 138 |
+
+- Lookups take about 2.2 times as long on the phone as on the simulator, for both sides (same 178 cases, geomean: XPath ×2.24, chain ×2.15). The ratio between XPath and chain stays the same.
+- Per screen (geomean): identity ×1.33, modal ×1.06, lists ×1.15, states ×1.09, nesting ×1.05, functions ×0.86.
+- The cases where the chain is much slower are the same as on the simulator: B07 `visible` on the final step (10.8 s against 3.3 s), A07 (1.7 s against 0.29 s), L174 and E13 (intermediate position), C04 and H10 (OR over label and value). The largest gains are also the same: L120 ×4.3, E01 ×2.6, A16 ×1.9.
+
+### Not verified on the device
+
+- One device and one iOS version (26.6, older than the simulator's 27.0). No iPad, no landscape.
+- Only one full run, plus a 196-case repeat (above).
+- Lookup times include the USB tunnel; Wi-Fi was not tried.
 
 ## 1. Headline
 
