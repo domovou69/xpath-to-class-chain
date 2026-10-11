@@ -97,3 +97,34 @@ Each shape is used on 3 targets: top of screen (shallow, early in traversal), de
 - Scale cases and runner in `device/`, plus `results-scale*.json`.
 - A report section with size × shape × position, and a chart of lookup time vs. screen size.
 - README instructions so others can run the benchmark on their devices.
+
+## Phase 4 — plain LLMs vs the converter (planned)
+
+Question: how well do Haiku, Sonnet and Opus convert the same locators when simply asked to, with no tool and no extra knowledge, compared with the converter?
+
+**Input.** `audit/llm/input.json`: all 684 cases of `coverage-cases.json` (563 corpus, 121 spec) as `{ id, xpath }`. The XPath is the runtime string the driver receives, so quoting in source code is not part of the test. The order is shuffled and the group (`corpus`/`spec`) is not shown to the models; it is kept in a separate key file for scoring.
+
+**Run.** One task per model, as a user would give it: the whole file, "convert these XPath locators to iOS class chain". The same prompt for all models, stored in `audit/llm/prompt.md` and quoted in the report.
+- Isolation: `claude -p` in an empty folder outside the repository, containing only `input.json`. Tools are limited to Read and Write; there is no web access, no repository, no project memory, and `--bare`. The model may split the work itself.
+- Models: Haiku, Sonnet and Opus (latest), all at effort `high`. A model without effort support runs at its default, and this is recorded.
+- Runs: one per model, plus one repeat of Opus to show run-to-run variation.
+- Output contract: JSON `[{ id, chain }]` or `[{ id, skip, reason }]`. A skip is allowed.
+- Each run records model id, effort, date, wall time, tokens and cost (`--output-format json`) to `audit/llm/out/<model>-<run>.json`.
+
+**Scoring.** The same oracle as the converter: `audit/harness` (WDA 16.14.1 parser, corrected after Phase 2). Verdicts:
+
+| Verdict | Meaning |
+|---|---|
+| CORRECT | finds the same as the XPath |
+| CORRECT-SKIP | skipped an inexpressible locator |
+| GAP | skipped although expressible |
+| DRIFT | differs in edge cases (order, positions) |
+| WRONG | reported as converted but finds something else |
+| INVALID | WDA rejects the chain |
+| MISSING | id not in the output |
+
+Scores R (corpus) and S (spec) from 0 to 100, C, and the WRONG / INVALID / MISSING counts, with the converter as the reference row. Efficiency: time, tokens and cost per run.
+
+**Text analysis.** Opus (effort `high`) groups the errors by type and writes the findings from the scored results only; it does not grade.
+
+**Deliverables.** `audit/llm/` (input, key, prompt, runner, outputs, scores), a report section with the prompt, the results table, the error analysis and conclusions, and a PR from branch `audit/llm-comparison`.
