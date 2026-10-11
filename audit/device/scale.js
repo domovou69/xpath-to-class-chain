@@ -229,6 +229,9 @@ async function deep() {
 }
 
 async function main() {
+  // A sleeping display or Mac drops the USB tunnel to a real device ("Device with UDID … not found");
+  // caffeinate keeps both awake for as long as this process runs.
+  if (process.platform === 'darwin') require('child_process').spawn('caffeinate', ['-dimsu', '-w', String(process.pid)], { stdio: 'ignore', detached: true }).unref();
   const loads = (opt('--loads') || opt('--count') || '').split(',').filter(Boolean).map(Number);
   if (args.includes('--count')) return count(loads.length ? loads : LOADS);
   if (args.includes('--deep')) return deep();
