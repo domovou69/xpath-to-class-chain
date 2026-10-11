@@ -385,6 +385,10 @@ Savings = (XPath − chain) / XPath, over the 30 lookups; in brackets the time s
 
 The chain was faster in all 240 lookups (30 × 4 sizes × 2 devices).
 
+![Time per element lookup vs. elements in the tree, XPath and class chain, simulator and iPhone](scale-chart.svg)
+
+Chart: `node device/make-scale-chart.js` (simulator on AC, iPhone).
+
 ### Time per lookup by tree size
 
 | Elements | Simulator XPath | Simulator chain | iPhone XPath | iPhone chain | Page source (simulator, without `visible`) |
@@ -449,6 +453,14 @@ In WDA 16.14.1 a single lookup without a position and one with `[1]` both go thr
 | over 50 (markers 45–70) | `no such element` | `no such element` |
 
 Same on the simulator and the iPhone. The page source ends at depth 50 as well.
+
+### Limits of these measurements
+
+- Only element lookup is timed: one cold `findElement` per locator. With an implicit wait or a retry loop, a lookup that does not find the element at once repeats the whole search, so the time saved per lookup is multiplied by the number of attempts (not measured).
+- The screen is synthetic (LocatorLab); no production app was measured.
+- One WDA version (16.14.1). Its class chain lookup strategy changed recently (`XCUIElement+FBClassChain.m`, appium/WebDriverAgent PR #1194), so other versions may give other numbers.
+- One phone (iPhone 13 Pro Max) and one iOS version per device (26.6 on the phone, 27.0 on the simulator).
+- The simulator ran on one Mac (Apple M1 Pro, 16 GB, macOS 26.6.2), on AC with Low Power Mode off and on battery with Low Power Mode on; absolute times on other hosts will differ.
 
 ### Conclusions
 

@@ -81,6 +81,7 @@ node scale.js --out results-scale-mine.json            # 4 sizes × 30 cases × 
 node scale.js --out results-scale-mine.json --resume   # continue after a failure
 node scale.js --deep --out results-scale-deep-mine.json        # depth check (`scale-deep`)
 node scale.js --variants 100,2000 --out results-scale-variants-mine.json   # chain vs. [1] vs. useFirstMatch
+node make-scale-chart.js results-scale-mine.json results-scale-device-mine.json ../scale-chart-mine.svg   # the chart (simulator run, device run)
 ```
 
 - On a real device, set `UDID` and `XCODE_ORG_ID` and install the rebuilt LocatorLab as in "Real device" above.
@@ -111,6 +112,7 @@ node scale.js --variants 100,2000 --out results-scale-variants-mine.json   # cha
 | `results-scale-device.json` | Phase 3 run on the iPhone 13 Pro Max |
 | `results-scale-deep.json`, `results-scale-deep-device.json` | Depth check, simulator and iPhone |
 | `results-scale-variants.json` | Chain vs. chain with `[1]` vs. `useFirstMatch` (simulator) |
+| `make-scale-chart.js` | Phase 3 chart (`../scale-chart.svg`) from a simulator run and a device run |
 
 ## How a case runs
 
