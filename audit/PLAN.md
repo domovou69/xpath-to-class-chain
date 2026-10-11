@@ -106,15 +106,17 @@ Question: how well do Haiku, Sonnet and Opus convert the same locators when simp
 
 **Run.** One task per model, as a user would give it: the whole file, "convert these XPath locators to iOS class chain". The same prompt for all models, stored in `audit/llm/prompt.md` and quoted in the report.
 - Isolation: `claude -p` in an empty folder outside the repository, containing only `input.json`. Tools are limited to Read and Write; there is no web access, no repository, no project memory, and `--bare`. The model may split the work itself.
-- Models: Haiku, Sonnet and Opus (latest) at every effort level (`low`, `medium`, `high`, `xhigh`, `max`), one run per cell, in waves from `low` upwards. A model stops going up after two levels in a row without a gain in R or S (about 1 point). Unsupported levels are skipped and recorded.
-- Repeat: one second run of the recommended cell (the cheapest one with good results), to show how much R, S and the verdicts change between two identical runs.
+- Models: Haiku, Sonnet and Opus (latest) at every effort level (`low`, `medium`, `high`, `xhigh`, `max`), all levels for every model (a higher effort may also do worse). Unsupported levels are skipped and recorded.
+- Stage 1: one run per cell, in waves from `low` upwards → results table (with the converter as the reference row).
+- Stage 2: two more runs per cell → stability table: R and S of the 3 runs per cell (mean, min–max), and the share of cases whose verdict differs between runs.
+- Recommendation: for each of the three models, the effort level that is optimal (best results for the time and cost).
 - Output contract: JSON `[{ id, chain }]` or `[{ id, skip, reason }]`. A skip is allowed.
 - Each run records model id, effort, date, wall time, tokens and cost (`--output-format json`) to `audit/llm/out/<model>-<run>.json`.
 
 **One cycle (model × effort).**
 1. A new empty temporary folder outside the repository; copy in `input.json` only.
 2. `claude -p "<prompt>" --model <m> --effort <e> --tools Read,Write --bare --output-format json`, run in that folder. The model reads the file and writes `output.json`, in parts if it wants.
-3. Save `output.json` and the CLI's metadata (model, effort, time, tokens, cost) as `audit/llm/out/<model>-<effort>.json`. A missing or broken file is a failed run, not fixed by hand.
+3. Save `output.json` and the CLI's metadata (model, effort, time, tokens, cost) as `audit/llm/out/<model>-<effort>-<run>.json`. A missing or broken file is a failed run, not fixed by hand.
 4. Normalize mechanically only (e.g. strip a `-ios class chain:` prefix); ids not in the output are MISSING.
 5. Score with the harness, as for the converter.
 6. Add one row to the results table.
@@ -135,4 +137,4 @@ Scores R (corpus) and S (spec) from 0 to 100, C, and the WRONG / INVALID / MISSI
 
 **Text analysis.** Opus (effort `high`) groups the errors by type and writes the findings from the scored results only; it does not grade.
 
-**Deliverables.** `audit/llm/` (input, key, prompt, runner, outputs, scores), a report section with the prompt, the results table, the error analysis and conclusions, and a PR from branch `audit/llm-comparison`.
+**Deliverables.** `audit/llm/` (input, key, prompt, runner, outputs, scores), a report section with the prompt, the results table, the stability table, the per-model recommendation, the error analysis and conclusions, and a PR from branch `audit/llm-comparison`.
