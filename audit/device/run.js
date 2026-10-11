@@ -54,7 +54,7 @@ async function wd(method, url, body) {
 const ELEMENT = 'element-6066-11e4-a52e-4f735466cecf';
 
 class Session {
-  static async open(screen) {
+  static async open(screen, extraArgs = []) {
     const caps = {
       platformName: 'iOS',
       'appium:automationName': 'XCUITest',
@@ -62,7 +62,7 @@ class Session {
       // a real device runs the build installed once with devicectl: reinstalling it for every
       // session races FrontBoard ("unknown to FrontBoard")
       ...(DEVICE ? { 'appium:bundleId': DEVICE.appBundleId } : { 'appium:app': APP }),
-      'appium:processArguments': { args: ['-screen', screen] },
+      'appium:processArguments': { args: ['-screen', screen, ...extraArgs] },
       'appium:newCommandTimeout': 600,
       'appium:wdaLaunchTimeout': 600000,
       'appium:derivedDataPath': path.join(HERE, DEVICE ? 'DerivedData/WDA-device' : 'DerivedData/WDA'),
@@ -365,4 +365,6 @@ async function main() {
   if (perf) console.log(`timing (${perf.cases} cases, ${perf.method}): XPath median ${perf.xpathMs.median} ms, p95 ${perf.xpathMs.p95} ms; class chain median ${perf.chainMs.median} ms, p95 ${perf.chainMs.p95} ms; speedup ×${perf.speedup.geomean} (geomean), class chain faster in ${perf.chainFaster}/${perf.cases}`);
   if (writes) save({ env, date: new Date().toISOString().slice(0, 10), seconds, counts, perf, cases: results });
 }
-main().catch(e => { console.error(e); process.exit(1); });
+// scale.js (Phase 3) reuses the session and helpers
+module.exports = { Session, wd, prepare, versions, median, geomean, r1, r2, ELEMENT };
+if (require.main === module) main().catch(e => { console.error(e); process.exit(1); });

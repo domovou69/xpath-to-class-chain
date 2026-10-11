@@ -1,0 +1,286 @@
+{
+ "cases": [
+  {
+   "id": "S01-top",
+   "shape": 1,
+   "form": "//T[@name=\"v\"]",
+   "position": "top",
+   "xpath": "//XCUIElementTypeButton[@name=\"nav.help\"]"
+  },
+  {
+   "id": "S01-deep",
+   "shape": 1,
+   "form": "//T[@name=\"v\"]",
+   "position": "deep",
+   "xpath": "//XCUIElementTypeButton[@name=\"review.helpful\"]"
+  },
+  {
+   "id": "S01-end",
+   "shape": 1,
+   "form": "//T[@name=\"v\"]",
+   "position": "end",
+   "xpath": "//XCUIElementTypeButton[@name=\"checkout.placeOrder\"]"
+  },
+  {
+   "id": "S02-top",
+   "shape": 2,
+   "form": "//T[contains(@name,\"v\")]",
+   "position": "top",
+   "xpath": "//XCUIElementTypeStaticText[contains(@name, \"#1042\")]"
+  },
+  {
+   "id": "S02-deep",
+   "shape": 2,
+   "form": "//T[contains(@name,\"v\")]",
+   "position": "deep",
+   "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Anna K\")]"
+  },
+  {
+   "id": "S02-end",
+   "shape": 2,
+   "form": "//T[contains(@name,\"v\")]",
+   "position": "end",
+   "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Baker St\")]"
+  },
+  {
+   "id": "S03-top",
+   "shape": 3,
+   "form": "//*[contains(@type,\"v\") and contains(@label,\"v\")]",
+   "position": "top",
+   "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"promo code\")]"
+  },
+  {
+   "id": "S03-deep",
+   "shape": 3,
+   "form": "//*[contains(@type,\"v\") and contains(@label,\"v\")]",
+   "position": "deep",
+   "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"more replies\")]"
+  },
+  {
+   "id": "S03-end",
+   "shape": 3,
+   "form": "//*[contains(@type,\"v\") and contains(@label,\"v\")]",
+   "position": "end",
+   "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"payment method\")]"
+  },
+  {
+   "id": "S04-top",
+   "shape": 4,
+   "form": "//T[@label=\"v\"]",
+   "position": "top",
+   "xpath": "//XCUIElementTypeStaticText[@label=\"Free delivery over $50\"]"
+  },
+  {
+   "id": "S04-deep",
+   "shape": 4,
+   "form": "//T[@label=\"v\"]",
+   "position": "deep",
+   "xpath": "//XCUIElementTypeStaticText[@label=\"Great fit, runs small\"]"
+  },
+  {
+   "id": "S04-end",
+   "shape": 4,
+   "form": "//T[@label=\"v\"]",
+   "position": "end",
+   "xpath": "//XCUIElementTypeStaticText[@label=\"Total: $148.97\"]"
+  },
+  {
+   "id": "S05-top",
+   "shape": 5,
+   "form": "//*[contains(@type,\"v\") and contains(@name,\"v\")]",
+   "position": "top",
+   "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"codeInput\")]"
+  },
+  {
+   "id": "S05-deep",
+   "shape": 5,
+   "form": "//*[contains(@type,\"v\") and contains(@name,\"v\")]",
+   "position": "deep",
+   "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"replyInput\")]"
+  },
+  {
+   "id": "S05-end",
+   "shape": 5,
+   "form": "//*[contains(@type,\"v\") and contains(@name,\"v\")]",
+   "position": "end",
+   "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"postcode\")]"
+  },
+  {
+   "id": "S06-top",
+   "shape": 6,
+   "form": "//T[contains(@label,\"v\")]",
+   "position": "top",
+   "xpath": "//XCUIElementTypeButton[contains(@label, \"Edit cart\")]"
+  },
+  {
+   "id": "S06-deep",
+   "shape": 6,
+   "form": "//T[contains(@label,\"v\")]",
+   "position": "deep",
+   "xpath": "//XCUIElementTypeButton[contains(@label, \"Report rev\")]"
+  },
+  {
+   "id": "S06-end",
+   "shape": 6,
+   "form": "//T[contains(@label,\"v\")]",
+   "position": "end",
+   "xpath": "//XCUIElementTypeButton[contains(@label, \"Terms of\")]"
+  },
+  {
+   "id": "S07-top",
+   "shape": 7,
+   "form": "//*[contains(@name|@label,\"v\")]",
+   "position": "top",
+   "xpath": "//*[contains(@name, \"flashSale\")]"
+  },
+  {
+   "id": "S07-deep",
+   "shape": 7,
+   "form": "//*[contains(@name|@label,\"v\")]",
+   "position": "deep",
+   "xpath": "//*[contains(@label, \"Verified purchase\")]"
+  },
+  {
+   "id": "S07-end",
+   "shape": 7,
+   "form": "//*[contains(@name|@label,\"v\")]",
+   "position": "end",
+   "xpath": "//*[contains(@name, \"help with your\")]"
+  },
+  {
+   "id": "S08-top",
+   "shape": 8,
+   "form": "(//T[@name=\"v\"])[n]",
+   "position": "top",
+   "xpath": "(//XCUIElementTypeButton[@name=\"Add to cart\"])[2]"
+  },
+  {
+   "id": "S08-deep",
+   "shape": 8,
+   "form": "(//T[@name=\"v\"])[n]",
+   "position": "deep",
+   "xpath": "(//XCUIElementTypeButton[@name=\"Reply\"])[2]"
+  },
+  {
+   "id": "S08-end",
+   "shape": 8,
+   "form": "(//T[@name=\"v\"])[n]",
+   "position": "end",
+   "xpath": "(//XCUIElementTypeButton[@name=\"Remove\"])[3]"
+  },
+  {
+   "id": "S09-top",
+   "shape": 9,
+   "form": "//*[@name=\"v\" and @label=\"v\"]",
+   "position": "top",
+   "xpath": "//*[@name=\"cart.badge\" and @label=\"3 items\"]"
+  },
+  {
+   "id": "S09-deep",
+   "shape": 9,
+   "form": "//*[@name=\"v\" and @label=\"v\"]",
+   "position": "deep",
+   "xpath": "//*[@name=\"Was this helpful?\" and @label=\"Was this helpful?\"]"
+  },
+  {
+   "id": "S09-end",
+   "shape": 9,
+   "form": "//*[@name=\"v\" and @label=\"v\"]",
+   "position": "end",
+   "xpath": "//XCUIElementTypeButton[@name=\"checkout.saveAddress\" and @label=\"Save address\"]"
+  },
+  {
+   "id": "S10-top",
+   "shape": 10,
+   "form": "//*[contains(@name,\"v\")]/child::T[@name=\"v\"]",
+   "position": "top",
+   "xpath": "//*[contains(@name,\"deliveryInfo\")]/child::XCUIElementTypeStaticText[@name=\"Arrives Tue, Oct 14\"]"
+  },
+  {
+   "id": "S10-deep",
+   "shape": 10,
+   "form": "//*[contains(@name,\"v\")]/child::T[@name=\"v\"]",
+   "position": "deep",
+   "xpath": "//*[contains(@name,\"replyMeta\")]/child::XCUIElementTypeStaticText[@name=\"Posted 2 days ago\"]"
+  },
+  {
+   "id": "S10-end",
+   "shape": 10,
+   "form": "//*[contains(@name,\"v\")]/child::T[@name=\"v\"]",
+   "position": "end",
+   "xpath": "//*[contains(@name,\"summary.taxes\")]/child::XCUIElementTypeStaticText[@name=\"Taxes: $11.02\"]"
+  }
+ ],
+ "deep": [
+  {
+   "id": "D5",
+   "marker": 5,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.5\"]"
+  },
+  {
+   "id": "D10",
+   "marker": 10,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.10\"]"
+  },
+  {
+   "id": "D15",
+   "marker": 15,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.15\"]"
+  },
+  {
+   "id": "D20",
+   "marker": 20,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.20\"]"
+  },
+  {
+   "id": "D25",
+   "marker": 25,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.25\"]"
+  },
+  {
+   "id": "D30",
+   "marker": 30,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.30\"]"
+  },
+  {
+   "id": "D35",
+   "marker": 35,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.35\"]"
+  },
+  {
+   "id": "D40",
+   "marker": 40,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.40\"]"
+  },
+  {
+   "id": "D45",
+   "marker": 45,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.45\"]"
+  },
+  {
+   "id": "D50",
+   "marker": 50,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.50\"]"
+  },
+  {
+   "id": "D55",
+   "marker": 55,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.55\"]"
+  },
+  {
+   "id": "D60",
+   "marker": 60,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.60\"]"
+  },
+  {
+   "id": "D65",
+   "marker": 65,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.65\"]"
+  },
+  {
+   "id": "D70",
+   "marker": 70,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.70\"]"
+  }
+ ]
+}

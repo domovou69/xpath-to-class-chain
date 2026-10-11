@@ -1,0 +1,2808 @@
+{
+ "env": {
+  "xcode": "Xcode 27.0 Build version 27A266a",
+  "appium": "3.8.0",
+  "xcuitestDriver": "12.16.0",
+  "wda": "16.14.1",
+  "iosVersion": "27.0",
+  "node": "v24.21.0",
+  "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+  "runtimeBuild": "24A434",
+  "simulator": "LocatorLab iPhone 17",
+  "deviceType": "com.apple.CoreSimulator.SimDeviceType.iPhone-17",
+  "udid": "208FA758-C937-49C4-ADE6-E16B0D7E0630"
+ },
+ "method": "3 passes, median; one cold findElement per lookup, XPath/chain order alternating",
+ "loads": [
+  {
+   "load": 100,
+   "elements": 102,
+   "maxDepth": 40,
+   "depthOf": {
+    "nav.help": 10,
+    "review.helpful": 39,
+    "checkout.placeOrder": 9
+   },
+   "sourceMs": [
+    156.3,
+    157.1,
+    158.6
+   ],
+   "sourceMedianMs": 157.1,
+   "summary": {
+    "timed": 30,
+    "xpathTotalMs": 3996.1,
+    "chainTotalMs": 3139.8,
+    "xpathMedianMs": 132.5,
+    "chainMedianMs": 104.3,
+    "speedupGeomean": 1.27,
+    "chainFaster": 30,
+    "byPosition": {
+     "top": 1.27,
+     "deep": 1.27,
+     "end": 1.27
+    }
+   },
+   "cases": [
+    {
+     "id": "S01-top",
+     "shape": 1,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[@name=\"nav.help\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"nav.help\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|nav.help|Help|null|68,62,25,14",
+     "xpathMs": [
+      132.6,
+      140.6,
+      136.6
+     ],
+     "chainMs": [
+      103.1,
+      103.3,
+      108.1
+     ],
+     "xpath_median": 136.6,
+     "chain_median": 103.3,
+     "speedup": 1.32
+    },
+    {
+     "id": "S01-deep",
+     "shape": 1,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[@name=\"review.helpful\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"review.helpful\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|review.helpful|Yes, helpful|null|64,328,61,27",
+     "xpathMs": [
+      133.5,
+      137.9,
+      137.2
+     ],
+     "chainMs": [
+      103.3,
+      104.8,
+      106.3
+     ],
+     "xpath_median": 137.2,
+     "chain_median": 104.8,
+     "speedup": 1.31
+    },
+    {
+     "id": "S01-end",
+     "shape": 1,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.placeOrder\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.placeOrder\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|checkout.placeOrder|Place order|null|8,599,60,14",
+     "xpathMs": [
+      131.5,
+      136.7,
+      135.5
+     ],
+     "chainMs": [
+      101.4,
+      105.9,
+      104.8
+     ],
+     "xpath_median": 135.5,
+     "chain_median": 104.8,
+     "speedup": 1.29
+    },
+    {
+     "id": "S02-top",
+     "shape": 2,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"#1042\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"#1042\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Order #1042 · 3 items|Order #1042 · 3 items|Order #1042 · 3 items|8,76,115,14",
+     "xpathMs": [
+      132.6,
+      134.6,
+      134.7
+     ],
+     "chainMs": [
+      103.8,
+      102.9,
+      104.7
+     ],
+     "xpath_median": 134.6,
+     "chain_median": 103.8,
+     "speedup": 1.3
+    },
+    {
+     "id": "S02-deep",
+     "shape": 2,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Anna K\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Anna K\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Reply from Anna K.|Reply from Anna K.|Reply from Anna K.|64,257,101,14",
+     "xpathMs": [
+      131.3,
+      134.7,
+      133.5
+     ],
+     "chainMs": [
+      101.6,
+      102.2,
+      104.1
+     ],
+     "xpath_median": 133.5,
+     "chain_median": 102.2,
+     "speedup": 1.31
+    },
+    {
+     "id": "S02-end",
+     "shape": 2,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Baker St\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Baker St\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Delivery address: 12 Baker St, London|Delivery address: 12 Baker St, London|Delivery address: 12 Baker St, London|8,475,199,14",
+     "xpathMs": [
+      131,
+      134.5,
+      133
+     ],
+     "chainMs": [
+      101.3,
+      103.1,
+      102.4
+     ],
+     "xpath_median": 133,
+     "chain_median": 102.4,
+     "speedup": 1.3
+    },
+    {
+     "id": "S03-top",
+     "shape": 3,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"promo code\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"promo code\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Apply promo code|Apply promo code|null|298,138,96,14",
+     "xpathMs": [
+      131.4,
+      131.9,
+      145.9
+     ],
+     "chainMs": [
+      103.7,
+      105,
+      105.2
+     ],
+     "xpath_median": 131.9,
+     "chain_median": 105,
+     "speedup": 1.26
+    },
+    {
+     "id": "S03-deep",
+     "shape": 3,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"more replies\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"more replies\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Show 3 more replies|Show 3 more replies|null|64,382,107,27",
+     "xpathMs": [
+      132.9,
+      133.9,
+      134.8
+     ],
+     "chainMs": [
+      104.8,
+      103.7,
+      113.3
+     ],
+     "xpath_median": 133.9,
+     "chain_median": 104.8,
+     "speedup": 1.28
+    },
+    {
+     "id": "S03-end",
+     "shape": 3,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"payment method\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"payment method\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Change payment method|Change payment method|null|8,527,132,14",
+     "xpathMs": [
+      132.4,
+      139.4,
+      134.5
+     ],
+     "chainMs": [
+      103.7,
+      106.5,
+      109.1
+     ],
+     "xpath_median": 134.5,
+     "chain_median": 106.5,
+     "speedup": 1.26
+    },
+    {
+     "id": "S04-top",
+     "shape": 4,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Free delivery over $50\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Free delivery over $50\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Free delivery over $50|Free delivery over $50|Free delivery over $50|8,90,118,14",
+     "xpathMs": [
+      132.3,
+      135.6,
+      136.8
+     ],
+     "chainMs": [
+      101.8,
+      105.9,
+      105.3
+     ],
+     "xpath_median": 135.6,
+     "chain_median": 105.3,
+     "speedup": 1.29
+    },
+    {
+     "id": "S04-deep",
+     "shape": 4,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Great fit, runs small\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Great fit, runs small\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Great fit, runs small|Great fit, runs small|Great fit, runs small|64,271,103,14",
+     "xpathMs": [
+      130.6,
+      137.8,
+      135.7
+     ],
+     "chainMs": [
+      101.6,
+      105.8,
+      104
+     ],
+     "xpath_median": 135.7,
+     "chain_median": 104,
+     "speedup": 1.3
+    },
+    {
+     "id": "S04-end",
+     "shape": 4,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Total: $148.97\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Total: $148.97\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Total: $148.97|Total: $148.97|Total: $148.97|8,555,75,15",
+     "xpathMs": [
+      130.5,
+      138.4,
+      136.7
+     ],
+     "chainMs": [
+      101.8,
+      104.3,
+      106.7
+     ],
+     "xpath_median": 136.7,
+     "chain_median": 104.3,
+     "speedup": 1.31
+    },
+    {
+     "id": "S05-top",
+     "shape": 5,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"codeInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"codeInput\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|promo.codeInput||Promo code|8,133,286,23",
+     "xpathMs": [
+      129.9,
+      132.4,
+      133.1
+     ],
+     "chainMs": [
+      101.8,
+      103.2,
+      102.5
+     ],
+     "xpath_median": 132.4,
+     "chain_median": 102.5,
+     "speedup": 1.29
+    },
+    {
+     "id": "S05-deep",
+     "shape": 5,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"replyInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"replyInput\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|review.replyInput||Write a reply|64,409,160,23",
+     "xpathMs": [
+      131.3,
+      132.6,
+      135.5
+     ],
+     "chainMs": [
+      101.9,
+      103.9,
+      104.6
+     ],
+     "xpath_median": 132.6,
+     "chain_median": 103.9,
+     "speedup": 1.28
+    },
+    {
+     "id": "S05-end",
+     "shape": 5,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"postcode\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"postcode\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|address.postcodeField||Postcode|8,490,386,22",
+     "xpathMs": [
+      131.6,
+      133,
+      131.8
+     ],
+     "chainMs": [
+      105.7,
+      104.3,
+      101.2
+     ],
+     "xpath_median": 131.8,
+     "chain_median": 104.3,
+     "speedup": 1.26
+    },
+    {
+     "id": "S06-top",
+     "shape": 6,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Edit cart\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Edit cart\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Edit cart (3)|Edit cart (3)|null|8,156,63,14",
+     "xpathMs": [
+      136.5,
+      134,
+      131.1
+     ],
+     "chainMs": [
+      103.7,
+      102.3,
+      102.2
+     ],
+     "xpath_median": 134,
+     "chain_median": 102.3,
+     "speedup": 1.31
+    },
+    {
+     "id": "S06-deep",
+     "shape": 6,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Report rev\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Report rev\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Report review|Report review|null|129,328,73,27",
+     "xpathMs": [
+      143.1,
+      131.3,
+      132.1
+     ],
+     "chainMs": [
+      102.8,
+      102.2,
+      102.1
+     ],
+     "xpath_median": 132.1,
+     "chain_median": 102.2,
+     "speedup": 1.29
+    },
+    {
+     "id": "S06-end",
+     "shape": 6,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Terms of\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Terms of\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Terms of sale|Terms of sale|null|8,570,71,14",
+     "xpathMs": [
+      131.9,
+      131.8,
+      132.5
+     ],
+     "chainMs": [
+      101.4,
+      100.9,
+      102.5
+     ],
+     "xpath_median": 131.9,
+     "chain_median": 101.4,
+     "speedup": 1.3
+    },
+    {
+     "id": "S07-top",
+     "shape": 7,
+     "position": "top",
+     "xpath": "//*[contains(@name, \"flashSale\")]",
+     "chain": "**/*[`name CONTAINS \"flashSale\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|banner.flashSale|Flash sale ends in 02:14:09|Flash sale ends in 02:14:09|8,119,143,14",
+     "xpathMs": [
+      131.3,
+      131,
+      130.8
+     ],
+     "chainMs": [
+      103.5,
+      104.3,
+      105.1
+     ],
+     "xpath_median": 131,
+     "chain_median": 104.3,
+     "speedup": 1.26
+    },
+    {
+     "id": "S07-deep",
+     "shape": 7,
+     "position": "deep",
+     "xpath": "//*[contains(@label, \"Verified purchase\")]",
+     "chain": "**/*[`label CONTAINS \"Verified purchase\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Verified purchase · Size M|Verified purchase · Size M|Verified purchase · Size M|64,285,137,14",
+     "xpathMs": [
+      131.3,
+      132.3,
+      131.6
+     ],
+     "chainMs": [
+      104,
+      104.6,
+      105.4
+     ],
+     "xpath_median": 131.6,
+     "chain_median": 104.6,
+     "speedup": 1.26
+    },
+    {
+     "id": "S07-end",
+     "shape": 7,
+     "position": "end",
+     "xpath": "//*[contains(@name, \"help with your\")]",
+     "chain": "**/*[`name CONTAINS \"help with your\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Need help with your order?|Need help with your order?|null|8,584,142,14",
+     "xpathMs": [
+      132.1,
+      133.4,
+      131.2
+     ],
+     "chainMs": [
+      103.8,
+      104.6,
+      104
+     ],
+     "xpath_median": 132.1,
+     "chain_median": 104,
+     "speedup": 1.27
+    },
+    {
+     "id": "S08-top",
+     "shape": 8,
+     "position": "top",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Add to cart\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Add to cart\"`][2]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Add to cart|Add to cart|null|14,214,59,14",
+     "xpathMs": [
+      142.2,
+      132.6,
+      132.2
+     ],
+     "chainMs": [
+      109.4,
+      109.9,
+      108.3
+     ],
+     "xpath_median": 132.6,
+     "chain_median": 109.4,
+     "speedup": 1.21
+    },
+    {
+     "id": "S08-deep",
+     "shape": 8,
+     "position": "deep",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Reply\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Reply\"`][2]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Reply|Reply|null|98,355,30,27",
+     "xpathMs": [
+      131.9,
+      132.3,
+      130.5
+     ],
+     "chainMs": [
+      110.2,
+      109.6,
+      109.9
+     ],
+     "xpath_median": 131.9,
+     "chain_median": 109.9,
+     "speedup": 1.2
+    },
+    {
+     "id": "S08-end",
+     "shape": 8,
+     "position": "end",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Remove\"])[3]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Remove\"`][3]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Remove|Remove|null|93,461,43,14",
+     "xpathMs": [
+      131.3,
+      131.2,
+      132.1
+     ],
+     "chainMs": [
+      108.7,
+      113.8,
+      109.6
+     ],
+     "xpath_median": 131.3,
+     "chain_median": 109.6,
+     "speedup": 1.2
+    },
+    {
+     "id": "S09-top",
+     "shape": 9,
+     "position": "top",
+     "xpath": "//*[@name=\"cart.badge\" and @label=\"3 items\"]",
+     "chain": "**/*[`name == \"cart.badge\" AND label == \"3 items\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|cart.badge|3 items|null|96,62,40,14",
+     "xpathMs": [
+      131.2,
+      132.1,
+      132.8
+     ],
+     "chainMs": [
+      103,
+      103.4,
+      104.2
+     ],
+     "xpath_median": 132.1,
+     "chain_median": 103.4,
+     "speedup": 1.28
+    },
+    {
+     "id": "S09-deep",
+     "shape": 9,
+     "position": "deep",
+     "xpath": "//*[@name=\"Was this helpful?\" and @label=\"Was this helpful?\"]",
+     "chain": "**/*[`name == \"Was this helpful?\" AND label == \"Was this helpful?\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Was this helpful?|Was this helpful?|Was this helpful?|64,314,90,14",
+     "xpathMs": [
+      132.6,
+      131.3,
+      134.1
+     ],
+     "chainMs": [
+      103.6,
+      103.8,
+      104.9
+     ],
+     "xpath_median": 132.6,
+     "chain_median": 103.8,
+     "speedup": 1.28
+    },
+    {
+     "id": "S09-end",
+     "shape": 9,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.saveAddress\" and @label=\"Save address\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.saveAddress\" AND label == \"Save address\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|checkout.saveAddress|Save address|null|8,513,71,14",
+     "xpathMs": [
+      131.4,
+      132.3,
+      133.5
+     ],
+     "chainMs": [
+      102.9,
+      101.9,
+      103.3
+     ],
+     "xpath_median": 132.3,
+     "chain_median": 102.9,
+     "speedup": 1.29
+    },
+    {
+     "id": "S10-top",
+     "shape": 10,
+     "position": "top",
+     "xpath": "//*[contains(@name,\"deliveryInfo\")]/child::XCUIElementTypeStaticText[@name=\"Arrives Tue, Oct 14\"]",
+     "chain": "**/*[`name CONTAINS \"deliveryInfo\"`]/XCUIElementTypeStaticText[`name == \"Arrives Tue, Oct 14\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Arrives Tue, Oct 14|Arrives Tue, Oct 14|Arrives Tue, Oct 14|14,105,100,14",
+     "xpathMs": [
+      130.2,
+      132,
+      132.5
+     ],
+     "chainMs": [
+      107.5,
+      106.7,
+      106.9
+     ],
+     "xpath_median": 132,
+     "chain_median": 106.9,
+     "speedup": 1.23
+    },
+    {
+     "id": "S10-deep",
+     "shape": 10,
+     "position": "deep",
+     "xpath": "//*[contains(@name,\"replyMeta\")]/child::XCUIElementTypeStaticText[@name=\"Posted 2 days ago\"]",
+     "chain": "**/*[`name CONTAINS \"replyMeta\"`]/XCUIElementTypeStaticText[`name == \"Posted 2 days ago\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Posted 2 days ago|Posted 2 days ago|Posted 2 days ago|66,300,97,14",
+     "xpathMs": [
+      130.5,
+      132.1,
+      131.8
+     ],
+     "chainMs": [
+      105.6,
+      107,
+      106.6
+     ],
+     "xpath_median": 131.8,
+     "chain_median": 106.6,
+     "speedup": 1.24
+    },
+    {
+     "id": "S10-end",
+     "shape": 10,
+     "position": "end",
+     "xpath": "//*[contains(@name,\"summary.taxes\")]/child::XCUIElementTypeStaticText[@name=\"Taxes: $11.02\"]",
+     "chain": "**/*[`name CONTAINS \"summary.taxes\"`]/XCUIElementTypeStaticText[`name == \"Taxes: $11.02\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Taxes: $11.02|Taxes: $11.02|Taxes: $11.02|14,541,70,14",
+     "xpathMs": [
+      132.4,
+      131.3,
+      131.3
+     ],
+     "chainMs": [
+      107.2,
+      106.4,
+      106.6
+     ],
+     "xpath_median": 131.3,
+     "chain_median": 106.6,
+     "speedup": 1.23
+    }
+   ]
+  },
+  {
+   "load": 500,
+   "elements": 503,
+   "maxDepth": 40,
+   "depthOf": {
+    "nav.help": 10,
+    "review.helpful": 39,
+    "checkout.placeOrder": 9
+   },
+   "sourceMs": [
+    728.6,
+    748.2,
+    744.7
+   ],
+   "sourceMedianMs": 744.7,
+   "summary": {
+    "timed": 30,
+    "xpathTotalMs": 16239.1,
+    "chainTotalMs": 12279,
+    "xpathMedianMs": 541.1,
+    "chainMedianMs": 409.6,
+    "speedupGeomean": 1.32,
+    "chainFaster": 30,
+    "byPosition": {
+     "top": 1.32,
+     "deep": 1.32,
+     "end": 1.33
+    }
+   },
+   "cases": [
+    {
+     "id": "S01-top",
+     "shape": 1,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[@name=\"nav.help\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"nav.help\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|nav.help|Help|null|68,62,25,14",
+     "xpathMs": [
+      538.4,
+      543.7,
+      544.6
+     ],
+     "chainMs": [
+      405.5,
+      405.6,
+      408.1
+     ],
+     "xpath_median": 543.7,
+     "chain_median": 405.6,
+     "speedup": 1.34
+    },
+    {
+     "id": "S01-deep",
+     "shape": 1,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[@name=\"review.helpful\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"review.helpful\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|review.helpful|Yes, helpful|null|64,328,61,27",
+     "xpathMs": [
+      540,
+      541,
+      546.7
+     ],
+     "chainMs": [
+      404,
+      425.7,
+      404.9
+     ],
+     "xpath_median": 541,
+     "chain_median": 404.9,
+     "speedup": 1.34
+    },
+    {
+     "id": "S01-end",
+     "shape": 1,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.placeOrder\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.placeOrder\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|checkout.placeOrder|Place order|null|8,599,60,14",
+     "xpathMs": [
+      539.1,
+      542.4,
+      544.8
+     ],
+     "chainMs": [
+      403.9,
+      404,
+      404
+     ],
+     "xpath_median": 542.4,
+     "chain_median": 404,
+     "speedup": 1.34
+    },
+    {
+     "id": "S02-top",
+     "shape": 2,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"#1042\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"#1042\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Order #1042 · 3 items|Order #1042 · 3 items|Order #1042 · 3 items|8,76,115,14",
+     "xpathMs": [
+      541.3,
+      539.6,
+      539.7
+     ],
+     "chainMs": [
+      406.2,
+      407.6,
+      406.9
+     ],
+     "xpath_median": 539.7,
+     "chain_median": 406.9,
+     "speedup": 1.33
+    },
+    {
+     "id": "S02-deep",
+     "shape": 2,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Anna K\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Anna K\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Reply from Anna K.|Reply from Anna K.|Reply from Anna K.|64,257,101,14",
+     "xpathMs": [
+      541.6,
+      540.6,
+      540.4
+     ],
+     "chainMs": [
+      406.2,
+      406.1,
+      405.6
+     ],
+     "xpath_median": 540.6,
+     "chain_median": 406.1,
+     "speedup": 1.33
+    },
+    {
+     "id": "S02-end",
+     "shape": 2,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Baker St\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Baker St\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Delivery address: 12 Baker St, London|Delivery address: 12 Baker St, London|Delivery address: 12 Baker St, London|8,475,199,14",
+     "xpathMs": [
+      540,
+      539.6,
+      542.6
+     ],
+     "chainMs": [
+      406.7,
+      408.8,
+      406.5
+     ],
+     "xpath_median": 540,
+     "chain_median": 406.7,
+     "speedup": 1.33
+    },
+    {
+     "id": "S03-top",
+     "shape": 3,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"promo code\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"promo code\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Apply promo code|Apply promo code|null|298,138,96,14",
+     "xpathMs": [
+      540.5,
+      542.1,
+      540.9
+     ],
+     "chainMs": [
+      411.3,
+      413.4,
+      412
+     ],
+     "xpath_median": 540.9,
+     "chain_median": 412,
+     "speedup": 1.31
+    },
+    {
+     "id": "S03-deep",
+     "shape": 3,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"more replies\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"more replies\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Show 3 more replies|Show 3 more replies|null|64,382,107,27",
+     "xpathMs": [
+      541.6,
+      539.8,
+      540.4
+     ],
+     "chainMs": [
+      412.3,
+      410.7,
+      412.1
+     ],
+     "xpath_median": 540.4,
+     "chain_median": 412.1,
+     "speedup": 1.31
+    },
+    {
+     "id": "S03-end",
+     "shape": 3,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"payment method\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"payment method\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Change payment method|Change payment method|null|8,527,132,14",
+     "xpathMs": [
+      543.6,
+      539.8,
+      542.7
+     ],
+     "chainMs": [
+      412.5,
+      412,
+      415.8
+     ],
+     "xpath_median": 542.7,
+     "chain_median": 412.5,
+     "speedup": 1.32
+    },
+    {
+     "id": "S04-top",
+     "shape": 4,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Free delivery over $50\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Free delivery over $50\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Free delivery over $50|Free delivery over $50|Free delivery over $50|8,90,118,14",
+     "xpathMs": [
+      542.5,
+      538,
+      542.3
+     ],
+     "chainMs": [
+      409,
+      405.5,
+      407.2
+     ],
+     "xpath_median": 542.3,
+     "chain_median": 407.2,
+     "speedup": 1.33
+    },
+    {
+     "id": "S04-deep",
+     "shape": 4,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Great fit, runs small\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Great fit, runs small\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Great fit, runs small|Great fit, runs small|Great fit, runs small|64,271,103,14",
+     "xpathMs": [
+      541.8,
+      543.5,
+      541.3
+     ],
+     "chainMs": [
+      408.2,
+      408,
+      406.6
+     ],
+     "xpath_median": 541.8,
+     "chain_median": 408,
+     "speedup": 1.33
+    },
+    {
+     "id": "S04-end",
+     "shape": 4,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Total: $148.97\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Total: $148.97\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Total: $148.97|Total: $148.97|Total: $148.97|8,555,75,15",
+     "xpathMs": [
+      538.8,
+      542.9,
+      543
+     ],
+     "chainMs": [
+      409.8,
+      408.3,
+      408.2
+     ],
+     "xpath_median": 542.9,
+     "chain_median": 408.3,
+     "speedup": 1.33
+    },
+    {
+     "id": "S05-top",
+     "shape": 5,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"codeInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"codeInput\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|promo.codeInput||Promo code|8,133,286,23",
+     "xpathMs": [
+      541.3,
+      540.1,
+      540.6
+     ],
+     "chainMs": [
+      408.5,
+      411,
+      409.4
+     ],
+     "xpath_median": 540.6,
+     "chain_median": 409.4,
+     "speedup": 1.32
+    },
+    {
+     "id": "S05-deep",
+     "shape": 5,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"replyInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"replyInput\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|review.replyInput||Write a reply|64,409,160,23",
+     "xpathMs": [
+      540.1,
+      535.2,
+      540
+     ],
+     "chainMs": [
+      411.5,
+      408,
+      410.6
+     ],
+     "xpath_median": 540,
+     "chain_median": 410.6,
+     "speedup": 1.32
+    },
+    {
+     "id": "S05-end",
+     "shape": 5,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"postcode\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"postcode\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|address.postcodeField||Postcode|8,490,386,22",
+     "xpathMs": [
+      541.6,
+      539.1,
+      540.5
+     ],
+     "chainMs": [
+      408.9,
+      410.5,
+      409.7
+     ],
+     "xpath_median": 540.5,
+     "chain_median": 409.7,
+     "speedup": 1.32
+    },
+    {
+     "id": "S06-top",
+     "shape": 6,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Edit cart\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Edit cart\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Edit cart (3)|Edit cart (3)|null|8,156,63,14",
+     "xpathMs": [
+      538.8,
+      539.9,
+      537.8
+     ],
+     "chainMs": [
+      403.4,
+      406.4,
+      403.6
+     ],
+     "xpath_median": 538.8,
+     "chain_median": 403.6,
+     "speedup": 1.33
+    },
+    {
+     "id": "S06-deep",
+     "shape": 6,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Report rev\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Report rev\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Report review|Report review|null|129,328,73,27",
+     "xpathMs": [
+      543.8,
+      540.1,
+      541.3
+     ],
+     "chainMs": [
+      403.9,
+      404.8,
+      403.9
+     ],
+     "xpath_median": 541.3,
+     "chain_median": 403.9,
+     "speedup": 1.34
+    },
+    {
+     "id": "S06-end",
+     "shape": 6,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Terms of\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Terms of\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Terms of sale|Terms of sale|null|8,570,71,14",
+     "xpathMs": [
+      540,
+      541.2,
+      541
+     ],
+     "chainMs": [
+      405.4,
+      403.9,
+      404.1
+     ],
+     "xpath_median": 541,
+     "chain_median": 404.1,
+     "speedup": 1.34
+    },
+    {
+     "id": "S07-top",
+     "shape": 7,
+     "position": "top",
+     "xpath": "//*[contains(@name, \"flashSale\")]",
+     "chain": "**/*[`name CONTAINS \"flashSale\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|banner.flashSale|Flash sale ends in 02:14:09|Flash sale ends in 02:14:09|8,119,143,14",
+     "xpathMs": [
+      542.9,
+      539.3,
+      540.4
+     ],
+     "chainMs": [
+      415.6,
+      411.5,
+      413.7
+     ],
+     "xpath_median": 540.4,
+     "chain_median": 413.7,
+     "speedup": 1.31
+    },
+    {
+     "id": "S07-deep",
+     "shape": 7,
+     "position": "deep",
+     "xpath": "//*[contains(@label, \"Verified purchase\")]",
+     "chain": "**/*[`label CONTAINS \"Verified purchase\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Verified purchase · Size M|Verified purchase · Size M|Verified purchase · Size M|64,285,137,14",
+     "xpathMs": [
+      539.3,
+      541.7,
+      542.6
+     ],
+     "chainMs": [
+      411.6,
+      417,
+      413.8
+     ],
+     "xpath_median": 541.7,
+     "chain_median": 413.8,
+     "speedup": 1.31
+    },
+    {
+     "id": "S07-end",
+     "shape": 7,
+     "position": "end",
+     "xpath": "//*[contains(@name, \"help with your\")]",
+     "chain": "**/*[`name CONTAINS \"help with your\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Need help with your order?|Need help with your order?|null|8,584,142,14",
+     "xpathMs": [
+      540,
+      540.1,
+      540.5
+     ],
+     "chainMs": [
+      412.7,
+      413.1,
+      413.3
+     ],
+     "xpath_median": 540.1,
+     "chain_median": 413.1,
+     "speedup": 1.31
+    },
+    {
+     "id": "S08-top",
+     "shape": 8,
+     "position": "top",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Add to cart\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Add to cart\"`][2]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Add to cart|Add to cart|null|14,214,59,14",
+     "xpathMs": [
+      541.2,
+      538.9,
+      542
+     ],
+     "chainMs": [
+      410.6,
+      410.8,
+      410.6
+     ],
+     "xpath_median": 541.2,
+     "chain_median": 410.6,
+     "speedup": 1.32
+    },
+    {
+     "id": "S08-deep",
+     "shape": 8,
+     "position": "deep",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Reply\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Reply\"`][2]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Reply|Reply|null|98,355,30,27",
+     "xpathMs": [
+      538.8,
+      543.2,
+      539.2
+     ],
+     "chainMs": [
+      408.5,
+      412.4,
+      409.5
+     ],
+     "xpath_median": 539.2,
+     "chain_median": 409.5,
+     "speedup": 1.32
+    },
+    {
+     "id": "S08-end",
+     "shape": 8,
+     "position": "end",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Remove\"])[3]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Remove\"`][3]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Remove|Remove|null|93,461,43,14",
+     "xpathMs": [
+      539.1,
+      541.6,
+      540.8
+     ],
+     "chainMs": [
+      410.8,
+      410.3,
+      411.4
+     ],
+     "xpath_median": 540.8,
+     "chain_median": 410.8,
+     "speedup": 1.32
+    },
+    {
+     "id": "S09-top",
+     "shape": 9,
+     "position": "top",
+     "xpath": "//*[@name=\"cart.badge\" and @label=\"3 items\"]",
+     "chain": "**/*[`name == \"cart.badge\" AND label == \"3 items\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|cart.badge|3 items|null|96,62,40,14",
+     "xpathMs": [
+      541.6,
+      543.4,
+      543.9
+     ],
+     "chainMs": [
+      414,
+      410.8,
+      411.8
+     ],
+     "xpath_median": 543.4,
+     "chain_median": 411.8,
+     "speedup": 1.32
+    },
+    {
+     "id": "S09-deep",
+     "shape": 9,
+     "position": "deep",
+     "xpath": "//*[@name=\"Was this helpful?\" and @label=\"Was this helpful?\"]",
+     "chain": "**/*[`name == \"Was this helpful?\" AND label == \"Was this helpful?\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Was this helpful?|Was this helpful?|Was this helpful?|64,314,90,14",
+     "xpathMs": [
+      544,
+      542.8,
+      545.3
+     ],
+     "chainMs": [
+      411.8,
+      412.2,
+      412.2
+     ],
+     "xpath_median": 544,
+     "chain_median": 412.2,
+     "speedup": 1.32
+    },
+    {
+     "id": "S09-end",
+     "shape": 9,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.saveAddress\" and @label=\"Save address\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.saveAddress\" AND label == \"Save address\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|checkout.saveAddress|Save address|null|8,513,71,14",
+     "xpathMs": [
+      543.9,
+      543.5,
+      541.5
+     ],
+     "chainMs": [
+      402.8,
+      407.4,
+      403.4
+     ],
+     "xpath_median": 543.5,
+     "chain_median": 403.4,
+     "speedup": 1.35
+    },
+    {
+     "id": "S10-top",
+     "shape": 10,
+     "position": "top",
+     "xpath": "//*[contains(@name,\"deliveryInfo\")]/child::XCUIElementTypeStaticText[@name=\"Arrives Tue, Oct 14\"]",
+     "chain": "**/*[`name CONTAINS \"deliveryInfo\"`]/XCUIElementTypeStaticText[`name == \"Arrives Tue, Oct 14\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Arrives Tue, Oct 14|Arrives Tue, Oct 14|Arrives Tue, Oct 14|14,105,100,14",
+     "xpathMs": [
+      543.5,
+      541.1,
+      540.6
+     ],
+     "chainMs": [
+      413.1,
+      412.6,
+      414.2
+     ],
+     "xpath_median": 541.1,
+     "chain_median": 413.1,
+     "speedup": 1.31
+    },
+    {
+     "id": "S10-deep",
+     "shape": 10,
+     "position": "deep",
+     "xpath": "//*[contains(@name,\"replyMeta\")]/child::XCUIElementTypeStaticText[@name=\"Posted 2 days ago\"]",
+     "chain": "**/*[`name CONTAINS \"replyMeta\"`]/XCUIElementTypeStaticText[`name == \"Posted 2 days ago\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Posted 2 days ago|Posted 2 days ago|Posted 2 days ago|66,300,97,14",
+     "xpathMs": [
+      541,
+      541.5,
+      541.9
+     ],
+     "chainMs": [
+      414.1,
+      422.8,
+      415.2
+     ],
+     "xpath_median": 541.5,
+     "chain_median": 415.2,
+     "speedup": 1.3
+    },
+    {
+     "id": "S10-end",
+     "shape": 10,
+     "position": "end",
+     "xpath": "//*[contains(@name,\"summary.taxes\")]/child::XCUIElementTypeStaticText[@name=\"Taxes: $11.02\"]",
+     "chain": "**/*[`name CONTAINS \"summary.taxes\"`]/XCUIElementTypeStaticText[`name == \"Taxes: $11.02\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Taxes: $11.02|Taxes: $11.02|Taxes: $11.02|14,541,70,14",
+     "xpathMs": [
+      541.6,
+      541.3,
+      542.7
+     ],
+     "chainMs": [
+      411.7,
+      417.8,
+      416.2
+     ],
+     "xpath_median": 541.6,
+     "chain_median": 416.2,
+     "speedup": 1.3
+    }
+   ]
+  },
+  {
+   "load": 1000,
+   "elements": 998,
+   "maxDepth": 40,
+   "depthOf": {
+    "nav.help": 10,
+    "review.helpful": 39,
+    "checkout.placeOrder": 9
+   },
+   "sourceMs": [
+    1454.1,
+    1493.1,
+    1491.7
+   ],
+   "sourceMedianMs": 1491.7,
+   "summary": {
+    "timed": 30,
+    "xpathTotalMs": 32711.2,
+    "chainTotalMs": 24228.7,
+    "xpathMedianMs": 1089.8,
+    "chainMedianMs": 806.5,
+    "speedupGeomean": 1.35,
+    "chainFaster": 30,
+    "byPosition": {
+     "top": 1.35,
+     "deep": 1.35,
+     "end": 1.35
+    }
+   },
+   "cases": [
+    {
+     "id": "S01-top",
+     "shape": 1,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[@name=\"nav.help\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"nav.help\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|nav.help|Help|null|68,62,25,14",
+     "xpathMs": [
+      1083.3,
+      1090.3,
+      1089
+     ],
+     "chainMs": [
+      794.3,
+      801.8,
+      796.6
+     ],
+     "xpath_median": 1089,
+     "chain_median": 796.6,
+     "speedup": 1.37
+    },
+    {
+     "id": "S01-deep",
+     "shape": 1,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[@name=\"review.helpful\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"review.helpful\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|review.helpful|Yes, helpful|null|64,328,61,27",
+     "xpathMs": [
+      1086.4,
+      1088.3,
+      1085.2
+     ],
+     "chainMs": [
+      797,
+      801,
+      796.5
+     ],
+     "xpath_median": 1086.4,
+     "chain_median": 797,
+     "speedup": 1.36
+    },
+    {
+     "id": "S01-end",
+     "shape": 1,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.placeOrder\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.placeOrder\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|checkout.placeOrder|Place order|null|8,599,60,14",
+     "xpathMs": [
+      1084.9,
+      1087.7,
+      1084.6
+     ],
+     "chainMs": [
+      795.9,
+      793.5,
+      794.7
+     ],
+     "xpath_median": 1084.9,
+     "chain_median": 794.7,
+     "speedup": 1.37
+    },
+    {
+     "id": "S02-top",
+     "shape": 2,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"#1042\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"#1042\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Order #1042 · 3 items|Order #1042 · 3 items|Order #1042 · 3 items|8,76,115,14",
+     "xpathMs": [
+      1091.6,
+      1089.9,
+      1082.8
+     ],
+     "chainMs": [
+      805.9,
+      804.3,
+      803.6
+     ],
+     "xpath_median": 1089.9,
+     "chain_median": 804.3,
+     "speedup": 1.36
+    },
+    {
+     "id": "S02-deep",
+     "shape": 2,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Anna K\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Anna K\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Reply from Anna K.|Reply from Anna K.|Reply from Anna K.|64,257,101,14",
+     "xpathMs": [
+      1092.5,
+      1090.8,
+      1099
+     ],
+     "chainMs": [
+      801.6,
+      800.9,
+      829.4
+     ],
+     "xpath_median": 1092.5,
+     "chain_median": 801.6,
+     "speedup": 1.36
+    },
+    {
+     "id": "S02-end",
+     "shape": 2,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Baker St\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Baker St\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Delivery address: 12 Baker St, London|Delivery address: 12 Baker St, London|Delivery address: 12 Baker St, London|8,475,199,14",
+     "xpathMs": [
+      1089.3,
+      1091.1,
+      1089.6
+     ],
+     "chainMs": [
+      805.2,
+      804.5,
+      805.6
+     ],
+     "xpath_median": 1089.6,
+     "chain_median": 805.2,
+     "speedup": 1.35
+    },
+    {
+     "id": "S03-top",
+     "shape": 3,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"promo code\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"promo code\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Apply promo code|Apply promo code|null|298,138,96,14",
+     "xpathMs": [
+      1095.8,
+      1091.1,
+      1089.7
+     ],
+     "chainMs": [
+      816.7,
+      813.9,
+      816.3
+     ],
+     "xpath_median": 1091.1,
+     "chain_median": 816.3,
+     "speedup": 1.34
+    },
+    {
+     "id": "S03-deep",
+     "shape": 3,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"more replies\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"more replies\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Show 3 more replies|Show 3 more replies|null|64,382,107,27",
+     "xpathMs": [
+      1095.9,
+      1088.4,
+      1092.4
+     ],
+     "chainMs": [
+      836.3,
+      815.4,
+      817
+     ],
+     "xpath_median": 1092.4,
+     "chain_median": 817,
+     "speedup": 1.34
+    },
+    {
+     "id": "S03-end",
+     "shape": 3,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"payment method\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"payment method\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Change payment method|Change payment method|null|8,527,132,14",
+     "xpathMs": [
+      1098.3,
+      1103.1,
+      1094.3
+     ],
+     "chainMs": [
+      823.9,
+      814.6,
+      813.7
+     ],
+     "xpath_median": 1098.3,
+     "chain_median": 814.6,
+     "speedup": 1.35
+    },
+    {
+     "id": "S04-top",
+     "shape": 4,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Free delivery over $50\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Free delivery over $50\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Free delivery over $50|Free delivery over $50|Free delivery over $50|8,90,118,14",
+     "xpathMs": [
+      1100.5,
+      1089.9,
+      1091.3
+     ],
+     "chainMs": [
+      807.2,
+      805.3,
+      805
+     ],
+     "xpath_median": 1091.3,
+     "chain_median": 805.3,
+     "speedup": 1.36
+    },
+    {
+     "id": "S04-deep",
+     "shape": 4,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Great fit, runs small\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Great fit, runs small\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Great fit, runs small|Great fit, runs small|Great fit, runs small|64,271,103,14",
+     "xpathMs": [
+      1095,
+      1091.6,
+      1087.5
+     ],
+     "chainMs": [
+      804.2,
+      804.1,
+      804.6
+     ],
+     "xpath_median": 1091.6,
+     "chain_median": 804.2,
+     "speedup": 1.36
+    },
+    {
+     "id": "S04-end",
+     "shape": 4,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Total: $148.97\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Total: $148.97\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Total: $148.97|Total: $148.97|Total: $148.97|8,555,75,15",
+     "xpathMs": [
+      1089.2,
+      1086.8,
+      1094.7
+     ],
+     "chainMs": [
+      804.1,
+      804.6,
+      805
+     ],
+     "xpath_median": 1089.2,
+     "chain_median": 804.6,
+     "speedup": 1.35
+    },
+    {
+     "id": "S05-top",
+     "shape": 5,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"codeInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"codeInput\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|promo.codeInput||Promo code|8,133,286,23",
+     "xpathMs": [
+      1080.1,
+      1085.5,
+      1090.1
+     ],
+     "chainMs": [
+      806.4,
+      807.7,
+      816.7
+     ],
+     "xpath_median": 1085.5,
+     "chain_median": 807.7,
+     "speedup": 1.34
+    },
+    {
+     "id": "S05-deep",
+     "shape": 5,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"replyInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"replyInput\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|review.replyInput||Write a reply|64,409,160,23",
+     "xpathMs": [
+      1084.8,
+      1087,
+      1085.2
+     ],
+     "chainMs": [
+      808.3,
+      811,
+      812
+     ],
+     "xpath_median": 1085.2,
+     "chain_median": 811,
+     "speedup": 1.34
+    },
+    {
+     "id": "S05-end",
+     "shape": 5,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"postcode\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"postcode\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|address.postcodeField||Postcode|8,490,386,22",
+     "xpathMs": [
+      1088.2,
+      1087.5,
+      1089.6
+     ],
+     "chainMs": [
+      811.1,
+      812.5,
+      818.2
+     ],
+     "xpath_median": 1088.2,
+     "chain_median": 812.5,
+     "speedup": 1.34
+    },
+    {
+     "id": "S06-top",
+     "shape": 6,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Edit cart\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Edit cart\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Edit cart (3)|Edit cart (3)|null|8,156,63,14",
+     "xpathMs": [
+      1086.5,
+      1090,
+      1098.4
+     ],
+     "chainMs": [
+      798.5,
+      803.5,
+      801.6
+     ],
+     "xpath_median": 1090,
+     "chain_median": 801.6,
+     "speedup": 1.36
+    },
+    {
+     "id": "S06-deep",
+     "shape": 6,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Report rev\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Report rev\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Report review|Report review|null|129,328,73,27",
+     "xpathMs": [
+      1086.8,
+      1087.3,
+      1091.9
+     ],
+     "chainMs": [
+      797,
+      797,
+      801.6
+     ],
+     "xpath_median": 1087.3,
+     "chain_median": 797,
+     "speedup": 1.36
+    },
+    {
+     "id": "S06-end",
+     "shape": 6,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Terms of\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Terms of\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Terms of sale|Terms of sale|null|8,570,71,14",
+     "xpathMs": [
+      1090.9,
+      1089.1,
+      1088.8
+     ],
+     "chainMs": [
+      799.3,
+      796.3,
+      801
+     ],
+     "xpath_median": 1089.1,
+     "chain_median": 799.3,
+     "speedup": 1.36
+    },
+    {
+     "id": "S07-top",
+     "shape": 7,
+     "position": "top",
+     "xpath": "//*[contains(@name, \"flashSale\")]",
+     "chain": "**/*[`name CONTAINS \"flashSale\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|banner.flashSale|Flash sale ends in 02:14:09|Flash sale ends in 02:14:09|8,119,143,14",
+     "xpathMs": [
+      1097.5,
+      1086.5,
+      1094.4
+     ],
+     "chainMs": [
+      823.9,
+      814.8,
+      815.3
+     ],
+     "xpath_median": 1094.4,
+     "chain_median": 815.3,
+     "speedup": 1.34
+    },
+    {
+     "id": "S07-deep",
+     "shape": 7,
+     "position": "deep",
+     "xpath": "//*[contains(@label, \"Verified purchase\")]",
+     "chain": "**/*[`label CONTAINS \"Verified purchase\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Verified purchase · Size M|Verified purchase · Size M|Verified purchase · Size M|64,285,137,14",
+     "xpathMs": [
+      1103.9,
+      1088.9,
+      1083
+     ],
+     "chainMs": [
+      832.8,
+      819.6,
+      812.3
+     ],
+     "xpath_median": 1088.9,
+     "chain_median": 819.6,
+     "speedup": 1.33
+    },
+    {
+     "id": "S07-end",
+     "shape": 7,
+     "position": "end",
+     "xpath": "//*[contains(@name, \"help with your\")]",
+     "chain": "**/*[`name CONTAINS \"help with your\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Need help with your order?|Need help with your order?|null|8,584,142,14",
+     "xpathMs": [
+      1088.9,
+      1088.1,
+      1087.9
+     ],
+     "chainMs": [
+      817.8,
+      811.6,
+      816.3
+     ],
+     "xpath_median": 1088.1,
+     "chain_median": 816.3,
+     "speedup": 1.33
+    },
+    {
+     "id": "S08-top",
+     "shape": 8,
+     "position": "top",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Add to cart\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Add to cart\"`][2]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Add to cart|Add to cart|null|14,214,59,14",
+     "xpathMs": [
+      1093.6,
+      1095.1,
+      1086.1
+     ],
+     "chainMs": [
+      808.6,
+      803.1,
+      809.9
+     ],
+     "xpath_median": 1093.6,
+     "chain_median": 808.6,
+     "speedup": 1.35
+    },
+    {
+     "id": "S08-deep",
+     "shape": 8,
+     "position": "deep",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Reply\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Reply\"`][2]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Reply|Reply|null|98,355,30,27",
+     "xpathMs": [
+      1083.5,
+      1094,
+      1094
+     ],
+     "chainMs": [
+      804.2,
+      802.2,
+      801.3
+     ],
+     "xpath_median": 1094,
+     "chain_median": 802.2,
+     "speedup": 1.36
+    },
+    {
+     "id": "S08-end",
+     "shape": 8,
+     "position": "end",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Remove\"])[3]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Remove\"`][3]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Remove|Remove|null|93,461,43,14",
+     "xpathMs": [
+      1087.5,
+      1088.4,
+      1098.9
+     ],
+     "chainMs": [
+      803.7,
+      801.2,
+      809.6
+     ],
+     "xpath_median": 1088.4,
+     "chain_median": 803.7,
+     "speedup": 1.35
+    },
+    {
+     "id": "S09-top",
+     "shape": 9,
+     "position": "top",
+     "xpath": "//*[@name=\"cart.badge\" and @label=\"3 items\"]",
+     "chain": "**/*[`name == \"cart.badge\" AND label == \"3 items\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|cart.badge|3 items|null|96,62,40,14",
+     "xpathMs": [
+      1097.8,
+      1096,
+      1095.5
+     ],
+     "chainMs": [
+      814.4,
+      809.9,
+      819.7
+     ],
+     "xpath_median": 1096,
+     "chain_median": 814.4,
+     "speedup": 1.35
+    },
+    {
+     "id": "S09-deep",
+     "shape": 9,
+     "position": "deep",
+     "xpath": "//*[@name=\"Was this helpful?\" and @label=\"Was this helpful?\"]",
+     "chain": "**/*[`name == \"Was this helpful?\" AND label == \"Was this helpful?\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Was this helpful?|Was this helpful?|Was this helpful?|64,314,90,14",
+     "xpathMs": [
+      1093.9,
+      1091.4,
+      1105.5
+     ],
+     "chainMs": [
+      812.8,
+      811.7,
+      822.4
+     ],
+     "xpath_median": 1093.9,
+     "chain_median": 812.8,
+     "speedup": 1.35
+    },
+    {
+     "id": "S09-end",
+     "shape": 9,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.saveAddress\" and @label=\"Save address\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.saveAddress\" AND label == \"Save address\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|checkout.saveAddress|Save address|null|8,513,71,14",
+     "xpathMs": [
+      1093.1,
+      1091.1,
+      1128.1
+     ],
+     "chainMs": [
+      795.8,
+      794.5,
+      809.3
+     ],
+     "xpath_median": 1093.1,
+     "chain_median": 795.8,
+     "speedup": 1.37
+    },
+    {
+     "id": "S10-top",
+     "shape": 10,
+     "position": "top",
+     "xpath": "//*[contains(@name,\"deliveryInfo\")]/child::XCUIElementTypeStaticText[@name=\"Arrives Tue, Oct 14\"]",
+     "chain": "**/*[`name CONTAINS \"deliveryInfo\"`]/XCUIElementTypeStaticText[`name == \"Arrives Tue, Oct 14\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Arrives Tue, Oct 14|Arrives Tue, Oct 14|Arrives Tue, Oct 14|14,105,100,14",
+     "xpathMs": [
+      1086.4,
+      1088.1,
+      1099.5
+     ],
+     "chainMs": [
+      813.1,
+      811.4,
+      821
+     ],
+     "xpath_median": 1088.1,
+     "chain_median": 813.1,
+     "speedup": 1.34
+    },
+    {
+     "id": "S10-deep",
+     "shape": 10,
+     "position": "deep",
+     "xpath": "//*[contains(@name,\"replyMeta\")]/child::XCUIElementTypeStaticText[@name=\"Posted 2 days ago\"]",
+     "chain": "**/*[`name CONTAINS \"replyMeta\"`]/XCUIElementTypeStaticText[`name == \"Posted 2 days ago\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Posted 2 days ago|Posted 2 days ago|Posted 2 days ago|66,300,97,14",
+     "xpathMs": [
+      1089.4,
+      1086.3,
+      1091.8
+     ],
+     "chainMs": [
+      816.1,
+      819.3,
+      818.5
+     ],
+     "xpath_median": 1089.4,
+     "chain_median": 818.5,
+     "speedup": 1.33
+    },
+    {
+     "id": "S10-end",
+     "shape": 10,
+     "position": "end",
+     "xpath": "//*[contains(@name,\"summary.taxes\")]/child::XCUIElementTypeStaticText[@name=\"Taxes: $11.02\"]",
+     "chain": "**/*[`name CONTAINS \"summary.taxes\"`]/XCUIElementTypeStaticText[`name == \"Taxes: $11.02\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Taxes: $11.02|Taxes: $11.02|Taxes: $11.02|14,541,70,14",
+     "xpathMs": [
+      1091.8,
+      1086.4,
+      1110.4
+     ],
+     "chainMs": [
+      817.9,
+      814.1,
+      819
+     ],
+     "xpath_median": 1091.8,
+     "chain_median": 817.9,
+     "speedup": 1.33
+    }
+   ]
+  },
+  {
+   "load": 2000,
+   "elements": 1998,
+   "maxDepth": 40,
+   "depthOf": {
+    "nav.help": 10,
+    "review.helpful": 39,
+    "checkout.placeOrder": 9
+   },
+   "sourceMs": [
+    2926.9,
+    2904.4,
+    2902.9
+   ],
+   "sourceMedianMs": 2904.4,
+   "summary": {
+    "timed": 30,
+    "xpathTotalMs": 62872.8,
+    "chainTotalMs": 46951.8,
+    "xpathMedianMs": 2094.7,
+    "chainMedianMs": 1563.7,
+    "speedupGeomean": 1.34,
+    "chainFaster": 30,
+    "byPosition": {
+     "top": 1.34,
+     "deep": 1.34,
+     "end": 1.34
+    }
+   },
+   "cases": [
+    {
+     "id": "S01-top",
+     "shape": 1,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[@name=\"nav.help\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"nav.help\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|nav.help|Help|null|68,62,25,14",
+     "xpathMs": [
+      2098.9,
+      2084.6,
+      2090.8
+     ],
+     "chainMs": [
+      1548.7,
+      1543.1,
+      1541.3
+     ],
+     "xpath_median": 2090.8,
+     "chain_median": 1543.1,
+     "speedup": 1.35
+    },
+    {
+     "id": "S01-deep",
+     "shape": 1,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[@name=\"review.helpful\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"review.helpful\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|review.helpful|Yes, helpful|null|64,328,61,27",
+     "xpathMs": [
+      2087.2,
+      2087.3,
+      2098.7
+     ],
+     "chainMs": [
+      1541.3,
+      1542,
+      1543.6
+     ],
+     "xpath_median": 2087.3,
+     "chain_median": 1542,
+     "speedup": 1.35
+    },
+    {
+     "id": "S01-end",
+     "shape": 1,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.placeOrder\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.placeOrder\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|checkout.placeOrder|Place order|null|8,599,60,14",
+     "xpathMs": [
+      2096.2,
+      2089.8,
+      2096.8
+     ],
+     "chainMs": [
+      1547.3,
+      1542.2,
+      1549.9
+     ],
+     "xpath_median": 2096.2,
+     "chain_median": 1547.3,
+     "speedup": 1.35
+    },
+    {
+     "id": "S02-top",
+     "shape": 2,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"#1042\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"#1042\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Order #1042 · 3 items|Order #1042 · 3 items|Order #1042 · 3 items|8,76,115,14",
+     "xpathMs": [
+      2088.3,
+      2114.7,
+      2102.2
+     ],
+     "chainMs": [
+      1552.9,
+      1574.4,
+      1563.5
+     ],
+     "xpath_median": 2102.2,
+     "chain_median": 1563.5,
+     "speedup": 1.34
+    },
+    {
+     "id": "S02-deep",
+     "shape": 2,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Anna K\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Anna K\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Reply from Anna K.|Reply from Anna K.|Reply from Anna K.|64,257,101,14",
+     "xpathMs": [
+      2086.9,
+      2100.6,
+      2106.1
+     ],
+     "chainMs": [
+      1554.7,
+      1569.9,
+      1563.3
+     ],
+     "xpath_median": 2100.6,
+     "chain_median": 1563.3,
+     "speedup": 1.34
+    },
+    {
+     "id": "S02-end",
+     "shape": 2,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Baker St\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Baker St\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Delivery address: 12 Baker St, London|Delivery address: 12 Baker St, London|Delivery address: 12 Baker St, London|8,475,199,14",
+     "xpathMs": [
+      2096.7,
+      2090.8,
+      2103.3
+     ],
+     "chainMs": [
+      1550.5,
+      1565.1,
+      1563.9
+     ],
+     "xpath_median": 2096.7,
+     "chain_median": 1563.9,
+     "speedup": 1.34
+    },
+    {
+     "id": "S03-top",
+     "shape": 3,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"promo code\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"promo code\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Apply promo code|Apply promo code|null|1102,138,96,14",
+     "xpathMs": [
+      2096.1,
+      2092.4,
+      2106.5
+     ],
+     "chainMs": [
+      1573.5,
+      1589.1,
+      1610.6
+     ],
+     "xpath_median": 2096.1,
+     "chain_median": 1589.1,
+     "speedup": 1.32
+    },
+    {
+     "id": "S03-deep",
+     "shape": 3,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"more replies\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"more replies\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Show 3 more replies|Show 3 more replies|null|64,382,107,27",
+     "xpathMs": [
+      2096.3,
+      2130,
+      2108.5
+     ],
+     "chainMs": [
+      1578.1,
+      1611.9,
+      1588.2
+     ],
+     "xpath_median": 2108.5,
+     "chain_median": 1588.2,
+     "speedup": 1.33
+    },
+    {
+     "id": "S03-end",
+     "shape": 3,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"payment method\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"payment method\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Change payment method|Change payment method|null|8,527,132,14",
+     "xpathMs": [
+      2092,
+      2131.7,
+      2091.6
+     ],
+     "chainMs": [
+      1575,
+      1603.1,
+      1577.3
+     ],
+     "xpath_median": 2092,
+     "chain_median": 1577.3,
+     "speedup": 1.33
+    },
+    {
+     "id": "S04-top",
+     "shape": 4,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Free delivery over $50\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Free delivery over $50\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Free delivery over $50|Free delivery over $50|Free delivery over $50|8,90,118,14",
+     "xpathMs": [
+      2090.4,
+      2094,
+      2119.7
+     ],
+     "chainMs": [
+      1559.2,
+      1572.1,
+      1557.1
+     ],
+     "xpath_median": 2094,
+     "chain_median": 1559.2,
+     "speedup": 1.34
+    },
+    {
+     "id": "S04-deep",
+     "shape": 4,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Great fit, runs small\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Great fit, runs small\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Great fit, runs small|Great fit, runs small|Great fit, runs small|64,271,103,14",
+     "xpathMs": [
+      2092.5,
+      2113.4,
+      2100.8
+     ],
+     "chainMs": [
+      1554.8,
+      1561.9,
+      1567.9
+     ],
+     "xpath_median": 2100.8,
+     "chain_median": 1561.9,
+     "speedup": 1.35
+    },
+    {
+     "id": "S04-end",
+     "shape": 4,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Total: $148.97\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Total: $148.97\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Total: $148.97|Total: $148.97|Total: $148.97|8,555,75,15",
+     "xpathMs": [
+      2092.9,
+      2095.3,
+      2099.4
+     ],
+     "chainMs": [
+      1562.1,
+      1555.6,
+      1570.7
+     ],
+     "xpath_median": 2095.3,
+     "chain_median": 1562.1,
+     "speedup": 1.34
+    },
+    {
+     "id": "S05-top",
+     "shape": 5,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"codeInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"codeInput\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|promo.codeInput||Promo code|8,133,1090,23",
+     "xpathMs": [
+      2081.4,
+      2102.3,
+      2110
+     ],
+     "chainMs": [
+      1567.5,
+      1573.7,
+      1571.5
+     ],
+     "xpath_median": 2102.3,
+     "chain_median": 1571.5,
+     "speedup": 1.34
+    },
+    {
+     "id": "S05-deep",
+     "shape": 5,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"replyInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"replyInput\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|review.replyInput||Write a reply|64,409,160,23",
+     "xpathMs": [
+      2084.2,
+      2092.9,
+      2123.7
+     ],
+     "chainMs": [
+      1567.3,
+      1620.7,
+      1584.1
+     ],
+     "xpath_median": 2092.9,
+     "chain_median": 1584.1,
+     "speedup": 1.32
+    },
+    {
+     "id": "S05-end",
+     "shape": 5,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"postcode\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"postcode\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeTextField|address.postcodeField||Postcode|8,490,1190,22",
+     "xpathMs": [
+      2083.7,
+      2091.6,
+      2115.5
+     ],
+     "chainMs": [
+      1566.8,
+      1592.3,
+      1584.8
+     ],
+     "xpath_median": 2091.6,
+     "chain_median": 1584.8,
+     "speedup": 1.32
+    },
+    {
+     "id": "S06-top",
+     "shape": 6,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Edit cart\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Edit cart\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Edit cart (3)|Edit cart (3)|null|8,156,63,14",
+     "xpathMs": [
+      2099.4,
+      2103.6,
+      2103.4
+     ],
+     "chainMs": [
+      1536.9,
+      1559.1,
+      1563.8
+     ],
+     "xpath_median": 2103.4,
+     "chain_median": 1559.1,
+     "speedup": 1.35
+    },
+    {
+     "id": "S06-deep",
+     "shape": 6,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Report rev\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Report rev\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Report review|Report review|null|129,328,73,27",
+     "xpathMs": [
+      2086.6,
+      2085.7,
+      2106.3
+     ],
+     "chainMs": [
+      1545.1,
+      1539.8,
+      1546.7
+     ],
+     "xpath_median": 2086.6,
+     "chain_median": 1545.1,
+     "speedup": 1.35
+    },
+    {
+     "id": "S06-end",
+     "shape": 6,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Terms of\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Terms of\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Terms of sale|Terms of sale|null|8,570,71,14",
+     "xpathMs": [
+      2082.8,
+      2084.4,
+      2100
+     ],
+     "chainMs": [
+      1540.9,
+      1546.1,
+      1554.6
+     ],
+     "xpath_median": 2084.4,
+     "chain_median": 1546.1,
+     "speedup": 1.35
+    },
+    {
+     "id": "S07-top",
+     "shape": 7,
+     "position": "top",
+     "xpath": "//*[contains(@name, \"flashSale\")]",
+     "chain": "**/*[`name CONTAINS \"flashSale\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|banner.flashSale|Flash sale ends in 02:14:09|Flash sale ends in 02:14:09|8,119,143,14",
+     "xpathMs": [
+      2092.9,
+      2091.4,
+      2096
+     ],
+     "chainMs": [
+      1573.6,
+      1570.7,
+      1596.5
+     ],
+     "xpath_median": 2092.9,
+     "chain_median": 1573.6,
+     "speedup": 1.33
+    },
+    {
+     "id": "S07-deep",
+     "shape": 7,
+     "position": "deep",
+     "xpath": "//*[contains(@label, \"Verified purchase\")]",
+     "chain": "**/*[`label CONTAINS \"Verified purchase\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Verified purchase · Size M|Verified purchase · Size M|Verified purchase · Size M|64,285,137,14",
+     "xpathMs": [
+      2091.7,
+      2092.1,
+      2101.1
+     ],
+     "chainMs": [
+      1587.4,
+      1576.2,
+      1583.5
+     ],
+     "xpath_median": 2092.1,
+     "chain_median": 1583.5,
+     "speedup": 1.32
+    },
+    {
+     "id": "S07-end",
+     "shape": 7,
+     "position": "end",
+     "xpath": "//*[contains(@name, \"help with your\")]",
+     "chain": "**/*[`name CONTAINS \"help with your\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Need help with your order?|Need help with your order?|null|8,584,142,14",
+     "xpathMs": [
+      2097.1,
+      2082.3,
+      2090.4
+     ],
+     "chainMs": [
+      1566.6,
+      1577.1,
+      1571.4
+     ],
+     "xpath_median": 2090.4,
+     "chain_median": 1571.4,
+     "speedup": 1.33
+    },
+    {
+     "id": "S08-top",
+     "shape": 8,
+     "position": "top",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Add to cart\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Add to cart\"`][2]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Add to cart|Add to cart|null|14,214,59,14",
+     "xpathMs": [
+      2091,
+      2086.5,
+      2082.8
+     ],
+     "chainMs": [
+      1547,
+      1546.4,
+      1549.7
+     ],
+     "xpath_median": 2086.5,
+     "chain_median": 1547,
+     "speedup": 1.35
+    },
+    {
+     "id": "S08-deep",
+     "shape": 8,
+     "position": "deep",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Reply\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Reply\"`][2]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Reply|Reply|null|98,355,30,27",
+     "xpathMs": [
+      2087.9,
+      2089.4,
+      2096.3
+     ],
+     "chainMs": [
+      1549.1,
+      1547.2,
+      1555.1
+     ],
+     "xpath_median": 2089.4,
+     "chain_median": 1549.1,
+     "speedup": 1.35
+    },
+    {
+     "id": "S08-end",
+     "shape": 8,
+     "position": "end",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Remove\"])[3]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Remove\"`][3]",
+     "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|Remove|Remove|null|93,461,43,14",
+     "xpathMs": [
+      2096.1,
+      2090.7,
+      2093.6
+     ],
+     "chainMs": [
+      1544.7,
+      1549.2,
+      1550.1
+     ],
+     "xpath_median": 2093.6,
+     "chain_median": 1549.2,
+     "speedup": 1.35
+    },
+    {
+     "id": "S09-top",
+     "shape": 9,
+     "position": "top",
+     "xpath": "//*[@name=\"cart.badge\" and @label=\"3 items\"]",
+     "chain": "**/*[`name == \"cart.badge\" AND label == \"3 items\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|cart.badge|3 items|null|96,62,40,14",
+     "xpathMs": [
+      2097.4,
+      2118.9,
+      2101.9
+     ],
+     "chainMs": [
+      1580.9,
+      1588.3,
+      1574.2
+     ],
+     "xpath_median": 2101.9,
+     "chain_median": 1580.9,
+     "speedup": 1.33
+    },
+    {
+     "id": "S09-deep",
+     "shape": 9,
+     "position": "deep",
+     "xpath": "//*[@name=\"Was this helpful?\" and @label=\"Was this helpful?\"]",
+     "chain": "**/*[`name == \"Was this helpful?\" AND label == \"Was this helpful?\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Was this helpful?|Was this helpful?|Was this helpful?|64,314,90,14",
+     "xpathMs": [
+      2108.7,
+      2104.7,
+      2103.5
+     ],
+     "chainMs": [
+      1568.7,
+      1577,
+      1573.7
+     ],
+     "xpath_median": 2104.7,
+     "chain_median": 1573.7,
+     "speedup": 1.34
+    },
+    {
+     "id": "S09-end",
+     "shape": 9,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.saveAddress\" and @label=\"Save address\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.saveAddress\" AND label == \"Save address\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeButton|checkout.saveAddress|Save address|null|8,513,71,14",
+     "xpathMs": [
+      2109.7,
+      2123.5,
+      2098.2
+     ],
+     "chainMs": [
+      1552.3,
+      1544.8,
+      1542.7
+     ],
+     "xpath_median": 2109.7,
+     "chain_median": 1544.8,
+     "speedup": 1.37
+    },
+    {
+     "id": "S10-top",
+     "shape": 10,
+     "position": "top",
+     "xpath": "//*[contains(@name,\"deliveryInfo\")]/child::XCUIElementTypeStaticText[@name=\"Arrives Tue, Oct 14\"]",
+     "chain": "**/*[`name CONTAINS \"deliveryInfo\"`]/XCUIElementTypeStaticText[`name == \"Arrives Tue, Oct 14\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Arrives Tue, Oct 14|Arrives Tue, Oct 14|Arrives Tue, Oct 14|14,105,100,14",
+     "xpathMs": [
+      2103,
+      2101.4,
+      2085.9
+     ],
+     "chainMs": [
+      1587.9,
+      1572.7,
+      1574.3
+     ],
+     "xpath_median": 2101.4,
+     "chain_median": 1574.3,
+     "speedup": 1.33
+    },
+    {
+     "id": "S10-deep",
+     "shape": 10,
+     "position": "deep",
+     "xpath": "//*[contains(@name,\"replyMeta\")]/child::XCUIElementTypeStaticText[@name=\"Posted 2 days ago\"]",
+     "chain": "**/*[`name CONTAINS \"replyMeta\"`]/XCUIElementTypeStaticText[`name == \"Posted 2 days ago\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Posted 2 days ago|Posted 2 days ago|Posted 2 days ago|66,300,97,14",
+     "xpathMs": [
+      2100.5,
+      2095.9,
+      2089
+     ],
+     "chainMs": [
+      1576.8,
+      1581.8,
+      1574
+     ],
+     "xpath_median": 2095.9,
+     "chain_median": 1576.8,
+     "speedup": 1.33
+    },
+    {
+     "id": "S10-end",
+     "shape": 10,
+     "position": "end",
+     "xpath": "//*[contains(@name,\"summary.taxes\")]/child::XCUIElementTypeStaticText[@name=\"Taxes: $11.02\"]",
+     "chain": "**/*[`name CONTAINS \"summary.taxes\"`]/XCUIElementTypeStaticText[`name == \"Taxes: $11.02\"`]",
+     "valid": true,
+     "hit": "XCUIElementTypeStaticText|Taxes: $11.02|Taxes: $11.02|Taxes: $11.02|14,541,70,14",
+     "xpathMs": [
+      2099.4,
+      2092.6,
+      2087.8
+     ],
+     "chainMs": [
+      1575.9,
+      1572.8,
+      1576
+     ],
+     "xpath_median": 2092.6,
+     "chain_median": 1575.9,
+     "speedup": 1.33
+    }
+   ]
+  }
+ ],
+ "date": "2026-10-11",
+ "seconds": 2417,
+ "host": {
+  "cpu": "Apple M1 Pro",
+  "memoryGB": 16,
+  "macOS": "26.6.2",
+  "power": "battery",
+  "lowPowerMode": true,
+  "note": "recorded after the run (scale.js had no host field yet); pmset showed battery + Low Power Mode before and after"
+ }
+}

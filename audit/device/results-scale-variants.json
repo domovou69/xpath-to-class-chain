@@ -1,0 +1,2295 @@
+{
+ "method": "3 passes, median; one cold findElement per lookup, variant order rotating",
+ "loads": [
+  {
+   "load": 100,
+   "host": {
+    "cpu": "Apple M1 Pro",
+    "memoryGB": 16,
+    "macOS": "26.6.2",
+    "power": "battery",
+    "lowPowerMode": true
+   },
+   "summary": {
+    "xpath": {
+     "cases": 30,
+     "totalMs": 3992.8,
+     "chainTotalMs": 3136.5,
+     "vsChain": 0.79
+    },
+    "chainFirst": {
+     "cases": 27,
+     "totalMs": 2803.5,
+     "chainTotalMs": 2807.1,
+     "vsChain": 1
+    },
+    "useFirstMatch": {
+     "cases": 30,
+     "totalMs": 3052.1,
+     "chainTotalMs": 3136.5,
+     "vsChain": 1.03
+    },
+    "useFirstMatchByPosition": {
+     "top": 1.06,
+     "deep": 0.98,
+     "end": 1.04
+    }
+   },
+   "cases": [
+    {
+     "id": "S01-top",
+     "shape": 1,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[@name=\"nav.help\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"nav.help\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`name == \"nav.help\"`][1]",
+     "ms": {
+      "xpath": [
+       132.4,
+       136,
+       154.3
+      ],
+      "chain": [
+       104.3,
+       101.7,
+       106.3
+      ],
+      "chainFirst": [
+       102.3,
+       100.9,
+       102
+      ],
+      "useFirstMatch": [
+       95.7,
+       99.4,
+       97.2
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 136,
+      "chain": 104.3,
+      "chainFirst": 102,
+      "useFirstMatch": 97.2
+     }
+    },
+    {
+     "id": "S01-deep",
+     "shape": 1,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[@name=\"review.helpful\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"review.helpful\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`name == \"review.helpful\"`][1]",
+     "ms": {
+      "xpath": [
+       134.2,
+       136.1,
+       135.9
+      ],
+      "chain": [
+       103.5,
+       105,
+       105.1
+      ],
+      "chainFirst": [
+       102.7,
+       105.5,
+       105.9
+      ],
+      "useFirstMatch": [
+       104,
+       101.3,
+       102.6
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 135.9,
+      "chain": 105,
+      "chainFirst": 105.5,
+      "useFirstMatch": 102.6
+     }
+    },
+    {
+     "id": "S01-end",
+     "shape": 1,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.placeOrder\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.placeOrder\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`name == \"checkout.placeOrder\"`][1]",
+     "ms": {
+      "xpath": [
+       145.7,
+       132.6,
+       135.7
+      ],
+      "chain": [
+       115.5,
+       104.1,
+       104.6
+      ],
+      "chainFirst": [
+       107.5,
+       104.4,
+       104.7
+      ],
+      "useFirstMatch": [
+       105.6,
+       98,
+       97.3
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 135.7,
+      "chain": 104.6,
+      "chainFirst": 104.7,
+      "useFirstMatch": 98
+     }
+    },
+    {
+     "id": "S02-top",
+     "shape": 2,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"#1042\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"#1042\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`name CONTAINS \"#1042\"`][1]",
+     "ms": {
+      "xpath": [
+       138,
+       134.3,
+       133.7
+      ],
+      "chain": [
+       104.9,
+       104.3,
+       103.3
+      ],
+      "chainFirst": [
+       106.1,
+       102.9,
+       102.8
+      ],
+      "useFirstMatch": [
+       99.7,
+       94.1,
+       95.9
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 134.3,
+      "chain": 104.3,
+      "chainFirst": 102.9,
+      "useFirstMatch": 95.9
+     }
+    },
+    {
+     "id": "S02-deep",
+     "shape": 2,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Anna K\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Anna K\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`name CONTAINS \"Anna K\"`][1]",
+     "ms": {
+      "xpath": [
+       133.8,
+       132.4,
+       134
+      ],
+      "chain": [
+       102.8,
+       101.8,
+       102.6
+      ],
+      "chainFirst": [
+       103.2,
+       102.1,
+       107.4
+      ],
+      "useFirstMatch": [
+       100.3,
+       98.4,
+       97.7
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 133.8,
+      "chain": 102.6,
+      "chainFirst": 103.2,
+      "useFirstMatch": 98.4
+     }
+    },
+    {
+     "id": "S02-end",
+     "shape": 2,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Baker St\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Baker St\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`name CONTAINS \"Baker St\"`][1]",
+     "ms": {
+      "xpath": [
+       142.2,
+       138.8,
+       134.4
+      ],
+      "chain": [
+       104.6,
+       104.5,
+       105
+      ],
+      "chainFirst": [
+       103.3,
+       103.5,
+       107.3
+      ],
+      "useFirstMatch": [
+       98.5,
+       97.9,
+       99.8
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 138.8,
+      "chain": 104.6,
+      "chainFirst": 103.5,
+      "useFirstMatch": 98.5
+     }
+    },
+    {
+     "id": "S03-top",
+     "shape": 3,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"promo code\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"promo code\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"promo code\"`][1]",
+     "ms": {
+      "xpath": [
+       132.6,
+       133.7,
+       136.7
+      ],
+      "chain": [
+       104.3,
+       103.6,
+       106.4
+      ],
+      "chainFirst": [
+       103.3,
+       105.7,
+       105.8
+      ],
+      "useFirstMatch": [
+       96.5,
+       100.7,
+       98.1
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 133.7,
+      "chain": 104.3,
+      "chainFirst": 105.7,
+      "useFirstMatch": 98.1
+     }
+    },
+    {
+     "id": "S03-deep",
+     "shape": 3,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"more replies\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"more replies\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"more replies\"`][1]",
+     "ms": {
+      "xpath": [
+       133.3,
+       137.3,
+       133.6
+      ],
+      "chain": [
+       104.1,
+       106.3,
+       105.4
+      ],
+      "chainFirst": [
+       104.5,
+       104.6,
+       106
+      ],
+      "useFirstMatch": [
+       112.5,
+       111.6,
+       112.6
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 133.6,
+      "chain": 105.4,
+      "chainFirst": 104.6,
+      "useFirstMatch": 112.5
+     }
+    },
+    {
+     "id": "S03-end",
+     "shape": 3,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"payment method\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"payment method\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"payment method\"`][1]",
+     "ms": {
+      "xpath": [
+       131.9,
+       133,
+       134.1
+      ],
+      "chain": [
+       103.9,
+       104.3,
+       107.1
+      ],
+      "chainFirst": [
+       103.6,
+       105.9,
+       102.6
+      ],
+      "useFirstMatch": [
+       102,
+       99.9,
+       101.2
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 133,
+      "chain": 104.3,
+      "chainFirst": 103.6,
+      "useFirstMatch": 101.2
+     }
+    },
+    {
+     "id": "S04-top",
+     "shape": 4,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Free delivery over $50\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Free delivery over $50\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`label == \"Free delivery over $50\"`][1]",
+     "ms": {
+      "xpath": [
+       132.4,
+       131.5,
+       132.2
+      ],
+      "chain": [
+       102.7,
+       101.5,
+       102.9
+      ],
+      "chainFirst": [
+       102.1,
+       101.7,
+       101.8
+      ],
+      "useFirstMatch": [
+       94.8,
+       94.7,
+       94.1
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 132.2,
+      "chain": 102.7,
+      "chainFirst": 101.8,
+      "useFirstMatch": 94.7
+     }
+    },
+    {
+     "id": "S04-deep",
+     "shape": 4,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Great fit, runs small\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Great fit, runs small\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`label == \"Great fit, runs small\"`][1]",
+     "ms": {
+      "xpath": [
+       130.6,
+       132.3,
+       132.7
+      ],
+      "chain": [
+       103.1,
+       101.9,
+       103.4
+      ],
+      "chainFirst": [
+       101.6,
+       101.2,
+       102.7
+      ],
+      "useFirstMatch": [
+       98.2,
+       98.1,
+       98.4
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 132.3,
+      "chain": 103.1,
+      "chainFirst": 101.6,
+      "useFirstMatch": 98.2
+     }
+    },
+    {
+     "id": "S04-end",
+     "shape": 4,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Total: $148.97\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Total: $148.97\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`label == \"Total: $148.97\"`][1]",
+     "ms": {
+      "xpath": [
+       130.8,
+       131,
+       132.4
+      ],
+      "chain": [
+       101.7,
+       102.5,
+       102.1
+      ],
+      "chainFirst": [
+       104.1,
+       101.1,
+       102.8
+      ],
+      "useFirstMatch": [
+       96.1,
+       95.8,
+       96.8
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 131,
+      "chain": 102.1,
+      "chainFirst": 102.8,
+      "useFirstMatch": 96.1
+     }
+    },
+    {
+     "id": "S05-top",
+     "shape": 5,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"codeInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"codeInput\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"codeInput\"`][1]",
+     "ms": {
+      "xpath": [
+       132.7,
+       131.5,
+       131.8
+      ],
+      "chain": [
+       102,
+       101.6,
+       101.7
+      ],
+      "chainFirst": [
+       102.5,
+       101.5,
+       103.1
+      ],
+      "useFirstMatch": [
+       97.6,
+       97.8,
+       97.3
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 131.8,
+      "chain": 101.7,
+      "chainFirst": 102.5,
+      "useFirstMatch": 97.6
+     }
+    },
+    {
+     "id": "S05-deep",
+     "shape": 5,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"replyInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"replyInput\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"replyInput\"`][1]",
+     "ms": {
+      "xpath": [
+       130.8,
+       132.4,
+       131.8
+      ],
+      "chain": [
+       102.1,
+       101.8,
+       102.9
+      ],
+      "chainFirst": [
+       101.4,
+       103.4,
+       101.4
+      ],
+      "useFirstMatch": [
+       112.8,
+       113.2,
+       111.8
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 131.8,
+      "chain": 102.1,
+      "chainFirst": 101.4,
+      "useFirstMatch": 112.8
+     }
+    },
+    {
+     "id": "S05-end",
+     "shape": 5,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"postcode\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"postcode\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"postcode\"`][1]",
+     "ms": {
+      "xpath": [
+       146.9,
+       134.1,
+       132.3
+      ],
+      "chain": [
+       103.8,
+       102.2,
+       102.2
+      ],
+      "chainFirst": [
+       102.3,
+       102.8,
+       101.8
+      ],
+      "useFirstMatch": [
+       100.4,
+       102.7,
+       100
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 134.1,
+      "chain": 102.2,
+      "chainFirst": 102.3,
+      "useFirstMatch": 100.4
+     }
+    },
+    {
+     "id": "S06-top",
+     "shape": 6,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Edit cart\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Edit cart\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`label CONTAINS \"Edit cart\"`][1]",
+     "ms": {
+      "xpath": [
+       131.4,
+       133.2,
+       132.5
+      ],
+      "chain": [
+       102.1,
+       100.9,
+       101.3
+      ],
+      "chainFirst": [
+       118.1,
+       101.8,
+       101.8
+      ],
+      "useFirstMatch": [
+       94.8,
+       94.4,
+       94
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 132.5,
+      "chain": 101.3,
+      "chainFirst": 101.8,
+      "useFirstMatch": 94.4
+     }
+    },
+    {
+     "id": "S06-deep",
+     "shape": 6,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Report rev\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Report rev\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`label CONTAINS \"Report rev\"`][1]",
+     "ms": {
+      "xpath": [
+       133.6,
+       131.5,
+       130.8
+      ],
+      "chain": [
+       104,
+       101.5,
+       102.5
+      ],
+      "chainFirst": [
+       103.3,
+       101.6,
+       101.8
+      ],
+      "useFirstMatch": [
+       98.1,
+       98.6,
+       98.4
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 131.5,
+      "chain": 102.5,
+      "chainFirst": 101.8,
+      "useFirstMatch": 98.4
+     }
+    },
+    {
+     "id": "S06-end",
+     "shape": 6,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Terms of\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Terms of\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`label CONTAINS \"Terms of\"`][1]",
+     "ms": {
+      "xpath": [
+       131.6,
+       131.2,
+       132.7
+      ],
+      "chain": [
+       101.4,
+       101.6,
+       103
+      ],
+      "chainFirst": [
+       101.2,
+       102.2,
+       102.2
+      ],
+      "useFirstMatch": [
+       95.6,
+       95.6,
+       96
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 131.6,
+      "chain": 101.6,
+      "chainFirst": 102.2,
+      "useFirstMatch": 95.6
+     }
+    },
+    {
+     "id": "S07-top",
+     "shape": 7,
+     "position": "top",
+     "xpath": "//*[contains(@name, \"flashSale\")]",
+     "chain": "**/*[`name CONTAINS \"flashSale\"`]",
+     "chainFirst": "**/*[`name CONTAINS \"flashSale\"`][1]",
+     "ms": {
+      "xpath": [
+       131.6,
+       129.9,
+       132.1
+      ],
+      "chain": [
+       107.6,
+       103.9,
+       105
+      ],
+      "chainFirst": [
+       103.9,
+       103.4,
+       103.6
+      ],
+      "useFirstMatch": [
+       96.7,
+       96.5,
+       97.9
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 131.6,
+      "chain": 105,
+      "chainFirst": 103.6,
+      "useFirstMatch": 96.7
+     }
+    },
+    {
+     "id": "S07-deep",
+     "shape": 7,
+     "position": "deep",
+     "xpath": "//*[contains(@label, \"Verified purchase\")]",
+     "chain": "**/*[`label CONTAINS \"Verified purchase\"`]",
+     "chainFirst": "**/*[`label CONTAINS \"Verified purchase\"`][1]",
+     "ms": {
+      "xpath": [
+       133.5,
+       130.2,
+       133.7
+      ],
+      "chain": [
+       106.2,
+       106.6,
+       103.4
+      ],
+      "chainFirst": [
+       104.1,
+       107.9,
+       103.9
+      ],
+      "useFirstMatch": [
+       111.7,
+       114,
+       109.9
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 133.5,
+      "chain": 106.2,
+      "chainFirst": 104.1,
+      "useFirstMatch": 111.7
+     }
+    },
+    {
+     "id": "S07-end",
+     "shape": 7,
+     "position": "end",
+     "xpath": "//*[contains(@name, \"help with your\")]",
+     "chain": "**/*[`name CONTAINS \"help with your\"`]",
+     "chainFirst": "**/*[`name CONTAINS \"help with your\"`][1]",
+     "ms": {
+      "xpath": [
+       132.4,
+       132.8,
+       133.5
+      ],
+      "chain": [
+       103.9,
+       105.9,
+       106.2
+      ],
+      "chainFirst": [
+       103.1,
+       107.7,
+       107.2
+      ],
+      "useFirstMatch": [
+       100.8,
+       104.2,
+       105.7
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 132.8,
+      "chain": 105.9,
+      "chainFirst": 107.2,
+      "useFirstMatch": 104.2
+     }
+    },
+    {
+     "id": "S08-top",
+     "shape": 8,
+     "position": "top",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Add to cart\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Add to cart\"`][2]",
+     "chainFirst": null,
+     "ms": {
+      "xpath": [
+       131.5,
+       132.3,
+       132.8
+      ],
+      "chain": [
+       109.3,
+       109.9,
+       110.9
+      ],
+      "chainFirst": [],
+      "useFirstMatch": [
+       109.2,
+       109.7,
+       110.1
+      ]
+     },
+     "invalid": {
+      "chainFirst": "already has a position"
+     },
+     "median": {
+      "xpath": 132.3,
+      "chain": 109.9,
+      "useFirstMatch": 109.7
+     }
+    },
+    {
+     "id": "S08-deep",
+     "shape": 8,
+     "position": "deep",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Reply\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Reply\"`][2]",
+     "chainFirst": null,
+     "ms": {
+      "xpath": [
+       132.3,
+       132.5,
+       133.7
+      ],
+      "chain": [
+       109.2,
+       110.9,
+       110.3
+      ],
+      "chainFirst": [],
+      "useFirstMatch": [
+       110.3,
+       109.2,
+       110.1
+      ]
+     },
+     "invalid": {
+      "chainFirst": "already has a position"
+     },
+     "median": {
+      "xpath": 132.5,
+      "chain": 110.3,
+      "useFirstMatch": 110.1
+     }
+    },
+    {
+     "id": "S08-end",
+     "shape": 8,
+     "position": "end",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Remove\"])[3]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Remove\"`][3]",
+     "chainFirst": null,
+     "ms": {
+      "xpath": [
+       131.3,
+       133.8,
+       132.7
+      ],
+      "chain": [
+       109.5,
+       109.2,
+       108.7
+      ],
+      "chainFirst": [],
+      "useFirstMatch": [
+       109.6,
+       109.3,
+       109.7
+      ]
+     },
+     "invalid": {
+      "chainFirst": "already has a position"
+     },
+     "median": {
+      "xpath": 132.7,
+      "chain": 109.2,
+      "useFirstMatch": 109.6
+     }
+    },
+    {
+     "id": "S09-top",
+     "shape": 9,
+     "position": "top",
+     "xpath": "//*[@name=\"cart.badge\" and @label=\"3 items\"]",
+     "chain": "**/*[`name == \"cart.badge\" AND label == \"3 items\"`]",
+     "chainFirst": "**/*[`name == \"cart.badge\" AND label == \"3 items\"`][1]",
+     "ms": {
+      "xpath": [
+       134.5,
+       132.4,
+       132.8
+      ],
+      "chain": [
+       104.7,
+       104,
+       104
+      ],
+      "chainFirst": [
+       105.7,
+       104.7,
+       103.4
+      ],
+      "useFirstMatch": [
+       102.9,
+       102.9,
+       103.1
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 132.8,
+      "chain": 104,
+      "chainFirst": 104.7,
+      "useFirstMatch": 102.9
+     }
+    },
+    {
+     "id": "S09-deep",
+     "shape": 9,
+     "position": "deep",
+     "xpath": "//*[@name=\"Was this helpful?\" and @label=\"Was this helpful?\"]",
+     "chain": "**/*[`name == \"Was this helpful?\" AND label == \"Was this helpful?\"`]",
+     "chainFirst": "**/*[`name == \"Was this helpful?\" AND label == \"Was this helpful?\"`][1]",
+     "ms": {
+      "xpath": [
+       133.5,
+       133.2,
+       133.5
+      ],
+      "chain": [
+       104.2,
+       103.1,
+       104.3
+      ],
+      "chainFirst": [
+       103.4,
+       103.7,
+       104.2
+      ],
+      "useFirstMatch": [
+       111.1,
+       111.2,
+       114.4
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 133.5,
+      "chain": 104.2,
+      "chainFirst": 103.7,
+      "useFirstMatch": 111.2
+     }
+    },
+    {
+     "id": "S09-end",
+     "shape": 9,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.saveAddress\" and @label=\"Save address\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.saveAddress\" AND label == \"Save address\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`name == \"checkout.saveAddress\" AND label == \"Save address\"`][1]",
+     "ms": {
+      "xpath": [
+       131.7,
+       131.5,
+       131.2
+      ],
+      "chain": [
+       101.6,
+       101.2,
+       103
+      ],
+      "chainFirst": [
+       104.4,
+       101.8,
+       104.7
+      ],
+      "useFirstMatch": [
+       96.9,
+       95.1,
+       96.9
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 131.5,
+      "chain": 101.6,
+      "chainFirst": 104.4,
+      "useFirstMatch": 96.9
+     }
+    },
+    {
+     "id": "S10-top",
+     "shape": 10,
+     "position": "top",
+     "xpath": "//*[contains(@name,\"deliveryInfo\")]/child::XCUIElementTypeStaticText[@name=\"Arrives Tue, Oct 14\"]",
+     "chain": "**/*[`name CONTAINS \"deliveryInfo\"`]/XCUIElementTypeStaticText[`name == \"Arrives Tue, Oct 14\"`]",
+     "chainFirst": "**/*[`name CONTAINS \"deliveryInfo\"`]/XCUIElementTypeStaticText[`name == \"Arrives Tue, Oct 14\"`][1]",
+     "ms": {
+      "xpath": [
+       131.7,
+       132.5,
+       135.2
+      ],
+      "chain": [
+       105.6,
+       107.3,
+       107.8
+      ],
+      "chainFirst": [
+       106.9,
+       106.2,
+       107.3
+      ],
+      "useFirstMatch": [
+       95,
+       97.7,
+       96.6
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 132.5,
+      "chain": 107.3,
+      "chainFirst": 106.9,
+      "useFirstMatch": 96.6
+     }
+    },
+    {
+     "id": "S10-deep",
+     "shape": 10,
+     "position": "deep",
+     "xpath": "//*[contains(@name,\"replyMeta\")]/child::XCUIElementTypeStaticText[@name=\"Posted 2 days ago\"]",
+     "chain": "**/*[`name CONTAINS \"replyMeta\"`]/XCUIElementTypeStaticText[`name == \"Posted 2 days ago\"`]",
+     "chainFirst": "**/*[`name CONTAINS \"replyMeta\"`]/XCUIElementTypeStaticText[`name == \"Posted 2 days ago\"`][1]",
+     "ms": {
+      "xpath": [
+       132.2,
+       132.3,
+       132.7
+      ],
+      "chain": [
+       105.7,
+       108.5,
+       107.5
+      ],
+      "chainFirst": [
+       106.1,
+       107.9,
+       109.9
+      ],
+      "useFirstMatch": [
+       111.3,
+       111,
+       115
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 132.3,
+      "chain": 107.5,
+      "chainFirst": 107.9,
+      "useFirstMatch": 111.3
+     }
+    },
+    {
+     "id": "S10-end",
+     "shape": 10,
+     "position": "end",
+     "xpath": "//*[contains(@name,\"summary.taxes\")]/child::XCUIElementTypeStaticText[@name=\"Taxes: $11.02\"]",
+     "chain": "**/*[`name CONTAINS \"summary.taxes\"`]/XCUIElementTypeStaticText[`name == \"Taxes: $11.02\"`]",
+     "chainFirst": "**/*[`name CONTAINS \"summary.taxes\"`]/XCUIElementTypeStaticText[`name == \"Taxes: $11.02\"`][1]",
+     "ms": {
+      "xpath": [
+       130.1,
+       131.2,
+       131.6
+      ],
+      "chain": [
+       106.2,
+       106.7,
+       106.8
+      ],
+      "chainFirst": [
+       107.4,
+       106.3,
+       107.1
+      ],
+      "useFirstMatch": [
+       100.1,
+       100.6,
+       102.6
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 131.2,
+      "chain": 106.7,
+      "chainFirst": 107.1,
+      "useFirstMatch": 100.6
+     }
+    }
+   ]
+  },
+  {
+   "load": 2000,
+   "host": {
+    "cpu": "Apple M1 Pro",
+    "memoryGB": 16,
+    "macOS": "26.6.2",
+    "power": "battery",
+    "lowPowerMode": true
+   },
+   "summary": {
+    "xpath": {
+     "cases": 30,
+     "totalMs": 62737.2,
+     "chainTotalMs": 46877,
+     "vsChain": 0.75
+    },
+    "chainFirst": {
+     "cases": 27,
+     "totalMs": 42205.3,
+     "chainTotalMs": 42230.8,
+     "vsChain": 1
+    },
+    "useFirstMatch": {
+     "cases": 30,
+     "totalMs": 49534.3,
+     "chainTotalMs": 46877,
+     "vsChain": 0.95
+    },
+    "useFirstMatchByPosition": {
+     "top": 0.99,
+     "deep": 0.87,
+     "end": 1
+    }
+   },
+   "cases": [
+    {
+     "id": "S01-top",
+     "shape": 1,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[@name=\"nav.help\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"nav.help\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`name == \"nav.help\"`][1]",
+     "ms": {
+      "xpath": [
+       2087.2,
+       2096.7,
+       2088
+      ],
+      "chain": [
+       1538.4,
+       1550.4,
+       1551.2
+      ],
+      "chainFirst": [
+       1540.1,
+       1548.3,
+       1544.2
+      ],
+      "useFirstMatch": [
+       1577.9,
+       1587.5,
+       1585.2
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2088,
+      "chain": 1550.4,
+      "chainFirst": 1544.2,
+      "useFirstMatch": 1585.2
+     }
+    },
+    {
+     "id": "S01-deep",
+     "shape": 1,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[@name=\"review.helpful\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"review.helpful\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`name == \"review.helpful\"`][1]",
+     "ms": {
+      "xpath": [
+       2082.6,
+       2089.8,
+       2084.6
+      ],
+      "chain": [
+       1535.5,
+       1546.1,
+       1537.5
+      ],
+      "chainFirst": [
+       1538.6,
+       1540.8,
+       1541.3
+      ],
+      "useFirstMatch": [
+       1670.3,
+       1674.8,
+       1679.2
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2084.6,
+      "chain": 1537.5,
+      "chainFirst": 1540.8,
+      "useFirstMatch": 1674.8
+     }
+    },
+    {
+     "id": "S01-end",
+     "shape": 1,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.placeOrder\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.placeOrder\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`name == \"checkout.placeOrder\"`][1]",
+     "ms": {
+      "xpath": [
+       2086.9,
+       2088.9,
+       2092.7
+      ],
+      "chain": [
+       1555.4,
+       1547.7,
+       1542.4
+      ],
+      "chainFirst": [
+       1537.1,
+       1539.7,
+       1540.1
+      ],
+      "useFirstMatch": [
+       1550.4,
+       1546.4,
+       1555.2
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2088.9,
+      "chain": 1547.7,
+      "chainFirst": 1539.7,
+      "useFirstMatch": 1550.4
+     }
+    },
+    {
+     "id": "S02-top",
+     "shape": 2,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"#1042\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"#1042\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`name CONTAINS \"#1042\"`][1]",
+     "ms": {
+      "xpath": [
+       2089.9,
+       2096.6,
+       2090.9
+      ],
+      "chain": [
+       1552.9,
+       1552.6,
+       1550.6
+      ],
+      "chainFirst": [
+       1553.3,
+       1558.4,
+       1551.8
+      ],
+      "useFirstMatch": [
+       1546.5,
+       1548.6,
+       1555.3
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2090.9,
+      "chain": 1552.6,
+      "chainFirst": 1553.3,
+      "useFirstMatch": 1548.6
+     }
+    },
+    {
+     "id": "S02-deep",
+     "shape": 2,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Anna K\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Anna K\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`name CONTAINS \"Anna K\"`][1]",
+     "ms": {
+      "xpath": [
+       2089.2,
+       2089.3,
+       2092.9
+      ],
+      "chain": [
+       1549.9,
+       1553.8,
+       1550.9
+      ],
+      "chainFirst": [
+       1545.3,
+       1553.6,
+       1554.9
+      ],
+      "useFirstMatch": [
+       1749,
+       1754.7,
+       1750.6
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2089.3,
+      "chain": 1550.9,
+      "chainFirst": 1553.6,
+      "useFirstMatch": 1750.6
+     }
+    },
+    {
+     "id": "S02-end",
+     "shape": 2,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[contains(@name, \"Baker St\")]",
+     "chain": "**/XCUIElementTypeStaticText[`name CONTAINS \"Baker St\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`name CONTAINS \"Baker St\"`][1]",
+     "ms": {
+      "xpath": [
+       2084.2,
+       2086.4,
+       2095.5
+      ],
+      "chain": [
+       1549.2,
+       1551.5,
+       1552.2
+      ],
+      "chainFirst": [
+       1549.4,
+       1550.1,
+       1547.1
+      ],
+      "useFirstMatch": [
+       1545.2,
+       1548,
+       1549.6
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2086.4,
+      "chain": 1551.5,
+      "chainFirst": 1549.4,
+      "useFirstMatch": 1548
+     }
+    },
+    {
+     "id": "S03-top",
+     "shape": 3,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"promo code\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"promo code\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"promo code\"`][1]",
+     "ms": {
+      "xpath": [
+       2097.5,
+       2096.7,
+       2095.5
+      ],
+      "chain": [
+       1569,
+       1570.8,
+       1581.9
+      ],
+      "chainFirst": [
+       1567.6,
+       1574.2,
+       1583.8
+      ],
+      "useFirstMatch": [
+       1575.5,
+       1577.3,
+       1577.6
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2096.7,
+      "chain": 1570.8,
+      "chainFirst": 1574.2,
+      "useFirstMatch": 1577.3
+     }
+    },
+    {
+     "id": "S03-deep",
+     "shape": 3,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"more replies\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"more replies\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"more replies\"`][1]",
+     "ms": {
+      "xpath": [
+       2090.6,
+       2093.2,
+       2093.6
+      ],
+      "chain": [
+       1575.5,
+       1579.9,
+       1568.7
+      ],
+      "chainFirst": [
+       1570.5,
+       1614.3,
+       1577.7
+      ],
+      "useFirstMatch": [
+       1936.9,
+       1953,
+       1948.1
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2093.2,
+      "chain": 1575.5,
+      "chainFirst": 1577.7,
+      "useFirstMatch": 1948.1
+     }
+    },
+    {
+     "id": "S03-end",
+     "shape": 3,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"Button\") and contains(@label,\"payment method\")]",
+     "chain": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"payment method\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"Button\" AND label CONTAINS \"payment method\"`][1]",
+     "ms": {
+      "xpath": [
+       2089.5,
+       2096.4,
+       2091.3
+      ],
+      "chain": [
+       1570.7,
+       1573.4,
+       1572.2
+      ],
+      "chainFirst": [
+       1571.5,
+       1579.8,
+       1588.7
+      ],
+      "useFirstMatch": [
+       1576.5,
+       1579.4,
+       1580.8
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2091.3,
+      "chain": 1572.2,
+      "chainFirst": 1579.8,
+      "useFirstMatch": 1579.4
+     }
+    },
+    {
+     "id": "S04-top",
+     "shape": 4,
+     "position": "top",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Free delivery over $50\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Free delivery over $50\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`label == \"Free delivery over $50\"`][1]",
+     "ms": {
+      "xpath": [
+       2091.1,
+       2089.5,
+       2095.8
+      ],
+      "chain": [
+       1550.4,
+       1553.7,
+       1554.4
+      ],
+      "chainFirst": [
+       1551.7,
+       1553.1,
+       1552.9
+      ],
+      "useFirstMatch": [
+       1545,
+       1546.9,
+       1549.4
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2091.1,
+      "chain": 1553.7,
+      "chainFirst": 1552.9,
+      "useFirstMatch": 1546.9
+     }
+    },
+    {
+     "id": "S04-deep",
+     "shape": 4,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Great fit, runs small\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Great fit, runs small\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`label == \"Great fit, runs small\"`][1]",
+     "ms": {
+      "xpath": [
+       2086.9,
+       2095.5,
+       2096.8
+      ],
+      "chain": [
+       1551.3,
+       1559.2,
+       1553.7
+      ],
+      "chainFirst": [
+       1548.6,
+       1557.1,
+       1560.8
+      ],
+      "useFirstMatch": [
+       1749.6,
+       1751.8,
+       1754.4
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2095.5,
+      "chain": 1553.7,
+      "chainFirst": 1557.1,
+      "useFirstMatch": 1751.8
+     }
+    },
+    {
+     "id": "S04-end",
+     "shape": 4,
+     "position": "end",
+     "xpath": "//XCUIElementTypeStaticText[@label=\"Total: $148.97\"]",
+     "chain": "**/XCUIElementTypeStaticText[`label == \"Total: $148.97\"`]",
+     "chainFirst": "**/XCUIElementTypeStaticText[`label == \"Total: $148.97\"`][1]",
+     "ms": {
+      "xpath": [
+       2084.9,
+       2093.4,
+       2089.1
+      ],
+      "chain": [
+       1548.3,
+       1551.9,
+       1550.8
+      ],
+      "chainFirst": [
+       1549.8,
+       1561,
+       1550.4
+      ],
+      "useFirstMatch": [
+       1551.2,
+       1548.7,
+       1548.1
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2089.1,
+      "chain": 1550.8,
+      "chainFirst": 1550.4,
+      "useFirstMatch": 1548.7
+     }
+    },
+    {
+     "id": "S05-top",
+     "shape": 5,
+     "position": "top",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"codeInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"codeInput\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"codeInput\"`][1]",
+     "ms": {
+      "xpath": [
+       2084.5,
+       2084.2,
+       2086
+      ],
+      "chain": [
+       1579.3,
+       1565.4,
+       1574
+      ],
+      "chainFirst": [
+       1579.8,
+       1569.3,
+       1565
+      ],
+      "useFirstMatch": [
+       1578.2,
+       1578,
+       1579.1
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2084.5,
+      "chain": 1574,
+      "chainFirst": 1569.3,
+      "useFirstMatch": 1578.2
+     }
+    },
+    {
+     "id": "S05-deep",
+     "shape": 5,
+     "position": "deep",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"replyInput\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"replyInput\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"replyInput\"`][1]",
+     "ms": {
+      "xpath": [
+       2097.4,
+       2087.2,
+       2086.8
+      ],
+      "chain": [
+       1561.2,
+       1566.4,
+       1570.6
+      ],
+      "chainFirst": [
+       1570.8,
+       1568.2,
+       1566.7
+      ],
+      "useFirstMatch": [
+       1936.9,
+       1940.8,
+       1948.1
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2087.2,
+      "chain": 1566.4,
+      "chainFirst": 1568.2,
+      "useFirstMatch": 1940.8
+     }
+    },
+    {
+     "id": "S05-end",
+     "shape": 5,
+     "position": "end",
+     "xpath": "//*[contains(@type,\"TextField\") and contains(@name,\"postcode\")]",
+     "chain": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"postcode\"`]",
+     "chainFirst": "**/*[`type CONTAINS \"TextField\" AND name CONTAINS \"postcode\"`][1]",
+     "ms": {
+      "xpath": [
+       2083.6,
+       2086.5,
+       2088.8
+      ],
+      "chain": [
+       1567.7,
+       1569.6,
+       1586.6
+      ],
+      "chainFirst": [
+       1569.7,
+       1567.2,
+       1588.9
+      ],
+      "useFirstMatch": [
+       1576.5,
+       1586.5,
+       1593.2
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2086.5,
+      "chain": 1569.6,
+      "chainFirst": 1569.7,
+      "useFirstMatch": 1586.5
+     }
+    },
+    {
+     "id": "S06-top",
+     "shape": 6,
+     "position": "top",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Edit cart\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Edit cart\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`label CONTAINS \"Edit cart\"`][1]",
+     "ms": {
+      "xpath": [
+       2089.3,
+       2089.9,
+       2093.3
+      ],
+      "chain": [
+       1600.4,
+       1541.3,
+       1547.4
+      ],
+      "chainFirst": [
+       1667.3,
+       1540.4,
+       1590
+      ],
+      "useFirstMatch": [
+       1540.9,
+       1546.6,
+       1550.3
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2089.9,
+      "chain": 1547.4,
+      "chainFirst": 1590,
+      "useFirstMatch": 1546.6
+     }
+    },
+    {
+     "id": "S06-deep",
+     "shape": 6,
+     "position": "deep",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Report rev\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Report rev\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`label CONTAINS \"Report rev\"`][1]",
+     "ms": {
+      "xpath": [
+       2148.9,
+       2092.1,
+       2080.9
+      ],
+      "chain": [
+       1548.7,
+       1542,
+       1541.1
+      ],
+      "chainFirst": [
+       1548.9,
+       1542.1,
+       1537.1
+      ],
+      "useFirstMatch": [
+       1679.6,
+       1678.5,
+       1674.4
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2092.1,
+      "chain": 1542,
+      "chainFirst": 1542.1,
+      "useFirstMatch": 1678.5
+     }
+    },
+    {
+     "id": "S06-end",
+     "shape": 6,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[contains(@label, \"Terms of\")]",
+     "chain": "**/XCUIElementTypeButton[`label CONTAINS \"Terms of\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`label CONTAINS \"Terms of\"`][1]",
+     "ms": {
+      "xpath": [
+       2086.9,
+       2089.7,
+       2081
+      ],
+      "chain": [
+       1543.3,
+       1550,
+       1538.8
+      ],
+      "chainFirst": [
+       1536.8,
+       1538.2,
+       1539
+      ],
+      "useFirstMatch": [
+       1554.8,
+       1545,
+       1546.7
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2086.9,
+      "chain": 1543.3,
+      "chainFirst": 1538.2,
+      "useFirstMatch": 1546.7
+     }
+    },
+    {
+     "id": "S07-top",
+     "shape": 7,
+     "position": "top",
+     "xpath": "//*[contains(@name, \"flashSale\")]",
+     "chain": "**/*[`name CONTAINS \"flashSale\"`]",
+     "chainFirst": "**/*[`name CONTAINS \"flashSale\"`][1]",
+     "ms": {
+      "xpath": [
+       2093.5,
+       2100.1,
+       2092.4
+      ],
+      "chain": [
+       1572.5,
+       1581.9,
+       1579.2
+      ],
+      "chainFirst": [
+       1567.9,
+       1569.4,
+       1574.1
+      ],
+      "useFirstMatch": [
+       1571.6,
+       1586.9,
+       1576.1
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2093.5,
+      "chain": 1579.2,
+      "chainFirst": 1569.4,
+      "useFirstMatch": 1576.1
+     }
+    },
+    {
+     "id": "S07-deep",
+     "shape": 7,
+     "position": "deep",
+     "xpath": "//*[contains(@label, \"Verified purchase\")]",
+     "chain": "**/*[`label CONTAINS \"Verified purchase\"`]",
+     "chainFirst": "**/*[`label CONTAINS \"Verified purchase\"`][1]",
+     "ms": {
+      "xpath": [
+       2088,
+       2106.4,
+       2098.3
+      ],
+      "chain": [
+       1573.7,
+       1579.5,
+       1570.2
+      ],
+      "chainFirst": [
+       1577.7,
+       1572.2,
+       1571.2
+      ],
+      "useFirstMatch": [
+       1943.7,
+       1942.5,
+       1947.1
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2098.3,
+      "chain": 1573.7,
+      "chainFirst": 1572.2,
+      "useFirstMatch": 1943.7
+     }
+    },
+    {
+     "id": "S07-end",
+     "shape": 7,
+     "position": "end",
+     "xpath": "//*[contains(@name, \"help with your\")]",
+     "chain": "**/*[`name CONTAINS \"help with your\"`]",
+     "chainFirst": "**/*[`name CONTAINS \"help with your\"`][1]",
+     "ms": {
+      "xpath": [
+       2092.8,
+       2089.3,
+       2082
+      ],
+      "chain": [
+       1572.2,
+       1578,
+       1571.6
+      ],
+      "chainFirst": [
+       1580.4,
+       1571.3,
+       1572
+      ],
+      "useFirstMatch": [
+       1580.8,
+       1583.4,
+       1580.5
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2089.3,
+      "chain": 1572.2,
+      "chainFirst": 1572,
+      "useFirstMatch": 1580.8
+     }
+    },
+    {
+     "id": "S08-top",
+     "shape": 8,
+     "position": "top",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Add to cart\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Add to cart\"`][2]",
+     "chainFirst": null,
+     "ms": {
+      "xpath": [
+       2082.6,
+       2087,
+       2093.9
+      ],
+      "chain": [
+       1543.8,
+       1546.9,
+       1554.7
+      ],
+      "chainFirst": [],
+      "useFirstMatch": [
+       1555.7,
+       1544.9,
+       1544.3
+      ]
+     },
+     "invalid": {
+      "chainFirst": "already has a position"
+     },
+     "median": {
+      "xpath": 2087,
+      "chain": 1546.9,
+      "useFirstMatch": 1544.9
+     }
+    },
+    {
+     "id": "S08-deep",
+     "shape": 8,
+     "position": "deep",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Reply\"])[2]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Reply\"`][2]",
+     "chainFirst": null,
+     "ms": {
+      "xpath": [
+       2088.9,
+       2086.1,
+       2231.3
+      ],
+      "chain": [
+       1543.8,
+       1546.2,
+       1581.9
+      ],
+      "chainFirst": [],
+      "useFirstMatch": [
+       1544.8,
+       1545.6,
+       1569.4
+      ]
+     },
+     "invalid": {
+      "chainFirst": "already has a position"
+     },
+     "median": {
+      "xpath": 2088.9,
+      "chain": 1546.2,
+      "useFirstMatch": 1545.6
+     }
+    },
+    {
+     "id": "S08-end",
+     "shape": 8,
+     "position": "end",
+     "xpath": "(//XCUIElementTypeButton[@name=\"Remove\"])[3]",
+     "chain": "**/XCUIElementTypeButton[`name == \"Remove\"`][3]",
+     "chainFirst": null,
+     "ms": {
+      "xpath": [
+       2084.8,
+       2089.5,
+       2126
+      ],
+      "chain": [
+       1545.6,
+       1553.1,
+       1570.5
+      ],
+      "chainFirst": [],
+      "useFirstMatch": [
+       1538.2,
+       1543.7,
+       1560.5
+      ]
+     },
+     "invalid": {
+      "chainFirst": "already has a position"
+     },
+     "median": {
+      "xpath": 2089.5,
+      "chain": 1553.1,
+      "useFirstMatch": 1543.7
+     }
+    },
+    {
+     "id": "S09-top",
+     "shape": 9,
+     "position": "top",
+     "xpath": "//*[@name=\"cart.badge\" and @label=\"3 items\"]",
+     "chain": "**/*[`name == \"cart.badge\" AND label == \"3 items\"`]",
+     "chainFirst": "**/*[`name == \"cart.badge\" AND label == \"3 items\"`][1]",
+     "ms": {
+      "xpath": [
+       2095,
+       2094.6,
+       2104.7
+      ],
+      "chain": [
+       1569.7,
+       1592,
+       1596.8
+      ],
+      "chainFirst": [
+       1567.8,
+       1577.2,
+       1593.2
+      ],
+      "useFirstMatch": [
+       1709.8,
+       1712.2,
+       1730.6
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2095,
+      "chain": 1592,
+      "chainFirst": 1577.2,
+      "useFirstMatch": 1712.2
+     }
+    },
+    {
+     "id": "S09-deep",
+     "shape": 9,
+     "position": "deep",
+     "xpath": "//*[@name=\"Was this helpful?\" and @label=\"Was this helpful?\"]",
+     "chain": "**/*[`name == \"Was this helpful?\" AND label == \"Was this helpful?\"`]",
+     "chainFirst": "**/*[`name == \"Was this helpful?\" AND label == \"Was this helpful?\"`][1]",
+     "ms": {
+      "xpath": [
+       2094.2,
+       2109.6,
+       2101.6
+      ],
+      "chain": [
+       1571.3,
+       1573.5,
+       1573.7
+      ],
+      "chainFirst": [
+       1570.1,
+       1563.6,
+       1602.2
+      ],
+      "useFirstMatch": [
+       1941.5,
+       1935.1,
+       1958.1
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2101.6,
+      "chain": 1573.5,
+      "chainFirst": 1570.1,
+      "useFirstMatch": 1941.5
+     }
+    },
+    {
+     "id": "S09-end",
+     "shape": 9,
+     "position": "end",
+     "xpath": "//XCUIElementTypeButton[@name=\"checkout.saveAddress\" and @label=\"Save address\"]",
+     "chain": "**/XCUIElementTypeButton[`name == \"checkout.saveAddress\" AND label == \"Save address\"`]",
+     "chainFirst": "**/XCUIElementTypeButton[`name == \"checkout.saveAddress\" AND label == \"Save address\"`][1]",
+     "ms": {
+      "xpath": [
+       2093,
+       2094,
+       2100.8
+      ],
+      "chain": [
+       1538.8,
+       1551.6,
+       1548.2
+      ],
+      "chainFirst": [
+       1541.2,
+       1542.2,
+       1541
+      ],
+      "useFirstMatch": [
+       1545.6,
+       1549.7,
+       1553.8
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2094,
+      "chain": 1548.2,
+      "chainFirst": 1541.2,
+      "useFirstMatch": 1549.7
+     }
+    },
+    {
+     "id": "S10-top",
+     "shape": 10,
+     "position": "top",
+     "xpath": "//*[contains(@name,\"deliveryInfo\")]/child::XCUIElementTypeStaticText[@name=\"Arrives Tue, Oct 14\"]",
+     "chain": "**/*[`name CONTAINS \"deliveryInfo\"`]/XCUIElementTypeStaticText[`name == \"Arrives Tue, Oct 14\"`]",
+     "chainFirst": "**/*[`name CONTAINS \"deliveryInfo\"`]/XCUIElementTypeStaticText[`name == \"Arrives Tue, Oct 14\"`][1]",
+     "ms": {
+      "xpath": [
+       2089.3,
+       2096.8,
+       2092.8
+      ],
+      "chain": [
+       1568.7,
+       1578.4,
+       1571
+      ],
+      "chainFirst": [
+       1570.4,
+       1578,
+       1575.2
+      ],
+      "useFirstMatch": [
+       1574.2,
+       1582.2,
+       1578.6
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2092.8,
+      "chain": 1571,
+      "chainFirst": 1575.2,
+      "useFirstMatch": 1578.6
+     }
+    },
+    {
+     "id": "S10-deep",
+     "shape": 10,
+     "position": "deep",
+     "xpath": "//*[contains(@name,\"replyMeta\")]/child::XCUIElementTypeStaticText[@name=\"Posted 2 days ago\"]",
+     "chain": "**/*[`name CONTAINS \"replyMeta\"`]/XCUIElementTypeStaticText[`name == \"Posted 2 days ago\"`]",
+     "chainFirst": "**/*[`name CONTAINS \"replyMeta\"`]/XCUIElementTypeStaticText[`name == \"Posted 2 days ago\"`][1]",
+     "ms": {
+      "xpath": [
+       2094.4,
+       2090.4,
+       2094.6
+      ],
+      "chain": [
+       1618.8,
+       1568.9,
+       1630.5
+      ],
+      "chainFirst": [
+       1592.6,
+       1573.5,
+       1579.6
+      ],
+      "useFirstMatch": [
+       1950.5,
+       1946.9,
+       1949.4
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2094.4,
+      "chain": 1618.8,
+      "chainFirst": 1579.6,
+      "useFirstMatch": 1949.4
+     }
+    },
+    {
+     "id": "S10-end",
+     "shape": 10,
+     "position": "end",
+     "xpath": "//*[contains(@name,\"summary.taxes\")]/child::XCUIElementTypeStaticText[@name=\"Taxes: $11.02\"]",
+     "chain": "**/*[`name CONTAINS \"summary.taxes\"`]/XCUIElementTypeStaticText[`name == \"Taxes: $11.02\"`]",
+     "chainFirst": "**/*[`name CONTAINS \"summary.taxes\"`]/XCUIElementTypeStaticText[`name == \"Taxes: $11.02\"`][1]",
+     "ms": {
+      "xpath": [
+       2100.8,
+       2092.1,
+       2188.4
+      ],
+      "chain": [
+       1608.9,
+       1575.3,
+       1592.2
+      ],
+      "chainFirst": [
+       1597.8,
+       1570.9,
+       1654.6
+      ],
+      "useFirstMatch": [
+       1581,
+       1580,
+       1612
+      ]
+     },
+     "invalid": {},
+     "median": {
+      "xpath": 2100.8,
+      "chain": 1592.2,
+      "chainFirst": 1597.8,
+      "useFirstMatch": 1581
+     }
+    }
+   ]
+  }
+ ],
+ "env": {
+  "xcode": "Xcode 27.0 Build version 27A266a",
+  "appium": "3.8.0",
+  "xcuitestDriver": "12.16.0",
+  "wda": "16.14.1",
+  "iosVersion": "27.0",
+  "node": "v24.21.0",
+  "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+  "runtimeBuild": "24A434",
+  "simulator": "LocatorLab iPhone 17",
+  "deviceType": "com.apple.CoreSimulator.SimDeviceType.iPhone-17",
+  "udid": "208FA758-C937-49C4-ADE6-E16B0D7E0630"
+ },
+ "date": "2026-10-11"
+}
