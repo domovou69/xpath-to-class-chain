@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 410" width="840" height="410" role="img" aria-label="Time per element lookup vs. elements in the tree, XPath and class chain, simulator and iPhone">
+<title>Time per lookup vs. elements in the tree</title>
+<style>
+  svg { --surface: #fcfcfb; --ink: #0b0b0b; --ink2: #52514e; --muted: #898781; --grid: #e1e0d9; --axis: #c3c2b7; --xpath: #eb6834; --chain: #2a78d6; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  @media (prefers-color-scheme: dark) { svg { --surface: #1a1a19; --ink: #ffffff; --ink2: #c3c2b7; --grid: #2c2c2a; --axis: #383835; --xpath: #d95926; --chain: #3987e5; } }
+  .bg { fill: var(--surface); }
+  .t1 { fill: var(--ink); font-size: 16px; font-weight: 600; }
+  .t2 { fill: var(--ink); font-size: 13px; font-weight: 600; }
+  .tick { fill: var(--muted); font-size: 11px; }
+  .val, .leg { fill: var(--ink2); font-size: 12px; }
+  .grid { stroke: var(--grid); stroke-width: 1; }
+  .axis { stroke: var(--axis); stroke-width: 1; }
+  .line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  .dot { stroke: var(--surface); stroke-width: 2; }
+  .line.s-xpath { stroke: var(--xpath); } .dot.s-xpath { fill: var(--xpath); }
+  .line.s-chain { stroke: var(--chain); } .dot.s-chain { fill: var(--chain); }
+</style>
+<rect class="bg" width="840" height="410" rx="8"/>
+<text class="t1" x="56" y="28">Time per element lookup vs. elements in the tree</text>
+<line class="line s-xpath" x1="548" x2="564" y1="24" y2="24"/><text class="leg" x="570" y="28">XPath</text>
+<line class="line s-chain" x1="624" x2="640" y1="24" y2="24"/><text class="leg" x="646" y="28">class chain</text>
+<text class="t2" x="56" y="62">Simulator iPhone 17, iOS 27.0</text>
+<line class="axis" x1="56" x2="352" y1="358" y2="358"/>
+<text class="tick" x="48" y="362" text-anchor="end">0 s</text>
+<line class="grid" x1="56" x2="352" y1="270.6666666666667" y2="270.6666666666667"/>
+<text class="tick" x="48" y="274.6666666666667" text-anchor="end">1 s</text>
+<line class="grid" x1="56" x2="352" y1="183.33333333333334" y2="183.33333333333334"/>
+<text class="tick" x="48" y="187.33333333333334" text-anchor="end">2 s</text>
+<line class="grid" x1="56" x2="352" y1="96" y2="96"/>
+<text class="tick" x="48" y="100" text-anchor="end">3 s</text>
+<text class="tick" x="70.8" y="376" text-anchor="middle">100</text>
+<text class="tick" x="130" y="376" text-anchor="middle">500</text>
+<text class="tick" x="204" y="376" text-anchor="middle">1000</text>
+<text class="tick" x="352" y="376" text-anchor="middle">2000</text>
+<text class="tick" x="204" y="396" text-anchor="middle">elements in the tree</text>
+<polyline class="line s-xpath" points="71.1,348.0 130.4,318.4 203.7,278.3 351.7,204.9"/>
+<circle class="dot s-xpath" cx="71.1" cy="348.0" r="4"><title>XPath, 102 elements: 115 ms</title></circle>
+<circle class="dot s-xpath" cx="130.4" cy="318.4" r="4"><title>XPath, 503 elements: 453 ms</title></circle>
+<circle class="dot s-xpath" cx="203.7" cy="278.3" r="4"><title>XPath, 998 elements: 912 ms</title></circle>
+<circle class="dot s-xpath" cx="351.7" cy="204.9" r="4"><title>XPath, 1998 elements: 1.75 s</title></circle>
+<text class="val" x="361.704" y="208.86187333333334">1.75 s</text>
+<polyline class="line s-chain" points="71.1,350.2 130.4,328.0 203.7,298.9 351.7,243.7"/>
+<circle class="dot s-chain" cx="71.1" cy="350.2" r="4"><title>class chain, 102 elements: 90 ms</title></circle>
+<circle class="dot s-chain" cx="130.4" cy="328.0" r="4"><title>class chain, 503 elements: 344 ms</title></circle>
+<circle class="dot s-chain" cx="203.7" cy="298.9" r="4"><title>class chain, 998 elements: 677 ms</title></circle>
+<circle class="dot s-chain" cx="351.7" cy="243.7" r="4"><title>class chain, 1998 elements: 1.31 s</title></circle>
+<text class="val" x="361.704" y="247.7158911111111">1.31 s</text>
+<text class="tick" x="56" y="80">class chain 22–26 % faster per lookup</text>
+<text class="t2" x="448" y="62">iPhone 13 Pro Max, iOS 26.6, USB</text>
+<line class="axis" x1="448" x2="744" y1="358" y2="358"/>
+<line class="grid" x1="448" x2="744" y1="270.6666666666667" y2="270.6666666666667"/>
+<line class="grid" x1="448" x2="744" y1="183.33333333333334" y2="183.33333333333334"/>
+<line class="grid" x1="448" x2="744" y1="96" y2="96"/>
+<text class="tick" x="462.8" y="376" text-anchor="middle">100</text>
+<text class="tick" x="522" y="376" text-anchor="middle">500</text>
+<text class="tick" x="596" y="376" text-anchor="middle">1000</text>
+<text class="tick" x="744" y="376" text-anchor="middle">2000</text>
+<text class="tick" x="596" y="396" text-anchor="middle">elements in the tree</text>
+<polyline class="line s-xpath" points="462.7,332.3 521.1,291.6 594.4,235.5 742.4,120.8"/>
+<circle class="dot s-xpath" cx="462.7" cy="332.3" r="4"><title>XPath, 99 elements: 295 ms</title></circle>
+<circle class="dot s-xpath" cx="521.1" cy="291.6" r="4"><title>XPath, 494 elements: 760 ms</title></circle>
+<circle class="dot s-xpath" cx="594.4" cy="235.5" r="4"><title>XPath, 989 elements: 1.40 s</title></circle>
+<circle class="dot s-xpath" cx="742.4" cy="120.8" r="4"><title>XPath, 1989 elements: 2.72 s</title></circle>
+<text class="val" x="752.3720000000001" y="124.76045555555558">2.72 s</text>
+<polyline class="line s-chain" points="462.7,338.4 521.1,307.2 594.4,270.9 742.4,179.8"/>
+<circle class="dot s-chain" cx="462.7" cy="338.4" r="4"><title>class chain, 99 elements: 225 ms</title></circle>
+<circle class="dot s-chain" cx="521.1" cy="307.2" r="4"><title>class chain, 494 elements: 582 ms</title></circle>
+<circle class="dot s-chain" cx="594.4" cy="270.9" r="4"><title>class chain, 989 elements: 997 ms</title></circle>
+<circle class="dot s-chain" cx="742.4" cy="179.8" r="4"><title>class chain, 1989 elements: 2.04 s</title></circle>
+<text class="val" x="752.3720000000001" y="183.79546">2.04 s</text>
+<text class="tick" x="448" y="80">class chain 23–29 % faster per lookup</text>
+</svg>
