@@ -236,7 +236,7 @@ The scanner also gates strings starting with `//` through `isLikelyIosLocator` â
 
 ## On the device
 
-Checked on Appium 3.8.0, appium-xcuitest-driver 12.16.0 and WebDriverAgent 16.14.1, on an iOS 27.0 simulator. The method and the results are in [`audit/coverage-report.md`](audit/coverage-report.md) ("Device verification").
+Checked on Appium 3.8.0, appium-xcuitest-driver 12.16.0 and WebDriverAgent 16.14.1, on an iOS 27.0 simulator and on an iPhone 13 Pro Max with iOS 26.6, which gave the same results. The method and the results are in [`audit/coverage-report.md`](audit/coverage-report.md) ("Device verification" and "Real device").
 
 - **Grouped positions count breadth-first.** XCTest returns query matches breadth-first, for XPath lookups as well as for class chains. An XPath position `(//X)[n]` is still counted in document order. So `(//XCUIElementTypeButton)[2]` â†’ `**/XCUIElementTypeButton[2]` can return a shallower button further down the screen. No class chain counts in document order. These locators are still converted and are flagged with a `warning` in the console and in the `--json` report; check each one on the screen it is used on. `findElement` without a position returns the same first element on both sides whenever the matched sets are equal.
 - **Selector errors look like "element not found".** appium-xcuitest-driver 12.16.0 catches the error WDA returns for an invalid XPath or class chain (`400 invalid selector`). `findElements` then returns `[]` and `findElement` fails with "no such element". A chain that does not parse therefore looks like a missing element in a test run. This is one reason the tool validates every chain it emits and skips what it cannot convert exactly.

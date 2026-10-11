@@ -43,6 +43,31 @@ node run.js                                    # all cases → results.json
 node run.js --out out/run2.json && node run.js --diff results.json out/run2.json
 ```
 
+## Real device (Phase 2b)
+
+A UDID listed under `devices` in `env.json` switches `run.js` to real-device mode. Signing works with a free Apple ID (Xcode → Settings → Accounts); the team id is passed in `XCODE_ORG_ID` and stays out of the repository.
+
+```sh
+# once: Developer Mode on the phone; build, sign and install LocatorLab under the device's appBundleId
+xcodebuild -project LocatorLab.xcodeproj -scheme LocatorLab -configuration Debug \
+  -destination "id=<device udid>" -derivedDataPath DerivedData -allowProvisioningUpdates \
+  CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM=<team id> CODE_SIGN_IDENTITY="Apple Development" \
+  PRODUCT_BUNDLE_IDENTIFIER=io.github.domovou69.LocatorLab build
+xcrun devicectl device install app --device <device udid> DerivedData/Build/Products/Debug-iphoneos/LocatorLab.app
+# on the phone: Settings → General → VPN & Device Management → trust the developer (once per app; WDA too, after its first install)
+
+export UDID=<device udid> XCODE_ORG_ID=<team id>
+node run.js --smoke                            # the first session builds and installs WDA (wdaBundleId)
+node run.js --out out/device-A.json            # saved after every screen; add --resume to continue after a failure
+node run.js --only B15,B16 --out out/fix.json  # re-run cases hit by a dropped connection
+node run.js --merge out/device-A.json out/fix.json --out results-device.json
+node run.js --compare out/<simulator run>.json results-device.json
+```
+
+- WDA is forwarded to port 8101, so the simulator's WDA can keep 8100.
+- Sessions start the installed app by `appium:bundleId`. Reinstalling it for every session (`appium:app`) makes iOS refuse some launches ("unknown to FrontBoard").
+- Keep the phone unlocked and connected. A dropped USB connection shows up as `CC_ERROR` / `XPATH_ERROR` with `fetch failed` and `Device with UDID … not found` in the Appium log; re-run those cases with `--only` and `--merge` them.
+
 Timings on the reference machine: `npm install` 20 s, driver install 5 s, app build 10 s, first session ~70 s (it builds WDA), later sessions ~15 s. A full run of 246 cases takes about 13 minutes (about 25 with `REPS=5`). `node_modules/`, `.appium/`, `DerivedData/`, `LocatorLab.xcodeproj/` and `out/` are git-ignored.
 
 ## Files
@@ -56,8 +81,9 @@ Timings on the reference machine: `npm install` 20 s, driver install 5 s, app bu
 | `make-cases.js` | Builds `cases.json` from `../coverage-cases.json`; fails if an adapted XPath's structure differs from the original |
 | `cases.json` | `{ id, variant?, screen, xpath, quote?, subst?, expectedChain?, dead?, original?, verdict, category }` |
 | `run.js` | The harness (zero dependencies, raw W3C over `fetch`) |
-| `results.json` | `{ env, date, seconds, counts, perf, cases: [...] }` |
-| `env.json` | The pinned environment and the simulator UDID |
+| `results.json` | Phase 2 simulator run: `{ env, date, seconds, counts, perf, cases: [...] }` |
+| `results-device.json` | Phase 2b run on an iPhone 13 Pro Max (iOS 26.6), same format plus `merged` (the re-runs merged into it) |
+| `env.json` | The pinned environment, the simulator UDID, and real devices under `devices` (by UDID) |
 
 ## How a case runs
 
