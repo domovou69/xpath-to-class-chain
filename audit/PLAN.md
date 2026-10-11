@@ -106,10 +106,18 @@ Question: how well do Haiku, Sonnet and Opus convert the same locators when simp
 
 **Run.** One task per model, as a user would give it: the whole file, "convert these XPath locators to iOS class chain". The same prompt for all models, stored in `audit/llm/prompt.md` and quoted in the report.
 - Isolation: `claude -p` in an empty folder outside the repository, containing only `input.json`. Tools are limited to Read and Write; there is no web access, no repository, no project memory, and `--bare`. The model may split the work itself.
-- Models: Haiku, Sonnet and Opus (latest), all at effort `high`. A model without effort support runs at its default, and this is recorded.
-- Runs: one per model, plus one repeat of Opus to show run-to-run variation.
+- Models: Haiku, Sonnet and Opus (latest) at every effort level (`low`, `medium`, `high`, `xhigh`, `max`), one run per cell, in waves from `low` upwards. A model stops going up after two levels in a row without a gain in R or S (about 1 point). Unsupported levels are skipped and recorded.
+- Repeat: one second run of the recommended cell (the cheapest one with good results), to show how much R, S and the verdicts change between two identical runs.
 - Output contract: JSON `[{ id, chain }]` or `[{ id, skip, reason }]`. A skip is allowed.
 - Each run records model id, effort, date, wall time, tokens and cost (`--output-format json`) to `audit/llm/out/<model>-<run>.json`.
+
+**One cycle (model × effort).**
+1. A new empty temporary folder outside the repository; copy in `input.json` only.
+2. `claude -p "<prompt>" --model <m> --effort <e> --tools Read,Write --bare --output-format json`, run in that folder. The model reads the file and writes `output.json`, in parts if it wants.
+3. Save `output.json` and the CLI's metadata (model, effort, time, tokens, cost) as `audit/llm/out/<model>-<effort>.json`. A missing or broken file is a failed run, not fixed by hand.
+4. Normalize mechanically only (e.g. strip a `-ios class chain:` prefix); ids not in the output are MISSING.
+5. Score with the harness, as for the converter.
+6. Add one row to the results table.
 
 **Scoring.** The same oracle as the converter: `audit/harness` (WDA 16.14.1 parser, corrected after Phase 2). Verdicts:
 
