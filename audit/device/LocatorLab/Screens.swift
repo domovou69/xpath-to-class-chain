@@ -17,6 +17,8 @@ enum Screens {
         case "states": StatesScreen()
         case "nesting": NestingScreen()
         case "modal": ModalScreen()
+        case "scale": ScaleScreen(load: max(100, UserDefaults.standard.integer(forKey: "load")))
+        case "scale-deep": ScaleDeepScreen()
         default: Text("unknown screen: \(name)").accessibilityIdentifier("unknownScreen")
         }
     }

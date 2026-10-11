@@ -70,13 +70,33 @@ node run.js --compare out/<simulator run>.json results-device.json
 
 Timings on the reference machine: `npm install` 20 s, driver install 5 s, app build 10 s, first session ~70 s (it builds WDA), later sessions ~15 s. A full run of 246 cases takes about 13 minutes (about 25 with `REPS=5`). `node_modules/`, `.appium/`, `DerivedData/`, `LocatorLab.xcodeproj/` and `out/` are git-ignored.
 
+## Scale benchmark (Phase 3)
+
+Times XPath against class chain on one screen with 100, 500, 1000 and 2000 elements in the tree (the same 30 targets every time). Results are in the "Lookup time vs. tree size" section of [`../coverage-report.md`](../coverage-report.md).
+
+```sh
+node make-scale.js        # LocatorLab/scale.json + scale-cases.json (only after editing make-scale.js); rebuild the app afterwards
+node scale.js --count     # elements, max depth and page-source time per size, no lookups
+node scale.js --out results-scale-mine.json            # 4 sizes × 30 cases × 3 passes, saved after every size
+node scale.js --out results-scale-mine.json --resume   # continue after a failure
+node scale.js --deep --out results-scale-deep-mine.json        # depth check (`scale-deep`)
+node scale.js --variants 100,2000 --out results-scale-variants-mine.json   # chain vs. [1] vs. useFirstMatch
+```
+
+- On a real device, set `UDID` and `XCODE_ORG_ID` and install the rebuilt LocatorLab as in "Real device" above.
+- A full run takes about 35 minutes on the simulator and 50 on an iPhone 13 Pro Max; most of it is the 2000-element size.
+- `scale.js` runs `caffeinate` while it works: a sleeping display drops the USB tunnel to the phone.
+- Each size records the Mac's power state (`host`). On battery with Low Power Mode, lookups on the simulator were 14–16 % slower on an M1 Pro; the XPath/chain savings were the same.
+- Page sources are read without the `visible` attribute (`pageSourceExcludedAttributes`, switched on only around source calls). With it, one page source took 53 s at 1000 elements.
+- Before timing, XPath and chain must return the same single element; a case that fails is printed as `INVALID` and not timed. Many `INVALID` at once with `no such element` usually means the USB tunnel dropped: re-run with `--resume`.
+
 ## Files
 
 | File | Role |
 |---|---|
 | `project.yml` | XcodeGen spec for LocatorLab (SwiftUI, iOS 17+, display name `LL`) |
 | `LocatorLab/Lab.swift` | A small tree DSL: SwiftUI nodes (`text`, `button`, `box`, `combined`, …) and UIKit nodes for tables and the window overlay |
-| `LocatorLab/Screens.swift` | The screens: `identity`, `functions`, `siblings`, `lists`, `states`, `nesting`, `modal` |
+| `LocatorLab/Screens.swift` | The screens: `identity`, `functions`, `siblings`, `lists`, `states`, `nesting`, `modal` (and `scale`, `scale-deep` from `ScaleScreen.swift`) |
 | `LocatorLab/ProbeScreen.swift`, `Probe2Screen.swift`, `SmokeScreen.swift` | Not test screens: how SwiftUI/UIKit constructs map to `XCUIElementType*` on this iOS, and the smoke test |
 | `make-cases.js` | Builds `cases.json` from `../coverage-cases.json`; fails if an adapted XPath's structure differs from the original |
 | `cases.json` | `{ id, variant?, screen, xpath, quote?, subst?, expectedChain?, dead?, original?, verdict, category }` |
@@ -84,6 +104,13 @@ Timings on the reference machine: `npm install` 20 s, driver install 5 s, app bu
 | `results.json` | Phase 2 simulator run: `{ env, date, seconds, counts, perf, cases: [...] }` |
 | `results-device.json` | Phase 2b run on an iPhone 13 Pro Max (iOS 26.6), same format plus `merged` (the re-runs merged into it) |
 | `env.json` | The pinned environment, the simulator UDID, and real devices under `devices` (by UDID) |
+| `make-scale.js` | Phase 3: builds the `scale` screen (`LocatorLab/scale.json`) and its cases (`scale-cases.json`) from one description |
+| `LocatorLab/ScaleScreen.swift` | The `scale` and `scale-deep` screens; renders `kit` subtrees with UIKit |
+| `scale.js` | Phase 3 runner; uses `run.js`'s session and environment handling |
+| `results-scale-ac.json`, `results-scale-battery.json` | Phase 3 simulator runs on AC and on battery with Low Power Mode |
+| `results-scale-device.json` | Phase 3 run on the iPhone 13 Pro Max |
+| `results-scale-deep.json`, `results-scale-deep-device.json` | Depth check, simulator and iPhone |
+| `results-scale-variants.json` | Chain vs. chain with `[1]` vs. `useFirstMatch` (simulator) |
 
 ## How a case runs
 

@@ -1,0 +1,237 @@
+{
+ "env": {
+  "xcode": "Xcode 27.0 Build version 27A266a",
+  "appium": "3.8.0",
+  "xcuitestDriver": "12.16.0",
+  "wda": "16.14.1",
+  "iosVersion": "26.6",
+  "node": "v24.21.0",
+  "device": "MikeYes",
+  "model": "iPhone 13 Pro Max",
+  "productType": "iPhone14,3",
+  "osBuild": "23G71",
+  "udid": "00008110-0001159A14BA801E"
+ },
+ "host": {
+  "cpu": "Apple M1 Pro",
+  "memoryGB": 16,
+  "macOS": "26.6.2",
+  "power": "AC",
+  "lowPowerMode": false
+ },
+ "date": "2026-10-11",
+ "elements": 62,
+ "maxDepth": 50,
+ "cases": [
+  {
+   "id": "D5",
+   "marker": 5,
+   "depthInSource": 15,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.5\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.5\"`]",
+   "xpathResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.5|depth.marker.5|depth.marker.5|18,47,80,14"
+   },
+   "chainResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.5|depth.marker.5|depth.marker.5|18,47,80,14"
+   },
+   "xpathMs": 221.1,
+   "chainMs": 176.6
+  },
+  {
+   "id": "D10",
+   "marker": 10,
+   "depthInSource": 20,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.10\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.10\"`]",
+   "xpathResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.10|depth.marker.10|depth.marker.10|28,61,85,14"
+   },
+   "chainResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.10|depth.marker.10|depth.marker.10|28,61,85,14"
+   },
+   "xpathMs": 244.4,
+   "chainMs": 181.5
+  },
+  {
+   "id": "D15",
+   "marker": 15,
+   "depthInSource": 25,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.15\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.15\"`]",
+   "xpathResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.15|depth.marker.15|depth.marker.15|38,75,85,14"
+   },
+   "chainResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.15|depth.marker.15|depth.marker.15|38,75,85,14"
+   },
+   "xpathMs": 240.2,
+   "chainMs": 182.2
+  },
+  {
+   "id": "D20",
+   "marker": 20,
+   "depthInSource": 30,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.20\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.20\"`]",
+   "xpathResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.20|depth.marker.20|depth.marker.20|48,89,87,15"
+   },
+   "chainResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.20|depth.marker.20|depth.marker.20|48,89,87,15"
+   },
+   "xpathMs": 228.1,
+   "chainMs": 188.2
+  },
+  {
+   "id": "D25",
+   "marker": 25,
+   "depthInSource": 35,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.25\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.25\"`]",
+   "xpathResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.25|depth.marker.25|depth.marker.25|58,104,87,14"
+   },
+   "chainResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.25|depth.marker.25|depth.marker.25|58,104,87,14"
+   },
+   "xpathMs": 216.4,
+   "chainMs": 167.2
+  },
+  {
+   "id": "D30",
+   "marker": 30,
+   "depthInSource": 40,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.30\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.30\"`]",
+   "xpathResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.30|depth.marker.30|depth.marker.30|68,118,87,14"
+   },
+   "chainResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.30|depth.marker.30|depth.marker.30|68,118,87,14"
+   },
+   "xpathMs": 242.3,
+   "chainMs": 191.8
+  },
+  {
+   "id": "D35",
+   "marker": 35,
+   "depthInSource": 45,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.35\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.35\"`]",
+   "xpathResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.35|depth.marker.35|depth.marker.35|78,133,87,14"
+   },
+   "chainResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.35|depth.marker.35|depth.marker.35|78,133,87,14"
+   },
+   "xpathMs": 239.6,
+   "chainMs": 182.5
+  },
+  {
+   "id": "D40",
+   "marker": 40,
+   "depthInSource": 50,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.40\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.40\"`]",
+   "xpathResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.40|depth.marker.40|depth.marker.40|88,147,87,14"
+   },
+   "chainResult": {
+    "hit": "XCUIElementTypeStaticText|depth.marker.40|depth.marker.40|depth.marker.40|88,147,87,14"
+   },
+   "xpathMs": 238.9,
+   "chainMs": 162.8
+  },
+  {
+   "id": "D45",
+   "marker": 45,
+   "depthInSource": null,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.45\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.45\"`]",
+   "xpathResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "chainResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "xpathMs": 157.8,
+   "chainMs": 94.6
+  },
+  {
+   "id": "D50",
+   "marker": 50,
+   "depthInSource": null,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.50\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.50\"`]",
+   "xpathResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "chainResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "xpathMs": 125.3,
+   "chainMs": 97.2
+  },
+  {
+   "id": "D55",
+   "marker": 55,
+   "depthInSource": null,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.55\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.55\"`]",
+   "xpathResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "chainResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "xpathMs": 125.7,
+   "chainMs": 93.8
+  },
+  {
+   "id": "D60",
+   "marker": 60,
+   "depthInSource": null,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.60\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.60\"`]",
+   "xpathResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "chainResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "xpathMs": 122.5,
+   "chainMs": 88.6
+  },
+  {
+   "id": "D65",
+   "marker": 65,
+   "depthInSource": null,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.65\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.65\"`]",
+   "xpathResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "chainResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "xpathMs": 128.6,
+   "chainMs": 88.9
+  },
+  {
+   "id": "D70",
+   "marker": 70,
+   "depthInSource": null,
+   "xpath": "//XCUIElementTypeStaticText[@name=\"depth.marker.70\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"depth.marker.70\"`]",
+   "xpathResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "chainResult": {
+    "error": "no such element: An element could not be located on the page using the given search parameters."
+   },
+   "xpathMs": 130.3,
+   "chainMs": 95.9
+  }
+ ]
+}
