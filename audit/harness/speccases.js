@@ -7,6 +7,8 @@ const FIX = {
   A08: A(E('Window', 'k="w1"', E('Other', 'k="o1"', E('Button', 'k="b1"') + E('Button', 'k="b2"')) + E('Other', 'k="o2"', E('Button', 'k="b3"') + E('Button', 'k="b4"'))) + E('Window', 'k="w2"', E('Other', '', E('Button', 'k="b5"') + E('Button', 'k="b6"')))),
   A10: A(E('Cell', 'k="c1" name="a"', E('Other', '', E('Button', 'k="t1" label="b"'))) + E('Cell', 'k="c2" name="z"', E('Button', 'k="t2" label="b"'))),
   A14: A(E('Window', 'k="w"', E('Other', 'k="o"', E('Button', 'k="inOther" name="a"')) + E('Button', 'k="directInWindow" name="a"')) + E('NavigationBar', 'k="nb"', E('Button', 'k="inNavBar" name="a"'))),
+  // RC-D3: doubleValue reads a numeric prefix ("10abc" → 10), XPath number() gives NaN
+  B03: A(E('Button', 'k="b1" value="10abc"') + E('Button', 'k="b2" value="7"') + E('Button', 'k="b3" value="abc"') + E('Button', 'k="b4" value="1e3"')),
   A13: A(E('Other', 'k="o1" name="a"') + E('StaticText', 'k="s1" name="a"')),
   C10: A(E('TextField', 'k="t1"') + E('TextView', 'k="t2"') + E('Other', 'k="o1"') + E('StaticText', 'k="s1"')),
   D06: A(E('Button', 'k="b1" name="a" value="z"') + E('Button', 'k="b2" label="b" value="c"')),
@@ -45,7 +47,7 @@ module.exports = [
   // B — attributes, comparisons, booleans
   { id: 'B01', cat: 'B', xpath: `//${T('Button')}[@name="a"]`, expected: `**/${T('Button')}[\`name == "a"\`]` },
   { id: 'B02', cat: 'B', xpath: `//${T('Button')}[@label!="a"]`, expected: `**/${T('Button')}[\`label != nil AND label != "a"\`]` },
-  { id: 'B03', cat: 'B', xpath: `//${T('Button')}[@value>5]`, expected: `**/${T('Button')}[\`value.doubleValue > 5\`]`, extra: 'num' },
+  { id: 'B03', cat: 'B', xpath: `//${T('Button')}[@value>5]`, expected: { skip: 'RC-D3: doubleValue reads a numeric prefix ("10abc" → 10), XPath number() gives NaN (device C1)' }, extra: 'num' },
   { id: 'B04', cat: 'B', xpath: `//${T('Button')}[@x>60]`, expected: `**/${T('Button')}[\`rect.x > 60\`]`, extra: 'num', note: 'x/y/width/height are XML-only; rect.x is queryable' },
   { id: 'B05', cat: 'B', xpath: `//${T('Button')}[@enabled="true"]`, expected: `**/${T('Button')}[\`enabled == true\`]` },
   { id: 'B06', cat: 'B', xpath: `//${T('Button')}[@enabled="false"]`, expected: `**/${T('Button')}[\`enabled == false\`]` },

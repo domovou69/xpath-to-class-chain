@@ -200,7 +200,7 @@ Status values used in `skipped[]`:
 | `//XCUIElementTypeCell/./XCUIElementTypeButton` | `**/XCUIElementTypeCell/XCUIElementTypeButton` (`.` steps dropped) |
 | `.//XCUIElementTypeButton[@name="a"]` | ``**/XCUIElementTypeButton[`name == "a"`]`` (a leading `.//` searches below the context node, as `**/` does; `./X` is not converted. Library API only: the CLI scanner picks up strings that start with `//` or `(//`) |
 | `//XCUIElementTypeButton[@x>60]`, `//*[@index="1"]` | ``**/XCUIElementTypeButton[`rect.x > 60`]``, ``**/*[`index == 1`]`` (`x`/`y`/`width`/`height` are `rect.*`; numbers compare as numbers) |
-| `//XCUIElementTypeSlider[@value>0.5]` | ``**/XCUIElementTypeSlider[`value.doubleValue > 0.5`]`` |
+| `//XCUIElementTypeButton[@enabled=true()]` | `**/XCUIElementTypeButton` (XPath compares `true()` with the attribute itself, which is true whenever it exists, even as `"false"`; WDA always writes `enabled`, `visible` and `accessible`, so the predicate filters nothing. Compare with `"true"` to test the value) |
 | `//XCUIElementTypeButton[@label!="a"]` | ``**/XCUIElementTypeButton[`label != nil AND label != "a"`]`` (XPath `!=` needs the attribute to exist) |
 | `//XCUIElementTypeButton[@name]` | ``**/XCUIElementTypeButton[`name != nil`]`` |
 | `//*[@label="C:\dir"]` | ``**/*[`label == "C:\\dir"`]`` (NSPredicate decodes `\`, so backslashes and newlines are escaped) |
@@ -223,7 +223,8 @@ Status values used in `skipped[]`:
 | Element type that isn't `*` or one of WDA's `XCUIElementType*` names (e.g. `//Btn[...]`, `//XCUIElementTypeLabel[...]`) — WDA would read an unknown name as `Other` | `skipped_unsupported_logic` |
 | Parent step `..` | `skipped_unsupported_logic` |
 | An attribute WDA does not have, e.g. `@text` — the XPath matches nothing and the chain would raise `FBUnknownAttributeException` | `skipped_unsupported_logic` |
-| A numeric comparison with no exact chain form: `@value<5` (non-numeric text reads as 0 in NSPredicate, NaN in XPath), `@value=5`, `@index="a"`, ordering a boolean | `skipped_unsupported_logic` |
+| A numeric comparison on text, e.g. `@value>5` or `@value<5`: `value.doubleValue` reads a numeric prefix (`"10abc"`, `"50%"` → 10, 50) and other text as 0, while XPath gives NaN unless the whole text is a number. Also `@value=5`, `@index="a"`, ordering a boolean | `skipped_unsupported_logic` |
+| `true()` / `false()` other than a whole `[@enabled=true()]` (or `visible`, `accessible`): `[@enabled=false()]` never matches, `@selected` / `@hittable` / `@focused` are not always in the page source, and inside a larger predicate it would have to be dropped from it | `skipped_unsupported_logic` |
 | Union `a \| b` | `skipped_unsupported_logic` |
 | Grouped XPath with any other function outer index, e.g. `(//XCUIElementTypeButton[@name="x"])[position()<=2]` or `[last()+1]` — not a single position | `skipped_not_xpath` |
 | Grouped `(//XCUIElementTypeCell/XCUIElementTypeButton[2])[last()]` — the inner chain already ends with a position | `skipped_unsupported_logic` |

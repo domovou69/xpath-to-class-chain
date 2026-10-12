@@ -215,8 +215,11 @@ const CONVERT_CASES = [
   // RC14: numbers compare as numbers
   ['//*[@index="1"]', `${CC}**/*[\`index == 1\`]`], // B11
   ['//*[@index!=0]', `${CC}**/*[\`index != 0\`]`],
-  ['//XCUIElementTypeButton[@value>5]', `${CC}**/XCUIElementTypeButton[\`value.doubleValue > 5\`]`], // B03
-  ['//XCUIElementTypeSlider[@value>="0.5"]', `${CC}**/XCUIElementTypeSlider[\`value.doubleValue >= 0.5\`]`],
+  // B16: `@attr=true()` is true whenever the attribute exists; WDA always writes these
+  ['//XCUIElementTypeButton[@enabled=true()]', `${CC}**/XCUIElementTypeButton`], // B16
+  ['//XCUIElementTypeButton[@visible != false()]', `${CC}**/XCUIElementTypeButton`],
+  ['//XCUIElementTypeButton[@accessible=true()][@name="a"]', `${CC}**/XCUIElementTypeButton[\`name == "a"\`]`],
+  ['(//XCUIElementTypeButton[@enabled=true()])[2]', `${CC}**/XCUIElementTypeButton[2]`],
   // an XPath `!=` needs the attribute to exist; NSPredicate's would also match nil
   ['//XCUIElementTypeButton[@label!="a"]', `${CC}**/XCUIElementTypeButton[\`label != nil AND label != "a"\`]`], // B02
   // attribute existence
@@ -382,9 +385,19 @@ const SKIP_CASES = [
   ['//*[contains(@x, "1")]', 'RC3: string function on a number'],
   // RC14: comparisons with no safe NSPredicate form
   ['//*[@value<5]', 'RC14: text below a number (non-numeric text reads as 0)'],
+  ['//XCUIElementTypeButton[@value>5]', 'RC-D3: doubleValue reads "10abc" as 10 (B03)'],
+  ['//XCUIElementTypeSlider[@value>="0.5"]', 'RC-D3: >= on text'],
+  ['//*[@label>0]', 'RC-D3: > 0 on text'],
   ['//*[@index="a"]', 'RC14: index against text'],
   ['//*[@value=5]', 'RC14: text equal to a number'],
   ['//*[@enabled>0]', 'RC14: ordering a boolean'],
+  // B16: true() / false() test that the attribute exists
+  ['//XCUIElementTypeButton[@enabled=false()]', 'B16: never matches, WDA always writes @enabled'],
+  ['//XCUIElementTypeButton[@visible!=true()]', 'B16: never matches'],
+  ['//XCUIElementTypeButton[@selected=true()]', 'B16: @selected is not in the page source'],
+  ['//XCUIElementTypeButton[@hittable=true()]', 'B16: @hittable only when the query names it'],
+  ['//XCUIElementTypeButton[@enabled=true() and @name="a"]', 'B16: inside a larger predicate'],
+  ['//XCUIElementTypeButton[not(@enabled=true())]', 'B16: under not()'],
   // RC15: XPath filters after the per-parent index; the chain cannot
   ['//XCUIElementTypeCell[2][@name="a"]', 'RC15: index before a filter (E12)'],
   // B4: only a leading `.//` converts; any other relative start is left alone
@@ -824,6 +837,13 @@ for (const [xpath, why] of SKIP_CASES) {
   const unchanged = locator === xpath;
   if (skipped && unchanged) ok();
   else fail(`SKIP (${why}) ${xpath}\n     expected: skip+unchanged\n     got:      status=${status} locator=${locator}`);
+}
+
+// RC-D3: a numeric comparison on text says why it is skipped.
+for (const xpath of ['//XCUIElementTypeButton[@value>5]', '//XCUIElementTypeSlider[@value>="0.5"]']) {
+  const res = convertXpathToClassChain(xpath);
+  if (res.status !== 'success' && /doubleValue reads "10abc" as 10/.test(res.reason || '')) ok();
+  else fail(`SKIP REASON ${xpath}\n     expected: the doubleValue reason\n     got:      status=${res.status} reason=${res.reason}`);
 }
 
 // RC-D1: a grouped position is converted, but WDA counts class chain matches in
