@@ -29,7 +29,7 @@
 | H06 | `//*[contains(upper-case(@label),"AB")]` | GAP | 5/11 | `**/XCUIElementTypeAny[ˋlabel CONTAINS[c] "AB"ˋ]` |
 | H02 | `//*[matches(@name,"^a.c$")]` | GAP | 5/11 | `**/XCUIElementTypeAny[ˋname MATCHES "a.c"ˋ]` |
 | C06 | `//*[normalize-space(@label)="a b"]` | GAP | 4/11 | `**/*[ˋlabel MATCHES "\\s*a\\s+b\\s*"ˋ]` |
-| H07 | `//*[replace(@label,"a","b")="bb"]` | CORRECT-SKIP | 3/11 | `**/XCUIElementTypeAny[ˋlabel MATCHES "[ab]{2}"ˋ]` |
+| H07 | `//*[replace(@label,"a","b")="bb"]` | GAP | 3/11 | `**/XCUIElementTypeAny[ˋlabel MATCHES "[ab]{2}"ˋ]` |
 | G04 | `//*[@label="aˋb"]` | GAP | 3/11 | `**/*[ˋlabel == "aˋˋb"ˋ]` |
 | R01 | `//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell` | GAP | 3/11 | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` |
 
@@ -93,7 +93,7 @@
 | A07 | `/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton` | DRIFT | 1 / 0 / 0 | haiku/medium |
 | E02 | `(//XCUIElementTypeButton)[2]` | DRIFT | 1 / 0 / 0 | haiku/low |
 
-### Wrong or invalid chains where the converter also has no right chain (11 cases)
+### Wrong or invalid chains where the converter also has no right chain (9 cases)
 
 | Case | XPath | Converter | Cells wrong / invalid |
 |---|---|---|---|
@@ -102,9 +102,7 @@
 | F03 | `//XCUIElementTypeCell[.//*[@name="x"]]` | CORRECT-SKIP | sonnet/medium WRONG, sonnet/high WRONG, sonnet/max WRONG, opus/low WRONG, opus/medium WRONG, opus/high WRONG |
 | L270 | `(//XCUIElementTypeStaticText[@name="jila_zugo"])[last()]` | CORRECT-SKIP | haiku/low WRONG, haiku/medium WRONG, haiku/high WRONG, sonnet/low WRONG, sonnet/medium WRONG, sonnet/high WRONG, sonnet/max WRONG, opus/low WRONG, opus/medium WRONG, opus/high WRONG |
 | G04 | `//*[@label="aˋb"]` | GAP | sonnet/low INVALID, sonnet/high INVALID |
-| E07 | `(//XCUIElementTypeButton)[position()=2]` | CORRECT-SKIP | haiku/medium WRONG, haiku/high WRONG, sonnet/low WRONG, sonnet/medium WRONG, sonnet/high WRONG, sonnet/max WRONG, opus/low WRONG, opus/medium WRONG, opus/high WRONG |
 | A13 | `//XCUIElementTypeLabel[@name="a"]` | CORRECT-SKIP | haiku/low WRONG, haiku/medium WRONG, haiku/high WRONG |
 | E06 | `(//XCUIElementTypeButton)[last()-1]` | CORRECT-SKIP | haiku/medium WRONG, haiku/high WRONG, sonnet/low WRONG, sonnet/medium WRONG, sonnet/high WRONG, sonnet/max WRONG, opus/low WRONG, opus/medium WRONG, opus/high WRONG |
 | E05 | `(//XCUIElementTypeButton)[last()]` | CORRECT-SKIP | haiku/low WRONG, haiku/medium WRONG, haiku/high WRONG, sonnet/low WRONG, sonnet/medium WRONG, sonnet/high WRONG, sonnet/max WRONG, opus/low WRONG, opus/medium WRONG, opus/high WRONG |
 | L272 | `(//XCUIElementTypeOther[contains(@label, "Lenapa gusuri")]/XCUIElementTypeStaticText)[last()]` | CORRECT-SKIP | sonnet/max WRONG, opus/low WRONG, opus/medium WRONG, opus/high WRONG |
-| E11 | `(//XCUIElementTypeCell)[2]/XCUIElementTypeButton` | CORRECT-SKIP | haiku/medium WRONG, haiku/high WRONG, sonnet/low WRONG, sonnet/medium WRONG, sonnet/high WRONG, sonnet/max WRONG, opus/low WRONG, opus/medium WRONG, opus/high WRONG |

@@ -2,13 +2,13 @@
  "summary": {
   "name": "opus-max-1",
   "R": 65.6,
-  "S": 53.7,
+  "S": 53.4,
   "Scat": {
    "A": 10,
    "B": 7.5,
    "C": 11.666666666666666,
    "D": 8,
-   "E": 4,
+   "E": 3.75,
    "F": 5,
    "G": 7.5,
    "H": 0,
@@ -17,23 +17,25 @@
   "corpusDen": 484,
   "corpus": {
    "CORRECT": 307,
-   "CORRECT-SKIP": 54,
+   "CORRECT-SKIP": 53,
    "GAP": 0,
    "DRIFT": 22,
    "WRONG": 2,
    "INVALID": 1,
    "MISSING": 177,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "spec": {
    "CORRECT": 47,
-   "CORRECT-SKIP": 17,
-   "GAP": 3,
-   "DRIFT": 5,
-   "WRONG": 2,
+   "CORRECT-SKIP": 16,
+   "GAP": 4,
+   "DRIFT": 6,
+   "WRONG": 1,
    "INVALID": 0,
    "MISSING": 41,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 0
   },
   "entries": 460,
   "duplicates": 0,
@@ -1114,7 +1116,8 @@
    "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
    "skip": true,
    "reason": "Not valid XPath: the backtick predicate is class chain/NSPredicate syntax, so WDA rejects it as an invalid selector and it finds nothing. The intended locator was probably -ios class chain:**/XCUIElementTypeButton[`label == \"Gihasem\"`].",
-   "verdict": "CORRECT-SKIP",
+   "verdict": "EXCLUDED",
+   "note": "not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath; out of every count and denominator",
    "inDen": false
   },
   "x092": {
@@ -3457,8 +3460,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "Uses the XPath 2.0 function replace(). WDA evaluates XPath with libxml2, which supports only XPath 1.0, so this locator fails as an invalid selector and finds nothing.",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "verdict": "GAP",
+   "inDen": true
   },
   "x291": {
    "orig": "L248",
@@ -4012,17 +4015,9 @@
    "outcome": "SET_DIFFERS",
    "hits": 109,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\" enabled=\"false\" visible=\"true\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"100\" width=\"0\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\" placeholderValue=\"a\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"100\" width=\"50\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"0\" width=\"60\"><XCUIElementTypeCell k=\"n4\" label=\"b\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"100\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\" placeholderValue=\" a  b \" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"0\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" label=\"zabz\" value=\" a  b \" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"50\" width=\"60\"></XCUIElementTypeButton></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"0\" width=\"0\"></XCUIElementTypeStaticText></XCUIElementTypeCell></XCUIElementTypeStaticText><XCUIElementTypeButton k=\"n8\" name=\"A b\" value=\"b\" placeholderValue=\"c\" enabled=\"true\" visible=\"true\" accessible=\"false\" hittable=\"false\" selected=\"false\" x=\"60\" width=\"50\"></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n8"
-    ],
-    "chainHits": [
-     "n6"
-    ]
-   },
-   "inDen": false
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x337": {
    "orig": "L052",
@@ -6802,7 +6797,7 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeCell)[2]/XCUIElementTypeButton",
    "verdict": "MISSING",
-   "inDen": false
+   "inDen": true
   },
   "x627": {
    "orig": "L368",

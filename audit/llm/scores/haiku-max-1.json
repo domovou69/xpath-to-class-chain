@@ -17,23 +17,25 @@
   "corpusDen": 451,
   "corpus": {
    "CORRECT": 449,
-   "CORRECT-SKIP": 112,
+   "CORRECT-SKIP": 111,
    "GAP": 1,
    "DRIFT": 0,
    "WRONG": 0,
    "INVALID": 1,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "spec": {
    "CORRECT": 56,
-   "CORRECT-SKIP": 35,
-   "GAP": 20,
+   "CORRECT-SKIP": 34,
+   "GAP": 21,
    "DRIFT": 1,
    "WRONG": 2,
    "INVALID": 1,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 0
   },
   "entries": 678,
   "duplicates": 0,
@@ -1097,7 +1099,8 @@
    "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
    "skip": true,
    "reason": "not XPath: the value is class chain syntax (a backtick predicate) that XPath rejects, so there is no element set to reproduce; if the intent was buttons labelled Gihasem, use -ios class chain:**/XCUIElementTypeButton[`label == \"Gihasem\"`] directly",
-   "verdict": "CORRECT-SKIP",
+   "verdict": "EXCLUDED",
+   "note": "not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath; out of every count and denominator",
    "inDen": false
   },
   "x092": {
@@ -3376,8 +3379,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "replace() is an XPath 2.0 function; WDA's XPath engine is XPath 1.0, so the XPath errors instead of matching",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "verdict": "GAP",
+   "inDen": true
   },
   "x291": {
    "orig": "L248",

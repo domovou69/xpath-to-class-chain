@@ -2,7 +2,7 @@
  "summary": {
   "name": "sonnet-max-1",
   "R": 96.5,
-  "S": 80.1,
+  "S": 79.2,
   "Scat": {
    "A": 14,
    "B": 12.1875,
@@ -11,29 +11,31 @@
    "E": 6,
    "F": 10,
    "G": 8.214285714285714,
-   "H": 6,
+   "H": 5.142857142857143,
    "R": 0
   },
   "corpusDen": 481,
   "corpus": {
    "CORRECT": 450,
-   "CORRECT-SKIP": 79,
+   "CORRECT-SKIP": 78,
    "GAP": 0,
    "DRIFT": 29,
    "WRONG": 3,
    "INVALID": 2,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "spec": {
    "CORRECT": 70,
-   "CORRECT-SKIP": 24,
-   "GAP": 7,
-   "DRIFT": 8,
-   "WRONG": 5,
+   "CORRECT-SKIP": 23,
+   "GAP": 8,
+   "DRIFT": 10,
+   "WRONG": 3,
    "INVALID": 1,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 0
   },
   "entries": 678,
   "duplicates": 0,
@@ -1114,7 +1116,8 @@
    "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
    "skip": true,
    "reason": "Not a valid XPath: it contains class-chain/predicate syntax (backtick predicate) inside the brackets, so it matches nothing as written and there are no defined 'same elements' to reproduce.",
-   "verdict": "CORRECT-SKIP",
+   "verdict": "EXCLUDED",
+   "note": "not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath; out of every count and denominator",
    "inDen": false
   },
   "x092": {
@@ -3457,8 +3460,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "Uses replace() (an XPath 2.0 regex function); NSPredicate has no string-rewriting function, so the condition can't be expressed as a class chain predicate.",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "verdict": "GAP",
+   "inDen": true
   },
   "x291": {
    "orig": "L248",
@@ -4011,17 +4014,9 @@
    "outcome": "SET_DIFFERS",
    "hits": 109,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\" enabled=\"false\" visible=\"true\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"100\" width=\"0\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\" placeholderValue=\"a\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"100\" width=\"50\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"0\" width=\"60\"><XCUIElementTypeCell k=\"n4\" label=\"b\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"100\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\" placeholderValue=\" a  b \" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"0\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" label=\"zabz\" value=\" a  b \" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"50\" width=\"60\"></XCUIElementTypeButton></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"0\" width=\"0\"></XCUIElementTypeStaticText></XCUIElementTypeCell></XCUIElementTypeStaticText><XCUIElementTypeButton k=\"n8\" name=\"A b\" value=\"b\" placeholderValue=\"c\" enabled=\"true\" visible=\"true\" accessible=\"false\" hittable=\"false\" selected=\"false\" x=\"60\" width=\"50\"></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n8"
-    ],
-    "chainHits": [
-     "n6"
-    ]
-   },
-   "inDen": false
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x337": {
    "orig": "L052",
@@ -7443,15 +7438,9 @@
    "outcome": "SET_DIFFERS",
    "hits": 10,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"50\" width=\"100\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" placeholderValue=\"b\" enabled=\"false\" visible=\"true\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"100\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"0\" width=\"60\"><XCUIElementTypeCell k=\"n4\" name=\"a b\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"50\" width=\"60\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\" enabled=\"false\" visible=\"false\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"60\" width=\"60\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" name=\"false\" enabled=\"true\" visible=\"false\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"50\" width=\"0\" value=\"5\"></XCUIElementTypeCell><XCUIElementTypeTextField k=\"n7\" placeholderValue=\"x\" enabled=\"true\" visible=\"false\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"60\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeCell k=\"n8\" label=\"true\" placeholderValue=\"ab\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"60\" value=\"5\"><XCUIElementTypeOther k=\"n9\" name=\"false\" placeholderValue=\"c\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"100\" width=\"50\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n10\" label=\"true\" value=\"ab\" placeholderValue=\"other\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"60\" width=\"0\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n11\" label=\"c\" placeholderValue=\"A b\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"0\" width=\"100\" value=\"abc\"></XCUIElementTypeButton></XCUIElementTypeCell></XCUIElementTypeTextField></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [],
-    "chainHits": [
-     "n11"
-    ]
-   },
-   "inDen": false
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x627": {
    "orig": "L368",

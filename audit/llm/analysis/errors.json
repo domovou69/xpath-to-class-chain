@@ -296,33 +296,6 @@
     "opus/high": "CORRECT-SKIP"
    }
   },
-  "L157": {
-   "group": "corpus",
-   "cat": "corpus",
-   "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
-   "converter": {
-    "verdict": "CORRECT-SKIP"
-   },
-   "cells": {
-    "haiku/low": {
-     "verdict": "N/A",
-     "chain": "**/XCUIElementTypeButton[`label == \"Gihasem\"`]"
-    },
-    "haiku/medium": "CORRECT-SKIP",
-    "haiku/high": {
-     "verdict": "N/A",
-     "chain": "**/XCUIElementTypeButton[`label == \"Gihasem\"`]"
-    },
-    "haiku/max": "CORRECT-SKIP",
-    "sonnet/low": "CORRECT-SKIP",
-    "sonnet/medium": "CORRECT-SKIP",
-    "sonnet/high": "CORRECT-SKIP",
-    "sonnet/max": "CORRECT-SKIP",
-    "opus/low": "CORRECT-SKIP",
-    "opus/medium": "CORRECT-SKIP",
-    "opus/high": "CORRECT-SKIP"
-   }
-  },
   "F08": {
    "group": "spec",
    "cat": "F",
@@ -1743,20 +1716,44 @@
    "cat": "H",
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "converter": {
-    "verdict": "CORRECT-SKIP"
+    "verdict": "GAP"
    },
    "cells": {
-    "haiku/low": "CORRECT-SKIP",
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "replace() has no class chain equivalent"
+    },
     "haiku/medium": "CORRECT",
-    "haiku/high": "CORRECT-SKIP",
-    "haiku/max": "CORRECT-SKIP",
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function replace() to transform @label; XCUITest's XPath engine is XPath 1.0 and class chain predicates cannot transform attribute values"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "replace() is an XPath 2.0 function; WDA's XPath engine is XPath 1.0, so the XPath errors instead of matching"
+    },
     "sonnet/low": "CORRECT",
     "sonnet/medium": "CORRECT",
-    "sonnet/high": "CORRECT-SKIP",
-    "sonnet/max": "CORRECT-SKIP",
-    "opus/low": "CORRECT-SKIP",
-    "opus/medium": "CORRECT-SKIP",
-    "opus/high": "CORRECT-SKIP"
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "replace() is an XPath 2.0 function with no class chain / NSPredicate equivalent."
+    },
+    "sonnet/max": {
+     "verdict": "GAP",
+     "reason": "Uses replace() (an XPath 2.0 regex function); NSPredicate has no string-rewriting function, so the condition can't be expressed as a class chain predicate."
+    },
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "replace() is an XPath 2.0 function; Appium's XPath 1.0 engine rejects this locator"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "Uses the XPath 2.0 function replace(); the driver evaluates XPath 1.0 (libxml2), where this locator is invalid, so there is no result set to reproduce."
+    },
+    "opus/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function replace(); Appium's XCUITest driver evaluates XPath 1.0 only, so this locator is rejected as invalid and has no result set to reproduce."
+    }
    }
   },
   "B16": {
@@ -2132,50 +2129,41 @@
    "cells": {
     "haiku/low": "CORRECT-SKIP",
     "haiku/medium": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeButton[2]",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
     },
     "haiku/high": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeButton[2]",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
     },
     "haiku/max": "CORRECT-SKIP",
     "sonnet/low": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeButton[2]",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
     },
     "sonnet/medium": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeButton[2]",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
     },
     "sonnet/high": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeButton[2]",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
     },
     "sonnet/max": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeButton[2]",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
     },
     "opus/low": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeButton[2]",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
     },
     "opus/medium": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeButton[2]",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
     },
     "opus/high": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeButton[2]",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
     }
    }
   },
@@ -4046,50 +4034,41 @@
    "cells": {
     "haiku/low": "CORRECT-SKIP",
     "haiku/medium": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
     },
     "haiku/high": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
     },
     "haiku/max": "CORRECT-SKIP",
     "sonnet/low": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
     },
     "sonnet/medium": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
     },
     "sonnet/high": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
     },
     "sonnet/max": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
     },
     "opus/low": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
     },
     "opus/medium": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
     },
     "opus/high": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
     }
    }
   },

@@ -112,10 +112,12 @@ function evaluate(chains) { // chains: { id: chainBody } → { id: { outcome, tr
 
 // ---------- case classes (from the harness baseline, adjusted to the runtime string the models see)
 // spec cases without an exact class chain, or whose XPath matches nothing on WDA (build.js NOT_EXPRESSIBLE)
-const SPEC_NOT_EXPRESSIBLE = new Set(['E11', 'E05', 'E06', 'E07', 'F03', 'A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H07', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
+const SPEC_NOT_EXPRESSIBLE = new Set(['E05', 'E06', 'F03', 'A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
 // the runtime string differs in kind from the source the baseline judged:
 //   L476 `[${condition}]` → a plain contains(); E10 `)${suffix}` with suffix [2] → the same locator as E09
 const RUNTIME_OVERRIDE = { L476: { expressible: true, drift: false }, E10: { expressible: true, drift: true, documented: true } };
+// not an XPath at all: kept in the input, EXCLUDED from every count and denominator (build.js does the same)
+const NOT_XPATH = { L157: 'class chain predicate inside //…[…]; WDA rejects it as XPath' };
 const conv = {};
 for (const [id, k] of Object.entries(key)) {
   const r = m.convertXpathToClassChain(k.xpath, { optimize: true });
@@ -127,13 +129,18 @@ const CLASS = {};
 for (const [id, k] of Object.entries(key)) {
   const b = k.baseline, ov = RUNTIME_OVERRIDE[k.orig] || {};
   const expressible = ov.expressible ?? (k.group === 'corpus' ? b.verdict !== 'CORRECT-SKIP' : !SPEC_NOT_EXPRESSIBLE.has(k.orig));
-  const drift = ov.drift ?? b.verdict === 'DRIFT';
-  const documented = drift ? ov.documented ?? DOC[k.orig] ?? false : null;
+  const sc = specById[k.orig];
+  // spec cases with an `approx` expectation are DRIFT-class even where the converter skips (E07, E11 are judged like E02);
+  // the approximations in speccases.js are the README's grouped-position rule (RC-D1), so they count as documented
+  const approx = !!(k.group === 'spec' && sc && sc.approx);
+  const drift = ov.drift ?? (b.verdict === 'DRIFT' || approx);
+  const documented = drift ? ov.documented ?? DOC[k.orig] ?? approx : null;
   // no exact chain: corpus DRIFT ("no exact class chain"), spec cases with an `approx` note or an `inexpressible` expectation (E13), E10 (= E09).
   // A converter DRIFT with a proven exact chain (A07, A14–A16, B16) is the converter's own imprecision: a skip there is a GAP.
-  const sc = specById[k.orig];
-  const noExact = drift && (k.group === 'corpus' || !!(sc && (sc.approx || (sc.expected && sc.expected.inexpressible))) || k.orig === 'E10');
-  CLASS[id] = { expressible, drift, documented, noExact };
+  const noExact = drift && (k.group === 'corpus' || approx || !!(sc && sc.expected && sc.expected.inexpressible) || k.orig === 'E10');
+  // the approximation a DRIFT chain is compared with: the converter's chain, else the `approx` expectation
+  const ref = conv[id].chain || (approx && typeof sc.expected === 'string' ? sc.expected : null);
+  CLASS[id] = { expressible, drift, documented, noExact, ref, notXpath: NOT_XPATH[k.orig] || null };
 }
 
 // ---------- verdicts and scores
@@ -160,10 +167,11 @@ function score(name, entries) {
   const run = evaluate(chains);
   // drift-class cases (no exact chain): a chain that behaves like the converter's documented approximation is DRIFT,
   // even when the random trees do not expose the difference (build.js judges some of these by shape, e.g. L397)
-  const driftIds = Object.keys(chains).filter(id => CLASS[id].drift && run[id].outcome !== 'CC_ERROR' && run[id].outcome !== 'XPATH_ERROR' && conv[id].chain);
-  const vsConv = driftIds.length ? evaluateAgainst(Object.fromEntries(driftIds.map(id => [id, [chains[id], conv[id].chain]]))) : {};
+  const driftIds = Object.keys(chains).filter(id => CLASS[id].drift && run[id].outcome !== 'CC_ERROR' && run[id].outcome !== 'XPATH_ERROR' && CLASS[id].ref);
+  const vsConv = driftIds.length ? evaluateAgainst(Object.fromEntries(driftIds.map(id => [id, [chains[id], CLASS[id].ref]]))) : {};
   for (const [id, row] of Object.entries(rows)) {
     const c = CLASS[id];
+    if (c.notXpath && row.verdict !== 'MISSING') { row.verdict = 'EXCLUDED'; row.note = 'not an XPath: ' + c.notXpath + '; out of every count and denominator'; continue; }
     if (row.verdict) continue;
     if (row.skip) { row.verdict = c.expressible && !c.noExact ? 'GAP' : 'CORRECT-SKIP'; continue; }
     const r = run[id]; row.outcome = r.outcome; row.hits = r.hits; row.trials = r.trials;
@@ -175,7 +183,7 @@ function score(name, entries) {
   }
   // R: corpus, S: spec categories; expressible cases only, minus no-exact-chain cases the run skipped (they leave the denominator,
 // as in the report's "skip grouped positions with a reason" variant)
-  const inDen = id => CLASS[id].expressible && !(CLASS[id].noExact && rows[id].verdict === 'CORRECT-SKIP') && rows[id].verdict !== 'N/A';
+  const inDen = id => CLASS[id].expressible && !CLASS[id].notXpath && !(CLASS[id].noExact && rows[id].verdict === 'CORRECT-SKIP') && rows[id].verdict !== 'N/A';
   const credit = id => rows[id].verdict === 'CORRECT' ? 1 : rows[id].verdict === 'DRIFT' && rows[id].documented ? 0.5 : 0;
   const ids = g => Object.keys(key).filter(id => key[id].group === g);
   const corpDen = ids('corpus').filter(inDen);
@@ -186,7 +194,7 @@ function score(name, entries) {
     Scat[cat] = den.length ? w * den.reduce((a, id) => a + credit(id), 0) / den.length : w; S += Scat[cat];
   }
   const count = (g, v) => ids(g).filter(id => rows[id].verdict === v).length;
-  const V = ['CORRECT', 'CORRECT-SKIP', 'GAP', 'DRIFT', 'WRONG', 'INVALID', 'MISSING', 'N/A'];
+  const V = ['CORRECT', 'CORRECT-SKIP', 'GAP', 'DRIFT', 'WRONG', 'INVALID', 'MISSING', 'N/A', 'EXCLUDED'];
   const summary = { name, R: +R.toFixed(1), S: +S.toFixed(1), Scat, corpusDen: corpDen.length, corpus: Object.fromEntries(V.map(v => [v, count('corpus', v)])), spec: Object.fromEntries(V.map(v => [v, count('spec', v)])), ...stats };
   const cases = Object.fromEntries(Object.entries(rows).map(([id, r]) => [id, { orig: key[id].orig, group: key[id].group, cat: key[id].cat, xpath: key[id].xpath, ...r, inDen: inDen(id) }]));
   fs.writeFileSync(path.join(SCORES, name + '.json'), JSON.stringify({ summary, cases }, null, 1) + '\n');

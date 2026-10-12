@@ -5,7 +5,7 @@ const fs = require('fs'), path = require('path');
 const S = n => JSON.parse(fs.readFileSync(path.join(__dirname, 'scores', n + '.json'), 'utf8'));
 const W = { A: 15, B: 15, C: 15, D: 12, E: 12, F: 10, G: 10, H: 6, R: 5 };
 const conv = S('converter');
-// the converter never skips a no-exact-chain case, so its denominator is the full expressible set
+// the converter's denominator: its expressible cases minus the no-exact-chain cases it skips (E07, E11); EXCLUDED (L157) is never in it
 const den = Object.entries(conv.cases).filter(([, c]) => c.inDen).map(([id]) => id);
 const docDrift = Object.fromEntries(Object.entries(conv.cases).filter(([, c]) => c.verdict === 'DRIFT').map(([id, c]) => [id, c.documented]));
 const credit = (c, id) => c.verdict === 'CORRECT' ? 1 : c.verdict === 'DRIFT' && (c.documented ?? docDrift[id]) ? 0.5 : 0;
@@ -22,13 +22,13 @@ const pct = (a, b) => `${(100 * a / b).toFixed(1)} %`;
 const incomplete = [];
 const lines = ['| Cell | R | S | R= | S= | Converted | Skipped | of which GAP | Precision | WRONG | INVALID | MISSING | Time, min | Cost, $ | Output tokens |', '|' + '---|'.repeat(15)];
 for (const n of names) {
-  const { summary: s, cases } = S(n), v = Object.values(cases).map(c => c.verdict), N = v.length;
+  const { summary: s, cases } = S(n), v = Object.values(cases).map(c => c.verdict).filter(x => x !== 'EXCLUDED'), N = v.length; // EXCLUDED: not an XPath (L157)
   const chains = v.filter(x => ['CORRECT', 'DRIFT', 'WRONG', 'INVALID', 'N/A'].includes(x)).length;
   const ok = v.filter(x => x === 'CORRECT' || x === 'DRIFT').length;
   const skipped = v.filter(x => x === 'CORRECT-SKIP' || x === 'GAP').length, gap = v.filter(x => x === 'GAP').length;
   if (v.includes('MISSING')) { // interrupted run: reported in a note, not compared
     const run = JSON.parse(fs.readFileSync(path.join(__dirname, 'out', n + '.json'), 'utf8'));
-    incomplete.push(`- **${n.replace(/-1$/, '').replace('-', ' / ')}**: not compared. The run was cut off by the account's 5-hour session limit (HTTP 429) after ${(run.wallMs / 6e4).toFixed(1)} min, $${run.cli.total_cost_usd.toFixed(2)} (API equivalent) and ${Math.round(run.cli.usage.output_tokens / 1000)}k output tokens (${Math.round(run.cli.usage.output_tokens_details.thinking_tokens / 1000)}k of them thinking). It had written ${N - v.filter(x => x === 'MISSING').length} of ${N} answers. It ran in parallel with sonnet / max, so the limit was shared; how much of it each run used is not measured.`);
+    incomplete.push(`- **${n.replace(/-1$/, '').replace('-', ' / ')}**: not compared. The run was cut off by the account's 5-hour session limit (HTTP 429) after ${(run.wallMs / 6e4).toFixed(1)} min, $${run.cli.total_cost_usd.toFixed(2)} (API equivalent) and ${Math.round(run.cli.usage.output_tokens / 1000)}k output tokens (${Math.round(run.cli.usage.output_tokens_details.thinking_tokens / 1000)}k of them thinking). It had written ${Object.values(cases).filter(c => c.verdict !== 'MISSING').length} of ${Object.keys(cases).length} answers. It ran in parallel with sonnet / max, so the limit was shared; how much of it each run used is not measured.`);
     continue;
   }
   const f = fixed(cases);
