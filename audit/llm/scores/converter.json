@@ -1,25 +1,25 @@
 {
  "summary": {
   "name": "converter",
-  "R": 95.3,
-  "S": 61.8,
+  "R": 95.8,
+  "S": 91.8,
   "Scat": {
-   "A": 10.5,
-   "B": 14.0625,
-   "C": 8.333333333333334,
-   "D": 8,
+   "A": 15,
+   "B": 15,
+   "C": 15,
+   "D": 12,
    "E": 5,
-   "F": 7.5,
-   "G": 7.5,
-   "H": 0.8571428571428571,
-   "R": 0
+   "F": 10,
+   "G": 9.642857142857142,
+   "H": 5.142857142857143,
+   "R": 5
   },
-  "corpusDen": 487,
+  "corpusDen": 490,
   "corpus": {
-   "CORRECT": 447,
-   "CORRECT-SKIP": 75,
-   "GAP": 4,
-   "DRIFT": 36,
+   "CORRECT": 451,
+   "CORRECT-SKIP": 72,
+   "GAP": 0,
+   "DRIFT": 39,
    "WRONG": 0,
    "INVALID": 0,
    "MISSING": 0,
@@ -27,10 +27,10 @@
    "EXCLUDED": 1
   },
   "spec": {
-   "CORRECT": 54,
-   "CORRECT-SKIP": 23,
-   "GAP": 21,
-   "DRIFT": 16,
+   "CORRECT": 76,
+   "CORRECT-SKIP": 24,
+   "GAP": 1,
+   "DRIFT": 13,
    "WRONG": 0,
    "INVALID": 0,
    "MISSING": 0,
@@ -143,9 +143,11 @@
    "group": "spec",
    "cat": "C",
    "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ab\")]",
-   "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`label CONTAINS[c] \"ab\"`]",
+   "outcome": "EQUAL",
+   "hits": 161,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x010": {
@@ -599,10 +601,13 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"])[last()]",
-   "skip": true,
-   "reason": "skipped_not_xpath",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+   "outcome": "SET_DIFFERS",
+   "hits": 79,
+   "trials": 200,
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x049": {
    "orig": "L304",
@@ -916,12 +921,11 @@
    "group": "spec",
    "cat": "A",
    "xpath": "//XCUIElementTypeCell[@visible=\"true\"]/XCUIElementTypeButton",
-   "chain": "-ios class chain:**/XCUIElementTypeCell/XCUIElementTypeButton[`visible == 1`]",
-   "outcome": "SET_DIFFERS",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[`visible == true`]/XCUIElementTypeButton",
+   "outcome": "EQUAL",
    "hits": 39,
    "trials": 300,
-   "verdict": "DRIFT",
-   "documented": true,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x076": {
@@ -1155,9 +1159,11 @@
    "group": "spec",
    "cat": "G",
    "xpath": "//*[contains(@label,\"a]b\")]",
-   "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"a]b\"`]",
+   "outcome": "EQUAL",
+   "hits": 104,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x096": {
@@ -1990,9 +1996,11 @@
    "group": "spec",
    "cat": "C",
    "xpath": "//*[@label=concat(\"a\",\"b\")]",
-   "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`label == \"ab\"`]",
+   "outcome": "EQUAL",
+   "hits": 27,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x167": {
@@ -2635,9 +2643,11 @@
    "group": "spec",
    "cat": "G",
    "xpath": "//*[@label='a\"b']",
-   "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`label == 'a\"b'`]",
+   "outcome": "EQUAL",
+   "hits": 71,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x222": {
@@ -2806,9 +2816,11 @@
    "group": "spec",
    "cat": "D",
    "xpath": "//*[self::XCUIElementTypeButton or self::XCUIElementTypeStaticText]",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`type == \"XCUIElementTypeButton\" OR type == \"XCUIElementTypeStaticText\"`]",
+   "outcome": "EQUAL",
+   "hits": 179,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x237": {
@@ -2933,9 +2945,11 @@
    "group": "spec",
    "cat": "D",
    "xpath": "//XCUIElementTypeButton[@name=\"a\"] | //XCUIElementTypeButton[@name=\"b\"]",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\" OR name == \"b\"`]",
+   "outcome": "EQUAL",
+   "hits": 30,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x248": {
@@ -3098,9 +3112,11 @@
    "group": "spec",
    "cat": "A",
    "xpath": ".//XCUIElementTypeButton[@name=\"a\"]",
-   "skip": true,
-   "reason": "skipped_not_xpath",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]",
+   "outcome": "EQUAL",
+   "hits": 26,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x262": {
@@ -3416,9 +3432,11 @@
    "group": "spec",
    "cat": "H",
    "xpath": "//*[matches(@name,\"ab\",\"i\")]",
-   "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`name CONTAINS[c] \"ab\"`]",
+   "outcome": "EQUAL",
+   "hits": 150,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x289": {
@@ -3482,12 +3500,11 @@
    "group": "spec",
    "cat": "B",
    "xpath": "//XCUIElementTypeButton[@enabled=true()]",
-   "chain": "-ios class chain:**/XCUIElementTypeButton[`enabled == true`]",
-   "outcome": "SET_DIFFERS",
+   "chain": "-ios class chain:**/XCUIElementTypeButton",
+   "outcome": "EQUAL",
    "hits": 154,
    "trials": 300,
-   "verdict": "DRIFT",
-   "documented": false,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x295": {
@@ -3543,10 +3560,13 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@name=\"jila_zugo\"])[last()]",
-   "skip": true,
-   "reason": "skipped_not_xpath",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+   "outcome": "SET_DIFFERS",
+   "hits": 77,
+   "trials": 200,
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x300": {
    "orig": "L201",
@@ -3754,9 +3774,11 @@
    "group": "spec",
    "cat": "D",
    "xpath": "//XCUIElementTypeButton[@name=\"a\"] | //XCUIElementTypeStaticText[@name=\"b\"]",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`(type == \"XCUIElementTypeButton\" AND name == \"a\") OR (type == \"XCUIElementTypeStaticText\" AND name == \"b\")`]",
+   "outcome": "EQUAL",
+   "hits": 35,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x318": {
@@ -3800,9 +3822,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@label, \"NE Cisibosogoz Jufoz bihi\") and not (contains(@label, \"Bika\"))]",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"NE Cisibosogoz Jufoz bihi\" AND NOT (label CONTAINS \"Bika\")`]",
+   "outcome": "EQUAL",
+   "hits": 59,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x322": {
@@ -3952,9 +3976,11 @@
    "group": "spec",
    "cat": "G",
    "xpath": "//*[@label=\"a`b\"]",
-   "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`label == \"a``b\"`]",
+   "outcome": "EQUAL",
+   "hits": 71,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x335": {
@@ -4093,12 +4119,11 @@
    "group": "spec",
    "cat": "A",
    "xpath": "//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[@name=\"a\"]",
-   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]",
-   "outcome": "SET_DIFFERS",
+   "chain": "-ios class chain:**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"a\"`]",
+   "outcome": "EQUAL",
    "hits": 2,
    "trials": 301,
-   "verdict": "DRIFT",
-   "documented": false,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x347": {
@@ -4280,9 +4305,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[@name=\"Veg monuw\"] | //*[@name=\"LipohUgicolu.codid\"]",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`name == \"Veg monuw\" OR name == \"LipohUgicolu.codid\"`]",
+   "outcome": "EQUAL",
+   "hits": 115,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x363": {
@@ -4725,9 +4752,11 @@
    "group": "spec",
    "cat": "H",
    "xpath": "//*[lower-case(@label)=\"ab\"]",
-   "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`label ==[c] \"ab\"`]",
+   "outcome": "EQUAL",
+   "hits": 130,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x401": {
@@ -5277,9 +5306,9 @@
    "cat": "C",
    "xpath": "//*[normalize-space(@label)=\"a b\"]",
    "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
-   "inDen": true
+   "reason": "skipped_unsupported_logic",
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x448": {
    "orig": "L169",
@@ -5414,12 +5443,11 @@
    "group": "spec",
    "cat": "A",
    "xpath": "//XCUIElementTypeOther/XCUIElementTypeButton[@name=\"a\"]",
-   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]",
-   "outcome": "SET_DIFFERS",
+   "chain": "-ios class chain:**/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"a\"`]",
+   "outcome": "EQUAL",
    "hits": 3,
    "trials": 301,
-   "verdict": "DRIFT",
-   "documented": false,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x460": {
@@ -5756,9 +5784,12 @@
    "group": "spec",
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton)[last()-1]",
-   "skip": true,
-   "reason": "skipped_not_xpath",
-   "verdict": "CORRECT-SKIP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[-2]",
+   "outcome": "SET_DIFFERS",
+   "hits": 106,
+   "trials": 300,
+   "verdict": "DRIFT",
+   "documented": true,
    "inDen": false
   },
   "x489": {
@@ -6384,9 +6415,12 @@
    "group": "spec",
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton)[last()]",
-   "skip": true,
-   "reason": "skipped_not_xpath",
-   "verdict": "CORRECT-SKIP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[-1]",
+   "outcome": "SET_DIFFERS",
+   "hits": 160,
+   "trials": 300,
+   "verdict": "DRIFT",
+   "documented": true,
    "inDen": false
   },
   "x543": {
@@ -6606,9 +6640,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[@label=\"Vq1 Vq2\"] | //*[@label=\"Nodeg: Vq1\"]",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`label == \"Vq1 Vq2\" OR label == \"Nodeg: Vq1\"`]",
+   "outcome": "EQUAL",
+   "hits": 109,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x562": {
@@ -6761,10 +6797,13 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeOther[contains(@label, \"Lenapa gusuri\")]/XCUIElementTypeStaticText)[last()]",
-   "skip": true,
-   "reason": "skipped_not_xpath",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Lenapa gusuri\"`]/XCUIElementTypeStaticText[-1]",
+   "outcome": "SET_DIFFERS",
+   "hits": 35,
+   "trials": 200,
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x575": {
    "orig": "L162",
@@ -6948,9 +6987,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[@name=\"Fej bihi tete Vq1, jeb t fej bihi\" and @accessible=\"true\"]|//*[@name=\"Bihi Vq1\" and @accessible=\"true\"]",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`(name == \"Fej bihi tete Vq1, jeb t fej bihi\" AND accessible == true) OR (name == \"Bihi Vq1\" AND accessible == true)`]",
+   "outcome": "EQUAL",
+   "hits": 106,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x591": {
@@ -7007,9 +7048,11 @@
    "group": "spec",
    "cat": "H",
    "xpath": "//*[matches(@name,\"b\")]",
-   "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"b\"`]",
+   "outcome": "EQUAL",
+   "hits": 163,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x596": {
@@ -7017,9 +7060,11 @@
    "group": "spec",
    "cat": "D",
    "xpath": "//*[contains(@label,\"a\") and not(contains(@label,\"b\"))]",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"a\" AND NOT (label CONTAINS \"b\")`]",
+   "outcome": "EQUAL",
+   "hits": 142,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x597": {
@@ -7088,9 +7133,9 @@
    "cat": "C",
    "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
    "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
-   "inDen": true
+   "reason": "skipped_unsupported_logic",
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x603": {
    "orig": "L140",
@@ -7109,9 +7154,11 @@
    "group": "spec",
    "cat": "F",
    "xpath": "//XCUIElementTypeCell[descendant::XCUIElementTypeButton]",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\"$]",
+   "outcome": "EQUAL",
+   "hits": 60,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x605": {
@@ -7144,9 +7191,11 @@
    "group": "spec",
    "cat": "H",
    "xpath": "//*[contains(upper-case(@label),\"AB\")]",
-   "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`label CONTAINS[c] \"AB\"`]",
+   "outcome": "EQUAL",
+   "hits": 151,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x608": {
@@ -7344,9 +7393,11 @@
    "group": "spec",
    "cat": "R",
    "xpath": "//XCUIElementTypeButton[@name=\"x\"]/ancestor::XCUIElementTypeCell",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"x\"$]",
+   "outcome": "EQUAL",
+   "hits": 10,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x625": {
@@ -7354,9 +7405,11 @@
    "group": "spec",
    "cat": "D",
    "xpath": "//XCUIElementTypeButton[not(@name=\"a\")]",
-   "skip": true,
-   "reason": "skipped_unsupported_logic",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`NOT (name == \"a\")`]",
+   "outcome": "EQUAL",
+   "hits": 148,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x626": {
@@ -7505,12 +7558,10 @@
    "group": "spec",
    "cat": "B",
    "xpath": "//XCUIElementTypeButton[@value>5]",
-   "chain": "-ios class chain:**/XCUIElementTypeButton[`value.doubleValue > 5`]",
-   "outcome": "EQUAL",
-   "hits": 40,
-   "trials": 300,
-   "verdict": "CORRECT",
-   "inDen": true
+   "skip": true,
+   "reason": "skipped_unsupported_logic",
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x639": {
    "orig": "L224",
@@ -7694,12 +7745,11 @@
    "group": "spec",
    "cat": "A",
    "xpath": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton",
-   "chain": "-ios class chain:**/XCUIElementTypeButton",
-   "outcome": "SET_DIFFERS",
+   "chain": "-ios class chain:XCUIElementTypeWindow/XCUIElementTypeButton",
+   "outcome": "EQUAL",
    "hits": 9,
    "trials": 301,
-   "verdict": "DRIFT",
-   "documented": false,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x655": {
@@ -7954,9 +8004,11 @@
    "group": "spec",
    "cat": "H",
    "xpath": "//*[matches(@name,\"^a.c$\")]",
-   "skip": true,
-   "reason": "skipped_validation_failed",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/*[`name MATCHES \"(?s:.*)(?-s:^a.c$)(?s:.*)\"`]",
+   "outcome": "EQUAL",
+   "hits": 1,
+   "trials": 301,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x677": {

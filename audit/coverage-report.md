@@ -35,6 +35,15 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/c2-attributes` (Phase 5, C2) | RC-D3 (skip); B16 `@attr=true()` → no predicate (DRIFT → CORRECT) | 95.8 | 87.0 % | 75.3 (75.3) | 0 | 0 |
 | `fix/c2-axes` (Phase 5, C2) | none of RC-*: `[descendant::T]` and `//T1[cond]/ancestor::T2` → `$…$` descendant predicate (F04, R01 GAP → CORRECT) | 95.8 | 87.0 % | 82.8 (82.8) | 0 | 0 |
 | `fix/c2-functions` (Phase 5, C2) | none of RC-*: `matches()`, `lower-case()`, `contains(upper-case()…)`, `contains(translate()…)` → `CONTAINS` / `[c]` / wrapped `MATCHES` (H02–H06, C08 GAP → CORRECT); C06, C07 skipped with a reason and out of the denominator | 95.8 | 87.0 % | 92.0 (92.0) | 0 | 0 |
+| **Total, Phase 1 → now** (Phase 5 D1) | RC1–RC15, RC-S1–S3, RC-D1–D3; Phase 5 B and C2 | **72.2 → 95.8** | 86.9 % → 87.0 % | **7.7 → 92.0** (92.0) | 9 → 0 | 42 → 0 |
+
+D1 is a re-run of `audit/harness/run.sh` on `main` after PR #24, with no change to the converter or the harness: R 95.8, C 87.0 %, S 92.0, "no changes vs baseline". What is left:
+
+- **One GAP: H07** (`replace()`). It was made expressible in task A and the converter skips it (`skipped_validation_failed`). It is the only GAP left (H 5.14 of 6).
+- **Documented DRIFT.** 37 corpus locators and the spec cases with an `approx` expectation earn half credit: the grouped-position rule (RC-D1, `(…)[n]` and, since c2-last, `(…)[last()]` → `[-1]`) and the other approximations in the README. They are why R is 95.8 and not 100 (E 5.25 of 12, G 9.64 of 10).
+- **Undocumented DRIFT, not fixed:** two corpus locators (L174, L225, `child::` after a grouped step) and the spec case E13. They earn 0; no WRONG hides behind them.
+- **Skipped on purpose** (CORRECT-SKIP): 73 corpus locators and 98 spec cases that have no exact class chain or would be wrong on a device: sibling / parent / following axes, unions of different paths, page-level `not()`, `normalize-space()` and `string-length()` (C06, C07), `>` on a text attribute (B03, RC-D3), same-type or `*` descendant predicates (RC-D2), regex flags other than `i`. C stays at 87.0 % because of them.
+
 
 Notes on `fix/c2-functions` (Phase 5, C2):
 
@@ -620,6 +629,22 @@ Rescored in Phase 5 (task A, branch `fix/harness-expectations`) from the stored 
 *Converted*: share of the 676 compared cases that got a chain (L157 and E10 are left out). *Precision*: share of emitted chains that are CORRECT or DRIFT. Cost is the CLI's API-equivalent figure; the runs used a subscription. Time is wall time and includes the account's rate limiting while three runs shared it.
 
 **Excluded: opus / max.** The run was cut off by the account's 5-hour session limit (HTTP 429) after 38.7 min, $7.57 and 284k output tokens (253k of them thinking), with 460 of 678 answers written. It ran in parallel with sonnet / max, so the limit was shared; how much each run used is not measured. Two earlier `max` attempts (sonnet: session limit; opus: network error) were rerun; their records are in `llm/out/failed/`.
+
+**Rescored with the Phase 5 expectations (task D2).** The same stored answers, scored again with `audit/llm/score.js` after Phase 5. The table above is the earlier snapshot and is unchanged. Only three cells were rescored, and no model was run; the other nine hold their earlier scores in `scores/`.
+
+| Cell | R (before → now) | S (before → now) | WRONG (before → now) |
+|---|---|---|---|
+| **converter** | 95.3 → **95.8** | 61.8 → **91.8** | 0 → 0 |
+| opus / low | 95.3 → 95.0 | 81.1 → 81.9 | 6 → 1 |
+| sonnet / low | 95.2 → 94.8 | 68.8 → 68.6 | 6 → 3 |
+| haiku / medium | 94.5 → 94.1 | 60.8 → 63.8 | 7 → 4 |
+
+- The converter now has a higher R than all three cells (95.8 against 95.0 / 94.8 / 94.1). On S it was 19 points below opus / low and is now 10 below (91.8 against 81.9). INVALID is unchanged (3, 4, 0), and the converter has none.
+- **Changes in `score.js`.** C06, C07 and B03 added to `SPEC_NOT_EXPRESSIBLE` (as in `build.js`). `RUNTIME_OVERRIDE` entries for L270–L272 (grouped `last()` is a documented DRIFT now; without this the converter's own `[-1]` chains were 3 corpus WRONG, and the models' `[-1]` accounts for most of the drop in WRONG above) and for A07, A14–A16, B16 (exact since B4 and c2-attributes; without this the converter's S was 86.8). The converter's S is 91.8 here and 92.0 in the harness; the 0.2 is E05 / E06 (below).
+- **H02 now fails the models.** The fixture rejects ``name MATCHES "a.c"`` (C1: it also matches `a\nc`), so sonnet / low and haiku / medium went CORRECT → WRONG on H02. Opus / low did not give that chain (H02 stays a GAP).
+- B03, C06, C07 are not expressible any more, so the models' skips there are right (GAP → CORRECT-SKIP). Their E05 / E06 `[-1]` chains went WRONG → DRIFT, like L270–L272.
+- **Lists that still differ:** `score.js` has E05 and E06 in `SPEC_NOT_EXPRESSIBLE`, `build.js` does not (there they are documented DRIFT since c2-last). Left as it is; removing them would move the converter's S from 91.8 to 92.0 (tried, not kept). There is no other difference between the two lists.
+- Not rescored: haiku low / high / max, sonnet medium / high / max, opus medium / high (about 1.5 min each). `table.js` therefore mixes old and new rows until they are.
 
 **Where the tokens go.** At `low`–`high` the output is 57–131k tokens, most of it the answer itself. At `max` it is 222–339k, and 79–89 % of it is thinking that did not improve the result.
 

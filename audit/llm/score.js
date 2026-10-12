@@ -111,10 +111,12 @@ function evaluate(chains) { // chains: { id: chainBody } → { id: { outcome, tr
 
 // ---------- case classes (from the harness baseline, adjusted to the runtime string the models see)
 // spec cases without an exact class chain, or whose XPath matches nothing on WDA (build.js NOT_EXPRESSIBLE)
-const SPEC_NOT_EXPRESSIBLE = new Set(['E05', 'E06', 'F03', 'A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
+const SPEC_NOT_EXPRESSIBLE = new Set(['E05', 'E06', 'F03', 'A13', 'B03', 'C06', 'C07', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
 // the runtime string differs in kind from the source the baseline judged:
 //   L476 `[${condition}]` → a plain contains()
-const RUNTIME_OVERRIDE = { L476: { expressible: true, drift: false } };
+//   A07, A14–A16, B16: DRIFT in the baseline, exact chains since Phase 5 (B4, c2-attributes) → CORRECT, as in build.js
+//   L270–L272 grouped (…)[last()]: the baseline skipped them; since Phase 5 (c2-last) the converter emits [-1], a documented DRIFT (RC-D1, as in build.js)
+const RUNTIME_OVERRIDE = { L476: { expressible: true, drift: false }, A07: { drift: false }, A14: { drift: false }, A15: { drift: false }, A16: { drift: false }, B16: { drift: false }, L270: { expressible: true, drift: true, documented: true }, L271: { expressible: true, drift: true, documented: true }, L272: { expressible: true, drift: true, documented: true } };
 // kept in the input, EXCLUDED from every count and denominator
 const EXCLUDED = {
   L157: 'not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath', // build.js does the same
