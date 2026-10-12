@@ -1,5 +1,5 @@
-// D3: the converter and the prompt-test cells (out/<cell>-2.json, scores/<cell>-2.json), measured against the converter.
-// Usage: node compare-v2.js [details]   Prints a Markdown table; "details" adds the case lists behind the comment column.
+// D3: the converter and the prompt-test cells (out/<cell>-<RUN>.json, scores/<cell>-<RUN>.json), each counted against the converter.
+// Usage: RUN=3 node compare-v2.js [details]   (RUN: 2 = prompt v3, 3 = prompt v4; default 3). "details" adds the case ids behind the comment column.
 const fs = require('fs'), path = require('path');
 const S = n => JSON.parse(fs.readFileSync(path.join(__dirname, 'scores', n + '.json'), 'utf8'));
 const O = n => JSON.parse(fs.readFileSync(path.join(__dirname, 'out', n + '.json'), 'utf8'));
@@ -8,13 +8,14 @@ const usable = v => v === 'CORRECT' || v === 'DRIFT', emitted = v => ['CORRECT',
 const grp = g => ids.filter(i => conv.cases[i].group === g);
 const base = { all: ids.filter(i => usable(conv.cases[i].verdict)).length, corpus: grp('corpus').filter(i => usable(conv.cases[i].verdict)).length, spec: grp('spec').filter(i => usable(conv.cases[i].verdict)).length };
 const pc = (a, b) => (100 * a / b).toFixed(1);
+const RUN = process.env.RUN || '3';
 const cells = ['haiku-medium', 'sonnet-low', 'opus-low'];
 const rows = ['| Cell | R | S | Chains | Usable (CORRECT + DRIFT) | % of converter (all / corpus / spec) | Missed (converter has it, model skips or errs) | Skipped right (converter only approximates) | Ahead (model right, converter not) | WRONG + INVALID | Time, min | Cost, $ |', '|' + '---|'.repeat(12)];
 const details = [];
 const cc = ids.filter(i => emitted(conv.cases[i].verdict)).length;
 rows.push(`| **converter** | ${conv.summary.R.toFixed(1)} | ${conv.summary.S.toFixed(1)} | ${cc} | ${base.all} | 100 / 100 / 100 | — | — | — | 0 | — | — |`);
 for (const c of cells) {
-  const s = S(c + '-2'), r = O(c + '-2'), v = i => s.cases[i].verdict;
+  const s = S(c + '-' + RUN), r = O(c + '-' + RUN), v = i => s.cases[i].verdict;
   const good = g => (g ? grp(g) : ids).filter(i => usable(v(i)));
   const skipRight = ids.filter(i => conv.cases[i].verdict === 'DRIFT' && v(i) === 'CORRECT-SKIP'), missed = ids.filter(i => usable(conv.cases[i].verdict) && !usable(v(i)) && !skipRight.includes(i)), ahead = ids.filter(i => usable(v(i)) && !usable(conv.cases[i].verdict));
   const bad = ids.filter(i => v(i) === 'WRONG' || v(i) === 'INVALID');
