@@ -17,6 +17,7 @@ enum Screens {
         case "states": StatesScreen()
         case "nesting": NestingScreen()
         case "modal": ModalScreen()
+        case "c1": C1Screen()
         case "scale": ScaleScreen(load: max(100, UserDefaults.standard.integer(forKey: "load")))
         case "scale-deep": ScaleDeepScreen()
         default: Text("unknown screen: \(name)").accessibilityIdentifier("unknownScreen")
@@ -171,6 +172,50 @@ enum Screens {
             .text("Prize £5"),
         ])
     }
+}
+
+// c1 (Phase 5, C1): values on which an XPath and the class chain a model or the converter writes for it
+// can disagree. Its own screen, so the Phase 2 screens keep their layout.
+struct C1Screen: View {
+    static let nodes: [N] = [
+        // H02/H03: newline in the identifier (ICU `$` also matches before a final \n; `.` does not cross \n)
+        .row([.text("abc-nl", id: "abc\n"), .text("x-nl-b", id: "x\nb"), .text("a-nl-c", id: "a\nc"), .text("abc"), .text("ABc"), .text("zzz")]),
+        // C06: no-break space and tab between a and b; normalize-space strips only space, tab, CR, LF
+        .row([.text("a\u{00A0}b"), .text("a\tb"), .text("a b"), .text(" a  b ")]),
+        // C08/H05/H06: case
+        .row([.text("ab"), .text("AB"), .text("Ab"), .text("xABx")]),
+        // C07: 2 code points, 4 UTF-16 units
+        .row([.button("😀😀"), .button("abcd"), .button("abc")]),
+        // B03: values XPath number() reads as NaN, NSString doubleValue as 10 and 1000
+        .row([.button("Qty", value: "10abc"), .button("Qty", value: "1e3"), .button("Qty", value: "7"), .button("Qty", value: "3")]),
+    ]
+    var body: some View {
+        VStack(alignment: .leading, spacing: 1) {
+            LabScreen(nodes: Self.nodes)
+            // B04: buttons at a fractional x (the 8 pt screen padding + spacer): the page source writes x
+            // as an integer, rect.x keeps the fraction
+            ForEach([52.2, 52.7], id: \.self) { w in
+                HStack(spacing: 0) {
+                    Color.clear.frame(width: w, height: 1)
+                    Button("Frac") {}.font(.caption2).accessibilityIdentifier("frac.\(Int(w * 10))")
+                    Spacer(minLength: 0)
+                }.padding(.horizontal, 8)
+            }
+            // SwiftUI puts both at x = 60 (its accessibility frames are whole points); a UIKit frame keeps x = 60.5
+            FracKit().frame(height: 16).padding(.horizontal, 8)
+            Spacer(minLength: 0)
+        }
+    }
+}
+struct FracKit: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let v = UIView(), b = UIButton(type: .system)
+        b.setTitle("Frac", for: .normal); b.titleLabel?.font = .systemFont(ofSize: 11); b.accessibilityIdentifier = "frac.kit"
+        b.frame = CGRect(x: 52.5, y: 0, width: 30.5, height: 16)
+        v.addSubview(b)
+        return v
+    }
+    func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
 // 4. states: enabled/disabled twins, checkbox rows, fields, off-screen content, covered cells

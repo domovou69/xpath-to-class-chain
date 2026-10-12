@@ -10,6 +10,7 @@
 //                                   screen (with "partial": true); screens already in it are skipped
 //   node run.js --only A07,L013     a subset (printed only, unless --out is given)
 //   node run.js --screen lists      one screen (printed only)
+//   node run.js --cases cases-c1.json --out results-c1.json   another case file (Phase 5 C1)
 //   node run.js --smoke             one session on the smoke screen: versions, two lookups, page source
 //   node run.js --source lists      page source of one screen
 //   node run.js --merge base.json fix.json... --out f.json   replace base cases with the same id from
@@ -188,7 +189,9 @@ function prepare(k) {
   const converted = conv.status === 'success';
   const chain = converted ? rt(scannerEscape(conv.locator, k.quote)).replace(/^-ios class chain:/, '') : null;
   const expected = k.expectedChain ? rt(scannerEscape(k.expectedChain, k.quote)) : null;
-  return { conv, converted, xpath: rt(k.xpath), chain, expected: expected && expected !== chain ? expected : null };
+  // candidates: more hand-written chains to run against the same XPath (Phase 5 C1: the forms models emit)
+  const candidates = (k.candidates || []).map(c => rt(scannerEscape(c, k.quote)));
+  return { conv, converted, xpath: rt(k.xpath), chain, expected: expected && expected !== chain ? expected : null, candidates };
 }
 
 // The two lookups that are compared are also the ones timed (one cold call per side, as in a real
@@ -207,9 +210,15 @@ async function runCase(s, k, n = 0) {
     const e = await s.lookup('-ios class chain', p.expected);
     expected = { chain: p.expected, outcome: outcome(x, e, true, k.dead), hits: e.error ? { error: e.error } : e.fps };
   }
+  const candidates = [];
+  for (const chain of p.candidates) {
+    const e = await s.lookup('-ios class chain', chain);
+    candidates.push({ chain, outcome: outcome(x, e, true, k.dead), hits: e.error ? { error: e.error } : e.fps });
+  }
   return { id: k.id, variant: k.variant, screen: k.screen, verdict: k.verdict, xpath: p.xpath, chain: p.chain, status: p.conv.status,
     reason: p.converted ? undefined : p.conv.reason, outcome: out,
-    xpathHits: x.error ? { error: x.error } : x.fps, chainHits: c ? (c.error ? { error: c.error } : c.fps) : null, expected, timing };
+    xpathHits: x.error ? { error: x.error } : x.fps, chainHits: c ? (c.error ? { error: c.error } : c.fps) : null, expected,
+    candidates: candidates.length ? candidates : undefined, timing };
 }
 
 // versions as reported by the running components themselves
@@ -330,7 +339,7 @@ async function main() {
     try { console.log(await s.source()); } finally { await s.close(); }
     return;
   }
-  const all = readJson(path.join(HERE, 'cases.json'));
+  const all = readJson(path.resolve(HERE, opt('--cases') || 'cases.json'));
   const only = opt('--only') ? new Set(opt('--only').split(',')) : null, scr = opt('--screen');
   const cases = all.filter(k => (!only || only.has(k.id)) && (!scr || k.screen === scr));
   if (!cases.length) throw new Error('no cases selected');
@@ -352,7 +361,7 @@ async function main() {
         const r = await runCase(s, k, results.length);
         results.push(r);
         const t = r.timing ? `  [${r.timing.xpathMs} / ${r.timing.chainMs} ms ×${r.timing.speedup}]` : '';
-        const e = r.expected ? `  [expected chain: ${r.expected.outcome}]` : '';
+        const e = (r.expected ? `  [expected chain: ${r.expected.outcome}]` : '') + (r.candidates ? `  [candidates: ${r.candidates.map(c => c.outcome).join(', ')}]` : '');
         if (args.includes('--verbose') && r.outcome !== 'EQUAL') console.log(JSON.stringify({ xpath: r.xpathHits, chain: r.chainHits, expected: r.expected && r.expected.hits }, null, 1));
         console.log(`${r.outcome.padEnd(13)} ${(r.id + (r.variant ? '~' + r.variant : '')).padEnd(16)} ${r.verdict.padEnd(12)} ${JSON.stringify(r.xpath)}${r.chain ? '  →  ' + r.chain : ''}${e}${t}`);
       }
