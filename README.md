@@ -204,6 +204,7 @@ Status values used in `skipped[]`:
 | `//XCUIElementTypeButton[@label!="a"]` | ``**/XCUIElementTypeButton[`label != nil AND label != "a"`]`` (XPath `!=` needs the attribute to exist) |
 | `//XCUIElementTypeButton[@name]` | ``**/XCUIElementTypeButton[`name != nil`]`` |
 | `//*[@label="C:\dir"]` | ``**/*[`label == "C:\\dir"`]`` (NSPredicate decodes `\`, so backslashes and newlines are escaped) |
+| `//*[@label=concat("a","b")]` | ``**/*[`label == "ab"`]`` (`concat()` of two or more string literals is folded into one; with an attribute, a number or a function argument it is skipped) |
 | `(//XCUIElementTypeButton[@name="OK"])` | ``**/XCUIElementTypeButton[`name == "OK"`]`` (outer parens stripped) |
 | `(//XCUIElementTypeButton[@name="OK"])[2]` | ``**/XCUIElementTypeButton[`name == "OK"`][2]`` (outer position index appended) |
 | `(//XCUIElementTypeOther[@name="row"])[${index}]` | ``**/XCUIElementTypeOther[`name == "row"`][${index}]`` (template expression preserved) |

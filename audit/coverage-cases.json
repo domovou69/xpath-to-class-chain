@@ -6658,12 +6658,12 @@
   "id": "C09",
   "xpath": "//*[@label=concat(\"a\",\"b\")]",
   "expected": "**/*[`label == \"ab\"`]",
-  "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "actual": "-ios class chain:**/*[`label == \"ab\"`]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//*[@label=concat(\"s\",\"s\")]",
   "category": "C",
-  "note": "expected vs XPath: 300/300 equal"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "C10",

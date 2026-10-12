@@ -33,6 +33,18 @@ const CONVERT_CASES = [
   // whitespace before '(' + single-quoted value
   ["//XCUIElementTypeStaticText[contains (@name, 'hello world.')]", `${CC}**/XCUIElementTypeStaticText[\`name CONTAINS 'hello world.'\`]`],
 
+  // --- B5: concat() of string literals folds into one literal ---
+  ['//*[@label=concat("a","b")]', `${CC}**/*[\`label == "ab"\`]`], // C09
+  [`//XCUIElementTypeButton[@name=concat('a', "b", 'c')]`, `${CC}**/XCUIElementTypeButton[\`name == "abc"\`]`],
+  [`//*[@label=concat('say "', 'hi"')]`, `${CC}**/*[\`label == 'say "hi"'\`]`],
+  [`//*[@label=concat("it's", " a]b\`c")]`, `${CC}**/*[\`label == "it's a]b\`\`c"\`]`],
+  ['//*[@label=concat("a", "")]', `${CC}**/*[\`label == "a"\`]`],
+  ['//*[@label!=concat("a","b")]', `${CC}**/*[\`label != nil AND label != "ab"\`]`],
+  ['//*[contains(@label, concat("a","b"))]', `${CC}**/*[\`label CONTAINS "ab"\`]`],
+  ['//*[@label=concat("Hi ","${name}")]', `${CC}**/*[\`label == "Hi \${name}"\`]`],
+  ['//*[@label="concat(\'a\',\'b\')"]', `${CC}**/*[\`label == "concat('a','b')"\`]`], // text, not a call
+  ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name=concat("a","b")]]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "ab"$]`],
+
   // --- B1 literals: quote, ] and backtick inside a value ---
   [`//*[@label='a"b']`, `${CC}**/*[\`label == 'a"b'\`]`],                      // G03
   [`//*[contains(@label,"a]b")]`, `${CC}**/*[\`label CONTAINS "a]b"\`]`],       // G14
@@ -318,7 +330,19 @@ const SKIP_CASES = [
   ['//XCUIElementTypeButton[contains(., "a")]', 'RC6: contains(.) (C05)'],
   ['//*[normalize-space(@label)="a b"]', 'RC6: normalize-space (C06)'],
   ['//XCUIElementTypeButton[string-length(@label)>3]', 'RC6: string-length (C07)'],
-  ['//*[@label=concat("a","b")]', 'RC6: concat (C09)'],
+  // B5: concat() folds only when every argument is a plain literal; the rest still fails RC6
+  ['//*[@label=concat(@name,"x")]', 'B5: concat with an attribute argument'],
+  ['//*[@label=concat("a",1)]', 'B5: concat with a number argument'],
+  ['//*[@label=concat("a",lower-case("B"))]', 'B5: concat with a nested function'],
+  ['//*[@label=concat("a",.//x)]', 'B5: concat with a path argument'],
+  ['//*[@label=concat("a")]', 'B5: concat with one argument'],
+  ['//*[@label=concat()]', 'B5: concat with no arguments'],
+  [`//*[@label=concat('a"', "b'")]`, 'B5: folded text holds both quote kinds'],
+  ['//*[@label=concat("$","{x}")]', 'B5: ${…} only exists after the join'],
+  ['//*[@label=concat("${a","}")]', 'B5: ${…} split across arguments'],
+  ['//*[@label=concat(\\"a\\",\\"b\\")]', 'B5: escaped quotes from JSON / Java source'],
+  ['//*[@label=concat("a\\","b")]', 'B5: backslash inside an argument'],
+  ['//*[@label=concat("a","b"]', 'B5: concat never closed'],
   ['//XCUIElementTypeCell[XCUIElementTypeButton]', 'RC6: child-existence test (F02)'],
   ['//*[matches(@name,"^a.c$")]', 'RC6: matches (H02)'],
   ['//*[lower-case(@label)="ab"]', 'RC6: lower-case (H05)'],
@@ -476,6 +500,11 @@ const FLAGS_CASES = [
 // `==`, so it stays `==` (audit RC13: rewriting to LIKE widened the match).
 // =====================================================================
 const OPTIMIZE_CASES = [
+  // B5: the harness path; concat() of literals folds before the optimizer sees it
+  {
+    xpath: '//*[@label=concat("a","b")]',
+    optimized: `${CC}**/*[\`label == "ab"\`]`,
+  },
   {
     xpath: '//XCUIElementTypeButton[@name="abc*"]',
     optimized: `${CC}**/XCUIElementTypeButton[\`name == "abc*"\`]`,
