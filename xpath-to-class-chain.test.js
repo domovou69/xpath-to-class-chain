@@ -33,6 +33,20 @@ const CONVERT_CASES = [
   // whitespace before '(' + single-quoted value
   ["//XCUIElementTypeStaticText[contains (@name, 'hello world.')]", `${CC}**/XCUIElementTypeStaticText[\`name CONTAINS 'hello world.'\`]`],
 
+  // --- B1 literals: quote, ] and backtick inside a value ---
+  [`//*[@label='a"b']`, `${CC}**/*[\`label == 'a"b'\`]`],                      // G03
+  [`//*[contains(@label,"a]b")]`, `${CC}**/*[\`label CONTAINS "a]b"\`]`],       // G14
+  ['//*[@label="a`b"]', `${CC}**/*[\`label == "a\`\`b"\`]`],                   // G04: a backtick is doubled
+  [`//XCUIElementTypeButton[@name="a]" and @label='b"c']`, `${CC}**/XCUIElementTypeButton[\`name == "a]" AND label == 'b"c'\`]`],
+
+  // --- B2 not(): NOT (…) ---
+  ['//XCUIElementTypeButton[not(@name="a")]', `${CC}**/XCUIElementTypeButton[\`NOT (name == "a")\`]`], // D07
+  ['//*[contains(@label,"a") and not(contains(@label,"b"))]', `${CC}**/*[\`label CONTAINS "a" AND NOT (label CONTAINS "b")\`]`], // D08
+  ['//*[contains(@label, "s") and not (contains(@label, "s"))]', `${CC}**/*[\`label CONTAINS "s" AND NOT (label CONTAINS "s")\`]`], // L458
+  ['//*[not(@name)]', `${CC}**/*[\`NOT (name != nil)\`]`],
+  ['//*[not(@name="a" or @label="b")]', `${CC}**/*[\`NOT (name == "a" OR label == "b")\`]`],
+  ['//*[@label="not(x"]', `${CC}**/*[\`label == "not(x"\`]`],                  // text, not a function
+
   // --- boolean logic AND / OR ---
   ['//XCUIElementTypeButton[@name="Screen.primaryButton" and @label="Submit"]', `${CC}**/XCUIElementTypeButton[\`name == "Screen.primaryButton" AND label == "Submit"\`]`],
   ['//XCUIElementTypeButton[@label="Option A" or @label="Option B"]', `${CC}**/XCUIElementTypeButton[\`label == "Option A" OR label == "Option B"\`]`],
@@ -201,8 +215,13 @@ const SKIP_CASES = [
   // there is no equivalent in Class Chain; must be converted manually.
   ['(//XCUIElementTypeStaticText[@name="icon"])[last()]', 'grouped outer last()'],
   ['//*[contains(@name, "Item")]/following-sibling::*[1][position() <= 15]', 'position()'],
-  ['//*[contains(@label,"x") and not(contains(@label,"y"))]', 'not()'],
-  ['//*[contains(@label, "x") and not (contains(@label, "y"))]', 'not ( with space'], // caught by leftover-paren validation
+  // not() converts to NOT (…), but only around conditions that have a chain form
+  ['//*[not(./XCUIElementTypeButton)]', 'not() around a path'],
+  ['//*[not(@foo="v")]', 'not() around a non-WDA attribute'],
+  ['//*[not(position()=1)]', 'not() around position()'],
+  // a backtick outside a quoted value is a class-chain predicate, not XPath
+  ['//*[`label == "a"`]', 'backtick predicate'],
+  ['//*[@label="a" and `x`]', 'backtick outside a value'],
   ['//XCUIElementTypeStaticText[@name="First field"]/following-sibling::XCUIElementTypeStaticText[1]', 'sibling'],
 
   // unions — must skip regardless of whitespace around '|'
@@ -298,6 +317,15 @@ const LINT_CASES = [
   // --- audit RC6: what WDA rejects must fail; valid NSPredicate must not be flagged (both checked in mini-WDA) ---
   { chain: `${CC}**/*[\`name\`]`, valid: false },                       // no comparison
   { chain: `${CC}**/*[\`1\`]`, valid: false },                          // index inside a backtick block
+
+  // --- B1: a quote, ] or doubled backtick inside a literal is text; real imbalance still fails ---
+  { chain: `${CC}**/*[\`label == 'a"b'\`]`, valid: true },
+  { chain: `${CC}**/*[\`label CONTAINS "a]b"\`]`, valid: true },
+  { chain: `${CC}**/*[\`label == "a\`\`b"\`]`, valid: true },
+  { chain: `${CC}**/*[\`label == "a\`]`, valid: false },                  // unclosed literal
+  { chain: `${CC}**/*[\`label == 'a"\`]`, valid: false },                 // ' opened, never closed
+  { chain: `${CC}**/*[\`label == "a"\`][1`, valid: false },               // missing ]
+  { chain: `${CC}**/*[\`label == "a"\`]]`, valid: false },                // extra ]
   { chain: `${CC}**/*[\`matches(name, "a")\`]`, valid: false },         // XPath function
   { chain: `${CC}**/XCUIElementTypeCell[\`name == "a" AND .//XCUIElementTypeButton\`]`, valid: false }, // XPath path
   { chain: `${CC}**/*[name == "a"]`, valid: false },                      // predicate without backticks
