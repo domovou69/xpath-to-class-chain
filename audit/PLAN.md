@@ -144,3 +144,51 @@ Scores R (corpus) and S (spec) from 0 to 100, C, and the WRONG / INVALID / MISSI
 - Scoring rule for skips: a skipped locator with no exact class chain is CORRECT-SKIP and leaves that run's denominator (the report's "skip grouped positions" variant); `R=` / `S=` also give every row the converter's denominator.
 
 **Deliverables.** `audit/llm/` (input, key, prompt, runner, outputs, scores), a report section with the prompt, the results table, the per-model recommendation (the stability table is not made: Stage 2 was not run), the error analysis and conclusions, and a PR from branch `audit/llm-comparison`.
+
+## Phase 5 — fixes from Phase 4 (planned)
+
+Phase 4 showed exact chains the converter misses (all 24 of its GAPs, 5 DRIFTs with an exact form) and three problems in the harness's own expectations. Phase 5 fixes the harness first, then the converter in groups, checks the forms that depend on XCTest on the app before using them, and measures again. Case lists: `audit/llm/analysis/cross.md`, `analysis.md`.
+
+Each task runs in its own session. Default model: **Opus, effort `medium`**. Exceptions are listed per task; the reason is in brackets.
+
+### Stage A — harness expectations (no device)
+
+| Task | What | Model / effort |
+|---|---|---|
+| A1 | H07: mark expressible, expected ``label MATCHES "[ab]{2}"``, proved by the harness | Opus / medium |
+| A2 | E07 `(//X)[position()=2]` and E11 `(//Cell)[2]/Button`: judge like E02 (no exact chain; a chain like the converter's approximation is DRIFT, not WRONG) | Opus / medium |
+| A3 | L157 (a class chain inside `//…[…]`, not an XPath): leave the corpus or mark it as such, out of every denominator | Opus / medium |
+| A4 | `run.sh --update`, new baseline; rescore Phase 4 from the stored answers (`node audit/llm/score.js …`), no new model runs | Sonnet / medium (mechanical) |
+
+### Stage B — converter fixes provable by the parser (mini-WDA)
+
+One branch per group, as in Phase 1's fix branches; every fix is proved by the harness and gets tests.
+
+| Task | Cases | Model / effort |
+|---|---|---|
+| B1 literals | G03 (`"` inside `'…'`), G14 (`]` in a literal), G04 (backtick doubled) | Sonnet / medium (narrow, well specified by the cases) |
+| B2 logic | D07 `not(@a="v")`, D08 `and not(contains(…))`, L458 `not (` with a space | Sonnet / medium (same) |
+| B3 unions and `self::` | X04, X05, X07, L355, L461, L455: one predicate joined with `OR`, `type ==` when the types differ | Opus / medium |
+| B4 paths | A12 `.//X`; A07, A14, A15 (optimizer rule 1 drops steps: undocumented DRIFT); A16 (`visible` moved to the wrong step: a bug) | Opus / medium |
+| B5 functions | C09 `concat()` of literals folded to one literal | Sonnet / medium |
+
+### Stage C — check on the app first, then fix
+
+C1 runs the locators on LocatorLab on the Phase 2 simulator (fixed UDID, local Appium in `audit/device`), with a few on the iPhone where the result depends on the device. Only what it confirms goes into the converter (C2); the rest stays a skip with a reason.
+
+| Task | What | Model / effort |
+|---|---|---|
+| C1 forms only the models emit | `MATCHES` (H02, H03, C06), `[c]` / `==[c]` (C08, H04–H06), `.length` (C07), `$…$` for `descendant::` / `ancestor::` (F04, R01; risk of the element matching itself, as in RC-D2), `@enabled=true()` without a predicate (B16) | Opus / medium |
+| C1 forms the converter already emits, marked doubtful | `value.doubleValue` (B03), rounding of `rect.x` (B04), `index` (B11), `hittable` (B14) | (same session) |
+| C1 XPath behaviour on WDA | `//XCUIElementTypeAny` (A04); negative index `[-1]` for `last()` (E05, L270–L272): if its order matches, `last()` can be converted as DRIFT | (same session) |
+| C2 | converter fixes for what C1 confirmed, one branch per group | Opus / medium |
+
+### Stage D — measure again
+
+| Task | What | Model / effort |
+|---|---|---|
+| D1 | harness R / S of the converter after A–C; report rows in "Progress since Phase 1" | Sonnet / medium (mechanical) |
+| D2 | Phase 4 rescored with the new expectations from the stored answers, table updated; no new model runs | Sonnet / medium (mechanical) |
+| D3 (optional, uses the usage limit) | the improved prompt from the Phase 4 report on 1–2 cells, e.g. sonnet / low and haiku / medium, scored like Phase 4; never `max` (Phase 4: no gain for the cost), top level `xhigh` if needed | session: Sonnet / medium; the measured runs: the cells chosen |
+
+Order: A → B → C1 → C2 → D. Stages A and B do not touch the device; C1 needs the simulator.
