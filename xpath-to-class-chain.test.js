@@ -253,6 +253,34 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeButton[@name="x" or @label="y"]/ancestor::XCUIElementTypeCell', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND (name == "x" OR label == "y")$]`],
   ['(//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell)[2]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$][2]`],
   ['//XCUIElementTypeButton[@name="ancestor::x"]', `${CC}**/XCUIElementTypeButton[\`name == "ancestor::x"\`]`],
+  // C2 c2-functions: matches() without metacharacters is a substring test; any other
+  // pattern keeps XPath's search semantics: `.` not dot-all, `$` before a final \n (C1, device)
+  ['//*[matches(@name,"b")]', `${CC}**/*[\`name CONTAINS "b"\`]`], // H03
+  ['//*[matches(@name,"ab","i")]', `${CC}**/*[\`name CONTAINS[c] "ab"\`]`], // H04
+  ['//*[matches(@name,"^a.c$")]', `${CC}**/*[\`name MATCHES "(?s:.*)(?-s:^a.c$)(?s:.*)"\`]`], // H02
+  ['//*[matches(@name,"^a.c$","i")]', `${CC}**/*[\`name MATCHES "(?i)(?s:.*)(?-s:^a.c$)(?s:.*)"\`]`],
+  ['//*[matches( @label , \'[ab]c\' )]', `${CC}**/*[\`label MATCHES '(?s:.*)(?-s:[ab]c)(?s:.*)'\`]`],
+  ['//*[matches(@name,"(a|x)b")]', `${CC}**/*[\`name MATCHES "(?s:.*)(?-s:(a|x)b)(?s:.*)"\`]`],
+  ['//*[matches(@name,"a\\.c")]', `${CC}**/*[\`name MATCHES "(?s:.*)(?-s:a\\\\.c)(?s:.*)"\`]`], // NSPredicate decodes \\ to \
+  ['//*[matches(@name,"a\\\\c")]', `${CC}**/*[\`name MATCHES "(?s:.*)(?-s:a\\\\\\\\c)(?s:.*)"\`]`],
+  [`//*[matches(@name,'a"b')]`, `${CC}**/*[\`name CONTAINS 'a"b'\`]`],
+  [`//*[matches(@name,'a".b')]`, `${CC}**/*[\`name MATCHES '(?s:.*)(?-s:a".b)(?s:.*)'\`]`],
+  ['//*[matches(@name,"a]b|c")]', `${CC}**/*[\`name MATCHES "(?s:.*)(?-s:a]b|c)(?s:.*)"\`]`],
+  ['//*[matches(@name,"a`.")]', `${CC}**/*[\`name MATCHES "(?s:.*)(?-s:a\`\`.)(?s:.*)"\`]`],
+  ['//*[matches(@name,"é")]', `${CC}**/*[\`name CONTAINS "é"\`]`],
+  ['//*[matches(@name,"é","i")]', `${CC}**/*[\`name MATCHES "(?i)(?s:.*)(?-s:é)(?s:.*)"\`]`], // [c] only for ASCII
+  ['//XCUIElementTypeButton[not(matches(@name,"b"))]', `${CC}**/XCUIElementTypeButton[\`NOT (name CONTAINS "b")\`]`],
+  ['//XCUIElementTypeButton[matches(@name,"^x") or @label="y"]', `${CC}**/XCUIElementTypeButton[\`name MATCHES "(?s:.*)(?-s:^x)(?s:.*)" OR label == "y"\`]`],
+  ['//XCUIElementTypeCell[.//XCUIElementTypeButton[matches(@name,"^a")]]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name MATCHES "(?s:.*)(?-s:^a)(?s:.*)"$]`],
+  ['//*[@name="matches(@name,\'x\')"]', `${CC}**/*[\`name == "matches(@name,'x')"\`]`],
+  // lower-case / upper-case / translate with an ASCII literal → [c] (C1, device)
+  ['//*[lower-case(@label)="ab"]', `${CC}**/*[\`label ==[c] "ab"\`]`], // H05
+  ['//*[lower-case(@label) = "a-1"]', `${CC}**/*[\`label ==[c] "a-1"\`]`],
+  ['//*[contains(upper-case(@label),"AB")]', `${CC}**/*[\`label CONTAINS[c] "AB"\`]`], // H06
+  ['//*[contains(translate(@label,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),"ab")]', `${CC}**/*[\`label CONTAINS[c] "ab"\`]`], // C08
+  ["//*[contains(translate(@name, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'ab')]", `${CC}**/*[\`name CONTAINS[c] 'ab'\`]`],
+  ['//XCUIElementTypeButton[lower-case(@label)="ab" and matches(@name,"b")]', `${CC}**/XCUIElementTypeButton[\`label ==[c] "ab" AND name CONTAINS "b"\`]`],
+  ['//XCUIElementTypeButton[not(lower-case(@label)="ab")]', `${CC}**/XCUIElementTypeButton[\`NOT (label ==[c] "ab")\`]`],
 ];
 
 // =====================================================================
@@ -349,8 +377,6 @@ const SKIP_CASES = [
   ['/XCUIElementTypeApplication[@name="App"]/XCUIElementTypeWindow', 'RC9: predicate on the root step'],
   // RC6: leftover XPath inside the backtick block must fail validation, not ship as "success"
   ['//XCUIElementTypeButton[contains(., "a")]', 'RC6: contains(.) (C05)'],
-  ['//*[normalize-space(@label)="a b"]', 'RC6: normalize-space (C06)'],
-  ['//XCUIElementTypeButton[string-length(@label)>3]', 'RC6: string-length (C07)'],
   // B5: concat() folds only when every argument is a plain literal; the rest still fails RC6
   ['//*[@label=concat(@name,"x")]', 'B5: concat with an attribute argument'],
   ['//*[@label=concat("a",1)]', 'B5: concat with a number argument'],
@@ -365,8 +391,6 @@ const SKIP_CASES = [
   ['//*[@label=concat("a\\","b")]', 'B5: backslash inside an argument'],
   ['//*[@label=concat("a","b"]', 'B5: concat never closed'],
   ['//XCUIElementTypeCell[XCUIElementTypeButton]', 'RC6: child-existence test (F02)'],
-  ['//*[matches(@name,"^a.c$")]', 'RC6: matches (H02)'],
-  ['//*[lower-case(@label)="ab"]', 'RC6: lower-case (H05)'],
   // RC8: nested paths the chain cannot express
   ['//XCUIElementTypeCell[./XCUIElementTypeButton[@name="x"]]', 'RC8: child-existence test (F05)'],
   ['//*[tokenize(@label," ")[2]="b"]', 'RC8: nested index inside a function (H08)'],
@@ -879,6 +903,58 @@ for (const [xpath, why] of [
   const res = convertXpathToClassChain(xpath);
   if (res.status !== 'success' && res.locator === xpath && why.test(res.reason || '')) ok();
   else fail(`SKIP REASON ${xpath}\n     expected: skip, reason ${why}\n     got:      status=${res.status} locator=${res.locator} reason=${res.reason}`);
+}
+// C2 c2-functions: forms with no exact chain, or not checked on the device, say why.
+for (const [xpath, why] of [
+  ['//*[normalize-space(@label)="a b"]', /normalize-space\(\).*no-break space/], // C06
+  ['//XCUIElementTypeButton[string-length(@label)>3]', /string-length\(\).*UTF-16/], // C07
+  ['//*[matches(@name,"a","s")]', /flags "s"/],
+  ['//*[matches(@name,"a","im")]', /flags "im"/],
+  ['//*[matches(@name,"a",$f)]', /flags .* not a plain literal/],
+  ['//*[matches(@name,"a b")]', /literal space.*U\+00A0/],
+  ['//*[matches(@name,"^a\tb")]', /literal space/],
+  ['//*[matches(@name,"a(")]', /not a valid regular expression/],
+  ['//*[matches(@name,"a*")]', /matches the empty string/],
+  ['//*[matches(@name,"^$")]', /matches the empty string/],
+  ['//*[matches(@name,"")]', /empty matches\(\) pattern/],
+  ['//*[matches(@name,"${p}")]', /built at runtime/],
+  ['//*[matches(@name,"a\\$")]', /host-language escape/],
+  ['//*[matches(@name,\\"a\\")]', /not a plain string literal/],
+  ['//*[matches(@name)]', /1 arguments/],
+  ['//*[matches(@name,"a"]', /never closed/],
+  ['//*[matches(text(),"a")]', /not a single @attribute/],
+  ['//*[matches(.,"a")]', /not a single @attribute/],
+  ['//*[matches(@enabled,"t")]', /@enabled is a boolean/],
+  ['//*[matches(@x,"1")]', /@x is a number/],
+  ['//*[matches(@text,"a")]', /@text is not a WDA attribute/],
+  ['//*[lower-case(@label)="äb"]', /non-ASCII literal/],
+  ['//*[lower-case(@label)="AB"]', /never gives "AB"/],
+  ['//*[lower-case(@label)=""]', /empty/],
+  ['//*[lower-case(@label)!="ab"]', /lower-case\(\) other than/],
+  ['//*[lower-case(@enabled)="true"]', /@enabled is a boolean/],
+  ['//*[lower-case(@index)="1"]', /@index is a number/],
+  ['//*[contains(upper-case(@label),"ab")]', /never gives "ab"/],
+  ['//*[contains(upper-case(@label),"ÄB")]', /non-ASCII literal/],
+  ['//*[contains(lower-case(@label),"ab")]', /not checked on the device/],
+  ['//*[contains(translate(@label,"AB","ab"),"ab")]', /not checked on the device/],
+  ['//*[contains(translate(@label,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),"AB")]', /never gives "AB"/],
+  ['//*[upper-case(@label)="AB"]', /upper-case\(\) outside contains/],
+  ['//*[translate(@label,"a","b")="b"]', /translate\(\) outside contains/],
+  ['//XCUIElementTypeButton[not(normalize-space(@label)="a")]', /normalize-space/],
+  ['//XCUIElementTypeButton[@name="a" or matches(@name,"a b")]', /literal space/],
+  // WDA's class chain parser ends a $…$ block at any `$`, even inside a string literal
+  ['//XCUIElementTypeCell[.//XCUIElementTypeButton[matches(@name,"a$")]]', /\$ inside a descendant predicate/],
+  ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="a$b"]]', /\$ inside a descendant predicate/],
+]) {
+  const res = convertXpathToClassChain(xpath);
+  if (res.status !== 'success' && res.locator === xpath && why.test(res.reason || '')) ok();
+  else fail(`SKIP REASON ${xpath}\n     expected: skip, reason ${why}\n     got:      status=${res.status} locator=${res.locator} reason=${res.reason}`);
+}
+// A ${…} in a $…$ block is replaced by the host language before WDA parses the chain.
+{
+  const res = convertXpathToClassChain('//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="${n}"]]');
+  if (res.locator === `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "\${n}"$]`) ok();
+  else fail(`CONVERT \${…} in a descendant predicate\n     got: ${res.status} ${res.locator}`);
 }
 // Still skipped by the axis gates: ancestor-or-self::, descendant-or-self::, parent::, `..`.
 for (const xpath of [

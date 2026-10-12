@@ -20,7 +20,8 @@ const FIX = {
   F05: A(E('Cell', 'k="c1"', E('Button', 'name="x"')) + E('Cell', 'k="c2" name="x"')),
   F07: A(E('Table', '', E('Cell', 'k="c1"', E('StaticText', 'label="x"') + E('Button', 'k="b1"')) + E('Cell', 'k="c2" label="x"', E('Button', 'k="b2"')))),
   F08: A(E('Cell', 'k="c1" name="a"', E('Button')) + E('Cell', 'k="c2" name="a"')),
-  H02: A(E('Button', 'k="b1" name="abc"') + E('Button', 'k="b2" name="xabcx"') + E('Button', 'k="b3" name="ab"')),
+  // C1 (device): XPath's $ also matches before a final \n, its . never matches \n; MATCHES is dot-all
+  H02: A(E('Button', 'k="b1" name="abc"') + E('Button', 'k="b2" name="xabcx"') + E('Button', 'k="b3" name="ab"') + E('Button', 'k="b4" name="abc&#10;"') + E('Button', 'k="b5" name="a&#10;c"')),
   E01: A(E('Other', '', E('Button', 'k="p1b1"') + E('Button', 'k="p1b2"')) + E('Other', '', E('Button', 'k="p2b1"') + E('Button', 'k="p2b2"'))),
   A07: A(E('Window', 'k="w"', E('Button', 'k="b1"') + E('Other', '', E('Button', 'k="deep"')))),
 };
@@ -69,8 +70,8 @@ module.exports = [
   { id: 'C03', cat: 'C', xpath: `//${T('Button')}[text()="a"]`, expected: { skip: 'WDA XML has no text nodes; text() never matches' } },
   { id: 'C04', cat: 'C', xpath: `//${T('Button')}[contains(text(),"a")]`, expected: { skip: 'WDA XML has no text nodes; text() never matches' } },
   { id: 'C05', cat: 'C', xpath: `//${T('Button')}[contains(., "a")]`, expected: { skip: 'string-value of a WDA XML element is always empty' } },
-  { id: 'C06', cat: 'C', xpath: `//*[normalize-space(@label)="a b"]`, expected: '**/*[`label MATCHES "\\\\s*a\\\\s+b\\\\s*"`]' },
-  { id: 'C07', cat: 'C', xpath: `//${T('Button')}[string-length(@label)>3]`, expected: `**/${T('Button')}[\`label.length > 3\`]` },
+  { id: 'C06', cat: 'C', xpath: `//*[normalize-space(@label)="a b"]`, expected: { inexpressible: 'MATCHES treats a no-break space (U+00A0) as a space, normalize-space() does not (device C1)' } },
+  { id: 'C07', cat: 'C', xpath: `//${T('Button')}[string-length(@label)>3]`, expected: { inexpressible: '.length counts UTF-16 units, string-length() code points (device C1)' } },
   { id: 'C08', cat: 'C', xpath: `//*[contains(translate(@label,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"),"ab")]`, expected: '**/*[`label CONTAINS[c] "ab"`]', note: 'ASCII-only translate == [c] for ASCII literals' },
   { id: 'C09', cat: 'C', xpath: `//*[@label=concat("a","b")]`, expected: '**/*[`label == "ab"`]' },
   { id: 'C10', cat: 'C', xpath: `//*[contains(@type,"${T('Text')}")]`, expected: `**/*[\`type CONTAINS "${T('Text')}"\`]`, note: 'partial type name' },
@@ -130,9 +131,9 @@ module.exports = [
   { id: 'G14', cat: 'G', xpath: '//*[contains(@label,"a]b")]', expected: '**/*[`label CONTAINS "a]b"`]' },
   // H — WDA XPath extension functions
   { id: 'H01', cat: 'H', xpath: `//*[ends-with(@name,"ab")]`, expected: '**/*[`name ENDSWITH "ab"`]' },
-  { id: 'H02', cat: 'H', xpath: `//*[matches(@name,"^a.c$")]`, expected: '**/*[`name MATCHES "a.c"`]' },
-  { id: 'H03', cat: 'H', xpath: `//*[matches(@name,"b")]`, expected: '**/*[`name MATCHES "(?s).*(?:b).*"`]', note: 'XPath matches() is a search, MATCHES is full-match' },
-  { id: 'H04', cat: 'H', xpath: `//*[matches(@name,"ab","i")]`, expected: '**/*[`name MATCHES "(?si).*(?:ab).*"`]' },
+  { id: 'H02', cat: 'H', xpath: `//*[matches(@name,"^a.c$")]`, expected: '**/*[`name MATCHES "(?s:.*)(?-s:^a.c$)(?s:.*)"`]', note: 'MATCHES is dot-all and full-match; the wrapper keeps XPath search semantics (device C1)' },
+  { id: 'H03', cat: 'H', xpath: `//*[matches(@name,"b")]`, expected: '**/*[`name CONTAINS "b"`]', note: 'XPath matches() is a search; a pattern without metacharacters is a substring' },
+  { id: 'H04', cat: 'H', xpath: `//*[matches(@name,"ab","i")]`, expected: '**/*[`name CONTAINS[c] "ab"`]' },
   { id: 'H05', cat: 'H', xpath: `//*[lower-case(@label)="ab"]`, expected: '**/*[`label ==[c] "ab"`]' },
   { id: 'H06', cat: 'H', xpath: `//*[contains(upper-case(@label),"AB")]`, expected: '**/*[`label CONTAINS[c] "AB"`]' },
   { id: 'H07', cat: 'H', xpath: `//*[replace(@label,"a","b")="bb"]`, expected: '**/*[`label MATCHES "[ab]{2}"`]', note: 'replacing every a by b gives "bb" iff the label is two characters from {a, b}' },

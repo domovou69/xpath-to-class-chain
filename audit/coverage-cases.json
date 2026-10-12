@@ -6624,35 +6624,35 @@
  {
   "id": "C06",
   "xpath": "//*[normalize-space(@label)=\"a b\"]",
-  "expected": "**/*[`label MATCHES \"\\\\s*a\\\\s+b\\\\s*\"`]",
+  "expected": "INEXPRESSIBLE: MATCHES treats a no-break space (U+00A0) as a space, normalize-space() does not (device C1)",
   "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "//*[normalize-space(@label)=\"s\"]",
   "category": "C",
-  "note": "expected vs XPath: 300/300 equal"
+  "note": "XPath-only hits in 125/300 trials | excluded from denominator"
  },
  {
   "id": "C07",
   "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
-  "expected": "**/XCUIElementTypeButton[`label.length > 3`]",
+  "expected": "INEXPRESSIBLE: .length counts UTF-16 units, string-length() code points (device C1)",
   "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "//XCUIElementTypeButton[string-length(@label)>3]",
   "category": "C",
-  "note": "expected vs XPath: 300/300 equal"
+  "note": "XPath-only hits in 51/300 trials | excluded from denominator"
  },
  {
   "id": "C08",
   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ab\")]",
   "expected": "**/*[`label CONTAINS[c] \"ab\"`]",
-  "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "actual": "-ios class chain:**/*[`label CONTAINS[c] \"ab\"`]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//*[contains(translate(@label,\"s\",\"s\"),\"s\")]",
   "category": "C",
-  "note": "ASCII-only translate == [c] for ASCII literals | expected vs XPath: 300/300 equal"
+  "note": "ASCII-only translate == [c] for ASCII literals | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "C09",
@@ -7240,57 +7240,57 @@
  {
   "id": "H02",
   "xpath": "//*[matches(@name,\"^a.c$\")]",
-  "expected": "**/*[`name MATCHES \"a.c\"`]",
-  "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "expected": "**/*[`name MATCHES \"(?s:.*)(?-s:^a.c$)(?s:.*)\"`]",
+  "actual": "-ios class chain:**/*[`name MATCHES \"(?s:.*)(?-s:^a.c$)(?s:.*)\"`]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//*[matches(@name,\"s\")]",
   "category": "H",
-  "note": "expected vs XPath: 300/300 equal | fixture: expected xpath=[\"b1\"] chain=[\"b1\"]"
+  "note": "MATCHES is dot-all and full-match; the wrapper keeps XPath search semantics (device C1) | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"b1\",\"b4\"] chain=[\"b1\",\"b4\"]; actual xpath=[\"b1\",\"b4\"] chain=[\"b1\",\"b4\"]"
  },
  {
   "id": "H03",
   "xpath": "//*[matches(@name,\"b\")]",
-  "expected": "**/*[`name MATCHES \"(?s).*(?:b).*\"`]",
-  "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "expected": "**/*[`name CONTAINS \"b\"`]",
+  "actual": "-ios class chain:**/*[`name CONTAINS \"b\"`]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//*[matches(@name,\"s\")]",
   "category": "H",
-  "note": "XPath matches() is a search, MATCHES is full-match | expected vs XPath: 300/300 equal"
+  "note": "XPath matches() is a search; a pattern without metacharacters is a substring | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "H04",
   "xpath": "//*[matches(@name,\"ab\",\"i\")]",
-  "expected": "**/*[`name MATCHES \"(?si).*(?:ab).*\"`]",
-  "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "expected": "**/*[`name CONTAINS[c] \"ab\"`]",
+  "actual": "-ios class chain:**/*[`name CONTAINS[c] \"ab\"`]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//*[matches(@name,\"s\",\"s\")]",
   "category": "H",
-  "note": "expected vs XPath: 300/300 equal"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "H05",
   "xpath": "//*[lower-case(@label)=\"ab\"]",
   "expected": "**/*[`label ==[c] \"ab\"`]",
-  "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "actual": "-ios class chain:**/*[`label ==[c] \"ab\"`]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//*[lower-case(@label)=\"s\"]",
   "category": "H",
-  "note": "expected vs XPath: 300/300 equal"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "H06",
   "xpath": "//*[contains(upper-case(@label),\"AB\")]",
   "expected": "**/*[`label CONTAINS[c] \"AB\"`]",
-  "actual": null,
-  "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "actual": "-ios class chain:**/*[`label CONTAINS[c] \"AB\"`]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//*[contains(upper-case(@label),\"s\")]",
   "category": "H",
-  "note": "expected vs XPath: 300/300 equal"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "H07",
