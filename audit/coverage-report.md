@@ -713,49 +713,127 @@ On real-world locators (R) no run beats the converter; the best ones tie it. The
 
 ### An improved prompt (not yet tested)
 
-Written by the analysis from the error types above; general rules, no answers for particular cases. It has not been run, so its effect is not measured.
+**Not yet tested; D3 runs it.** This is `audit/llm/prompt-v2.md` (Phase 5, D3a). The first version of this section came from the Phase 4 error types; v2 is rewritten to match what C1, C2 and D0 found on the device. The refuted advice is gone and the confirmed forms are in. General rules, no answers for particular cases. The old `audit/llm/prompt.md` is the prompt Phase 4 ran and is unchanged. The effect of v2 is not measured.
 
 ```
 Convert each Appium XCUITest XPath into an iOS class chain that finds exactly
 the same elements. Reply with the chain, or "SKIP: <reason>" if no exact chain
-exists. Do not skip what these rules cover.
+exists. A skip costs little; a chain that WDA rejects or that finds other
+elements costs more. Convert what the rules below cover, skip the rest.
 
 Structure
-- **/X any depth, /X child, * any type. /XCUIElementTypeApplication/A/B -> A/B;
-  .//X -> **/X. Keep every intermediate step.
+- **/X any depth, /X child, * any type (XCUIElementTypeAny is *). `//` between
+  steps -> /**/. .//X at the start -> **/X. /XCUIElementTypeApplication/A/B ->
+  A/B. Keep every intermediate step.
 - Predicate [`NSPredicate`]; descendant test [$NSPredicate$].
+- Only real XCUITest type names. SKIP any other name (e.g. XCUIElementTypeLabel).
 
 String literals
-- Double quotes. Escape " as \" and \ as \\. Write line breaks as \n, tabs as
-  \t, never raw. Write a backtick as two backticks.
+- Double quotes. Escape " as \" and \ as \\. Write line breaks as \n and tabs
+  as \t, never raw. Write a backtick as two backticks.
+- == is exact and has no wildcards: * and ? in a literal are plain characters,
+  so never use LIKE for them.
 
 Attributes
 - Keys: name, label, value, type, enabled, visible, accessible, hittable,
-  selected, placeholderValue, index; @x/@y/@width/@height -> rect.x etc.
-- Missing attributes fail XPath comparisons but are nil in NSPredicate:
+  placeholderValue, index; @x/@y/@width/@height -> rect.x, rect.y, rect.width,
+  rect.height. Booleans and numbers are unquoted: enabled == true, index == 1,
+  rect.x > 60.
+- @type="T" is the step T, not a predicate. Other tests on @type: SKIP.
+- SKIP @selected and @text (not in the XML WDA searches), text(), and any use
+  of "." as text: contains(., "a").
+- A missing attribute fails an XPath comparison, but is nil in NSPredicate:
   @a!="v" -> a != nil AND a != "v"; [@a] -> a != nil;
-  not(@a="v") -> NOT (a == "v"). @a=true() only tests that @a exists.
-- @value>5 -> value.doubleValue > 5.
+  not(@a="v") -> NOT (a == "v").
+- @a=true() on enabled, visible, accessible or hittable only tests that the
+  attribute exists, and WDA always writes it: no predicate. Other uses of true()
+  and false(): SKIP.
+- < and > on a text attribute (name, label, value): SKIP. XPath reads "10abc"
+  as NaN, NSPredicate reads it as 10. Only the numeric attributes above
+  (rect.*, index) take < and >.
+- AND binds tighter than OR in both languages; add parentheses around every
+  AND group inside an OR, and around an OR that is combined with a second
+  [..] -> (a OR b) AND c.
 
-Functions
+Text functions
 - contains / starts-with / ends-with -> CONTAINS / BEGINSWITH / ENDSWITH.
-  matches() -> MATCHES (whole string). translate / lower-case / upper-case ->
-  [c]. Fold concat() of literals. string-length -> .length. normalize-space ->
-  MATCHES with [ \t\r\n]. Convert XPath 2.0 functions too (WDA registers them).
-- Unions of //T[p] and self:: tests -> one predicate joined by OR
-  (add type == "T" when types differ).
-- [.//T[p]] or [descendant::T] -> [$type == "T" AND p$];
-  //T[p]/ancestor::A -> **/A[$type == "T" AND p$].
-  Always put a concrete type inside $...$; if it is *, SKIP.
+  Fold concat() of literals. Convert XPath 2.0 functions too (WDA has them).
+- Case: lower-case(x)="v", upper-case(x)="V" -> x ==[c] "v"; contains of
+  lower-case(x), upper-case(x) or translate(x, "A..Z", "a..z") -> CONTAINS[c].
+  Only with a literal of ASCII letters, already in the case the function
+  produces (otherwise the XPath never matches: SKIP).
+- matches(x, p) without flags, p with no regex metacharacters -> CONTAINS; with
+  flag "i" -> CONTAINS[c]. Any other p -> MATCHES "(?s:.*)(?-s:p)(?s:.*)", with
+  p keeping its own ^ and $. Reason: XPath matches() searches inside the string,
+  and MATCHES must match the whole string, and its "." also matches a line
+  break. SKIP flags other than "i", and any p that contains a space.
+- SKIP normalize-space() and string-length(). MATCHES treats a no-break space
+  as a space, and .length counts UTF-16 units, so neither has an exact form.
+  Never use MATCHES to work around whitespace or text normalization.
+- == is exact. CONTAINS and BEGINSWITH equal the XPath on ordinary text.
+  MATCHES and [c] also fold compatibility characters (fullwidth letters,
+  ligatures, ß); they are an approximation for such text. Do not claim more.
+- SKIP replace(), tokenize(), string-join(), count().
+
+Combining
+- [a][b] -> a AND b. Unions of //T[p] tests that differ only in the predicate
+  -> one step with the predicates joined by OR (add type == "T" when the types
+  differ). Other unions: SKIP.
+- [.//T[p]] or [descendant::T[p]] -> [$type == "T" AND p$];
+  //T1[p]/ancestor::T2 -> **/T2[$type == "T1" AND p$].
+  $...$ also tests the element itself. So use it only when the outer step and
+  the inner step both name a type and the types differ. With * or the same type
+  on either side: SKIP. Child tests like [T] or [./T]: SKIP.
+- SKIP parent, sibling, preceding, following axes, ancestor with a predicate or
+  an index, and any other ancestor form.
 
 Positions (1-based, never 0)
-- (//X[p])[n] -> **/X[`p`][n].
-- SKIP last(), last()-n, position() tests, and any index on a parenthesised
-  path that has a further step or an inner index.
-
-Also SKIP text(), parent/sibling/preceding/following axes, and type names
-that do not exist in XCUITest.
+- (//X[p])[n] -> **/X[`p`][n]; (//X)[last()] -> **/X[-1];
+  (//X)[last()-n] -> **/X[-(n+1)]. In the chain, a predicate comes before the
+  index. These count in WDA's breadth-first order, which differs from XPath's
+  document order when the matches sit at different depths; convert them anyway.
+- SKIP: last() inside a step (//X[last()]), position() tests, ranges, an index
+  written before a filter (X[2][@a="v"]), an index on a parenthesised path that
+  has a further step or an inner index, and a position that is not a number.
 ```
+
+#### Rule check
+
+Every rule of `prompt-v2.md` against the case that supports it. **C1/C2/D0** = checked on the device (simulator, C1 also the iPhone); **harness** = verdict of the Phase 1–2 harness and converter fix (mini-WDA, and the Phase 2 device run where the case was in it), not re-run in C1/C2/D0; **unverified** = no case found. The refuted advice of the Phase 4 prompt (`normalize-space` → `MATCHES`, `string-length` → `.length`, `matches()` → whole-string `MATCHES`, `@value>5` → `doubleValue`, SKIP for `last()`) is not in v2; C06, C07, H02, B03 and E05/E06 are the cases that remove it.
+
+| v2 rule | Support | Status |
+|---|---|---|
+| `**/`, `/`, `*`, `XCUIElementTypeAny` = `*` | A01–A05; A04 on the device in C1 | C1 |
+| `//` between steps → `/**/`, leading `.//X` → `**/X` | A06, A09–A12 (RC1) | harness |
+| `/XCUIElementTypeApplication/A/B` → `A/B` | A07, A08 (old prompt; the converter now writes `**/` for A07, "exact since B4") | **unverified** |
+| Only real type names | A13 (RC11) | harness |
+| `[…]` predicate, `[$…$]` descendant test | F01, F07, F08, R01 on the device | C1 |
+| Escapes `\"`, `\\`, `\n`, `\t`, doubled backtick | G03–G05, G12 (RC4); Phase 4 INVALID for raw line breaks | harness (G03, G04 were GAP; the backtick form is **unverified** on the device) |
+| `==` exact, `*` / `?` not wildcards, no `LIKE` | G07, G09 (RC13); D0 (`==` exact on 21 probes) | D0 + harness |
+| Boolean / number unquoted, `rect.*`, `index` | B04, B11, B14 on the device | C1 |
+| `@type="T"` is the step; other `@type` tests SKIP | B12, C10, C11 (RC11) | harness |
+| SKIP `@selected`, `@text`, `text()`, `contains(., …)` | B08, B13, C03–C05, H10 (WDA XML) | harness |
+| `!=` → `a != nil AND a != "v"`, `[@a]` → `a != nil`, `not()` → `NOT (…)` | B02, B10, D07, D08 | harness |
+| `@a=true()` → no predicate (enabled, visible, accessible, hittable) | B16 on the device | C1 (`enabled` only; the other three are **unverified**) |
+| Other `true()` / `false()` uses SKIP | none | **unverified** |
+| SKIP `<` / `>` on text attributes | B03 (RC-D3), `10abc` on the device | C1 |
+| AND / OR parentheses, `[a][b]` → AND | D03–D06, D09–D12 (RC7) | harness |
+| `contains` / `starts-with` / `ends-with` → `CONTAINS` / `BEGINSWITH` / `ENDSWITH` | C01, C02, H01; D0 for `CONTAINS`, `BEGINSWITH` | D0 (`ENDSWITH` **unverified** on the device) |
+| Fold `concat()` of literals | C09 | harness |
+| `lower-case` / `upper-case` / `translate` → `==[c]` / `CONTAINS[c]`, ASCII literal | H05, H06, C08 on the device | C2 |
+| Literal already in the case the function produces, else SKIP | derived from XPath semantics | **unverified** |
+| `matches()` without metacharacters → `CONTAINS` / `CONTAINS[c]` | H03, H04 on the device | C2 (`i` flag with `CONTAINS[c]`: D0 did not run `(?i)`, see below) |
+| other `matches()` → `MATCHES "(?s:.*)(?-s:p)(?s:.*)"` | H02 on the device (C1) | C1 |
+| SKIP flags other than `i`, and a space in the pattern | C1 no-break-space fact; C2 rule | C1 |
+| SKIP `normalize-space`, `string-length`; no `MATCHES` workaround | C06, C07 on the device; D0 | C1 + D0 |
+| `MATCHES` / `[c]` fold compatibility characters; `==` exact; `CONTAINS` / `BEGINSWITH` equal on ordinary text | D0, 126 cases | D0 |
+| SKIP `replace`, `tokenize`, `string-join`, `count` | H07–H09, F06 (no NSPredicate form) | harness |
+| Unions with OR of predicates | none (README: unions are a skip in the converter) | **unverified** |
+| `$…$` only with different named types, else SKIP; child tests SKIP | F01, F04, F03, R01 on the device; F02, F05 | C1 + C2 |
+| SKIP parent / sibling / preceding / following axes, other `ancestor` forms | R02–R04, X01–X03; C2 axes | harness |
+| `(//X[p])[n]` → `**/X[p][n]`, breadth-first caveat | E02, E03, E09, E14; RC-D1 | harness (device, Phase 2) |
+| `(…)[last()]` → `[-1]`, `[last()-n]` → `[-(n+1)]` | E05, E06, L270–L272 on the device | C1 + C2 |
+| SKIP per-parent `last()`, `position()`, ranges, index before filter, further-step grouped index | E04, E07, E08, E11–E13 | harness |
 
 ### Limits of these measurements
 
