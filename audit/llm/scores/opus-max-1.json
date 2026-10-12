@@ -1,20 +1,20 @@
 {
  "summary": {
   "name": "opus-max-1",
-  "R": 65.6,
-  "S": 53.4,
+  "R": 65.2,
+  "S": 52.7,
   "Scat": {
    "A": 10,
    "B": 7.5,
    "C": 11.666666666666666,
    "D": 8,
-   "E": 3.75,
+   "E": 3,
    "F": 5,
    "G": 7.5,
    "H": 0,
    "R": 0
   },
-  "corpusDen": 484,
+  "corpusDen": 487,
   "corpus": {
    "CORRECT": 307,
    "CORRECT-SKIP": 53,
@@ -30,12 +30,12 @@
    "CORRECT": 47,
    "CORRECT-SKIP": 16,
    "GAP": 4,
-   "DRIFT": 6,
+   "DRIFT": 5,
    "WRONG": 1,
    "INVALID": 0,
    "MISSING": 41,
    "N/A": 0,
-   "EXCLUDED": 0
+   "EXCLUDED": 1
   },
   "entries": 460,
   "duplicates": 0,
@@ -475,7 +475,7 @@
    "skip": true,
    "reason": "//XCUIElementTypeTextField[1] is a per-parent position: the first TextField child of every parent, so it can match several elements. A class chain index always picks one element from the whole match list, and per-parent positions by type can't be expressed.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x038": {
    "orig": "L217",
@@ -1363,7 +1363,7 @@
    "skip": true,
    "reason": "The inner XCUIElementTypeButton[2] is a per-parent position (the second Button child of each matching Cell), applied before the outer [2]. Class chain indexes apply to the whole flattened match list, so the per-parent step can't be expressed.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x113": {
    "orig": "E10",
@@ -1371,12 +1371,9 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][2]",
-   "outcome": "SET_DIFFERS",
-   "hits": 3,
-   "trials": 301,
-   "verdict": "DRIFT",
-   "documented": true,
-   "inDen": true
+   "verdict": "EXCLUDED",
+   "note": "its runtime string is E09's locator, while the harness judges the source string `)${suffix}`; left out of the comparison; out of every count and denominator",
+   "inDen": false
   },
   "x114": {
    "orig": "L544",
@@ -1433,7 +1430,7 @@
    "skip": true,
    "reason": "//XCUIElementTypeTextField[2] is a per-parent position: the second TextField child of every parent, so it can match several elements. A class chain index always picks one element from the whole match list, and per-parent positions by type can't be expressed.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x119": {
    "orig": "L138",
@@ -4017,7 +4014,7 @@
    "trials": 300,
    "verdict": "DRIFT",
    "documented": true,
-   "inDen": true
+   "inDen": false
   },
   "x337": {
    "orig": "L052",
@@ -4510,7 +4507,7 @@
    "skip": true,
    "reason": "The inner child::XCUIElementTypeStaticText[2] is a per-parent position (the second StaticText child of each StaticText), applied before the outer [1]. Class chain indexes apply to the whole flattened match list, so the second child of the first parent that has one can't be selected.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x379": {
    "orig": "L542",
@@ -6797,7 +6794,7 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeCell)[2]/XCUIElementTypeButton",
    "verdict": "MISSING",
-   "inDen": true
+   "inDen": false
   },
   "x627": {
    "orig": "L368",

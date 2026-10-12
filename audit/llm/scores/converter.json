@@ -2,13 +2,13 @@
  "summary": {
   "name": "converter",
   "R": 95.3,
-  "S": 61.9,
+  "S": 61.8,
   "Scat": {
    "A": 10.5,
    "B": 14.0625,
    "C": 8.333333333333334,
    "D": 8,
-   "E": 5.142857142857143,
+   "E": 5,
    "F": 7.5,
    "G": 7.5,
    "H": 0.8571428571428571,
@@ -30,12 +30,12 @@
    "CORRECT": 54,
    "CORRECT-SKIP": 23,
    "GAP": 21,
-   "DRIFT": 17,
+   "DRIFT": 16,
    "WRONG": 0,
    "INVALID": 0,
    "MISSING": 0,
    "N/A": 0,
-   "EXCLUDED": 0
+   "EXCLUDED": 1
   },
   "entries": 678,
   "duplicates": 0,
@@ -1366,12 +1366,9 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][2]",
-   "outcome": "SET_DIFFERS",
-   "hits": 3,
-   "trials": 301,
-   "verdict": "DRIFT",
-   "documented": true,
-   "inDen": true
+   "verdict": "EXCLUDED",
+   "note": "its runtime string is E09's locator, while the harness judges the source string `)${suffix}`; left out of the comparison; out of every count and denominator",
+   "inDen": false
   },
   "x114": {
    "orig": "L544",

@@ -71,12 +71,11 @@ function specTree(xp, { rnd, pick }) { // spec.js genTree
   };
   return node(0, 'XCUIElementTypeApplication');
 }
-const FIXTURE_FROM = { E10: 'E09' }; // E10's runtime string is E09's locator
 const TREES = {};
 for (const [id, k] of Object.entries(key)) {
   const r = rng(k.orig);
   TREES[id] = Array.from({ length: TRIALS[k.group] }, () => (k.group === 'corpus' ? corpusTree : specTree)(k.xpath, r));
-  const fx = k.group === 'spec' && (specById[k.orig].fixture || (FIXTURE_FROM[k.orig] && specById[FIXTURE_FROM[k.orig]].fixture));
+  const fx = k.group === 'spec' && specById[k.orig].fixture;
   if (fx) TREES[id].push(fx);
 }
 
@@ -114,10 +113,14 @@ function evaluate(chains) { // chains: { id: chainBody } → { id: { outcome, tr
 // spec cases without an exact class chain, or whose XPath matches nothing on WDA (build.js NOT_EXPRESSIBLE)
 const SPEC_NOT_EXPRESSIBLE = new Set(['E05', 'E06', 'F03', 'A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
 // the runtime string differs in kind from the source the baseline judged:
-//   L476 `[${condition}]` → a plain contains(); E10 `)${suffix}` with suffix [2] → the same locator as E09
-const RUNTIME_OVERRIDE = { L476: { expressible: true, drift: false }, E10: { expressible: true, drift: true, documented: true } };
-// not an XPath at all: kept in the input, EXCLUDED from every count and denominator (build.js does the same)
-const NOT_XPATH = { L157: 'class chain predicate inside //…[…]; WDA rejects it as XPath' };
+//   L476 `[${condition}]` → a plain contains()
+const RUNTIME_OVERRIDE = { L476: { expressible: true, drift: false } };
+// kept in the input, EXCLUDED from every count and denominator
+const EXCLUDED = {
+  L157: 'not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath', // build.js does the same
+  // the harness judges the source string (suffix unknown statically, a correct skip); the runtime string is E09's locator
+  E10: 'its runtime string is E09\'s locator, while the harness judges the source string `)${suffix}`; left out of the comparison',
+};
 const conv = {};
 for (const [id, k] of Object.entries(key)) {
   const r = m.convertXpathToClassChain(k.xpath, { optimize: true });
@@ -135,12 +138,16 @@ for (const [id, k] of Object.entries(key)) {
   const approx = !!(k.group === 'spec' && sc && sc.approx);
   const drift = ov.drift ?? (b.verdict === 'DRIFT' || approx);
   const documented = drift ? ov.documented ?? DOC[k.orig] ?? approx : null;
-  // no exact chain: corpus DRIFT ("no exact class chain"), spec cases with an `approx` note or an `inexpressible` expectation (E13), E10 (= E09).
+  // no exact chain: corpus DRIFT ("no exact class chain"), spec cases with an `approx` note or an `inexpressible` expectation (E13).
   // A converter DRIFT with a proven exact chain (A07, A14–A16, B16) is the converter's own imprecision: a skip there is a GAP.
-  const noExact = drift && (k.group === 'corpus' || approx || !!(sc && sc.expected && sc.expected.inexpressible) || k.orig === 'E10');
+  const noExact = drift && (k.group === 'corpus' || approx || !!(sc && sc.expected && sc.expected.inexpressible));
   // the approximation a DRIFT chain is compared with: the converter's chain, else the `approx` expectation
   const ref = conv[id].chain || (approx && typeof sc.expected === 'string' ? sc.expected : null);
-  CLASS[id] = { expressible, drift, documented, noExact, ref, notXpath: NOT_XPATH[k.orig] || null };
+  const excluded = EXCLUDED[k.orig] || null;
+  // the fixed denominator, the same for every run and the converter: expressible cases, minus the no-exact-chain cases
+  // the converter skips (E07, E11: a skip is right there), minus EXCLUDED. A run cannot shrink it by skipping.
+  const inDen = expressible && !excluded && !(noExact && conv[id].skip);
+  CLASS[id] = { expressible, drift, documented, noExact, ref, excluded, inDen };
 }
 
 // ---------- verdicts and scores
@@ -171,7 +178,7 @@ function score(name, entries) {
   const vsConv = driftIds.length ? evaluateAgainst(Object.fromEntries(driftIds.map(id => [id, [chains[id], CLASS[id].ref]]))) : {};
   for (const [id, row] of Object.entries(rows)) {
     const c = CLASS[id];
-    if (c.notXpath && row.verdict !== 'MISSING') { row.verdict = 'EXCLUDED'; row.note = 'not an XPath: ' + c.notXpath + '; out of every count and denominator'; continue; }
+    if (c.excluded && row.verdict !== 'MISSING') { row.verdict = 'EXCLUDED'; row.note = c.excluded + '; out of every count and denominator'; continue; }
     if (row.verdict) continue;
     if (row.skip) { row.verdict = c.expressible && !c.noExact ? 'GAP' : 'CORRECT-SKIP'; continue; }
     const r = run[id]; row.outcome = r.outcome; row.hits = r.hits; row.trials = r.trials;
@@ -181,9 +188,8 @@ function score(name, entries) {
     else if (r.outcome === 'EQUAL') row.verdict = 'CORRECT';
     else { row.verdict = 'WRONG'; row.example = r.example; }
   }
-  // R: corpus, S: spec categories; expressible cases only, minus no-exact-chain cases the run skipped (they leave the denominator,
-// as in the report's "skip grouped positions with a reason" variant)
-  const inDen = id => CLASS[id].expressible && !CLASS[id].notXpath && !(CLASS[id].noExact && rows[id].verdict === 'CORRECT-SKIP') && rows[id].verdict !== 'N/A';
+  // R: corpus, S: spec categories, over one fixed denominator for every run (CLASS[id].inDen): a skip inside it earns 0
+  const inDen = id => CLASS[id].inDen;
   const credit = id => rows[id].verdict === 'CORRECT' ? 1 : rows[id].verdict === 'DRIFT' && rows[id].documented ? 0.5 : 0;
   const ids = g => Object.keys(key).filter(id => key[id].group === g);
   const corpDen = ids('corpus').filter(inDen);

@@ -33,7 +33,7 @@
 | G04 | `//*[@label="aˋb"]` | GAP | 3/11 | `**/*[ˋlabel == "aˋˋb"ˋ]` |
 | R01 | `//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell` | GAP | 3/11 | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` |
 
-### Where the converter is right and a model is not (55 cases)
+### Where the converter is right and a model is not (54 cases)
 
 | Case | XPath | Converter | Cells wrong / invalid / gap | Cells |
 |---|---|---|---|---|
@@ -62,7 +62,6 @@
 | L258 | `(//XCUIElementTypeButton[contains(@name, "Dobe teg")])[1]` | DRIFT | 0 / 1 / 0 | haiku/low |
 | L471 | `(//XCUIElementTypeButton[@name="LohenobEcohazoLasi.sewanecAbifub"])[1]` | DRIFT | 0 / 1 / 0 | haiku/low |
 | L572 | `(//XCUIElementTypeButton[@name="WefaniBedufeDanu.gotePebazoh"])[1]` | DRIFT | 0 / 1 / 0 | haiku/low |
-| E10 | `(//XCUIElementTypeButton[@name="a"])[2]` | DRIFT | 1 / 0 / 0 | haiku/low |
 | L565 | `(//XCUIElementTypeOther[@name="hilubodamo, lulik gusuri"])[2]` | DRIFT | 1 / 0 / 0 | haiku/low |
 | L062 | `(//XCUIElementTypeButton[@name="HosidoLitokazajiCimo.noraSefili"])[1]` | DRIFT | 0 / 1 / 0 | haiku/low |
 | L573 | `(//XCUIElementTypeButton[@name="WefaniBedufeDanu.gotePebazoh"])[2]` | DRIFT | 1 / 0 / 0 | haiku/low |

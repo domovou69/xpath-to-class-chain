@@ -613,59 +613,6 @@
     "opus/high": "CORRECT-SKIP"
    }
   },
-  "E10": {
-   "group": "spec",
-   "cat": "E",
-   "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
-   "converter": {
-    "verdict": "DRIFT",
-    "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
-   },
-   "cells": {
-    "haiku/low": {
-     "verdict": "WRONG",
-     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]",
-     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" value=\"\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" name=\"A b\" label=\"other\" value=\"10.5\"><XCUIElementTypeOther k=\"n3\" name=\"b\" value=\"abc\"><XCUIElementTypeStaticText k=\"n4\" value=\" a  b \"></XCUIElementTypeStaticText><XCUIElementTypeOther k=\"n5\" name=\"false\" value=\"b\"><XCUIElementTypeButton"
-    },
-    "haiku/medium": {
-     "verdict": "DRIFT",
-     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
-    },
-    "haiku/high": {
-     "verdict": "DRIFT",
-     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
-    },
-    "haiku/max": "CORRECT-SKIP",
-    "sonnet/low": {
-     "verdict": "DRIFT",
-     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
-    },
-    "sonnet/medium": {
-     "verdict": "DRIFT",
-     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
-    },
-    "sonnet/high": {
-     "verdict": "DRIFT",
-     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
-    },
-    "sonnet/max": {
-     "verdict": "DRIFT",
-     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
-    },
-    "opus/low": {
-     "verdict": "DRIFT",
-     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
-    },
-    "opus/medium": {
-     "verdict": "DRIFT",
-     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
-    },
-    "opus/high": {
-     "verdict": "DRIFT",
-     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
-    }
-   }
-  },
   "L565": {
    "group": "corpus",
    "cat": "corpus",
