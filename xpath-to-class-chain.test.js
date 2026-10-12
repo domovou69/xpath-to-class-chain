@@ -47,6 +47,31 @@ const CONVERT_CASES = [
   ['//*[not(@name="a" or @label="b")]', `${CC}**/*[\`NOT (name == "a" OR label == "b")\`]`],
   ['//*[@label="not(x"]', `${CC}**/*[\`label == "not(x"\`]`],                  // text, not a function
 
+  // --- B3 unions of single //Type[…] steps: one predicate joined with OR ---
+  ['//XCUIElementTypeButton[@name="a"] | //XCUIElementTypeButton[@name="b"]', `${CC}**/XCUIElementTypeButton[\`name == "a" OR name == "b"\`]`], // X04
+  ['//XCUIElementTypeButton[@name="a"] | //XCUIElementTypeStaticText[@name="b"]', `${CC}**/*[\`(type == "XCUIElementTypeButton" AND name == "a") OR (type == "XCUIElementTypeStaticText" AND name == "b")\`]`], // X05
+  ['//*[@name="Alpha one"] | //*[@name="Beta.two"]', `${CC}**/*[\`name == "Alpha one" OR name == "Beta.two"\`]`], // L355
+  ['//*[@name="Item ${n}, more" and @accessible="true"]|//*[@name="Short ${n}" and @accessible="true"]', `${CC}**/*[\`(name == "Item \${n}, more" AND accessible == true) OR (name == "Short \${n}" AND accessible == true)\`]`], // L455
+  [`//*[@label="\${n} \${n == 1 ? 'item' : 'items'}"] | //*[@label="Total: \${n}"]`, `${CC}**/*[\`label == "\${n} \${n == 1 ? 'item' : 'items'}" OR label == "Total: \${n}"\`]`], // L461
+  ['//*[@label="a | //b"] | //*[@name="c|d"]', `${CC}**/*[\`label == "a | //b" OR name == "c|d"\`]`], // '|' inside a value is text
+  // a `*` operand names no type
+  ['//*[@name="a"] | //XCUIElementTypeButton[@name="b"]', `${CC}**/*[\`name == "a" OR (type == "XCUIElementTypeButton" AND name == "b")\`]`],
+  ['//XCUIElementTypeAny[@name="a"] | //XCUIElementTypeAny[@label="b"]', `${CC}**/*[\`name == "a" OR label == "b"\`]`],
+  // an operand with OR keeps its group inside the AND
+  ['//XCUIElementTypeStaticText[@name="a"] | //XCUIElementTypeButton[@name="a" or @label="x"]', `${CC}**/*[\`(type == "XCUIElementTypeStaticText" AND name == "a") OR (type == "XCUIElementTypeButton" AND (name == "a" OR label == "x"))\`]`],
+  // three operands (and more) use the same form
+  ['//XCUIElementTypeButton[@name="a"] | //XCUIElementTypeButton[@name="b"] | //XCUIElementTypeStaticText[@label="c"]', `${CC}**/*[\`(type == "XCUIElementTypeButton" AND name == "a") OR (type == "XCUIElementTypeButton" AND name == "b") OR (type == "XCUIElementTypeStaticText" AND label == "c")\`]`],
+  // operands without conditions: the type tests alone; one of them matches the whole step
+  ['//XCUIElementTypeButton | //XCUIElementTypeStaticText', `${CC}**/*[\`type == "XCUIElementTypeButton" OR type == "XCUIElementTypeStaticText"\`]`],
+  ['//XCUIElementTypeButton | //XCUIElementTypeButton[@name="x"]', `${CC}**/XCUIElementTypeButton`],
+
+  // --- B3 self::Type inside a `*` step's predicate: type == "Type" ---
+  ['//*[self::XCUIElementTypeButton or self::XCUIElementTypeStaticText]', `${CC}**/*[\`type == "XCUIElementTypeButton" OR type == "XCUIElementTypeStaticText"\`]`], // X07
+  ['//*[self::XCUIElementTypeStaticText or self::XCUIElementTypeTextView]', `${CC}**/*[\`type == "XCUIElementTypeStaticText" OR type == "XCUIElementTypeTextView"\`]`],
+  ['//*[@name="c" or self::XCUIElementTypeCell]', `${CC}**/*[\`name == "c" OR type == "XCUIElementTypeCell"\`]`],
+  ['//*[self::XCUIElementTypeButton and @name="x"]', `${CC}**/XCUIElementTypeButton[\`name == "x"\`]`], // validator collapses the single type
+  ['//XCUIElementTypeButton[@name="self::x"]', `${CC}**/XCUIElementTypeButton[\`name == "self::x"\`]`], // text, not an axis
+
   // --- boolean logic AND / OR ---
   ['//XCUIElementTypeButton[@name="Screen.primaryButton" and @label="Submit"]', `${CC}**/XCUIElementTypeButton[\`name == "Screen.primaryButton" AND label == "Submit"\`]`],
   ['//XCUIElementTypeButton[@label="Option A" or @label="Option B"]', `${CC}**/XCUIElementTypeButton[\`label == "Option A" OR label == "Option B"\`]`],
@@ -204,8 +229,17 @@ const SKIP_CASES = [
   ['//*[contains(@name, "Header")]/parent::*[1]/following-sibling::*[2]', 'parent + sibling'],
   ['//*[@label="x"]/following::*[1]', 'following::'],
   ['//XCUIElementTypeOther[@name="x"]/following-sibling::XCUIElementTypeOther/XCUIElementTypeLink', 'following-sibling chain'],
-  // self:: axis must skip even when it appears alone
-  ['//*[self::XCUIElementTypeStaticText or self::XCUIElementTypeTextView]', 'self:: axis'],
+  // self:: is a type test only inside a `*` step's predicate, for a WDA type, outside not()
+  ['//XCUIElementTypeButton[self::XCUIElementTypeStaticText]', 'self:: on a named step'],
+  ['//self::XCUIElementTypeButton', 'self:: as a step'],
+  ['//XCUIElementTypeButton/self::XCUIElementTypeButton', 'self:: as a later step'],
+  ['//*[self::*]', 'self::*'],
+  ['//*[self::node()]', 'self::node()'],
+  ['//*[self::XCUIElementTypeLabel]', 'self:: of a non-WDA type'],
+  ['//*[self::XCUIElementTypeAny]', 'self:: of XCUIElementTypeAny'],
+  ['//*[not(self::XCUIElementTypeButton)]', 'self:: under not(): //* also returns the Application root'],
+  ['//XCUIElementTypeCell[.//*[self::XCUIElementTypeButton]]', 'self:: inside a path predicate'],
+  ['//*[descendant-or-self::XCUIElementTypeButton]', 'descendant-or-self::'],
 
   // XPath functions with no Class Chain equivalent
   ['//*[last()]', 'last()'],
@@ -229,6 +263,18 @@ const SKIP_CASES = [
   ['//*[@a="1"]|//*[@b="2"]', 'union | (no space)'],
   ['//*[@a="1"] |//*[@b="2"]', 'union | (space before only)'],
   ['//*[@a="1"]| //*[@b="2"]', 'union | (space after only)'],
+  // B3: a union converts only when every operand is a single //Type step with plain conditions
+  ['//XCUIElementTypeButton[1] | //XCUIElementTypeButton[@name="b"]', 'union operand with an index'],
+  ['//XCUIElementTypeButton[@name="a"][2] | //XCUIElementTypeButton[@name="b"]', 'union operand with a filter and an index'],
+  ['//XCUIElementTypeCell[.//XCUIElementTypeButton] | //XCUIElementTypeCell[@name="b"]', 'union operand with a descendant predicate'],
+  ['//*[@name="a"] | //*[not(//*[@name="c"])]', 'union operand with a nested path'],
+  ['//XCUIElementTypeCell/XCUIElementTypeButton | //XCUIElementTypeButton', 'union of different depths'],
+  ['//XCUIElementTypeCell//XCUIElementTypeButton | //XCUIElementTypeButton', 'union with a two-step operand'],
+  ['/XCUIElementTypeApplication/XCUIElementTypeButton | //XCUIElementTypeButton', 'union with an absolute operand'],
+  ['//*[@name="a" and position()=1] | //*[@name="b"]', 'union with position()'],
+  ['//*[@name="a"] | //XCUIElementTypeLabel', 'union with a non-WDA type'],
+  ['//*[@name="a"] | //*[@name="b"]/following-sibling::*', 'union with an axis'],
+  ['(//XCUIElementTypeButton[@name="a"] | //XCUIElementTypeButton[@name="b"])', 'grouped union without an index'],
 
   // android selector
   ['//android.widget.TextView', 'android.'],
