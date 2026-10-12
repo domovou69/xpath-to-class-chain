@@ -2906,35 +2906,35 @@
  {
   "id": "L270",
   "xpath": "(//XCUIElementTypeStaticText[@name=\"jila_zugo\"])[last()]",
-  "expected": "INEXPRESSIBLE: grouped last(): document-order position; [-1] counts in XCTest query order (RC-D1)",
-  "actual": null,
-  "status": "skipped_not_xpath",
-  "verdict": "CORRECT-SKIP",
+  "expected": "no exact class chain; RC-D1: grouped last() → [-1] counts from the end of the matches in XCTest query order (breadth-first) on device, XPath in document order",
+  "actual": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+  "status": "success",
+  "verdict": "DRIFT",
   "shape": "S051 (//T[@name=\"s\"])[last()]",
   "category": "corpus",
-  "note": "excluded from denominator"
+  "note": "RC-D1: grouped last() → [-1] counts from the end of the matches in XCTest query order (breadth-first) on device, XPath in document order. Minimal page source: <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"jila_zugo\" label=\"y jila_zugo\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y jila_zugo\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"jila_zugo\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" value=\"jila_zugo\" name=\"jila_zugo\"><XCUIElementTypeStaticText k=\"n5\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n6\" name=\"jila_\" label=\"jila_zugo\"></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" label=\"jila_zugo z\" value=\"other\" name=\"jila_zugo\"></XCUIElementTypeStaticText></XCUIElementTypeStaticText><XCUIElementTypeWindow k=\"n8\" name=\"jila_\"></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n9\" value=\"y jila_zugo\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n10\" name=\"jila_zugo\" label=\"jila_zugo\" value=\"jila_zugo\"></XCUIElementTypeWindow><XCUIElementTypeWindow k=\"n11\" name=\"other\"></XCUIElementTypeWindow><XCUIElementTypeWindow k=\"n12\" value=\"Vq1\" name=\"jila_zugo\"></XCUIElementTypeWindow></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [\"n9\"] vs chain [\"n7\"] | DRIFT documented in README"
  },
  {
   "id": "L271",
   "xpath": "(//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"])[last()]",
-  "expected": "INEXPRESSIBLE: grouped last(): document-order position; [-1] counts in XCTest query order (RC-D1)",
-  "actual": null,
-  "status": "skipped_not_xpath",
-  "verdict": "CORRECT-SKIP",
+  "expected": "no exact class chain; RC-D1: grouped last() → [-1] counts from the end of the matches in XCTest query order (breadth-first) on device, XPath in document order",
+  "actual": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+  "status": "success",
+  "verdict": "DRIFT",
   "shape": "S051 (//T[@name=\"s\"])[last()]",
   "category": "corpus",
-  "note": "excluded from denominator"
+  "note": "RC-D1: grouped last() → [-1] counts from the end of the matches in XCTest query order (breadth-first) on device, XPath in document order. Minimal page source: <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" value=\"Kuki pefu matumutor\" name=\"Kuki pefu matumutor\"><XCUIElementTypeStaticText k=\"n5\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n6\" name=\"Kuki pefu \" label=\"Kuki pefu matumutor\"></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" label=\"Kuki pefu matumutor z\" value=\"other\" name=\"Kuki pefu matumutor\"></XCUIElementTypeStaticText></XCUIElementTypeStaticText><XCUIElementTypeWindow k=\"n8\" name=\"Kuki pefu \"></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n9\" value=\"y Kuki pefu matumutor\" name=\"Kuki pefu matumutor\"><XCUIElementTypeWindow k=\"n10\" name=\"Kuki pefu matumutor\" label=\"Kuki pefu matumutor\" value=\"Kuki pefu matumutor\"></XCUIElementTypeWindow><XCUIElementTypeWindow k=\"n11\" name=\"other\"></XCUIElementTypeWindow><XCUIElementTypeWindow k=\"n12\" value=\"Vq1\" name=\"Kuki pefu matumutor\"></XCUIElementTypeWindow></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [\"n9\"] vs chain [\"n7\"] | DRIFT documented in README"
  },
  {
   "id": "L272",
   "xpath": "(//XCUIElementTypeOther[contains(@label, \"Lenapa gusuri\")]/XCUIElementTypeStaticText)[last()]",
-  "expected": "INEXPRESSIBLE: grouped last(): document-order position; [-1] counts in XCTest query order (RC-D1)",
-  "actual": null,
-  "status": "skipped_not_xpath",
-  "verdict": "CORRECT-SKIP",
+  "expected": "no exact class chain; RC-D1: grouped last() → [-1] counts from the end of the matches in XCTest query order (breadth-first) on device, XPath in document order",
+  "actual": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Lenapa gusuri\"`]/XCUIElementTypeStaticText[-1]",
+  "status": "success",
+  "verdict": "DRIFT",
   "shape": "S111 (//Other[contains(@label, \"s\")]/T)[last()]",
   "category": "corpus",
-  "note": "excluded from denominator"
+  "note": "RC-D1: grouped last() → [-1] counts from the end of the matches in XCTest query order (breadth-first) on device, XPath in document order. Minimal page source: <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"false\" value=\"Lenapa gusuri\"></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n2\" name=\"true\" value=\"Lenapa gusuri\" label=\"Lenapa gusuri Lenapa gusuri\"><XCUIElementTypeButton k=\"n3\" name=\"Vq2\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"true\"><XCUIElementTypeOther k=\"n4\" name=\"Lenapa gusuri\" label=\"Lenapa gusuri Lenapa gusuri\"><XCUIElementTypeStaticText k=\"n5\" name=\"Lenapa gusuri\"></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n6\" name=\"LENAPA GUSURI\" value=\"false\"></XCUIElementTypeStaticText><XCUIElementTypeButton k=\"n7\" label=\"enapa gusuri\"></XCUIElementTypeButton></XCUIElementTypeOther><XCUIElementTypeStaticText k=\"n8\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"other\"></XCUIElementTypeStaticText></XCUIElementTypeButton><XCUIElementTypeOther k=\"n9\" name=\"Lenapa gusuri\" label=\"Lenapa gusuri Lenapa gusuri\"><XCUIElementTypeStaticText k=\"n10\" name=\"other\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"Vq2\"></XCUIElementTypeStaticText><XCUIElementTypeOther k=\"n11\" name=\"Vq1\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"LENAPA GUSURI\"><XCUIElementTypeButton k=\"n12\" label=\"Lenapa gusuri\"></XCUIElementTypeButton><XCUIElementTypeButton k=\"n13\" name=\"Vq1\" label=\"Lenapa \" value=\"other\"></XCUIElementTypeButton><XCUIElementTypeButton k=\"n14\" name=\"Vq1\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"Lenapa gusuri z\"></XCUIElementTypeButton></XCUIElementTypeOther></XCUIElementTypeOther></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [\"n10\"] vs chain [\"n6\"] | DRIFT documented in README"
  },
  {
   "id": "L273",
@@ -2945,7 +2945,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L274",
@@ -2956,7 +2956,7 @@
   "verdict": "CORRECT",
   "shape": "S025 //*[contains(@label, \"s\") and @enabled=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 126"
+  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 125"
  },
  {
   "id": "L275",
@@ -2978,7 +2978,7 @@
   "verdict": "CORRECT",
   "shape": "S024 //*[@label=\"s\" and @enabled=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 111"
+  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L277",
@@ -2989,7 +2989,7 @@
   "verdict": "CORRECT",
   "shape": "S017 //T[@name=\"s\" and @label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 63"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 62"
  },
  {
   "id": "L278",
@@ -3000,7 +3000,7 @@
   "verdict": "CORRECT",
   "shape": "S112 //T[contains(@name, \"s\") and contains(@enabled,\"false\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 103"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 109"
  },
  {
   "id": "L279",
@@ -3011,7 +3011,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 110"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L280",
@@ -3022,7 +3022,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L281",
@@ -3044,7 +3044,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L283",
@@ -3066,7 +3066,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
  },
  {
   "id": "L285",
@@ -3077,7 +3077,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L286",
@@ -3088,7 +3088,7 @@
   "verdict": "CORRECT",
   "shape": "S025 //*[contains(@label, \"s\") and @enabled=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 126"
+  "note": "fuzz: 400 random page sources, equal set+first; min matching trials 127"
  },
  {
   "id": "L287",
@@ -3099,7 +3099,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L288",
@@ -3110,7 +3110,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L289",
@@ -3121,7 +3121,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L290",
@@ -3143,7 +3143,7 @@
   "verdict": "CORRECT",
   "shape": "S015 //T[@name=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 85"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L292",
@@ -3154,7 +3154,7 @@
   "verdict": "CORRECT",
   "shape": "S015 //T[@name=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L293",
@@ -3165,7 +3165,7 @@
   "verdict": "CORRECT",
   "shape": "S015 //T[@name=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
  },
  {
   "id": "L294",
@@ -3209,7 +3209,7 @@
   "verdict": "CORRECT",
   "shape": "S052 //T[contains(@name, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 119"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L298",
@@ -3220,7 +3220,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L299",
@@ -3231,7 +3231,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 84"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L300",
@@ -3242,7 +3242,7 @@
   "verdict": "CORRECT",
   "shape": "S117 //T[@name=\"s\" or @name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 75"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 73"
  },
  {
   "id": "L301",
@@ -3264,7 +3264,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 75"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 73"
  },
  {
   "id": "L303",
@@ -3275,7 +3275,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
  },
  {
   "id": "L304",
@@ -3286,7 +3286,7 @@
   "verdict": "CORRECT",
   "shape": "S119 //T[contains(@name, \"s*\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
  },
  {
   "id": "L305",
@@ -3297,7 +3297,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L306",
@@ -3319,7 +3319,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L308",
@@ -3330,7 +3330,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 72"
  },
  {
   "id": "L309",
@@ -3363,7 +3363,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 62"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 66"
  },
  {
   "id": "L312",
@@ -3374,7 +3374,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
  },
  {
   "id": "L313",
@@ -3385,7 +3385,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L314",
@@ -3396,7 +3396,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L315",
@@ -3407,7 +3407,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 77"
  },
  {
   "id": "L316",
@@ -3429,7 +3429,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L318",
@@ -3440,7 +3440,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L319",
@@ -3451,7 +3451,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 111"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 109"
  },
  {
   "id": "L320",
@@ -3462,7 +3462,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 109"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 108"
  },
  {
   "id": "L321",
@@ -3473,7 +3473,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 107"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 108"
  },
  {
   "id": "L322",
@@ -3484,7 +3484,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L323",
@@ -3495,7 +3495,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 85"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L324",
@@ -3506,7 +3506,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 109"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L325",
@@ -3517,7 +3517,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L326",
@@ -3528,7 +3528,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L327",
@@ -3539,7 +3539,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L328",
@@ -3550,7 +3550,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L329",
@@ -3572,7 +3572,7 @@
   "verdict": "CORRECT",
   "shape": "S121 //*[@name=\"s*\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 118"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L331",
@@ -3583,7 +3583,7 @@
   "verdict": "CORRECT",
   "shape": "S048 //*[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 125"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 124"
  },
  {
   "id": "L336",
@@ -3605,7 +3605,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 118"
  },
  {
   "id": "L338",
@@ -3638,7 +3638,7 @@
   "verdict": "CORRECT",
   "shape": "S124 //*[contains(@name, \"s$\") and contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 126"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 121"
  },
  {
   "id": "L341",
@@ -3649,7 +3649,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
  },
  {
   "id": "L342",
@@ -3660,7 +3660,7 @@
   "verdict": "CORRECT",
   "shape": "S028 //*[contains(@type,\"s\") and contains(@value,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L343",
@@ -3671,7 +3671,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L344",
@@ -3682,7 +3682,7 @@
   "verdict": "CORRECT",
   "shape": "S019 //T[@value=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 67"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
  },
  {
   "id": "L345",
@@ -3693,7 +3693,7 @@
   "verdict": "CORRECT",
   "shape": "S019 //T[@value=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 66"
  },
  {
   "id": "L346",
@@ -3704,7 +3704,7 @@
   "verdict": "CORRECT",
   "shape": "S125 //T[contains(@value, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 108"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 104"
  },
  {
   "id": "L347",
@@ -3715,7 +3715,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 71"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 72"
  },
  {
   "id": "L348",
@@ -3726,7 +3726,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 75"
  },
  {
   "id": "L349",
@@ -3759,7 +3759,7 @@
   "verdict": "CORRECT",
   "shape": "S019 //T[@value=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 67"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 68"
  },
  {
   "id": "L352",
@@ -3781,7 +3781,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 108"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 104"
  },
  {
   "id": "L354",
@@ -3792,7 +3792,7 @@
   "verdict": "CORRECT",
   "shape": "S126 //T[contains(@name,\"s\") or contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 102"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 110"
  },
  {
   "id": "L355",
@@ -3803,7 +3803,7 @@
   "verdict": "CORRECT",
   "shape": "S127 //*[@name=\"s\"] | //*[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 119"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 118"
  },
  {
   "id": "L356",
@@ -3891,7 +3891,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
  },
  {
   "id": "L364",
@@ -3902,7 +3902,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L365",
@@ -3924,7 +3924,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
  },
  {
   "id": "L367",
@@ -3935,7 +3935,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 65"
  },
  {
   "id": "L368",
@@ -3990,7 +3990,7 @@
   "verdict": "CORRECT",
   "shape": "S129 //T",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 98"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 97"
  },
  {
   "id": "L373",
@@ -4001,7 +4001,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 68"
  },
  {
   "id": "L374",
@@ -4034,7 +4034,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 66"
  },
  {
   "id": "L377",
@@ -4056,7 +4056,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L379",
@@ -4067,7 +4067,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 85"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
  },
  {
   "id": "L380",
@@ -4111,7 +4111,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
  },
  {
   "id": "L384",
@@ -4144,7 +4144,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 119"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 120"
  },
  {
   "id": "L387",
@@ -4188,7 +4188,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L391",
@@ -4221,7 +4221,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
  },
  {
   "id": "L394",
@@ -4232,7 +4232,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 119"
  },
  {
   "id": "L395",
@@ -4243,7 +4243,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L396",
@@ -4276,7 +4276,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 61"
  },
  {
   "id": "L399",
@@ -4287,7 +4287,7 @@
   "verdict": "CORRECT",
   "shape": "S012 //T[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 119"
  },
  {
   "id": "L400",
@@ -4298,7 +4298,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L401",
@@ -4309,7 +4309,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L402",
@@ -4320,7 +4320,7 @@
   "verdict": "CORRECT",
   "shape": "S021 //*[contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
  },
  {
   "id": "L403",
@@ -4331,7 +4331,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L404",
@@ -4353,7 +4353,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L406",
@@ -4386,7 +4386,7 @@
   "verdict": "CORRECT",
   "shape": "S022 //T[contains(@label, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 120"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 119"
  },
  {
   "id": "L409",
@@ -4408,7 +4408,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 86"
  },
  {
   "id": "L411",
@@ -4419,7 +4419,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 60"
  },
  {
   "id": "L412",
@@ -4430,7 +4430,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L413",
@@ -4441,7 +4441,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L414",
@@ -4452,7 +4452,7 @@
   "verdict": "CORRECT",
   "shape": "S034 //T[contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L415",
@@ -4463,7 +4463,7 @@
   "verdict": "CORRECT",
   "shape": "S016 //T[@label=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 74"
  },
  {
   "id": "L416",
@@ -4474,7 +4474,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L417",
@@ -4485,7 +4485,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L418",
@@ -4496,7 +4496,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L419",
@@ -4507,7 +4507,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L420",
@@ -4518,7 +4518,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 75"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 72"
  },
  {
   "id": "L421",
@@ -4540,7 +4540,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L423",
@@ -4551,7 +4551,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L424",
@@ -4562,7 +4562,7 @@
   "verdict": "CORRECT",
   "shape": "S133 //*[contains(@type,\"s\") and contains(@name, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
  },
  {
   "id": "L425",
@@ -4584,7 +4584,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L427",
@@ -4595,7 +4595,7 @@
   "verdict": "CORRECT",
   "shape": "S017 //T[@name=\"s\" and @label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 63"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 60"
  },
  {
   "id": "L428",
@@ -4617,7 +4617,7 @@
   "verdict": "CORRECT",
   "shape": "S055 //T[@name=\"s*\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
  },
  {
   "id": "L430",
@@ -4628,7 +4628,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L431",
@@ -4639,7 +4639,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L432",
@@ -4650,7 +4650,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
  },
  {
   "id": "L433",
@@ -4661,7 +4661,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 72"
  },
  {
   "id": "L434",
@@ -4672,7 +4672,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L435",
@@ -4683,7 +4683,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 75"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 74"
  },
  {
   "id": "L436",
@@ -4705,7 +4705,7 @@
   "verdict": "CORRECT",
   "shape": "S032 //*[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 134"
  },
  {
   "id": "L438",
@@ -4716,7 +4716,7 @@
   "verdict": "CORRECT",
   "shape": "S032 //*[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
  },
  {
   "id": "L439",
@@ -4727,7 +4727,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 72"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 74"
  },
  {
   "id": "L440",
@@ -4738,7 +4738,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 74"
  },
  {
   "id": "L441",
@@ -4749,7 +4749,7 @@
   "verdict": "CORRECT",
   "shape": "S010 //*[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 136"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
  },
  {
   "id": "L442",
@@ -4760,7 +4760,7 @@
   "verdict": "CORRECT",
   "shape": "S010 //*[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 136"
  },
  {
   "id": "L443",
@@ -4771,7 +4771,7 @@
   "verdict": "CORRECT",
   "shape": "S135 //T[@name=\"s\" and @enabled=\"false\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 77"
  },
  {
   "id": "L444",
@@ -4782,7 +4782,7 @@
   "verdict": "CORRECT",
   "shape": "S009 //*[contains(@name,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 130"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 128"
  },
  {
   "id": "L445",
@@ -4804,7 +4804,7 @@
   "verdict": "CORRECT",
   "shape": "S009 //*[contains(@name,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 131"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 132"
  },
  {
   "id": "L447",
@@ -4815,7 +4815,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 79"
  },
  {
   "id": "L448",
@@ -4826,7 +4826,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 120"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 121"
  },
  {
   "id": "L449",
@@ -4837,7 +4837,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L450",
@@ -4848,7 +4848,7 @@
   "verdict": "CORRECT",
   "shape": "S029 //*[contains(@label, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 139"
  },
  {
   "id": "L451",
@@ -4870,7 +4870,7 @@
   "verdict": "CORRECT",
   "shape": "S055 //T[@name=\"s*\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 81"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L453",
@@ -4881,7 +4881,7 @@
   "verdict": "CORRECT",
   "shape": "S038 //*[@label=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 120"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 121"
  },
  {
   "id": "L454",
@@ -4892,7 +4892,7 @@
   "verdict": "CORRECT",
   "shape": "S038 //*[@label=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 122"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 121"
  },
  {
   "id": "L455",
@@ -4903,7 +4903,7 @@
   "verdict": "CORRECT",
   "shape": "S137 //*[@name=\"s$\" and @accessible=\"true\"]|//*[@name=\"s$\" and @accessible=\"true\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 106"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 108"
  },
  {
   "id": "L456",
@@ -4947,7 +4947,7 @@
   "verdict": "CORRECT",
   "shape": "S032 //*[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 135"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
  },
  {
   "id": "L460",
@@ -4958,7 +4958,7 @@
   "verdict": "CORRECT",
   "shape": "S140 //T[contains(@label, \"s$\") or contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 107"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 105"
  },
  {
   "id": "L461",
@@ -4969,7 +4969,7 @@
   "verdict": "CORRECT",
   "shape": "S141 //*[@label=\"s$\"] | //*[@label=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 118"
  },
  {
   "id": "L462",
@@ -4980,7 +4980,7 @@
   "verdict": "CORRECT",
   "shape": "S021 //*[contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 140"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 139"
  },
  {
   "id": "L463",
@@ -5024,7 +5024,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L467",
@@ -5035,7 +5035,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L468",
@@ -5046,7 +5046,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L469",
@@ -5068,7 +5068,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L471",
@@ -5090,7 +5090,7 @@
   "verdict": "CORRECT",
   "shape": "S057 //*[contains(@type,\"s\") and contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 111"
  },
  {
   "id": "L473",
@@ -5101,7 +5101,7 @@
   "verdict": "CORRECT",
   "shape": "S034 //T[contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 118"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L474",
@@ -5189,7 +5189,7 @@
   "verdict": "CORRECT",
   "shape": "S027 //*[contains(@label, \"s$\") and contains(@label, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 121"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 123"
  },
  {
   "id": "L483",
@@ -5211,7 +5211,7 @@
   "verdict": "CORRECT",
   "shape": "S058 //*[contains(@label, \"s$\")]//*[contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 99"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 101"
  },
  {
   "id": "L485",
@@ -5222,7 +5222,7 @@
   "verdict": "CORRECT",
   "shape": "S150 //Other[contains(@name, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 113"
  },
  {
   "id": "L486",
@@ -5233,7 +5233,7 @@
   "verdict": "CORRECT",
   "shape": "S021 //*[contains(@label, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 140"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
  },
  {
   "id": "L487",
@@ -5288,7 +5288,7 @@
   "verdict": "CORRECT",
   "shape": "S003 //*[contains(@type,\"s\") and contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 117"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L492",
@@ -5299,7 +5299,7 @@
   "verdict": "CORRECT",
   "shape": "S010 //*[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 135"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
  },
  {
   "id": "L493",
@@ -5321,7 +5321,7 @@
   "verdict": "CORRECT",
   "shape": "S029 //*[contains(@label, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 139"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
  },
  {
   "id": "L495",
@@ -5332,7 +5332,7 @@
   "verdict": "CORRECT",
   "shape": "S016 //T[@label=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 78"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 76"
  },
  {
   "id": "L496",
@@ -5343,7 +5343,7 @@
   "verdict": "CORRECT",
   "shape": "S032 //*[contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 136"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
  },
  {
   "id": "L497",
@@ -5354,7 +5354,7 @@
   "verdict": "CORRECT",
   "shape": "S026 //*[contains(@name, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 135"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 136"
  },
  {
   "id": "L498",
@@ -5376,7 +5376,7 @@
   "verdict": "CORRECT",
   "shape": "S001 //T[@name=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 82"
  },
  {
   "id": "L500",
@@ -5387,7 +5387,7 @@
   "verdict": "CORRECT",
   "shape": "S028 //*[contains(@type,\"s\") and contains(@value,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 112"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
  },
  {
   "id": "L501",
@@ -5409,7 +5409,7 @@
   "verdict": "CORRECT",
   "shape": "S010 //*[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 135"
  },
  {
   "id": "L503",
@@ -5420,7 +5420,7 @@
   "verdict": "CORRECT",
   "shape": "S002 //T[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 114"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
  },
  {
   "id": "L504",
@@ -5431,7 +5431,7 @@
   "verdict": "CORRECT",
   "shape": "S035 //*[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 139"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 138"
  },
  {
   "id": "L505",
@@ -5442,7 +5442,7 @@
   "verdict": "CORRECT",
   "shape": "S007 //T[contains(@label,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 107"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 109"
  },
  {
   "id": "L506",
@@ -5453,7 +5453,7 @@
   "verdict": "CORRECT",
   "shape": "S015 //T[@name=\"s$\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 80"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 83"
  },
  {
   "id": "L507",
@@ -5464,7 +5464,7 @@
   "verdict": "CORRECT",
   "shape": "S052 //T[contains(@name, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 115"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 116"
  },
  {
   "id": "L508",
@@ -5486,7 +5486,7 @@
   "verdict": "CORRECT",
   "shape": "S004 //*[contains(@type,\"s\") and contains(@name,\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 106"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 107"
  },
  {
   "id": "L510",
@@ -5497,7 +5497,7 @@
   "verdict": "CORRECT",
   "shape": "S013 //*[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 123"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 122"
  },
  {
   "id": "L511",
@@ -5508,7 +5508,7 @@
   "verdict": "CORRECT",
   "shape": "S026 //*[contains(@name, \"s$\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 136"
  },
  {
   "id": "L512",
@@ -5519,7 +5519,7 @@
   "verdict": "CORRECT",
   "shape": "S010 //*[contains(@name, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 137"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 136"
  },
  {
   "id": "L513",
@@ -5530,7 +5530,7 @@
   "verdict": "CORRECT",
   "shape": "S155 (//T[@name=\"s\"])",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 64"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 65"
  },
  {
   "id": "L514",
@@ -5563,7 +5563,7 @@
   "verdict": "CORRECT",
   "shape": "S005 //T[@label=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 74"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 75"
  },
  {
   "id": "L517",
@@ -6877,24 +6877,24 @@
  {
   "id": "E05",
   "xpath": "(//XCUIElementTypeButton)[last()]",
-  "expected": "INEXPRESSIBLE: document-order position; [-1] counts in XCTest query order (RC-D1)",
-  "actual": null,
-  "status": "skipped_not_xpath",
-  "verdict": "CORRECT-SKIP",
+  "expected": "**/XCUIElementTypeButton[-1]",
+  "actual": "-ios class chain:**/XCUIElementTypeButton[-1]",
+  "status": "success",
+  "verdict": "DRIFT",
   "shape": "(//XCUIElementTypeButton)[last()]",
   "category": "E",
-  "note": "XPath-only hits in 150/300 trials | excluded from denominator"
+  "note": "RC-D1: [-1] counts from the end of the matches in XCTest query order (breadth-first), last() in document order (Phase 2; C1 on device) | expected vs XPath: 273/300 equal | actual vs XPath: SET_DIFFERS | DRIFT documented in README"
  },
  {
   "id": "E06",
   "xpath": "(//XCUIElementTypeButton)[last()-1]",
-  "expected": "INEXPRESSIBLE: document-order position; [-2] counts in XCTest query order (RC-D1)",
-  "actual": null,
-  "status": "skipped_not_xpath",
-  "verdict": "CORRECT-SKIP",
+  "expected": "**/XCUIElementTypeButton[-2]",
+  "actual": "-ios class chain:**/XCUIElementTypeButton[-2]",
+  "status": "success",
+  "verdict": "DRIFT",
   "shape": "(//XCUIElementTypeButton)[last()-1]",
   "category": "E",
-  "note": "XPath-only hits in 103/300 trials | excluded from denominator"
+  "note": "RC-D1: [-2] counts from the end of the matches in XCTest query order (breadth-first), last()-1 in document order (Phase 2; C1 on device) | expected vs XPath: 257/300 equal | actual vs XPath: SET_DIFFERS | DRIFT documented in README"
  },
  {
   "id": "E07",
