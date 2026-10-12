@@ -32,6 +32,16 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/parser-provable-b4` (Phase 5, B4) | none of RC-*: leading `.//` (A12 GAP → CORRECT); optimizer rules 1 and 7 removed (A07, A14, A15, A16 DRIFT → CORRECT) | 96.1 | 86.5 % | 72.4 (72.4) | 0 | 0 |
 | `fix/parser-provable-b5` (Phase 5, B5) | none of RC-*: `concat()` of string literals folded into one literal (C09 GAP → CORRECT) | 96.1 | 86.5 % | 74.1 (74.1) | 0 | 0 |
 | `fix/c2-last` (Phase 5, C2) | none of RC-*: grouped `(…)[last()]` → `[-1]`, `(…)[last()-n]` → `[-(n+1)]` as documented DRIFT (RC-D1); E05, E06, L270–L272 CORRECT-SKIP → DRIFT | 95.8 | 87.0 % | 74.3 (74.3) | 0 | 0 |
+| `fix/c2-attributes` (Phase 5, C2) | RC-D3 (skip); B16 `@attr=true()` → no predicate (DRIFT → CORRECT) | 95.8 | 87.0 % | 75.3 (75.3) | 0 | 0 |
+
+Notes on `fix/c2-attributes` (Phase 5, C2):
+
+- **B16.** A whole predicate `[@enabled=true()]` / `[@enabled!=false()]` is dropped: `//XCUIElementTypeButton[@enabled=true()]` → `**/XCUIElementTypeButton`. The rule covers `enabled`, `visible` and `accessible`, the booleans that every Phase 2 / C1 page source holds on every element. XPath compares `true()` with the attribute node-set, so the test is "the attribute exists", whatever its value. Skipped, with a reason: `=false()` / `!=true()` on those three (they never match); `true()` / `false()` on `selected`, `focused`, `exists` (never in the page source) and `hittable` (only when the query names it; not checked on the device); and `true()` / `false()` inside a larger predicate (`[@enabled=true() and @name="a"]`, `not(@enabled=true())`), which would have to be removed from that predicate. `@enabled="true"` (a string) is unchanged: ``enabled == true``.
+- **RC-D3.** `>` / `>=` on a text attribute (`@value>5`) is no longer converted to ``value.doubleValue > 5``. It is skipped with the reason `doubleValue reads "10abc" as 10, XPath as NaN`, as `@value<5` already was. `rect.*` and `index` comparisons (B04, B11) are unchanged. README: the `@value>0.5` row in "What gets converted" is replaced by the B16 row, and the skip table gives both reasons.
+- **Harness fixture.** B03 now has a fixture: Buttons with `value` `10abc`, `7`, `abc` and `1e3`. With the old chain, mini-WDA gives XPath `[b2, b4]` and chain `[b1, b2, b4]`, which is RC-D3, since b1 is `10abc`. That would be WRONG under the `CORRECT` check of `build.js`, which also fails on a fixture difference. The random trees never hold such a value, so B03 had been CORRECT. Since RC-D3 there is no exact chain, so B03 joins `NOT_EXPRESSIBLE` with the label CORRECT-SKIP, like the other skips with no exact form. B is 15 / 15, and S 74.3 → 75.3.
+- Harness: 2 verdicts changed (B03 CORRECT → CORRECT-SKIP, B16 DRIFT → CORRECT), no new WRONG or DRIFT; R unchanged (no corpus entry used either form). Spec DRIFT not documented: B08 and E13 are left. No fuzz notes moved, because no corpus chain changed.
+- **Simulator** (`LocatorLab iPhone 17`, iOS 27.0; AC power, Low Power Mode off): `run.js --cases cases-c1.json --only B16,B03` in 63 s. B16: the converter's chain `**/XCUIElementTypeButton` is EQUAL to the XPath (and so is the candidate, as in C1). B03 (`states` and `c1`): the converter skips, XPATH_ONLY. The output is `device/out/c2-attributes.json` (ignored by git). The iPhone was not run.
+- For D2: `audit/llm/score.js` keeps its own `SPEC_NOT_EXPRESSIBLE` and still counts B03 as expressible. Add B03 there when the Phase 4 answers are rescored, so that both scorers agree. That script was not run here.
 
 Notes on `fix/c2-last` (Phase 5, C2):
 
@@ -773,15 +783,15 @@ The `c1` page source was run through `harness/check.js` with the same XPaths and
 
 | Id | Severity | What | Where |
 |---|---|---|---|
-| RC-D3 | major | `@value>5` → ``value.doubleValue > 5`` also matches values with a numeric prefix (`10abc`, and likely `50%` on a slider or `5 items`): `doubleValue` reads the prefix, while XPath `number()` gives NaN, so the comparison is false. RC14 assumed the two agree whenever XPath gives NaN and the predicate gives 0. They do not when the text starts with a number. | RC14 rule (`>` / `>=` on a text attribute) |
+| RC-D3 | major (**fixed** in `fix/c2-attributes`: skipped) | `@value>5` → ``value.doubleValue > 5`` also matches values with a numeric prefix (`10abc`, and likely `50%` on a slider or `5 items`): `doubleValue` reads the prefix, while XPath `number()` gives NaN, so the comparison is false. RC14 assumed the two agree whenever XPath gives NaN and the predicate gives 0. They do not when the text starts with a number. | RC14 rule (`>` / `>=` on a text attribute) |
 
-The harness still scores B03 CORRECT, so R and S are unchanged in this branch. C2 decides between skipping the rule and documenting it as DRIFT.
+The harness still scores B03 CORRECT, so R and S are unchanged in this branch. C2 decides between skipping the rule and documenting it as DRIFT. C2 skipped it in `fix/c2-attributes`, and a harness fixture now covers it.
 
 ### For C2 (one branch per group)
 
 1. **`fix/c2-functions`.** `matches()`: a pattern without regex metacharacters → `CONTAINS` (with `[c]` for the `i` flag) (H03, H04); any other pattern → ``MATCHES "(?s:.*)(?-s:p)(?s:.*)"`` (H02), with `(?i)` for `i`; skip other flags and any pattern with a literal space (no-break-space fact above). `lower-case(x)="v"` → ``x ==[c] "v"`` (H05), `contains(upper-case(x),"V")` / `contains(translate(x, A–Z, a–z),"v")` → ``CONTAINS[c]`` (H06, C08), for ASCII literals only. Keep C06 (`normalize-space`) and C07 (`string-length`) skipped, and put the reason in the skip message.
 2. **`fix/c2-axes`.** `[descendant::T]` → `[$type == "T"$]` (F04) and `//T1[cond]/ancestor::T2` → `**/T2[$type == "T1" AND cond$]` (R01), only when both steps name a type and the types differ (the RC-D2 rule).
-3. **`fix/c2-attributes`.** `@attr=true()` on a boolean attribute WDA always writes → no predicate (B16, DRIFT → CORRECT). RC-D3: stop emitting `value.doubleValue` for `>` / `>=` on a text attribute, or document it, plus a harness fixture with a `10abc`-like value (B03 becomes WRONG/DRIFT until then).
+3. **`fix/c2-attributes`.** `@attr=true()` on a boolean attribute WDA always writes → no predicate (B16, DRIFT → CORRECT). RC-D3: stop emitting `value.doubleValue` for `>` / `>=` on a text attribute, or document it, plus a harness fixture with a `10abc`-like value (B03 becomes WRONG/DRIFT until then). Done in `fix/c2-attributes` (see Progress since Phase 1).
 4. **`fix/c2-last`.** `(…)[last()]` → `[-1]`, `(…)[last()-n]` → `[-(n+1)]` as documented DRIFT, under the same README note as RC-D1 (E05, E06, L270–L272; harness verdict CORRECT-SKIP → DRIFT). Done in `fix/c2-last` (see Progress since Phase 1).
 
 No change needed: B04 `rect.x`, B11 `index`, B14 `hittable`, A04 `XCUIElementTypeAny`.

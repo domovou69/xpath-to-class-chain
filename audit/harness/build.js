@@ -120,8 +120,8 @@ for (const x of corpus) {
 const SPEC = { // id: [verdict, rootCause|null, documented?]
   A01: ['CORRECT'], A02: ['CORRECT'], A03: ['CORRECT'], A04: ['CORRECT'], A05: ['CORRECT'], A06: ['CORRECT'], A07: ['CORRECT'], A08: ['CORRECT'],
   A09: ['CORRECT'], A10: ['CORRECT'], A11: ['CORRECT'], A12: ['CORRECT'], A13: ['CORRECT-SKIP'], A14: ['CORRECT'], A15: ['CORRECT'], A16: ['CORRECT'],
-  B01: ['CORRECT'], B02: ['CORRECT'], B03: ['CORRECT'], B04: ['CORRECT'], B05: ['CORRECT'], B06: ['CORRECT'], B07: ['CORRECT'], B08: ['DRIFT', null, false],
-  B09: ['CORRECT'], B10: ['CORRECT'], B11: ['CORRECT'], B12: ['CORRECT'], B13: ['CORRECT-SKIP'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['DRIFT', null, false], B17: ['CORRECT'], B18: ['CORRECT'],
+  B01: ['CORRECT'], B02: ['CORRECT'], B03: ['CORRECT-SKIP'], B04: ['CORRECT'], B05: ['CORRECT'], B06: ['CORRECT'], B07: ['CORRECT'], B08: ['DRIFT', null, false],
+  B09: ['CORRECT'], B10: ['CORRECT'], B11: ['CORRECT'], B12: ['CORRECT'], B13: ['CORRECT-SKIP'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['CORRECT'], B17: ['CORRECT'], B18: ['CORRECT'],
   C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['GAP'], C07: ['GAP'], C08: ['GAP'], C09: ['CORRECT'], C10: ['CORRECT'], C11: ['CORRECT'], C12: ['CORRECT'],
   D01: ['CORRECT'], D02: ['CORRECT'], D03: ['CORRECT'], D04: ['CORRECT'], D05: ['CORRECT'], D06: ['CORRECT'], D07: ['CORRECT'], D08: ['CORRECT'], D09: ['CORRECT'], D10: ['CORRECT'], D11: ['CORRECT'], D12: ['CORRECT'],
   E01: ['DRIFT', null, true], E02: ['DRIFT', null, true], E03: ['DRIFT', null, true], E04: ['CORRECT-SKIP'], E05: ['DRIFT', null, true], E06: ['DRIFT', null, true], E07: ['CORRECT-SKIP'], E08: ['CORRECT-SKIP'], E09: ['DRIFT', null, true], E10: ['CORRECT-SKIP'], E11: ['CORRECT-SKIP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['DRIFT', null, true],
@@ -134,7 +134,8 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
 // cases whose XPath never matches anything on WDA (dead) or that have no exact form -> excluded from the denominator.
 // Cases with an `approx` expectation (no exact chain, E02-like) are not listed: a skip there leaves the denominator,
 // an emitted approximation is DRIFT and stays in it (the rule audit/llm/score.js uses)
-const NOT_EXPRESSIBLE = new Set(['F03', 'A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
+// B03: no exact form since RC-D3 (doubleValue reads a numeric prefix), skipped like @value<5
+const NOT_EXPRESSIBLE = new Set(['F03', 'A13', 'B03', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
 for (const r of spec) {
   let [verdict, rc, doc] = SPEC[r.id] || [];
   const e = r.runExpected, a = r.runActual, f = r.fixtureRun;

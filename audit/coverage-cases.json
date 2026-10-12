@@ -6393,13 +6393,13 @@
  {
   "id": "B03",
   "xpath": "//XCUIElementTypeButton[@value>5]",
-  "expected": "**/XCUIElementTypeButton[`value.doubleValue > 5`]",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`value.doubleValue > 5`]",
-  "status": "success",
-  "verdict": "CORRECT",
+  "expected": "SKIP: RC-D3: doubleValue reads a numeric prefix (\"10abc\" → 10), XPath number() gives NaN (device C1)",
+  "actual": null,
+  "status": "skipped_unsupported_logic",
+  "verdict": "CORRECT-SKIP",
   "shape": "//XCUIElementTypeButton[@value>5]",
   "category": "B",
-  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
+  "note": "fixture: xpath xpath=[\"b2\",\"b4\"] chain=undefined | XPath-only hits in 37/300 trials | excluded from denominator"
  },
  {
   "id": "B04",
@@ -6537,12 +6537,12 @@
   "id": "B16",
   "xpath": "//XCUIElementTypeButton[@enabled=true()]",
   "expected": "**/XCUIElementTypeButton",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`enabled == true`]",
+  "actual": "-ios class chain:**/XCUIElementTypeButton",
   "status": "success",
-  "verdict": "DRIFT",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeButton[@enabled=true()]",
   "category": "B",
-  "note": "XPath: non-empty string \"false\" = true() is true | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | DRIFT not documented in README"
+  "note": "XPath: non-empty string \"false\" = true() is true | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "B17",
