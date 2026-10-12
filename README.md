@@ -194,6 +194,8 @@ Status values used in `skipped[]`:
 | `//XCUIElementTypeCell[@name="a"][@label="b"][3]` | ``**/XCUIElementTypeCell[`name == "a" AND label == "b"`][3]`` (merge + index) |
 | `//*[@name="a" or @label="b"][@value="c"]` | ``**/*[`(name == "a" OR label == "b") AND value == "c"`]`` (each `or` group keeps its parentheses) |
 | `//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"]]` | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` (descendant predicate: a Cell that contains such a Button) |
+| `//XCUIElementTypeCell[descendant::XCUIElementTypeButton]` | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton"$]` (`descendant::X` at the start of a predicate is `.//X`) |
+| `//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell` | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` (every Cell that contains such a Button: `//Cell[.//Button[@name="x"]]`. Only a single `//Type[…]` step before `ancestor::` and a bare type after it) |
 | `//XCUIElementTypeCell[@name="a/b"]` | ``**/XCUIElementTypeCell[`name == "a/b"`]`` (slashes inside values are safe) |
 | `//XCUIElementTypeButton[@name="abc*"]` | ``**/XCUIElementTypeButton[`name == "abc*"`]`` (`*` is a literal character in both languages) |
 | `//XCUIElementTypeButton[contains(@enabled,"false")]` | ``**/XCUIElementTypeButton[`enabled == false`]`` (boolean attributes compare as booleans) |
@@ -218,7 +220,8 @@ Status values used in `skipped[]`:
 
 | Pattern | Status |
 |---|---|
-| `following-sibling::`, `preceding-sibling::`, `parent::`, `following::`, `preceding::`, `ancestor::`, `self::` | `skipped_unsupported_logic` |
+| `following-sibling::`, `preceding-sibling::`, `parent::`, `following::`, `preceding::`, `ancestor-or-self::`, `descendant-or-self::`, `self::` (except a type test in a `*` step's predicate) | `skipped_unsupported_logic` |
+| `ancestor::` in any form but `//T1[…]/ancestor::T2`: a predicate or index on the ancestor step (`ancestor::XCUIElementTypeCell[1]` is the nearest one), a longer path before it, a path after it, `*` or the same type on both steps (the chain's `[$…$]` would also match the element itself), `ancestor::XCUIElementTypeApplication`, or a leading `.//` (it can climb to the context node and above) | `skipped_unsupported_logic` |
 | `count()`, `last()` and `position()` inside a step, e.g. `//XCUIElementTypeButton[last()]` (per parent) | `skipped_unsupported_logic` |
 | Element type that isn't `*` or one of WDA's `XCUIElementType*` names (e.g. `//Btn[...]`, `//XCUIElementTypeLabel[...]`) — WDA would read an unknown name as `Other` | `skipped_unsupported_logic` |
 | Parent step `..` | `skipped_unsupported_logic` |

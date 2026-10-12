@@ -244,6 +244,15 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeTable/XCUIElementTypeCell[.//XCUIElementTypeStaticText[@label="x"]]/XCUIElementTypeButton', `${CC}**/XCUIElementTypeTable/XCUIElementTypeCell[$type == "XCUIElementTypeStaticText" AND label == "x"$]/XCUIElementTypeButton`], // F07
   ['//XCUIElementTypeCell[@name="a"][.//XCUIElementTypeButton]', `${CC}**/XCUIElementTypeCell[\`name == "a"\`][$type == "XCUIElementTypeButton"$]`], // F08
   ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x" or @label="y"]][2]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND (name == "x" OR label == "y")$][2]`],
+  // C2 c2-axes: `[descendant::T]` is `[.//T]`; `//T1[cond]/ancestor::T2` is `//T2[.//T1[cond]]` (types named and different)
+  ['//XCUIElementTypeCell[descendant::XCUIElementTypeButton]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton"$]`], // F04
+  ['//XCUIElementTypeCell[ descendant::XCUIElementTypeButton[@name="x"]]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]`],
+  ['//XCUIElementTypeCell[@label="[descendant::x"]', `${CC}**/XCUIElementTypeCell[\`label == "[descendant::x"\`]`],
+  ['//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]`], // R01
+  ['//XCUIElementTypeButton/ancestor::XCUIElementTypeCell', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton"$]`],
+  ['//XCUIElementTypeButton[@name="x" or @label="y"]/ancestor::XCUIElementTypeCell', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND (name == "x" OR label == "y")$]`],
+  ['(//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell)[2]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$][2]`],
+  ['//XCUIElementTypeButton[@name="ancestor::x"]', `${CC}**/XCUIElementTypeButton[\`name == "ancestor::x"\`]`],
 ];
 
 // =====================================================================
@@ -844,6 +853,44 @@ for (const xpath of ['//XCUIElementTypeButton[@value>5]', '//XCUIElementTypeSlid
   const res = convertXpathToClassChain(xpath);
   if (res.status !== 'success' && /doubleValue reads "10abc" as 10/.test(res.reason || '')) ok();
   else fail(`SKIP REASON ${xpath}\n     expected: the doubleValue reason\n     got:      status=${res.status} reason=${res.reason}`);
+}
+
+// C2 c2-axes: the forms of `descendant::` / `ancestor::` with no `$…$` form say why.
+for (const [xpath, why] of [
+  ['//XCUIElementTypeCell[descendant::XCUIElementTypeCell]', /would also match the element itself/],
+  ['//*[descendant::XCUIElementTypeButton]', /would also match the element itself/],
+  ['//XCUIElementTypeCell[descendant::*]', /would also match the element itself/],
+  ['//XCUIElementTypeCell[descendant::XCUIElementTypeButton[2]]', /path in predicate/],
+  ['//XCUIElementTypeCell[descendant::XCUIElementTypeButton/XCUIElementTypeButton]', /path in predicate/],
+  ['//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeButton', /same type on both steps.*RC-D2/],
+  ['//*[@name="x"]/ancestor::XCUIElementTypeCell', /RC-D2/],
+  ['//XCUIElementTypeButton[@name="x"]/ancestor::*', /RC-D2/],
+  ['//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeAny', /RC-D2/],
+  ['//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell[1]', /ancestor:: step with a predicate, an index/], // R04
+  ['//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell[@name="c"]', /ancestor:: step with a predicate, an index/],
+  ['//XCUIElementTypeButton/ancestor::XCUIElementTypeCell/XCUIElementTypeButton', /a further path/],
+  ['//XCUIElementTypeButton[2]/ancestor::XCUIElementTypeCell', /ancestor:: step: path in predicate/],
+  ['//XCUIElementTypeButton[@a="1"][@name="2"]/ancestor::XCUIElementTypeCell', /ancestor:: step: path in predicate/],
+  ['//XCUIElementTypeTable//XCUIElementTypeButton/ancestor::XCUIElementTypeCell', /single \/\/Type step/],
+  ['//XCUIElementTypeButton/ancestor::XCUIElementTypeApplication', /the root/],
+  ['//XCUIElementTypeFoo/ancestor::XCUIElementTypeCell', /non-iOS element type/],
+  ['.//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell', /context node/],
+]) {
+  const res = convertXpathToClassChain(xpath);
+  if (res.status !== 'success' && res.locator === xpath && why.test(res.reason || '')) ok();
+  else fail(`SKIP REASON ${xpath}\n     expected: skip, reason ${why}\n     got:      status=${res.status} locator=${res.locator} reason=${res.reason}`);
+}
+// Still skipped by the axis gates: ancestor-or-self::, descendant-or-self::, parent::, `..`.
+for (const xpath of [
+  '//XCUIElementTypeButton[@name="x"]/ancestor-or-self::XCUIElementTypeCell',
+  '//XCUIElementTypeCell[descendant-or-self::XCUIElementTypeButton]',
+  '//XCUIElementTypeCell[@name="a" and descendant::XCUIElementTypeButton]',
+  '//XCUIElementTypeButton/parent::XCUIElementTypeCell', // R03
+  '//XCUIElementTypeButton/..', // R02
+]) {
+  const res = convertXpathToClassChain(xpath);
+  if (res.status !== 'success' && res.locator === xpath) ok();
+  else fail(`SKIP ${xpath}\n     expected: skip+unchanged\n     got:      status=${res.status} locator=${res.locator}`);
 }
 
 // RC-D1: a grouped position is converted, but WDA counts class chain matches in
