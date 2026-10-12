@@ -22,6 +22,51 @@ Point `./tests` at the folder holding your Appium/XCUITest locators. It scans th
 
 The optimizer runs in both modes, so the preview is exactly what `--write` produces.
 
+## Results at a glance
+
+Measured on 676 real and hand-made XPath locators (562 from real test suites, 114 edge cases) against a WebDriverAgent-compatible oracle, and on a simulator and an iPhone. Full method and numbers: [`audit/coverage-report.md`](audit/coverage-report.md).
+
+**Two ways to convert**
+
+| | A. This converter | B. An LLM with the rules prompt |
+|---|---|---|
+| Cost and speed | free, offline, seconds | Opus at `low` effort, about $1.7 and 5 minutes for the whole list (one batch run) |
+| How | `npx github:domovou69/xpath-to-class-chain ./tests` | give the model [`audit/llm/prompt-v4-run.md`](audit/llm/prompt-v4-run.md) and your locator list |
+| Wrong chains | none | none for Opus and Sonnet; Haiku sent 5 |
+| Best result | **A is the maximum**: it converted 579 of 676 locators and skipped the rest with a reason | 560 of 676, i.e. 96.7 % of what A converted; nothing the converter misses was found by the model |
+
+**Recommendation:** use A. It is free, deterministic, and no model beat it on any case. Use B only for the locators A skips on purpose, and check each chain it returns (with the harness in [`audit/harness`](audit/harness) or on a device) before replacing the XPath: the model's answers were judged by an emulator, not by a device.
+
+**Final results** (one run per model, the converter and `prompt-v4`; R and S defined below the table):
+
+| | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Cost per run (678 locators) |
+|---|---|---|---|---|---|
+| **Converter (A)** | **95.8** | **91.8** | 100 % | 0 | free |
+| Opus, effort low (B) | 95.0 | 86.0 | 96.7 % | 0 | $1.72 |
+| Sonnet, effort low (B) | 95.0 | 83.8 | 96.4 % | 0 | $1.58 |
+| Haiku, effort medium (B) | 94.8 | 71.1 | 95.7 % | 5 | $0.27 |
+| Opus, effort low, no rules (plain request) | 95.0 | 81.9 | 96.7 % | 4 | $2.04 |
+
+**R** is the share of real-world locators that got a correct chain, out of those that have one (a documented approximation counts half; a skipped, wrong or invalid one counts 0). **S** is the same score on the 114 edge cases, weighted by group. Both are out of 100. "Converted vs the converter" counts usable chains against the 579 the converter produces. One run per model, so differences of about 3 points in S are noise.
+
+**Lookup speed.** A class chain is faster than the XPath it replaces, and the gain grows with the page: on a simulator and an iPhone 13 Pro Max it saved 22–29 % per lookup at every size from 100 to 2000 elements in the tree, which is 25 ms at 100 elements on the simulator and 676 ms at 2000 on the iPhone. The chain was faster in all 240 timed lookups.
+
+![Time per element lookup vs. elements in the tree, XPath and class chain, simulator and iPhone](audit/scale-chart.svg)
+
+Caveat: `visible` on the last step can be much slower as a chain; see [On the device](#on-the-device).
+
+**What this state was checked on** (October 2026; re-check when any of it changes):
+
+| | Version |
+|---|---|
+| Appium | 3.8.0 |
+| appium-xcuitest-driver | 12.16.0 |
+| WebDriverAgent | 16.14.1 |
+| iOS | 27.0 simulator (iPhone 17) and iOS 26.6 on an iPhone 13 Pro Max; same results |
+| Xcode | 27.0 |
+| Node.js | 20 or later (run on 24) |
+| Models for B | `claude-opus-5-5`, `claude-sonnet-5-5`, `claude-haiku-5-5` |
+
 ## Requirements
 
 Node.js ≥ 20. No npm dependencies.
