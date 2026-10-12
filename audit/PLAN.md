@@ -98,11 +98,11 @@ Each shape is used on 3 targets: top of screen (shallow, early in traversal), de
 - A report section with size × shape × position, and a chart of lookup time vs. screen size.
 - README instructions so others can run the benchmark on their devices.
 
-## Phase 4 — plain LLMs vs the converter (planned)
+## Phase 4 — plain LLMs vs the converter (done, see the report)
 
 Question: how well do Haiku, Sonnet and Opus convert the same locators when simply asked to, with no tool and no extra knowledge, compared with the converter?
 
-**Input.** `audit/llm/input.json`: all 684 cases of `coverage-cases.json` (563 corpus, 121 spec) as `{ id, xpath }`. The XPath is the runtime string the driver receives, so quoting in source code is not part of the test. The order is shuffled and the group (`corpus`/`spec`) is not shown to the models; it is kept in a separate key file for scoring.
+**Input.** `audit/llm/input.json`: the 678 locator cases of `coverage-cases.json` (563 corpus, 115 spec) as `{ id, xpath }`; the 6 scanner-context cases are source files, not locators, and are left out. The XPath is the runtime string the driver receives, so quoting in source code is not part of the test. The order is shuffled and the group (`corpus`/`spec`) is not shown to the models; it is kept in a separate key file for scoring.
 
 **Run.** One task per model, as a user would give it: the whole file, "convert these XPath locators to iOS class chain". The same prompt for all models, stored in `audit/llm/prompt.md` and quoted in the report.
 - Isolation: `claude -p` in an empty folder outside the repository, containing only `input.json`. Tools are limited to Read and Write; there is no web access, no repository, no project memory, and `--bare`. The model may split the work itself.
@@ -137,4 +137,10 @@ Scores R (corpus) and S (spec) from 0 to 100, C, and the WRONG / INVALID / MISSI
 
 **Text analysis.** Opus (effort `high`) groups the errors by type and writes the findings from the scored results only; it does not grade.
 
-**Deliverables.** `audit/llm/` (input, key, prompt, runner, outputs, scores), a report section with the prompt, the results table, the stability table, the per-model recommendation, the error analysis and conclusions, and a PR from branch `audit/llm-comparison`.
+**What changed during the run (2026-10-11/12).**
+- `--bare` was dropped: in CLI 2.1.296 it accepts only an API key, and the runs used the account login. Isolation is the same otherwise: `--tools Read,Write`, `--setting-sources ""`, an empty MCP config, `--no-session-persistence`, a clean environment and an empty folder in the system temp dir.
+- The prompt asks for the full locator with the `-ios class chain:` prefix; the scorer strips it and counts missing prefixes (there were none).
+- One run per cell. `xhigh` was skipped for all models and Stage 2 (repeats) was not run, to stay within the account's usage limit. Opus / `max` was cut off by that limit after 460 of 678 answers and is left out of the comparison.
+- Scoring rule for skips: a skipped locator with no exact class chain is CORRECT-SKIP and leaves that run's denominator (the report's "skip grouped positions" variant); `R=` / `S=` also give every row the converter's denominator.
+
+**Deliverables.** `audit/llm/` (input, key, prompt, runner, outputs, scores), a report section with the prompt, the results table, the per-model recommendation (the stability table is not made: Stage 2 was not run), the error analysis and conclusions, and a PR from branch `audit/llm-comparison`.

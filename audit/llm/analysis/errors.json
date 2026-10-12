@@ -1,0 +1,4441 @@
+{
+ "cells": [
+  "haiku/low",
+  "haiku/medium",
+  "haiku/high",
+  "haiku/max",
+  "sonnet/low",
+  "sonnet/medium",
+  "sonnet/high",
+  "sonnet/max",
+  "opus/low",
+  "opus/medium",
+  "opus/high"
+ ],
+ "cases": {
+  "C08": {
+   "group": "spec",
+   "cat": "C",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ab\")]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "E14": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "(//XCUIElementTypeCell)[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeCell[1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeCell[0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeCell[0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeCell[1]"
+    }
+   }
+  },
+  "H09": {
+   "group": "spec",
+   "cat": "H",
+   "xpath": "//*[string-join(tokenize(@label,\" \"),\"-\")=\"a-b\"]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "WRONG",
+     "chain": "**/*[`label == \"a b\" OR label == \"a-b\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"c\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"b\" value=\"-\"><XCUIElementTypeStaticText k=\"n3\" name=\"b\" value=\"\"><XCUIElementTypeCell k=\"n4\" label=\" a  b \"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" label=\" \" value=\"-z\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" label=\""
+    },
+    "sonnet/medium": {
+     "verdict": "WRONG",
+     "chain": "**/*[`label IN {\"a b\", \"a-b\"}`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"c\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"b\" value=\"-\"><XCUIElementTypeStaticText k=\"n3\" name=\"b\" value=\"\"><XCUIElementTypeCell k=\"n4\" label=\" a  b \"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" label=\" \" value=\"-z\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" label=\""
+    },
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "L349": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "//XCUIElementTypeTextField[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeTextField[1]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "L271": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"])[last()]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" val"
+    },
+    "haiku/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" val"
+    },
+    "haiku/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" val"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" val"
+    },
+    "sonnet/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" val"
+    },
+    "sonnet/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" val"
+    },
+    "sonnet/max": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" val"
+    },
+    "opus/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" val"
+    },
+    "opus/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" val"
+    },
+    "opus/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\"><XCUIElementTypeStaticText k=\"n4\" val"
+    }
+   }
+  },
+  "L070": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"ZejizasAgal.giselolIpefov\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\"><XCUIElementTypeButton k=\"n2\" name=\"ZejizasAgal.giselolIpefov\"></XCUIElementTypeButton></XCUIElementTypeOther></XCUIElementTypeApplication> → XPath [] vs chain [\"n2\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+    }
+   }
+  },
+  "A16": {
+   "group": "spec",
+   "cat": "A",
+   "xpath": "//XCUIElementTypeCell[@visible=\"true\"]/XCUIElementTypeButton",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeCell/XCUIElementTypeButton[`visible == 1`]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "C04": {
+   "group": "spec",
+   "cat": "C",
+   "xpath": "//XCUIElementTypeButton[contains(text(),\"a\")]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`label CONTAINS \"a\" OR value CONTAINS \"a\"`]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "L157": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "N/A",
+     "chain": "**/XCUIElementTypeButton[`label == \"Gihasem\"`]"
+    },
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": {
+     "verdict": "N/A",
+     "chain": "**/XCUIElementTypeButton[`label == \"Gihasem\"`]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "F08": {
+   "group": "spec",
+   "cat": "F",
+   "xpath": "//XCUIElementTypeCell[@name=\"a\"][.//XCUIElementTypeButton]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeCell[`name == \"a\"`][$type == \"XCUIElementTypeButton\"$]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "nested path inside a predicate ([.//X]) has no class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Predicate [.//XCUIElementTypeButton] tests for a descendant; class chain predicates cannot test descendants"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Predicate tests for a descendant Button; class chain predicates can only test the element's own attributes"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "[.//XCUIElementTypeButton] tests for a descendant of the matched Cell; class chain predicates can only test the element's own attributes"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "Requires a child-existence predicate ([.//XCUIElementTypeButton]); class chains cannot test descendants."
+    },
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "G14": {
+   "group": "spec",
+   "cat": "G",
+   "xpath": "//*[contains(@label,\"a]b\")]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L258": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[contains(@name, \"Dobe teg\")])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+    }
+   }
+  },
+  "L471": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"LohenobEcohazoLasi.sewanecAbifub\"])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+    }
+   }
+  },
+  "L572": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\"])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+    }
+   }
+  },
+  "L012": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[1])[1]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeStaticText/XCUIElementTypeStaticText[1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "positional index on a multi-step result has no class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Uses child::[1], which is a per-parent position; class chain index counts across the whole match set, so it would not find the same elements"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Positional predicate applied per parent inside a nested child step, then re-indexed; class chain index applies to the whole match set, so this cannot be reprodu"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "positional child::*[1] inside a positional document-order pick; class chain index semantics couldn't be verified here"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "Global index over per-parent first-child matches; class chain child index is per parent, so a single chain cannot express it."
+    },
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "child step with positional index per parent combined with a global [1]; class chain index semantics on nested steps differ"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "Takes the first of the first-StaticText-children of all StaticTexts; class chain cannot apply an index to the combined result of a multi-step path."
+    },
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "B10": {
+   "group": "spec",
+   "cat": "B",
+   "xpath": "//XCUIElementTypeButton[@name]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeButton[`name != nil`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "attribute-existence test [@name] has no class chain predicate form"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Attribute-existence test on @name (matches whether the attribute is present, including empty values); class chain has no exact equivalent for attribute presence"
+    },
+    "haiku/high": "CORRECT",
+    "haiku/max": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\"></XCUIElementTypeButton></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "Attribute-existence test (@name); class chain predicates cannot distinguish a missing name from an empty one."
+    },
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "E13": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "(//XCUIElementTypeCell[@name=\"a\"]/XCUIElementTypeButton[2])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeCell[`name == \"a\"`][2]/XCUIElementTypeButton[2]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "E10": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" value=\"\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" name=\"A b\" label=\"other\" value=\"10.5\"><XCUIElementTypeOther k=\"n3\" name=\"b\" value=\"abc\"><XCUIElementTypeStaticText k=\"n4\" value=\" a  b \"></XCUIElementTypeStaticText><XCUIElementTypeOther k=\"n5\" name=\"false\" value=\"b\"><XCUIElementTypeButton"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    }
+   }
+  },
+  "L565": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" name=\"hilubodamo, lulik gusuri\"></XCUIElementTypeOther></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    }
+   }
+  },
+  "L350": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "//XCUIElementTypeTextField[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeTextField[2]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "L062": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.noraSefili\"])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+    }
+   }
+  },
+  "L573": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\"><XCUIElementTypeButton k=\"n2\" name=\"WefaniBedufeDanu.gotePebazoh\"></XCUIElementTypeButton></XCUIElementTypeOther></XCUIElementTypeApplication> → XPath [] vs chain [\"n2\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+    }
+   }
+  },
+  "L225": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//*[contains(@label, \"Nepureze\")]/child::*[contains(@label, \"Nepureze\")])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/*[`label CONTAINS \"Nepureze\"`]/*[`label CONTAINS \"Nepureze\"`][2]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label CONTAINS \"Nepureze\"`]/*[`label CONTAINS \"Nepureze\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label CONTAINS \"Nepureze\"`]/*[`label CONTAINS \"Nepureze\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label CONTAINS \"Nepureze\"`]/*[`label CONTAINS \"Nepureze\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label CONTAINS \"Nepureze\"`]/*[`label CONTAINS \"Nepureze\"`][2]"
+    }
+   }
+  },
+  "C09": {
+   "group": "spec",
+   "cat": "C",
+   "xpath": "//*[@label=concat(\"a\",\"b\")]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "concat() has no class chain equivalent"
+    },
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L556": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "//*[@name=\"VavepaGomudatepUvepajImar.lawupe(Vq1)\"]/child::*[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/*[`name == \"VavepaGomudatepUvepajImar.lawupe(Vq1)\"`]/*[1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeAny[`name == \"VavepaGomudatepUvepajImar.lawupe(Vq1)\"`]/XCUIElementTypeAny[0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeAny[`name == \"VavepaGomudatepUvepajImar.lawupe(Vq1)\"`]/XCUIElementTypeAny[0]'. Position value '0' is expected to be a valid integer number not equal t"
+    },
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name == \"VavepaGomudatepUvepajImar.lawupe(Vq1)\"`]/*[1]"
+    },
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name == \"VavepaGomudatepUvepajImar.lawupe(Vq1)\"`]/*[1]"
+    },
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "L451": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//*[@name=\"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeAny[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"></XCUIElementTypeWindow></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeAny[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeAny[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+    }
+   }
+  },
+  "L407": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@label=\"Dobe Dubow teg £2.00\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\"><XCUIElementTypeButton k=\"n2\" label=\"Dobe Dubow teg £2.00\"></XCUIElementTypeButton></XCUIElementTypeOther></XCUIElementTypeApplication> → XPath [] vs chain [\"n2\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+    }
+   }
+  },
+  "L396": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"taka_vawotub_giwap\"])[3]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"taka_vawotub_giwap\"></XCUIElementTypeWindow><XCUIElementTypeOther k=\"n2\" label=\"Vq1\" name=\"taka_vawotub_giwap z\"><XCUIElementTypeButton k=\"n3\" name=\"taka_vawo\" label=\"true\" value=\"true\"></XCUIElementTypeButton><XCUIElementTypeButton k=\"n4\" name=\"taka_vawotub_giwap\" label=\"taka_vawotub_giwap z"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+    }
+   }
+  },
+  "L397": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"taka_vawotub_giwap\"])[10]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][9]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+    }
+   }
+  },
+  "G03": {
+   "group": "spec",
+   "cat": "G",
+   "xpath": "//*[@label='a\"b']",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L498": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.dijivOdozev\"])[3]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\" label=\"HosidoLitokazajiCimo.dijivOdozev\" value=\"other\" name=\"HosidoLitokazajiCimo.dijivOdozev\"></XCUIElementTypeButton><XCUIElementTypeButton k=\"n2\" label=\"HosidoLitokazajiCimo.dijivOdozev\" value=\"HosidoLitokazaji\" name=\"HosidoLitokazajiCimo.dijivOdozev\"><XCUIElementTypeOther k=\"n3\" label=\"y Hosido"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+    }
+   }
+  },
+  "X07": {
+   "group": "spec",
+   "cat": "D",
+   "xpath": "//*[self::XCUIElementTypeButton or self::XCUIElementTypeStaticText]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "self:: axis has no class chain equivalent"
+    },
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L171": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//*[contains(@name, \"Vq1\")])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/*[`name CONTAINS \"Vq1\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeAny[`name CONTAINS \"Vq1\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"Vq1\"></XCUIElementTypeWindow></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeAny[`name CONTAINS \"Vq1\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeAny[`name CONTAINS \"Vq1\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name CONTAINS \"Vq1\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name CONTAINS \"Vq1\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name CONTAINS \"Vq1\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name CONTAINS \"Vq1\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name CONTAINS \"Vq1\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name CONTAINS \"Vq1\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`name CONTAINS \"Vq1\"`][2]"
+    }
+   }
+  },
+  "F03": {
+   "group": "spec",
+   "cat": "F",
+   "xpath": "//XCUIElementTypeCell[.//*[@name=\"x\"]]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[$name == \"x\"$]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" value=\"\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" name=\"A b\" label=\"other\" value=\"10.5\"><XCUIElementTypeOther k=\"n3\" name=\"b\" value=\"abc\"><XCUIElementTypeButton k=\"n4\" value=\" a  b \"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n5\" name=\"false\" value=\"b\"><XCUIElementTypeCell k=\"n6\" na"
+    },
+    "sonnet/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[$name == \"x\"$]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" value=\"\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" name=\"A b\" label=\"other\" value=\"10.5\"><XCUIElementTypeOther k=\"n3\" name=\"b\" value=\"abc\"><XCUIElementTypeButton k=\"n4\" value=\" a  b \"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n5\" name=\"false\" value=\"b\"><XCUIElementTypeCell k=\"n6\" na"
+    },
+    "sonnet/max": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[$name == \"x\"$]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" value=\"\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" name=\"A b\" label=\"other\" value=\"10.5\"><XCUIElementTypeOther k=\"n3\" name=\"b\" value=\"abc\"><XCUIElementTypeButton k=\"n4\" value=\" a  b \"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n5\" name=\"false\" value=\"b\"><XCUIElementTypeCell k=\"n6\" na"
+    },
+    "opus/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[$name == \"x\"$]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" value=\"\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" name=\"A b\" label=\"other\" value=\"10.5\"><XCUIElementTypeOther k=\"n3\" name=\"b\" value=\"abc\"><XCUIElementTypeButton k=\"n4\" value=\" a  b \"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n5\" name=\"false\" value=\"b\"><XCUIElementTypeCell k=\"n6\" na"
+    },
+    "opus/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[$name == \"x\"$]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" value=\"\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" name=\"A b\" label=\"other\" value=\"10.5\"><XCUIElementTypeOther k=\"n3\" name=\"b\" value=\"abc\"><XCUIElementTypeButton k=\"n4\" value=\" a  b \"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n5\" name=\"false\" value=\"b\"><XCUIElementTypeCell k=\"n6\" na"
+    },
+    "opus/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[$name == \"x\"$]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" value=\"\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" name=\"A b\" label=\"other\" value=\"10.5\"><XCUIElementTypeOther k=\"n3\" name=\"b\" value=\"abc\"><XCUIElementTypeButton k=\"n4\" value=\" a  b \"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n5\" name=\"false\" value=\"b\"><XCUIElementTypeCell k=\"n6\" na"
+    }
+   }
+  },
+  "X04": {
+   "group": "spec",
+   "cat": "D",
+   "xpath": "//XCUIElementTypeButton[@name=\"a\"] | //XCUIElementTypeButton[@name=\"b\"]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "union of two locators (|) has no single class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Uses a union (|) of two queries; class chain has no union"
+    },
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "XPath union (|) cannot be expressed as a single class chain"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "Uses a union (|), which class chain does not support."
+    },
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L207": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeStaticText[@name=\"Hicepe\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\"><XCUIElementTypeStaticText k=\"n2\" name=\"Hicepe\"></XCUIElementTypeStaticText></XCUIElementTypeOther></XCUIElementTypeApplication> → XPath [] vs chain [\"n2\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+    }
+   }
+  },
+  "F01": {
+   "group": "spec",
+   "cat": "F",
+   "xpath": "//XCUIElementTypeCell[.//XCUIElementTypeButton[@name=\"x\"]]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"x\"$]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "nested path inside a predicate ([.//X]) has no class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Predicate [.//XCUIElementTypeButton[...]] tests for a descendant; class chain predicates cannot test descendants"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Predicate tests for a descendant Button named x; class chain predicates can only test the element's own attributes"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "[.//*[...]] tests for a descendant of the matched Cell; class chain predicates can only test the element's own attributes"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "Requires a descendant-existence predicate on the Cell; class chains cannot test descendants in a predicate."
+    },
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "C03": {
+   "group": "spec",
+   "cat": "C",
+   "xpath": "//XCUIElementTypeButton[text()=\"a\"]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`label == \"a\" OR value == \"a\"`]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "L182": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeOther[@name=\"Luvuce tuve nowam\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" name=\"other\"><XCUIElementTypeOther k=\"n2\" name=\"Luvuce tuve nowam\" label=\"y Luvuce tuve nowam\"></XCUIElementTypeOther></XCUIElementTypeWindow></XCUIElementTypeApplication> → XPath [] vs chain [\"n2\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+    }
+   }
+  },
+  "A12": {
+   "group": "spec",
+   "cat": "A",
+   "xpath": ".//XCUIElementTypeButton[@name=\"a\"]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "relative path (.//X) is not anchored to the document; no class chain equivalent"
+    },
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L428": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeOther[@name=\", Nepureze, hilubodamo\"])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+    }
+   }
+  },
+  "E09": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"A b\"><XCUIElementTypeCell k=\"n2\" name=\"ab\" value=\"a b\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"A b\" label=\"a\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"A\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" "
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][2]"
+    }
+   }
+  },
+  "H04": {
+   "group": "spec",
+   "cat": "H",
+   "xpath": "//*[matches(@name,\"ab\",\"i\")]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "matches() regex has no equivalent (NSPredicate MATCHES is whole-string, XPath matches is substring)"
+    },
+    "haiku/medium": "CORRECT",
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function matches(); XCUITest's XPath engine is XPath 1.0 and does not support it, so there is no reliable element set to reproduce"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "matches() is an XPath 2.0 function; WDA's XPath engine is XPath 1.0, so the XPath errors instead of matching"
+    },
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "matches() is an XPath 2.0 function; Appium's XPath 1.0 engine rejects this locator"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "Uses the XPath 2.0 function matches(); the driver evaluates XPath 1.0 (libxml2), where this locator is invalid, so there is no result set to reproduce."
+    },
+    "opus/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function matches(); Appium's XCUITest driver evaluates XPath 1.0 only, so this locator is rejected as invalid and has no result set to reproduce."
+    }
+   }
+  },
+  "H07": {
+   "group": "spec",
+   "cat": "H",
+   "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "B16": {
+   "group": "spec",
+   "cat": "B",
+   "xpath": "//XCUIElementTypeButton[@enabled=true()]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`enabled == true`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "true() function has no class chain equivalent"
+    },
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "@enabled=true() compares the attribute string to a boolean (non-empty string is true), so it matches every button regardless of state; semantics are ambiguous a"
+    },
+    "sonnet/high": "CORRECT",
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`enabled == true`]"
+    },
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L270": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeStaticText[@name=\"jila_zugo\"])[last()]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\"><XCUIElementTypeOther k=\"n2\" name=\"true\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" nam"
+    },
+    "haiku/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\"><XCUIElementTypeOther k=\"n2\" name=\"true\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" nam"
+    },
+    "haiku/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\"><XCUIElementTypeOther k=\"n2\" name=\"true\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" nam"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\"><XCUIElementTypeOther k=\"n2\" name=\"true\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" nam"
+    },
+    "sonnet/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\"><XCUIElementTypeOther k=\"n2\" name=\"true\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" nam"
+    },
+    "sonnet/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\"><XCUIElementTypeOther k=\"n2\" name=\"true\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" nam"
+    },
+    "sonnet/max": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\"><XCUIElementTypeOther k=\"n2\" name=\"true\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" nam"
+    },
+    "opus/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\"><XCUIElementTypeOther k=\"n2\" name=\"true\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" nam"
+    },
+    "opus/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\"><XCUIElementTypeOther k=\"n2\" name=\"true\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" nam"
+    },
+    "opus/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\"><XCUIElementTypeOther k=\"n2\" name=\"true\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" nam"
+    }
+   }
+  },
+  "L566": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[3]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" label=\"hilubodamo, lulik gusuri\" value=\"other\" name=\"hilubodamo, lulik gusuri\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" label=\"hilubodamo, lulik gusuri\" value=\"hilubodamo, \" name=\"hilubodamo, lulik gusuri\"><XCUIElementTypeStaticText k=\"n3\" label=\"y hilubodamo, lulik gusuri\" name=\"hiluboda"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+    }
+   }
+  },
+  "X05": {
+   "group": "spec",
+   "cat": "D",
+   "xpath": "//XCUIElementTypeButton[@name=\"a\"] | //XCUIElementTypeStaticText[@name=\"b\"]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "union of two locators (|) has no single class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Uses a union (|) of two queries; class chain has no union"
+    },
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "XPath union (|) cannot be expressed as a single class chain"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "Uses a union (|), which class chain does not support."
+    },
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "B11": {
+   "group": "spec",
+   "cat": "B",
+   "xpath": "//*[@index=\"1\"]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/*[`index == 1`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "@index is not a class chain predicate key"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "@index is the element's position among its siblings (per-parent), which class chain does not expose as an attribute; cannot guarantee the same elements"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Matches on the index attribute, which is sibling-relative and is not exposed as a class chain predicate"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "@index is the element's position among its siblings, a per-parent value that class chain predicates can't test"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "@index is an XPath-only synthetic attribute; not available in class chain predicates."
+    },
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "@index (sibling position) has no class chain predicate equivalent"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "The 'index' attribute (sibling position) is not available in class chain predicates."
+    },
+    "sonnet/max": "CORRECT",
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "@index is the position among siblings; class chain has no sibling-position predicate"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "@index is the element's position among its parent's children in the generated page source; class chain has no sibling-position predicate, and its indexes count "
+    },
+    "opus/high": {
+     "verdict": "GAP",
+     "reason": "Filters on the source 'index' attribute (position among siblings); class chain predicates cannot test sibling position, and a class chain [n] index selects from"
+    }
+   }
+  },
+  "L458": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "//*[contains(@label, \"NE Cisibosogoz Jufoz bihi\") and not (contains(@label, \"Bika\"))]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L119": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "//XCUIElementTypeStaticText[@name=\"19, Juzo Kabih\nJomojab, FI16 7TE\"]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\\nJomojab, FI16 7TE\"`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "The string literal contains a line break; class chain predicate string literals cannot reliably represent a newline"
+    },
+    "haiku/high": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih"
+    },
+    "haiku/max": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih"
+    },
+    "sonnet/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih"
+    },
+    "sonnet/medium": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih"
+    },
+    "sonnet/high": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih"
+    },
+    "sonnet/max": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih"
+    },
+    "opus/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih"
+    },
+    "opus/medium": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih"
+    },
+    "opus/high": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"19, Juzo Kabih"
+    }
+   }
+  },
+  "G04": {
+   "group": "spec",
+   "cat": "G",
+   "xpath": "//*[@label=\"a`b\"]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "value contains a backtick, which cannot appear inside a class chain backtick predicate"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "The string literal contains a backtick, which terminates the class chain predicate; cannot be expressed"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Label contains a backtick, which closes a class chain predicate, and class chain predicates have no way to escape it"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "the value contains a backtick, which delimits class chain predicates, so it can't be written inside one"
+    },
+    "sonnet/low": {
+     "verdict": "INVALID",
+     "chain": "**/*[`label == \"a\\`b\"`]",
+     "wda": "Cannot parse class chain query '**/*[`label == \"a\\`b\"`]'. Unexpected character detected at position 20:"
+    },
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "value contains a backtick, which is the predicate delimiter in class chain syntax and cannot be escaped reliably"
+    },
+    "sonnet/high": {
+     "verdict": "INVALID",
+     "chain": "**/*[`label == \"a\\`b\"`]",
+     "wda": "Cannot parse class chain query '**/*[`label == \"a\\`b\"`]'. Unexpected character detected at position 20:"
+    },
+    "sonnet/max": {
+     "verdict": "GAP",
+     "reason": "The label contains a literal backtick, which is the delimiter of class chain predicates; escaping it inside a predicate is not reliably supported, so an equival"
+    },
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "E07": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "(//XCUIElementTypeButton)[position()=2]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "haiku/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "sonnet/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "sonnet/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "sonnet/max": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "opus/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "opus/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "opus/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    }
+   }
+  },
+  "L567": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\"><XCUIElementTypeOther k=\"n2\" name=\"hilubodamo, lulik gusuri\"></XCUIElementTypeOther></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [] vs chain [\"n2\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+    }
+   }
+  },
+  "A14": {
+   "group": "spec",
+   "cat": "A",
+   "xpath": "//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[@name=\"a\"]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"a\"`]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "A13": {
+   "group": "spec",
+   "cat": "A",
+   "xpath": "//XCUIElementTypeLabel[@name=\"a\"]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeLabel[`name == \"a\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"root\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"o1\" name=\"a\"></XCUIElementTypeOther><XCUIElementTypeStaticText k=\"s1\" name=\"a\"></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [] vs chain [\"o1\"]"
+    },
+    "haiku/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeLabel[`name == \"a\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"root\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"o1\" name=\"a\"></XCUIElementTypeOther><XCUIElementTypeStaticText k=\"s1\" name=\"a\"></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [] vs chain [\"o1\"]"
+    },
+    "haiku/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeLabel[`name == \"a\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"root\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"o1\" name=\"a\"></XCUIElementTypeOther><XCUIElementTypeStaticText k=\"s1\" name=\"a\"></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [] vs chain [\"o1\"]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "L355": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "//*[@name=\"Veg monuw\"] | //*[@name=\"LipohUgicolu.codid\"]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "union of two locators (|) has no single class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Uses a union (|) of two queries; class chain has no union"
+    },
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "XPath union (|) cannot be expressed as a single class chain"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "Uses a union (|), which class chain does not support."
+    },
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "B02": {
+   "group": "spec",
+   "cat": "B",
+   "xpath": "//XCUIElementTypeButton[@label!=\"a\"]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeButton[`label != nil AND label != \"a\"`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`label != \"a\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\"></XCUIElementTypeButton></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`label != \"a\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\"></XCUIElementTypeButton></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`label != \"a\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\"></XCUIElementTypeButton></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/max": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`label != \"a\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\"></XCUIElementTypeButton></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "sonnet/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`label != \"a\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\"></XCUIElementTypeButton></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "sonnet/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`label != \"a\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\"></XCUIElementTypeButton></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "sonnet/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`label != \"a\"`]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\"></XCUIElementTypeButton></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "A04": {
+   "group": "spec",
+   "cat": "A",
+   "xpath": "//XCUIElementTypeAny[@name=\"a\"]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/*[`name == \"a\"`]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "XCUIElementTypeAny is not a real element type in the XCUITest source tree, so the XPath matches nothing; in class chain XCUIElementTypeAny is a wildcard and wou"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "XCUIElementTypeAny is not a real element type in XCUITest XML, so the XPath matches nothing; in class chain it is a wildcard, so the locator cannot be converted"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "XCUIElementTypeAny is a query wildcard rather than a type the page source reports, so there is no class chain with the same match set (one using that type would"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "XCUIElementTypeAny is not a real element type; class chain would be invalid (use ** / * wildcard, which differs from this XPath)."
+    },
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "XCUIElementTypeAny is not a valid element type name for XPath matching of real elements, so the XPath matches nothing and the class chain type would be rejected"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "XCUIElementTypeAny is not an element name in the page source, so the XPath matches nothing, while class chain XCUIElementTypeAny matches every element type."
+    },
+    "sonnet/max": {
+     "verdict": "GAP",
+     "reason": "XCUIElementTypeAny never appears as an element name in the XCUITest tree, so the XPath matches nothing, whereas XCUIElementTypeAny in a class chain is a wildcar"
+    },
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "no element is named XCUIElementTypeAny in the source, so the XPath matches nothing, while class chain XCUIElementTypeAny matches every type"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "No element in the page source is tagged XCUIElementTypeAny, so the XPath finds nothing, but class chain treats XCUIElementTypeAny as a wildcard that matches eve"
+    },
+    "opus/high": {
+     "verdict": "GAP",
+     "reason": "In XPath, XCUIElementTypeAny is a literal tag name that never occurs in the source, so this matches nothing; in class chain XCUIElementTypeAny is a wildcard and"
+    }
+   }
+  },
+  "L013": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[2])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeStaticText/XCUIElementTypeStaticText[2]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "L310": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeLink[@name=\"Bemat roki\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeLink k=\"n1\" name=\"Bemat roki\" label=\"Bemat roki z\"><XCUIElementTypeStaticText k=\"n2\" value=\"true\"></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n3\" name=\"Bemat roki\"></XCUIElementTypeStaticText></XCUIElementTypeLink></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+    }
+   }
+  },
+  "L208": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeStaticText[@name=\"Hero\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" label=\"false\" value=\"Hero z\" name=\"Hero\"></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+    }
+   }
+  },
+  "H05": {
+   "group": "spec",
+   "cat": "H",
+   "xpath": "//*[lower-case(@label)=\"ab\"]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "lower-case() has no class chain equivalent (use CONTAINS[c] only for contains())"
+    },
+    "haiku/medium": "CORRECT",
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function lower-case(); XCUITest's XPath engine is XPath 1.0 and does not support it"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "lower-case() is an XPath 2.0 function; WDA's XPath engine is XPath 1.0, so the XPath errors instead of matching"
+    },
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "lower-case() is an XPath 2.0 function; Appium's XPath 1.0 engine rejects this locator"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "Uses the XPath 2.0 function lower-case(); the driver evaluates XPath 1.0 (libxml2), where this locator is invalid, so there is no result set to reproduce."
+    },
+    "opus/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function lower-case(); Appium's XCUITest driver evaluates XPath 1.0 only, so this locator is rejected as invalid and has no result set to reprodu"
+    }
+   }
+  },
+  "G11": {
+   "group": "spec",
+   "cat": "G",
+   "xpath": "(//*[@label=\"a)b\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/*[`label == \"a)b\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeAny[`label == \"a)b\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" name=\"ya)b\" label=\"a)b\" value=\"10.5\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n2\" label=\"a)\" value=\"a)b\"></XCUIElementTypeCell></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeAny[`label == \"a)b\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeAny[`label == \"a)b\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label == \"a)b\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label == \"a)b\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label == \"a)b\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label == \"a)b\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label == \"a)b\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label == \"a)b\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/*[`label == \"a)b\"`][2]"
+    }
+   }
+  },
+  "H08": {
+   "group": "spec",
+   "cat": "H",
+   "xpath": "//*[tokenize(@label,\" \")[2]=\"b\"]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "N/A",
+     "chain": "**/*[`label MATCHES \"(?s)[^ ]* b( .*)?\"`]"
+    },
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "B14": {
+   "group": "spec",
+   "cat": "B",
+   "xpath": "//XCUIElementTypeButton[@hittable=\"true\"]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeButton[`hittable == true`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "@hittable is not a verified class chain predicate key"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Predicate on @hittable; class chain does not document a hittable attribute, so equivalence cannot be guaranteed"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Matches on the hittable attribute, which is not a documented class chain predicate attribute, so equivalence cannot be confirmed"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "@hittable: couldn't confirm that the XCUITest page source exposes this attribute or that class chain predicates accept it, so the match set can't be guaranteed"
+    },
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L234": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"LunaseMinihEsak.vosuzAnomeMevoja\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\" name=\"LunaseMinihEsak.vosuzAnomeMevoja\" label=\"false\"></XCUIElementTypeButton></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+    }
+   }
+  },
+  "E03": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeButton[`name == \"a\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"a\"`][1]"
+    }
+   }
+  },
+  "H01": {
+   "group": "spec",
+   "cat": "H",
+   "xpath": "//*[ends-with(@name,\"ab\")]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/*[`name ENDSWITH \"ab\"`]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function ends-with(); XCUITest's XPath engine is XPath 1.0 and does not support it"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "ends-with() is an XPath 2.0 function; WDA's XPath engine is XPath 1.0, so the XPath errors instead of matching"
+    },
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "ends-with() is an XPath 2.0 function; Appium's XPath 1.0 engine rejects this locator"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "Uses the XPath 2.0 function ends-with(); the driver evaluates XPath 1.0 (libxml2), where this locator is invalid, so there is no result set to reproduce. The in"
+    },
+    "opus/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function ends-with(); Appium's XCUITest driver evaluates XPath 1.0 only, so this locator is rejected as invalid and has no result set to reproduc"
+    }
+   }
+  },
+  "C06": {
+   "group": "spec",
+   "cat": "C",
+   "xpath": "//*[normalize-space(@label)=\"a b\"]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "normalize-space() has no class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Uses normalize-space(), which trims and collapses whitespace; class chain has no equivalent string function"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath normalize-space(), which trims and collapses whitespace; class chain predicates have no equivalent and a regex approximation would need fragile escap"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "normalize-space() trims and collapses whitespace before comparing; class chain predicates compare the raw attribute value, so the match set can differ"
+    },
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "normalize-space() has no class chain/NSPredicate equivalent"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "normalize-space() trims and collapses XML whitespace; there is no class chain / NSPredicate equivalent short of an unreliable whitespace regex."
+    },
+    "sonnet/max": {
+     "verdict": "GAP",
+     "reason": "normalize-space() trims and collapses whitespace before comparing; NSPredicate has no whitespace-normalizing function, so the comparison can't be expressed as a"
+    },
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "A15": {
+   "group": "spec",
+   "cat": "A",
+   "xpath": "//XCUIElementTypeOther/XCUIElementTypeButton[@name=\"a\"]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"a\"`]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "B17": {
+   "group": "spec",
+   "cat": "B",
+   "xpath": "//XCUIElementTypeButton[@accessible=\"true\" and @enabled=\"false\"]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeButton[`accessible == true AND enabled == false`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "@accessible is not a verified class chain predicate key"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Predicate on @accessible; class chain does not document an accessible attribute, so equivalence cannot be guaranteed"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Matches on the accessible attribute, which is not a documented class chain predicate attribute, so equivalence cannot be confirmed"
+    },
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L120": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "//XCUIElementTypeButton[contains(@name, \"HosidoLitokazajiCimo.noraSefili\")][1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "A08": {
+   "group": "spec",
+   "cat": "A",
+   "xpath": "/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "XCUIElementTypeWindow[0]/XCUIElementTypeOther[0]/XCUIElementTypeButton[1]",
+     "wda": "Cannot parse class chain query 'XCUIElementTypeWindow[0]/XCUIElementTypeOther[0]/XCUIElementTypeButton[1]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "positional child indexes along an absolute path: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaran"
+    },
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "B04": {
+   "group": "spec",
+   "cat": "B",
+   "xpath": "//XCUIElementTypeButton[@x>60]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeButton[`rect.x > 60`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "numeric comparison on @x has no verified class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Numeric comparison on @x (screen coordinate); class chain coordinate predicates are not documented well enough to guarantee equivalence"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Compares the x coordinate numerically; class chain predicate support for x is not documented, so equivalence cannot be confirmed"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "class chain predicates can't filter on frame position (@x)"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "@x geometry comparison is not available in class chain predicates."
+    },
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "@x (element frame coordinate) is not an attribute available in class chain predicates"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "Comparing the numeric x coordinate (@x>60) has no supported equivalent in class chain predicates."
+    },
+    "sonnet/max": {
+     "verdict": "GAP",
+     "reason": "Compares the numeric x coordinate; class chain predicates don't expose x/y/width/height as comparable attributes."
+    },
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "class chain predicates have no attribute for the x coordinate"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "@x in the page source is the frame origin rounded to an integer string, while class chain predicates compare the unrounded rect.x; fractional coordinates (e.g. "
+    },
+    "opus/high": "CORRECT"
+   }
+  },
+  "G05": {
+   "group": "spec",
+   "cat": "G",
+   "xpath": "//*[@label=\"a\nb\"]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/*[`label == \"a\\nb\"`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeAny[`label == \"a\nb\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"label == \"a"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "The string literal contains a line break; class chain predicate string literals cannot reliably represent a newline"
+    },
+    "haiku/high": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeAny[`label == \"a\nb\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"label == \"a"
+    },
+    "haiku/max": {
+     "verdict": "INVALID",
+     "chain": "**/*[`label == \"a\nb\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"label == \"a"
+    },
+    "sonnet/low": {
+     "verdict": "INVALID",
+     "chain": "**/*[`label == \"a\nb\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"label == \"a"
+    },
+    "sonnet/medium": {
+     "verdict": "INVALID",
+     "chain": "**/*[`label == \"a\nb\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"label == \"a"
+    },
+    "sonnet/high": {
+     "verdict": "INVALID",
+     "chain": "**/*[`label == \"a\nb\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"label == \"a"
+    },
+    "sonnet/max": {
+     "verdict": "INVALID",
+     "chain": "**/*[`label == \"a\nb\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"label == \"a"
+    },
+    "opus/low": {
+     "verdict": "INVALID",
+     "chain": "**/*[`label == \"a\nb\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"label == \"a"
+    },
+    "opus/medium": {
+     "verdict": "INVALID",
+     "chain": "**/*[`label == \"a\nb\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"label == \"a"
+    },
+    "opus/high": {
+     "verdict": "INVALID",
+     "chain": "**/*[`label == \"a\nb\"`]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"label == \"a"
+    }
+   }
+  },
+  "E06": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "(//XCUIElementTypeButton)[last()-1]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "haiku/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "sonnet/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "sonnet/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "sonnet/max": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "opus/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "opus/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    },
+    "opus/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\"><XCUIElementTypeCell k=\"n4\" label=\"b\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" l"
+    }
+   }
+  },
+  "L174": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//*[contains(@name, \"Vilokor,\")]/child::*[2])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/*[`name CONTAINS \"Vilokor,\"`][2]/*[2]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "L081": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@label=\"Taka\"])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeButton[`label == \"Taka\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+    }
+   }
+  },
+  "H10": {
+   "group": "spec",
+   "cat": "H",
+   "xpath": "//*[ends-with(text(),\"ab\")]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/*[`label ENDSWITH \"ab\" OR value ENDSWITH \"ab\"`]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "L082": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.dijivOdozev\"])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+    }
+   }
+  },
+  "L177": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeStaticText[@name=\"Vilokor\"])[3]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][2]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" label=\"Vilokor\" value=\"other\" name=\"Vilokor\"></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n2\" label=\"Vilokor\" value=\"Vilo\" name=\"Vilokor\"><XCUIElementTypeOther k=\"n3\" label=\"y Vilokor\" name=\"Vilokor\"><XCUIElementTypeOther k=\"n4\" label=\"Vilokor\" value=\"Vilokor z\" name=\"Vilokor\"></XC"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+    }
+   }
+  },
+  "E01": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "//XCUIElementTypeButton[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[2]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": "CORRECT-SKIP",
+    "opus/low": "CORRECT-SKIP",
+    "opus/medium": "CORRECT-SKIP",
+    "opus/high": "CORRECT-SKIP"
+   }
+  },
+  "E05": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "(//XCUIElementTypeButton)[last()]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"x\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" n"
+    },
+    "haiku/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"x\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" n"
+    },
+    "haiku/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"x\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" n"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"x\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" n"
+    },
+    "sonnet/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"x\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" n"
+    },
+    "sonnet/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"x\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" n"
+    },
+    "sonnet/max": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"x\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" n"
+    },
+    "opus/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"x\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" n"
+    },
+    "opus/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"x\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" n"
+    },
+    "opus/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeCell k=\"n1\" label=\"x\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" n"
+    }
+   }
+  },
+  "L461": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "//*[@label=\"Vq1 Vq2\"] | //*[@label=\"Nodeg: Vq1\"]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "union of two locators (|) has no single class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Uses a union (|) of two queries; class chain has no union"
+    },
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "XPath union (|) cannot be expressed as a single class chain"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "Uses a union (|), which class chain does not support."
+    },
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L382": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeButton[@name=\"taka_vawotub_giwap\"])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+    }
+   }
+  },
+  "L272": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeOther[contains(@label, \"Lenapa gusuri\")]/XCUIElementTypeStaticText)[last()]",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": "CORRECT-SKIP",
+    "sonnet/medium": "CORRECT-SKIP",
+    "sonnet/high": "CORRECT-SKIP",
+    "sonnet/max": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Lenapa gusuri\"`]/XCUIElementTypeStaticText[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" name=\"false\" label=\"Lenapa gusuri\"><XCUIElementTypeWindow k=\"n2\" value=\"Vq1\" label=\"Lenapa gusuri Lenapa gusuri\"></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"true\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"LENAPA GUSURI\"><XCUIElementTypeOther k=\"n4\" name=\"Vq2\" label=\"Lenapa gusur"
+    },
+    "opus/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Lenapa gusuri\"`]/XCUIElementTypeStaticText[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" name=\"false\" label=\"Lenapa gusuri\"><XCUIElementTypeWindow k=\"n2\" value=\"Vq1\" label=\"Lenapa gusuri Lenapa gusuri\"></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"true\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"LENAPA GUSURI\"><XCUIElementTypeOther k=\"n4\" name=\"Vq2\" label=\"Lenapa gusur"
+    },
+    "opus/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Lenapa gusuri\"`]/XCUIElementTypeStaticText[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" name=\"false\" label=\"Lenapa gusuri\"><XCUIElementTypeWindow k=\"n2\" value=\"Vq1\" label=\"Lenapa gusuri Lenapa gusuri\"></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"true\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"LENAPA GUSURI\"><XCUIElementTypeOther k=\"n4\" name=\"Vq2\" label=\"Lenapa gusur"
+    },
+    "opus/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Lenapa gusuri\"`]/XCUIElementTypeStaticText[-1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" name=\"false\" label=\"Lenapa gusuri\"><XCUIElementTypeWindow k=\"n2\" value=\"Vq1\" label=\"Lenapa gusuri Lenapa gusuri\"></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"true\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"LENAPA GUSURI\"><XCUIElementTypeOther k=\"n4\" name=\"Vq2\" label=\"Lenapa gusur"
+    }
+   }
+  },
+  "L162": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeStaticText[@name=\"Romor wepes je robo\n7393\"])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\\n7393\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][0]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"Romor wepes je robo"
+    },
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][1]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"Romor wepes je robo"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][1]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"Romor wepes je robo"
+    },
+    "sonnet/medium": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][1]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"Romor wepes je robo"
+    },
+    "sonnet/high": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][1]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"Romor wepes je robo"
+    },
+    "sonnet/max": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][1]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"Romor wepes je robo"
+    },
+    "opus/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][1]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"Romor wepes je robo"
+    },
+    "opus/medium": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][1]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"Romor wepes je robo"
+    },
+    "opus/high": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][1]",
+     "wda": "NSInvalidArgumentException: Unable to parse the format string \"name == \"Romor wepes je robo"
+    }
+   }
+  },
+  "L455": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "//*[@name=\"Fej bihi tete Vq1, jeb t fej bihi\" and @accessible=\"true\"]|//*[@name=\"Bihi Vq1\" and @accessible=\"true\"]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "union of two locators (|) has no single class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Uses a union (|) of two queries, and @accessible; class chain has no union and does not document an accessible attribute"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Matches on the accessible attribute, which is not a documented class chain predicate attribute, so equivalence cannot be confirmed"
+    },
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "XPath union (|) cannot be expressed as a single class chain"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "Uses a union (|), which class chain does not support."
+    },
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "B08": {
+   "group": "spec",
+   "cat": "B",
+   "xpath": "//XCUIElementTypeButton[@selected=\"true\"]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[`selected == true`]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": "CORRECT-SKIP",
+    "haiku/high": "CORRECT-SKIP",
+    "haiku/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`selected == 1`]"
+    },
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`selected == 1`]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`selected == 1`]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`selected == 1`]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`selected == true`]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`selected == 1`]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`selected == 1`]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[`selected == true`]"
+    }
+   }
+  },
+  "H03": {
+   "group": "spec",
+   "cat": "H",
+   "xpath": "//*[matches(@name,\"b\")]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "matches() regex has no equivalent (NSPredicate MATCHES is whole-string, XPath matches is substring)"
+    },
+    "haiku/medium": "CORRECT",
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function matches(); XCUITest's XPath engine is XPath 1.0 and does not support it"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "matches() is an XPath 2.0 function; WDA's XPath engine is XPath 1.0, so the XPath errors instead of matching"
+    },
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "matches() is an XPath 2.0 function; Appium's XPath 1.0 engine rejects this locator"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "Uses the XPath 2.0 function matches(); the driver evaluates XPath 1.0 (libxml2), where this locator is invalid, so there is no result set to reproduce."
+    },
+    "opus/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function matches(); Appium's XCUITest driver evaluates XPath 1.0 only, so this locator is rejected as invalid and has no result set to reproduce."
+    }
+   }
+  },
+  "D08": {
+   "group": "spec",
+   "cat": "D",
+   "xpath": "//*[contains(@label,\"a\") and not(contains(@label,\"b\"))]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "C07": {
+   "group": "spec",
+   "cat": "C",
+   "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "string-length() has no class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Uses string-length(); class chain predicate support for length functions is not verified, so equivalence cannot be guaranteed"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Uses string-length() on @label; no confirmed class chain predicate equivalent for string length"
+    },
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": {
+     "verdict": "GAP",
+     "reason": "string-length() on an attribute compared numerically has no NSPredicate equivalent, so the length condition can't be expressed as a simple class chain predicate"
+    },
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "F04": {
+   "group": "spec",
+   "cat": "F",
+   "xpath": "//XCUIElementTypeCell[descendant::XCUIElementTypeButton]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "descendant:: axis inside predicate has no class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Predicate [descendant::Button] tests for a descendant; class chain predicates cannot test descendants"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Predicate tests for a descendant Button; class chain predicates can only test the element's own attributes"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "[descendant::XCUIElementTypeButton] tests for a descendant of the matched Cell; class chain predicates can only test the element's own attributes"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "Requires a descendant-existence predicate on the Cell; class chains cannot test descendants in a predicate."
+    },
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "L564": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+    }
+   }
+  },
+  "H06": {
+   "group": "spec",
+   "cat": "H",
+   "xpath": "//*[contains(upper-case(@label),\"AB\")]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "upper-case() has no class chain equivalent"
+    },
+    "haiku/medium": "CORRECT",
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function upper-case(); XCUITest's XPath engine is XPath 1.0 and does not support it"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "upper-case() is an XPath 2.0 function; WDA's XPath engine is XPath 1.0, so the XPath errors instead of matching"
+    },
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "upper-case() is an XPath 2.0 function; Appium's XPath 1.0 engine rejects this locator"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "Uses the XPath 2.0 function upper-case(); the driver evaluates XPath 1.0 (libxml2), where this locator is invalid, so there is no result set to reproduce."
+    },
+    "opus/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function upper-case(); Appium's XCUITest driver evaluates XPath 1.0 only, so this locator is rejected as invalid and has no result set to reprodu"
+    }
+   }
+  },
+  "F07": {
+   "group": "spec",
+   "cat": "F",
+   "xpath": "//XCUIElementTypeTable/XCUIElementTypeCell[.//XCUIElementTypeStaticText[@label=\"x\"]]/XCUIElementTypeButton",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeTable/XCUIElementTypeCell[$type == \"XCUIElementTypeStaticText\" AND label == \"x\"$]/XCUIElementTypeButton"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "nested path inside a predicate ([.//X]) has no class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Predicate [.//StaticText[...]] tests for a descendant; class chain predicates cannot test descendants"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Predicate tests for a descendant StaticText; class chain predicates can only test the element's own attributes"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "[.//XCUIElementTypeStaticText[...]] tests for a descendant of the matched Cell; class chain predicates can only test the element's own attributes"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "Requires a descendant-existence predicate on the Cell; class chains cannot test descendants in a predicate."
+    },
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "R01": {
+   "group": "spec",
+   "cat": "R",
+   "xpath": "//XCUIElementTypeButton[@name=\"x\"]/ancestor::XCUIElementTypeCell",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "ancestor:: axis has no class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Uses ancestor:: axis; class chain cannot move up to an ancestor element"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Uses ancestor:: axis; class chain can only navigate downward"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "ancestor:: axis: class chains can't move up from a matched element to an ancestor"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "Uses ancestor axis; class chains cannot navigate upward."
+    },
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "ancestor axis cannot be expressed in a class chain (only child and descendant steps)"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "Uses ancestor axis, which class chain does not support."
+    },
+    "sonnet/max": {
+     "verdict": "GAP",
+     "reason": "Uses the ancestor axis; class chains cannot navigate up to ancestors."
+    },
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "D07": {
+   "group": "spec",
+   "cat": "D",
+   "xpath": "//XCUIElementTypeButton[not(@name=\"a\")]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "E11": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "(//XCUIElementTypeCell)[2]/XCUIElementTypeButton",
+   "converter": {
+    "verdict": "CORRECT-SKIP"
+   },
+   "cells": {
+    "haiku/low": "CORRECT-SKIP",
+    "haiku/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+    },
+    "haiku/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+    },
+    "sonnet/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+    },
+    "sonnet/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+    },
+    "sonnet/max": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+    },
+    "opus/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+    },
+    "opus/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+    },
+    "opus/high": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\"><XCUIElementTypeCell k=\"n4\" name=\"a b\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" n"
+    }
+   }
+  },
+  "L571": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeOther[@name=\"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"])[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\"><XCUIElementTypeOther k=\"n2\" name=\"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"></XCUIElementTypeOther></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [] vs chain [\"n2\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+    }
+   }
+  },
+  "B03": {
+   "group": "spec",
+   "cat": "B",
+   "xpath": "//XCUIElementTypeButton[@value>5]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeButton[`value.doubleValue > 5`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "numeric comparison on @value has no verified class chain equivalent"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Numeric comparison on @value; XPath converts the string value to a number, which has no reliable class chain equivalent"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Compares value numerically (@value>5); class chain predicates compare value as a string, so the numeric comparison cannot be reproduced reliably"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "numeric comparison (@value > 5) on the string value; class chain predicates would compare strings, not numbers, so the match set can differ"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "Numeric comparison on @value (string attribute); class chain predicates cannot reproduce XPath's numeric coercion reliably."
+    },
+    "sonnet/medium": {
+     "verdict": "GAP",
+     "reason": "numeric comparison of the string value attribute (@value>5) has no reliable NSPredicate equivalent"
+    },
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "Numeric comparison (@value>5) on a string attribute has no reliable class chain predicate equivalent."
+    },
+    "sonnet/max": {
+     "verdict": "GAP",
+     "reason": "Compares the string value numerically (@value>5); class chain predicates can't convert the string value to a number, so the comparison isn't reliably expressibl"
+    },
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "XPath numeric comparison of the value string (@value>5) has no equivalent in class chain predicates, where value is compared as a string"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "Numeric comparison on @value: XPath converts the string to a number (non-numeric values never match), while an NSPredicate 'value > 5' compares the raw value ob"
+    },
+    "opus/high": {
+     "verdict": "GAP",
+     "reason": "XPath converts the string value attribute to a number (non-numeric values become NaN and fail); NSPredicate compares value as a string, so 'value > 5' would not"
+    }
+   }
+  },
+  "L262": {
+   "group": "corpus",
+   "cat": "corpus",
+   "xpath": "(//XCUIElementTypeOther[contains(@label, \"Dobe teg\")])[1]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "INVALID",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][0]",
+     "wda": "Cannot parse class chain query '**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][0]'. Position value '0' is expected to be a valid integer number not equal to zero."
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+    }
+   }
+  },
+  "G12": {
+   "group": "spec",
+   "cat": "G",
+   "xpath": "//*[@label=\"C:\\dir\"]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/*[`label == \"C:\\\\dir\"`]"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": "CORRECT",
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Value contains a backslash (C:\\dir); class chain predicate strings may not escape backslashes reliably, so the exact value cannot be guaranteed"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "the value contains a backslash, which class chain predicate string literals may read as an escape character, so the exact value can't be guaranteed"
+    },
+    "sonnet/low": {
+     "verdict": "GAP",
+     "reason": "Label contains a backslash; escaping through the class chain parser and NSPredicate is ambiguous, so equivalence cannot be guaranteed."
+    },
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": {
+     "verdict": "GAP",
+     "reason": "The label contains a backslash; backslash escaping is ambiguous between the class chain parser and NSPredicate, so it cannot be expressed reliably."
+    },
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "A07": {
+   "group": "spec",
+   "cat": "A",
+   "xpath": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton"
+   },
+   "cells": {
+    "haiku/low": "CORRECT",
+    "haiku/medium": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeWindow/XCUIElementTypeButton",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"5\"><XCUIElementTypeOther k=\"n2\" value=\"5\"><XCUIElementTypeCell k=\"n3\" name=\"a\"></XCUIElementTypeCell></XCUIElementTypeOther><XCUIElementTypeWindow k=\"n4\" label=\"ab\" value=\"5\"><XCUIElementTypeCell k=\"n5\" value=\"1\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n6\" name=\"c\" va"
+    },
+    "haiku/high": "CORRECT",
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "B15": {
+   "group": "spec",
+   "cat": "B",
+   "xpath": "//XCUIElementTypeTextField[@placeholderValue=\"a\"]",
+   "converter": {
+    "verdict": "CORRECT",
+    "chain": "**/XCUIElementTypeTextField[`placeholderValue == \"a\"`]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "@placeholderValue is not a verified class chain predicate key"
+    },
+    "haiku/medium": {
+     "verdict": "GAP",
+     "reason": "Predicate on @placeholderValue; class chain does not document a placeholderValue attribute, so equivalence cannot be guaranteed"
+    },
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Matches on the placeholderValue attribute, whose support as a class chain predicate attribute is not confirmed, so equivalence cannot be verified"
+    },
+    "haiku/max": "CORRECT",
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": "CORRECT",
+    "opus/medium": "CORRECT",
+    "opus/high": "CORRECT"
+   }
+  },
+  "E02": {
+   "group": "spec",
+   "cat": "E",
+   "xpath": "(//XCUIElementTypeButton)[2]",
+   "converter": {
+    "verdict": "DRIFT",
+    "chain": "**/XCUIElementTypeButton[2]"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "WRONG",
+     "chain": "**/XCUIElementTypeButton[1]",
+     "counterExample": "page <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeButton k=\"n1\"></XCUIElementTypeButton></XCUIElementTypeApplication> → XPath [] vs chain [\"n1\"]"
+    },
+    "haiku/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
+    },
+    "haiku/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
+    },
+    "haiku/max": "CORRECT-SKIP",
+    "sonnet/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
+    },
+    "sonnet/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
+    },
+    "sonnet/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
+    },
+    "sonnet/max": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
+    },
+    "opus/low": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
+    },
+    "opus/medium": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
+    },
+    "opus/high": {
+     "verdict": "DRIFT",
+     "chain": "**/XCUIElementTypeButton[2]"
+    }
+   }
+  },
+  "H02": {
+   "group": "spec",
+   "cat": "H",
+   "xpath": "//*[matches(@name,\"^a.c$\")]",
+   "converter": {
+    "verdict": "GAP"
+   },
+   "cells": {
+    "haiku/low": {
+     "verdict": "GAP",
+     "reason": "matches() regex has no equivalent (NSPredicate MATCHES is whole-string, XPath matches is substring)"
+    },
+    "haiku/medium": "CORRECT",
+    "haiku/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function matches(); XCUITest's XPath engine is XPath 1.0 and does not support it"
+    },
+    "haiku/max": {
+     "verdict": "GAP",
+     "reason": "matches() is an XPath 2.0 function; WDA's XPath engine is XPath 1.0, so the XPath errors instead of matching"
+    },
+    "sonnet/low": "CORRECT",
+    "sonnet/medium": "CORRECT",
+    "sonnet/high": "CORRECT",
+    "sonnet/max": "CORRECT",
+    "opus/low": {
+     "verdict": "GAP",
+     "reason": "matches() is an XPath 2.0 function; Appium's XPath 1.0 engine rejects this locator"
+    },
+    "opus/medium": {
+     "verdict": "GAP",
+     "reason": "Uses the XPath 2.0 function matches(); the driver evaluates XPath 1.0 (libxml2), where this locator is invalid, so there is no result set to reproduce."
+    },
+    "opus/high": {
+     "verdict": "GAP",
+     "reason": "Uses XPath 2.0 function matches(); Appium's XCUITest driver evaluates XPath 1.0 only, so this locator is rejected as invalid and has no result set to reproduce."
+    }
+   }
+  }
+ }
+}

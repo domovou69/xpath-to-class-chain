@@ -1,0 +1,106 @@
+{
+ "model": "claude-opus-5-5",
+ "effort": "high",
+ "started": "2026-10-12T06:35:37.013Z",
+ "wallMs": 495494,
+ "exitCode": 0,
+ "cli": {
+  "duration_api_ms": 492900,
+  "stop_reason": "end_turn",
+  "session_id": "5870cc5b-c41b-4a86-9818-dd24a59bb6a8",
+  "total_cost_usd": 2.7030938,
+  "usage": {
+   "input_tokens": 16,
+   "cache_creation_input_tokens": 180078,
+   "cache_read_input_tokens": 566629,
+   "output_tokens": 57454,
+   "output_tokens_details": {
+    "thinking_tokens": 36535
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 180078,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 1101,
+     "cache_read_input_tokens": 172194,
+     "cache_creation_input_tokens": 9676,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 9676
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-opus-5-5": {
+    "inputTokens": 16,
+    "outputTokens": 57454,
+    "cacheReadInputTokens": 566629,
+    "cacheCreationInputTokens": 180078,
+    "webSearchRequests": 0,
+    "costUSD": 2.7030938,
+    "contextWindow": 1000000,
+    "maxOutputTokens": 128000,
+    "thinkingTokens": 36535,
+    "canonicalModel": "claude-opus-5-5",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+   "spawned": 0,
+   "requested": {
+    "background": 0,
+    "foreground": 0,
+    "unset": 0
+   },
+   "started_in_background": 0,
+   "max_depth": 0,
+   "spawned_by_subagents": 0,
+   "completed": 0,
+   "failed": 0,
+   "killed": {
+    "parent": 0,
+    "user": 0,
+    "system": 0
+   },
+   "refused": {
+    "depth_limit": 0,
+    "concurrency_limit": 0,
+    "budget": 0
+   },
+   "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 9,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I've written `analysis.md` with all five sections. For every run, my count of WRONG, INVALID and GAP answers by error type adds up exactly to the WRONG, INVALID and GAP columns in `table.md`.\n\n- **Error types:** I found 13 types. The most common are:\n  - **Raw line breaks in strings:** the models copied a real line break into the string instead of writing `\\n`, so WebDriverAgent rejects the chain. This causes every INVALID from sonnet and opus.\n  - **Zero-based positions:** haiku/low wrote positions starting at 0 instead of 1, which gives 35 of its 43 wrong or invalid answers.\n  - **Positions with no exact form:** `last()` → `[-1]`, `position()=2` → `[2]` and similar. The stronger models emit these more often, not less.\n  - **Skips where a chain exists:** weaker runs skipped descendant tests (`$…$`) and unions.\n  - **XPath 2.0 functions:** every opus effort skipped `matches()`, `lower-case()` and similar, believing Appium only runs XPath 1.0.\n\n  The converter's 24 GAPs and 53 DRIFTs are listed separately. One of them looks like a converter bug: on A16 it moves the `visible` predicate from the Cell step to the Button step.\n- **Per model and effort:**\n  - **Haiku:** high scores lower than medium on S=, and max skips every position-based locator, which drops it to the lowest share converted.\n  - **Sonnet:** medium and high score lower than low on R=, because they start skipping unions.\n  - **Opus:** low and medium give identical answers on every case, and high adds one case.\n\n  The best effort is medium for haiku and low for sonnet and opus.\n- **Converter and doubtful labels:**\n  - **H07:** it is marked inexpressible, yet three runs produced a chain graded CORRECT that is exactly equivalent.\n  - **E07 and E02:** they get different verdicts for the same chain, although the two XPaths mean the same thing.\n  - **E13:** the label says an exact chain exists, but no run and not the converter found one.\n\n  I also flagged A04, the XPath 2.0 cases H01–H06, and B03, B04, B11, B14 and F03 as needing a check on a real device.\n- **Top 3:** opus/low, sonnet/low and haiku/medium. On real-world locators the converter alone matches the best model (R= 95.3 with 100 % precision), so models only add value on the edge cases. Judging from the per-case verdicts, though I didn't test this as a pipeline, the best setup is to run the converter first and send only its 24 GAPs to opus/low. On those 24, opus/low is right on 19 and wrong on none.\n- **Improved prompt:** general rules for escaping, attributes, functions and positions, under 300 words.\n\nH09 needs a look before you rely on it. `label IN {\"a b\",\"a-b\"}` looks exactly equivalent under the standard definition of `tokenize`, but it was graded WRONG. The counter-example in `errors.json` is cut off, so I couldn't confirm whether the grader's `tokenize` is at fault.",
+  "ttft_ms": 1285,
+  "type": "result",
+  "duration_ms": 493989,
+  "uuid": "59415e21-6fb9-4b36-bfac-3e16bc549aeb",
+  "ttft_stream_ms": 1140,
+  "time_to_request_ms": 52,
+  "first_content_frame_ms": 1140,
+  "queued_turn_count": 0,
+  "result_index": 0
+ }
+}

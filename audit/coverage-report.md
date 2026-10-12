@@ -473,6 +473,179 @@ Same on the simulator and the iPhone. The page source ends at depth 50 as well.
 7. A page source with the `visible` attribute takes 53 s at 1000 elements on the simulator, 1.4 s without it.
 8. On regular screens (up to ~300 elements in the tree) the per-lookup savings are similar in percent (18–21 % on the median) but only tens of milliseconds. In total, Phase 2 lost time on the chain side because of four cases: `visible` predicates, lookups of all matches when there are dozens, and a short absolute path that the optimizer turns into `**/`. Convert lookups of one element by name, label, value or type; check locators with `visible`, list lookups with many matches, and absolute paths before converting them.
 
+## Plain LLMs vs the converter (Phase 4)
+
+If you have an LLM, do you still need a converter? Phase 4 gives Haiku, Sonnet and Opus the same 678 locators the converter is scored on, with a plain request to convert them, and scores their answers with the same harness. Data and scripts: [`llm/`](llm/).
+
+### Setup
+
+| | |
+|---|---|
+| Input | [`llm/input.json`](llm/input.json): the 678 locator cases of `coverage-cases.json` (563 corpus, 115 spec) as `{ id, xpath }`, shuffled, with neutral ids and no group. The XPath is the runtime string the driver receives (the harness's substitutions for `${…}`). The 6 scanner-context cases are source files and are left out. The key is in [`llm/key.json`](llm/key.json) |
+| Models | `claude-haiku-5-5`, `claude-sonnet-5-5`, `claude-opus-5-5` at effort `low`, `medium`, `high`, `max`; one run per cell. `xhigh` and repeated runs were skipped to stay within the account's usage limit |
+| Run | `claude -p` (Claude Code 2.1.296) in an empty folder in the system temp dir with only `input.json`: tools `Read` and `Write`, no settings, hooks, MCP or session, a clean environment. The model reads the file and writes `output.json` (in parts if it wants). Runs of one effort level go in parallel, one per model. Runner: [`llm/run.js`](llm/run.js), [`llm/stage.sh`](llm/stage.sh) |
+| Scoring | [`llm/score.js`](llm/score.js): mini-WDA (WDA 16.14.1) runs each chain and its XPath on the same page sources, 200 per corpus case and 300 plus the hand-made fixture per spec case, seeded per case, so every run and the converter are judged on identical pages. The `-ios class chain:` prefix is required and then stripped (no answer lacked it) |
+| Converter | the same `input.json` through `convertXpathToClassChain`, scored by the same script: R = 95.3, S = 62.0 (the harness gives 95.3 / 61.9 on the source strings; the difference is E10, whose runtime string is E09's locator) |
+
+The prompt, the same for every run ([`llm/prompt.md`](llm/prompt.md)):
+
+> `input.json` in the current folder has 678 XPath locators from iOS UI tests (Appium, XCUITest driver). Convert each one to an iOS class chain locator (`-ios class chain`) that finds the same elements. If a locator cannot be expressed as a class chain that finds the same elements, skip it and give the reason.
+>
+> Write the result to `output.json` in the current folder: a JSON array with one entry per input `id`, either `{ "id": "x001", "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"OK\"`]" }` or `{ "id": "x002", "skip": true, "reason": "..." }`.
+>
+> Write each chain as the full locator string, with the `-ios class chain:` prefix. If the result is too large for one file, write it in parts as `output-1.json`, `output-2.json`, …; the parts are merged after you finish. Every id must be present in the end.
+
+Verdicts are the harness's: CORRECT, CORRECT-SKIP, GAP, DRIFT (half credit when documented), WRONG, plus INVALID (WDA rejects the chain or it throws) and MISSING. Two rules are specific to Phase 4:
+
+- A skipped locator that has no exact class chain (grouped positions, per-parent indexes) is CORRECT-SKIP and leaves that run's denominator, as in the "skip grouped positions" variant of section 6. A chain for it that behaves like the converter's approximation is DRIFT.
+- Because skipping more could then raise R and S, every row also gets **R= / S=**: the same formulas over the converter's denominator, where such a skip earns 0.
+
+### Results
+
+| Cell | R | S | **R=** | **S=** | Converted | Skipped | of which GAP | Precision | WRONG | INVALID | Time, min | Cost, $ | Output tokens |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **converter** | 95.3 | 62.0 | **95.3** | **62.0** | 81.7 % | 18.3 % | 24 | **100.0 %** | 0 | 0 | — | — | — |
+| haiku / low | 92.8 | 48.0 | 91.7 | 48.0 | 79.8 % | 20.2 % | 30 | 91.9 % | 26 | 17 | 8.6 | 0.39 | 139k |
+| haiku / medium | 96.0 | 62.8 | 94.5 | 61.1 | 80.8 % | 19.2 % | 24 | 98.4 % | 9 | 0 | 6.0 | 0.28 | 99k |
+| haiku / high | 96.3 | 59.6 | 94.9 | 57.9 | 81.0 % | 19.0 % | 24 | 97.8 % | 8 | 3 | 7.6 | 0.36 | 131k |
+| haiku / max | 99.6 | 67.4 | 92.2 | 54.9 | 75.2 % | 24.8 % | 21 | 99.2 % | 2 | 2 | 13.5 | 0.64 | 222k |
+| sonnet / low | 96.4 | 70.8 | 95.2 | 69.1 | 83.2 % | 16.8 % | 12 | 97.7 % | 8 | 4 | 5.2 | 1.03 | 58k |
+| sonnet / medium | 95.8 | 78.3 | 94.5 | 76.5 | 82.7 % | 17.3 % | 14 | 97.9 % | 9 | 3 | 5.3 | 1.05 | 58k |
+| sonnet / high | 95.7 | 78.5 | 94.6 | 76.8 | 82.7 % | 17.3 % | 13 | 97.9 % | 8 | 4 | 6.0 | 1.14 | 65k |
+| sonnet / max | 96.5 | 80.1 | 95.3 | 78.4 | 83.8 % | 16.2 % | 7 | 98.1 % | 8 | 3 | 36.0 | 4.85 | 339k |
+| opus / low | 96.5 | 83.1 | 95.3 | 81.4 | 83.3 % | 16.7 % | 10 | 98.1 % | 8 | 3 | 7.1 | 2.04 | 57k |
+| opus / medium | 96.5 | 83.1 | 95.3 | 81.4 | 83.3 % | 16.7 % | 10 | 98.1 % | 8 | 3 | 8.5 | 2.33 | 66k |
+| opus / high | 96.5 | 84.1 | 95.3 | 82.3 | 83.5 % | 16.5 % | 9 | 98.1 % | 8 | 3 | 10.7 | 2.83 | 85k |
+
+*Converted*: share of the 678 that got a chain. *Precision*: share of emitted chains that are CORRECT or DRIFT. Cost is the CLI's API-equivalent figure; the runs used a subscription. Time is wall time and includes the account's rate limiting while three runs shared it.
+
+**Excluded: opus / max.** The run was cut off by the account's 5-hour session limit (HTTP 429) after 38.7 min, $7.57 and 284k output tokens (253k of them thinking), with 460 of 678 answers written. It ran in parallel with sonnet / max, so the limit was shared; how much each run used is not measured. Two earlier `max` attempts (sonnet: session limit; opus: network error) were rerun; their records are in `llm/out/failed/`.
+
+**Where the tokens go.** At `low`–`high` the output is 57–131k tokens, most of it the answer itself. At `max` it is 222–339k, and 79–89 % of it is thinking that did not improve the result.
+
+### Where the models are right and the converter is not
+
+A model found an exact chain for 30 cases: all 24 that the converter skips although an exact chain exists (GAP), 5 that it only approximates (DRIFT), and H07 (below); full list in [`llm/analysis/cross.md`](llm/analysis/cross.md). By kind:
+
+| Kind | Cases | Runs right (of 11) |
+|---|---|---|
+| all 4 corpus GAPs: union `A \| B` as one `OR` predicate, `and not (` with a space | L355, L455, L458, L461 | 6–11 |
+| `not()`, `and not()` | D07, D08 | 11 |
+| quotes, `]` and backticks inside literals (backtick doubled) | G03, G14, G04 | 11, 11, 3 |
+| path kept as written instead of collapsed to `**/Button` (undocumented DRIFT) | A07, A14, A15 | 10–11 |
+| `visible == 1` kept on the Cell step (the converter moves it to the Button step) | A16 | 11 |
+| `@enabled=true()` (attribute exists) | B16 | 8 |
+| `.//X`, `self::A or self::B`, unions in the spec | A12, X07, X04, X05 | 7–10 |
+| `translate()`, `concat()`, `string-length()`, `normalize-space()` | C08, C09, C07, C06 | 11, 10, 7, 4 |
+| `matches()`, `lower-case()`, `upper-case()` | H02–H06 | 5 |
+| `descendant::`, `ancestor::` as `$…$` | F04, R01 | 6, 3 |
+
+These are candidates for the converter. Before adding them, the ones that depend on how XCTest evaluates a predicate (`MATCHES`, `[c]`, `.length`, `$…$`) need the device check of Phase 2; the others only need the parser and are proved by mini-WDA.
+
+The runs also show three problems in the harness's own expectations:
+
+- **H07** `//*[replace(@label,"a","b")="bb"]` is marked inexpressible, but `label MATCHES "[ab]{2}"` (3 runs) is exact. It is excluded from the denominator, so no score changes.
+- **E07** `(//Button)[position()=2]` gets WRONG for `**/XCUIElementTypeButton[2]`, while the same chain for the same locator written as `(//Button)[2]` (E02) is DRIFT. Both are excluded or half-credited, so only the WRONG counts are affected (9 runs).
+- **L157** is already a class chain inside `//…[…]`, not an XPath.
+
+Checked and confirmed: `matches`, `ends-with`, `lower-case`, `upper-case`, `replace`, `tokenize` and `string-join` are registered by WDA itself (`FBXPathExtensions.m`), so H01–H09 are valid locators on the driver. The runs that skipped H01–H06 as "XPath 1.0 has no such function" (opus at every level, haiku / high and max) were wrong about the driver.
+
+### Where the converter is right and the models are not
+
+| Error type | Cases | Runs |
+|---|---|---|
+| raw line break copied into the NSPredicate string (WDA cannot parse it) | G05, L119, L162 | INVALID in 10 of 11 (every sonnet and opus run) |
+| `@label!="a"` → `label != "a"`: NSPredicate is true for a missing label, XPath is false | B02 | WRONG in 7 (haiku, sonnet low–high) |
+| positions with no exact form emitted anyway: `last()` → `[-1]`, `position()=2`, `(//Cell)[2]/Button` | E05–E07, E11, L270–L272 | WRONG in 3–7 per run; more with stronger models |
+| `[.//*[@name="x"]]` → `[$name == "x"$]` (`$…$` also matches the element itself, RC-D2) | F03 | WRONG in 6 (sonnet medium–max, every opus run) |
+| zero-based indexes (`[0]`, `[n-1]`) | 35 positional cases | haiku / low only: 21 WRONG, 14 INVALID |
+| skipped although the converter handles it: `@value>5`, `@x>60`, `@index`, `//XCUIElementTypeAny`, `$…$` for descendants, `hittable`, `placeholderValue` | B03, B04, B11, A04, F01, F07, F08, B14, B15 | GAP in 3–11 |
+
+Sonnet and Opus make the first and third errors at every effort level, and no run is free of WRONG or INVALID chains: 4–43 per run, against 0 for the converter. They look like valid locators and either fail in WDA or find other elements. The full analysis, by error type and by run, written by Opus (effort `high`) from the scored results only: [`llm/analysis/analysis.md`](llm/analysis/analysis.md).
+
+### Effort level, per model
+
+| Model | Best effort | Why |
+|---|---|---|
+| Haiku | **medium** | low makes zero-based indexes (43 WRONG/INVALID). medium has no INVALID and the best S= of Haiku. high has a lower S= (the line-break INVALIDs return). max skips a quarter of the input: R 99.6, but R= 92.2 |
+| Sonnet | **low** (or medium for edge cases) | medium: +7.4 S= for the same cost, −0.7 R=. high = medium. max: +1.6 S= over high for 4× the cost and 6× the time |
+| Opus | **low** | low and medium have identical verdicts; high adds 0.9 S= for +39 % cost |
+
+A higher effort was never better in proportion to its cost, and for Haiku it was worse.
+
+### Top 3
+
+| | Cell | R= | S= | Precision | Converted | WRONG + INVALID | Time | Cost |
+|---|---|---|---|---|---|---|---|---|
+| 1 | opus / low | 95.3 | 81.4 | 98.1 % | 83.3 % | 11 | 7.1 min | $2.04 |
+| 2 | sonnet / low | 95.2 | 69.1 | 97.7 % | 83.2 % | 12 | 5.2 min | $1.03 |
+| 3 | haiku / medium | 94.5 | 61.1 | 98.4 % | 80.8 % | 9 | 6.0 min | $0.28 |
+| ref | converter | 95.3 | 62.0 | 100 % | 81.7 % | 0 | seconds | — |
+
+On real-world locators (R=) no run beats the converter; the best ones tie it. The models are ahead on edge cases (S=, up to +20), and they pay for it with wrong chains the converter does not make. In the per-case verdicts, the models' strength lies exactly where the converter skips: on its 24 GAPs, opus / low is right on 19 and wrong on none, sonnet / low right on 21 with one INVALID. A model asked about all skipped locators would also convert the ones that have no exact form (E05–E07, E11, L270–L272, F03) and get them wrong. This combination was not run as a pipeline.
+
+### An improved prompt (not yet tested)
+
+Written by the analysis from the error types above; general rules, no answers for particular cases. It has not been run, so its effect is not measured.
+
+```
+Convert each Appium XCUITest XPath into an iOS class chain that finds exactly
+the same elements. Reply with the chain, or "SKIP: <reason>" if no exact chain
+exists. Do not skip what these rules cover.
+
+Structure
+- **/X any depth, /X child, * any type. /XCUIElementTypeApplication/A/B -> A/B;
+  .//X -> **/X. Keep every intermediate step.
+- Predicate [`NSPredicate`]; descendant test [$NSPredicate$].
+
+String literals
+- Double quotes. Escape " as \" and \ as \\. Write line breaks as \n, tabs as
+  \t, never raw. Write a backtick as two backticks.
+
+Attributes
+- Keys: name, label, value, type, enabled, visible, accessible, hittable,
+  selected, placeholderValue, index; @x/@y/@width/@height -> rect.x etc.
+- Missing attributes fail XPath comparisons but are nil in NSPredicate:
+  @a!="v" -> a != nil AND a != "v"; [@a] -> a != nil;
+  not(@a="v") -> NOT (a == "v"). @a=true() only tests that @a exists.
+- @value>5 -> value.doubleValue > 5.
+
+Functions
+- contains / starts-with / ends-with -> CONTAINS / BEGINSWITH / ENDSWITH.
+  matches() -> MATCHES (whole string). translate / lower-case / upper-case ->
+  [c]. Fold concat() of literals. string-length -> .length. normalize-space ->
+  MATCHES with [ \t\r\n]. Convert XPath 2.0 functions too (WDA registers them).
+- Unions of //T[p] and self:: tests -> one predicate joined by OR
+  (add type == "T" when types differ).
+- [.//T[p]] or [descendant::T] -> [$type == "T" AND p$];
+  //T[p]/ancestor::A -> **/A[$type == "T" AND p$].
+  Always put a concrete type inside $...$; if it is *, SKIP.
+
+Positions (1-based, never 0)
+- (//X[p])[n] -> **/X[`p`][n].
+- SKIP last(), last()-n, position() tests, and any index on a parenthesised
+  path that has a further step or an inner index.
+
+Also SKIP text(), parent/sibling/preceding/following axes, and type names
+that do not exist in XCUITest.
+```
+
+### Limits of these measurements
+
+- One run per cell. Run-to-run variation is not measured (Stage 2 was not run), so differences of a few cases between cells, such as sonnet low vs medium on R=, may be noise.
+- `xhigh` was not run; opus / `max` is incomplete.
+- The oracle is mini-WDA, not a device. The converter's outputs were checked on a simulator and an iPhone in Phase 2; the models use forms the converter does not (`MATCHES`, `[c]`, `.length`, `rect.x`, `$…$` with `ancestor::`), and those were not.
+- Times are from parallel runs on one account and include its rate limiting. The scoring ran on a Mac on AC with Low Power Mode off.
+- The input is the audit's own corpus and spec matrix. Many spec cases are deliberately unusual, and the models saw no examples of class chain beyond the one in the prompt.
+
+### Conclusions
+
+1. On real-world locators, a plain model converts as many as the converter (81–84 % of the input against 81.7 %) and scores the same at best (R= 95.3 for opus at every level and sonnet / max). It never scores higher.
+2. Every model run emits wrong chains: 4–43 per run (precision 92–99 %), against none from the converter. The two most common errors are a raw line break in a literal (INVALID in every Sonnet and Opus run) and positions that have no exact form (`last()`, `position()`), which the models convert instead of skipping.
+3. The models are clearly better on edge cases (S= up to 82 against 62). Exactly there the converter skips: for all 24 of its GAPs (4 corpus, 20 spec) some run found the exact chain, and 5 converter DRIFTs (A07, A14–A16, B16) are imprecisions with an exact form. These are the converter's next improvements.
+4. A higher effort does not pay: Opus is flat from `low`, Sonnet from `medium`, and Haiku gets worse above `medium`. `max` costs 2–4× and up to 6× the time of the level below for at most +1.6 S=, and it spends 80–90 % of its tokens on thinking.
+5. Recommendation: convert with the converter, which never emits a wrong chain. For the locators it skips, a model helps (opus / low or sonnet / low), but its chains need the harness or a device check before they replace the XPath.
+
 ## 1. Headline
 
 > **The converter handles 72% of what is possible. 87% of real locators can be expressed as a class chain at all; the rest stay XPath by design.**
