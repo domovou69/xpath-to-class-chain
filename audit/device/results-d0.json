@@ -1,0 +1,4070 @@
+{
+ "env": {
+  "xcode": "Xcode 27.0 Build version 27A266a",
+  "appium": "3.8.0",
+  "xcuitestDriver": "12.16.0",
+  "wda": "16.14.1",
+  "iosVersion": "27.0",
+  "node": "v24.21.0",
+  "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+  "runtimeBuild": "24A434",
+  "simulator": "LocatorLab iPhone 17",
+  "deviceType": "com.apple.CoreSimulator.SimDeviceType.iPhone-17",
+  "udid": "208FA758-C937-49C4-ADE6-E16B0D7E0630"
+ },
+ "date": "2026-10-12",
+ "seconds": 140,
+ "counts": {
+  "EQUAL": 60,
+  "SET_DIFFERS": 34,
+  "XPATH_ONLY": 32
+ },
+ "perf": {
+  "cases": 94,
+  "method": "single cold lookup per side, order alternating",
+  "xpathMs": {
+   "median": 85.2,
+   "p95": 191.7
+  },
+  "chainMs": {
+   "median": 61.5,
+   "p95": 197.4
+  },
+  "speedup": {
+   "geomean": 1.2,
+   "median": 1.38,
+   "min": 0.7,
+   "max": 1.78
+  },
+  "chainFaster": 63
+ },
+ "cases": [
+  {
+   "id": "D0-Q-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"Q\")]",
+   "chain": "**/*[`label CONTAINS \"Q\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"Q\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+      "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 192.6,
+    "chainMs": 197.4,
+    "speedup": 0.98,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-Q-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"Q\")]",
+   "chain": "**/*[`label BEGINSWITH \"Q\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"Q\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+      "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 166.6,
+    "chainMs": 177.1,
+    "speedup": 0.94,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-Q-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"Q\"]",
+   "chain": "**/*[`label == \"Q\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"Q\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.6,
+    "chainMs": 59.9,
+    "speedup": 1.41,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-Q-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"q\")]",
+   "chain": "**/*[`label CONTAINS[c] \"q\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"Q\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+      "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 193,
+    "chainMs": 277.2,
+    "speedup": 0.7,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-Q-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"q\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"Q\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-Q-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"Q\")]",
+   "chain": "**/*[`label CONTAINS \"Q\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:Q)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+      "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 165,
+    "chainMs": 176,
+    "speedup": 0.94,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-FW-Q-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"Ｑ\")]",
+   "chain": "**/*[`label CONTAINS \"Ｑ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"Ｑ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.6,
+    "chainMs": 60.8,
+    "speedup": 1.39,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-FW-Q-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"Ｑ\")]",
+   "chain": "**/*[`label BEGINSWITH \"Ｑ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"Ｑ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.6,
+    "chainMs": 60,
+    "speedup": 1.39,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-FW-Q-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"Ｑ\"]",
+   "chain": "**/*[`label == \"Ｑ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"Ｑ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.6,
+    "chainMs": 61.8,
+    "speedup": 1.35,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-FW-Q-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"Ｑ\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"Ｑ\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"Ｑ\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+      "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-FW-Q-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"Ｑ\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"Ｑ\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-FW-Q-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"Ｑ\")]",
+   "chain": "**/*[`label CONTAINS \"Ｑ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:Ｑ)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+      "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.3,
+    "chainMs": 60.7,
+    "speedup": 1.4,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-q-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"q\")]",
+   "chain": "**/*[`label CONTAINS \"q\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"q\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.8,
+    "chainMs": 59.2,
+    "speedup": 1.42,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-q-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"q\")]",
+   "chain": "**/*[`label BEGINSWITH \"q\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"q\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.6,
+    "chainMs": 60.9,
+    "speedup": 1.39,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-q-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"q\"]",
+   "chain": "**/*[`label == \"q\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"q\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.9,
+    "chainMs": 60.1,
+    "speedup": 1.4,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-q-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"q\")]",
+   "chain": "**/*[`label CONTAINS[c] \"q\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+    "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"q\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+      "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 191.9,
+    "chainMs": 270.3,
+    "speedup": 0.71,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-q-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"q\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"q\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-q-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"q\")]",
+   "chain": "**/*[`label CONTAINS \"q\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:q)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.8,
+    "chainMs": 59.3,
+    "speedup": 1.41,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-FW-q-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"ｑ\")]",
+   "chain": "**/*[`label CONTAINS \"ｑ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"ｑ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.9,
+    "chainMs": 60.7,
+    "speedup": 1.38,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-FW-q-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"ｑ\")]",
+   "chain": "**/*[`label BEGINSWITH \"ｑ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"ｑ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 86.8,
+    "chainMs": 63.8,
+    "speedup": 1.36,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-FW-q-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"ｑ\"]",
+   "chain": "**/*[`label == \"ｑ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"ｑ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 86.5,
+    "chainMs": 60.3,
+    "speedup": 1.44,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-FW-q-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ｑ\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"ｑ\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"ｑ\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeButton|Qty|Qty|10abc|8,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|1e3|30,119,20,14",
+      "XCUIElementTypeButton|Qty|Qty|7|53,119,19,14",
+      "XCUIElementTypeButton|Qty|Qty|3|76,119,19,14",
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-FW-q-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ｑ\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"ｑ\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Ｑ|Ｑ|Ｑ|8,133,11,14",
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+      "XCUIElementTypeStaticText|Q|Q|Q|8,162,9,14",
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-FW-q-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"ｑ\")]",
+   "chain": "**/*[`label CONTAINS \"ｑ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:ｑ)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ｑ|ｑ|ｑ|23,133,11,14",
+      "XCUIElementTypeStaticText|q|q|q|20,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.3,
+    "chainMs": 59.9,
+    "speedup": 1.42,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-fi-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"fi\")]",
+   "chain": "**/*[`label CONTAINS \"fi\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"fi\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.1,
+    "chainMs": 59.5,
+    "speedup": 1.43,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-fi-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"fi\")]",
+   "chain": "**/*[`label BEGINSWITH \"fi\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"fi\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.4,
+    "chainMs": 61.2,
+    "speedup": 1.38,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-fi-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"fi\"]",
+   "chain": "**/*[`label == \"fi\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"fi\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.9,
+    "chainMs": 59.5,
+    "speedup": 1.41,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-fi-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"fi\")]",
+   "chain": "**/*[`label CONTAINS[c] \"fi\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14",
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"fi\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14",
+      "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.2,
+    "chainMs": 90.8,
+    "speedup": 0.93,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-fi-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"fi\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"fi\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14",
+      "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-fi-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"fi\")]",
+   "chain": "**/*[`label CONTAINS \"fi\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:fi)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14",
+      "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.4,
+    "chainMs": 59.5,
+    "speedup": 1.42,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-lig-fi-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"ﬁ\")]",
+   "chain": "**/*[`label CONTAINS \"ﬁ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"ﬁ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.7,
+    "chainMs": 60.2,
+    "speedup": 1.39,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-lig-fi-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"ﬁ\")]",
+   "chain": "**/*[`label BEGINSWITH \"ﬁ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"ﬁ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84,
+    "chainMs": 59.6,
+    "speedup": 1.41,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-lig-fi-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"ﬁ\"]",
+   "chain": "**/*[`label == \"ﬁ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"ﬁ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.7,
+    "chainMs": 64.7,
+    "speedup": 1.32,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-lig-fi-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ﬁ\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"ﬁ\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"ﬁ\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14",
+      "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-lig-fi-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ﬁ\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"ﬁ\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14",
+      "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-lig-fi-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"ﬁ\")]",
+   "chain": "**/*[`label CONTAINS \"ﬁ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:ﬁ)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ﬁ|ﬁ|ﬁ|38,133,7,14",
+      "XCUIElementTypeStaticText|fi|fi|fi|31,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.3,
+    "chainMs": 61.6,
+    "speedup": 1.38,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-1-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"1\")]",
+   "chain": "**/*[`label CONTAINS \"1\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"1\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.1,
+    "chainMs": 78.4,
+    "speedup": 1.07,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-1-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"1\")]",
+   "chain": "**/*[`label BEGINSWITH \"1\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"1\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.9,
+    "chainMs": 61.7,
+    "speedup": 1.36,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-1-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"1\"]",
+   "chain": "**/*[`label == \"1\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"1\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.4,
+    "chainMs": 60,
+    "speedup": 1.42,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-1-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"1\")]",
+   "chain": "**/*[`label CONTAINS[c] \"1\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14",
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"1\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|①|①|①|49,133,11,14",
+      "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 87.4,
+    "chainMs": 95.7,
+    "speedup": 0.91,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-1-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"1\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"1\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-1-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"1\")]",
+   "chain": "**/*[`label CONTAINS \"1\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:1)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|①|①|①|49,133,11,14",
+      "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.5,
+    "chainMs": 60.8,
+    "speedup": 1.39,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-circled-1-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"①\")]",
+   "chain": "**/*[`label CONTAINS \"①\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"①\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.2,
+    "chainMs": 61.4,
+    "speedup": 1.37,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-circled-1-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"①\")]",
+   "chain": "**/*[`label BEGINSWITH \"①\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"①\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.8,
+    "chainMs": 59.9,
+    "speedup": 1.42,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-circled-1-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"①\"]",
+   "chain": "**/*[`label == \"①\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"①\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85,
+    "chainMs": 59.9,
+    "speedup": 1.42,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-circled-1-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"①\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"①\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"①\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-circled-1-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"①\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"①\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-circled-1-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"①\")]",
+   "chain": "**/*[`label CONTAINS \"①\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|①|①|①|49,133,11,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:①)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|①|①|①|49,133,11,14",
+      "XCUIElementTypeStaticText|1|1|1|42,162,6,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.4,
+    "chainMs": 60.4,
+    "speedup": 1.4,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-s-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"s\")]",
+   "chain": "**/*[`label CONTAINS \"s\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"s\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 106.8,
+    "chainMs": 93.6,
+    "speedup": 1.14,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-s-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"s\")]",
+   "chain": "**/*[`label BEGINSWITH \"s\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"s\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 106.6,
+    "chainMs": 90.9,
+    "speedup": 1.17,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-s-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"s\"]",
+   "chain": "**/*[`label == \"s\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"s\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|s|s|s|52,162,6,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.1,
+    "chainMs": 59.5,
+    "speedup": 1.41,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-s-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"s\")]",
+   "chain": "**/*[`label CONTAINS[c] \"s\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+    "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14",
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+    "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"s\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14",
+      "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+      "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 127,
+    "chainMs": 154.4,
+    "speedup": 0.82,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-s-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"s\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"s\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14",
+      "XCUIElementTypeStaticText|s|s|s|52,162,6,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-s-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"s\")]",
+   "chain": "**/*[`label CONTAINS \"s\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:s)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14",
+      "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 105.4,
+    "chainMs": 93.3,
+    "speedup": 1.13,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-long-s-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"ſ\")]",
+   "chain": "**/*[`label CONTAINS \"ſ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"ſ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.7,
+    "chainMs": 61.3,
+    "speedup": 1.4,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-long-s-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"ſ\")]",
+   "chain": "**/*[`label BEGINSWITH \"ſ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"ſ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.8,
+    "chainMs": 60.3,
+    "speedup": 1.42,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-long-s-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"ſ\"]",
+   "chain": "**/*[`label == \"ſ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"ſ\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84,
+    "chainMs": 61.5,
+    "speedup": 1.37,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-long-s-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ſ\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"ſ\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"ſ\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14",
+      "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+      "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-long-s-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ſ\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"ſ\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14",
+      "XCUIElementTypeStaticText|s|s|s|52,162,6,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-long-s-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"ſ\")]",
+   "chain": "**/*[`label CONTAINS \"ſ\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:ſ)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ſ|ſ|ſ|63,133,5,14",
+      "XCUIElementTypeStaticText|s|s|s|52,162,6,14",
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.7,
+    "chainMs": 62,
+    "speedup": 1.38,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-ss-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"ss\")]",
+   "chain": "**/*[`label CONTAINS \"ss\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"ss\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 86.4,
+    "chainMs": 61.5,
+    "speedup": 1.4,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-ss-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"ss\")]",
+   "chain": "**/*[`label BEGINSWITH \"ss\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"ss\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.6,
+    "chainMs": 60.4,
+    "speedup": 1.4,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-ss-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"ss\"]",
+   "chain": "**/*[`label == \"ss\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"ss\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84,
+    "chainMs": 60.3,
+    "speedup": 1.39,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-ss-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ss\")]",
+   "chain": "**/*[`label CONTAINS[c] \"ss\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+    "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14",
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+    "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"ss\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14",
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+      "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 105.9,
+    "chainMs": 121.6,
+    "speedup": 0.87,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-ss-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ss\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+    "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"ss\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14",
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+      "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-ss-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"ss\")]",
+   "chain": "**/*[`label CONTAINS \"ss\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:ss)(?s:.*)\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.4,
+    "chainMs": 61.3,
+    "speedup": 1.38,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-sharp-s-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"ß\")]",
+   "chain": "**/*[`label CONTAINS \"ß\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"ß\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.4,
+    "chainMs": 59.7,
+    "speedup": 1.41,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-sharp-s-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"ß\")]",
+   "chain": "**/*[`label BEGINSWITH \"ß\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"ß\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.8,
+    "chainMs": 61.1,
+    "speedup": 1.39,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-sharp-s-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"ß\"]",
+   "chain": "**/*[`label == \"ß\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"ß\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.7,
+    "chainMs": 59.7,
+    "speedup": 1.42,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-sharp-s-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ß\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"ß\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"ß\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14",
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+      "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-sharp-s-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ß\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"ß\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14",
+      "XCUIElementTypeStaticText|ss|ss|ss|62,162,12,14",
+      "XCUIElementTypeStaticText|SS|SS|SS|77,162,15,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-sharp-s-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"ß\")]",
+   "chain": "**/*[`label CONTAINS \"ß\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:ß)(?s:.*)\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ß|ß|ß|71,133,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.7,
+    "chainMs": 61.4,
+    "speedup": 1.38,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-k-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"k\")]",
+   "chain": "**/*[`label CONTAINS \"k\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"k\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 86.9,
+    "chainMs": 61.3,
+    "speedup": 1.42,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-k-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"k\")]",
+   "chain": "**/*[`label BEGINSWITH \"k\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"k\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 91.6,
+    "chainMs": 61.2,
+    "speedup": 1.5,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-k-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"k\"]",
+   "chain": "**/*[`label == \"k\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"k\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.1,
+    "chainMs": 61.3,
+    "speedup": 1.39,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-k-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"k\")]",
+   "chain": "**/*[`label CONTAINS[c] \"k\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"k\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+      "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 104.8,
+    "chainMs": 122.2,
+    "speedup": 0.86,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-k-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"k\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"k\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+      "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-k-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"k\")]",
+   "chain": "**/*[`label CONTAINS \"k\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:k)(?s:.*)\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.6,
+    "chainMs": 60.1,
+    "speedup": 1.41,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-K-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"K\")]",
+   "chain": "**/*[`label CONTAINS \"K\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"K\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 87.9,
+    "chainMs": 96.1,
+    "speedup": 0.91,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-K-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"K\")]",
+   "chain": "**/*[`label BEGINSWITH \"K\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"K\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.9,
+    "chainMs": 91.6,
+    "speedup": 0.93,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-K-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"K\"]",
+   "chain": "**/*[`label == \"K\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"K\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85,
+    "chainMs": 60.4,
+    "speedup": 1.41,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-K-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"k\")]",
+   "chain": "**/*[`label CONTAINS[c] \"k\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"K\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+      "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 106.3,
+    "chainMs": 122.4,
+    "speedup": 0.87,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-K-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"k\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+    "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"K\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+      "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-K-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"K\")]",
+   "chain": "**/*[`label CONTAINS \"K\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:K)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 87.1,
+    "chainMs": 92.4,
+    "speedup": 0.94,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-Kelvin-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"K\")]",
+   "chain": "**/*[`label CONTAINS \"K\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"K\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.1,
+    "chainMs": 91.8,
+    "speedup": 0.93,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-Kelvin-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"K\")]",
+   "chain": "**/*[`label BEGINSWITH \"K\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"K\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.3,
+    "chainMs": 95.3,
+    "speedup": 0.88,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-Kelvin-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"K\"]",
+   "chain": "**/*[`label == \"K\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"K\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.6,
+    "chainMs": 61.2,
+    "speedup": 1.38,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-Kelvin-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"K\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"K\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"K\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+      "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-Kelvin-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"K\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"K\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14",
+      "XCUIElementTypeStaticText|k|k|k|107,162,7,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-Kelvin-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"K\")]",
+   "chain": "**/*[`label CONTAINS \"K\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+    "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:K)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|K|K|K|82,133,8,14",
+      "XCUIElementTypeStaticText|K|K|K|96,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 87.2,
+    "chainMs": 93.4,
+    "speedup": 0.93,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-e-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"e\")]",
+   "chain": "**/*[`label CONTAINS \"e\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"e\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 107,
+    "chainMs": 60,
+    "speedup": 1.78,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-e-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"e\")]",
+   "chain": "**/*[`label BEGINSWITH \"e\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"e\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 107.1,
+    "chainMs": 60.3,
+    "speedup": 1.77,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-e-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"e\"]",
+   "chain": "**/*[`label == \"e\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"e\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.3,
+    "chainMs": 60.8,
+    "speedup": 1.4,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-e-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"e\")]",
+   "chain": "**/*[`label CONTAINS[c] \"e\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"e\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 106.6,
+    "chainMs": 60.3,
+    "speedup": 1.77,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-e-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"e\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"e\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-e-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"e\")]",
+   "chain": "**/*[`label CONTAINS \"e\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:e)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|e|e|e|117,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 106,
+    "chainMs": 60.7,
+    "speedup": 1.75,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-e-acute-composed-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"é\")]",
+   "chain": "**/*[`label CONTAINS \"é\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"é\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+      "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 86.7,
+    "chainMs": 93.4,
+    "speedup": 0.93,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-e-acute-composed-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"é\")]",
+   "chain": "**/*[`label BEGINSWITH \"é\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"é\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+      "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.9,
+    "chainMs": 93,
+    "speedup": 0.9,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-e-acute-composed-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"é\"]",
+   "chain": "**/*[`label == \"é\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"é\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 86.4,
+    "chainMs": 62.3,
+    "speedup": 1.39,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-e-acute-composed-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"é\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"é\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"é\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+      "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-e-acute-composed-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"é\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"é\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-e-acute-composed-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"é\")]",
+   "chain": "**/*[`label CONTAINS \"é\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:é)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+      "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.5,
+    "chainMs": 91.1,
+    "speedup": 0.94,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-e-acute-decomposed-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"é\")]",
+   "chain": "**/*[`label CONTAINS \"é\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"é\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+      "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.9,
+    "chainMs": 91.8,
+    "speedup": 0.94,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-e-acute-decomposed-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"é\")]",
+   "chain": "**/*[`label BEGINSWITH \"é\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"é\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+      "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.5,
+    "chainMs": 95.6,
+    "speedup": 0.88,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-e-acute-decomposed-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"é\"]",
+   "chain": "**/*[`label == \"é\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"é\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|8,148,7,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.2,
+    "chainMs": 62.2,
+    "speedup": 1.35,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-e-acute-decomposed-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"é\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"é\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"é\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+      "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-e-acute-decomposed-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"é\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"é\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|8,148,7,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-e-acute-decomposed-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"é\")]",
+   "chain": "**/*[`label CONTAINS \"é\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+    "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:é)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|é|é|é|8,148,7,14",
+      "XCUIElementTypeStaticText|é|é|é|18,148,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 87.1,
+    "chainMs": 91.6,
+    "speedup": 0.95,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-A-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"A\")]",
+   "chain": "**/*[`label CONTAINS \"A\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|62,90,27,14",
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|62,90,27,14",
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"A\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|62,90,27,14",
+      "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 188.6,
+    "chainMs": 197.8,
+    "speedup": 0.95,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-A-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"A\")]",
+   "chain": "**/*[`label BEGINSWITH \"A\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"A\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+      "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 170.2,
+    "chainMs": 152,
+    "speedup": 1.12,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-A-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"A\"]",
+   "chain": "**/*[`label == \"A\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"A\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.9,
+    "chainMs": 60.2,
+    "speedup": 1.41,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-A-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"a\")]",
+   "chain": "**/*[`label CONTAINS[c] \"a\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,62,34,14",
+    "XCUIElementTypeStaticText|a\nc|a-nl-c|a-nl-c|82,62,33,14",
+    "XCUIElementTypeStaticText|abc|abc|abc|118,62,20,14",
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+    "XCUIElementTypeStaticText|a b|a b|a b|8,76,17,14",
+    "XCUIElementTypeStaticText|a\tb|a\tb|a\tb|28,76,36,14",
+    "XCUIElementTypeStaticText|a b|a b|a b|67,76,17,14",
+    "XCUIElementTypeStaticText| a  b | a  b | a  b |87,76,27,14",
+    "XCUIElementTypeStaticText|ab|ab|ab|8,90,13,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|62,90,27,14",
+    "XCUIElementTypeButton|abcd|abcd|null|44,105,26,14",
+    "XCUIElementTypeButton|abc|abc|null|74,105,20,14",
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14",
+    "XCUIElementTypeButton|frac.522|Frac|null|60,794,24,14",
+    "XCUIElementTypeButton|frac.527|Frac|null|60,808,24,14",
+    "XCUIElementTypeButton|frac.kit|Frac|null|60,823,31,16",
+    "XCUIElementTypeStaticText|Frac|Frac|Frac|64,824,24,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,62,34,14",
+    "XCUIElementTypeStaticText|a\nc|a-nl-c|a-nl-c|82,62,33,14",
+    "XCUIElementTypeStaticText|abc|abc|abc|118,62,20,14",
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+    "XCUIElementTypeStaticText|a b|a b|a b|8,76,17,14",
+    "XCUIElementTypeStaticText|a\tb|a\tb|a\tb|28,76,36,14",
+    "XCUIElementTypeStaticText|a b|a b|a b|67,76,17,14",
+    "XCUIElementTypeStaticText| a  b | a  b | a  b |87,76,27,14",
+    "XCUIElementTypeStaticText|ab|ab|ab|8,90,13,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|62,90,27,14",
+    "XCUIElementTypeButton|abcd|abcd|null|44,105,26,14",
+    "XCUIElementTypeButton|abc|abc|null|74,105,20,14",
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14",
+    "XCUIElementTypeButton|frac.522|Frac|null|60,794,24,14",
+    "XCUIElementTypeButton|frac.527|Frac|null|60,808,24,14",
+    "XCUIElementTypeButton|frac.kit|Frac|null|60,823,31,16",
+    "XCUIElementTypeStaticText|Frac|Frac|Frac|64,824,24,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"A\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,62,34,14",
+      "XCUIElementTypeStaticText|a\nc|a-nl-c|a-nl-c|82,62,33,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,62,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+      "XCUIElementTypeStaticText|a b|a b|a b|8,76,17,14",
+      "XCUIElementTypeStaticText|a\tb|a\tb|a\tb|28,76,36,14",
+      "XCUIElementTypeStaticText|a b|a b|a b|67,76,17,14",
+      "XCUIElementTypeStaticText| a  b | a  b | a  b |87,76,27,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|8,90,13,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|62,90,27,14",
+      "XCUIElementTypeButton|abcd|abcd|null|44,105,26,14",
+      "XCUIElementTypeButton|abc|abc|null|74,105,20,14",
+      "XCUIElementTypeStaticText|A|A|A|128,162,8,14",
+      "XCUIElementTypeButton|frac.522|Frac|null|60,794,24,14",
+      "XCUIElementTypeButton|frac.527|Frac|null|60,808,24,14",
+      "XCUIElementTypeButton|frac.kit|Frac|null|60,823,31,16",
+      "XCUIElementTypeStaticText|Frac|Frac|Frac|64,824,24,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 502.2,
+    "chainMs": 630.4,
+    "speedup": 0.8,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-A-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"a\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"A\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-A-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"A\")]",
+   "chain": "**/*[`label CONTAINS \"A\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|62,90,27,14",
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|62,90,27,14",
+    "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:A)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|142,62,21,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,90,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,90,15,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|62,90,27,14",
+      "XCUIElementTypeStaticText|A|A|A|128,162,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 191.7,
+    "chainMs": 186.6,
+    "speedup": 1.03,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-A-ring-composed-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"Å\")]",
+   "chain": "**/*[`label CONTAINS \"Å\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"Å\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+      "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.6,
+    "chainMs": 90.2,
+    "speedup": 0.95,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-A-ring-composed-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"Å\")]",
+   "chain": "**/*[`label BEGINSWITH \"Å\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"Å\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+      "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.3,
+    "chainMs": 91.5,
+    "speedup": 0.92,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-A-ring-composed-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"Å\"]",
+   "chain": "**/*[`label == \"Å\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"Å\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 86.2,
+    "chainMs": 60.5,
+    "speedup": 1.42,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-A-ring-composed-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"Å\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"Å\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"Å\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+      "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-A-ring-composed-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"Å\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"Å\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-A-ring-composed-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"Å\")]",
+   "chain": "**/*[`label CONTAINS \"Å\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:Å)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+      "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 83.7,
+    "chainMs": 91.9,
+    "speedup": 0.91,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-A-ring-decomposed-CONTAINS",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"Å\")]",
+   "chain": "**/*[`label CONTAINS \"Å\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS \"Å\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+      "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.5,
+    "chainMs": 91.6,
+    "speedup": 0.93,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-A-ring-decomposed-BEGINSWITH",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[starts-with(@label,\"Å\")]",
+   "chain": "**/*[`label BEGINSWITH \"Å\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label BEGINSWITH \"Å\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+      "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 84.6,
+    "chainMs": 91.6,
+    "speedup": 0.92,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "D0-A-ring-decomposed-==",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[@label=\"Å\"]",
+   "chain": "**/*[`label == \"Å\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label == \"Å\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85.3,
+    "chainMs": 59.8,
+    "speedup": 1.43,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "D0-A-ring-decomposed-CONTAINS[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"å\")]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() with a non-ASCII literal \"å\": [c] against Unicode case mapping is not checked",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"Å\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+      "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-A-ring-decomposed-==[c]",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"å\"]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "reason": "translate() outside contains(translate(@attr), \"v\") is not checked on the device",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"Å\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "D0-A-ring-decomposed-MATCHES",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(@label,\"Å\")]",
+   "chain": "**/*[`label CONTAINS \"Å\"`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+    "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+   ],
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"(?s:.*)(?-s:Å)(?s:.*)\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Å|Å|Å|29,148,8,14",
+      "XCUIElementTypeStaticText|Å|Å|Å|40,148,9,14"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 85,
+    "chainMs": 92.3,
+    "speedup": 0.92,
+    "first": "chain"
+   }
+  }
+ ]
+}

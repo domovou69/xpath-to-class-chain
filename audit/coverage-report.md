@@ -53,7 +53,7 @@ Notes on `fix/c2-functions` (Phase 5, C2):
 - **C06, C07.** `normalize-space()` and `string-length()` are skipped with the C1 reasons (U+00A0 under `MATCHES`; `.length` counts UTF-16 units). Their spec expectation becomes `inexpressible`, and both join `NOT_EXPRESSIBLE` in `build.js`, so C has 7 expressible cases instead of 9.
 - **The functions combine with the rest.** They work inside `not()` (``NOT (name CONTAINS "b")``; a missing attribute gives true on both sides), with `and` / `or`, and in a `.//T[…]` descendant predicate.
 - **`$` in a `$…$` block (found here, fixed).** WDA's class chain parser ends a descendant predicate at any `$`, even one inside a string literal: ``[$… name == "a$b"$]`` is a parse error in mini-WDA. This happened already with `//Cell[.//Button[@name="a$b"]]`, and the `MATCHES` wrapper makes it more likely (`$` anchors). A descendant predicate whose text holds a `$` outside `${…}` is now skipped with the reason `$ inside a descendant predicate`. No corpus or spec case had one.
-- **Normalization (mini-WDA only, a documented limit).** Ad hoc probes on fixed page sources (not harness cases) show that macOS NSPredicate compares normalized text, and XPath does not. Under `MATCHES` and `[c]`, compatibility characters match their ASCII forms: fullwidth `Ｑ` / `ｑ`, the ligature `ﬁ`, `①`, U+00A0, and with `[c]` also `ſ`, `ß` (= `ss`) and the Kelvin sign. Every ASCII letter is affected through its fullwidth forms. `CONTAINS` / `BEGINSWITH` without `[c]` treat canonically equivalent text as equal: a decomposed `é` matches `CONTAINS "é"` but not `CONTAINS "e"`, and the Angstrom sign matches `"Å"`. `==` compares exactly. C1's U+00A0 result on the device is one case of this, and mini-WDA reproduced it, so the device probably behaves the same; the other characters were not run on the device. By the user's choice the C1 forms are converted anyway and the limit is documented in the README ("On the device"). The canonical part also applies to the older `contains()` / `starts-with()` conversions (C01, C02 and the corpus). Follow-up: a device check of these characters on LocatorLab before D1.
+- **Normalization (a documented limit, checked on the device in D0).** NSPredicate compares normalized text, and XPath compares code points. On the simulator (D0, 126 cases, mini-WDA agrees in all 126): `==` is exact; `CONTAINS` / `BEGINSWITH` treat canonically equivalent text as equal (Kelvin = `K`, decomposed = composed `é` / `Å`) and a base-letter pattern misses the same letter followed by a combining mark; `MATCHES` compares NFKC text case-sensitively (fullwidth `Ｑ`, `ﬁ`, `①`, `ſ`, Kelvin fold; `ß` does not); `[c]` adds full case folding (`ß` = `ss`, `ſ` = `s`, Kelvin = `k`). Table in "Device check (Phase 5, D0)"; new root cause RC-D4 (documented, not fixed). The limit is documented in the README ("On the device").
 - **mini-WDA against C1.** The H02 fixture gained `abc\n` and `a\nc`. mini-WDA gives the C1 result: XPath `[b1, b4]`, the models' ``MATCHES "a.c"`` gives `[b1, b5]`, and the converter's wrapper gives `[b1, b4]`. No divergence from C1.
 - Harness: 8 verdicts changed (H02–H06 and C08 GAP → CORRECT; C06, C07 GAP → CORRECT-SKIP). No new WRONG or DRIFT, no "needs review" lines. The spec expectations of H02–H04 are now the converter's forms (the models' `MATCHES "a.c"` for H02 is refuted). C goes from 6/9 to 7/7 and H from 1/7 to 6/7 (only H07 is left as GAP), so S goes from 82.8 to 92.0. R is unchanged because no corpus entry uses these functions. No fuzz notes moved. In H02's random trees the XPath never matched (0 hits), so the fixture is the real check.
 - **Simulator** (`LocatorLab iPhone 17`, iOS 27.0; AC power, Low Power Mode off): `run.js --cases cases-c1.json --only H02,H03,H04,H05,H06,C08,C06,C07` in 72 s. The converter's chains are EQUAL to the XPath on `functions` and `c1` for H02–H06 and C08. On `c1`, H02's two model candidates are SET_DIFFERS, as in C1. C06 and C07 are skipped (XPATH_ONLY). The output is `device/out/c2-functions.json`, which git ignores. The iPhone was not run. The case file's verdict column still shows the pre-C2 GAP labels.
@@ -852,6 +852,89 @@ No change needed: B04 `rect.x`, B11 `index`, B14 `hittable`, A04 `XCUIElementTyp
 - One run per platform, no repeat. The outcomes are deterministic on a static screen, and the simulator was run twice while the case file grew; the overlapping cases agreed.
 - Unicode case mapping (`[c]` against `lower-case()` on non-ASCII letters, e.g. `ß`, `İ`) was not tried. That is why C2's `[c]` rules are limited to ASCII literals.
 - Other Unicode spaces (U+2007, U+202F, …) under `MATCHES`, and `.length` on combining characters, were not tried.
+
+## Device check (Phase 5, D0)
+
+C2 found on mini-WDA (macOS) that NSPredicate compares normalized text while XPath compares code points, and only the U+00A0 result from C1 had been confirmed on the device. D0 runs the other characters on the simulator and corrects the README note and the limit above to what the device does. The converter and the harness were not changed, so R and S are unchanged (no row in "Progress since Phase 1").
+
+### Setup
+
+| | Simulator |
+|---|---|
+| Device | `LocatorLab iPhone 17`, iOS 27.0 (24A434) |
+| Appium / driver / WDA | 3.8.0 / 12.16.0 / 16.14.1 |
+| Xcode | 27.0 (27A266a) |
+| Mac power | AC (battery 80 %, not charging), Low Power Mode off |
+| Run | 126 cases, 140 s (single cold lookup per side, so timings are not a benchmark) |
+
+- The `c1` screen gained three rows (LocatorLab rebuilt and reinstalled): the characters `Ｑ` (U+FF31), `ｑ` (U+FF51), `ﬁ` (U+FB01), `①` (U+2460), `ſ` (U+017F), `ß` (U+00DF), the Kelvin sign (U+212A); decomposed `é` (e + U+0301) and `Å` (A + U+030A) next to their composed forms; and their ASCII twins `Q q fi 1 s ss SS K k e A`. Each is a label of its own.
+- `cases-d0.json` (made by `make-cases-d0.js`) has 21 probe strings × 6 operators. The probes are every character above and every twin. The reference is always an XPath that compares code points: `contains()`, `starts-with()`, `=` for `CONTAINS`, `BEGINSWITH`, `==` (and for `MATCHES`, written `(?s:.*)(?-s:p)(?s:.*)`); `translate(@label, A–Z, a–z)` with a lower-cased literal for `CONTAINS[c]` and `==[c]`, the ASCII rule that C2 converts. `d0-table.js` prints the per-probe summary from `results-d0.json`.
+- mini-WDA was run on the same page source with the same 126 XPath / chain pairs: **the same sets in all 126**, so it needs no change.
+
+### What the chain does against the XPath
+
+Cell = outcome against the XPath. `=` is EQUAL; `+X` means the chain also finds label X; `−X` means the chain misses a label the XPath finds. `Qty` is the unrelated `Qty` buttons that contain a `Q`. `e◌́` is the decomposed `é`, `A◌̊` the decomposed `Å`.
+
+| Probe | `CONTAINS` | `BEGINSWITH` | `==` | `CONTAINS[c]` | `==[c]` | `MATCHES` |
+|---|---|---|---|---|---|---|
+| `Q` | = | = | = | +`Ｑ` `ｑ` | +`Ｑ` `ｑ` | +`Ｑ` |
+| `q` | = | = | = | +`Ｑ` `ｑ` | +`Ｑ` `ｑ` | +`ｑ` |
+| `Ｑ` | = | = | = | +`Qty` `Q` `q` `ｑ` | +`Q` `q` `ｑ` | +`Qty` `Q` |
+| `ｑ` | = | = | = | +`Qty` `Q` `q` `Ｑ` | +`Q` `q` `Ｑ` | +`q` |
+| `fi` | = | = | = | +`ﬁ` | +`ﬁ` | +`ﬁ` |
+| `ﬁ` | = | = | = | +`fi` | +`fi` | +`fi` |
+| `1` | = | = | = | +`①` | = | +`①` |
+| `①` | = | = | = | = | = | +`1` |
+| `s` | = | = | = | +`ſ` | +`ſ` | +`ſ` |
+| `ſ` | = | = | = | +`s` `ss` `SS` | +`s` | +`s` `ss` |
+| `ss` | = | = | = | +`ß` | +`ß` | = |
+| `ß` | = | = | = | +`ss` `SS` | +`ss` `SS` | = |
+| `k` | = | = | = | +Kelvin | +Kelvin | = |
+| `K` | +Kelvin | +Kelvin | = | +Kelvin | +Kelvin | +Kelvin |
+| Kelvin | +`K` | +`K` | = | +`K` `k` | +`K` `k` | +`K` |
+| `e` | −`e◌́` | −`e◌́` | = | −`e◌́` | = | −`e◌́` |
+| `é` | +`e◌́` | +`e◌́` | = | +`e◌́` | = | +`e◌́` |
+| `e◌́` | +`é` | +`é` | = | +`é` | = | +`é` |
+| `A` | −`A◌̊` | −`A◌̊` | = | −`A◌̊` | = | −`A◌̊` |
+| `Å` | +`A◌̊` | +`A◌̊` | = | +`A◌̊` | = | +`A◌̊` |
+| `A◌̊` | +`Å` | +`Å` | = | +`Å` | = | +`Å` |
+
+(In the `Q`, `q` and `A` rows the `[c]` columns also list the ASCII case twins on both sides, since the XPath reference lower-cases them too; only the differences are shown.)
+
+### What follows
+
+The device folds more than the mini-WDA note said in some places and less in others, and it matches mini-WDA everywhere it was tried:
+
+- **`==` is exact.** Not one of the 21 probes differs from the XPath. This also holds for `==[c]` apart from case: it folds compatibility and case, never canonical equivalence (`é` stays different from `e◌́`).
+- **`CONTAINS` and `BEGINSWITH` use canonical equivalence only.** The Kelvin sign equals `K`, composed equals decomposed `é` / `Å`. Fullwidth, ligatures, `①`, `ſ`, `ß` are not folded. Matching is by character, not by code point: a pattern ending in a base letter (`e`, `A`) does **not** match the same letter followed by a combining mark, which the XPath does.
+- **`MATCHES` compares NFKC-normalized text, case-sensitively.** It folds `Ｑ`→`Q`, `ｑ`→`q`, `ﬁ`→`fi`, `①`→`1`, `ſ`→`s`, Kelvin→`K`, decomposed→composed, and does not fold `ß`→`ss` or `K`→`k`. As with `CONTAINS`, a base-letter pattern misses the decomposed letter.
+- **`[c]` adds full case folding on top of that.** `ß` = `ss`, `ſ` = `s` = `S`, Kelvin = `k`, `Ｑ` = `q`, `ﬁ` = `fi`. `CONTAINS[c]` also folds canonical equivalence; `==[c]` does not. `①` is folded in one direction only: ``CONTAINS[c] "1"`` finds `①`, ``CONTAINS[c] "①"`` does not find `1`, and ``==[c]`` folds it neither way.
+- **Every ASCII letter has a fullwidth twin, so `[c]` and `MATCHES` select labels that XPath does not on any text that contains fullwidth letters** (Japanese, Chinese and Korean UIs mix them in). A literal that is plain ASCII is exact only against text without these characters.
+- **The U+00A0 result from C1 is the same family.** U+00A0 normalizes to a plain space under NFKC, which is what `MATCHES` does with it; `CONTAINS " "` and `==` do not fold it.
+- The probes for `ß` / `ſ` / Kelvin show that the converter's `CONTAINS[c]` (C2: `translate()`, `lower-case()`, `upper-case()`, `matches(…, "i")`, ASCII literals) is not an ASCII-only comparison on the device. It matches `ß` for `ss` and `ſ` for `s`.
+
+### Divergence the converter does not handle (not fixed)
+
+| Id | Severity | What | Where |
+|---|---|---|---|
+| RC-D4 | minor (documented, no fix) | A chain built from `contains()`, `starts-with()`, `matches()`, `lower-case()`, `upper-case()` or `translate()` selects a different set than the XPath on text that holds combining marks, fullwidth letters, ligatures or `ß` / `ſ` / Kelvin. Worst case for plain `contains(@label, "Cafe")` → ``label CONTAINS "Cafe"``: a label `Café` with a decomposed `é` is matched by the XPath and **missed** by the chain (the other cases add elements). | RC8–RC10 `contains` / `starts-with` rules; C2 `matches()` and `[c]` rules |
+
+Proposal (a separate task, not part of D0): leave the conversions as they are and keep the README limit. A literal cannot tell whether the screen holds such text, and the alternatives (skipping every `contains()`, or warning on every conversion) lose the common case. If a guard is wanted, a `warning` only for literals that contain non-ASCII characters is cheap, but it would not cover the worst case above (an ASCII literal against decomposed text).
+
+### Facts for D3a (what the prompt may say)
+
+- May: `==` is exact for any text. `CONTAINS` / `BEGINSWITH` equal the XPath on text without combining marks, and on non-ASCII literals they additionally treat composed and decomposed forms as equal.
+- May: `MATCHES` and `[c]` are an approximation for text with compatibility characters (fullwidth, ligatures, `①`, `ſ`, `ß`, Kelvin); they are exact for ordinary text. `[c]` is case folding, not ASCII-only.
+- Must not: call `[c]` "ASCII case-insensitive", call `MATCHES` "exact" or "case-insensitive", or offer a `MATCHES` form as a workaround for whitespace or normalization (`MATCHES` folds the most).
+- Must not: promise that a literal with an ASCII letter is exact under `[c]` or `MATCHES`; say "same on ordinary text".
+- Case rules stay as in C2: `lower-case` / `upper-case` / `translate(A–Z, a–z)` → `==[c]` / `CONTAINS[c]` for ASCII literals only; no advice on `İ`, `ß`, Kelvin literals.
+- The no-break space rule is unchanged: `MATCHES` treats U+00A0 as a space, so no `MATCHES` form of `normalize-space()`.
+
+### Not verified in D0
+
+- Simulator only (as agreed); the iPhone was not run, so iOS 26.6 behaviour is assumed to match, as it did for every C1 case.
+- `MATCHES` with `(?i)` (the converter's `matches(…, "i")` form) and `BEGINSWITH[c]` were not run.
+- Other compatibility characters (halfwidth katakana, roman numerals, superscripts) and other combining marks were not tried.
 
 ## 1. Headline
 

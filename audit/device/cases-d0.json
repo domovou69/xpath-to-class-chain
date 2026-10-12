@@ -1,0 +1,1640 @@
+[
+ {
+  "id": "D0-Q-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"Q\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0051",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"Q\"`]"
+  ]
+ },
+ {
+  "id": "D0-Q-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"Q\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0051",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"Q\"`]"
+  ]
+ },
+ {
+  "id": "D0-Q-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"Q\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0051",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"Q\"`]"
+  ]
+ },
+ {
+  "id": "D0-Q-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"q\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0051",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"Q\"`]"
+  ]
+ },
+ {
+  "id": "D0-Q-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"q\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0051",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"Q\"`]"
+  ]
+ },
+ {
+  "id": "D0-Q-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"Q\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0051",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:Q)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-Q-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"Ｑ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF31",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"Ｑ\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-Q-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"Ｑ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF31",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"Ｑ\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-Q-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"Ｑ\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF31",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"Ｑ\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-Q-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"Ｑ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF31",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"Ｑ\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-Q-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"Ｑ\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF31",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"Ｑ\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-Q-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"Ｑ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF31",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:Ｑ)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-q-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"q\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0071",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"q\"`]"
+  ]
+ },
+ {
+  "id": "D0-q-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"q\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0071",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"q\"`]"
+  ]
+ },
+ {
+  "id": "D0-q-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"q\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0071",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"q\"`]"
+  ]
+ },
+ {
+  "id": "D0-q-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"q\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0071",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"q\"`]"
+  ]
+ },
+ {
+  "id": "D0-q-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"q\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0071",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"q\"`]"
+  ]
+ },
+ {
+  "id": "D0-q-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"q\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0071",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:q)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-q-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"ｑ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF51",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"ｑ\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-q-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"ｑ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF51",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"ｑ\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-q-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"ｑ\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF51",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"ｑ\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-q-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ｑ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF51",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"ｑ\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-q-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ｑ\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF51",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"ｑ\"`]"
+  ]
+ },
+ {
+  "id": "D0-FW-q-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"ｑ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FF51",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:ｑ)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-fi-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"fi\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0066 U+0069",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"fi\"`]"
+  ]
+ },
+ {
+  "id": "D0-fi-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"fi\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0066 U+0069",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"fi\"`]"
+  ]
+ },
+ {
+  "id": "D0-fi-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"fi\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0066 U+0069",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"fi\"`]"
+  ]
+ },
+ {
+  "id": "D0-fi-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"fi\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0066 U+0069",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"fi\"`]"
+  ]
+ },
+ {
+  "id": "D0-fi-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"fi\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0066 U+0069",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"fi\"`]"
+  ]
+ },
+ {
+  "id": "D0-fi-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"fi\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0066 U+0069",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:fi)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-lig-fi-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"ﬁ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FB01",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"ﬁ\"`]"
+  ]
+ },
+ {
+  "id": "D0-lig-fi-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"ﬁ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FB01",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"ﬁ\"`]"
+  ]
+ },
+ {
+  "id": "D0-lig-fi-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"ﬁ\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FB01",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"ﬁ\"`]"
+  ]
+ },
+ {
+  "id": "D0-lig-fi-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ﬁ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FB01",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"ﬁ\"`]"
+  ]
+ },
+ {
+  "id": "D0-lig-fi-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ﬁ\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FB01",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"ﬁ\"`]"
+  ]
+ },
+ {
+  "id": "D0-lig-fi-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"ﬁ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+FB01",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:ﬁ)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-1-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"1\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0031",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"1\"`]"
+  ]
+ },
+ {
+  "id": "D0-1-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"1\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0031",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"1\"`]"
+  ]
+ },
+ {
+  "id": "D0-1-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"1\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0031",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"1\"`]"
+  ]
+ },
+ {
+  "id": "D0-1-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"1\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0031",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"1\"`]"
+  ]
+ },
+ {
+  "id": "D0-1-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"1\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0031",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"1\"`]"
+  ]
+ },
+ {
+  "id": "D0-1-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"1\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0031",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:1)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-circled-1-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"①\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+2460",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"①\"`]"
+  ]
+ },
+ {
+  "id": "D0-circled-1-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"①\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+2460",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"①\"`]"
+  ]
+ },
+ {
+  "id": "D0-circled-1-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"①\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+2460",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"①\"`]"
+  ]
+ },
+ {
+  "id": "D0-circled-1-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"①\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+2460",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"①\"`]"
+  ]
+ },
+ {
+  "id": "D0-circled-1-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"①\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+2460",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"①\"`]"
+  ]
+ },
+ {
+  "id": "D0-circled-1-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"①\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+2460",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:①)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-s-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"s\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"s\"`]"
+  ]
+ },
+ {
+  "id": "D0-s-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"s\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"s\"`]"
+  ]
+ },
+ {
+  "id": "D0-s-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"s\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"s\"`]"
+  ]
+ },
+ {
+  "id": "D0-s-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"s\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"s\"`]"
+  ]
+ },
+ {
+  "id": "D0-s-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"s\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"s\"`]"
+  ]
+ },
+ {
+  "id": "D0-s-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"s\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:s)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-long-s-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"ſ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+017F",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"ſ\"`]"
+  ]
+ },
+ {
+  "id": "D0-long-s-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"ſ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+017F",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"ſ\"`]"
+  ]
+ },
+ {
+  "id": "D0-long-s-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"ſ\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+017F",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"ſ\"`]"
+  ]
+ },
+ {
+  "id": "D0-long-s-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ſ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+017F",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"ſ\"`]"
+  ]
+ },
+ {
+  "id": "D0-long-s-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ſ\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+017F",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"ſ\"`]"
+  ]
+ },
+ {
+  "id": "D0-long-s-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"ſ\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+017F",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:ſ)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-ss-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"ss\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073 U+0073",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"ss\"`]"
+  ]
+ },
+ {
+  "id": "D0-ss-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"ss\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073 U+0073",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"ss\"`]"
+  ]
+ },
+ {
+  "id": "D0-ss-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"ss\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073 U+0073",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"ss\"`]"
+  ]
+ },
+ {
+  "id": "D0-ss-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ss\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073 U+0073",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"ss\"`]"
+  ]
+ },
+ {
+  "id": "D0-ss-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ss\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073 U+0073",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"ss\"`]"
+  ]
+ },
+ {
+  "id": "D0-ss-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"ss\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0073 U+0073",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:ss)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-sharp-s-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"ß\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00DF",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"ß\"`]"
+  ]
+ },
+ {
+  "id": "D0-sharp-s-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"ß\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00DF",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"ß\"`]"
+  ]
+ },
+ {
+  "id": "D0-sharp-s-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"ß\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00DF",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"ß\"`]"
+  ]
+ },
+ {
+  "id": "D0-sharp-s-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ß\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00DF",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"ß\"`]"
+  ]
+ },
+ {
+  "id": "D0-sharp-s-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ß\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00DF",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"ß\"`]"
+  ]
+ },
+ {
+  "id": "D0-sharp-s-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"ß\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00DF",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:ß)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-k-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"k\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+006B",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"k\"`]"
+  ]
+ },
+ {
+  "id": "D0-k-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"k\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+006B",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"k\"`]"
+  ]
+ },
+ {
+  "id": "D0-k-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"k\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+006B",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"k\"`]"
+  ]
+ },
+ {
+  "id": "D0-k-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"k\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+006B",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"k\"`]"
+  ]
+ },
+ {
+  "id": "D0-k-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"k\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+006B",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"k\"`]"
+  ]
+ },
+ {
+  "id": "D0-k-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"k\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+006B",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:k)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-K-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"K\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+004B",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"K\"`]"
+  ]
+ },
+ {
+  "id": "D0-K-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"K\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+004B",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"K\"`]"
+  ]
+ },
+ {
+  "id": "D0-K-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"K\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+004B",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"K\"`]"
+  ]
+ },
+ {
+  "id": "D0-K-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"k\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+004B",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"K\"`]"
+  ]
+ },
+ {
+  "id": "D0-K-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"k\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+004B",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"K\"`]"
+  ]
+ },
+ {
+  "id": "D0-K-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"K\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+004B",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:K)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-Kelvin-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"K\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+212A",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"K\"`]"
+  ]
+ },
+ {
+  "id": "D0-Kelvin-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"K\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+212A",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"K\"`]"
+  ]
+ },
+ {
+  "id": "D0-Kelvin-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"K\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+212A",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"K\"`]"
+  ]
+ },
+ {
+  "id": "D0-Kelvin-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"K\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+212A",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"K\"`]"
+  ]
+ },
+ {
+  "id": "D0-Kelvin-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"K\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+212A",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"K\"`]"
+  ]
+ },
+ {
+  "id": "D0-Kelvin-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"K\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+212A",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:K)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"e\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"e\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"e\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"e\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"e\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"e\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"e\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"e\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"e\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"e\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"e\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:e)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-composed-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"é\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00E9",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"é\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-composed-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"é\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00E9",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"é\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-composed-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"é\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00E9",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"é\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-composed-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"é\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00E9",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"é\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-composed-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"é\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00E9",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"é\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-composed-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"é\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00E9",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:é)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-decomposed-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"é\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065 U+0301",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"é\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-decomposed-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"é\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065 U+0301",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"é\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-decomposed-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"é\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065 U+0301",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"é\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-decomposed-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"é\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065 U+0301",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"é\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-decomposed-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"é\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065 U+0301",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"é\"`]"
+  ]
+ },
+ {
+  "id": "D0-e-acute-decomposed-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"é\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0065 U+0301",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:é)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"A\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"A\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"A\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"A\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"A\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"A\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"a\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"A\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"a\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"A\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"A\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:A)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-composed-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"Å\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00C5",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"Å\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-composed-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"Å\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00C5",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"Å\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-composed-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"Å\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00C5",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"Å\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-composed-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"Å\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00C5",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"Å\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-composed-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"Å\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00C5",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"Å\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-composed-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"Å\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+00C5",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:Å)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-decomposed-CONTAINS",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"Å\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041 U+030A",
+  "operator": "CONTAINS",
+  "candidates": [
+   "**/*[`label CONTAINS \"Å\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-decomposed-BEGINSWITH",
+  "screen": "c1",
+  "xpath": "//*[starts-with(@label,\"Å\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041 U+030A",
+  "operator": "BEGINSWITH",
+  "candidates": [
+   "**/*[`label BEGINSWITH \"Å\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-decomposed-==",
+  "screen": "c1",
+  "xpath": "//*[@label=\"Å\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041 U+030A",
+  "operator": "==",
+  "candidates": [
+   "**/*[`label == \"Å\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-decomposed-CONTAINS[c]",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"å\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041 U+030A",
+  "operator": "CONTAINS[c]",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"Å\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-decomposed-==[c]",
+  "screen": "c1",
+  "xpath": "//*[translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"å\"]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041 U+030A",
+  "operator": "==[c]",
+  "candidates": [
+   "**/*[`label ==[c] \"Å\"`]"
+  ]
+ },
+ {
+  "id": "D0-A-ring-decomposed-MATCHES",
+  "screen": "c1",
+  "xpath": "//*[contains(@label,\"Å\")]",
+  "verdict": "GAP",
+  "category": "D",
+  "variant": "c1",
+  "probe": "U+0041 U+030A",
+  "operator": "MATCHES",
+  "candidates": [
+   "**/*[`label MATCHES \"(?s:.*)(?-s:Å)(?s:.*)\"`]"
+  ]
+ }
+]

@@ -188,6 +188,11 @@ struct C1Screen: View {
         .row([.button("😀😀"), .button("abcd"), .button("abc")]),
         // B03: values XPath number() reads as NaN, NSString doubleValue as 10 and 1000
         .row([.button("Qty", value: "10abc"), .button("Qty", value: "1e3"), .button("Qty", value: "7"), .button("Qty", value: "3")]),
+        // D0 (Phase 5): characters NSPredicate may fold. Fullwidth Q/q, ligature fi, circled 1, long s, sharp s, Kelvin sign,
+        // then decomposed (base + combining mark) and composed e-acute and A-ring, then the ASCII twins
+        .row([.text("\u{FF31}"), .text("\u{FF51}"), .text("\u{FB01}"), .text("\u{2460}"), .text("\u{017F}"), .text("\u{00DF}"), .text("\u{212A}")]),
+        .row([.text("e\u{0301}"), .text("\u{00E9}"), .text("A\u{030A}"), .text("\u{00C5}")]),
+        .row([.text("Q"), .text("q"), .text("fi"), .text("1"), .text("s"), .text("ss"), .text("SS"), .text("K"), .text("k"), .text("e"), .text("A")]),
     ]
     var body: some View {
         VStack(alignment: .leading, spacing: 1) {
