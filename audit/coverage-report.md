@@ -28,6 +28,17 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/rc-d1-grouped-position` | RC-D1 documented (DRIFT, no exact chain) | 95.3 | 86.3 % | 61.9 (61.9) | 0 | 0 |
 | `fix/harness-expectations` (Phase 5, A) | none fixed; harness expectations corrected: H07 expressible (GAP), E07 / E11 judged like E02, L157 out of every denominator | 95.3 | 86.5 % | 61.8 (61.8) | 0 | 0 |
 | `fix/parser-provable-b1-b2` (Phase 5, B1 + B2) | none of RC-*: converter now emits the six GAP chains that mini-WDA proves EQUAL (G03, G04, G14, D07, D08, L458) | 95.5 | 86.5 % | 65.5 (65.5) | 0 | 0 |
+| `fix/parser-provable-b3` (Phase 5, B3) | none of RC-*: unions and `self::` — the six GAP chains mini-WDA proves EQUAL (X04, X05, X07, L355, L455, L461) | 96.1 | 86.5 % | 67.9 (67.9) | 0 | 0 |
+
+Notes on `fix/parser-provable-b3` (Phase 5, B3):
+
+- **Unions.** `//A[p] | //B[q] | …` becomes one `**/…` step whose predicate joins the operands with `OR`. With one type the step keeps it (X04: `Button[name == "a" OR name == "b"]`). With different types the step is `*` and each operand tests its own type (X05: `(type == "A" AND p) OR (type == "B" AND q)`). A `*` operand adds no type test. An operand with `AND` or `OR` inside is put in parentheses. Three or more operands use the same form. A `|` inside a value (L461's `${…}` with `'…'` and `?`) is text, not a split point.
+  - A union stays skipped when an operand has an index, a path predicate (`.//`, `not(//…)`), more than one step, an absolute root, `position()`/`last()`, or a non-WDA type. A grouped union `(… | …)[n]` and `(… | …)` are skipped too. Corpus unions L009, L017, L018 and L189 are still CORRECT-SKIP.
+  - Order: the union is the element set of one scan, the same as `//*[p or q]`, so XPath and chain return the same first element (300/300 trials for each of the six cases).
+- **`self::`.** `self::Type` becomes `type == "Type"`, but only inside the predicate of a `*` / `XCUIElementTypeAny` step and only for a type in WDA's table (X07). It is still skipped on a named step, as a step of its own, for `self::*`, `self::node()`, `XCUIElementTypeAny` or a non-WDA type, inside a path predicate, and under `not()`.
+- Extra union and `self::` forms the spec does not list (a `*` operand, three operands, operands without conditions, `self::` mixed with attributes) were checked ad hoc on mini-WDA: 300/300 equal each. They are not new harness cases.
+- **Found, not fixed:** a negated condition on `//*` (`//*[not(self::X)]`, but also the B2 output for `//*[not(@name="a")]`) holds for the Application root, which `//*` returns and `**/*` never does. On mini-WDA every trial differs because of the root alone. This is assumption A1's mechanism. This branch keeps `self::` under `not()` skipped; the B2 behaviour is left for review.
+- Harness: 6 verdicts GAP → CORRECT, no new WRONG or DRIFT. R 95.5 → 96.1 (corpus 450 CORRECT of 486 expressible; no corpus GAP left). S 65.5 → 67.9 (all GAP 19 → 13). The other `coverage-cases.json` changes are fuzz notes only: the three new corpus chains shift the shared seed, so the "min matching trials" counts move. The Phase 4 model table is not recomputed here (D2).
 
 Notes on `fix/parser-provable-b1-b2` (Phase 5, B1 + B2):
 

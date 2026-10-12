@@ -125,7 +125,7 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
   G01: ['CORRECT'], G02: ['CORRECT'], G03: ['CORRECT'], G04: ['CORRECT'], G05: ['CORRECT'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['DRIFT', null, true], G12: ['CORRECT'], G13: ['CORRECT'], G14: ['CORRECT'],
   H01: ['CORRECT'], H02: ['GAP'], H03: ['GAP'], H04: ['GAP'], H05: ['GAP'], H06: ['GAP'], H07: ['GAP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
   R01: ['GAP'], R02: ['CORRECT-SKIP'], R03: ['CORRECT-SKIP'], R04: ['CORRECT-SKIP'],
-  X01: ['CORRECT-SKIP'], X02: ['CORRECT-SKIP'], X03: ['CORRECT-SKIP'], X04: ['GAP'], X05: ['GAP'], X06: ['CORRECT-SKIP'], X07: ['GAP'],
+  X01: ['CORRECT-SKIP'], X02: ['CORRECT-SKIP'], X03: ['CORRECT-SKIP'], X04: ['CORRECT'], X05: ['CORRECT'], X06: ['CORRECT-SKIP'], X07: ['CORRECT'],
 };
 // cases whose XPath never matches anything on WDA (dead) or that have no exact form -> excluded from the denominator.
 // Cases with an `approx` expectation (no exact chain, E02-like) are not listed: a skip there leaves the denominator,
