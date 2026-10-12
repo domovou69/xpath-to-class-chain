@@ -20,7 +20,7 @@ fs.mkdirSync(OUT, { recursive: true });
 // 1. a new empty folder outside the repository (system temp dir, neutral name) with input.json only
 const work = fs.mkdtempSync(path.join(os.tmpdir(), 'locators-'));
 fs.copyFileSync(inputArg || path.join(__dirname, 'input.json'), path.join(work, 'input.json'));
-const prompt = fs.readFileSync(path.join(__dirname, 'prompt.md'), 'utf8');
+const prompt = fs.readFileSync(process.env.PROMPT || path.join(__dirname, 'prompt.md'), 'utf8');
 
 // 2. isolated run: Read + Write only, no settings/hooks/MCP from any source, no session saved.
 // The parent session's environment is not inherited (CLAUDE_* variables would leak into the child).
