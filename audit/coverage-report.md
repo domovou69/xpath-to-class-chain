@@ -27,6 +27,15 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/rc-d2-descendant-self` | RC-D2 | 92.3 | 86.3 % | 57.5 (57.5) | 0 | 0 |
 | `fix/rc-d1-grouped-position` | RC-D1 documented (DRIFT, no exact chain) | 95.3 | 86.3 % | 61.9 (61.9) | 0 | 0 |
 | `fix/harness-expectations` (Phase 5, A) | none fixed; harness expectations corrected: H07 expressible (GAP), E07 / E11 judged like E02, L157 out of every denominator | 95.3 | 86.5 % | 61.8 (61.8) | 0 | 0 |
+| `fix/parser-provable-b1-b2` (Phase 5, B1 + B2) | none of RC-*: converter now emits the six GAP chains that mini-WDA proves EQUAL (G03, G04, G14, D07, D08, L458) | 95.5 | 86.5 % | 65.5 (65.5) | 0 | 0 |
+
+Notes on `fix/parser-provable-b1-b2` (Phase 5, B1 + B2):
+
+- **B1 literals.** The validator no longer counts `[`, `]` and `"` inside a string literal in a backtick block: G14 (`"a]b"`) and G03 (`'a"b'`) are CORRECT. A quote or bracket that is really unbalanced still fails (unit tests).
+  - G04: a backtick in a value (`"a`b"`) no longer makes the converter skip the input; the value gets a doubled backtick (``"a``b"``). A backtick outside a value is still read as an existing class chain and skipped.
+- **B2 logic.** `not(…)` / `not (…)` becomes `NOT (…)` (D07, D08, L458 are CORRECT). `not(@name)` is the existence test `NOT (name != nil)`. `not()` around a path, a non-WDA attribute or `position()` is still skipped.
+- Harness: 6 verdicts GAP → CORRECT, no new WRONG or DRIFT, R 95.3 → 95.5 (corpus 447 CORRECT of 486 expressible; L458 left the GAPs), S 61.8 → 65.5 (GAP 25 → 19). The Phase 4 model table is not recomputed here; that is planned once, after all stages.
+- The text of sections 1–8 and the Phase 4 tables below still show these six as GAP: they are the Phase 1 / Phase 4 snapshots.
 
 Notes on `fix/class-chain-parse-errors`:
 
