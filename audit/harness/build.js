@@ -122,12 +122,12 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
   A09: ['CORRECT'], A10: ['CORRECT'], A11: ['CORRECT'], A12: ['CORRECT'], A13: ['CORRECT-SKIP'], A14: ['CORRECT'], A15: ['CORRECT'], A16: ['CORRECT'],
   B01: ['CORRECT'], B02: ['CORRECT'], B03: ['CORRECT-SKIP'], B04: ['CORRECT'], B05: ['CORRECT'], B06: ['CORRECT'], B07: ['CORRECT'], B08: ['DRIFT', null, false],
   B09: ['CORRECT'], B10: ['CORRECT'], B11: ['CORRECT'], B12: ['CORRECT'], B13: ['CORRECT-SKIP'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['CORRECT'], B17: ['CORRECT'], B18: ['CORRECT'],
-  C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['GAP'], C07: ['GAP'], C08: ['GAP'], C09: ['CORRECT'], C10: ['CORRECT'], C11: ['CORRECT'], C12: ['CORRECT'],
+  C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['CORRECT-SKIP'], C07: ['CORRECT-SKIP'], C08: ['CORRECT'], C09: ['CORRECT'], C10: ['CORRECT'], C11: ['CORRECT'], C12: ['CORRECT'],
   D01: ['CORRECT'], D02: ['CORRECT'], D03: ['CORRECT'], D04: ['CORRECT'], D05: ['CORRECT'], D06: ['CORRECT'], D07: ['CORRECT'], D08: ['CORRECT'], D09: ['CORRECT'], D10: ['CORRECT'], D11: ['CORRECT'], D12: ['CORRECT'],
   E01: ['DRIFT', null, true], E02: ['DRIFT', null, true], E03: ['DRIFT', null, true], E04: ['CORRECT-SKIP'], E05: ['DRIFT', null, true], E06: ['DRIFT', null, true], E07: ['CORRECT-SKIP'], E08: ['CORRECT-SKIP'], E09: ['DRIFT', null, true], E10: ['CORRECT-SKIP'], E11: ['CORRECT-SKIP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['DRIFT', null, true],
   F01: ['CORRECT'], F02: ['CORRECT-SKIP'], F03: ['CORRECT-SKIP'], F04: ['CORRECT'], F05: ['CORRECT-SKIP'], F06: ['CORRECT-SKIP'], F07: ['CORRECT'], F08: ['CORRECT'],
   G01: ['CORRECT'], G02: ['CORRECT'], G03: ['CORRECT'], G04: ['CORRECT'], G05: ['CORRECT'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['DRIFT', null, true], G12: ['CORRECT'], G13: ['CORRECT'], G14: ['CORRECT'],
-  H01: ['CORRECT'], H02: ['GAP'], H03: ['GAP'], H04: ['GAP'], H05: ['GAP'], H06: ['GAP'], H07: ['GAP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
+  H01: ['CORRECT'], H02: ['CORRECT'], H03: ['CORRECT'], H04: ['CORRECT'], H05: ['CORRECT'], H06: ['CORRECT'], H07: ['GAP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
   R01: ['CORRECT'], R02: ['CORRECT-SKIP'], R03: ['CORRECT-SKIP'], R04: ['CORRECT-SKIP'],
   X01: ['CORRECT-SKIP'], X02: ['CORRECT-SKIP'], X03: ['CORRECT-SKIP'], X04: ['CORRECT'], X05: ['CORRECT'], X06: ['CORRECT-SKIP'], X07: ['CORRECT'],
 };
@@ -135,7 +135,8 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
 // Cases with an `approx` expectation (no exact chain, E02-like) are not listed: a skip there leaves the denominator,
 // an emitted approximation is DRIFT and stays in it (the rule audit/llm/score.js uses)
 // B03: no exact form since RC-D3 (doubleValue reads a numeric prefix), skipped like @value<5
-const NOT_EXPRESSIBLE = new Set(['F03', 'A13', 'B03', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
+// C06 / C07: no exact form since C1 (MATCHES and U+00A0, .length in UTF-16 units)
+const NOT_EXPRESSIBLE = new Set(['F03', 'A13', 'B03', 'C06', 'C07', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
 for (const r of spec) {
   let [verdict, rc, doc] = SPEC[r.id] || [];
   const e = r.runExpected, a = r.runActual, f = r.fixtureRun;
