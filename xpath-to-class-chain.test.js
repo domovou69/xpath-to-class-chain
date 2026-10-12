@@ -121,6 +121,13 @@ const CONVERT_CASES = [
   // Valid for flat list/table patterns where each parent has one child at position n.
   // e.g. row[${t}]/2nd-child  ≡  (all rows' 2nd children)[${t}] when rows are flat siblings
   ['(//*[contains(@name, "Balance,")]/child::*[2])[${transaction}]', `${CC}**/*[\`name CONTAINS "Balance,"\`][${'${transaction}'}]/*[2]`],
+  // outer [last()] / [last()-n] → [-1] / [-(n+1)]: counted from the end of the same
+  // match list (RC-D1 applies, as for [n]; C1 on device: E05, E06, L270–L272)
+  ['(//XCUIElementTypeButton)[last()]', `${CC}**/XCUIElementTypeButton[-1]`],
+  ['(//XCUIElementTypeButton)[last()-1]', `${CC}**/XCUIElementTypeButton[-2]`],
+  ['(//XCUIElementTypeButton)[ last() - 2 ]', `${CC}**/XCUIElementTypeButton[-3]`],
+  ['(//XCUIElementTypeStaticText[@name="icon"])[last()]', `${CC}**/XCUIElementTypeStaticText[\`name == "icon"\`][-1]`],
+  ['(//XCUIElementTypeOther[contains(@label, "a")]/XCUIElementTypeStaticText)[last()]', `${CC}**/XCUIElementTypeOther[\`label CONTAINS "a"\`]/XCUIElementTypeStaticText[-1]`],
 
   // --- true/false on a NON-boolean attr stays a quoted string: a label whose
   //     literal text is "true" must NOT be coerced to the boolean `== true` ---
@@ -261,11 +268,13 @@ const SKIP_CASES = [
 
   // XPath functions with no Class Chain equivalent
   ['//*[last()]', 'last()'],
-  // [last()] as the OUTER index of a grouped XPath: unwrapGrouped rejects it
-  // (not a digit and not a ${} expression), so the whole thing falls through
-  // as SKIPPED_NOT_XPATH. last() is an XPath function with no static value —
-  // there is no equivalent in Class Chain; must be converted manually.
-  ['(//XCUIElementTypeStaticText[@name="icon"])[last()]', 'grouped outer last()'],
+  // grouped outer last(): only [last()] and [last()-n] with n ≥ 1 convert
+  ['(//XCUIElementTypeButton)[last()+1]', 'grouped outer last()+1'],
+  ['(//XCUIElementTypeButton)[last()-0]', 'grouped outer last()-0'],
+  ['(//XCUIElementTypeButton)[last()-${n}]', 'grouped outer last() minus an expression'],
+  ['(//XCUIElementTypeButton)[last()][1]', 'grouped outer last() plus another bracket'],
+  ['(//XCUIElementTypeCell/XCUIElementTypeButton[2])[last()]', 'grouped outer last() over an inner index'],
+  ['(//XCUIElementTypeButton[@name="a"] | //XCUIElementTypeButton[@name="b"])[last()]', 'grouped union with last()'],
   ['//*[contains(@name, "Item")]/following-sibling::*[1][position() <= 15]', 'position()'],
   // not() converts to NOT (…), but only around conditions that have a chain form
   ['//*[not(./XCUIElementTypeButton)]', 'not() around a path'],
@@ -828,6 +837,8 @@ for (const [xpath, warned] of [
   ['(//XCUIElementTypeOther[@name="row"])[${index}]', true],
   ['(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[2])[1]', true], // outer [1] dropped
   ['(//*[contains(@name, "Balance,")]/child::*[2])[${transaction}]', true], // outer index moved to the parent
+  ['(//XCUIElementTypeButton)[last()]', true], // E05
+  ['(//XCUIElementTypeButton)[last()-1]', true], // E06
   ['(//XCUIElementTypeButton[@name="OK"])', false],
   ['//XCUIElementTypeButton[2]', false],
   ['//XCUIElementTypeButton[@name="OK"]', false],

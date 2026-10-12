@@ -71,6 +71,10 @@ const CORPUS_DRIFT = {
   L571: [true, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
   L572: [true, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
   L573: [true, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  // (//X)[last()] → **/X[-1] (Phase 5 C2): [-1] counts from the end of the same breadth-first list (C1, device)
+  L270: [true, 'RC-D1: grouped last() → [-1] counts from the end of the matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L271: [true, 'RC-D1: grouped last() → [-1] counts from the end of the matches in XCTest query order (breadth-first) on device, XPath in document order'],
+  L272: [true, 'RC-D1: grouped last() → [-1] counts from the end of the matches in XCTest query order (breadth-first) on device, XPath in document order'],
   // same shape as L062 (S006); its random trees never had 10 matches, so the shape's counter-example applies
   L397: [true, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order', 'L062'],
 };
@@ -120,7 +124,7 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
   B09: ['CORRECT'], B10: ['CORRECT'], B11: ['CORRECT'], B12: ['CORRECT'], B13: ['CORRECT-SKIP'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['DRIFT', null, false], B17: ['CORRECT'], B18: ['CORRECT'],
   C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['GAP'], C07: ['GAP'], C08: ['GAP'], C09: ['CORRECT'], C10: ['CORRECT'], C11: ['CORRECT'], C12: ['CORRECT'],
   D01: ['CORRECT'], D02: ['CORRECT'], D03: ['CORRECT'], D04: ['CORRECT'], D05: ['CORRECT'], D06: ['CORRECT'], D07: ['CORRECT'], D08: ['CORRECT'], D09: ['CORRECT'], D10: ['CORRECT'], D11: ['CORRECT'], D12: ['CORRECT'],
-  E01: ['DRIFT', null, true], E02: ['DRIFT', null, true], E03: ['DRIFT', null, true], E04: ['CORRECT-SKIP'], E05: ['CORRECT-SKIP'], E06: ['CORRECT-SKIP'], E07: ['CORRECT-SKIP'], E08: ['CORRECT-SKIP'], E09: ['DRIFT', null, true], E10: ['CORRECT-SKIP'], E11: ['CORRECT-SKIP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['DRIFT', null, true],
+  E01: ['DRIFT', null, true], E02: ['DRIFT', null, true], E03: ['DRIFT', null, true], E04: ['CORRECT-SKIP'], E05: ['DRIFT', null, true], E06: ['DRIFT', null, true], E07: ['CORRECT-SKIP'], E08: ['CORRECT-SKIP'], E09: ['DRIFT', null, true], E10: ['CORRECT-SKIP'], E11: ['CORRECT-SKIP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['DRIFT', null, true],
   F01: ['CORRECT'], F02: ['CORRECT-SKIP'], F03: ['CORRECT-SKIP'], F04: ['GAP'], F05: ['CORRECT-SKIP'], F06: ['CORRECT-SKIP'], F07: ['CORRECT'], F08: ['CORRECT'],
   G01: ['CORRECT'], G02: ['CORRECT'], G03: ['CORRECT'], G04: ['CORRECT'], G05: ['CORRECT'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['DRIFT', null, true], G12: ['CORRECT'], G13: ['CORRECT'], G14: ['CORRECT'],
   H01: ['CORRECT'], H02: ['GAP'], H03: ['GAP'], H04: ['GAP'], H05: ['GAP'], H06: ['GAP'], H07: ['GAP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
@@ -130,7 +134,7 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
 // cases whose XPath never matches anything on WDA (dead) or that have no exact form -> excluded from the denominator.
 // Cases with an `approx` expectation (no exact chain, E02-like) are not listed: a skip there leaves the denominator,
 // an emitted approximation is DRIFT and stays in it (the rule audit/llm/score.js uses)
-const NOT_EXPRESSIBLE = new Set(['E05', 'E06', 'F03', 'A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
+const NOT_EXPRESSIBLE = new Set(['F03', 'A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
 for (const r of spec) {
   let [verdict, rc, doc] = SPEC[r.id] || [];
   const e = r.runExpected, a = r.runActual, f = r.fixtureRun;

@@ -173,7 +173,7 @@ Status values used in `skipped[]`:
 | Status | Meaning |
 |---|---|
 | `success` | Converted or lint-fixed; appears in `updated[]`. |
-| `skipped_not_xpath` | Grouped XPath whose outer index isn't a static position, e.g. `(//XCUIElementTypeButton[@name="x"])[last()]`. (Non-locator strings such as URLs are filtered out earlier and never counted at all.) |
+| `skipped_not_xpath` | Grouped XPath whose outer index isn't a static position, e.g. `(//XCUIElementTypeButton[@name="x"])[position()<=2]`. (Non-locator strings such as URLs are filtered out earlier and never counted at all.) |
 | `skipped_android` | Locator targets Android UI (`android.widget.*`). |
 | `skipped_xpath_strategy` | The string is passed to an explicit XPath strategy (`AppiumBy.xpath(…)`, `(By.XPATH, …)`, …); `reason` names it. |
 | `skipped_unsupported_logic` | XPath uses an axis or function Class Chain can't express. |
@@ -208,23 +208,25 @@ Status values used in `skipped[]`:
 | `(//XCUIElementTypeButton[@name="OK"])` | ``**/XCUIElementTypeButton[`name == "OK"`]`` (outer parens stripped) |
 | `(//XCUIElementTypeButton[@name="OK"])[2]` | ``**/XCUIElementTypeButton[`name == "OK"`][2]`` (outer position index appended) |
 | `(//XCUIElementTypeOther[@name="row"])[${index}]` | ``**/XCUIElementTypeOther[`name == "row"`][${index}]`` (template expression preserved) |
+| `(//XCUIElementTypeButton[@name="OK"])[last()]` | ``**/XCUIElementTypeButton[`name == "OK"`][-1]`` (`[last()-n]` becomes `[-(n+1)]`; a chain counts negative positions from the end) |
 
 > ⚠️ **Positional indexes are not equivalent between the two languages.** In XPath, `//X[2]` means "every `X` that is the 2nd `X` child of its parent" — it can match many elements. In a Class Chain, `**/X[2]` means "the 2nd element of the matched set" — it matches at most one. Indexes are passed through unchanged, so a converted locator that uses `[n]` may select a different element than the original. Review indexed locators by hand after converting.
 >
-> A grouped position `(//X)[n]` converts to `**/X[n]` and is flagged with a `warning`. XPath counts the matches in document order, while WDA counts a chain's matches breadth-first, so the two pick the same element only when all matches sit at the same depth (for example, the rows of one list). See [On the device](#on-the-device).
+> A grouped position `(//X)[n]` converts to `**/X[n]`, and `(//X)[last()]` to `**/X[-1]`; both are flagged with a `warning`. XPath counts the matches in document order, while WDA counts a chain's matches breadth-first, so the two pick the same element only when all matches sit at the same depth (for example, the rows of one list). See [On the device](#on-the-device).
 
 ## What it skips on purpose
 
 | Pattern | Status |
 |---|---|
 | `following-sibling::`, `preceding-sibling::`, `parent::`, `following::`, `preceding::`, `ancestor::`, `self::` | `skipped_unsupported_logic` |
-| `not()`, `count()`, `last()`, `position()` | `skipped_unsupported_logic` |
+| `count()`, `last()` and `position()` inside a step, e.g. `//XCUIElementTypeButton[last()]` (per parent) | `skipped_unsupported_logic` |
 | Element type that isn't `*` or one of WDA's `XCUIElementType*` names (e.g. `//Btn[...]`, `//XCUIElementTypeLabel[...]`) — WDA would read an unknown name as `Other` | `skipped_unsupported_logic` |
 | Parent step `..` | `skipped_unsupported_logic` |
 | An attribute WDA does not have, e.g. `@text` — the XPath matches nothing and the chain would raise `FBUnknownAttributeException` | `skipped_unsupported_logic` |
 | A numeric comparison with no exact chain form: `@value<5` (non-numeric text reads as 0 in NSPredicate, NaN in XPath), `@value=5`, `@index="a"`, ordering a boolean | `skipped_unsupported_logic` |
 | Union `a \| b` | `skipped_unsupported_logic` |
-| Grouped XPath with a function outer index `(//XCUIElementTypeButton[@name="x"])[last()]` — XPath function, not a static position | `skipped_not_xpath` |
+| Grouped XPath with any other function outer index, e.g. `(//XCUIElementTypeButton[@name="x"])[position()<=2]` or `[last()+1]` — not a single position | `skipped_not_xpath` |
+| Grouped `(//XCUIElementTypeCell/XCUIElementTypeButton[2])[last()]` — the inner chain already ends with a position | `skipped_unsupported_logic` |
 | Grouped `(//XCUIElementTypeCell[2])[3]` where the inner chain ends with a positional index and has no named parent to anchor the outer position (parent reduces to `**`) | `skipped_unsupported_logic` |
 | A path inside a predicate other than `.//Type[…]`: child existence `[./X]` / `[X]`, nested descendant paths, `[.//X[2]]` | `skipped_unsupported_logic` |
 | A descendant test that the element itself could pass: `//XCUIElementTypeCell[.//*[@name="x"]]`, `//*[.//XCUIElementTypeButton]`, `//XCUIElementTypeCell[.//XCUIElementTypeCell]`. A chain's `[$…$]` also tests the element itself, so `.//` is converted only when both steps name a type and the types differ | `skipped_unsupported_logic` |
@@ -241,7 +243,7 @@ The scanner also gates strings starting with `//` through `isLikelyIosLocator` �
 
 Checked on Appium 3.8.0, appium-xcuitest-driver 12.16.0 and WebDriverAgent 16.14.1, on an iOS 27.0 simulator and on an iPhone 13 Pro Max with iOS 26.6, which gave the same results. The method and the results are in [`audit/coverage-report.md`](audit/coverage-report.md) ("Device verification" and "Real device").
 
-- **Grouped positions count breadth-first.** XCTest returns query matches breadth-first, for XPath lookups as well as for class chains. An XPath position `(//X)[n]` is still counted in document order. So `(//XCUIElementTypeButton)[2]` → `**/XCUIElementTypeButton[2]` can return a shallower button further down the screen. No class chain counts in document order. These locators are still converted and are flagged with a `warning` in the console and in the `--json` report; check each one on the screen it is used on. `findElement` without a position returns the same first element on both sides whenever the matched sets are equal.
+- **Grouped positions count breadth-first.** XCTest returns query matches breadth-first, for XPath lookups as well as for class chains. An XPath position `(//X)[n]` is still counted in document order. So `(//XCUIElementTypeButton)[2]` → `**/XCUIElementTypeButton[2]` can return a shallower button further down the screen. The same holds for `(//X)[last()]` → `**/X[-1]` and `(//X)[last()-1]` → `**/X[-2]`: they pick the last and second-to-last elements of the breadth-first list, not of the document-order one. No class chain counts in document order. These locators are still converted and are flagged with a `warning` in the console and in the `--json` report; check each one on the screen it is used on. `findElement` without a position returns the same first element on both sides whenever the matched sets are equal.
 - **Selector errors look like "element not found".** appium-xcuitest-driver 12.16.0 catches the error WDA returns for an invalid XPath or class chain (`400 invalid selector`). `findElements` then returns `[]` and `findElement` fails with "no such element". A chain that does not parse therefore looks like a missing element in a test run. This is one reason the tool validates every chain it emits and skips what it cannot convert exactly.
 - **`visible` on the final step can be much slower as a chain.** `**/XCUIElementTypeButton[\`visible == true\`]` took 12.6 s against 2.0 s for `//XCUIElementTypeButton[@visible='true']` on a screen where 32 buttons are visible, because WDA reads visibility for each candidate. Prefer a locator that does not depend on `visible` where lookup time matters. The optimizer leaves `visible` on the step it was written on: moving it to another step changes which elements match. Over all checked locators the chain was faster, ×1.11 (geometric mean).
 
