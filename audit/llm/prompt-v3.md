@@ -1,8 +1,3 @@
-`input.json` in the current folder has 678 XPath locators from iOS UI tests (Appium, XCUITest driver). Convert each one to an iOS class chain locator (`-ios class chain`) that finds the same elements. If a locator cannot be expressed as a class chain that finds the same elements, skip it and give the reason.
-
-The rules below describe how to convert. Where they say to reply with a chain or "SKIP: <reason>", use the output format given after them.
-
---- RULES ---
 Convert each Appium XCUITest XPath into an iOS class chain that finds exactly
 the same elements. Reply with the chain, or "SKIP: <reason>" if no exact chain
 exists. A skip costs little; a chain that WDA rejects or that finds other
@@ -26,7 +21,14 @@ Attributes
   placeholderValue, index; @x/@y/@width/@height -> rect.x, rect.y, rect.width,
   rect.height. Booleans and numbers are unquoted: enabled == true, index == 1,
   rect.x > 60.
-- @type="T" is the step T, not a predicate. Other tests on @type: SKIP.
+- @type="T" is the step T, not a predicate. contains / starts-with / ends-with
+  on @type with a literal that is a complete real type name, e.g.
+  contains(@type,"XCUIElementTypeButton"), is the step T too, but only if no
+  other real type name begins with that literal (the other types it would also
+  select make the step wrong). Names that are the start of another real name:
+  Key, Menu, MenuBar, Outline, Picker, Ruler, Tab, Table, Toolbar. A partial or
+  invented name (XCUIElementTypeText, "Button") selects several types or none:
+  SKIP. Any other test on @type (=, != with a prefix, matches, ...): SKIP.
 - SKIP @selected and @text (not in the XML WDA searches), text(), and any use
   of "." as text: contains(., "a").
 - A missing attribute fails an XPath comparison, but is nil in NSPredicate:
@@ -82,18 +84,3 @@ Positions (1-based, never 0)
 - SKIP: last() inside a step (//X[last()]), position() tests, ranges, an index
   written before a filter (X[2][@a="v"]), an index on a parenthesised path that
   has a further step or an inner index, and a position that is not a number.
---- END OF RULES ---
-
-Write the result to `output.json` in the current folder: a JSON array with one entry per input `id`, either
-
-```json
-{ "id": "x001", "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"OK\"`]" }
-```
-
-or
-
-```json
-{ "id": "x002", "skip": true, "reason": "..." }
-```
-
-Write each chain as the full locator string, with the `-ios class chain:` prefix. If the result is too large for one file, write it in parts as `output-1.json`, `output-2.json`, …; the parts are merged after you finish. Every id must be present in the end.

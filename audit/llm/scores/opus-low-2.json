@@ -1,12 +1,12 @@
 {
  "summary": {
   "name": "opus-low-2",
-  "R": 79.9,
-  "S": 85.7,
+  "R": 95,
+  "S": 87.8,
   "Scat": {
    "A": 15,
    "B": 15,
-   "C": 10.714285714285714,
+   "C": 12.857142857142858,
    "D": 11.2,
    "E": 4,
    "F": 10,
@@ -16,9 +16,9 @@
   },
   "corpusDen": 490,
   "corpus": {
-   "CORRECT": 376,
+   "CORRECT": 450,
    "CORRECT-SKIP": 80,
-   "GAP": 75,
+   "GAP": 1,
    "DRIFT": 31,
    "WRONG": 0,
    "INVALID": 0,
@@ -27,9 +27,9 @@
    "EXCLUDED": 1
   },
   "spec": {
-   "CORRECT": 73,
+   "CORRECT": 74,
    "CORRECT-SKIP": 30,
-   "GAP": 4,
+   "GAP": 3,
    "DRIFT": 7,
    "WRONG": 0,
    "INVALID": 0,
@@ -74,7 +74,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Nig bika wisawu\"]/following-sibling::*[1]/child::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -155,9 +155,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Fecirim\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fecirim\"`]",
+   "outcome": "EQUAL",
+   "hits": 110,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x011": {
@@ -202,7 +204,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Rajer bika fej Galufaz Poz Pefu ditar\"]/preceding-sibling::*[1]",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported",
+   "reason": "preceding-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -296,7 +298,7 @@
    "cat": "A",
    "xpath": "//*[@name=\"a\"]/following::XCUIElementTypeButton",
    "skip": true,
-   "reason": "following axis is not supported",
+   "reason": "following axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -402,7 +404,7 @@
    "cat": "corpus",
    "xpath": "//*[@value=\"Vilokor\"]/following-sibling::*[contains(@value, \"£\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -423,9 +425,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Nozod hom\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nozod hom\"`]",
+   "outcome": "EQUAL",
+   "hits": 108,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x034": {
@@ -459,7 +463,7 @@
    "cat": "H",
    "xpath": "//*[string-join(tokenize(@label,\" \"),\"-\")=\"a-b\"]",
    "skip": true,
-   "reason": "string-join() and tokenize() are not supported",
+   "reason": "tokenize() and string-join() have no class chain equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -469,7 +473,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeTextField[1]",
    "skip": true,
-   "reason": "index inside a // step counts per parent; no exact class chain form",
+   "reason": "index inside a // step (per-parent position) has no exact class chain equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": true
   },
@@ -491,7 +495,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeOther[@name=\"Vap kop pihuz\"]/following-sibling::XCUIElementTypeOther/XCUIElementTypeLink",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -558,9 +562,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Diteda\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Diteda\"`]",
+   "outcome": "EQUAL",
+   "hits": 110,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x046": {
@@ -568,9 +574,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@value,\"Zov cuba wedahaviwejofa kudez je doso mi bunuv werog. Teg sosedeki camenup, fojo tazeviz so sid juraja.\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Zov cuba wedahaviwejofa kudez je doso mi bunuv werog. Teg sosedeki camenup, fojo tazeviz so sid juraja.\"`]",
+   "outcome": "EQUAL",
+   "hits": 102,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x047": {
@@ -627,9 +635,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeProgressIndicator\") and contains(@label,\"2 ho 3\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"2 ho 3\"`]",
+   "outcome": "EQUAL",
+   "hits": 104,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x052": {
@@ -638,7 +648,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeStaticText[@name=\"Vq1\"]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView//XCUIElementTypeButton[contains(@name, 'Vq2')]",
    "skip": true,
-   "reason": "parent axis is not supported",
+   "reason": "parent axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -696,7 +706,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Bihi Vq1\"]/../following-sibling:: *[contains(@label, \"Vq2\")]",
    "skip": true,
-   "reason": "parent and following-sibling axes are not supported",
+   "reason": "parent and following-sibling axes are not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -706,7 +716,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"HetepUriZoviZoniHapa.wukukav\"] | //XCUIElementTypeStaticText[@name=\"WefaniBedufeDanu.gotePebazoh\" and not(//*[@name=\"HetepUriZoviZoniHapa.wukukav\"])]",
    "skip": true,
-   "reason": "union with a document-level not() condition is not supported",
+   "reason": "union of different paths with a document-wide not() test cannot be expressed",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -739,9 +749,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@name,\"vosuzAnomeMevoja\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"vosuzAnomeMevoja\"`]",
+   "outcome": "EQUAL",
+   "hits": 113,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x062": {
@@ -749,9 +761,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@value,\"di milif dom keb t bafot fej tapu. Foba t wocega je potepiv kop sepuwep, hu gure nasavaje nofu lebojemi.\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"di milif dom keb t bafot fej tapu. Foba t wocega je potepiv kop sepuwep, hu gure nasavaje nofu lebojemi.\"`]",
+   "outcome": "EQUAL",
+   "hits": 106,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x063": {
@@ -987,7 +1001,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Vq1\"]/following-sibling::*[@name=\"k2 cazete\"]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1020,9 +1034,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeTextField\") and contains(@name,\"VegAluGezamIrez.kusibEtapAjijo\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name CONTAINS \"VegAluGezamIrez.kusibEtapAjijo\"`]",
+   "outcome": "EQUAL",
+   "hits": 104,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x086": {
@@ -1078,9 +1094,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Pekufes Lowefore fika\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pekufes Lowefore fika\"`]",
+   "outcome": "EQUAL",
+   "hits": 122,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x091": {
@@ -1089,7 +1107,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
    "skip": true,
-   "reason": "not a valid XPath (contains a class chain predicate)",
+   "reason": "not a valid XPath (contains class chain backtick predicate syntax)",
    "verdict": "EXCLUDED",
    "note": "not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath; out of every count and denominator",
    "inDen": false
@@ -1148,7 +1166,7 @@
    "cat": "corpus",
    "xpath": "(//*[contains(@name, \"Vilokor,\")]/following-sibling::*[2])[2]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis and index on a parenthesised path with an inner index are not supported",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1157,9 +1175,11 @@
    "group": "spec",
    "cat": "C",
    "xpath": "//*[starts-with(@type,\"XCUIElementTypeButton\")]",
-   "skip": true,
-   "reason": "starts-with() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton",
+   "outcome": "EQUAL",
+   "hits": 156,
+   "trials": 300,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x098": {
@@ -1193,7 +1213,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Dikasod ditar:\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1253,7 +1273,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[1])[1]",
    "skip": true,
-   "reason": "index on a parenthesised path with an inner index",
+   "reason": "index on a parenthesised path that has an inner index",
    "verdict": "GAP",
    "inDen": true
   },
@@ -1275,7 +1295,7 @@
    "cat": "corpus",
    "xpath": "//*[@value=\"Vq1\"]/following-sibling::*[contains(@name, \"lulik gusuri\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1285,7 +1305,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Hom pumunuwavube\"]/following-sibling::*[contains(@label, \"Fowani\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1331,7 +1351,7 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeCell[@name=\"a\"]/XCUIElementTypeButton[2])[2]",
    "skip": true,
-   "reason": "index on a parenthesised path with an inner index",
+   "reason": "index on a parenthesised path that has a further step and an inner index",
    "verdict": "CORRECT-SKIP",
    "inDen": true
   },
@@ -1351,7 +1371,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Giji Galufaz Poz Gohaz dobe ditar\"]/preceding-sibling::*[1]",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported",
+   "reason": "preceding-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1398,7 +1418,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeTextField[2]",
    "skip": true,
-   "reason": "index inside a // step counts per parent; no exact class chain form",
+   "reason": "index inside a // step (per-parent position) has no exact class chain equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": true
   },
@@ -1407,9 +1427,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Dom Revoje Fabis Vimonevob\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dom Revoje Fabis Vimonevob\"`]",
+   "outcome": "EQUAL",
+   "hits": 112,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x120": {
@@ -1430,7 +1452,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Vq1\"]/following-sibling::*[contains(@name, \"Laciwuj\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1476,7 +1498,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Nodeg deguw meli\" or @label=\"Nodeg NE fofo deguw meli\"]/following-sibling::*[contains(@label, \"£Vq1\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1497,9 +1519,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Jovime\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Jovime\"`]",
+   "outcome": "EQUAL",
+   "hits": 104,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x128": {
@@ -1533,7 +1557,7 @@
    "cat": "R",
    "xpath": "//XCUIElementTypeButton/parent::XCUIElementTypeCell",
    "skip": true,
-   "reason": "parent axis is not supported",
+   "reason": "parent axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1542,9 +1566,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Nehavona demimel tazeviz\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nehavona demimel tazeviz\"`]",
+   "outcome": "EQUAL",
+   "hits": 108,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x132": {
@@ -1564,9 +1590,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Pi cog rufosi je sadobu dom laciwuj zov cuba wumesok. Picama camavi zov cog sehoj bika koce dovo goz sibo ho munub va pi wikop jigiraz rekivame pelu velotop.\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Pi cog rufosi je sadobu dom laciwuj zov cuba wumesok. Picama camavi zov cog sehoj bika koce dovo goz sibo ho munub va pi wikop jigiraz rekivame pelu velotop.\"`]",
+   "outcome": "EQUAL",
+   "hits": 118,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x134": {
@@ -1693,9 +1721,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Tonodo Revoje Fabis\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Tonodo Revoje Fabis\"`]",
+   "outcome": "EQUAL",
+   "hits": 111,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x145": {
@@ -1703,9 +1733,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name, \"hibimaw pamul\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"hibimaw pamul\"`]",
+   "outcome": "EQUAL",
+   "hits": 110,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x146": {
@@ -1738,7 +1770,7 @@
    "cat": "corpus",
    "xpath": "(//*[contains(@label, \"Nepureze\")]/child::*[contains(@label, \"Nepureze\")])[2]",
    "skip": true,
-   "reason": "child step with * on both sides under an index; no exact class chain form",
+   "reason": "index on a parenthesised path that has a further step",
    "verdict": "CORRECT-SKIP",
    "inDen": true
   },
@@ -1771,9 +1803,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Lugatej fej mipunaco\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Lugatej fej mipunaco\"`]",
+   "outcome": "EQUAL",
+   "hits": 105,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x152": {
@@ -1829,9 +1863,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Nig bika jutal\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Nig bika jutal\"`]",
+   "outcome": "EQUAL",
+   "hits": 101,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x157": {
@@ -1851,9 +1887,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Wewodulu wepes je\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Wewodulu wepes je\"`]",
+   "outcome": "EQUAL",
+   "hits": 101,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x159": {
@@ -1874,7 +1912,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Pefu zahoseja\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1908,7 +1946,7 @@
    "cat": "R",
    "xpath": "//XCUIElementTypeButton/..",
    "skip": true,
-   "reason": "parent axis (..) is not supported",
+   "reason": "parent step (..) is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1953,9 +1991,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@name,\"HosidoLitokazajiCimo.noraSefili\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.noraSefili\"`]",
+   "outcome": "EQUAL",
+   "hits": 115,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x168": {
@@ -1976,7 +2016,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Galufaz Poz Gohaz dobe ditar\"]/following-sibling::*[not(@label=\"Jaluzamiv\")][1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -1998,7 +2038,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"VavepaGomudatepUvepajImar.lawupe(Vq1)\"]/child::*[1]",
    "skip": true,
-   "reason": "index inside a child step counts per parent; no exact class chain form",
+   "reason": "positional child step after a filtered // step has no exact class chain equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": true
   },
@@ -2153,7 +2193,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Nig ditar\"]/preceding-sibling::*[1]",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported",
+   "reason": "preceding-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2175,7 +2215,7 @@
    "cat": "corpus",
    "xpath": "//*[contains(@name, \"Bika nodeg so:\")]/following-sibling::*",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2185,7 +2225,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Rigi pobes:\"]/following-sibling::*[contains(@value, \"Vq1\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2218,9 +2258,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Taka\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Taka\"`]",
+   "outcome": "EQUAL",
+   "hits": 113,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x191": {
@@ -2386,7 +2428,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Vq1\"]/preceding-sibling::*[1]",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported",
+   "reason": "preceding-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2396,7 +2438,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Birel:\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2430,7 +2472,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeStaticText[@name=\"Nemu dovo\"]/following-sibling::XCUIElementTypeStaticText[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2463,9 +2505,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name, \"Vq1\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Vq1\"`]",
+   "outcome": "EQUAL",
+   "hits": 111,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x212": {
@@ -2474,7 +2518,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Vq1\"]/following::*[contains(@label, \"Vq1\")][1]",
    "skip": true,
-   "reason": "following axis is not supported",
+   "reason": "following axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2483,9 +2527,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Begeraw kavemag\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Begeraw kavemag\"`]",
+   "outcome": "EQUAL",
+   "hits": 107,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x214": {
@@ -2531,7 +2577,7 @@
    "cat": "corpus",
    "xpath": "//*[contains(@name, \"Birel nimiwi\")]/parent::*[1]/following-sibling::*[2]",
    "skip": true,
-   "reason": "parent and following-sibling axes are not supported",
+   "reason": "parent and following-sibling axes are not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2590,7 +2636,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Bedoce hom\"]/following-sibling::*[contains(@name, \"figuleni\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2682,9 +2728,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Fej mipunaco\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fej mipunaco\"`]",
+   "outcome": "EQUAL",
+   "hits": 98,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x231": {
@@ -2704,9 +2752,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Lefe jutal (6 banadi je 5 weboc)\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Lefe jutal (6 banadi je 5 weboc)\"`]",
+   "outcome": "EQUAL",
+   "hits": 106,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x233": {
@@ -2727,7 +2777,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Namatir ditar mawuzisa\"]/following-sibling::XCUIElementTypeStaticText[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2737,7 +2787,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Nodeg hom NE fericow\"]/following-sibling::*[@label=\"Vq1\"]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2747,7 +2797,7 @@
    "cat": "D",
    "xpath": "//*[self::XCUIElementTypeButton or self::XCUIElementTypeStaticText]",
    "skip": true,
-   "reason": "self:: axis tests are not supported",
+   "reason": "self:: axis tests are not covered by the conversion rules",
    "verdict": "GAP",
    "inDen": true
   },
@@ -2770,7 +2820,7 @@
    "cat": "F",
    "xpath": "//XCUIElementTypeCell[.//*[@name=\"x\"]]",
    "skip": true,
-   "reason": "descendant test with * cannot be expressed exactly ($...$ also matches the element itself)",
+   "reason": "descendant test with * cannot be expressed exactly ($...$ also tests the element itself)",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2779,9 +2829,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Bika mufig miwokub lojo foba hifum ri hu toral\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Bika mufig miwokub lojo foba hifum ri hu toral\"`]",
+   "outcome": "EQUAL",
+   "hits": 106,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x240": {
@@ -2862,7 +2914,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Bihi Vq1\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2957,7 +3009,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Rajer bika juvira pajap ditar\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -2966,9 +3018,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeProgressIndicator\") and contains(@label,\"Bizinovib\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"Bizinovib\"`]",
+   "outcome": "EQUAL",
+   "hits": 101,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x256": {
@@ -2977,7 +3031,7 @@
    "cat": "D",
    "xpath": "//XCUIElementTypeCell/XCUIElementTypeButton | //XCUIElementTypeTable/XCUIElementTypeStaticText",
    "skip": true,
-   "reason": "union of different paths is not supported",
+   "reason": "union of different paths cannot be expressed",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -3107,9 +3161,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Doso mi\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Doso mi\"`]",
+   "outcome": "EQUAL",
+   "hits": 118,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x268": {
@@ -3153,9 +3209,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\"`]",
+   "outcome": "EQUAL",
+   "hits": 102,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x272": {
@@ -3200,7 +3258,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Bihi Vq1\"]/../following-sibling:: *[@label=\"Vq2\"]",
    "skip": true,
-   "reason": "parent and following-sibling axes are not supported",
+   "reason": "parent and following-sibling axes are not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -3246,7 +3304,7 @@
    "cat": "corpus",
    "xpath": "//*[@name='bumajepUgapeb(\"Vq1\")Hilubodamo'] | //*[@name='bumajepUgapeb(\"Vq1\")Hilubodamo']/child::*[1]",
    "skip": true,
-   "reason": "union of different paths is not supported",
+   "reason": "union of different paths cannot be expressed",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -3280,7 +3338,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeStaticText[@name=\"Disohinid mipunaco\"]/following-sibling::XCUIElementTypeStaticText[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -3374,7 +3432,7 @@
    "cat": "H",
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
-   "reason": "replace() is not supported",
+   "reason": "replace() has no class chain equivalent",
    "verdict": "GAP",
    "inDen": true
   },
@@ -3396,7 +3454,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeStaticText[@name=\"Vq1\"]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView",
    "skip": true,
-   "reason": "parent axis is not supported",
+   "reason": "parent axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -3429,9 +3487,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@value,\"Dikasod vilokor: £\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Dikasod vilokor: £\"`]",
+   "outcome": "EQUAL",
+   "hits": 101,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x296": {
@@ -3500,9 +3560,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type, \"XCUIElementTypeOther\") and contains(@name, \"Vq1, Nepureze, figuleni\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"Vq1, Nepureze, figuleni\"`]",
+   "outcome": "EQUAL",
+   "hits": 93,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x302": {
@@ -3521,7 +3583,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"LunaseMinihEsak.vosuzAnomeMevoja\"]/following-sibling::*[1]/following-sibling::*[self::XCUIElementTypeStaticText or self::XCUIElementTypeTextView]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -3591,9 +3653,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Hibimaw tival\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Hibimaw tival\"`]",
+   "outcome": "EQUAL",
+   "hits": 104,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x310": {
@@ -3709,9 +3773,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Sefasi PO:\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Sefasi PO:\"`]",
+   "outcome": "EQUAL",
+   "hits": 106,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x320": {
@@ -3755,9 +3821,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\"`]",
+   "outcome": "EQUAL",
+   "hits": 112,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x324": {
@@ -3778,7 +3846,7 @@
    "cat": "corpus",
    "xpath": "//*[@value=\"Vq1\"]/following-sibling::*[contains(@name, \"Nepureze\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -3811,9 +3879,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"• Kop velotop zir meb nul la nahinuh\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"• Kop velotop zir meb nul la nahinuh\"`]",
+   "outcome": "EQUAL",
+   "hits": 117,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x329": {
@@ -3858,7 +3928,7 @@
    "cat": "C",
    "xpath": "//*[contains(@type,\"XCUIElementTypeText\")]",
    "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
+   "reason": "contains(@type) with a partial type name selects several types",
    "verdict": "GAP",
    "inDen": true
   },
@@ -3913,9 +3983,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\"`]",
+   "outcome": "EQUAL",
+   "hits": 115,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x338": {
@@ -3935,9 +4007,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Zov zir ceciful cuba t Hijareci Logozeb tazeviz\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir ceciful cuba t Hijareci Logozeb tazeviz\"`]",
+   "outcome": "EQUAL",
+   "hits": 113,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x340": {
@@ -4077,7 +4151,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeButton[contains(@name, \"Hom gohaz figuleni\")]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView",
    "skip": true,
-   "reason": "parent axis is not supported",
+   "reason": "parent axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -4171,7 +4245,7 @@
    "cat": "A",
    "xpath": "//*[@name=\"a\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -4264,9 +4338,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeOther\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeOther",
+   "outcome": "EQUAL",
+   "hits": 94,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x368": {
@@ -4334,9 +4410,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"fericow\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"fericow\"`]",
+   "outcome": "EQUAL",
+   "hits": 91,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x374": {
@@ -4345,7 +4423,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Nodeg hom fericow\"]/following-sibling::*[@label=\"Vq1\"]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -4379,7 +4457,7 @@
    "cat": "corpus",
    "xpath": "//*[@name = \"Vq1\"]/following-sibling::*[contains(@label, \"Nepureze\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -4389,7 +4467,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[2])[1]",
    "skip": true,
-   "reason": "index on a parenthesised path with an inner index",
+   "reason": "index on a parenthesised path that has an inner index",
    "verdict": "CORRECT-SKIP",
    "inDen": true
   },
@@ -4483,7 +4561,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Ricorikup Hohaveh\"]/following-sibling::*[2]/child::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -4493,7 +4571,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeOther[@name=\"Bemat dab je dobe\"]/following-sibling::XCUIElementTypeOther/XCUIElementTypeLink",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -4515,7 +4593,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeStaticText[@name=\"Vq1\"]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView//XCUIElementTypeButton",
    "skip": true,
-   "reason": "parent axis is not supported",
+   "reason": "parent axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -4536,9 +4614,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Cog zov husu zov noca je diteda?\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Cog zov husu zov noca je diteda?\"`]",
+   "outcome": "EQUAL",
+   "hits": 118,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x392": {
@@ -4582,9 +4662,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Ra hat foba se je 4 jidur teg bika Revoje Fabis je zocumu nonide\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Ra hat foba se je 4 jidur teg bika Revoje Fabis je zocumu nonide\"`]",
+   "outcome": "EQUAL",
+   "hits": 106,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x396": {
@@ -4616,9 +4698,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Funewekid wepes rese\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Funewekid wepes rese\"`]",
+   "outcome": "EQUAL",
+   "hits": 109,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x399": {
@@ -4699,9 +4783,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Zov’di nofezi je foba t jutal ho\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov’di nofezi je foba t jutal ho\"`]",
+   "outcome": "EQUAL",
+   "hits": 90,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x406": {
@@ -4803,9 +4889,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz\"`]",
+   "outcome": "EQUAL",
+   "hits": 111,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x415": {
@@ -4813,9 +4901,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@name,\"HinefovigocEzehefuc.wivEtociliLunuci\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HinefovigocEzehefuc.wivEtociliLunuci\"`]",
+   "outcome": "EQUAL",
+   "hits": 104,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x416": {
@@ -4859,9 +4949,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Meja\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Meja\"`]",
+   "outcome": "EQUAL",
+   "hits": 103,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x420": {
@@ -4881,9 +4973,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeProgressIndicator\") and contains(@label,\"1 ho 3\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"1 ho 3\"`]",
+   "outcome": "EQUAL",
+   "hits": 101,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x422": {
@@ -4926,7 +5020,7 @@
    "cat": "H",
    "xpath": "//*[tokenize(@label,\" \")[2]=\"b\"]",
    "skip": true,
-   "reason": "tokenize() is not supported",
+   "reason": "tokenize() has no class chain equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -4959,9 +5053,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@value,\"Picama bowep bika mipunaco hu pekufes kop Lowefore Fika riba je gepohe lenino je bika tazeviz.\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Picama bowep bika mipunaco hu pekufes kop Lowefore Fika riba je gepohe lenino je bika tazeviz.\"`]",
+   "outcome": "EQUAL",
+   "hits": 110,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x429": {
@@ -4995,7 +5091,7 @@
    "cat": "corpus",
    "xpath": "(//*[contains(@name, \"Vilokor,\")]/following-sibling::*[1])[2]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5005,7 +5101,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Nig fej ditar\"]/following-sibling::*[1]/child::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5014,9 +5110,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Rigi buromut:\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Rigi buromut:\"`]",
+   "outcome": "EQUAL",
+   "hits": 108,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x434": {
@@ -5037,7 +5135,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Sefasi rolafa:\"]/following-sibling::*[contains(@value, \"Vq1\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5072,7 +5170,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Zov’gi mi dom pefu\"]/preceding-sibling::*[@label=\"Kabih\"]",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported",
+   "reason": "preceding-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5093,9 +5191,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Ceces\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Ceces\"`]",
+   "outcome": "EQUAL",
+   "hits": 112,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x441": {
@@ -5176,7 +5276,7 @@
    "cat": "C",
    "xpath": "//*[normalize-space(@label)=\"a b\"]",
    "skip": true,
-   "reason": "normalize-space() has no exact class chain form",
+   "reason": "normalize-space() has no exact equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5221,9 +5321,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Bowep ge mipunaco\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Bowep ge mipunaco\"`]",
+   "outcome": "EQUAL",
+   "hits": 108,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x452": {
@@ -5256,7 +5358,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Bedoce hom\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5290,7 +5392,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Limazene sibo goz dosu:\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5383,9 +5485,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Tosu goz Pekufes ce\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Tosu goz Pekufes ce\"`]",
+   "outcome": "EQUAL",
+   "hits": 105,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x466": {
@@ -5394,7 +5498,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeButton[contains(@name, \"HosidoLitokazajiCimo.noraSefili\")][1]",
    "skip": true,
-   "reason": "index inside a // step counts per parent; no exact class chain form",
+   "reason": "index inside a // step (per-parent position) has no exact class chain equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": true
   },
@@ -5452,7 +5556,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeStaticText[@name=\"Mufig dovo\"]/following-sibling::XCUIElementTypeStaticText[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5521,9 +5625,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@name,\"Diteda\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Diteda\"`]",
+   "outcome": "EQUAL",
+   "hits": 103,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x478": {
@@ -5568,7 +5674,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Bedoce hom\"]/following-sibling::*[contains(@name, \"hilubodamo\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5636,7 +5742,7 @@
    "cat": "A",
    "xpath": "//*[@name=\"a\"]/preceding-sibling::*",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported",
+   "reason": "preceding-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5695,7 +5801,7 @@
    "cat": "corpus",
    "xpath": "(//*[contains(@name, \"Vilokor,\")]/child::*[2])[2]",
    "skip": true,
-   "reason": "index on a parenthesised path with an inner index",
+   "reason": "index on a parenthesised path that has a further step and an inner index",
    "verdict": "CORRECT-SKIP",
    "inDen": true
   },
@@ -5753,9 +5859,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeOther\") and contains(@name,\"CizuBubezotOcahijaLenu.sedunElerozegaCawogeg\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"CizuBubezotOcahijaLenu.sedunElerozegaCawogeg\"`]",
+   "outcome": "EQUAL",
+   "hits": 107,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x498": {
@@ -5788,7 +5896,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Galufaz Poz Gohaz dobe ditar\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5809,9 +5917,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Nofe tazeviz laciwuj\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Nofe tazeviz laciwuj\"`]",
+   "outcome": "EQUAL",
+   "hits": 100,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x503": {
@@ -5832,7 +5942,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Vq1\"]/following-sibling::*[contains(@label, \"Petor Vq2, Rurez\")][1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5854,7 +5964,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Rajer bika juvira namatir ditar\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5909,9 +6019,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Kop velotop zir meb nul la nahinuh\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Kop velotop zir meb nul la nahinuh\"`]",
+   "outcome": "EQUAL",
+   "hits": 112,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x512": {
@@ -5920,7 +6032,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Meb cumetakov\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5930,7 +6042,7 @@
    "cat": "corpus",
    "xpath": "//*[@label=\"Wuwisivopu Galufaz Poz Gohaz dobe\"]/following-sibling::*[not(@label=\"Jaluzamiv\")][1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5988,7 +6100,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Bihi Vq1\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -5998,7 +6110,7 @@
    "cat": "E",
    "xpath": "//XCUIElementTypeButton[2]",
    "skip": true,
-   "reason": "index inside a // step counts per parent; no exact class chain form",
+   "reason": "index inside a // step (per-parent position) has no exact class chain equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": true
   },
@@ -6031,9 +6143,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Bika mufig rigi lojo la ri\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Bika mufig rigi lojo la ri\"`]",
+   "outcome": "EQUAL",
+   "hits": 120,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x523": {
@@ -6066,7 +6180,7 @@
    "cat": "corpus",
    "xpath": "(//*[@name=\"Fowani\"]/following-sibling::*[1])[2]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -6099,9 +6213,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeTextField\") and contains(@name, \"VegAluGezamIrez.kusibEtapAjijo\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name CONTAINS \"VegAluGezamIrez.kusibEtapAjijo\"`]",
+   "outcome": "EQUAL",
+   "hits": 101,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x529": {
@@ -6120,7 +6236,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@label=\"Bika pejun huregad\"])Vq1",
    "skip": true,
-   "reason": "not a valid XPath (stray text after the parenthesised path)",
+   "reason": "not a valid XPath (text after the closing parenthesis)",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -6224,7 +6340,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"HetepUriZoviZoniHapa.codid\"] | //XCUIElementTypeStaticText[@name=\"WefaniBedufeDanu.gotePebazoh\" and not(//*[@name=\"HetepUriZoviZoniHapa.codid\"]) and not(parent::*[contains(@name, \"VanavuMefofakeragaLiho.zudatoCicoba\")])]",
    "skip": true,
-   "reason": "union with document-level not() and parent axis is not supported",
+   "reason": "union of different paths with document-wide not() and parent axis cannot be expressed",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -6282,9 +6398,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeTextField\") and contains(@label,\"Fowani je namatir, £2 so dom juguwoj fowani zov hat namatir.\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`label CONTAINS \"Fowani je namatir, £2 so dom juguwoj fowani zov hat namatir.\"`]",
+   "outcome": "EQUAL",
+   "hits": 99,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x545": {
@@ -6317,7 +6435,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeOther[@name=\"Sori bika wisawu\"]/following-sibling::XCUIElementTypeOther/XCUIElementTypeLink",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -6374,9 +6492,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Gojo fo\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Gojo fo\"`]",
+   "outcome": "EQUAL",
+   "hits": 108,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x553": {
@@ -6396,9 +6516,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Luzaf jutal (1 rog je 5 banadi)\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Luzaf jutal (1 rog je 5 banadi)\"`]",
+   "outcome": "EQUAL",
+   "hits": 99,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x555": {
@@ -6430,9 +6552,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Pekufes Lowefore Fika\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pekufes Lowefore Fika\"`]",
+   "outcome": "EQUAL",
+   "hits": 113,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x558": {
@@ -6441,7 +6565,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@label=\"Sefasi PO: Vq1\"]/following-sibling::*[contains(@label, \"Laciwuj\")])[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -6535,9 +6659,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Dewujumu wezujewab\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dewujumu wezujewab\"`]",
+   "outcome": "EQUAL",
+   "hits": 115,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x567": {
@@ -6605,9 +6731,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz:\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz:\"`]",
+   "outcome": "EQUAL",
+   "hits": 109,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x573": {
@@ -6628,7 +6756,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeOther[contains(@label, \"Lenapa gusuri\")]/XCUIElementTypeStaticText)[last()]",
    "skip": true,
-   "reason": "index on a parenthesised path with more than one step",
+   "reason": "index on a parenthesised path that has a further step",
    "verdict": "CORRECT-SKIP",
    "inDen": true
   },
@@ -6651,7 +6779,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeButton[contains(@name, \"Gohaz wige\") or contains(@name, \"Hom gohaz\")]/parent::XCUIElementTypeOther/XCUIElementTypeScrollView",
    "skip": true,
-   "reason": "parent axis is not supported",
+   "reason": "parent axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -6721,7 +6849,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"LunaseMinihEsak.vosuzAnomeMevoja\"]/following-sibling::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -6920,9 +7048,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label, \"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\"`]",
+   "outcome": "EQUAL",
+   "hits": 114,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x600": {
@@ -6955,7 +7085,7 @@
    "cat": "C",
    "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
    "skip": true,
-   "reason": "string-length() has no exact class chain form",
+   "reason": "string-length() has no exact equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -6964,9 +7094,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Vale\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Vale\"`]",
+   "outcome": "EQUAL",
+   "hits": 109,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x604": {
@@ -7108,7 +7240,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"LovemifajEgetifoJewe.kesoZugop\"]/following-sibling::*[1]/child::*[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -7129,9 +7261,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"Zov’di nofezi je foba t lefe jutal ho\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov’di nofezi je foba t lefe jutal ho\"`]",
+   "outcome": "EQUAL",
+   "hits": 95,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x618": {
@@ -7187,9 +7321,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@name,\"lojo la peworumezop vamalul rese bika razuw.\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"lojo la peworumezop vamalul rese bika razuw.\"`]",
+   "outcome": "EQUAL",
+   "hits": 119,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x623": {
@@ -7234,7 +7370,7 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeCell)[2]/XCUIElementTypeButton",
    "skip": true,
-   "reason": "index on a parenthesised path followed by a further step",
+   "reason": "index on a parenthesised path that has a further step",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -7244,7 +7380,7 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeOther[@name=\"Tulej fopekemu\"]/following-sibling::XCUIElementTypeOther/XCUIElementTypeLink",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -7278,9 +7414,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type, \"XCUIElementTypeOther\") and contains(@label, \"Lulik gusuri teg Vq1 jidur figuleni\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Lulik gusuri teg Vq1 jidur figuleni\"`]",
+   "outcome": "EQUAL",
+   "hits": 108,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x631": {
@@ -7373,7 +7511,7 @@
    "cat": "B",
    "xpath": "//XCUIElementTypeButton[@value>5]",
    "skip": true,
-   "reason": "> on a text attribute (value) has no exact class chain form",
+   "reason": "> on a text attribute (value) has no exact equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -7418,9 +7556,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Revoje Fabis nig se so mi gakiwoso\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Revoje Fabis nig se so mi gakiwoso\"`]",
+   "outcome": "EQUAL",
+   "hits": 108,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x643": {
@@ -7454,7 +7594,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Pelo:\"]/following-sibling::*[contains(@value, \"£Vq1\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -7463,9 +7603,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeOther\") and contains(@label,\"Nepureze hilubodamo\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Nepureze hilubodamo\"`]",
+   "outcome": "EQUAL",
+   "hits": 106,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x647": {
@@ -7533,9 +7675,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@name,\"HosidoLitokazajiCimo.dijivOdozev\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.dijivOdozev\"`]",
+   "outcome": "EQUAL",
+   "hits": 106,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x653": {
@@ -7544,7 +7688,7 @@
    "cat": "corpus",
    "xpath": "//*[contains(@name, \"Dobe teg\")]/following-sibling::XCUIElementTypeStaticText[1] | //*[contains(@name, \"Dobe monuw\")]/preceding-sibling::XCUIElementTypeStaticText[1]",
    "skip": true,
-   "reason": "union of sibling-axis paths is not supported",
+   "reason": "following-sibling and preceding-sibling axes are not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -7590,7 +7734,7 @@
    "cat": "corpus",
    "xpath": "(//*[@label=\"Vq1\"]/following-sibling::*[contains(@label, \"mazejuz:\")])[1]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -7648,9 +7792,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Fowani wumesok muhevuw bika namatir ditar. Zov cuba £20.00 felawuhuh ho bika juvira ditar.\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fowani wumesok muhevuw bika namatir ditar. Zov cuba £20.00 felawuhuh ho bika juvira ditar.\"`]",
+   "outcome": "EQUAL",
+   "hits": 114,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x663": {
@@ -7730,9 +7876,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeStaticText\") and contains(@label,\"Sefasi so meb vusalisafe\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Sefasi so meb vusalisafe\"`]",
+   "outcome": "EQUAL",
+   "hits": 107,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x670": {
@@ -7741,7 +7889,7 @@
    "cat": "F",
    "xpath": "//XCUIElementTypeCell[count(.//XCUIElementTypeButton)=2]",
    "skip": true,
-   "reason": "count() is not supported",
+   "reason": "count() has no class chain equivalent",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -7751,7 +7899,7 @@
    "cat": "corpus",
    "xpath": "//*[@name=\"Jidur:\"]/following-sibling::*[contains(@value, \"Vq1\")]",
    "skip": true,
-   "reason": "following-sibling axis is not supported",
+   "reason": "following-sibling axis is not supported in class chain",
    "verdict": "CORRECT-SKIP",
    "inDen": false
   },
@@ -7760,9 +7908,11 @@
    "group": "corpus",
    "cat": "corpus",
    "xpath": "//*[contains(@type,\"XCUIElementTypeButton\") and contains(@label,\"Nehavona demimel su tazeviz\")]",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form",
-   "verdict": "GAP",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nehavona demimel su tazeviz\"`]",
+   "outcome": "EQUAL",
+   "hits": 100,
+   "trials": 200,
+   "verdict": "CORRECT",
    "inDen": true
   },
   "x673": {

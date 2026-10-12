@@ -1,13 +1,27 @@
-// D3: Phase 4 prompt (-1 runs) vs prompt v2 (-2 runs) from scores/, same score.js. Usage: node compare-v2.js
-// Rescore the Phase 4 cells first if score.js changed: node score.js out/<cell>-1.json
+// D3: the converter and the prompt-test cells (out/<cell>-2.json, scores/<cell>-2.json), measured against the converter.
+// Usage: node compare-v2.js [details]   Prints a Markdown table; "details" adds the case lists behind the comment column.
 const fs = require('fs'), path = require('path');
 const S = n => JSON.parse(fs.readFileSync(path.join(__dirname, 'scores', n + '.json'), 'utf8'));
 const O = n => JSON.parse(fs.readFileSync(path.join(__dirname, 'out', n + '.json'), 'utf8'));
-const pct = (a, b) => (100 * a / b).toFixed(1);
-const rows = ['| Cell | Prompt | R | S | Converted | Precision | CORRECT | DRIFT | WRONG | INVALID | GAP | Time, min | Cost, $ | Output tokens |', '|' + '---|'.repeat(14)];
-for (const cell of ['converter', 'haiku-medium', 'sonnet-low', 'opus-low']) for (const [tag, suf] of cell === 'converter' ? [['—', '']] : [['Phase 4', '-1'], ['v2', '-2']]) {
-  const n = cell + suf, { summary: s, cases } = S(n), v = Object.values(cases).map(c => c.verdict).filter(x => x !== 'EXCLUDED'), N = v.length, c = x => v.filter(y => y === x).length;
-  const chains = c('CORRECT') + c('DRIFT') + c('WRONG') + c('INVALID') + c('N/A'), run = cell === 'converter' ? null : O(n);
-  rows.push(`| ${cell === 'converter' ? '**converter**' : cell.replace('-', ' / ')} | ${tag} | ${s.R.toFixed(1)} | ${s.S.toFixed(1)} | ${pct(chains, N)} % | ${pct(c('CORRECT') + c('DRIFT'), chains)} % | ${c('CORRECT')} | ${c('DRIFT')} | ${c('WRONG')} | ${c('INVALID')} | ${c('GAP')} | ${run ? (run.wallMs / 6e4).toFixed(1) : '—'} | ${run ? run.cli.total_cost_usd.toFixed(2) : '—'} | ${run ? Math.round(run.cli.usage.output_tokens / 1000) + 'k' : '—'} |`);
+const conv = S('converter'), ids = Object.keys(conv.cases).filter(i => conv.cases[i].verdict !== 'EXCLUDED');
+const usable = v => v === 'CORRECT' || v === 'DRIFT', emitted = v => ['CORRECT', 'DRIFT', 'WRONG', 'INVALID', 'N/A'].includes(v);
+const grp = g => ids.filter(i => conv.cases[i].group === g);
+const base = { all: ids.filter(i => usable(conv.cases[i].verdict)).length, corpus: grp('corpus').filter(i => usable(conv.cases[i].verdict)).length, spec: grp('spec').filter(i => usable(conv.cases[i].verdict)).length };
+const pc = (a, b) => (100 * a / b).toFixed(1);
+const cells = ['haiku-medium', 'sonnet-low', 'opus-low'];
+const rows = ['| Cell | R | S | Chains | Usable (CORRECT + DRIFT) | % of converter (all / corpus / spec) | Missed (converter has it, model skips or errs) | Skipped right (converter only approximates) | Ahead (model right, converter not) | WRONG + INVALID | Time, min | Cost, $ |', '|' + '---|'.repeat(12)];
+const details = [];
+const cc = ids.filter(i => emitted(conv.cases[i].verdict)).length;
+rows.push(`| **converter** | ${conv.summary.R.toFixed(1)} | ${conv.summary.S.toFixed(1)} | ${cc} | ${base.all} | 100 / 100 / 100 | — | — | — | 0 | — | — |`);
+for (const c of cells) {
+  const s = S(c + '-2'), r = O(c + '-2'), v = i => s.cases[i].verdict;
+  const good = g => (g ? grp(g) : ids).filter(i => usable(v(i)));
+  const skipRight = ids.filter(i => conv.cases[i].verdict === 'DRIFT' && v(i) === 'CORRECT-SKIP'), missed = ids.filter(i => usable(conv.cases[i].verdict) && !usable(v(i)) && !skipRight.includes(i)), ahead = ids.filter(i => usable(v(i)) && !usable(conv.cases[i].verdict));
+  const bad = ids.filter(i => v(i) === 'WRONG' || v(i) === 'INVALID');
+  rows.push(`| ${c.replace('-', ' / ')} | ${s.summary.R.toFixed(1)} | ${s.summary.S.toFixed(1)} | ${ids.filter(i => emitted(v(i))).length} | ${good().length} | ${pc(good().length, base.all)} / ${pc(good('corpus').length, base.corpus)} / ${pc(good('spec').length, base.spec)} | ${missed.length} | ${skipRight.length} | ${ahead.length} | ${bad.length} | ${(r.wallMs / 6e4).toFixed(1)} | ${r.cli.total_cost_usd.toFixed(2)} |`);
+  const lab = i => `${conv.cases[i].orig}`;
+  for (const g of ['corpus', 'spec']) details.push(`${c} ${g}: missed ${missed.filter(i => conv.cases[i].group === g).map(lab).join(' ') || '—'} | ahead ${ahead.filter(i => conv.cases[i].group === g).map(lab).join(' ') || '—'} | wrong ${bad.filter(i => conv.cases[i].group === g).map(i => lab(i) + ':' + v(i)).join(' ') || '—'}`);
 }
 console.log(rows.join('\n'));
+console.log(`\nChecked: ${ids.length} locators (${grp('corpus').length} corpus, ${grp('spec').length} spec); converter usable ${base.all} (${base.corpus} corpus, ${base.spec} spec).`);
+if (process.argv[2] === 'details') console.log('\n' + details.join('\n'));

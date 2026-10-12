@@ -3,8 +3,8 @@
  "modelId": "claude-opus-5-5",
  "effort": "low",
  "run": 2,
- "started": "2026-10-12T19:21:13.483Z",
- "wallMs": 295985,
+ "started": "2026-10-12T20:12:00.869Z",
+ "wallMs": 311067,
  "cliVersion": "2.1.296 (Claude Code)",
  "exitCode": 0,
  "signal": null,
@@ -19,17 +19,17 @@
   "output-2.json"
  ],
  "cli": {
-  "duration_api_ms": 293888,
+  "duration_api_ms": 308494,
   "stop_reason": "end_turn",
-  "session_id": "5cf13f12-5d30-4b19-8100-4953909028c8",
-  "total_cost_usd": 1.6593968000000001,
+  "session_id": "6c689d48-644f-4503-a46f-86f759a5ed9c",
+  "total_cost_usd": 1.7339238,
   "usage": {
    "input_tokens": 8,
-   "cache_creation_input_tokens": 97607,
-   "cache_read_input_tokens": 117544,
-   "output_tokens": 42750,
+   "cache_creation_input_tokens": 100484,
+   "cache_read_input_tokens": 119499,
+   "output_tokens": 45306,
    "output_tokens_details": {
-    "thinking_tokens": 4327
+    "thinking_tokens": 4197
    },
    "server_tool_use": {
     "web_search_requests": 0,
@@ -37,19 +37,19 @@
    },
    "service_tier": "standard",
    "cache_creation": {
-    "ephemeral_1h_input_tokens": 97607,
+    "ephemeral_1h_input_tokens": 100484,
     "ephemeral_5m_input_tokens": 0
    },
    "inference_geo": "global",
    "iterations": [
     {
      "input_tokens": 2,
-     "output_tokens": 979,
-     "cache_read_input_tokens": 78415,
-     "cache_creation_input_tokens": 20984,
+     "output_tokens": 864,
+     "cache_read_input_tokens": 79957,
+     "cache_creation_input_tokens": 22319,
      "cache_creation": {
       "ephemeral_5m_input_tokens": 0,
-      "ephemeral_1h_input_tokens": 20984
+      "ephemeral_1h_input_tokens": 22319
      },
      "type": "message"
     }
@@ -60,14 +60,14 @@
   "modelUsage": {
    "claude-opus-5-5": {
     "inputTokens": 8,
-    "outputTokens": 42750,
-    "cacheReadInputTokens": 117544,
-    "cacheCreationInputTokens": 97607,
+    "outputTokens": 45306,
+    "cacheReadInputTokens": 119499,
+    "cacheCreationInputTokens": 100484,
     "webSearchRequests": 0,
-    "costUSD": 1.6593968000000001,
+    "costUSD": 1.7339238,
     "contextWindow": 1000000,
     "maxOutputTokens": 128000,
-    "thinkingTokens": 4327,
+    "thinkingTokens": 4197,
     "canonicalModel": "claude-opus-5-5",
     "provider": "firstParty",
     "costBasis": "list"
@@ -106,14 +106,14 @@
   "num_turns": 5,
   "subtype": "success",
   "api_error_status": null,
-  "result": "I converted all 678 locators and wrote the results in two parts: `output-1.json` covers x001–x330 and `output-2.json` covers x331–x678. Every id appears once. I wrote the entries by hand because I only had file read/write tools. I didn't parse-check the JSON or try any chain against WDA, so it's worth validating the files and testing a few chains before relying on them.\n\nAbout two thirds of the locators became chains. The rest are skips, each with a reason. The main reasons:\n- **Text test on `@type`:** most skips are `contains(@type,\"XCUIElementTypeX\") and …`. The rules allow only `@type=\"T\"`.\n- **Other axes:** following-sibling, preceding-sibling, following, parent / `..`, and ancestor with an index.\n- **Positions the chain can't express:** an index inside a `//` step (`//XCUIElementTypeTextField[1]`), `last()` inside a step, `position()` tests, an index written before a filter, and an index on a parenthesised path with an inner index or a further step.\n- **Functions and attributes WDA can't match:** `text()`, `@text`, `@selected`, `contains(., …)`, `normalize-space()`, `string-length()`, `count()`, `replace()` and `tokenize()`.\n- **Other:** unions of different paths, child tests like `[XCUIElementTypeButton]`, a `.//*` descendant test, the made-up type `XCUIElementTypeLabel`, `>` on `@value`, and two invalid XPaths (x091 contains a class chain predicate; x530 has stray text after the parentheses).\n\nFour of my calls go a little beyond what the rules spell out:\n- **`contains(@enabled,\"false\")`** (x115, x231, x352, x587): I converted this to `enabled == false`. The attribute only ever holds `true` or `false`, so the match is the same.\n- **x467:** I kept the per-parent indices from the absolute path: `XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]`.\n- **x574 `(//Other[…]/StaticText)[last()]`:** I skipped it. Putting `[-1]` on the inner step would count among each parent's children instead of across the whole result.\n- **x294 `@enabled=true()`:** this became plain `**/XCUIElementTypeButton`, as the rules say.\n\nEscaping follows the rules: line breaks are written as `\\n` (x330, x484, x575), backticks are doubled (x334), and backslashes and quotes are escaped (x651, x084, x221). x676 uses the `MATCHES \"(?s:.*)(?-s:^a.c$)(?s:.*)\"` form. The indexed results (`[n]`, `[-1]`) count in WDA's breadth-first order, which can differ from XPath's order when matches sit at different depths.",
-  "ttft_ms": 1603,
+  "result": "I converted all 678 locators and wrote the results in two parts: `output-1.json` (x001–x330) and `output-2.json` (x331–x678). Every id appears exactly once. I wrote each entry by hand and only had file read/write tools, so nothing has been tested: I haven't parsed the JSON, run the chains in WDA, or checked them against a real app.\n\n**Most common results**\n- **Converted:** simple `//T[...]` steps, `contains`/`starts-with`/`ends-with`, and the `contains(@type, \"...\")` cases that map to a real type step. Also positions on parenthesised paths, like `[n]`, `[last()]` and `[last()-1]`.\n- **Skipped:** mostly the sibling, following, preceding and parent axes. Other skip reasons were `text()`, `@text`, `@selected`, `.` used as text, `normalize-space`, `string-length`, `tokenize`, `replace`, `count`, `position()` tests, unions of different paths, and `XCUIElementTypeLabel`. Each skip has its reason in the file.\n\n**Judgement calls you may want to review**\n- **`contains(@enabled,\"false\")`** (x115, x231, x587): I turned these into `enabled == false`, because WDA only ever writes \"true\" or \"false\" there.\n- **Index inside a `//` step** (`//XCUIElementTypeTextField[1]`, `//XCUIElementTypeButton[2]`, x466): skipped. In XPath that index counts within each parent, and the class chain `**/X[n]` does not count the same way.\n- **x171:** I skipped `/child::*[1]` after a filtered step for the same per-parent counting reason. On the other hand, I converted x467 (`/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]`) to `XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]`, because it starts at the root. If you'd rather be strict, skip x467 too.\n- **Invalid XPath** (x091 has class-chain backticks in it, x530 has text after the closing parenthesis): skipped as invalid.\n- **Escaping:** a few entries needed it: x084 and x221 (quotes), x334 (backtick doubled), x651 (backslash), and x330, x484 and x575 (`\\n`). These are worth a quick check.",
+  "ttft_ms": 1628,
   "type": "result",
-  "duration_ms": 294655,
-  "uuid": "cb9bf167-e92a-48d0-9611-1c6dc30939dd",
-  "ttft_stream_ms": 1277,
-  "time_to_request_ms": 50,
-  "first_content_frame_ms": 1277,
+  "duration_ms": 309254,
+  "uuid": "ca1c812e-e26f-4292-9e75-d71557e01e13",
+  "ttft_stream_ms": 1202,
+  "time_to_request_ms": 88,
+  "first_content_frame_ms": 1202,
   "queued_turn_count": 0,
   "result_index": 0
  },
@@ -129,7 +129,7 @@
   {
    "id": "x003",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x004",
@@ -157,8 +157,7 @@
   },
   {
    "id": "x010",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fecirim\"`]"
   },
   {
    "id": "x011",
@@ -175,7 +174,7 @@
   {
    "id": "x014",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported"
+   "reason": "preceding-sibling axis is not supported in class chain"
   },
   {
    "id": "x015",
@@ -208,7 +207,7 @@
   {
    "id": "x022",
    "skip": true,
-   "reason": "following axis is not supported"
+   "reason": "following axis is not supported in class chain"
   },
   {
    "id": "x023",
@@ -245,7 +244,7 @@
   {
    "id": "x031",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x032",
@@ -253,8 +252,7 @@
   },
   {
    "id": "x033",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nozod hom\"`]"
   },
   {
    "id": "x034",
@@ -267,12 +265,12 @@
   {
    "id": "x036",
    "skip": true,
-   "reason": "string-join() and tokenize() are not supported"
+   "reason": "tokenize() and string-join() have no class chain equivalent"
   },
   {
    "id": "x037",
    "skip": true,
-   "reason": "index inside a // step counts per parent; no exact class chain form"
+   "reason": "index inside a // step (per-parent position) has no exact class chain equivalent"
   },
   {
    "id": "x038",
@@ -281,7 +279,7 @@
   {
    "id": "x039",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x040",
@@ -306,13 +304,11 @@
   },
   {
    "id": "x045",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Diteda\"`]"
   },
   {
    "id": "x046",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Zov cuba wedahaviwejofa kudez je doso mi bunuv werog. Teg sosedeki camenup, fojo tazeviz so sid juraja.\"`]"
   },
   {
    "id": "x047",
@@ -332,13 +328,12 @@
   },
   {
    "id": "x051",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"2 ho 3\"`]"
   },
   {
    "id": "x052",
    "skip": true,
-   "reason": "parent axis is not supported"
+   "reason": "parent axis is not supported in class chain"
   },
   {
    "id": "x053",
@@ -359,12 +354,12 @@
   {
    "id": "x057",
    "skip": true,
-   "reason": "parent and following-sibling axes are not supported"
+   "reason": "parent and following-sibling axes are not supported in class chain"
   },
   {
    "id": "x058",
    "skip": true,
-   "reason": "union with a document-level not() condition is not supported"
+   "reason": "union of different paths with a document-wide not() test cannot be expressed"
   },
   {
    "id": "x059",
@@ -376,13 +371,11 @@
   },
   {
    "id": "x061",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"vosuzAnomeMevoja\"`]"
   },
   {
    "id": "x062",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"di milif dom keb t bafot fej tapu. Foba t wocega je potepiv kop sepuwep, hu gure nasavaje nofu lebojemi.\"`]"
   },
   {
    "id": "x063",
@@ -464,7 +457,7 @@
   {
    "id": "x082",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x083",
@@ -476,8 +469,7 @@
   },
   {
    "id": "x085",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name CONTAINS \"VegAluGezamIrez.kusibEtapAjijo\"`]"
   },
   {
    "id": "x086",
@@ -497,13 +489,12 @@
   },
   {
    "id": "x090",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pekufes Lowefore fika\"`]"
   },
   {
    "id": "x091",
    "skip": true,
-   "reason": "not a valid XPath (contains a class chain predicate)"
+   "reason": "not a valid XPath (contains class chain backtick predicate syntax)"
   },
   {
    "id": "x092",
@@ -524,12 +515,11 @@
   {
    "id": "x096",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis and index on a parenthesised path with an inner index are not supported"
   },
   {
    "id": "x097",
-   "skip": true,
-   "reason": "starts-with() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton"
   },
   {
    "id": "x098",
@@ -542,7 +532,7 @@
   {
    "id": "x100",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x101",
@@ -563,7 +553,7 @@
   {
    "id": "x105",
    "skip": true,
-   "reason": "index on a parenthesised path with an inner index"
+   "reason": "index on a parenthesised path that has an inner index"
   },
   {
    "id": "x106",
@@ -572,12 +562,12 @@
   {
    "id": "x107",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x108",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x109",
@@ -594,7 +584,7 @@
   {
    "id": "x112",
    "skip": true,
-   "reason": "index on a parenthesised path with an inner index"
+   "reason": "index on a parenthesised path that has a further step and an inner index"
   },
   {
    "id": "x113",
@@ -603,7 +593,7 @@
   {
    "id": "x114",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported"
+   "reason": "preceding-sibling axis is not supported in class chain"
   },
   {
    "id": "x115",
@@ -620,12 +610,11 @@
   {
    "id": "x118",
    "skip": true,
-   "reason": "index inside a // step counts per parent; no exact class chain form"
+   "reason": "index inside a // step (per-parent position) has no exact class chain equivalent"
   },
   {
    "id": "x119",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dom Revoje Fabis Vimonevob\"`]"
   },
   {
    "id": "x120",
@@ -634,7 +623,7 @@
   {
    "id": "x121",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x122",
@@ -651,7 +640,7 @@
   {
    "id": "x125",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x126",
@@ -659,8 +648,7 @@
   },
   {
    "id": "x127",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Jovime\"`]"
   },
   {
    "id": "x128",
@@ -673,12 +661,11 @@
   {
    "id": "x130",
    "skip": true,
-   "reason": "parent axis is not supported"
+   "reason": "parent axis is not supported in class chain"
   },
   {
    "id": "x131",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nehavona demimel tazeviz\"`]"
   },
   {
    "id": "x132",
@@ -686,8 +673,7 @@
   },
   {
    "id": "x133",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Pi cog rufosi je sadobu dom laciwuj zov cuba wumesok. Picama camavi zov cog sehoj bika koce dovo goz sibo ho munub va pi wikop jigiraz rekivame pelu velotop.\"`]"
   },
   {
    "id": "x134",
@@ -732,13 +718,11 @@
   },
   {
    "id": "x144",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Tonodo Revoje Fabis\"`]"
   },
   {
    "id": "x145",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"hibimaw pamul\"`]"
   },
   {
    "id": "x146",
@@ -751,7 +735,7 @@
   {
    "id": "x148",
    "skip": true,
-   "reason": "child step with * on both sides under an index; no exact class chain form"
+   "reason": "index on a parenthesised path that has a further step"
   },
   {
    "id": "x149",
@@ -763,8 +747,7 @@
   },
   {
    "id": "x151",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Lugatej fej mipunaco\"`]"
   },
   {
    "id": "x152",
@@ -784,8 +767,7 @@
   },
   {
    "id": "x156",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Nig bika jutal\"`]"
   },
   {
    "id": "x157",
@@ -793,8 +775,7 @@
   },
   {
    "id": "x158",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Wewodulu wepes je\"`]"
   },
   {
    "id": "x159",
@@ -803,7 +784,7 @@
   {
    "id": "x160",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x161",
@@ -816,7 +797,7 @@
   {
    "id": "x163",
    "skip": true,
-   "reason": "parent axis (..) is not supported"
+   "reason": "parent step (..) is not supported in class chain"
   },
   {
    "id": "x164",
@@ -832,8 +813,7 @@
   },
   {
    "id": "x167",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.noraSefili\"`]"
   },
   {
    "id": "x168",
@@ -842,7 +822,7 @@
   {
    "id": "x169",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x170",
@@ -851,7 +831,7 @@
   {
    "id": "x171",
    "skip": true,
-   "reason": "index inside a child step counts per parent; no exact class chain form"
+   "reason": "positional child step after a filtered // step has no exact class chain equivalent"
   },
   {
    "id": "x172",
@@ -904,7 +884,7 @@
   {
    "id": "x184",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported"
+   "reason": "preceding-sibling axis is not supported in class chain"
   },
   {
    "id": "x185",
@@ -913,12 +893,12 @@
   {
    "id": "x186",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x187",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x188",
@@ -930,8 +910,7 @@
   },
   {
    "id": "x190",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Taka\"`]"
   },
   {
    "id": "x191",
@@ -988,12 +967,12 @@
   {
    "id": "x204",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported"
+   "reason": "preceding-sibling axis is not supported in class chain"
   },
   {
    "id": "x205",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x206",
@@ -1006,7 +985,7 @@
   {
    "id": "x208",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x209",
@@ -1018,18 +997,16 @@
   },
   {
    "id": "x211",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Vq1\"`]"
   },
   {
    "id": "x212",
    "skip": true,
-   "reason": "following axis is not supported"
+   "reason": "following axis is not supported in class chain"
   },
   {
    "id": "x213",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Begeraw kavemag\"`]"
   },
   {
    "id": "x214",
@@ -1046,7 +1023,7 @@
   {
    "id": "x217",
    "skip": true,
-   "reason": "parent and following-sibling axes are not supported"
+   "reason": "parent and following-sibling axes are not supported in class chain"
   },
   {
    "id": "x218",
@@ -1067,7 +1044,7 @@
   {
    "id": "x222",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x223",
@@ -1100,8 +1077,7 @@
   },
   {
    "id": "x230",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fej mipunaco\"`]"
   },
   {
    "id": "x231",
@@ -1109,8 +1085,7 @@
   },
   {
    "id": "x232",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Lefe jutal (6 banadi je 5 weboc)\"`]"
   },
   {
    "id": "x233",
@@ -1119,17 +1094,17 @@
   {
    "id": "x234",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x235",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x236",
    "skip": true,
-   "reason": "self:: axis tests are not supported"
+   "reason": "self:: axis tests are not covered by the conversion rules"
   },
   {
    "id": "x237",
@@ -1138,12 +1113,11 @@
   {
    "id": "x238",
    "skip": true,
-   "reason": "descendant test with * cannot be expressed exactly ($...$ also matches the element itself)"
+   "reason": "descendant test with * cannot be expressed exactly ($...$ also tests the element itself)"
   },
   {
    "id": "x239",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Bika mufig miwokub lojo foba hifum ri hu toral\"`]"
   },
   {
    "id": "x240",
@@ -1172,7 +1146,7 @@
   {
    "id": "x246",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x247",
@@ -1205,17 +1179,16 @@
   {
    "id": "x254",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x255",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"Bizinovib\"`]"
   },
   {
    "id": "x256",
    "skip": true,
-   "reason": "union of different paths is not supported"
+   "reason": "union of different paths cannot be expressed"
   },
   {
    "id": "x257",
@@ -1260,8 +1233,7 @@
   },
   {
    "id": "x267",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Doso mi\"`]"
   },
   {
    "id": "x268",
@@ -1277,8 +1249,7 @@
   },
   {
    "id": "x271",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\"`]"
   },
   {
    "id": "x272",
@@ -1295,7 +1266,7 @@
   {
    "id": "x275",
    "skip": true,
-   "reason": "parent and following-sibling axes are not supported"
+   "reason": "parent and following-sibling axes are not supported in class chain"
   },
   {
    "id": "x276",
@@ -1312,7 +1283,7 @@
   {
    "id": "x279",
    "skip": true,
-   "reason": "union of different paths is not supported"
+   "reason": "union of different paths cannot be expressed"
   },
   {
    "id": "x280",
@@ -1325,7 +1296,7 @@
   {
    "id": "x282",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x283",
@@ -1358,7 +1329,7 @@
   {
    "id": "x290",
    "skip": true,
-   "reason": "replace() is not supported"
+   "reason": "replace() has no class chain equivalent"
   },
   {
    "id": "x291",
@@ -1367,7 +1338,7 @@
   {
    "id": "x292",
    "skip": true,
-   "reason": "parent axis is not supported"
+   "reason": "parent axis is not supported in class chain"
   },
   {
    "id": "x293",
@@ -1379,8 +1350,7 @@
   },
   {
    "id": "x295",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Dikasod vilokor: £\"`]"
   },
   {
    "id": "x296",
@@ -1404,8 +1374,7 @@
   },
   {
    "id": "x301",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"Vq1, Nepureze, figuleni\"`]"
   },
   {
    "id": "x302",
@@ -1415,7 +1384,7 @@
   {
    "id": "x303",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x304",
@@ -1439,8 +1408,7 @@
   },
   {
    "id": "x309",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Hibimaw tival\"`]"
   },
   {
    "id": "x310",
@@ -1480,8 +1448,7 @@
   },
   {
    "id": "x319",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Sefasi PO:\"`]"
   },
   {
    "id": "x320",
@@ -1497,8 +1464,7 @@
   },
   {
    "id": "x323",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\"`]"
   },
   {
    "id": "x324",
@@ -1507,7 +1473,7 @@
   {
    "id": "x325",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x326",
@@ -1519,8 +1485,7 @@
   },
   {
    "id": "x328",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"• Kop velotop zir meb nul la nahinuh\"`]"
   },
   {
    "id": "x329",
@@ -1537,7 +1502,7 @@
   {
    "id": "x332",
    "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "reason": "contains(@type) with a partial type name selects several types"
   },
   {
    "id": "x333",
@@ -1558,8 +1523,7 @@
   },
   {
    "id": "x337",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\"`]"
   },
   {
    "id": "x338",
@@ -1567,8 +1531,7 @@
   },
   {
    "id": "x339",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir ceciful cuba t Hijareci Logozeb tazeviz\"`]"
   },
   {
    "id": "x340",
@@ -1618,7 +1581,7 @@
   {
    "id": "x351",
    "skip": true,
-   "reason": "parent axis is not supported"
+   "reason": "parent axis is not supported in class chain"
   },
   {
    "id": "x352",
@@ -1651,7 +1614,7 @@
   {
    "id": "x359",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x360",
@@ -1683,8 +1646,7 @@
   },
   {
    "id": "x367",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeOther"
   },
   {
    "id": "x368",
@@ -1708,13 +1670,12 @@
   },
   {
    "id": "x373",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"fericow\"`]"
   },
   {
    "id": "x374",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x375",
@@ -1727,12 +1688,12 @@
   {
    "id": "x377",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x378",
    "skip": true,
-   "reason": "index on a parenthesised path with an inner index"
+   "reason": "index on a parenthesised path that has an inner index"
   },
   {
    "id": "x379",
@@ -1766,12 +1727,12 @@
   {
    "id": "x386",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x387",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x388",
@@ -1780,7 +1741,7 @@
   {
    "id": "x389",
    "skip": true,
-   "reason": "parent axis is not supported"
+   "reason": "parent axis is not supported in class chain"
   },
   {
    "id": "x390",
@@ -1788,8 +1749,7 @@
   },
   {
    "id": "x391",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Cog zov husu zov noca je diteda?\"`]"
   },
   {
    "id": "x392",
@@ -1805,8 +1765,7 @@
   },
   {
    "id": "x395",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Ra hat foba se je 4 jidur teg bika Revoje Fabis je zocumu nonide\"`]"
   },
   {
    "id": "x396",
@@ -1818,8 +1777,7 @@
   },
   {
    "id": "x398",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Funewekid wepes rese\"`]"
   },
   {
    "id": "x399",
@@ -1847,8 +1805,7 @@
   },
   {
    "id": "x405",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov’di nofezi je foba t jutal ho\"`]"
   },
   {
    "id": "x406",
@@ -1885,13 +1842,11 @@
   },
   {
    "id": "x414",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz\"`]"
   },
   {
    "id": "x415",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HinefovigocEzehefuc.wivEtociliLunuci\"`]"
   },
   {
    "id": "x416",
@@ -1907,8 +1862,7 @@
   },
   {
    "id": "x419",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Meja\"`]"
   },
   {
    "id": "x420",
@@ -1916,8 +1870,7 @@
   },
   {
    "id": "x421",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"1 ho 3\"`]"
   },
   {
    "id": "x422",
@@ -1935,7 +1888,7 @@
   {
    "id": "x425",
    "skip": true,
-   "reason": "tokenize() is not supported"
+   "reason": "tokenize() has no class chain equivalent"
   },
   {
    "id": "x426",
@@ -1947,8 +1900,7 @@
   },
   {
    "id": "x428",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Picama bowep bika mipunaco hu pekufes kop Lowefore Fika riba je gepohe lenino je bika tazeviz.\"`]"
   },
   {
    "id": "x429",
@@ -1961,17 +1913,16 @@
   {
    "id": "x431",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x432",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x433",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Rigi buromut:\"`]"
   },
   {
    "id": "x434",
@@ -1980,7 +1931,7 @@
   {
    "id": "x435",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x436",
@@ -1993,7 +1944,7 @@
   {
    "id": "x438",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported"
+   "reason": "preceding-sibling axis is not supported in class chain"
   },
   {
    "id": "x439",
@@ -2001,8 +1952,7 @@
   },
   {
    "id": "x440",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Ceces\"`]"
   },
   {
    "id": "x441",
@@ -2031,7 +1981,7 @@
   {
    "id": "x447",
    "skip": true,
-   "reason": "normalize-space() has no exact class chain form"
+   "reason": "normalize-space() has no exact equivalent"
   },
   {
    "id": "x448",
@@ -2047,8 +1997,7 @@
   },
   {
    "id": "x451",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Bowep ge mipunaco\"`]"
   },
   {
    "id": "x452",
@@ -2061,7 +2010,7 @@
   {
    "id": "x454",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x455",
@@ -2074,7 +2023,7 @@
   {
    "id": "x457",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x458",
@@ -2106,13 +2055,12 @@
   },
   {
    "id": "x465",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Tosu goz Pekufes ce\"`]"
   },
   {
    "id": "x466",
    "skip": true,
-   "reason": "index inside a // step counts per parent; no exact class chain form"
+   "reason": "index inside a // step (per-parent position) has no exact class chain equivalent"
   },
   {
    "id": "x467",
@@ -2133,7 +2081,7 @@
   {
    "id": "x471",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x472",
@@ -2157,8 +2105,7 @@
   },
   {
    "id": "x477",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Diteda\"`]"
   },
   {
    "id": "x478",
@@ -2175,7 +2122,7 @@
   {
    "id": "x481",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x482",
@@ -2201,7 +2148,7 @@
   {
    "id": "x487",
    "skip": true,
-   "reason": "preceding-sibling axis is not supported"
+   "reason": "preceding-sibling axis is not supported in class chain"
   },
   {
    "id": "x488",
@@ -2222,7 +2169,7 @@
   {
    "id": "x492",
    "skip": true,
-   "reason": "index on a parenthesised path with an inner index"
+   "reason": "index on a parenthesised path that has a further step and an inner index"
   },
   {
    "id": "x493",
@@ -2242,8 +2189,7 @@
   },
   {
    "id": "x497",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"CizuBubezotOcahijaLenu.sedunElerozegaCawogeg\"`]"
   },
   {
    "id": "x498",
@@ -2256,7 +2202,7 @@
   {
    "id": "x500",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x501",
@@ -2264,8 +2210,7 @@
   },
   {
    "id": "x502",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Nofe tazeviz laciwuj\"`]"
   },
   {
    "id": "x503",
@@ -2274,7 +2219,7 @@
   {
    "id": "x504",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x505",
@@ -2283,7 +2228,7 @@
   {
    "id": "x506",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x507",
@@ -2305,18 +2250,17 @@
   },
   {
    "id": "x511",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Kop velotop zir meb nul la nahinuh\"`]"
   },
   {
    "id": "x512",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x513",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x514",
@@ -2337,12 +2281,12 @@
   {
    "id": "x518",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x519",
    "skip": true,
-   "reason": "index inside a // step counts per parent; no exact class chain form"
+   "reason": "index inside a // step (per-parent position) has no exact class chain equivalent"
   },
   {
    "id": "x520",
@@ -2354,8 +2298,7 @@
   },
   {
    "id": "x522",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Bika mufig rigi lojo la ri\"`]"
   },
   {
    "id": "x523",
@@ -2368,7 +2311,7 @@
   {
    "id": "x525",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x526",
@@ -2380,8 +2323,7 @@
   },
   {
    "id": "x528",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name CONTAINS \"VegAluGezamIrez.kusibEtapAjijo\"`]"
   },
   {
    "id": "x529",
@@ -2391,7 +2333,7 @@
   {
    "id": "x530",
    "skip": true,
-   "reason": "not a valid XPath (stray text after the parenthesised path)"
+   "reason": "not a valid XPath (text after the closing parenthesis)"
   },
   {
    "id": "x531",
@@ -2429,7 +2371,7 @@
   {
    "id": "x539",
    "skip": true,
-   "reason": "union with document-level not() and parent axis is not supported"
+   "reason": "union of different paths with document-wide not() and parent axis cannot be expressed"
   },
   {
    "id": "x540",
@@ -2449,8 +2391,7 @@
   },
   {
    "id": "x544",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`label CONTAINS \"Fowani je namatir, £2 so dom juguwoj fowani zov hat namatir.\"`]"
   },
   {
    "id": "x545",
@@ -2463,7 +2404,7 @@
   {
    "id": "x547",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x548",
@@ -2483,8 +2424,7 @@
   },
   {
    "id": "x552",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Gojo fo\"`]"
   },
   {
    "id": "x553",
@@ -2492,8 +2432,7 @@
   },
   {
    "id": "x554",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Luzaf jutal (1 rog je 5 banadi)\"`]"
   },
   {
    "id": "x555",
@@ -2505,13 +2444,12 @@
   },
   {
    "id": "x557",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pekufes Lowefore Fika\"`]"
   },
   {
    "id": "x558",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x559",
@@ -2543,8 +2481,7 @@
   },
   {
    "id": "x566",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dewujumu wezujewab\"`]"
   },
   {
    "id": "x567",
@@ -2568,8 +2505,7 @@
   },
   {
    "id": "x572",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz:\"`]"
   },
   {
    "id": "x573",
@@ -2578,7 +2514,7 @@
   {
    "id": "x574",
    "skip": true,
-   "reason": "index on a parenthesised path with more than one step"
+   "reason": "index on a parenthesised path that has a further step"
   },
   {
    "id": "x575",
@@ -2587,7 +2523,7 @@
   {
    "id": "x576",
    "skip": true,
-   "reason": "parent axis is not supported"
+   "reason": "parent axis is not supported in class chain"
   },
   {
    "id": "x577",
@@ -2612,7 +2548,7 @@
   {
    "id": "x582",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x583",
@@ -2681,8 +2617,7 @@
   },
   {
    "id": "x599",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\"`]"
   },
   {
    "id": "x600",
@@ -2695,12 +2630,11 @@
   {
    "id": "x602",
    "skip": true,
-   "reason": "string-length() has no exact class chain form"
+   "reason": "string-length() has no exact equivalent"
   },
   {
    "id": "x603",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Vale\"`]"
   },
   {
    "id": "x604",
@@ -2749,7 +2683,7 @@
   {
    "id": "x615",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x616",
@@ -2757,8 +2691,7 @@
   },
   {
    "id": "x617",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov’di nofezi je foba t lefe jutal ho\"`]"
   },
   {
    "id": "x618",
@@ -2778,8 +2711,7 @@
   },
   {
    "id": "x622",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"lojo la peworumezop vamalul rese bika razuw.\"`]"
   },
   {
    "id": "x623",
@@ -2796,12 +2728,12 @@
   {
    "id": "x626",
    "skip": true,
-   "reason": "index on a parenthesised path followed by a further step"
+   "reason": "index on a parenthesised path that has a further step"
   },
   {
    "id": "x627",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x628",
@@ -2813,8 +2745,7 @@
   },
   {
    "id": "x630",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Lulik gusuri teg Vq1 jidur figuleni\"`]"
   },
   {
    "id": "x631",
@@ -2847,7 +2778,7 @@
   {
    "id": "x638",
    "skip": true,
-   "reason": "> on a text attribute (value) has no exact class chain form"
+   "reason": "> on a text attribute (value) has no exact equivalent"
   },
   {
    "id": "x639",
@@ -2863,8 +2794,7 @@
   },
   {
    "id": "x642",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Revoje Fabis nig se so mi gakiwoso\"`]"
   },
   {
    "id": "x643",
@@ -2877,12 +2807,11 @@
   {
    "id": "x645",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x646",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Nepureze hilubodamo\"`]"
   },
   {
    "id": "x647",
@@ -2906,13 +2835,12 @@
   },
   {
    "id": "x652",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.dijivOdozev\"`]"
   },
   {
    "id": "x653",
    "skip": true,
-   "reason": "union of sibling-axis paths is not supported"
+   "reason": "following-sibling and preceding-sibling axes are not supported in class chain"
   },
   {
    "id": "x654",
@@ -2929,7 +2857,7 @@
   {
    "id": "x657",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x658",
@@ -2949,8 +2877,7 @@
   },
   {
    "id": "x662",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fowani wumesok muhevuw bika namatir ditar. Zov cuba £20.00 felawuhuh ho bika juvira ditar.\"`]"
   },
   {
    "id": "x663",
@@ -2978,23 +2905,21 @@
   },
   {
    "id": "x669",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Sefasi so meb vusalisafe\"`]"
   },
   {
    "id": "x670",
    "skip": true,
-   "reason": "count() is not supported"
+   "reason": "count() has no class chain equivalent"
   },
   {
    "id": "x671",
    "skip": true,
-   "reason": "following-sibling axis is not supported"
+   "reason": "following-sibling axis is not supported in class chain"
   },
   {
    "id": "x672",
-   "skip": true,
-   "reason": "contains() test on @type has no exact class chain form"
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nehavona demimel su tazeviz\"`]"
   },
   {
    "id": "x673",
