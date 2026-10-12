@@ -97,3 +97,50 @@ Each shape is used on 3 targets: top of screen (shallow, early in traversal), de
 - Scale cases and runner in `device/`, plus `results-scale*.json`.
 - A report section with size × shape × position, and a chart of lookup time vs. screen size.
 - README instructions so others can run the benchmark on their devices.
+
+## Phase 4 — plain LLMs vs the converter (done, see the report)
+
+Question: how well do Haiku, Sonnet and Opus convert the same locators when simply asked to, with no tool and no extra knowledge, compared with the converter?
+
+**Input.** `audit/llm/input.json`: the 678 locator cases of `coverage-cases.json` (563 corpus, 115 spec) as `{ id, xpath }`; the 6 scanner-context cases are source files, not locators, and are left out. The XPath is the runtime string the driver receives, so quoting in source code is not part of the test. The order is shuffled and the group (`corpus`/`spec`) is not shown to the models; it is kept in a separate key file for scoring.
+
+**Run.** One task per model, as a user would give it: the whole file, "convert these XPath locators to iOS class chain". The same prompt for all models, stored in `audit/llm/prompt.md` and quoted in the report.
+- Isolation: `claude -p` in an empty folder outside the repository, containing only `input.json`. Tools are limited to Read and Write; there is no web access, no repository, no project memory, and `--bare`. The model may split the work itself.
+- Models: Haiku, Sonnet and Opus (latest) at every effort level (`low`, `medium`, `high`, `xhigh`, `max`), all levels for every model (a higher effort may also do worse). Unsupported levels are skipped and recorded.
+- Stage 1: one run per cell, in waves from `low` upwards → results table (with the converter as the reference row).
+- Stage 2: two more runs per cell → stability table: R and S of the 3 runs per cell (mean, min–max), and the share of cases whose verdict differs between runs.
+- Recommendation: for each of the three models, the effort level that is optimal (best results for the time and cost).
+- Output contract: JSON `[{ id, chain }]` or `[{ id, skip, reason }]`. A skip is allowed.
+- Each run records model id, effort, date, wall time, tokens and cost (`--output-format json`) to `audit/llm/out/<model>-<run>.json`.
+
+**One cycle (model × effort).**
+1. A new empty temporary folder outside the repository; copy in `input.json` only.
+2. `claude -p "<prompt>" --model <m> --effort <e> --tools Read,Write --bare --output-format json`, run in that folder. The model reads the file and writes `output.json`, in parts if it wants.
+3. Save `output.json` and the CLI's metadata (model, effort, time, tokens, cost) as `audit/llm/out/<model>-<effort>-<run>.json`. A missing or broken file is a failed run, not fixed by hand.
+4. Normalize mechanically only (e.g. strip a `-ios class chain:` prefix); ids not in the output are MISSING.
+5. Score with the harness, as for the converter.
+6. Add one row to the results table.
+
+**Scoring.** The same oracle as the converter: `audit/harness` (WDA 16.14.1 parser, corrected after Phase 2). Verdicts:
+
+| Verdict | Meaning |
+|---|---|
+| CORRECT | finds the same as the XPath |
+| CORRECT-SKIP | skipped an inexpressible locator |
+| GAP | skipped although expressible |
+| DRIFT | differs in edge cases (order, positions) |
+| WRONG | reported as converted but finds something else |
+| INVALID | WDA rejects the chain |
+| MISSING | id not in the output |
+
+Scores R (corpus) and S (spec) from 0 to 100, C, and the WRONG / INVALID / MISSING counts, with the converter as the reference row. Efficiency: time, tokens and cost per run.
+
+**Text analysis.** Opus (effort `high`) groups the errors by type and writes the findings from the scored results only; it does not grade.
+
+**What changed during the run (2026-10-11/12).**
+- `--bare` was dropped: in CLI 2.1.296 it accepts only an API key, and the runs used the account login. Isolation is the same otherwise: `--tools Read,Write`, `--setting-sources ""`, an empty MCP config, `--no-session-persistence`, a clean environment and an empty folder in the system temp dir.
+- The prompt asks for the full locator with the `-ios class chain:` prefix; the scorer strips it and counts missing prefixes (there were none).
+- One run per cell. `xhigh` was skipped for all models and Stage 2 (repeats) was not run, to stay within the account's usage limit. Opus / `max` was cut off by that limit after 460 of 678 answers and is left out of the comparison.
+- Scoring rule for skips: a skipped locator with no exact class chain is CORRECT-SKIP and leaves that run's denominator (the report's "skip grouped positions" variant); `R=` / `S=` also give every row the converter's denominator.
+
+**Deliverables.** `audit/llm/` (input, key, prompt, runner, outputs, scores), a report section with the prompt, the results table, the per-model recommendation (the stability table is not made: Stage 2 was not run), the error analysis and conclusions, and a PR from branch `audit/llm-comparison`.
