@@ -4,8 +4,8 @@ Haiku, Sonnet and Opus convert the 678 locators of `../coverage-cases.json` when
 
 | File | Role |
 |---|---|
-| `prompt-v2.md`, `prompt-v3.md`, `prompt-v3-run.md`, `make-run-prompt.js` | D3: the v2 and v3 rules (rules only); the runnable prompt = Phase 4 task text + rules + output format, built by `node make-run-prompt.js prompt-v3.md prompt-v3-run.md`. `PROMPT=$PWD/prompt-v3-run.md node run.js <model> <effort> 2` → `out/<model>-<effort>-2.json` (run 2 = the prompt under test; v2 runs are not kept) |
-| `compare-v2.js` | D3 table: the converter and the run-2 cells, each counted against the converter; `details` lists the case ids |
+| `prompt-v2.md`, `prompt-v3.md`, `prompt-v4.md`, `prompt-v4-run.md`, `make-run-prompt.js` | D3: the rules of v2, v3 and v4 (rules only; each version changes one rule of the previous); the runnable prompt = Phase 4 task text + rules + output format, built by `node make-run-prompt.js prompt-v4.md prompt-v4-run.md`. `PROMPT=$PWD/prompt-v4-run.md node run.js <model> <effort> 3` → `out/<model>-<effort>-3.json` (run 2 = v3, run 3 = v4; v2 runs are not kept) |
+| `compare-v2.js` | D3 table (`BASELINE=1 RUN=3 node compare-v2.js`; BASELINE=1 adds the plain Phase 4 run of each cell): the converter and the cells of that run, each counted against the converter; `details` lists the case ids |
 | `build-input.js` | Builds `input.json` (shuffled `{ id, xpath }`, runtime strings) and `key.json` (original id, group, baseline verdict) |
 | `prompt.md` | The prompt every run gets |
 | `run.js` | One run: `node run.js <haiku\|sonnet\|opus> <effort> <run>` in an empty temp folder → `out/<model>-<effort>-<run>.json` |
