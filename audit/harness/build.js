@@ -114,8 +114,8 @@ for (const x of corpus) {
 }
 // ---------- spec
 const SPEC = { // id: [verdict, rootCause|null, documented?]
-  A01: ['CORRECT'], A02: ['CORRECT'], A03: ['CORRECT'], A04: ['CORRECT'], A05: ['CORRECT'], A06: ['CORRECT'], A07: ['DRIFT', null, false], A08: ['CORRECT'],
-  A09: ['CORRECT'], A10: ['CORRECT'], A11: ['CORRECT'], A12: ['GAP'], A13: ['CORRECT-SKIP'], A14: ['DRIFT', null, false], A15: ['DRIFT', null, false], A16: ['DRIFT', null, true],
+  A01: ['CORRECT'], A02: ['CORRECT'], A03: ['CORRECT'], A04: ['CORRECT'], A05: ['CORRECT'], A06: ['CORRECT'], A07: ['CORRECT'], A08: ['CORRECT'],
+  A09: ['CORRECT'], A10: ['CORRECT'], A11: ['CORRECT'], A12: ['CORRECT'], A13: ['CORRECT-SKIP'], A14: ['CORRECT'], A15: ['CORRECT'], A16: ['CORRECT'],
   B01: ['CORRECT'], B02: ['CORRECT'], B03: ['CORRECT'], B04: ['CORRECT'], B05: ['CORRECT'], B06: ['CORRECT'], B07: ['CORRECT'], B08: ['DRIFT', null, false],
   B09: ['CORRECT'], B10: ['CORRECT'], B11: ['CORRECT'], B12: ['CORRECT'], B13: ['CORRECT-SKIP'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['DRIFT', null, false], B17: ['CORRECT'], B18: ['CORRECT'],
   C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['GAP'], C07: ['GAP'], C08: ['GAP'], C09: ['GAP'], C10: ['CORRECT'], C11: ['CORRECT'], C12: ['CORRECT'],

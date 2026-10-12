@@ -4,19 +4,20 @@ This is the **full research spec** of 14 candidate rules, kept as background for
 why the optimizer does what it does. It is **not** a description of what the
 optimizer currently does: 6 of the 14 rules are deliberately not implemented
 because they need knowledge of the running app's element hierarchy, which a
-static source-code rewrite cannot have.
+static source-code rewrite cannot have, and 2 more (1 and 7) were implemented
+and then removed because they change which elements a chain matches.
 
 For what actually ships, see [the optimizer section of the README](../README.md#the-optimizer).
 
 | Spec rule | Status | Implementation |
 |---|---|---|
-| 1. Remove meaningless `XCUIElementTypeOther` chains | ✅ Implemented | `stripMeaninglessIntermediates()` |
+| 1. Remove meaningless `XCUIElementTypeOther` chains | ❌ Removed | Widens the match: `**/Window/Other/Button` → `**/Button` also returns buttons outside any `Other` (coverage audit, Phase 5 B4) |
 | 2. Never index an intermediate step | ❌ Not implemented | Needs app hierarchy knowledge |
 | 3. `**/` → `/` for direct-child relationships | ❌ Not implemented | Needs app hierarchy knowledge |
 | 4. Collapse `**/**/` → `**/` | ✅ Implemented | `collapseDoublestar()` |
 | 5. `XCUIElementTypeAny` → `*` | ✅ Implemented | `normalizeXCUIElementTypeAny()` |
 | 6. Merge sibling predicate blocks | ✅ Implemented | `mergeSiblingPredicates()` |
-| 7. Defer `visible == 1` to the final step | ✅ Implemented | `deferVisibleToFinalStep()` — see the README caveat, this can change which element matches |
+| 7. Defer `visible == 1` to the final step | ❌ Removed | Changes the match: a visible cell can hold a button that is not visible (coverage audit, Phase 5 B4) |
 | 8. Strip redundant `type ==` | ✅ Implemented | `stripRedundantTypePredicates()` |
 | 9. Parent-contains transform | ❌ Not implemented | Lossy — changes the returned element |
 | 10. Tighten string operator (`CONTAINS` → `==`) | ❌ Not implemented | Needs to know if the value is a full match |
@@ -40,6 +41,7 @@ Before:
 After:
 **/XCUIElementTypeButton[`name == "Submit"`]
 Keep an intermediate node only when it is a meaningful semantic type (Cell, Table, NavigationBar, ScrollView) with a predicate that genuinely narrows the search space.
+**Removed.** The two chains above do not match the same elements: the shorter one also returns buttons that are not inside three nested `Other` elements in a window. Whether that difference matters depends on the screen, which a static rewrite cannot see.
 
 2. Never index an intermediate chain step
 The official WDA construction rules state explicitly: indexing non-terminal steps forces XCTest to materialise ALL elements of that type before continuing. Only the final step may carry an index.
@@ -98,6 +100,7 @@ Before:
 **/XCUIElementTypeTable[`visible == 1`]/XCUIElementTypeCell[`visible == 1`]/XCUIElementTypeButton[`name == "Submit"`]
 After:
 **/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeButton[`name == "Submit" AND visible == 1`]
+**Removed.** Visibility of an ancestor and of the target are independent, so the two chains do not match the same elements: on a device a visible cell held a button that was not visible (coverage audit, Phase 2).
 
 8. Remove type == inside the predicate when the chain node already specifies that type
 XCTest pre-filters by type at the chain node level before evaluating the predicate. Adding type == '...' inside backticks on the same node is a redundant check run against every candidate that already passed the type filter.

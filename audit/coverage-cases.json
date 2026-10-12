@@ -6262,12 +6262,12 @@
   "id": "A07",
   "xpath": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton",
   "expected": "XCUIElementTypeWindow/XCUIElementTypeButton",
-  "actual": "-ios class chain:**/XCUIElementTypeButton",
+  "actual": "-ios class chain:XCUIElementTypeWindow/XCUIElementTypeButton",
   "status": "success",
-  "verdict": "DRIFT",
+  "verdict": "CORRECT",
   "shape": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton",
   "category": "A",
-  "note": "Leading single / + Application step (hyp. 8) | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | fixture: expected xpath=[\"b1\"] chain=[\"b1\"]; actual xpath=[\"b1\"] chain=[\"b1\",\"deep\"] | DRIFT not documented in README"
+  "note": "Leading single / + Application step (hyp. 8) | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"b1\"] chain=[\"b1\"]; actual xpath=[\"b1\"] chain=[\"b1\"]"
  },
  {
   "id": "A08",
@@ -6317,12 +6317,12 @@
   "id": "A12",
   "xpath": ".//XCUIElementTypeButton[@name=\"a\"]",
   "expected": "**/XCUIElementTypeButton[`name == \"a\"`]",
-  "actual": null,
-  "status": "skipped_not_xpath",
-  "verdict": "GAP",
+  "actual": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": ".//XCUIElementTypeButton[@name=\"s\"]",
   "category": "A",
-  "note": "relative path, context = application | expected vs XPath: 300/300 equal"
+  "note": "relative path, context = application | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "A13",
@@ -6339,34 +6339,34 @@
   "id": "A14",
   "xpath": "//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[@name=\"a\"]",
   "expected": "**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"a\"`]",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]",
+  "actual": "-ios class chain:**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"a\"`]",
   "status": "success",
-  "verdict": "DRIFT",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[@name=\"s\"]",
   "category": "A",
-  "note": "optimizer rule 5 (hyp. 11) | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | fixture: expected xpath=[\"inOther\"] chain=[\"inOther\"]; actual xpath=[\"inOther\"] chain=[\"directInWindow\",\"inNavBar\",\"inOther\"] | DRIFT not documented in README"
+  "note": "optimizer rule 5 (hyp. 11) | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"inOther\"] chain=[\"inOther\"]; actual xpath=[\"inOther\"] chain=[\"inOther\"]"
  },
  {
   "id": "A15",
   "xpath": "//XCUIElementTypeOther/XCUIElementTypeButton[@name=\"a\"]",
   "expected": "**/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"a\"`]",
-  "actual": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]",
+  "actual": "-ios class chain:**/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"a\"`]",
   "status": "success",
-  "verdict": "DRIFT",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeOther/XCUIElementTypeButton[@name=\"s\"]",
   "category": "A",
-  "note": "optimizer rule 5, leading Other | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | fixture: expected xpath=[\"inOther\"] chain=[\"inOther\"]; actual xpath=[\"inOther\"] chain=[\"directInWindow\",\"inNavBar\",\"inOther\"] | DRIFT not documented in README"
+  "note": "optimizer rule 5, leading Other | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL | fixture: expected xpath=[\"inOther\"] chain=[\"inOther\"]; actual xpath=[\"inOther\"] chain=[\"inOther\"]"
  },
  {
   "id": "A16",
   "xpath": "//XCUIElementTypeCell[@visible=\"true\"]/XCUIElementTypeButton",
   "expected": "**/XCUIElementTypeCell[`visible == true`]/XCUIElementTypeButton",
-  "actual": "-ios class chain:**/XCUIElementTypeCell/XCUIElementTypeButton[`visible == 1`]",
+  "actual": "-ios class chain:**/XCUIElementTypeCell[`visible == true`]/XCUIElementTypeButton",
   "status": "success",
-  "verdict": "DRIFT",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeCell[@visible=\"s\"]/XCUIElementTypeButton",
   "category": "A",
-  "note": "optimizer rule 7 (hyp. 11) | expected vs XPath: 300/300 equal | actual vs XPath: SET_DIFFERS | DRIFT documented in README"
+  "note": "optimizer rule 7 (hyp. 11) | expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "B01",

@@ -85,17 +85,18 @@ npm run json -- ./src/e2e   # JSON report (preview unless you add --write)
 
 ## The optimizer
 
-The optimizer always runs — in both the preview and `--write` paths, so the preview never disagrees with the result. Eight rules run together inside an idempotent loop until the chain stops changing. (These are the rules that actually ship — [docs/optimization-rules.md](docs/optimization-rules.md) records the wider 14-rule research spec and marks which of those are deliberately not implemented.)
+The optimizer always runs — in both the preview and `--write` paths, so the preview never disagrees with the result. Six rules run together inside an idempotent loop until the chain stops changing. Every rule keeps the set of matched elements; a rewrite that would change it is not an optimization and is not applied. (These are the rules that actually ship — [docs/optimization-rules.md](docs/optimization-rules.md) records the wider 14-rule research spec and marks which of those are deliberately not implemented.)
 
 1. **`XCUIElementTypeAny` → `*`**. Normalises the verbose API name to the idiomatic wildcard symbol.
 2. **`IN {"single"}` → `==`**. A one-item set degrades to a hash lookup anyway; `==` is clearer and avoids the set-iteration path.
 3. **`**/` deduplication**. `**/**/` is equivalent to `**/`; the second recursive scan adds no filtering but does add overhead.
-4. **Strip meaningless intermediates**. No-predicate `XCUIElementTypeOther` and `XCUIElementTypeWindow` steps force XCTest to materialise an intermediate result set for zero filtering benefit. They are removed; any gap becomes `/**/` so depth is not accidentally asserted.
-5. **Merge sibling predicate blocks**. Adjacent `[\`a\`][\`b\`]` on the same step can be misread by the engine as an index. They are merged into `[\`a AND b\`]`; a block with `OR` keeps its parentheses, `[\`a OR b\`][\`c\`]` → `[\`(a OR b) AND c\`]`. Numeric index brackets like `[2]` are never merged.
-6. **Defer `visible == 1` to the final step**. Evaluating visibility triggers a layout pass per element. On intermediate steps this means a pass for every candidate before the chain continues. `visible == 1` is stripped from non-terminal steps and merged onto the final target's predicate.
-   > ⚠️ This is not purely a performance change. The original chain required each *ancestor* to be visible; the rewritten one only requires the final element to be. If an intermediate container can be off-screen while the target is not, the optimized chain can match elements the original would have excluded.
-7. **Strip redundant `type ==` from concrete-typed nodes**. XCTest pre-filters by node type before evaluating the predicate, so `XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "OK"\`]` → `XCUIElementTypeButton[\`name == "OK"\`]`. (The wildcard case `*[\`type == "X"\`]` → `X` is handled by the validator in all modes.)
-8. **AND condition cost reordering**. Compound AND predicates short-circuit on the first false condition. Conditions are sorted cheapest-first: `==`/`!=` → `BEGINSWITH` → `ENDSWITH` → `CONTAINS` → `LIKE` → `MATCHES`.
+4. **Merge sibling predicate blocks**. Adjacent `[\`a\`][\`b\`]` on the same step can be misread by the engine as an index. They are merged into `[\`a AND b\`]`; a block with `OR` keeps its parentheses, `[\`a OR b\`][\`c\`]` → `[\`(a OR b) AND c\`]`. Numeric index brackets like `[2]` are never merged.
+5. **Strip redundant `type ==` from concrete-typed nodes**. XCTest pre-filters by node type before evaluating the predicate, so `XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "OK"\`]` → `XCUIElementTypeButton[\`name == "OK"\`]`. (The wildcard case `*[\`type == "X"\`]` → `X` is handled by the validator in all modes.)
+6. **AND condition cost reordering**. Compound AND predicates short-circuit on the first false condition. Conditions are sorted cheapest-first: `==`/`!=` → `BEGINSWITH` → `ENDSWITH` → `CONTAINS` → `LIKE` → `MATCHES`.
+
+**Removed rules.** Two earlier rules changed which elements a chain matches and were removed (coverage audit, Phase 5 B4):
+- *Strip `XCUIElementTypeOther` / `XCUIElementTypeWindow` steps without a predicate.* `**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton` → `**/XCUIElementTypeButton` also matched buttons outside any `Other`, and `/XCUIElementTypeOther/` → `/**/` matched elements at any depth.
+- *Move `visible == 1` from intermediate steps to the final step.* The visibility of a container and of an element inside it are independent: a visible cell can hold a button that is not visible, and the reverse.
 
 **Idempotency**. The validator and optimizer re-run until the output is stable. Matters when one rewrite *unlocks* another — e.g.:
    ```
@@ -197,6 +198,7 @@ Status values used in `skipped[]`:
 | `//XCUIElementTypeButton[@name="abc*"]` | ``**/XCUIElementTypeButton[`name == "abc*"`]`` (`*` is a literal character in both languages) |
 | `//XCUIElementTypeButton[contains(@enabled,"false")]` | ``**/XCUIElementTypeButton[`enabled == false`]`` (boolean attributes compare as booleans) |
 | `//XCUIElementTypeCell/./XCUIElementTypeButton` | `**/XCUIElementTypeCell/XCUIElementTypeButton` (`.` steps dropped) |
+| `.//XCUIElementTypeButton[@name="a"]` | ``**/XCUIElementTypeButton[`name == "a"`]`` (a leading `.//` searches below the context node, as `**/` does; `./X` is not converted. Library API only: the CLI scanner picks up strings that start with `//` or `(//`) |
 | `//XCUIElementTypeButton[@x>60]`, `//*[@index="1"]` | ``**/XCUIElementTypeButton[`rect.x > 60`]``, ``**/*[`index == 1`]`` (`x`/`y`/`width`/`height` are `rect.*`; numbers compare as numbers) |
 | `//XCUIElementTypeSlider[@value>0.5]` | ``**/XCUIElementTypeSlider[`value.doubleValue > 0.5`]`` |
 | `//XCUIElementTypeButton[@label!="a"]` | ``**/XCUIElementTypeButton[`label != nil AND label != "a"`]`` (XPath `!=` needs the attribute to exist) |
@@ -240,7 +242,7 @@ Checked on Appium 3.8.0, appium-xcuitest-driver 12.16.0 and WebDriverAgent 16.14
 
 - **Grouped positions count breadth-first.** XCTest returns query matches breadth-first, for XPath lookups as well as for class chains. An XPath position `(//X)[n]` is still counted in document order. So `(//XCUIElementTypeButton)[2]` → `**/XCUIElementTypeButton[2]` can return a shallower button further down the screen. No class chain counts in document order. These locators are still converted and are flagged with a `warning` in the console and in the `--json` report; check each one on the screen it is used on. `findElement` without a position returns the same first element on both sides whenever the matched sets are equal.
 - **Selector errors look like "element not found".** appium-xcuitest-driver 12.16.0 catches the error WDA returns for an invalid XPath or class chain (`400 invalid selector`). `findElements` then returns `[]` and `findElement` fails with "no such element". A chain that does not parse therefore looks like a missing element in a test run. This is one reason the tool validates every chain it emits and skips what it cannot convert exactly.
-- **`visible` on the final step can be much slower as a chain.** `**/XCUIElementTypeButton[\`visible == true\`]` took 12.6 s against 2.0 s for `//XCUIElementTypeButton[@visible='true']` on a screen where 32 buttons are visible, because WDA reads visibility for each candidate. Prefer a locator that does not depend on `visible` where lookup time matters. On an intermediate step it is the other way round, which is why the optimizer moves `visible` to the final step (rule 6). Over all checked locators the chain was faster, ×1.11 (geometric mean).
+- **`visible` on the final step can be much slower as a chain.** `**/XCUIElementTypeButton[\`visible == true\`]` took 12.6 s against 2.0 s for `//XCUIElementTypeButton[@visible='true']` on a screen where 32 buttons are visible, because WDA reads visibility for each candidate. Prefer a locator that does not depend on `visible` where lookup time matters. The optimizer leaves `visible` on the step it was written on: moving it to another step changes which elements match. Over all checked locators the chain was faster, ×1.11 (geometric mean).
 
 ## Configuration
 
