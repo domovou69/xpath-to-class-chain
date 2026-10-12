@@ -7021,12 +7021,12 @@
   "id": "F04",
   "xpath": "//XCUIElementTypeCell[descendant::XCUIElementTypeButton]",
   "expected": "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\"$]",
-  "actual": null,
-  "status": "skipped_unsupported_logic",
-  "verdict": "GAP",
+  "actual": "-ios class chain:**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\"$]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeCell[descendant::XCUIElementTypeButton]",
   "category": "F",
-  "note": "expected vs XPath: 300/300 equal"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "F05",
@@ -7340,12 +7340,12 @@
   "id": "R01",
   "xpath": "//XCUIElementTypeButton[@name=\"x\"]/ancestor::XCUIElementTypeCell",
   "expected": "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"x\"$]",
-  "actual": null,
-  "status": "skipped_unsupported_logic",
-  "verdict": "GAP",
+  "actual": "-ios class chain:**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"x\"$]",
+  "status": "success",
+  "verdict": "CORRECT",
   "shape": "//XCUIElementTypeButton[@name=\"s\"]/ancestor::XCUIElementTypeCell",
   "category": "R",
-  "note": "expected vs XPath: 300/300 equal"
+  "note": "expected vs XPath: 300/300 equal | actual vs XPath: EQUAL"
  },
  {
   "id": "R02",

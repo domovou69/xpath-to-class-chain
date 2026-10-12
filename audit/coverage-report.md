@@ -33,6 +33,15 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/parser-provable-b5` (Phase 5, B5) | none of RC-*: `concat()` of string literals folded into one literal (C09 GAP → CORRECT) | 96.1 | 86.5 % | 74.1 (74.1) | 0 | 0 |
 | `fix/c2-last` (Phase 5, C2) | none of RC-*: grouped `(…)[last()]` → `[-1]`, `(…)[last()-n]` → `[-(n+1)]` as documented DRIFT (RC-D1); E05, E06, L270–L272 CORRECT-SKIP → DRIFT | 95.8 | 87.0 % | 74.3 (74.3) | 0 | 0 |
 | `fix/c2-attributes` (Phase 5, C2) | RC-D3 (skip); B16 `@attr=true()` → no predicate (DRIFT → CORRECT) | 95.8 | 87.0 % | 75.3 (75.3) | 0 | 0 |
+| `fix/c2-axes` (Phase 5, C2) | none of RC-*: `[descendant::T]` and `//T1[cond]/ancestor::T2` → `$…$` descendant predicate (F04, R01 GAP → CORRECT) | 95.8 | 87.0 % | 82.8 (82.8) | 0 | 0 |
+
+Notes on `fix/c2-axes` (Phase 5, C2):
+
+- **F04.** `descendant::` at the start of a predicate is read as `.//`, so `//XCUIElementTypeCell[descendant::XCUIElementTypeButton]` → `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton"$]`, and `[descendant::T[cond]]` takes the same path as `[.//T[cond]]`. The RC-D2 rule therefore applies unchanged: `[descendant::*]`, `//*[descendant::T]` and `//T[descendant::T]` are skipped because `$…$` would also match the element itself. `[descendant::T[2]]`, `[descendant::T/U]` and `descendant::` after `and` are skipped too. `descendant-or-self::` stays a skip.
+- **R01.** `//T1[cond]/ancestor::T2` is rewritten as `//T2[.//T1[cond]]` and converted as the descendant predicate: `//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell` → `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]`. Each other form is skipped with its own reason: `*` or the same type on either step (RC-D2), a predicate or index on the ancestor step (R04 `ancestor::T[1]` is the nearest ancestor), a path before or after it, `ancestor::XCUIElementTypeApplication` (the root, which `**/` never returns), an index or several `[…]` on T1, and a leading `.//` (from an element, `ancestor::` climbs to the context node and above, where `**/` does not look). `ancestor-or-self::`, `parent::`, `..` and the sibling axes are unchanged skips (R02–R04, X01–X03). A grouped `(…/ancestor::T2)[n]` gets the usual RC-D1 warning.
+- Harness: 2 verdicts changed (F04, R01 GAP → CORRECT; `build.js` SPEC updated by hand), no new WRONG or DRIFT. F 4 / 4 and R 1 / 1, so S 75.3 → 82.8. R is unchanged: no corpus entry uses either axis. No fuzz notes moved.
+- **Simulator** (`LocatorLab iPhone 17`, iOS 27.0; AC power, Low Power Mode off): `run.js --cases cases-c1.json --only F04,R01` in 58 s. The converter's chains are the C1 candidates and are EQUAL to the XPath: F04 16 Cells on `lists` (including `deep.cell`), R01 2 Cells on `siblings`. The output is `device/out/c2-axes.json` (ignored by git). The iPhone was not run.
+- D2: `audit/llm/score.js` already counts F04 and R01 as expressible, so it needs no change for this group.
 
 Notes on `fix/c2-attributes` (Phase 5, C2):
 
@@ -790,7 +799,7 @@ The harness still scores B03 CORRECT, so R and S are unchanged in this branch. C
 ### For C2 (one branch per group)
 
 1. **`fix/c2-functions`.** `matches()`: a pattern without regex metacharacters → `CONTAINS` (with `[c]` for the `i` flag) (H03, H04); any other pattern → ``MATCHES "(?s:.*)(?-s:p)(?s:.*)"`` (H02), with `(?i)` for `i`; skip other flags and any pattern with a literal space (no-break-space fact above). `lower-case(x)="v"` → ``x ==[c] "v"`` (H05), `contains(upper-case(x),"V")` / `contains(translate(x, A–Z, a–z),"v")` → ``CONTAINS[c]`` (H06, C08), for ASCII literals only. Keep C06 (`normalize-space`) and C07 (`string-length`) skipped, and put the reason in the skip message.
-2. **`fix/c2-axes`.** `[descendant::T]` → `[$type == "T"$]` (F04) and `//T1[cond]/ancestor::T2` → `**/T2[$type == "T1" AND cond$]` (R01), only when both steps name a type and the types differ (the RC-D2 rule).
+2. **`fix/c2-axes`.** `[descendant::T]` → `[$type == "T"$]` (F04) and `//T1[cond]/ancestor::T2` → `**/T2[$type == "T1" AND cond$]` (R01), only when both steps name a type and the types differ (the RC-D2 rule). Done in `fix/c2-axes` (see Progress since Phase 1).
 3. **`fix/c2-attributes`.** `@attr=true()` on a boolean attribute WDA always writes → no predicate (B16, DRIFT → CORRECT). RC-D3: stop emitting `value.doubleValue` for `>` / `>=` on a text attribute, or document it, plus a harness fixture with a `10abc`-like value (B03 becomes WRONG/DRIFT until then). Done in `fix/c2-attributes` (see Progress since Phase 1).
 4. **`fix/c2-last`.** `(…)[last()]` → `[-1]`, `(…)[last()-n]` → `[-(n+1)]` as documented DRIFT, under the same README note as RC-D1 (E05, E06, L270–L272; harness verdict CORRECT-SKIP → DRIFT). Done in `fix/c2-last` (see Progress since Phase 1).
 
