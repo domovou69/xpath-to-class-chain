@@ -702,6 +702,86 @@ that do not exist in XCUITest.
 4. A higher effort does not pay: Opus is flat from `low`, Sonnet from `medium`, and Haiku gets worse above `medium`. `max` costs 2–4× and up to 6× the time of the level below for at most +1.6 S, and it spends 80–90 % of its tokens on thinking.
 5. Recommendation: convert with the converter, which never emits a wrong chain. For the locators it skips, a model helps (opus / low or sonnet / low), but its chains need the harness or a device check before they replace the XPath.
 
+## Device check (Phase 5, C1)
+
+Phase 4 left two kinds of candidate. The first are forms that only the models emit (`MATCHES`, `[c]`, `.length`, `$…$` for `descendant::` / `ancestor::`, B16 without a predicate). The second are forms the converter already emits but that Phase 4 marked as doubtful (`value.doubleValue`, `rect.x`, `index`, `hittable`). C1 runs both against the XPath on LocatorLab, on the simulator and on the iPhone, and also checks two XPath behaviours of WDA (`XCUIElementTypeAny`, `[-1]` for `last()`). The converter and the harness were not changed, so R and S are unchanged (no row in "Progress since Phase 1"). Results: `device/results-c1.json` (simulator), `device/results-c1-device.json` (iPhone); cases: `device/cases-c1.json`.
+
+### Setup
+
+| | Simulator | iPhone |
+|---|---|---|
+| Device | `LocatorLab iPhone 17`, iOS 27.0 (24A434) | iPhone 13 Pro Max, iOS 26.6 (23G71) |
+| Appium / driver / WDA | 3.8.0 / 12.16.0 / 16.14.1 | same |
+| Xcode | 27.0 (27A266a) | same |
+| Mac power | AC, Low Power Mode off | AC, Low Power Mode off |
+| Run | 39 cases, 280 s | 39 cases, 560 s |
+
+- Each case is an XPath from the spec matrix or the corpus (adapted values as in Phase 2), run against its **candidate chains**: the spec label's hand-written chain (`expectedChain`) and the chain the models wrote (`llm/analysis/cross.md`; for C06 also the `[ \t\r\n]` form from the improved prompt in `llm/analysis/analysis.md`). The comparison is the one from Phase 2: same set, same first element. `run.js` gained `--cases <file>` and a `candidates` list per case. Phase 2's `cases.json` / `results.json` are unchanged.
+- The Phase 2 screens rarely tell the forms apart: Phase 2 had already run most of these chains as `expected`, and all were EQUAL. A new screen, **`c1`**, adds values on which XPath and chain can disagree. These are identifiers with a newline (`abc\n`, `a\nc`, `x\nb`), labels with a no-break space and a tab between `a` and `b`, a button labelled `😀😀` (2 code points, 4 UTF-16 units), `Qty` buttons with the values `10abc` and `1e3`, and buttons at a fractional x (two in SwiftUI, one UIKit button at x = 60.5, width 30.5). It is a separate screen, so the Phase 2 layouts did not move.
+- One chain is not from the models: `(?s:.*)(?-s:^a.c$)(?s:.*)` for H02. Ad hoc probes on `c1` (listed below) showed why the models' form fails, and this one was then added as a candidate.
+
+### Verdicts
+
+CONFIRMED = equal to the XPath on every screen tried, on the simulator and on the iPhone, so it goes into C2. REFUTED = differs, and stays a skip (or must become one). No case was DEVICE-DEPENDENT: the iPhone gave the same outcome as the simulator for every case and every candidate. Some hits differ only because the iPhone's screen is larger (B11, B11~lists, B14~lists: both sides find the same extra elements).
+
+| Case | XPath | Chain checked | Screens | Result | Verdict |
+|---|---|---|---|---|---|
+| H03 | `//*[matches(@name,"b")]` | ``name CONTAINS "b"``, ``name MATCHES "(?s).*(?:b).*"`` | functions, c1 | EQUAL, also on `x\nb` | CONFIRMED |
+| H04 | `//*[matches(@name,"ab","i")]` | ``name CONTAINS[c] "ab"``, ``name MATCHES "(?si).*(?:ab).*"`` | functions, c1 | EQUAL | CONFIRMED |
+| H02 | `//*[matches(@name,"^a.c$")]` | ``name MATCHES "a.c"`` (models, spec label) | functions, c1 | SET_DIFFERS: the XPath also finds `abc\n`, the chain also finds `a\nc` | REFUTED |
+| H02 | same | ``name MATCHES "(?s:.*)(?-s:^a.c$)(?s:.*)"`` | functions, c1 | EQUAL | CONFIRMED (this form) |
+| H05 | `//*[lower-case(@label)="ab"]` | ``label ==[c] "ab"`` | functions, c1 | EQUAL | CONFIRMED |
+| H06 | `//*[contains(upper-case(@label),"AB")]` | ``label CONTAINS[c] "AB"`` | functions, c1 | EQUAL | CONFIRMED |
+| C08 | `contains(translate(@label, A–Z, a–z),"ab")` | ``label CONTAINS[c] "ab"`` | functions, c1 | EQUAL | CONFIRMED (ASCII literal) |
+| C06 | `//*[normalize-space(@label)="a b"]` | ``label MATCHES "\\s*a\\s+b\\s*"``, ``label MATCHES "[ \\t\\r\\n]*a[ \\t\\r\\n]+b[ \\t\\r\\n]*"`` | functions, c1 | SET_DIFFERS: both chains also find `a`U+00A0`b` | REFUTED |
+| C07 | `//Button[string-length(@label)>3]` | ``label.length > 3`` | functions, c1 | SET_DIFFERS: the chain also finds `😀😀` (`.length` 4, `string-length` 2) | REFUTED |
+| F04 | `//Cell[descendant::Button]` | ``**/Cell[$type == "XCUIElementTypeButton"$]`` | lists | EQUAL | CONFIRMED (types differ, RC-D2 rule) |
+| R01 | `//Button[@name="sib.remove"]/ancestor::Cell` | ``**/Cell[$type == "XCUIElementTypeButton" AND name == "sib.remove"$]`` | siblings | EQUAL (cell with the button nested one level deeper included) | CONFIRMED (types differ) |
+| B16 | `//Button[@enabled=true()]` | `**/XCUIElementTypeButton` | states | EQUAL (the converter's ``enabled == true`` is SET_DIFFERS, as in Phase 2) | CONFIRMED |
+| B03 | `//Button[@value>5]` | ``value.doubleValue > 5`` (**converter**) | states, c1 | states EQUAL; c1 SET_DIFFERS: the chain also finds value `10abc` | REFUTED (new defect, below) |
+| B04 | `//Button[@x>60]` | ``rect.x > 60`` (converter) | states, c1 | EQUAL, including x = 60.5 | CONFIRMED |
+| B11 | `//*[@index="1"]` | ``index == 1`` (converter) | functions, lists, states, c1 | EQUAL | CONFIRMED |
+| B14 | `//Button[@hittable="true"]` | ``hittable == true`` (converter) | states, lists | EQUAL | CONFIRMED |
+| A04 | `//XCUIElementTypeAny[@name="a"]` | ``**/*[`name == "a"`]`` (converter) | functions | EQUAL | CONFIRMED |
+| E05, E06, L270, L271, L272 | `(…)[last()]`, `(…)[last()-1]` | `…[-1]`, `…[-2]` | lists | SET_DIFFERS against the XPath, but `[-1]` / `[-2]` is always the last / second-to-last element of the ungrouped lookup's result | CONFIRMED as DRIFT (RC-D1) |
+
+### Platform facts found in C1
+
+All of these hold on the simulator (iOS 27.0) and on the iPhone (iOS 26.6). They came from the cases above and from ad hoc probes on `c1`, which are not in the case files.
+- **`MATCHES` in a class chain treats `.` as dot-all.** ``name MATCHES "a.c"`` matches `a\nc`. The XPath `matches()` that WDA registers does not, and its `$` also matches before a final newline (`abc\n` matches `^a.c$`), as ICU does without the `m` flag. Inline flags work: `(?-s)a.c` and `a[^\n]c` exclude `a\nc`, and `(?s:.*)(?-s:p)(?s:.*)` reproduces XPath's search semantics, anchors included.
+- **`MATCHES` treats a no-break space (U+00A0) like a plain space.** ``label MATCHES "a b"``, ``"a[ ]b"`` and ``"a\\x{20}b"`` all match the label `a`U+00A0`b`, and ``"a\\x{a0}b"`` matches nothing. ``label == "a b"`` and ``label CONTAINS " "`` do not match it, and neither does the XPath. So no `MATCHES` form of `normalize-space()` is exact, and any `MATCHES` pattern with a literal space also matches no-break spaces.
+- **`.length` counts UTF-16 units**, and the XPath's `string-length()` counts code points.
+- **WDA's XPath reads `1e3` as 1000** (libxml2 accepts exponents), as `doubleValue` does. It reads `10abc` as NaN, while `doubleValue` reads it as 10.
+- **Frames are whole points on both sides.** The UIKit button at x = 60.5, width 30.5 is x = 60, width = 31 in the page source *and* in the predicate (``rect.x == 60.5`` finds nothing, ``rect.x > 60`` excludes it). SwiftUI already places its accessibility frames on whole points. So `@x` and `rect.x` see the same number, and the rounding Phase 4 worried about does not happen.
+- **`[-n]` counts from the end of the same list that `findElements` returns.** WDA returns an XPath's matches in the same order as the class chain's (breadth-first, RC-D1), so `(//X)[last()]` (document order) and `**/X[-1]` differ exactly as `(//X)[n]` and `**/X[n]` do.
+
+### mini-WDA against the device
+
+The `c1` page source was run through `harness/check.js` with the same XPaths and chains (H02 both forms, C06 both forms, C07, B03, H05, H03, B04). mini-WDA gives the same sets as the simulator in all 9: it reproduces dot-all `MATCHES`, the no-break space, `.length` and `doubleValue`, because Foundation's `NSPredicate` on macOS behaves like XCTest's here. **No divergence** of the RC-D1 / RC-D2 kind, so mini-WDA needs no change. Its random page sources have never contained `10abc`-like values, newlines in identifiers or no-break spaces, which is why the harness has B03 as CORRECT.
+
+### New defect
+
+| Id | Severity | What | Where |
+|---|---|---|---|
+| RC-D3 | major | `@value>5` → ``value.doubleValue > 5`` also matches values with a numeric prefix (`10abc`, and likely `50%` on a slider or `5 items`): `doubleValue` reads the prefix, while XPath `number()` gives NaN, so the comparison is false. RC14 assumed the two agree whenever XPath gives NaN and the predicate gives 0. They do not when the text starts with a number. | RC14 rule (`>` / `>=` on a text attribute) |
+
+The harness still scores B03 CORRECT, so R and S are unchanged in this branch. C2 decides between skipping the rule and documenting it as DRIFT.
+
+### For C2 (one branch per group)
+
+1. **`fix/c2-functions`.** `matches()`: a pattern without regex metacharacters → `CONTAINS` (with `[c]` for the `i` flag) (H03, H04); any other pattern → ``MATCHES "(?s:.*)(?-s:p)(?s:.*)"`` (H02), with `(?i)` for `i`; skip other flags and any pattern with a literal space (no-break-space fact above). `lower-case(x)="v"` → ``x ==[c] "v"`` (H05), `contains(upper-case(x),"V")` / `contains(translate(x, A–Z, a–z),"v")` → ``CONTAINS[c]`` (H06, C08), for ASCII literals only. Keep C06 (`normalize-space`) and C07 (`string-length`) skipped, and put the reason in the skip message.
+2. **`fix/c2-axes`.** `[descendant::T]` → `[$type == "T"$]` (F04) and `//T1[cond]/ancestor::T2` → `**/T2[$type == "T1" AND cond$]` (R01), only when both steps name a type and the types differ (the RC-D2 rule).
+3. **`fix/c2-attributes`.** `@attr=true()` on a boolean attribute WDA always writes → no predicate (B16, DRIFT → CORRECT). RC-D3: stop emitting `value.doubleValue` for `>` / `>=` on a text attribute, or document it, plus a harness fixture with a `10abc`-like value (B03 becomes WRONG/DRIFT until then).
+4. **`fix/c2-last`.** `(…)[last()]` → `[-1]`, `(…)[last()-n]` → `[-(n+1)]` as documented DRIFT, under the same README note as RC-D1 (E05, E06, L270–L272; harness verdict CORRECT-SKIP → DRIFT).
+
+No change needed: B04 `rect.x`, B11 `index`, B14 `hittable`, A04 `XCUIElementTypeAny`.
+
+### Not verified in C1
+
+- One run per platform, no repeat. The outcomes are deterministic on a static screen, and the simulator was run twice while the case file grew; the overlapping cases agreed.
+- Unicode case mapping (`[c]` against `lower-case()` on non-ASCII letters, e.g. `ß`, `İ`) was not tried. That is why C2's `[c]` rules are limited to ASCII literals.
+- Other Unicode spaces (U+2007, U+202F, …) under `MATCHES`, and `.length` on combining characters, were not tried.
+
 ## 1. Headline
 
 > **The converter handles 72% of what is possible. 87% of real locators can be expressed as a class chain at all; the rest stay XPath by design.**

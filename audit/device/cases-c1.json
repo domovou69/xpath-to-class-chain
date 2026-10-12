@@ -1,0 +1,388 @@
+[
+ {
+  "id": "H02",
+  "screen": "functions",
+  "xpath": "//*[matches(@name,\"^a.c$\")]",
+  "verdict": "GAP",
+  "category": "H",
+  "candidates": [
+   "**/*[`name MATCHES \"a.c\"`]",
+   "**/XCUIElementTypeAny[`name MATCHES \"a.c\"`]",
+   "**/*[`name MATCHES \"(?s:.*)(?-s:^a.c$)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "H02",
+  "screen": "c1",
+  "xpath": "//*[matches(@name,\"^a.c$\")]",
+  "verdict": "GAP",
+  "category": "H",
+  "variant": "c1",
+  "candidates": [
+   "**/*[`name MATCHES \"a.c\"`]",
+   "**/XCUIElementTypeAny[`name MATCHES \"a.c\"`]",
+   "**/*[`name MATCHES \"(?s:.*)(?-s:^a.c$)(?s:.*)\"`]"
+  ]
+ },
+ {
+  "id": "H03",
+  "screen": "functions",
+  "xpath": "//*[matches(@name,\"b\")]",
+  "verdict": "GAP",
+  "category": "H",
+  "candidates": [
+   "**/*[`name MATCHES \"(?s).*(?:b).*\"`]",
+   "**/XCUIElementTypeAny[`name CONTAINS \"b\"`]"
+  ]
+ },
+ {
+  "id": "H03",
+  "screen": "c1",
+  "xpath": "//*[matches(@name,\"b\")]",
+  "verdict": "GAP",
+  "category": "H",
+  "variant": "c1",
+  "candidates": [
+   "**/*[`name MATCHES \"(?s).*(?:b).*\"`]",
+   "**/XCUIElementTypeAny[`name CONTAINS \"b\"`]"
+  ]
+ },
+ {
+  "id": "H04",
+  "screen": "functions",
+  "xpath": "//*[matches(@name,\"ab\",\"i\")]",
+  "verdict": "GAP",
+  "category": "H",
+  "candidates": [
+   "**/*[`name MATCHES \"(?si).*(?:ab).*\"`]",
+   "**/XCUIElementTypeAny[`name CONTAINS[c] \"ab\"`]"
+  ]
+ },
+ {
+  "id": "H04",
+  "screen": "c1",
+  "xpath": "//*[matches(@name,\"ab\",\"i\")]",
+  "verdict": "GAP",
+  "category": "H",
+  "variant": "c1",
+  "candidates": [
+   "**/*[`name MATCHES \"(?si).*(?:ab).*\"`]",
+   "**/XCUIElementTypeAny[`name CONTAINS[c] \"ab\"`]"
+  ]
+ },
+ {
+  "id": "H05",
+  "screen": "functions",
+  "xpath": "//*[lower-case(@label)=\"ab\"]",
+  "verdict": "GAP",
+  "category": "H",
+  "candidates": [
+   "**/*[`label ==[c] \"ab\"`]",
+   "**/XCUIElementTypeAny[`label ==[c] \"ab\"`]"
+  ]
+ },
+ {
+  "id": "H05",
+  "screen": "c1",
+  "xpath": "//*[lower-case(@label)=\"ab\"]",
+  "verdict": "GAP",
+  "category": "H",
+  "variant": "c1",
+  "candidates": [
+   "**/*[`label ==[c] \"ab\"`]",
+   "**/XCUIElementTypeAny[`label ==[c] \"ab\"`]"
+  ]
+ },
+ {
+  "id": "H06",
+  "screen": "functions",
+  "xpath": "//*[contains(upper-case(@label),\"AB\")]",
+  "verdict": "GAP",
+  "category": "H",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"AB\"`]",
+   "**/XCUIElementTypeAny[`label CONTAINS[c] \"AB\"`]"
+  ]
+ },
+ {
+  "id": "H06",
+  "screen": "c1",
+  "xpath": "//*[contains(upper-case(@label),\"AB\")]",
+  "verdict": "GAP",
+  "category": "H",
+  "variant": "c1",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"AB\"`]",
+   "**/XCUIElementTypeAny[`label CONTAINS[c] \"AB\"`]"
+  ]
+ },
+ {
+  "id": "C06",
+  "screen": "functions",
+  "xpath": "//*[normalize-space(@label)=\"a b\"]",
+  "verdict": "GAP",
+  "category": "C",
+  "candidates": [
+   "**/*[`label MATCHES \"\\\\s*a\\\\s+b\\\\s*\"`]",
+   "**/*[`label MATCHES \"[ \\\\t\\\\r\\\\n]*a[ \\\\t\\\\r\\\\n]+b[ \\\\t\\\\r\\\\n]*\"`]"
+  ]
+ },
+ {
+  "id": "C06",
+  "screen": "c1",
+  "xpath": "//*[normalize-space(@label)=\"a b\"]",
+  "verdict": "GAP",
+  "category": "C",
+  "variant": "c1",
+  "candidates": [
+   "**/*[`label MATCHES \"\\\\s*a\\\\s+b\\\\s*\"`]",
+   "**/*[`label MATCHES \"[ \\\\t\\\\r\\\\n]*a[ \\\\t\\\\r\\\\n]+b[ \\\\t\\\\r\\\\n]*\"`]"
+  ]
+ },
+ {
+  "id": "C07",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
+  "verdict": "GAP",
+  "category": "C",
+  "candidates": [
+   "**/XCUIElementTypeButton[`label.length > 3`]"
+  ]
+ },
+ {
+  "id": "C07",
+  "screen": "c1",
+  "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
+  "verdict": "GAP",
+  "category": "C",
+  "variant": "c1",
+  "candidates": [
+   "**/XCUIElementTypeButton[`label.length > 3`]"
+  ]
+ },
+ {
+  "id": "C08",
+  "screen": "functions",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ab\")]",
+  "verdict": "GAP",
+  "category": "C",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"ab\"`]",
+   "**/XCUIElementTypeAny[`label CONTAINS[c] \"ab\"`]"
+  ]
+ },
+ {
+  "id": "C08",
+  "screen": "c1",
+  "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ab\")]",
+  "verdict": "GAP",
+  "category": "C",
+  "variant": "c1",
+  "candidates": [
+   "**/*[`label CONTAINS[c] \"ab\"`]",
+   "**/XCUIElementTypeAny[`label CONTAINS[c] \"ab\"`]"
+  ]
+ },
+ {
+  "id": "F04",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeCell[descendant::XCUIElementTypeButton]",
+  "verdict": "GAP",
+  "category": "F",
+  "candidates": [
+   "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\"$]"
+  ]
+ },
+ {
+  "id": "R01",
+  "screen": "siblings",
+  "xpath": "//XCUIElementTypeButton[@name=\"sib.remove\"]/ancestor::XCUIElementTypeCell",
+  "original": "//XCUIElementTypeButton[@name=\"x\"]/ancestor::XCUIElementTypeCell",
+  "verdict": "GAP",
+  "category": "R",
+  "candidates": [
+   "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"sib.remove\"$]"
+  ]
+ },
+ {
+  "id": "B16",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@enabled=true()]",
+  "verdict": "DRIFT",
+  "category": "B",
+  "candidates": [
+   "**/XCUIElementTypeButton"
+  ]
+ },
+ {
+  "id": "B03",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@value>5]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B03",
+  "screen": "c1",
+  "xpath": "//XCUIElementTypeButton[@value>5]",
+  "verdict": "CORRECT",
+  "category": "B",
+  "variant": "c1"
+ },
+ {
+  "id": "B04",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@x>60]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B04",
+  "screen": "c1",
+  "xpath": "//XCUIElementTypeButton[@x>60]",
+  "verdict": "CORRECT",
+  "category": "B",
+  "variant": "c1"
+ },
+ {
+  "id": "B11",
+  "screen": "functions",
+  "xpath": "//*[@index=\"1\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B11",
+  "screen": "lists",
+  "xpath": "//*[@index=\"1\"]",
+  "verdict": "CORRECT",
+  "category": "B",
+  "variant": "lists"
+ },
+ {
+  "id": "B11",
+  "screen": "states",
+  "xpath": "//*[@index=\"1\"]",
+  "verdict": "CORRECT",
+  "category": "B",
+  "variant": "states"
+ },
+ {
+  "id": "B11",
+  "screen": "c1",
+  "xpath": "//*[@index=\"1\"]",
+  "verdict": "CORRECT",
+  "category": "B",
+  "variant": "c1"
+ },
+ {
+  "id": "B14",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[@hittable=\"true\"]",
+  "verdict": "CORRECT",
+  "category": "B"
+ },
+ {
+  "id": "B14",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeButton[@hittable=\"true\"]",
+  "verdict": "CORRECT",
+  "category": "B",
+  "variant": "lists"
+ },
+ {
+  "id": "A04",
+  "screen": "functions",
+  "xpath": "//XCUIElementTypeAny[@name=\"a\"]",
+  "verdict": "CORRECT",
+  "category": "A"
+ },
+ {
+  "id": "E05",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton)[last()]",
+  "verdict": "CORRECT-SKIP",
+  "category": "E",
+  "candidates": [
+   "**/XCUIElementTypeButton[-1]"
+  ]
+ },
+ {
+  "id": "E06",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeButton)[last()-1]",
+  "verdict": "CORRECT-SKIP",
+  "category": "E",
+  "candidates": [
+   "**/XCUIElementTypeButton[-2]"
+  ]
+ },
+ {
+  "id": "L270",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeStaticText[@name=\"jila_zugo\"])[last()]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus",
+  "candidates": [
+   "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]"
+  ]
+ },
+ {
+  "id": "L271",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"])[last()]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus",
+  "candidates": [
+   "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]"
+  ]
+ },
+ {
+  "id": "L272",
+  "screen": "lists",
+  "xpath": "(//XCUIElementTypeOther[contains(@label, \"Lenapa gusuri\")]/XCUIElementTypeStaticText)[last()]",
+  "quote": "'",
+  "verdict": "CORRECT-SKIP",
+  "category": "corpus",
+  "candidates": [
+   "**/XCUIElementTypeOther[`label CONTAINS \"Lenapa gusuri\"`]/XCUIElementTypeStaticText[-1]"
+  ]
+ },
+ {
+  "id": "E05",
+  "variant": "all",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeButton",
+  "verdict": "ORDER",
+  "category": "E"
+ },
+ {
+  "id": "L270",
+  "variant": "all",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeStaticText[@name=\"jila_zugo\"]",
+  "quote": "'",
+  "verdict": "ORDER",
+  "category": "corpus"
+ },
+ {
+  "id": "L271",
+  "variant": "all",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"]",
+  "quote": "'",
+  "verdict": "ORDER",
+  "category": "corpus"
+ },
+ {
+  "id": "L272",
+  "variant": "all",
+  "screen": "lists",
+  "xpath": "//XCUIElementTypeOther[contains(@label, \"Lenapa gusuri\")]/XCUIElementTypeStaticText",
+  "quote": "'",
+  "verdict": "ORDER",
+  "category": "corpus"
+ }
+]

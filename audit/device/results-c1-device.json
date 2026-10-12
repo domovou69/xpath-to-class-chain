@@ -1,0 +1,1743 @@
+{
+ "env": {
+  "xcode": "Xcode 27.0 Build version 27A266a",
+  "appium": "3.8.0",
+  "xcuitestDriver": "12.16.0",
+  "wda": "16.14.1",
+  "iosVersion": "26.6",
+  "node": "v24.21.0",
+  "device": "MikeYes",
+  "model": "iPhone 13 Pro Max",
+  "productType": "iPhone14,3",
+  "osBuild": "23G71",
+  "udid": "00008110-0001159A14BA801E"
+ },
+ "date": "2026-10-12",
+ "seconds": 560,
+ "counts": {
+  "XPATH_ONLY": 23,
+  "EQUAL": 14,
+  "SET_DIFFERS": 2
+ },
+ "perf": {
+  "cases": 16,
+  "method": "single cold lookup per side, order alternating",
+  "xpathMs": {
+   "median": 822.1,
+   "p95": 8920.2
+  },
+  "chainMs": {
+   "median": 921.4,
+   "p95": 7123.8
+  },
+  "speedup": {
+   "geomean": 0.99,
+   "median": 0.95,
+   "min": 0.65,
+   "max": 1.79
+  },
+  "chainFaster": 6
+ },
+ "cases": [
+  {
+   "id": "H02",
+   "screen": "functions",
+   "verdict": "GAP",
+   "xpath": "//*[matches(@name,\"^a.c$\")]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`name MATCHES \"a.c\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`name MATCHES \"a.c\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14"
+     ]
+    },
+    {
+     "chain": "**/*[`name MATCHES \"(?s:.*)(?-s:^a.c$)(?s:.*)\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "H03",
+   "screen": "functions",
+   "verdict": "GAP",
+   "xpath": "//*[matches(@name,\"b\")]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeOther|Vertical scroll bar, 1 page|Vertical scroll bar, 1 page|0 %|259,28,31,898",
+    "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+    "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+    "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+    "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+    "XCUIElementTypeStaticText|ba|ba|ba|192,61,14,14",
+    "XCUIElementTypeStaticText|a b|a b|a b|209,61,18,14",
+    "XCUIElementTypeStaticText| a  b | a  b | a  b |230,61,26,14",
+    "XCUIElementTypeStaticText|a  b|a  b|a  b|260,61,20,14",
+    "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+    "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`name MATCHES \"(?s).*(?:b).*\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeOther|Vertical scroll bar, 1 page|Vertical scroll bar, 1 page|0 %|259,28,31,898",
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+      "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+      "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+      "XCUIElementTypeStaticText|ba|ba|ba|192,61,14,14",
+      "XCUIElementTypeStaticText|a b|a b|a b|209,61,18,14",
+      "XCUIElementTypeStaticText| a  b | a  b | a  b |230,61,26,14",
+      "XCUIElementTypeStaticText|a  b|a  b|a  b|260,61,20,14",
+      "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+      "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`name CONTAINS \"b\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeOther|Vertical scroll bar, 1 page|Vertical scroll bar, 1 page|0 %|259,28,31,898",
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+      "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+      "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+      "XCUIElementTypeStaticText|ba|ba|ba|192,61,14,14",
+      "XCUIElementTypeStaticText|a b|a b|a b|209,61,18,14",
+      "XCUIElementTypeStaticText| a  b | a  b | a  b |230,61,26,14",
+      "XCUIElementTypeStaticText|a  b|a  b|a  b|260,61,20,14",
+      "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+      "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "H04",
+   "screen": "functions",
+   "verdict": "GAP",
+   "xpath": "//*[matches(@name,\"ab\",\"i\")]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+    "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+    "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+    "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|241,47,22,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|162,61,27,14",
+    "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+    "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`name MATCHES \"(?si).*(?:ab).*\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+      "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+      "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|241,47,22,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|162,61,27,14",
+      "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+      "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`name CONTAINS[c] \"ab\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+      "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+      "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|241,47,22,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|162,61,27,14",
+      "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+      "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "H05",
+   "screen": "functions",
+   "verdict": "GAP",
+   "xpath": "//*[lower-case(@label)=\"ab\"]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+    "XCUIElementTypeButton|ab|ab|null|143,75,14,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"ab\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+      "XCUIElementTypeButton|ab|ab|null|143,75,14,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`label ==[c] \"ab\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+      "XCUIElementTypeButton|ab|ab|null|143,75,14,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "H06",
+   "screen": "functions",
+   "verdict": "GAP",
+   "xpath": "//*[contains(upper-case(@label),\"AB\")]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+    "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+    "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+    "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|241,47,22,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|162,61,27,14",
+    "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+    "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"AB\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+      "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+      "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|241,47,22,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|162,61,27,14",
+      "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+      "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`label CONTAINS[c] \"AB\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+      "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+      "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|241,47,22,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|162,61,27,14",
+      "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+      "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "C06",
+   "screen": "functions",
+   "verdict": "GAP",
+   "xpath": "//*[normalize-space(@label)=\"a b\"]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|a b|a b|a b|209,61,18,14",
+    "XCUIElementTypeStaticText| a  b | a  b | a  b |230,61,26,14",
+    "XCUIElementTypeStaticText|a  b|a  b|a  b|260,61,20,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"\\\\s*a\\\\s+b\\\\s*\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|a b|a b|a b|209,61,18,14",
+      "XCUIElementTypeStaticText| a  b | a  b | a  b |230,61,26,14",
+      "XCUIElementTypeStaticText|a  b|a  b|a  b|260,61,20,14"
+     ]
+    },
+    {
+     "chain": "**/*[`label MATCHES \"[ \\\\t\\\\r\\\\n]*a[ \\\\t\\\\r\\\\n]+b[ \\\\t\\\\r\\\\n]*\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|a b|a b|a b|209,61,18,14",
+      "XCUIElementTypeStaticText| a  b | a  b | a  b |230,61,26,14",
+      "XCUIElementTypeStaticText|a  b|a  b|a  b|260,61,20,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "C07",
+   "screen": "functions",
+   "verdict": "GAP",
+   "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14",
+    "XCUIElementTypeButton|a|Save|null|190,75,26,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/XCUIElementTypeButton[`label.length > 3`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14",
+      "XCUIElementTypeButton|a|Save|null|190,75,26,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "C08",
+   "screen": "functions",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ab\")]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+    "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+    "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+    "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|241,47,22,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|162,61,27,14",
+    "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+    "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"ab\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+      "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+      "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|241,47,22,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|162,61,27,14",
+      "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+      "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`label CONTAINS[c] \"ab\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc|abc|abc|143,47,20,14",
+      "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|201,47,14,14",
+      "XCUIElementTypeStaticText|xab|xab|xab|218,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|241,47,22,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|143,61,16,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|162,61,27,14",
+      "XCUIElementTypeButton|ab|ab|null|143,75,14,14",
+      "XCUIElementTypeButton|abcd|abcd|null|160,75,27,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "B11",
+   "screen": "functions",
+   "verdict": "CORRECT",
+   "xpath": "//*[@index=\"1\"]",
+   "chain": "**/*[`index == 1`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeOther|Vertical scroll bar, 1 page|Vertical scroll bar, 1 page|0 %|259,28,31,898",
+    "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeOther|Vertical scroll bar, 1 page|Vertical scroll bar, 1 page|0 %|259,28,31,898",
+    "XCUIElementTypeStaticText|xabcx|xabcx|xabcx|166,47,32,14"
+   ],
+   "timing": {
+    "xpathMs": 226.6,
+    "chainMs": 167.5,
+    "speedup": 1.35,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "A04",
+   "screen": "functions",
+   "verdict": "CORRECT",
+   "xpath": "//XCUIElementTypeAny[@name=\"a\"]",
+   "chain": "**/*[`name == \"a\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|a|Save|null|190,75,26,14",
+    "XCUIElementTypeButton|a|a|null|219,75,7,14",
+    "XCUIElementTypeStaticText|a|first|first|143,90,22,14",
+    "XCUIElementTypeOther|a|a box|null|174,90,27,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|a|Save|null|190,75,26,14",
+    "XCUIElementTypeButton|a|a|null|219,75,7,14",
+    "XCUIElementTypeStaticText|a|first|first|143,90,22,14",
+    "XCUIElementTypeOther|a|a box|null|174,90,27,14"
+   ],
+   "timing": {
+    "xpathMs": 308.8,
+    "chainMs": 372.1,
+    "speedup": 0.83,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "H02",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[matches(@name,\"^a.c$\")]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+    "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+    "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`name MATCHES \"a.c\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|a\nc|a-nl-c|a-nl-c|82,47,33,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`name MATCHES \"a.c\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|a\nc|a-nl-c|a-nl-c|82,47,33,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    },
+    {
+     "chain": "**/*[`name MATCHES \"(?s:.*)(?-s:^a.c$)(?s:.*)\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "H03",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[matches(@name,\"b\")]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+    "XCUIElementTypeStaticText|x\nb|x-nl-b|x-nl-b|46,47,33,14",
+    "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+    "XCUIElementTypeStaticText|a b|a b|a b|8,61,17,14",
+    "XCUIElementTypeStaticText|a\tb|a\tb|a\tb|28,61,36,14",
+    "XCUIElementTypeStaticText|a b|a b|a b|67,61,17,14",
+    "XCUIElementTypeStaticText| a  b | a  b | a  b |87,61,27,14",
+    "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+    "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+    "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`name MATCHES \"(?s).*(?:b).*\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+      "XCUIElementTypeStaticText|x\nb|x-nl-b|x-nl-b|46,47,33,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeStaticText|a b|a b|a b|8,61,17,14",
+      "XCUIElementTypeStaticText|a\tb|a\tb|a\tb|28,61,36,14",
+      "XCUIElementTypeStaticText|a b|a b|a b|67,61,17,14",
+      "XCUIElementTypeStaticText| a  b | a  b | a  b |87,61,27,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+      "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`name CONTAINS \"b\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+      "XCUIElementTypeStaticText|x\nb|x-nl-b|x-nl-b|46,47,33,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeStaticText|a b|a b|a b|8,61,17,14",
+      "XCUIElementTypeStaticText|a\tb|a\tb|a\tb|28,61,36,14",
+      "XCUIElementTypeStaticText|a b|a b|a b|67,61,17,14",
+      "XCUIElementTypeStaticText| a  b | a  b | a  b |87,61,27,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+      "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "H04",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[matches(@name,\"ab\",\"i\")]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+    "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,47,21,14",
+    "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|62,75,27,14",
+    "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+    "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`name MATCHES \"(?si).*(?:ab).*\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|142,47,21,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|62,75,27,14",
+      "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`name CONTAINS[c] \"ab\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|142,47,21,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|62,75,27,14",
+      "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "H05",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[lower-case(@label)=\"ab\"]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label ==[c] \"ab\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`label ==[c] \"ab\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "H06",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(upper-case(@label),\"AB\")]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+    "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,47,21,14",
+    "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|62,75,27,14",
+    "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+    "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"AB\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|142,47,21,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|62,75,27,14",
+      "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`label CONTAINS[c] \"AB\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|142,47,21,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|62,75,27,14",
+      "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "C06",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[normalize-space(@label)=\"a b\"]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|a\tb|a\tb|a\tb|28,61,36,14",
+    "XCUIElementTypeStaticText|a b|a b|a b|67,61,17,14",
+    "XCUIElementTypeStaticText| a  b | a  b | a  b |87,61,27,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label MATCHES \"\\\\s*a\\\\s+b\\\\s*\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|a b|a b|a b|8,61,17,14",
+      "XCUIElementTypeStaticText|a\tb|a\tb|a\tb|28,61,36,14",
+      "XCUIElementTypeStaticText|a b|a b|a b|67,61,17,14",
+      "XCUIElementTypeStaticText| a  b | a  b | a  b |87,61,27,14"
+     ]
+    },
+    {
+     "chain": "**/*[`label MATCHES \"[ \\\\t\\\\r\\\\n]*a[ \\\\t\\\\r\\\\n]+b[ \\\\t\\\\r\\\\n]*\"`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|a b|a b|a b|8,61,17,14",
+      "XCUIElementTypeStaticText|a\tb|a\tb|a\tb|28,61,36,14",
+      "XCUIElementTypeStaticText|a b|a b|a b|67,61,17,14",
+      "XCUIElementTypeStaticText| a  b | a  b | a  b |87,61,27,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "C07",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+    "XCUIElementTypeButton|frac.522|Frac|null|60,846,24,14",
+    "XCUIElementTypeButton|frac.527|Frac|null|60,860,24,14",
+    "XCUIElementTypeButton|frac.kit|Frac|null|60,875,31,16"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/XCUIElementTypeButton[`label.length > 3`]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeButton|😀😀|😀😀|null|8,90,32,14",
+      "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+      "XCUIElementTypeButton|frac.522|Frac|null|60,846,24,14",
+      "XCUIElementTypeButton|frac.527|Frac|null|60,860,24,14",
+      "XCUIElementTypeButton|frac.kit|Frac|null|60,875,31,16"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "C08",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "GAP",
+   "xpath": "//*[contains(translate(@label,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\"),\"ab\")]",
+   "chain": null,
+   "status": "skipped_validation_failed",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+    "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+    "XCUIElementTypeStaticText|ABc|ABc|ABc|142,47,21,14",
+    "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+    "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+    "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+    "XCUIElementTypeStaticText|xABx|xABx|xABx|62,75,27,14",
+    "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+    "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/*[`label CONTAINS[c] \"ab\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|142,47,21,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|62,75,27,14",
+      "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    },
+    {
+     "chain": "**/XCUIElementTypeAny[`label CONTAINS[c] \"ab\"`]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeStaticText|abc\n|abc-nl|abc-nl|8,47,34,14",
+      "XCUIElementTypeStaticText|abc|abc|abc|118,47,20,14",
+      "XCUIElementTypeStaticText|ABc|ABc|ABc|142,47,21,14",
+      "XCUIElementTypeStaticText|ab|ab|ab|8,75,13,14",
+      "XCUIElementTypeStaticText|AB|AB|AB|25,75,15,14",
+      "XCUIElementTypeStaticText|Ab|Ab|Ab|44,75,15,14",
+      "XCUIElementTypeStaticText|xABx|xABx|xABx|62,75,27,14",
+      "XCUIElementTypeButton|abcd|abcd|null|44,90,26,14",
+      "XCUIElementTypeButton|abc|abc|null|74,90,20,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "B03",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "CORRECT",
+   "xpath": "//XCUIElementTypeButton[@value>5]",
+   "chain": "**/XCUIElementTypeButton[`value.doubleValue > 5`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,104,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,104,19,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Qty|Qty|10abc|8,104,19,14",
+    "XCUIElementTypeButton|Qty|Qty|1e3|30,104,20,14",
+    "XCUIElementTypeButton|Qty|Qty|7|53,104,19,14"
+   ],
+   "timing": {
+    "xpathMs": 220.6,
+    "chainMs": 249,
+    "speedup": 0.89,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "B04",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "CORRECT",
+   "xpath": "//XCUIElementTypeButton[@x>60]",
+   "chain": "**/XCUIElementTypeButton[`rect.x > 60`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|abc|abc|null|74,90,20,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,104,19,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|abc|abc|null|74,90,20,14",
+    "XCUIElementTypeButton|Qty|Qty|3|76,104,19,14"
+   ],
+   "timing": {
+    "xpathMs": 201.2,
+    "chainMs": 214.4,
+    "speedup": 0.94,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "B11",
+   "variant": "c1",
+   "screen": "c1",
+   "verdict": "CORRECT",
+   "xpath": "//*[@index=\"1\"]",
+   "chain": "**/*[`index == 1`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|x\nb|x-nl-b|x-nl-b|46,47,33,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|x\nb|x-nl-b|x-nl-b|46,47,33,14"
+   ],
+   "timing": {
+    "xpathMs": 177.8,
+    "chainMs": 140.8,
+    "speedup": 1.26,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "F04",
+   "screen": "lists",
+   "verdict": "GAP",
+   "xpath": "//XCUIElementTypeCell[descendant::XCUIElementTypeButton]",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeCell|row.1|null|null|8,235,412,45",
+    "XCUIElementTypeCell|row.2|null|null|8,279,412,45",
+    "XCUIElementTypeCell|row.3|null|null|8,323,412,45",
+    "XCUIElementTypeCell|row.4|null|null|8,367,412,45",
+    "XCUIElementTypeCell|row.1|null|null|8,412,412,45",
+    "XCUIElementTypeCell|row.2|null|null|8,456,412,45",
+    "XCUIElementTypeCell|row.3|null|null|8,500,412,45",
+    "XCUIElementTypeCell|row.4|null|null|8,544,412,45",
+    "XCUIElementTypeCell|row.1|null|null|8,589,412,45",
+    "XCUIElementTypeCell|row.2|null|null|8,633,412,45",
+    "XCUIElementTypeCell|row.3|null|null|8,677,412,45",
+    "XCUIElementTypeCell|row.4|null|null|8,721,412,45",
+    "XCUIElementTypeCell|pay.1|null|null|8,766,412,45",
+    "XCUIElementTypeCell|due.1|null|null|8,899,412,45",
+    "XCUIElementTypeCell|due.2|Overdue|null|8,943,412,45",
+    "XCUIElementTypeCell|deep.cell|null|null|26,190,394,45"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\"$]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeCell|row.1|null|null|8,235,412,45",
+      "XCUIElementTypeCell|row.2|null|null|8,279,412,45",
+      "XCUIElementTypeCell|row.3|null|null|8,323,412,45",
+      "XCUIElementTypeCell|row.4|null|null|8,367,412,45",
+      "XCUIElementTypeCell|row.1|null|null|8,412,412,45",
+      "XCUIElementTypeCell|row.2|null|null|8,456,412,45",
+      "XCUIElementTypeCell|row.3|null|null|8,500,412,45",
+      "XCUIElementTypeCell|row.4|null|null|8,544,412,45",
+      "XCUIElementTypeCell|row.1|null|null|8,589,412,45",
+      "XCUIElementTypeCell|row.2|null|null|8,633,412,45",
+      "XCUIElementTypeCell|row.3|null|null|8,677,412,45",
+      "XCUIElementTypeCell|row.4|null|null|8,721,412,45",
+      "XCUIElementTypeCell|pay.1|null|null|8,766,412,45",
+      "XCUIElementTypeCell|due.1|null|null|8,899,412,45",
+      "XCUIElementTypeCell|due.2|Overdue|null|8,943,412,45",
+      "XCUIElementTypeCell|deep.cell|null|null|26,190,394,45"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "B11",
+   "variant": "lists",
+   "screen": "lists",
+   "verdict": "CORRECT",
+   "xpath": "//*[@index=\"1\"]",
+   "chain": "**/*[`index == 1`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeOther|Vertical scroll bar, 2 pages|Vertical scroll bar, 2 pages|0 %|395,53,30,820",
+    "XCUIElementTypeTable|Section A|null|null|8,235,412,177",
+    "XCUIElementTypeStaticText|jila_zugo|j0|j0|26,61,10,14",
+    "XCUIElementTypeCell|row.2|null|null|8,279,412,45",
+    "XCUIElementTypeCell|row.2|null|null|8,456,412,45",
+    "XCUIElementTypeCell|row.2|null|null|8,633,412,45",
+    "XCUIElementTypeCell|row.pay|null|null|8,810,412,45",
+    "XCUIElementTypeCell|due.2|Overdue|null|8,943,412,45",
+    "XCUIElementTypeStaticText|v1b|v1b|v1b|14,1002,19,14",
+    "XCUIElementTypeStaticText|v3b|v3b|v3b|14,1045,20,14",
+    "XCUIElementTypeStaticText|lawupe a2|lawupe a2|lawupe a2|14,1074,53,14",
+    "XCUIElementTypeStaticText|lawupe b2|lawupe b2|lawupe b2|14,1102,54,15",
+    "XCUIElementTypeImage|receipt.icon|Favourite|null|9,1132,20,19",
+    "XCUIElementTypeStaticText|Code 2|Code 2|Code 2|8,1166,38,15",
+    "XCUIElementTypeStaticText|Lenapa b|Lenapa b|Lenapa b|14,1324,48,14",
+    "XCUIElementTypeStaticText|Prize £5|Prize £5|Prize £5|14,1452,44,14",
+    "XCUIElementTypeStaticText|Prize £5|Prize £5|Prize £5|14,1480,44,15",
+    "XCUIElementTypeStaticText|Prize £5|Prize £5|Prize £5|14,1509,44,14",
+    "XCUIElementTypeOther|Vertical scroll bar, 1 page|Vertical scroll bar, 1 page|0 %|387,190,30,45",
+    "XCUIElementTypeStaticText|Line 1|Line 1|Line 1|16,239,60,37",
+    "XCUIElementTypeStaticText|Line 2|Line 2|Line 2|16,283,60,37",
+    "XCUIElementTypeStaticText|Line 3|Line 3|Line 3|16,327,60,37",
+    "XCUIElementTypeStaticText|Line 4|Line 4|Line 4|16,371,60,37",
+    "XCUIElementTypeStaticText|Line 1|Line 1|Line 1|16,416,60,37",
+    "XCUIElementTypeStaticText|Line 2|Line 2|Line 2|16,460,60,37",
+    "XCUIElementTypeStaticText|Line 3|Line 3|Line 3|16,504,60,37",
+    "XCUIElementTypeStaticText|Line 4|Line 4|Line 4|16,548,60,37",
+    "XCUIElementTypeStaticText|Line 1|Line 1|Line 1|16,593,60,37",
+    "XCUIElementTypeStaticText|Line 2|Line 2|Line 2|16,637,60,37",
+    "XCUIElementTypeStaticText|Line 3|Line 3|Line 3|16,681,60,37",
+    "XCUIElementTypeStaticText|Line 4|Line 4|Line 4|16,725,60,37",
+    "XCUIElementTypeButton|row.pay|Pay|null|16,770,60,37",
+    "XCUIElementTypeStaticText|Paid|Paid|Paid|16,814,60,37",
+    "XCUIElementTypeStaticText|Nothing|Nothing|Nothing|16,858,60,37",
+    "XCUIElementTypeStaticText|Overdue|Overdue|Overdue|16,903,60,37",
+    "XCUIElementTypeButton|due.later|Pay later|null|16,947,60,37",
+    "XCUIElementTypeStaticText|deep cell|deep cell|deep cell|34,194,60,37"
+   ],
+   "chainHits": [
+    "XCUIElementTypeOther|Vertical scroll bar, 2 pages|Vertical scroll bar, 2 pages|0 %|395,53,30,820",
+    "XCUIElementTypeTable|Section A|null|null|8,235,412,177",
+    "XCUIElementTypeStaticText|jila_zugo|j0|j0|26,61,10,14",
+    "XCUIElementTypeCell|row.2|null|null|8,279,412,45",
+    "XCUIElementTypeCell|row.2|null|null|8,456,412,45",
+    "XCUIElementTypeCell|row.2|null|null|8,633,412,45",
+    "XCUIElementTypeCell|row.pay|null|null|8,810,412,45",
+    "XCUIElementTypeCell|due.2|Overdue|null|8,943,412,45",
+    "XCUIElementTypeStaticText|v1b|v1b|v1b|14,1002,19,14",
+    "XCUIElementTypeStaticText|v3b|v3b|v3b|14,1045,20,14",
+    "XCUIElementTypeStaticText|lawupe a2|lawupe a2|lawupe a2|14,1074,53,14",
+    "XCUIElementTypeStaticText|lawupe b2|lawupe b2|lawupe b2|14,1102,54,15",
+    "XCUIElementTypeImage|receipt.icon|Favourite|null|9,1132,20,19",
+    "XCUIElementTypeStaticText|Code 2|Code 2|Code 2|8,1166,38,15",
+    "XCUIElementTypeStaticText|Lenapa b|Lenapa b|Lenapa b|14,1324,48,14",
+    "XCUIElementTypeStaticText|Prize £5|Prize £5|Prize £5|14,1452,44,14",
+    "XCUIElementTypeStaticText|Prize £5|Prize £5|Prize £5|14,1480,44,15",
+    "XCUIElementTypeStaticText|Prize £5|Prize £5|Prize £5|14,1509,44,14",
+    "XCUIElementTypeOther|Vertical scroll bar, 1 page|Vertical scroll bar, 1 page|0 %|387,190,30,45",
+    "XCUIElementTypeStaticText|Line 1|Line 1|Line 1|16,239,60,37",
+    "XCUIElementTypeStaticText|Line 2|Line 2|Line 2|16,283,60,37",
+    "XCUIElementTypeStaticText|Line 3|Line 3|Line 3|16,327,60,37",
+    "XCUIElementTypeStaticText|Line 4|Line 4|Line 4|16,371,60,37",
+    "XCUIElementTypeStaticText|Line 1|Line 1|Line 1|16,416,60,37",
+    "XCUIElementTypeStaticText|Line 2|Line 2|Line 2|16,460,60,37",
+    "XCUIElementTypeStaticText|Line 3|Line 3|Line 3|16,504,60,37",
+    "XCUIElementTypeStaticText|Line 4|Line 4|Line 4|16,548,60,37",
+    "XCUIElementTypeStaticText|Line 1|Line 1|Line 1|16,593,60,37",
+    "XCUIElementTypeStaticText|Line 2|Line 2|Line 2|16,637,60,37",
+    "XCUIElementTypeStaticText|Line 3|Line 3|Line 3|16,681,60,37",
+    "XCUIElementTypeStaticText|Line 4|Line 4|Line 4|16,725,60,37",
+    "XCUIElementTypeButton|row.pay|Pay|null|16,770,60,37",
+    "XCUIElementTypeStaticText|Paid|Paid|Paid|16,814,60,37",
+    "XCUIElementTypeStaticText|Nothing|Nothing|Nothing|16,858,60,37",
+    "XCUIElementTypeStaticText|Overdue|Overdue|Overdue|16,903,60,37",
+    "XCUIElementTypeButton|due.later|Pay later|null|16,947,60,37",
+    "XCUIElementTypeStaticText|deep cell|deep cell|deep cell|34,194,60,37"
+   ],
+   "timing": {
+    "xpathMs": 4603.1,
+    "chainMs": 7123.8,
+    "speedup": 0.65,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "B14",
+   "variant": "lists",
+   "screen": "lists",
+   "verdict": "CORRECT",
+   "xpath": "//XCUIElementTypeButton[@hittable=\"true\"]",
+   "chain": "**/XCUIElementTypeButton[`hittable == true`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|Dobe teg 0|Dobe teg 0|null|26,133,59,14",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,239,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,239,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,283,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,283,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,327,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,371,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,371,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,416,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,416,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,460,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,460,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,504,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,548,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,548,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,593,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,593,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,637,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,637,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,681,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,725,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,725,60,37",
+    "XCUIElementTypeButton|row.pay|Pay|null|16,770,60,37",
+    "XCUIElementTypeButton|due.pay|Pay now|null|84,903,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|102,194,60,37"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Dobe teg 0|Dobe teg 0|null|26,133,59,14",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,239,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,239,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,283,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,283,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,327,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,371,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,371,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,416,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,416,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,460,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,460,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,504,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,548,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,548,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,593,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,593,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,637,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,637,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,681,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,725,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,725,60,37",
+    "XCUIElementTypeButton|row.pay|Pay|null|16,770,60,37",
+    "XCUIElementTypeButton|due.pay|Pay now|null|84,903,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|102,194,60,37"
+   ],
+   "timing": {
+    "xpathMs": 8920.2,
+    "chainMs": 4990.7,
+    "speedup": 1.79,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "E05",
+   "screen": "lists",
+   "verdict": "CORRECT-SKIP",
+   "xpath": "(//XCUIElementTypeButton)[last()]",
+   "chain": null,
+   "status": "skipped_not_xpath",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeButton|Dobe teg Lotto|Dobe teg Lotto|null|136,1253,80,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/XCUIElementTypeButton[-1]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeButton|row.edit|Taka|null|102,194,60,37"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "E06",
+   "screen": "lists",
+   "verdict": "CORRECT-SKIP",
+   "xpath": "(//XCUIElementTypeButton)[last()-1]",
+   "chain": null,
+   "status": "skipped_not_xpath",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeButton|Dobe teg 2|Dobe teg 2|null|74,1253,59,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/XCUIElementTypeButton[-2]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeButton|due.later|Pay later|null|16,947,60,37"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "L270",
+   "screen": "lists",
+   "verdict": "CORRECT-SKIP",
+   "xpath": "(//XCUIElementTypeStaticText[@name=\"jila_zugo\"])[last()]",
+   "chain": null,
+   "status": "skipped_not_xpath",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|jila_zugo|j3|j3|33,1281,11,14"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|jila_zugo|j0|j0|26,61,10,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "L271",
+   "screen": "lists",
+   "verdict": "CORRECT-SKIP",
+   "xpath": "(//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"])[last()]",
+   "chain": null,
+   "status": "skipped_not_xpath",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Kuki pefu matumutor|Kuki pefu matumutor|Kuki pefu matumutor|121,1295,111,15"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Kuki pefu matumutor|Kuki pefu matumutor|Kuki pefu matumutor|26,75,110,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "L272",
+   "screen": "lists",
+   "verdict": "CORRECT-SKIP",
+   "xpath": "(//XCUIElementTypeOther[contains(@label, \"Lenapa gusuri\")]/XCUIElementTypeStaticText)[last()]",
+   "chain": null,
+   "status": "skipped_not_xpath",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Lenapa c|Lenapa c|Lenapa c|14,1338,48,15"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Lenapa gusuri\"`]/XCUIElementTypeStaticText[-1]",
+     "outcome": "SET_DIFFERS",
+     "hits": [
+      "XCUIElementTypeStaticText|Lenapa z|Lenapa z|Lenapa z|32,90,48,14"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "E05",
+   "variant": "all",
+   "screen": "lists",
+   "verdict": "ORDER",
+   "xpath": "//XCUIElementTypeButton",
+   "chain": "**/XCUIElementTypeButton",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|Pako geviv: 1|Pako geviv: 1|null|8,1224,68,14",
+    "XCUIElementTypeButton|Pako geviv: 12|Pako geviv: 12|null|80,1224,75,14",
+    "XCUIElementTypeButton|Dobe teg 1|Dobe teg 1|null|8,1253,57,14",
+    "XCUIElementTypeButton|Dobe teg Lotto|Dobe teg Lotto|null|136,1253,80,14",
+    "XCUIElementTypeButton|Dobe teg 0|Dobe teg 0|null|26,133,59,14",
+    "XCUIElementTypeButton|Dobe teg 2|Dobe teg 2|null|74,1253,59,14",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,239,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,239,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,283,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,283,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,327,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,371,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,371,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,416,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,416,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,460,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,460,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,504,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,548,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,548,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,593,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,593,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,637,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,637,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,681,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,725,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,725,60,37",
+    "XCUIElementTypeButton|row.pay|Pay|null|16,770,60,37",
+    "XCUIElementTypeButton|due.pay|Pay now|null|84,903,60,37",
+    "XCUIElementTypeButton|due.later|Pay later|null|16,947,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|102,194,60,37"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Pako geviv: 1|Pako geviv: 1|null|8,1224,68,14",
+    "XCUIElementTypeButton|Pako geviv: 12|Pako geviv: 12|null|80,1224,75,14",
+    "XCUIElementTypeButton|Dobe teg 1|Dobe teg 1|null|8,1253,57,14",
+    "XCUIElementTypeButton|Dobe teg Lotto|Dobe teg Lotto|null|136,1253,80,14",
+    "XCUIElementTypeButton|Dobe teg 0|Dobe teg 0|null|26,133,59,14",
+    "XCUIElementTypeButton|Dobe teg 2|Dobe teg 2|null|74,1253,59,14",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,239,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,239,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,283,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,283,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,327,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,371,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,371,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,416,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,416,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,460,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,460,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,504,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,548,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,548,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,593,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,593,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,637,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,637,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,681,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|84,725,60,37",
+    "XCUIElementTypeButton|row.delete|Delete|null|152,725,60,37",
+    "XCUIElementTypeButton|row.pay|Pay|null|16,770,60,37",
+    "XCUIElementTypeButton|due.pay|Pay now|null|84,903,60,37",
+    "XCUIElementTypeButton|due.later|Pay later|null|16,947,60,37",
+    "XCUIElementTypeButton|row.edit|Taka|null|102,194,60,37"
+   ],
+   "timing": {
+    "xpathMs": 3885.1,
+    "chainMs": 3845,
+    "speedup": 1.01,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "L270",
+   "variant": "all",
+   "screen": "lists",
+   "verdict": "ORDER",
+   "xpath": "//XCUIElementTypeStaticText[@name=\"jila_zugo\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|jila_zugo|j1|j1|8,1281,8,14",
+    "XCUIElementTypeStaticText|jila_zugo|j2|j2|20,1281,10,14",
+    "XCUIElementTypeStaticText|jila_zugo|j3|j3|33,1281,11,14",
+    "XCUIElementTypeStaticText|jila_zugo|j0|j0|26,61,10,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|jila_zugo|j1|j1|8,1281,8,14",
+    "XCUIElementTypeStaticText|jila_zugo|j2|j2|20,1281,10,14",
+    "XCUIElementTypeStaticText|jila_zugo|j3|j3|33,1281,11,14",
+    "XCUIElementTypeStaticText|jila_zugo|j0|j0|26,61,10,14"
+   ],
+   "timing": {
+    "xpathMs": 805.8,
+    "chainMs": 911.7,
+    "speedup": 0.88,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "L271",
+   "variant": "all",
+   "screen": "lists",
+   "verdict": "ORDER",
+   "xpath": "//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"]",
+   "chain": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Kuki pefu matumutor|Kuki pefu matumutor|Kuki pefu matumutor|8,1295,110,15",
+    "XCUIElementTypeStaticText|Kuki pefu matumutor|Kuki pefu matumutor|Kuki pefu matumutor|121,1295,111,15",
+    "XCUIElementTypeStaticText|Kuki pefu matumutor|Kuki pefu matumutor|Kuki pefu matumutor|26,75,110,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Kuki pefu matumutor|Kuki pefu matumutor|Kuki pefu matumutor|8,1295,110,15",
+    "XCUIElementTypeStaticText|Kuki pefu matumutor|Kuki pefu matumutor|Kuki pefu matumutor|121,1295,111,15",
+    "XCUIElementTypeStaticText|Kuki pefu matumutor|Kuki pefu matumutor|Kuki pefu matumutor|26,75,110,14"
+   ],
+   "timing": {
+    "xpathMs": 713.5,
+    "chainMs": 740.2,
+    "speedup": 0.96,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "L272",
+   "variant": "all",
+   "screen": "lists",
+   "verdict": "ORDER",
+   "xpath": "//XCUIElementTypeOther[contains(@label, \"Lenapa gusuri\")]/XCUIElementTypeStaticText",
+   "chain": "**/XCUIElementTypeOther[`label CONTAINS \"Lenapa gusuri\"`]/XCUIElementTypeStaticText",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeStaticText|Lenapa a|Lenapa a|Lenapa a|14,1310,48,14",
+    "XCUIElementTypeStaticText|Lenapa b|Lenapa b|Lenapa b|14,1324,48,14",
+    "XCUIElementTypeStaticText|Lenapa c|Lenapa c|Lenapa c|14,1338,48,15",
+    "XCUIElementTypeStaticText|Lenapa z|Lenapa z|Lenapa z|32,90,48,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeStaticText|Lenapa a|Lenapa a|Lenapa a|14,1310,48,14",
+    "XCUIElementTypeStaticText|Lenapa b|Lenapa b|Lenapa b|14,1324,48,14",
+    "XCUIElementTypeStaticText|Lenapa c|Lenapa c|Lenapa c|14,1338,48,15",
+    "XCUIElementTypeStaticText|Lenapa z|Lenapa z|Lenapa z|32,90,48,14"
+   ],
+   "timing": {
+    "xpathMs": 838.4,
+    "chainMs": 931,
+    "speedup": 0.9,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "R01",
+   "screen": "siblings",
+   "verdict": "GAP",
+   "xpath": "//XCUIElementTypeButton[@name=\"sib.remove\"]/ancestor::XCUIElementTypeCell",
+   "chain": null,
+   "status": "skipped_unsupported_logic",
+   "outcome": "XPATH_ONLY",
+   "xpathHits": [
+    "XCUIElementTypeCell|sib.1|null|null|8,581,412,45",
+    "XCUIElementTypeCell|sib.2|null|null|8,625,412,45"
+   ],
+   "chainHits": null,
+   "candidates": [
+    {
+     "chain": "**/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"sib.remove\"$]",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeCell|sib.1|null|null|8,581,412,45",
+      "XCUIElementTypeCell|sib.2|null|null|8,625,412,45"
+     ]
+    }
+   ],
+   "timing": null
+  },
+  {
+   "id": "B16",
+   "screen": "states",
+   "verdict": "DRIFT",
+   "xpath": "//XCUIElementTypeButton[@enabled=true()]",
+   "chain": "**/XCUIElementTypeButton[`enabled == true`]",
+   "status": "success",
+   "outcome": "SET_DIFFERS",
+   "xpathHits": [
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|8,47,64,14",
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|75,47,65,14",
+    "XCUIElementTypeButton|Leba|Leba|null|143,47,26,14",
+    "XCUIElementTypeButton|Leba|Leba|null|173,47,26,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|202,47,61,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|266,47,61,14",
+    "XCUIElementTypeButton|HaguhoCuzal.marivoDigivo|Marivo|null|8,61,36,14",
+    "XCUIElementTypeButton|HaguhoCuzal.marivoDigivo|Marivo|null|47,61,36,14",
+    "XCUIElementTypeButton|Dobe monuw teg 1|Teg 1|null|86,61,29,14",
+    "XCUIElementTypeButton|Dobe monuw teg 2|Teg 2|null|118,61,30,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.funelaFecotu|Funela|null|8,75,35,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.funelaFecotu|Funela|null|46,75,36,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.mipunaco|Kuki mipunaco 2|null|85,75,87,14",
+    "XCUIElementTypeButton|Play|Play|Lotto draw|8,90,22,14",
+    "XCUIElementTypeButton|Play|Play|Lotto draw|34,90,22,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca|Fufiku|null|8,104,33,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca|Fufiku|null|44,104,34,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro|Tejazu|null|81,104,35,14",
+    "XCUIElementTypeButton|Qty|Qty|3|8,118,19,14",
+    "XCUIElementTypeButton|Qty|Qty|7|30,118,20,14",
+    "XCUIElementTypeButton|Qty|Qty|12|53,118,19,14",
+    "XCUIElementTypeButton|Size|Size|M|76,118,23,14",
+    "XCUIElementTypeButton|Plain|Plain|null|102,118,26,14",
+    "XCUIElementTypeButton|Terms, Checkbox, selected|Terms, Checkbox, selected|1|8,133,98,27",
+    "XCUIElementTypeButton|Newsletter, Checkbox, unselected|Newsletter, Checkbox, unselected|null|109,133,122,27",
+    "XCUIElementTypeButton|Hidden 1|Hidden 1|null|8,276,46,14",
+    "XCUIElementTypeButton|Hidden 2|Hidden 2|null|8,290,48,14",
+    "XCUIElementTypeButton|Hidden 3|Hidden 3|null|8,304,48,14",
+    "XCUIElementTypeButton|Hidden 4|Hidden 4|null|8,319,48,14",
+    "XCUIElementTypeButton|Hidden 5|Hidden 5|null|8,333,48,14",
+    "XCUIElementTypeButton|Hidden 6|Hidden 6|null|8,347,48,14",
+    "XCUIElementTypeButton|covered.open|Open|null|8,714,60,36",
+    "XCUIElementTypeButton|covered.open|Open|null|8,758,60,36",
+    "XCUIElementTypeButton|plain.open|Open|null|8,803,60,36",
+    "XCUIElementTypeButton|clip.open|Open|null|8,848,60,36",
+    "XCUIElementTypeButton|clip.open|Open|null|8,892,60,36"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|8,47,64,14",
+    "XCUIElementTypeButton|Leba|Leba|null|143,47,26,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|202,47,61,14",
+    "XCUIElementTypeButton|HaguhoCuzal.marivoDigivo|Marivo|null|47,61,36,14",
+    "XCUIElementTypeButton|Dobe monuw teg 2|Teg 2|null|118,61,30,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.funelaFecotu|Funela|null|46,75,36,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.mipunaco|Kuki mipunaco 2|null|85,75,87,14",
+    "XCUIElementTypeButton|Play|Play|Lotto draw|34,90,22,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca|Fufiku|null|44,104,34,14",
+    "XCUIElementTypeButton|Qty|Qty|3|8,118,19,14",
+    "XCUIElementTypeButton|Qty|Qty|7|30,118,20,14",
+    "XCUIElementTypeButton|Qty|Qty|12|53,118,19,14",
+    "XCUIElementTypeButton|Size|Size|M|76,118,23,14",
+    "XCUIElementTypeButton|Plain|Plain|null|102,118,26,14",
+    "XCUIElementTypeButton|Terms, Checkbox, selected|Terms, Checkbox, selected|1|8,133,98,27",
+    "XCUIElementTypeButton|Newsletter, Checkbox, unselected|Newsletter, Checkbox, unselected|null|109,133,122,27",
+    "XCUIElementTypeButton|Hidden 1|Hidden 1|null|8,276,46,14",
+    "XCUIElementTypeButton|Hidden 2|Hidden 2|null|8,290,48,14",
+    "XCUIElementTypeButton|Hidden 3|Hidden 3|null|8,304,48,14",
+    "XCUIElementTypeButton|Hidden 4|Hidden 4|null|8,319,48,14",
+    "XCUIElementTypeButton|Hidden 5|Hidden 5|null|8,333,48,14",
+    "XCUIElementTypeButton|Hidden 6|Hidden 6|null|8,347,48,14",
+    "XCUIElementTypeButton|covered.open|Open|null|8,714,60,36",
+    "XCUIElementTypeButton|covered.open|Open|null|8,758,60,36",
+    "XCUIElementTypeButton|plain.open|Open|null|8,803,60,36",
+    "XCUIElementTypeButton|clip.open|Open|null|8,848,60,36",
+    "XCUIElementTypeButton|clip.open|Open|null|8,892,60,36"
+   ],
+   "candidates": [
+    {
+     "chain": "**/XCUIElementTypeButton",
+     "outcome": "EQUAL",
+     "hits": [
+      "XCUIElementTypeButton|Lugatej now|Lugatej now|null|8,47,64,14",
+      "XCUIElementTypeButton|Lugatej now|Lugatej now|null|75,47,65,14",
+      "XCUIElementTypeButton|Leba|Leba|null|143,47,26,14",
+      "XCUIElementTypeButton|Leba|Leba|null|173,47,26,14",
+      "XCUIElementTypeButton|Nozod hom|Nozod hom|null|202,47,61,14",
+      "XCUIElementTypeButton|Nozod hom|Nozod hom|null|266,47,61,14",
+      "XCUIElementTypeButton|HaguhoCuzal.marivoDigivo|Marivo|null|8,61,36,14",
+      "XCUIElementTypeButton|HaguhoCuzal.marivoDigivo|Marivo|null|47,61,36,14",
+      "XCUIElementTypeButton|Dobe monuw teg 1|Teg 1|null|86,61,29,14",
+      "XCUIElementTypeButton|Dobe monuw teg 2|Teg 2|null|118,61,30,14",
+      "XCUIElementTypeButton|FetuwozaNihelavAvuv.funelaFecotu|Funela|null|8,75,35,14",
+      "XCUIElementTypeButton|FetuwozaNihelavAvuv.funelaFecotu|Funela|null|46,75,36,14",
+      "XCUIElementTypeButton|FetuwozaNihelavAvuv.mipunaco|Kuki mipunaco 2|null|85,75,87,14",
+      "XCUIElementTypeButton|Play|Play|Lotto draw|8,90,22,14",
+      "XCUIElementTypeButton|Play|Play|Lotto draw|34,90,22,14",
+      "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca|Fufiku|null|8,104,33,14",
+      "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca|Fufiku|null|44,104,34,14",
+      "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro|Tejazu|null|81,104,35,14",
+      "XCUIElementTypeButton|Qty|Qty|3|8,118,19,14",
+      "XCUIElementTypeButton|Qty|Qty|7|30,118,20,14",
+      "XCUIElementTypeButton|Qty|Qty|12|53,118,19,14",
+      "XCUIElementTypeButton|Size|Size|M|76,118,23,14",
+      "XCUIElementTypeButton|Plain|Plain|null|102,118,26,14",
+      "XCUIElementTypeButton|Terms, Checkbox, selected|Terms, Checkbox, selected|1|8,133,98,27",
+      "XCUIElementTypeButton|Newsletter, Checkbox, unselected|Newsletter, Checkbox, unselected|null|109,133,122,27",
+      "XCUIElementTypeButton|Hidden 1|Hidden 1|null|8,276,46,14",
+      "XCUIElementTypeButton|Hidden 2|Hidden 2|null|8,290,48,14",
+      "XCUIElementTypeButton|Hidden 3|Hidden 3|null|8,304,48,14",
+      "XCUIElementTypeButton|Hidden 4|Hidden 4|null|8,319,48,14",
+      "XCUIElementTypeButton|Hidden 5|Hidden 5|null|8,333,48,14",
+      "XCUIElementTypeButton|Hidden 6|Hidden 6|null|8,347,48,14",
+      "XCUIElementTypeButton|covered.open|Open|null|8,714,60,36",
+      "XCUIElementTypeButton|covered.open|Open|null|8,758,60,36",
+      "XCUIElementTypeButton|plain.open|Open|null|8,803,60,36",
+      "XCUIElementTypeButton|clip.open|Open|null|8,848,60,36",
+      "XCUIElementTypeButton|clip.open|Open|null|8,892,60,36"
+     ]
+    }
+   ],
+   "timing": {
+    "xpathMs": 3033.6,
+    "chainMs": 3076.9,
+    "speedup": 0.99,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "B03",
+   "screen": "states",
+   "verdict": "CORRECT",
+   "xpath": "//XCUIElementTypeButton[@value>5]",
+   "chain": "**/XCUIElementTypeButton[`value.doubleValue > 5`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|Qty|Qty|7|30,118,20,14",
+    "XCUIElementTypeButton|Qty|Qty|12|53,118,19,14"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Qty|Qty|7|30,118,20,14",
+    "XCUIElementTypeButton|Qty|Qty|12|53,118,19,14"
+   ],
+   "timing": {
+    "xpathMs": 387.4,
+    "chainMs": 381.3,
+    "speedup": 1.02,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "B04",
+   "screen": "states",
+   "verdict": "CORRECT",
+   "xpath": "//XCUIElementTypeButton[@x>60]",
+   "chain": "**/XCUIElementTypeButton[`rect.x > 60`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|75,47,65,14",
+    "XCUIElementTypeButton|Leba|Leba|null|143,47,26,14",
+    "XCUIElementTypeButton|Leba|Leba|null|173,47,26,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|202,47,61,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|266,47,61,14",
+    "XCUIElementTypeButton|Dobe monuw teg 1|Teg 1|null|86,61,29,14",
+    "XCUIElementTypeButton|Dobe monuw teg 2|Teg 2|null|118,61,30,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.mipunaco|Kuki mipunaco 2|null|85,75,87,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro|Tejazu|null|81,104,35,14",
+    "XCUIElementTypeButton|Size|Size|M|76,118,23,14",
+    "XCUIElementTypeButton|Plain|Plain|null|102,118,26,14",
+    "XCUIElementTypeButton|Newsletter, Checkbox, unselected|Newsletter, Checkbox, unselected|null|109,133,122,27"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|75,47,65,14",
+    "XCUIElementTypeButton|Leba|Leba|null|143,47,26,14",
+    "XCUIElementTypeButton|Leba|Leba|null|173,47,26,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|202,47,61,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|266,47,61,14",
+    "XCUIElementTypeButton|Dobe monuw teg 1|Teg 1|null|86,61,29,14",
+    "XCUIElementTypeButton|Dobe monuw teg 2|Teg 2|null|118,61,30,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.mipunaco|Kuki mipunaco 2|null|85,75,87,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro|Tejazu|null|81,104,35,14",
+    "XCUIElementTypeButton|Size|Size|M|76,118,23,14",
+    "XCUIElementTypeButton|Plain|Plain|null|102,118,26,14",
+    "XCUIElementTypeButton|Newsletter, Checkbox, unselected|Newsletter, Checkbox, unselected|null|109,133,122,27"
+   ],
+   "timing": {
+    "xpathMs": 1150.1,
+    "chainMs": 1412.6,
+    "speedup": 0.81,
+    "first": "xpath"
+   }
+  },
+  {
+   "id": "B11",
+   "variant": "states",
+   "screen": "states",
+   "verdict": "CORRECT",
+   "xpath": "//*[@index=\"1\"]",
+   "chain": "**/*[`index == 1`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|75,47,65,14",
+    "XCUIElementTypeSwitch|null|null|1|359,133,63,28",
+    "XCUIElementTypeTextField|null||Last name|14,208,406,22",
+    "XCUIElementTypeOther|Vertical scroll bar, 3 pages|Vertical scroll bar, 3 pages|0 %|29,276,24,40",
+    "XCUIElementTypeCell|covered.2|null|null|0,754,428,44",
+    "XCUIElementTypeOther|Vertical scroll bar, 1 page|Vertical scroll bar, 1 page|0 %|395,799,30,44",
+    "XCUIElementTypeOther|Vertical scroll bar, 2 pages|Vertical scroll bar, 2 pages|0 %|395,844,30,29",
+    "XCUIElementTypeButton|Hidden 2|Hidden 2|null|8,290,48,14",
+    "XCUIElementTypeButton|covered.open|Open|null|8,714,60,36",
+    "XCUIElementTypeButton|covered.open|Open|null|8,758,60,36",
+    "XCUIElementTypeButton|plain.open|Open|null|8,803,60,36",
+    "XCUIElementTypeCell|clip.2|null|null|0,888,428,44",
+    "XCUIElementTypeButton|clip.open|Open|null|8,848,60,36",
+    "XCUIElementTypeButton|clip.open|Open|null|8,892,60,36"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|75,47,65,14",
+    "XCUIElementTypeSwitch|null|null|1|359,133,63,28",
+    "XCUIElementTypeTextField|null||Last name|14,208,406,22",
+    "XCUIElementTypeOther|Vertical scroll bar, 3 pages|Vertical scroll bar, 3 pages|0 %|29,276,24,40",
+    "XCUIElementTypeCell|covered.2|null|null|0,754,428,44",
+    "XCUIElementTypeOther|Vertical scroll bar, 1 page|Vertical scroll bar, 1 page|0 %|395,799,30,44",
+    "XCUIElementTypeOther|Vertical scroll bar, 2 pages|Vertical scroll bar, 2 pages|0 %|395,844,30,29",
+    "XCUIElementTypeButton|Hidden 2|Hidden 2|null|8,290,48,14",
+    "XCUIElementTypeButton|covered.open|Open|null|8,714,60,36",
+    "XCUIElementTypeButton|covered.open|Open|null|8,758,60,36",
+    "XCUIElementTypeButton|plain.open|Open|null|8,803,60,36",
+    "XCUIElementTypeCell|clip.2|null|null|0,888,428,44",
+    "XCUIElementTypeButton|clip.open|Open|null|8,848,60,36",
+    "XCUIElementTypeButton|clip.open|Open|null|8,892,60,36"
+   ],
+   "timing": {
+    "xpathMs": 1333.5,
+    "chainMs": 1578.4,
+    "speedup": 0.84,
+    "first": "chain"
+   }
+  },
+  {
+   "id": "B14",
+   "screen": "states",
+   "verdict": "CORRECT",
+   "xpath": "//XCUIElementTypeButton[@hittable=\"true\"]",
+   "chain": "**/XCUIElementTypeButton[`hittable == true`]",
+   "status": "success",
+   "outcome": "EQUAL",
+   "xpathHits": [
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|8,47,64,14",
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|75,47,65,14",
+    "XCUIElementTypeButton|Leba|Leba|null|143,47,26,14",
+    "XCUIElementTypeButton|Leba|Leba|null|173,47,26,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|202,47,61,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|266,47,61,14",
+    "XCUIElementTypeButton|HaguhoCuzal.marivoDigivo|Marivo|null|8,61,36,14",
+    "XCUIElementTypeButton|HaguhoCuzal.marivoDigivo|Marivo|null|47,61,36,14",
+    "XCUIElementTypeButton|Dobe monuw teg 1|Teg 1|null|86,61,29,14",
+    "XCUIElementTypeButton|Dobe monuw teg 2|Teg 2|null|118,61,30,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.funelaFecotu|Funela|null|8,75,35,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.funelaFecotu|Funela|null|46,75,36,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.mipunaco|Kuki mipunaco 2|null|85,75,87,14",
+    "XCUIElementTypeButton|Play|Play|Lotto draw|8,90,22,14",
+    "XCUIElementTypeButton|Play|Play|Lotto draw|34,90,22,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca|Fufiku|null|8,104,33,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca|Fufiku|null|44,104,34,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro|Tejazu|null|81,104,35,14",
+    "XCUIElementTypeButton|Qty|Qty|3|8,118,19,14",
+    "XCUIElementTypeButton|Qty|Qty|7|30,118,20,14",
+    "XCUIElementTypeButton|Qty|Qty|12|53,118,19,14",
+    "XCUIElementTypeButton|Size|Size|M|76,118,23,14",
+    "XCUIElementTypeButton|Plain|Plain|null|102,118,26,14",
+    "XCUIElementTypeButton|Terms, Checkbox, selected|Terms, Checkbox, selected|1|8,133,98,27",
+    "XCUIElementTypeButton|Newsletter, Checkbox, unselected|Newsletter, Checkbox, unselected|null|109,133,122,27",
+    "XCUIElementTypeButton|Hidden 1|Hidden 1|null|8,276,46,14",
+    "XCUIElementTypeButton|Hidden 2|Hidden 2|null|8,290,48,14",
+    "XCUIElementTypeButton|Hidden 3|Hidden 3|null|8,304,48,14",
+    "XCUIElementTypeButton|covered.open|Open|null|8,714,60,36",
+    "XCUIElementTypeButton|covered.open|Open|null|8,758,60,36",
+    "XCUIElementTypeButton|plain.open|Open|null|8,803,60,36",
+    "XCUIElementTypeButton|clip.open|Open|null|8,848,60,36"
+   ],
+   "chainHits": [
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|8,47,64,14",
+    "XCUIElementTypeButton|Lugatej now|Lugatej now|null|75,47,65,14",
+    "XCUIElementTypeButton|Leba|Leba|null|143,47,26,14",
+    "XCUIElementTypeButton|Leba|Leba|null|173,47,26,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|202,47,61,14",
+    "XCUIElementTypeButton|Nozod hom|Nozod hom|null|266,47,61,14",
+    "XCUIElementTypeButton|HaguhoCuzal.marivoDigivo|Marivo|null|8,61,36,14",
+    "XCUIElementTypeButton|HaguhoCuzal.marivoDigivo|Marivo|null|47,61,36,14",
+    "XCUIElementTypeButton|Dobe monuw teg 1|Teg 1|null|86,61,29,14",
+    "XCUIElementTypeButton|Dobe monuw teg 2|Teg 2|null|118,61,30,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.funelaFecotu|Funela|null|8,75,35,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.funelaFecotu|Funela|null|46,75,36,14",
+    "XCUIElementTypeButton|FetuwozaNihelavAvuv.mipunaco|Kuki mipunaco 2|null|85,75,87,14",
+    "XCUIElementTypeButton|Play|Play|Lotto draw|8,90,22,14",
+    "XCUIElementTypeButton|Play|Play|Lotto draw|34,90,22,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca|Fufiku|null|8,104,33,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca|Fufiku|null|44,104,34,14",
+    "XCUIElementTypeButton|LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro|Tejazu|null|81,104,35,14",
+    "XCUIElementTypeButton|Qty|Qty|3|8,118,19,14",
+    "XCUIElementTypeButton|Qty|Qty|7|30,118,20,14",
+    "XCUIElementTypeButton|Qty|Qty|12|53,118,19,14",
+    "XCUIElementTypeButton|Size|Size|M|76,118,23,14",
+    "XCUIElementTypeButton|Plain|Plain|null|102,118,26,14",
+    "XCUIElementTypeButton|Terms, Checkbox, selected|Terms, Checkbox, selected|1|8,133,98,27",
+    "XCUIElementTypeButton|Newsletter, Checkbox, unselected|Newsletter, Checkbox, unselected|null|109,133,122,27",
+    "XCUIElementTypeButton|Hidden 1|Hidden 1|null|8,276,46,14",
+    "XCUIElementTypeButton|Hidden 2|Hidden 2|null|8,290,48,14",
+    "XCUIElementTypeButton|Hidden 3|Hidden 3|null|8,304,48,14",
+    "XCUIElementTypeButton|covered.open|Open|null|8,714,60,36",
+    "XCUIElementTypeButton|covered.open|Open|null|8,758,60,36",
+    "XCUIElementTypeButton|plain.open|Open|null|8,803,60,36",
+    "XCUIElementTypeButton|clip.open|Open|null|8,848,60,36"
+   ],
+   "timing": {
+    "xpathMs": 4691.9,
+    "chainMs": 3721.7,
+    "speedup": 1.26,
+    "first": "xpath"
+   }
+  }
+ ]
+}
