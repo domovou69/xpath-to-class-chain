@@ -75,6 +75,14 @@ Node.js ≥ 20. No npm dependencies.
 
 ---
 
+## Claude Code skill
+
+[`.claude/skills/xpath-to-class-chain/`](.claude/skills/xpath-to-class-chain/SKILL.md) wraps the converter for Claude Code. Claude runs the converter first and uses its chains as they are. It then explains each skipped locator and suggests a fix that stays within class chain: an accessibility identifier, a different chain, or two lookups in test code. Chains it writes itself are marked unverified. Without the converter, it converts with the rules alone and says so.
+
+It works as-is inside a clone of this repository. To use it in another project, copy the folder to `~/.claude/skills/`, then set `XPATH_TO_CLASS_CHAIN_HOME` to a clone or install the package (`npm i -g github:domovou69/xpath-to-class-chain`).
+
+---
+
 ## Installation
 
 **Run once without installing** (fetches from registry on the fly):
