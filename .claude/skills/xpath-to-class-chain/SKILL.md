@@ -39,7 +39,7 @@ Exit code 3 means the engine was not found. Go to **Fallback** below.
 | `skipped_android`, `skipped_not_xpath` | Out of scope: list as untouched. |
 | `skipped_unsupported_logic`, `skipped_validation_failed`, `skipped_xpath_strategy` | Go to STEP 3. |
 
-In the audit the engine converted 579 of 676 real and hand-made locators and produced no wrong chains. A skip means no exact class chain exists or none has been verified on a device. Do not override it with a chain of your own and present that chain as a conversion.
+In the audit the engine produced no wrong chains. Of the real-world locators that have an exact class chain, it converted about 96 % (R 95.8); the remaining ~4 % are the edge cases this step is for. Most of its other skips (97 of 676 locators in total) have no exact class chain at all. A skip means no exact class chain exists or none has been verified on a device. Do not override it with a chain of your own and present that chain as a conversion.
 
 ## STEP 3: Expert review of skipped locators
 
