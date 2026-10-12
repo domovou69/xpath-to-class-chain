@@ -18,6 +18,7 @@ const ex = e => e && `page ${e.xml.replace(/ (enabled|visible|accessible|hittabl
 
 const out = { cells: cells.map(short), cases: {} };
 for (const [id, c] of Object.entries(conv)) {
+  if (c.verdict === 'EXCLUDED') continue; // not an XPath (L157)
   const per = {};
   for (const n of cells) {
     const r = S[n][id];
@@ -34,14 +35,15 @@ fs.writeFileSync(path.join(__dirname, 'analysis/errors.json'), JSON.stringify(ou
 // ---------- Markdown
 const code = s => '`' + String(s).replace(/`/g, 'ˋ').replace(/\|/g, '\\|').replace(/\n/g, '\\n') + '`';
 const md = [];
-const beats = Object.entries(conv).map(([id, c]) => [id, c, cells.filter(n => S[n][id].verdict === 'CORRECT' && c.verdict !== 'CORRECT')]).filter(([, , w]) => w.length).sort((a, b) => b[2].length - a[2].length);
+const scored = Object.entries(conv).filter(([, c]) => c.verdict !== 'EXCLUDED');
+const beats = scored.map(([id, c]) => [id, c, cells.filter(n => S[n][id].verdict === 'CORRECT' && c.verdict !== 'CORRECT')]).filter(([, , w]) => w.length).sort((a, b) => b[2].length - a[2].length);
 md.push(`### Where a model is right and the converter is not (${beats.length} cases, ${cells.length} cells)`, '', '| Case | XPath | Converter | Cells right | Example chain from a model |', '|---|---|---|---|---|');
 for (const [id, c, w] of beats) md.push(`| ${c.orig} | ${code(c.xpath)} | ${c.verdict} | ${w.length}/${cells.length} | ${code(strip(S[w[0]][id].chain))} |`);
-const loses = Object.entries(conv).map(([id, c]) => [id, c, cells.filter(n => ['WRONG', 'INVALID', 'GAP'].includes(S[n][id].verdict) && ['CORRECT', 'DRIFT'].includes(c.verdict))]).filter(([, , w]) => w.length).sort((a, b) => b[2].length - a[2].length);
+const loses = scored.map(([id, c]) => [id, c, cells.filter(n => ['WRONG', 'INVALID', 'GAP'].includes(S[n][id].verdict) && ['CORRECT', 'DRIFT'].includes(c.verdict))]).filter(([, , w]) => w.length).sort((a, b) => b[2].length - a[2].length);
 md.push('', `### Where the converter is right and a model is not (${loses.length} cases)`, '', '| Case | XPath | Converter | Cells wrong / invalid / gap | Cells |', '|---|---|---|---|---|');
 for (const [id, c, w] of loses) md.push(`| ${c.orig} | ${code(c.xpath)} | ${c.verdict} | ${w.filter(n => S[n][id].verdict === 'WRONG').length} / ${w.filter(n => S[n][id].verdict === 'INVALID').length} / ${w.filter(n => S[n][id].verdict === 'GAP').length} | ${w.map(short).join(', ')} |`);
 const bad = id => cells.filter(n => ['WRONG', 'INVALID'].includes(S[n][id].verdict));
-const noConv = Object.entries(conv).filter(([id, c]) => !['CORRECT', 'DRIFT'].includes(c.verdict) && bad(id).length);
+const noConv = scored.filter(([id, c]) => !['CORRECT', 'DRIFT'].includes(c.verdict) && bad(id).length);
 md.push('', `### Wrong or invalid chains where the converter also has no right chain (${noConv.length} cases)`, '', '| Case | XPath | Converter | Cells wrong / invalid |', '|---|---|---|---|');
 for (const [id, c] of noConv) md.push(`| ${c.orig} | ${code(c.xpath)} | ${c.verdict} | ${bad(id).map(n => `${short(n)} ${S[n][id].verdict}`).join(', ')} |`);
 console.log(md.join('\n'));

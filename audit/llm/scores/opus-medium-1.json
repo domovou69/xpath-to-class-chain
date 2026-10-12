@@ -1,39 +1,41 @@
 {
  "summary": {
   "name": "opus-medium-1",
-  "R": 96.5,
-  "S": 83.1,
+  "R": 95.3,
+  "S": 81.1,
   "Scat": {
    "A": 14,
    "B": 12.1875,
    "C": 15,
    "D": 12,
-   "E": 6,
+   "E": 4,
    "F": 10,
    "G": 8.928571428571429,
    "H": 0,
    "R": 5
   },
-  "corpusDen": 481,
+  "corpusDen": 487,
   "corpus": {
    "CORRECT": 450,
-   "CORRECT-SKIP": 79,
+   "CORRECT-SKIP": 78,
    "GAP": 0,
    "DRIFT": 29,
    "WRONG": 3,
    "INVALID": 2,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "spec": {
    "CORRECT": 68,
-   "CORRECT-SKIP": 24,
-   "GAP": 10,
-   "DRIFT": 7,
-   "WRONG": 5,
+   "CORRECT-SKIP": 23,
+   "GAP": 11,
+   "DRIFT": 8,
+   "WRONG": 3,
    "INVALID": 1,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "entries": 678,
   "duplicates": 0,
@@ -473,7 +475,7 @@
    "skip": true,
    "reason": "//X[1] is a per-parent position (every TextField that is the first TextField child of its parent); class chain indexes apply to the whole result set, so this cannot be reproduced.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x038": {
    "orig": "L217",
@@ -1114,7 +1116,8 @@
    "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
    "skip": true,
    "reason": "Not a valid XPath: the backtick-quoted predicate is class chain/NSPredicate syntax, so the XPath engine rejects it and there is no XPath result set to reproduce.",
-   "verdict": "CORRECT-SKIP",
+   "verdict": "EXCLUDED",
+   "note": "not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath; out of every count and denominator",
    "inDen": false
   },
   "x092": {
@@ -1360,7 +1363,7 @@
    "skip": true,
    "reason": "Button[2] is a per-parent position (second Button child of each Cell) before the global [2]; class chain indexes apply to the whole combined result set, so the per-parent step cannot be reproduced.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x113": {
    "orig": "E10",
@@ -1368,12 +1371,9 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][2]",
-   "outcome": "SET_DIFFERS",
-   "hits": 3,
-   "trials": 301,
-   "verdict": "DRIFT",
-   "documented": true,
-   "inDen": true
+   "verdict": "EXCLUDED",
+   "note": "its runtime string is E09's locator, while the harness judges the source string `)${suffix}`; left out of the comparison; out of every count and denominator",
+   "inDen": false
   },
   "x114": {
    "orig": "L544",
@@ -1430,7 +1430,7 @@
    "skip": true,
    "reason": "//X[2] is a per-parent position (every TextField that is the second TextField child of its parent); class chain indexes apply to the whole result set, so this cannot be reproduced.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x119": {
    "orig": "L138",
@@ -2053,7 +2053,7 @@
    "skip": true,
    "reason": "child::*[1] is a per-parent position (the first child of each matching element); class chain indexes apply to the combined result set, so this only matches when the parent is unique, which is not guaranteed.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x172": {
    "orig": "L112",
@@ -3455,8 +3455,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "Uses the XPath 2.0 function replace(); the driver evaluates XPath 1.0 (libxml2), where this locator is invalid, so there is no result set to reproduce.",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "verdict": "GAP",
+   "inDen": true
   },
   "x291": {
    "orig": "L248",
@@ -4008,16 +4008,8 @@
    "outcome": "SET_DIFFERS",
    "hits": 109,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\" enabled=\"false\" visible=\"true\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"100\" width=\"0\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\" placeholderValue=\"a\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"100\" width=\"50\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"0\" width=\"60\"><XCUIElementTypeCell k=\"n4\" label=\"b\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"100\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\" placeholderValue=\" a  b \" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"0\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" label=\"zabz\" value=\" a  b \" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"50\" width=\"60\"></XCUIElementTypeButton></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"0\" width=\"0\"></XCUIElementTypeStaticText></XCUIElementTypeCell></XCUIElementTypeStaticText><XCUIElementTypeButton k=\"n8\" name=\"A b\" value=\"b\" placeholderValue=\"c\" enabled=\"true\" visible=\"true\" accessible=\"false\" hittable=\"false\" selected=\"false\" x=\"60\" width=\"50\"></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n8"
-    ],
-    "chainHits": [
-     "n6"
-    ]
-   },
+   "verdict": "DRIFT",
+   "documented": true,
    "inDen": false
   },
   "x337": {
@@ -4509,7 +4501,7 @@
    "skip": true,
    "reason": "child::StaticText[2] is a per-parent position (the second StaticText child of each StaticText); class chain indexes count across the combined result set, so this step cannot be reproduced.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x379": {
    "orig": "L542",
@@ -5538,7 +5530,7 @@
    "skip": true,
    "reason": "The trailing [1] is per-parent (the first matching Button among each parent's children), not a global first; class chain indexes count across the whole result set, so this can't be reproduced.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x467": {
    "orig": "A08",
@@ -5848,7 +5840,7 @@
    "skip": true,
    "reason": "child::*[2] is a per-parent position (the second child of each matching element); class chain indexes count across the combined result set, so this step cannot be reproduced.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x493": {
    "orig": "L210",
@@ -6157,7 +6149,7 @@
    "skip": true,
    "reason": "//X[2] is a per-parent position (every Button that is the second Button child of its parent); class chain indexes count across the whole result set, so this can't be reproduced.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x520": {
    "orig": "L547",
@@ -7438,14 +7430,8 @@
    "outcome": "SET_DIFFERS",
    "hits": 10,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"50\" width=\"100\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" placeholderValue=\"b\" enabled=\"false\" visible=\"true\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"100\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"0\" width=\"60\"><XCUIElementTypeCell k=\"n4\" name=\"a b\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"50\" width=\"60\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\" enabled=\"false\" visible=\"false\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"60\" width=\"60\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" name=\"false\" enabled=\"true\" visible=\"false\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"50\" width=\"0\" value=\"5\"></XCUIElementTypeCell><XCUIElementTypeTextField k=\"n7\" placeholderValue=\"x\" enabled=\"true\" visible=\"false\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"60\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeCell k=\"n8\" label=\"true\" placeholderValue=\"ab\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"60\" value=\"5\"><XCUIElementTypeOther k=\"n9\" name=\"false\" placeholderValue=\"c\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"100\" width=\"50\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n10\" label=\"true\" value=\"ab\" placeholderValue=\"other\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"60\" width=\"0\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n11\" label=\"c\" placeholderValue=\"A b\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"0\" width=\"100\" value=\"abc\"></XCUIElementTypeButton></XCUIElementTypeCell></XCUIElementTypeTextField></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [],
-    "chainHits": [
-     "n11"
-    ]
-   },
+   "verdict": "DRIFT",
+   "documented": true,
    "inDen": false
   },
   "x627": {

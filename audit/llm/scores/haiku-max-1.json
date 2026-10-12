@@ -1,39 +1,41 @@
 {
  "summary": {
   "name": "haiku-max-1",
-  "R": 99.6,
-  "S": 67.4,
+  "R": 92.2,
+  "S": 54.9,
   "Scat": {
    "A": 13,
    "B": 9.375,
    "C": 13.333333333333334,
    "D": 12,
-   "E": 12,
+   "E": 0,
    "F": 0,
-   "G": 7.6923076923076925,
+   "G": 7.142857142857143,
    "H": 0,
    "R": 0
   },
-  "corpusDen": 451,
+  "corpusDen": 487,
   "corpus": {
    "CORRECT": 449,
-   "CORRECT-SKIP": 112,
+   "CORRECT-SKIP": 111,
    "GAP": 1,
    "DRIFT": 0,
    "WRONG": 0,
    "INVALID": 1,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "spec": {
    "CORRECT": 56,
-   "CORRECT-SKIP": 35,
-   "GAP": 20,
+   "CORRECT-SKIP": 33,
+   "GAP": 21,
    "DRIFT": 1,
    "WRONG": 2,
    "INVALID": 1,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "entries": 678,
   "duplicates": 0,
@@ -438,7 +440,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x035": {
    "orig": "L456",
@@ -470,7 +472,7 @@
    "skip": true,
    "reason": "per-parent positional predicate: XPath picks the first child under every parent, but a class chain index picks one element from the whole match set, so results differ when there is more than one parent",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x038": {
    "orig": "L217",
@@ -780,7 +782,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x065": {
    "orig": "L408",
@@ -1097,7 +1099,8 @@
    "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
    "skip": true,
    "reason": "not XPath: the value is class chain syntax (a backtick predicate) that XPath rejects, so there is no element set to reproduce; if the intent was buttons labelled Gihasem, use -ios class chain:**/XCUIElementTypeButton[`label == \"Gihasem\"`] directly",
-   "verdict": "CORRECT-SKIP",
+   "verdict": "EXCLUDED",
+   "note": "not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath; out of every count and denominator",
    "inDen": false
   },
   "x092": {
@@ -1188,7 +1191,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x100": {
    "orig": "L553",
@@ -1208,7 +1211,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x102": {
    "orig": "L337",
@@ -1242,7 +1245,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x105": {
    "orig": "L012",
@@ -1337,7 +1340,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x113": {
    "orig": "E10",
@@ -1346,7 +1349,8 @@
    "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
-   "verdict": "CORRECT-SKIP",
+   "verdict": "EXCLUDED",
+   "note": "its runtime string is E09's locator, while the harness judges the source string `)${suffix}`; left out of the comparison; out of every count and denominator",
    "inDen": false
   },
   "x114": {
@@ -1379,7 +1383,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x117": {
    "orig": "L075",
@@ -1401,7 +1405,7 @@
    "skip": true,
    "reason": "per-parent positional predicate: XPath picks the second child under every parent, but a class chain index picks one element from the whole match set, so results differ when there is more than one parent",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x119": {
    "orig": "L138",
@@ -1527,7 +1531,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x130": {
    "orig": "R03",
@@ -1643,7 +1647,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x140": {
    "orig": "L065",
@@ -1747,7 +1751,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x149": {
    "orig": "L288",
@@ -2015,7 +2019,7 @@
    "skip": true,
    "reason": "child::*[1] is a positional pick (first child of the matched element); class chain index semantics couldn't be verified here",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x172": {
    "orig": "L112",
@@ -2133,7 +2137,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x182": {
    "orig": "L485",
@@ -2317,7 +2321,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x198": {
    "orig": "L292",
@@ -2511,7 +2515,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x215": {
    "orig": "L367",
@@ -2567,7 +2571,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x220": {
    "orig": "L474",
@@ -2611,7 +2615,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x224": {
    "orig": "L506",
@@ -2771,7 +2775,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x238": {
    "orig": "F03",
@@ -2909,7 +2913,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x250": {
    "orig": "L525",
@@ -3019,7 +3023,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x260": {
    "orig": "L015",
@@ -3065,7 +3069,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x264": {
    "orig": "L184",
@@ -3099,7 +3103,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x267": {
    "orig": "L046",
@@ -3376,8 +3380,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "replace() is an XPath 2.0 function; WDA's XPath engine is XPath 1.0, so the XPath errors instead of matching",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "verdict": "GAP",
+   "inDen": true
   },
   "x291": {
    "orig": "L248",
@@ -3547,7 +3551,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x306": {
    "orig": "L061",
@@ -4006,7 +4010,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x345": {
    "orig": "A01",
@@ -4407,7 +4411,7 @@
    "skip": true,
    "reason": "positional picks (child [2] inside a document-order [1]): class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x379": {
    "orig": "L542",
@@ -4441,7 +4445,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x382": {
    "orig": "L039",
@@ -4463,7 +4467,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x384": {
    "orig": "R04",
@@ -4703,7 +4707,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x405": {
    "orig": "L568",
@@ -5005,7 +5009,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x431": {
    "orig": "L175",
@@ -5081,7 +5085,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x438": {
    "orig": "L336",
@@ -5417,7 +5421,7 @@
    "skip": true,
    "reason": "per-parent positional predicate: XPath picks the first matching child under every parent, but a class chain index picks one element from the whole match set, so results differ when there is more than one parent",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x467": {
    "orig": "A08",
@@ -5714,7 +5718,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x493": {
    "orig": "L210",
@@ -5748,7 +5752,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x496": {
    "orig": "L190",
@@ -5894,7 +5898,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x509": {
    "orig": "E12",
@@ -5914,7 +5918,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x511": {
    "orig": "L051",
@@ -6014,7 +6018,7 @@
    "skip": true,
    "reason": "per-parent positional predicate: XPath picks the second child under every parent, but a class chain index picks one element from the whole match set, so results differ when there is more than one parent",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x520": {
    "orig": "L547",
@@ -6536,7 +6540,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x565": {
    "orig": "L466",
@@ -6664,7 +6668,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x576": {
    "orig": "L290",
@@ -7027,7 +7031,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x607": {
    "orig": "H06",
@@ -7289,7 +7293,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x630": {
    "orig": "L227",
@@ -7465,7 +7469,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x645": {
    "orig": "L362",
@@ -7659,7 +7663,7 @@
    "skip": true,
    "reason": "positional pick over the document-order match set: class chain index base (0- vs 1-based) and scope couldn't be verified here, so the same element can't be guaranteed",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x662": {
    "orig": "L160",

@@ -1,39 +1,41 @@
 {
  "summary": {
   "name": "sonnet-high-1",
-  "R": 95.7,
-  "S": 78.5,
+  "R": 94.6,
+  "S": 75.6,
   "Scat": {
    "A": 14,
    "B": 11.25,
    "C": 13.333333333333334,
    "D": 10.4,
-   "E": 6,
+   "E": 4,
    "F": 10,
    "G": 7.5,
-   "H": 6,
+   "H": 5.142857142857143,
    "R": 0
   },
-  "corpusDen": 481,
+  "corpusDen": 487,
   "corpus": {
    "CORRECT": 446,
-   "CORRECT-SKIP": 80,
+   "CORRECT-SKIP": 79,
    "GAP": 4,
    "DRIFT": 29,
    "WRONG": 2,
    "INVALID": 2,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "spec": {
    "CORRECT": 67,
-   "CORRECT-SKIP": 24,
-   "GAP": 9,
-   "DRIFT": 7,
-   "WRONG": 6,
+   "CORRECT-SKIP": 23,
+   "GAP": 10,
+   "DRIFT": 8,
+   "WRONG": 4,
    "INVALID": 2,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "entries": 678,
   "duplicates": 0,
@@ -473,7 +475,7 @@
    "skip": true,
    "reason": "XPath //TextField[1] selects the first TextField child of every parent, whereas class chain **/TextField[1] selects only the first match under the root, so the results differ.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x038": {
    "orig": "L217",
@@ -1114,7 +1116,8 @@
    "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
    "skip": true,
    "reason": "The XPath is invalid (it contains a class chain backtick predicate inside an XPath step), so it does not select any elements to reproduce.",
-   "verdict": "CORRECT-SKIP",
+   "verdict": "EXCLUDED",
+   "note": "not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath; out of every count and denominator",
    "inDen": false
   },
   "x092": {
@@ -1358,7 +1361,7 @@
    "skip": true,
    "reason": "Takes the second of the second-Button-children across all matching cells; class chain cannot apply an index to the combined result of a multi-step path.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x113": {
    "orig": "E10",
@@ -1366,12 +1369,9 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][2]",
-   "outcome": "SET_DIFFERS",
-   "hits": 3,
-   "trials": 301,
-   "verdict": "DRIFT",
-   "documented": true,
-   "inDen": true
+   "verdict": "EXCLUDED",
+   "note": "its runtime string is E09's locator, while the harness judges the source string `)${suffix}`; left out of the comparison; out of every count and denominator",
+   "inDen": false
   },
   "x114": {
    "orig": "L544",
@@ -1428,7 +1428,7 @@
    "skip": true,
    "reason": "XPath //TextField[2] selects the second TextField child of every parent, whereas class chain **/TextField[2] selects only the second match under the root, so the results differ.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x119": {
    "orig": "L138",
@@ -1780,7 +1780,7 @@
    "skip": true,
    "reason": "Takes the second of the matching children across all matching parents; class chain cannot apply an index to the combined result of a multi-step path.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x149": {
    "orig": "L288",
@@ -3453,8 +3453,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "replace() is an XPath 2.0 function with no class chain / NSPredicate equivalent.",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "verdict": "GAP",
+   "inDen": true
   },
   "x291": {
    "orig": "L248",
@@ -4005,16 +4005,8 @@
    "outcome": "SET_DIFFERS",
    "hits": 109,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\" enabled=\"false\" visible=\"true\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"100\" width=\"0\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\" placeholderValue=\"a\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"100\" width=\"50\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"0\" width=\"60\"><XCUIElementTypeCell k=\"n4\" label=\"b\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"100\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\" placeholderValue=\" a  b \" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"0\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" label=\"zabz\" value=\" a  b \" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"50\" width=\"60\"></XCUIElementTypeButton></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"0\" width=\"0\"></XCUIElementTypeStaticText></XCUIElementTypeCell></XCUIElementTypeStaticText><XCUIElementTypeButton k=\"n8\" name=\"A b\" value=\"b\" placeholderValue=\"c\" enabled=\"true\" visible=\"true\" accessible=\"false\" hittable=\"false\" selected=\"false\" x=\"60\" width=\"50\"></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n8"
-    ],
-    "chainHits": [
-     "n6"
-    ]
-   },
+   "verdict": "DRIFT",
+   "documented": true,
    "inDen": false
   },
   "x337": {
@@ -4511,7 +4503,7 @@
    "skip": true,
    "reason": "Takes the first of the second-StaticText-children of all StaticTexts; class chain cannot apply an index to the combined result of a multi-step path.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x379": {
    "orig": "L542",
@@ -5542,7 +5534,7 @@
    "skip": true,
    "reason": "XPath //Button[...][1] selects the first matching Button child of every parent, whereas class chain **/Button[...][1] selects only the first match under the root, so the results differ.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x467": {
    "orig": "A08",
@@ -5852,7 +5844,7 @@
    "skip": true,
    "reason": "Takes the second of the second-children across all matching parents; class chain cannot apply an index to the combined result of a multi-step path.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x493": {
    "orig": "L210",
@@ -6161,7 +6153,7 @@
    "skip": true,
    "reason": "XPath //Button[2] selects the second Button child of every parent, whereas class chain **/Button[2] selects only the second match under the root, so the results differ.",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x520": {
    "orig": "L547",
@@ -7429,14 +7421,8 @@
    "outcome": "SET_DIFFERS",
    "hits": 10,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeTextField k=\"n1\" name=\"false\" value=\"AB\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"50\" width=\"100\"></XCUIElementTypeTextField><XCUIElementTypeButton k=\"n2\" name=\"AB\" placeholderValue=\"b\" enabled=\"false\" visible=\"true\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"100\" value=\"5\"><XCUIElementTypeTextField k=\"n3\" name=\"c\" value=\"x\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"0\" width=\"60\"><XCUIElementTypeCell k=\"n4\" name=\"a b\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"50\" width=\"60\"><XCUIElementTypeOther k=\"n5\" label=\"ab\" value=\"a b\" enabled=\"false\" visible=\"false\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"60\" width=\"60\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n6\" name=\"false\" enabled=\"true\" visible=\"false\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"50\" width=\"0\" value=\"5\"></XCUIElementTypeCell><XCUIElementTypeTextField k=\"n7\" placeholderValue=\"x\" enabled=\"true\" visible=\"false\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"60\" value=\"5\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeCell k=\"n8\" label=\"true\" placeholderValue=\"ab\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"60\" value=\"5\"><XCUIElementTypeOther k=\"n9\" name=\"false\" placeholderValue=\"c\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"100\" width=\"50\"></XCUIElementTypeOther><XCUIElementTypeCell k=\"n10\" label=\"true\" value=\"ab\" placeholderValue=\"other\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"60\" width=\"0\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n11\" label=\"c\" placeholderValue=\"A b\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"0\" width=\"100\" value=\"abc\"></XCUIElementTypeButton></XCUIElementTypeCell></XCUIElementTypeTextField></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [],
-    "chainHits": [
-     "n11"
-    ]
-   },
+   "verdict": "DRIFT",
+   "documented": true,
    "inDen": false
   },
   "x627": {

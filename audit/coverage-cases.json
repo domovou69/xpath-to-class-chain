@@ -1718,13 +1718,13 @@
  {
   "id": "L157",
   "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
-  "expected": "INVALID XPATH on WDA (libxml2: Invalid expression); class-chain intent would be **/XCUIElementTypeButton[`label == \"Gihasem\"`]",
+  "expected": "NOT AN XPATH: class chain predicate inside //…[…] (libxml2 on WDA: Invalid expression); class-chain intent would be **/XCUIElementTypeButton[`label == \"Gihasem\"`]",
   "actual": null,
   "status": "skipped_validation_failed",
-  "verdict": "CORRECT-SKIP",
+  "verdict": "EXCLUDED",
   "shape": "S080 //T[`label == \"s\"`]",
   "category": "corpus",
-  "note": "mixed XPath + class chain syntax | excluded from denominator"
+  "note": "mixed XPath + class chain syntax; not an XPath, so also out of the coverage (C) denominator | excluded from denominator"
  },
  {
   "id": "L158",
@@ -6899,13 +6899,13 @@
  {
   "id": "E07",
   "xpath": "(//XCUIElementTypeButton)[position()=2]",
-  "expected": "INEXPRESSIBLE: document-order position; [2] counts in XCTest query order (RC-D1)",
+  "expected": "**/XCUIElementTypeButton[2]",
   "actual": null,
   "status": "skipped_not_xpath",
   "verdict": "CORRECT-SKIP",
   "shape": "(//XCUIElementTypeButton)[position()=2]",
   "category": "E",
-  "note": "XPath-only hits in 107/300 trials | excluded from denominator"
+  "note": "same locator as E02 | RC-D1: class chain positions count matches in XCTest query order (breadth-first), XPath in document order (Phase 2) | expected vs XPath: 250/300 equal | excluded from denominator"
  },
  {
   "id": "E08",
@@ -6943,13 +6943,13 @@
  {
   "id": "E11",
   "xpath": "(//XCUIElementTypeCell)[2]/XCUIElementTypeButton",
-  "expected": "INEXPRESSIBLE: document-order position on an intermediate step; WDA's snapshot walk counts breadth-first (RC-D1)",
+  "expected": "**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
   "actual": null,
   "status": "skipped_not_xpath",
   "verdict": "CORRECT-SKIP",
   "shape": "(//XCUIElementTypeCell)[2]/XCUIElementTypeButton",
   "category": "E",
-  "note": "XPath-only hits in 10/300 trials | excluded from denominator"
+  "note": "RC-D1 on an intermediate step: the Cell position counts in XCTest query order (breadth-first), XPath in document order (Phase 2) | expected vs XPath: 294/300 equal | excluded from denominator"
  },
  {
   "id": "E12",
@@ -7295,13 +7295,13 @@
  {
   "id": "H07",
   "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
-  "expected": "INEXPRESSIBLE: NSPredicate has no string replacement",
+  "expected": "**/*[`label MATCHES \"[ab]{2}\"`]",
   "actual": null,
   "status": "skipped_validation_failed",
-  "verdict": "CORRECT-SKIP",
+  "verdict": "GAP",
   "shape": "//*[replace(@label,\"s\",\"s\")=\"s\"]",
   "category": "H",
-  "note": "XPath-only hits in 48/300 trials | excluded from denominator"
+  "note": "replacing every a by b gives \"bb\" iff the label is two characters from {a, b} | expected vs XPath: 300/300 equal"
  },
  {
   "id": "H08",

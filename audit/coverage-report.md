@@ -26,6 +26,7 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `audit/phase2` (device verification) | none fixed; found RC-D1 (DRIFT) and RC-D2 (WRONG), corrected mini-WDA | 92.3 | 86.3 % | 54.5 (57.5) | 0 | 1 |
 | `fix/rc-d2-descendant-self` | RC-D2 | 92.3 | 86.3 % | 57.5 (57.5) | 0 | 0 |
 | `fix/rc-d1-grouped-position` | RC-D1 documented (DRIFT, no exact chain) | 95.3 | 86.3 % | 61.9 (61.9) | 0 | 0 |
+| `fix/harness-expectations` (Phase 5, A) | none fixed; harness expectations corrected: H07 expressible (GAP), E07 / E11 judged like E02, L157 out of every denominator | 95.3 | 86.5 % | 61.8 (61.8) | 0 | 0 |
 
 Notes on `fix/class-chain-parse-errors`:
 
@@ -485,7 +486,7 @@ If you have an LLM, do you still need a converter? Phase 4 gives Haiku, Sonnet a
 | Models | `claude-haiku-5-5`, `claude-sonnet-5-5`, `claude-opus-5-5` at effort `low`, `medium`, `high`, `max`; one run per cell. `xhigh` and repeated runs were skipped to stay within the account's usage limit |
 | Run | `claude -p` (Claude Code 2.1.296) in an empty folder in the system temp dir with only `input.json`: tools `Read` and `Write`, no settings, hooks, MCP or session, a clean environment. The model reads the file and writes `output.json` (in parts if it wants). Runs of one effort level go in parallel, one per model. Runner: [`llm/run.js`](llm/run.js), [`llm/stage.sh`](llm/stage.sh) |
 | Scoring | [`llm/score.js`](llm/score.js): mini-WDA (WDA 16.14.1) runs each chain and its XPath on the same page sources, 200 per corpus case and 300 plus the hand-made fixture per spec case, seeded per case, so every run and the converter are judged on identical pages. The `-ios class chain:` prefix is required and then stripped (no answer lacked it) |
-| Converter | the same `input.json` through `convertXpathToClassChain`, scored by the same script: R = 95.3, S = 62.0 (the harness gives 95.3 / 61.9 on the source strings; the difference is E10, whose runtime string is E09's locator) |
+| Converter | the same `input.json` through `convertXpathToClassChain`, scored by the same script: R = 95.3, S = 61.8, the same as the harness. E10 is left out of the comparison: the harness judges its source string `)${suffix}`, the models got its runtime string, which is E09's locator |
 
 The prompt, the same for every run ([`llm/prompt.md`](llm/prompt.md)):
 
@@ -497,27 +498,31 @@ The prompt, the same for every run ([`llm/prompt.md`](llm/prompt.md)):
 
 Verdicts are the harness's: CORRECT, CORRECT-SKIP, GAP, DRIFT (half credit when documented), WRONG, plus INVALID (WDA rejects the chain or it throws) and MISSING. Two rules are specific to Phase 4:
 
-- A skipped locator that has no exact class chain (grouped positions, per-parent indexes) is CORRECT-SKIP and leaves that run's denominator, as in the "skip grouped positions" variant of section 6. A chain for it that behaves like the converter's approximation is DRIFT.
-- Because skipping more could then raise R and S, every row also gets **R= / S=**: the same formulas over the converter's denominator, where such a skip earns 0.
+- One fixed denominator for every row: the harness's expressible cases, as for the converter. A skip inside it earns 0, so skipping more cannot raise R or S. A chain for a case with no exact class chain (grouped positions, per-parent indexes) that behaves like the converter's approximation is DRIFT.
+- L157 (not an XPath) and E10 (see Converter above) are EXCLUDED from every count.
+
+Until Phase 5 the table also had a second pair, R / S over each run's own denominator, where a skipped no-exact-chain case left it; haiku / max scored R 99.6 there by skipping a quarter of the input. Only the fixed-denominator pair (then called R= / S=) is kept.
 
 ### Results
 
-| Cell | R | S | **R=** | **S=** | Converted | Skipped | of which GAP | Precision | WRONG | INVALID | Time, min | Cost, $ | Output tokens |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **converter** | 95.3 | 62.0 | **95.3** | **62.0** | 81.7 % | 18.3 % | 24 | **100.0 %** | 0 | 0 | — | — | — |
-| haiku / low | 92.8 | 48.0 | 91.7 | 48.0 | 79.8 % | 20.2 % | 30 | 91.9 % | 26 | 17 | 8.6 | 0.39 | 139k |
-| haiku / medium | 96.0 | 62.8 | 94.5 | 61.1 | 80.8 % | 19.2 % | 24 | 98.4 % | 9 | 0 | 6.0 | 0.28 | 99k |
-| haiku / high | 96.3 | 59.6 | 94.9 | 57.9 | 81.0 % | 19.0 % | 24 | 97.8 % | 8 | 3 | 7.6 | 0.36 | 131k |
-| haiku / max | 99.6 | 67.4 | 92.2 | 54.9 | 75.2 % | 24.8 % | 21 | 99.2 % | 2 | 2 | 13.5 | 0.64 | 222k |
-| sonnet / low | 96.4 | 70.8 | 95.2 | 69.1 | 83.2 % | 16.8 % | 12 | 97.7 % | 8 | 4 | 5.2 | 1.03 | 58k |
-| sonnet / medium | 95.8 | 78.3 | 94.5 | 76.5 | 82.7 % | 17.3 % | 14 | 97.9 % | 9 | 3 | 5.3 | 1.05 | 58k |
-| sonnet / high | 95.7 | 78.5 | 94.6 | 76.8 | 82.7 % | 17.3 % | 13 | 97.9 % | 8 | 4 | 6.0 | 1.14 | 65k |
-| sonnet / max | 96.5 | 80.1 | 95.3 | 78.4 | 83.8 % | 16.2 % | 7 | 98.1 % | 8 | 3 | 36.0 | 4.85 | 339k |
-| opus / low | 96.5 | 83.1 | 95.3 | 81.4 | 83.3 % | 16.7 % | 10 | 98.1 % | 8 | 3 | 7.1 | 2.04 | 57k |
-| opus / medium | 96.5 | 83.1 | 95.3 | 81.4 | 83.3 % | 16.7 % | 10 | 98.1 % | 8 | 3 | 8.5 | 2.33 | 66k |
-| opus / high | 96.5 | 84.1 | 95.3 | 82.3 | 83.5 % | 16.5 % | 9 | 98.1 % | 8 | 3 | 10.7 | 2.83 | 85k |
+Rescored in Phase 5 (task A, branch `fix/harness-expectations`) from the stored answers, after three harness expectations were corrected (see the end of the next section); no model was run again.
 
-*Converted*: share of the 678 that got a chain. *Precision*: share of emitted chains that are CORRECT or DRIFT. Cost is the CLI's API-equivalent figure; the runs used a subscription. Time is wall time and includes the account's rate limiting while three runs shared it.
+| Cell | **R** | **S** | Converted | Skipped | of which GAP | Precision | WRONG | INVALID | Time, min | Cost, $ | Output tokens |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **converter** | **95.3** | **61.8** | 81.8 % | 18.2 % | 25 | **100.0 %** | 0 | 0 | — | — | — |
+| haiku / low | 91.7 | 47.9 | 79.7 % | 20.3 % | 31 | 92.2 % | 25 | 17 | 8.6 | 0.39 | 139k |
+| haiku / medium | 94.5 | 60.8 | 80.9 % | 19.1 % | 24 | 98.7 % | 7 | 0 | 6.0 | 0.28 | 99k |
+| haiku / high | 94.9 | 57.6 | 80.9 % | 19.1 % | 25 | 98.4 % | 6 | 3 | 7.6 | 0.36 | 131k |
+| haiku / max | 92.2 | 54.9 | 75.4 % | 24.6 % | 22 | 99.2 % | 2 | 2 | 13.5 | 0.64 | 222k |
+| sonnet / low | 95.2 | 68.8 | 83.3 % | 16.7 % | 12 | 98.0 % | 6 | 4 | 5.2 | 1.03 | 58k |
+| sonnet / medium | 94.5 | 76.3 | 82.8 % | 17.2 % | 14 | 98.2 % | 7 | 3 | 5.3 | 1.05 | 58k |
+| sonnet / high | 94.6 | 75.6 | 82.8 % | 17.2 % | 14 | 98.2 % | 6 | 4 | 6.0 | 1.14 | 65k |
+| sonnet / max | 95.3 | 77.2 | 83.9 % | 16.1 % | 8 | 98.4 % | 6 | 3 | 36.0 | 4.85 | 339k |
+| opus / low | 95.3 | 81.1 | 83.4 % | 16.6 % | 11 | 98.4 % | 6 | 3 | 7.1 | 2.04 | 57k |
+| opus / medium | 95.3 | 81.1 | 83.4 % | 16.6 % | 11 | 98.4 % | 6 | 3 | 8.5 | 2.33 | 66k |
+| opus / high | 95.3 | 82.1 | 83.6 % | 16.4 % | 10 | 98.4 % | 6 | 3 | 10.7 | 2.83 | 85k |
+
+*Converted*: share of the 676 compared cases that got a chain (L157 and E10 are left out). *Precision*: share of emitted chains that are CORRECT or DRIFT. Cost is the CLI's API-equivalent figure; the runs used a subscription. Time is wall time and includes the account's rate limiting while three runs shared it.
 
 **Excluded: opus / max.** The run was cut off by the account's 5-hour session limit (HTTP 429) after 38.7 min, $7.57 and 284k output tokens (253k of them thinking), with 460 of 678 answers written. It ran in parallel with sonnet / max, so the limit was shared; how much each run used is not measured. Two earlier `max` attempts (sonnet: session limit; opus: network error) were rerun; their records are in `llm/out/failed/`.
 
@@ -525,7 +530,7 @@ Verdicts are the harness's: CORRECT, CORRECT-SKIP, GAP, DRIFT (half credit when 
 
 ### Where the models are right and the converter is not
 
-A model found an exact chain for 30 cases: all 24 that the converter skips although an exact chain exists (GAP), 5 that it only approximates (DRIFT), and H07 (below); full list in [`llm/analysis/cross.md`](llm/analysis/cross.md). By kind:
+A model found an exact chain for 30 cases: all 25 that the converter skips although an exact chain exists (GAP, H07 included since Phase 5), and 5 that it only approximates (DRIFT); full list in [`llm/analysis/cross.md`](llm/analysis/cross.md). By kind:
 
 | Kind | Cases | Runs right (of 11) |
 |---|---|---|
@@ -542,11 +547,13 @@ A model found an exact chain for 30 cases: all 24 that the converter skips altho
 
 These are candidates for the converter. Before adding them, the ones that depend on how XCTest evaluates a predicate (`MATCHES`, `[c]`, `.length`, `$…$`) need the device check of Phase 2; the others only need the parser and are proved by mini-WDA.
 
-The runs also show three problems in the harness's own expectations:
+The runs also showed three problems in the harness's own expectations. Phase 5 (task A) corrected them, and every number in this section is rescored with the corrections:
 
-- **H07** `//*[replace(@label,"a","b")="bb"]` is marked inexpressible, but `label MATCHES "[ab]{2}"` (3 runs) is exact. It is excluded from the denominator, so no score changes.
-- **E07** `(//Button)[position()=2]` gets WRONG for `**/XCUIElementTypeButton[2]`, while the same chain for the same locator written as `(//Button)[2]` (E02) is DRIFT. Both are excluded or half-credited, so only the WRONG counts are affected (9 runs).
-- **L157** is already a class chain inside `//…[…]`, not an XPath.
+- **H07** `//*[replace(@label,"a","b")="bb"]` was marked inexpressible, but `label MATCHES "[ab]{2}"` (3 runs) is exact: replacing every a by b gives "bb" exactly when the label is two characters from {a, b}. The harness proves it (300 of 300 page sources equal). H07 is now in the denominator: a GAP for the converter and for the runs that skipped it, CORRECT for the 3 runs that wrote it.
+- **E07** `(//Button)[position()=2]` got WRONG for `**/XCUIElementTypeButton[2]`, while the same chain for the same locator written as `(//Button)[2]` (E02) is DRIFT. **E11** `(//Cell)[2]/Button` is the same grouped position on an intermediate step. Both are now judged like E02: no exact chain exists, and a chain that behaves like the grouped-position approximation (`**/X[2]`, `**/Cell[2]/Button`) is documented DRIFT. The converter skips both, which stays CORRECT-SKIP and leaves the denominator, so its scores do not change. 9 runs lose 2 WRONG each.
+- **L157** is a class chain inside `//…[…]`, not an XPath. It stays in the corpus, marked EXCLUDED, and is out of every count and denominator (R, C, Converted, Precision).
+
+Effect, together with dropping E10 from the comparison: the converter's S goes from 62.0 to 61.8 (H07 is a new GAP in category H), R is unchanged. For the models, S drops by 0–1.2 points (most by 0.2–0.3; sonnet / high and max by 1.2, as they skipped H07), R is unchanged, the WRONG column drops by 2 in the 9 runs that wrote E07 and E11, and Precision rises by up to 0.6 points. The ranking does not change.
 
 Checked and confirmed: `matches`, `ends-with`, `lower-case`, `upper-case`, `replace`, `tokenize` and `string-join` are registered by WDA itself (`FBXPathExtensions.m`), so H01–H09 are valid locators on the driver. The runs that skipped H01–H06 as "XPath 1.0 has no such function" (opus at every level, haiku / high and max) were wrong about the driver.
 
@@ -556,7 +563,7 @@ Checked and confirmed: `matches`, `ends-with`, `lower-case`, `upper-case`, `repl
 |---|---|---|
 | raw line break copied into the NSPredicate string (WDA cannot parse it) | G05, L119, L162 | INVALID in 10 of 11 (every sonnet and opus run) |
 | `@label!="a"` → `label != "a"`: NSPredicate is true for a missing label, XPath is false | B02 | WRONG in 7 (haiku, sonnet low–high) |
-| positions with no exact form emitted anyway: `last()` → `[-1]`, `position()=2`, `(//Cell)[2]/Button` | E05–E07, E11, L270–L272 | WRONG in 3–7 per run; more with stronger models |
+| positions with no exact form emitted anyway: `last()` → `[-1]`, `last()-1` → `[-2]` | E05, E06, L270–L272 | WRONG in 3–5 per run; more with stronger models |
 | `[.//*[@name="x"]]` → `[$name == "x"$]` (`$…$` also matches the element itself, RC-D2) | F03 | WRONG in 6 (sonnet medium–max, every opus run) |
 | zero-based indexes (`[0]`, `[n-1]`) | 35 positional cases | haiku / low only: 21 WRONG, 14 INVALID |
 | skipped although the converter handles it: `@value>5`, `@x>60`, `@index`, `//XCUIElementTypeAny`, `$…$` for descendants, `hittable`, `placeholderValue` | B03, B04, B11, A04, F01, F07, F08, B14, B15 | GAP in 3–11 |
@@ -567,22 +574,22 @@ Sonnet and Opus make the first and third errors at every effort level, and no ru
 
 | Model | Best effort | Why |
 |---|---|---|
-| Haiku | **medium** | low makes zero-based indexes (43 WRONG/INVALID). medium has no INVALID and the best S= of Haiku. high has a lower S= (the line-break INVALIDs return). max skips a quarter of the input: R 99.6, but R= 92.2 |
-| Sonnet | **low** (or medium for edge cases) | medium: +7.4 S= for the same cost, −0.7 R=. high = medium. max: +1.6 S= over high for 4× the cost and 6× the time |
-| Opus | **low** | low and medium have identical verdicts; high adds 0.9 S= for +39 % cost |
+| Haiku | **medium** | low makes zero-based indexes (43 WRONG/INVALID). medium has no INVALID and the best S of Haiku. high has a lower S (the line-break INVALIDs return). max skips a quarter of the input and drops to R 92.2 |
+| Sonnet | **low** (or medium for edge cases) | medium: +7.5 S for the same cost, −0.7 R. high is no better (−0.7 S). max: +1.6 S over high for 4× the cost and 6× the time |
+| Opus | **low** | low and medium have identical verdicts; high adds 1.0 S for +39 % cost |
 
 A higher effort was never better in proportion to its cost, and for Haiku it was worse.
 
 ### Top 3
 
-| | Cell | R= | S= | Precision | Converted | WRONG + INVALID | Time | Cost |
+| | Cell | R | S | Precision | Converted | WRONG + INVALID | Time | Cost |
 |---|---|---|---|---|---|---|---|---|
-| 1 | opus / low | 95.3 | 81.4 | 98.1 % | 83.3 % | 11 | 7.1 min | $2.04 |
-| 2 | sonnet / low | 95.2 | 69.1 | 97.7 % | 83.2 % | 12 | 5.2 min | $1.03 |
-| 3 | haiku / medium | 94.5 | 61.1 | 98.4 % | 80.8 % | 9 | 6.0 min | $0.28 |
-| ref | converter | 95.3 | 62.0 | 100 % | 81.7 % | 0 | seconds | — |
+| 1 | opus / low | 95.3 | 81.1 | 98.4 % | 83.4 % | 9 | 7.1 min | $2.04 |
+| 2 | sonnet / low | 95.2 | 68.8 | 98.0 % | 83.3 % | 10 | 5.2 min | $1.03 |
+| 3 | haiku / medium | 94.5 | 60.8 | 98.7 % | 80.9 % | 7 | 6.0 min | $0.28 |
+| ref | converter | 95.3 | 61.8 | 100 % | 81.8 % | 0 | seconds | — |
 
-On real-world locators (R=) no run beats the converter; the best ones tie it. The models are ahead on edge cases (S=, up to +20), and they pay for it with wrong chains the converter does not make. In the per-case verdicts, the models' strength lies exactly where the converter skips: on its 24 GAPs, opus / low is right on 19 and wrong on none, sonnet / low right on 21 with one INVALID. A model asked about all skipped locators would also convert the ones that have no exact form (E05–E07, E11, L270–L272, F03) and get them wrong. This combination was not run as a pipeline.
+On real-world locators (R) no run beats the converter; the best ones tie it. The models are ahead on edge cases (S, up to +20), and they pay for it with wrong chains the converter does not make. In the per-case verdicts, the models' strength lies exactly where the converter skips: on its 25 GAPs, opus / low is right on 19 and wrong on none, sonnet / low right on 22 with one INVALID. A model asked about all skipped locators would also convert the ones that have no exact form: E05, E06, L270–L272 and F03 wrong, E07 and E11 as the grouped-position approximation (DRIFT). This combination was not run as a pipeline.
 
 ### An improved prompt (not yet tested)
 
@@ -632,7 +639,7 @@ that do not exist in XCUITest.
 
 ### Limits of these measurements
 
-- One run per cell. Run-to-run variation is not measured (Stage 2 was not run), so differences of a few cases between cells, such as sonnet low vs medium on R=, may be noise.
+- One run per cell. Run-to-run variation is not measured (Stage 2 was not run), so differences of a few cases between cells, such as sonnet low vs medium on R, may be noise.
 - `xhigh` was not run; opus / `max` is incomplete.
 - The oracle is mini-WDA, not a device. The converter's outputs were checked on a simulator and an iPhone in Phase 2; the models use forms the converter does not (`MATCHES`, `[c]`, `.length`, `rect.x`, `$…$` with `ancestor::`), and those were not.
 - Times are from parallel runs on one account and include its rate limiting. The scoring ran on a Mac on AC with Low Power Mode off.
@@ -640,10 +647,10 @@ that do not exist in XCUITest.
 
 ### Conclusions
 
-1. On real-world locators, a plain model converts as many as the converter (81–84 % of the input against 81.7 %) and scores the same at best (R= 95.3 for opus at every level and sonnet / max). It never scores higher.
+1. On real-world locators, a plain model converts as many as the converter (80–84 % of the input against 81.8 %) and scores the same at best (R 95.3 for opus at every level and sonnet / max). It never scores higher.
 2. Every model run emits wrong chains: 4–43 per run (precision 92–99 %), against none from the converter. The two most common errors are a raw line break in a literal (INVALID in every Sonnet and Opus run) and positions that have no exact form (`last()`, `position()`), which the models convert instead of skipping.
-3. The models are clearly better on edge cases (S= up to 82 against 62). Exactly there the converter skips: for all 24 of its GAPs (4 corpus, 20 spec) some run found the exact chain, and 5 converter DRIFTs (A07, A14–A16, B16) are imprecisions with an exact form. These are the converter's next improvements.
-4. A higher effort does not pay: Opus is flat from `low`, Sonnet from `medium`, and Haiku gets worse above `medium`. `max` costs 2–4× and up to 6× the time of the level below for at most +1.6 S=, and it spends 80–90 % of its tokens on thinking.
+3. The models are clearly better on edge cases (S up to 82 against 62). Exactly there the converter skips: for all 25 of its GAPs (4 corpus, 21 spec) some run found the exact chain, and 5 converter DRIFTs (A07, A14–A16, B16) are imprecisions with an exact form. These are the converter's next improvements.
+4. A higher effort does not pay: Opus is flat from `low`, Sonnet from `medium`, and Haiku gets worse above `medium`. `max` costs 2–4× and up to 6× the time of the level below for at most +1.6 S, and it spends 80–90 % of its tokens on thinking.
 5. Recommendation: convert with the converter, which never emits a wrong chain. For the locators it skips, a model helps (opus / low or sonnet / low), but its chains need the harness or a device check before they replace the XPath.
 
 ## 1. Headline

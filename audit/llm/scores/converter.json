@@ -2,38 +2,40 @@
  "summary": {
   "name": "converter",
   "R": 95.3,
-  "S": 62,
+  "S": 61.8,
   "Scat": {
    "A": 10.5,
    "B": 14.0625,
    "C": 8.333333333333334,
    "D": 8,
-   "E": 5.142857142857143,
+   "E": 5,
    "F": 7.5,
    "G": 7.5,
-   "H": 1,
+   "H": 0.8571428571428571,
    "R": 0
   },
   "corpusDen": 487,
   "corpus": {
    "CORRECT": 447,
-   "CORRECT-SKIP": 76,
+   "CORRECT-SKIP": 75,
    "GAP": 4,
    "DRIFT": 36,
    "WRONG": 0,
    "INVALID": 0,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "spec": {
    "CORRECT": 54,
-   "CORRECT-SKIP": 24,
-   "GAP": 20,
-   "DRIFT": 17,
+   "CORRECT-SKIP": 23,
+   "GAP": 21,
+   "DRIFT": 16,
    "WRONG": 0,
    "INVALID": 0,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "entries": 678,
   "duplicates": 0,
@@ -1108,7 +1110,8 @@
    "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
    "skip": true,
    "reason": "skipped_validation_failed",
-   "verdict": "CORRECT-SKIP",
+   "verdict": "EXCLUDED",
+   "note": "not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath; out of every count and denominator",
    "inDen": false
   },
   "x092": {
@@ -1363,12 +1366,9 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][2]",
-   "outcome": "SET_DIFFERS",
-   "hits": 3,
-   "trials": 301,
-   "verdict": "DRIFT",
-   "documented": true,
-   "inDen": true
+   "verdict": "EXCLUDED",
+   "note": "its runtime string is E09's locator, while the harness judges the source string `)${suffix}`; left out of the comparison; out of every count and denominator",
+   "inDen": false
   },
   "x114": {
    "orig": "L544",
@@ -3440,8 +3440,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "skipped_validation_failed",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "verdict": "GAP",
+   "inDen": true
   },
   "x291": {
    "orig": "L248",

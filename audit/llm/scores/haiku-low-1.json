@@ -1,8 +1,8 @@
 {
  "summary": {
   "name": "haiku-low-1",
-  "R": 92.8,
-  "S": 48,
+  "R": 91.7,
+  "S": 47.9,
   "Scat": {
    "A": 13,
    "B": 6.5625,
@@ -11,10 +11,10 @@
    "E": 0,
    "F": 0,
    "G": 7.857142857142857,
-   "H": 1,
+   "H": 0.8571428571428571,
    "R": 0
   },
-  "corpusDen": 481,
+  "corpusDen": 487,
   "corpus": {
    "CORRECT": 446,
    "CORRECT-SKIP": 79,
@@ -23,17 +23,19 @@
    "WRONG": 19,
    "INVALID": 13,
    "MISSING": 0,
-   "N/A": 1
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "spec": {
    "CORRECT": 50,
-   "CORRECT-SKIP": 28,
-   "GAP": 26,
+   "CORRECT-SKIP": 27,
+   "GAP": 27,
    "DRIFT": 0,
-   "WRONG": 7,
+   "WRONG": 6,
    "INVALID": 4,
    "MISSING": 0,
-   "N/A": 0
+   "N/A": 0,
+   "EXCLUDED": 1
   },
   "entries": 678,
   "duplicates": 0,
@@ -473,7 +475,7 @@
    "skip": true,
    "reason": "positional index on a descendant step applies per parent in XPath (//X[1]); not a class chain index",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x038": {
    "orig": "L217",
@@ -1119,11 +1121,8 @@
    "cat": "corpus",
    "xpath": "//XCUIElementTypeButton[`label == \"Gihasem\"`]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Gihasem\"`]",
-   "outcome": "XPATH_ERROR",
-   "hits": 0,
-   "trials": 200,
-   "verdict": "N/A",
-   "note": "XPath is rejected by WDA; excluded",
+   "verdict": "EXCLUDED",
+   "note": "not an XPath: class chain predicate inside //…[…]; WDA rejects it as XPath; out of every count and denominator",
    "inDen": false
   },
   "x092": {
@@ -1363,7 +1362,7 @@
    "skip": true,
    "reason": "positional index on a multi-step result has no class chain equivalent",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x113": {
    "orig": "E10",
@@ -1371,18 +1370,9 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][1]",
-   "outcome": "SET_DIFFERS",
-   "hits": 3,
-   "trials": 301,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeOther k=\"n1\" value=\"\" placeholderValue=\"ya\" enabled=\"true\" visible=\"true\" accessible=\"false\" hittable=\"true\" selected=\"false\" x=\"100\" width=\"50\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" name=\"A b\" label=\"other\" placeholderValue=\"a\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"60\" width=\"100\" value=\"10.5\"><XCUIElementTypeOther k=\"n3\" name=\"b\" value=\"abc\" placeholderValue=\"a b\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"100\"><XCUIElementTypeStaticText k=\"n4\" value=\" a  b \" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"50\"></XCUIElementTypeStaticText><XCUIElementTypeOther k=\"n5\" name=\"false\" value=\"b\" placeholderValue=\"ya\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"60\"><XCUIElementTypeButton k=\"n6\" name=\"a\" label=\" a  b \" value=\"zabz\" enabled=\"false\" visible=\"false\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"100\" width=\"60\"></XCUIElementTypeButton></XCUIElementTypeOther></XCUIElementTypeOther></XCUIElementTypeOther></XCUIElementTypeApplication>",
-    "xpathHits": [],
-    "chainHits": [
-     "n6"
-    ]
-   },
-   "inDen": true
+   "verdict": "EXCLUDED",
+   "note": "its runtime string is E09's locator, while the harness judges the source string `)${suffix}`; left out of the comparison; out of every count and denominator",
+   "inDen": false
   },
   "x114": {
    "orig": "L544",
@@ -1445,7 +1435,7 @@
    "skip": true,
    "reason": "positional index on a descendant step applies per parent in XPath (//X[2]); not a class chain index",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x119": {
    "orig": "L138",
@@ -1803,7 +1793,7 @@
    "skip": true,
    "reason": "positional index on a multi-step result has no class chain equivalent",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x149": {
    "orig": "L288",
@@ -3507,8 +3497,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "replace() has no class chain equivalent",
-   "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "verdict": "GAP",
+   "inDen": true
   },
   "x291": {
    "orig": "L248",
@@ -4572,7 +4562,7 @@
    "skip": true,
    "reason": "positional index on a multi-step result has no class chain equivalent",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x379": {
    "orig": "L542",
@@ -5621,7 +5611,7 @@
    "skip": true,
    "reason": "positional index on a descendant step applies per parent in XPath (//X[1]); not a class chain index",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x467": {
    "orig": "A08",
@@ -5921,7 +5911,7 @@
    "skip": true,
    "reason": "positional index on a multi-step result has no class chain equivalent",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x493": {
    "orig": "L210",
@@ -6236,7 +6226,7 @@
    "skip": true,
    "reason": "positional index on a descendant step applies per parent in XPath (//X[2]); not a class chain index",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x520": {
    "orig": "L547",

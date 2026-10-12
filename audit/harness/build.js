@@ -105,7 +105,8 @@ for (const x of corpus) {
   } else if (x.id === 'L068') {
     Object.assign(c, { verdict: 'CORRECT-SKIP', expressible: false, expected: 'UNDETERMINED: bracket-less ${value} suffix; its runtime text is unknown', note: 'excluded from the denominator; see §8' });
   } else if (x.id === 'L157') {
-    Object.assign(c, { verdict: 'CORRECT-SKIP', expressible: false, expected: 'INVALID XPATH on WDA (libxml2: Invalid expression); class-chain intent would be **/XCUIElementTypeButton[`label == "Gihasem"`]', note: 'mixed XPath + class chain syntax' });
+    // not an XPath: a class chain predicate inside //…[…]. Kept in the corpus, out of every denominator (Phase 5, A3)
+    Object.assign(c, { verdict: 'EXCLUDED', expressible: false, expected: 'NOT AN XPATH: class chain predicate inside //…[…] (libxml2 on WDA: Invalid expression); class-chain intent would be **/XCUIElementTypeButton[`label == "Gihasem"`]', note: 'mixed XPath + class chain syntax; not an XPath, so also out of the coverage (C) denominator' });
   } else {
     Object.assign(c, { verdict: 'CORRECT-SKIP', expressible: false, expected: 'INEXPRESSIBLE: ' + SKIP_REASON(x.source) });
   }
@@ -122,12 +123,14 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
   E01: ['DRIFT', null, true], E02: ['DRIFT', null, true], E03: ['DRIFT', null, true], E04: ['CORRECT-SKIP'], E05: ['CORRECT-SKIP'], E06: ['CORRECT-SKIP'], E07: ['CORRECT-SKIP'], E08: ['CORRECT-SKIP'], E09: ['DRIFT', null, true], E10: ['CORRECT-SKIP'], E11: ['CORRECT-SKIP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['DRIFT', null, true],
   F01: ['CORRECT'], F02: ['CORRECT-SKIP'], F03: ['CORRECT-SKIP'], F04: ['GAP'], F05: ['CORRECT-SKIP'], F06: ['CORRECT-SKIP'], F07: ['CORRECT'], F08: ['CORRECT'],
   G01: ['CORRECT'], G02: ['CORRECT'], G03: ['GAP'], G04: ['GAP'], G05: ['CORRECT'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['DRIFT', null, true], G12: ['CORRECT'], G13: ['CORRECT'], G14: ['GAP'],
-  H01: ['CORRECT'], H02: ['GAP'], H03: ['GAP'], H04: ['GAP'], H05: ['GAP'], H06: ['GAP'], H07: ['CORRECT-SKIP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
+  H01: ['CORRECT'], H02: ['GAP'], H03: ['GAP'], H04: ['GAP'], H05: ['GAP'], H06: ['GAP'], H07: ['GAP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
   R01: ['GAP'], R02: ['CORRECT-SKIP'], R03: ['CORRECT-SKIP'], R04: ['CORRECT-SKIP'],
   X01: ['CORRECT-SKIP'], X02: ['CORRECT-SKIP'], X03: ['CORRECT-SKIP'], X04: ['GAP'], X05: ['GAP'], X06: ['CORRECT-SKIP'], X07: ['GAP'],
 };
-// cases whose XPath never matches anything on WDA (dead) or that have no exact form -> excluded from the denominator
-const NOT_EXPRESSIBLE = new Set(['E11', 'E05', 'E06', 'E07', 'F03', 'A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H07', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
+// cases whose XPath never matches anything on WDA (dead) or that have no exact form -> excluded from the denominator.
+// Cases with an `approx` expectation (no exact chain, E02-like) are not listed: a skip there leaves the denominator,
+// an emitted approximation is DRIFT and stays in it (the rule audit/llm/score.js uses)
+const NOT_EXPRESSIBLE = new Set(['E05', 'E06', 'F03', 'A13', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
 for (const r of spec) {
   let [verdict, rc, doc] = SPEC[r.id] || [];
   const e = r.runExpected, a = r.runActual, f = r.fixtureRun;
@@ -156,7 +159,7 @@ for (const r of spec) {
   if (r.runXpathOnly) ev.push(`XPath-only hits in ${r.runXpathOnly.hits}/${r.runXpathOnly.trials} trials`);
   cases.push({ id: r.id, xpath: r.xpath, expected: typeof r.expected === 'string' ? r.expected : (r.expected.inexpressible ? 'INEXPRESSIBLE: ' + r.expected.inexpressible : 'SKIP: ' + r.expected.skip),
     actual: r.actual ? '-ios class chain:' + r.actual : null, status: r.status, verdict, shape: r.xpath.replace(/"[^"]*"|'[^']*'/g, '"s"'), category: r.cat,
-    note: [r.note, r.approx, ...ev].filter(Boolean).join(' | '), expressible: !NOT_EXPRESSIBLE.has(r.id), rootCause: rc || null, documented: doc ?? null });
+    note: [r.note, r.approx, ...ev].filter(Boolean).join(' | '), expressible: !NOT_EXPRESSIBLE.has(r.id) && !(r.approx && verdict === 'CORRECT-SKIP'), rootCause: rc || null, documented: doc ?? null });
 }
 // ---------- scanner contexts
 const CTX = [
@@ -169,7 +172,7 @@ const CTX = [
 ];
 for (const [id, exp, act, verdict, rc] of CTX) cases.push({ id, xpath: null, expected: exp, actual: act, status: 'scanner', verdict, shape: 'scanner-context', category: 'context', note: '', expressible: true, rootCause: rc, documented: null });
 // ---------- scoring
-const corp = cases.filter(c => c.category === 'corpus');
+const corp = cases.filter(c => c.category === 'corpus' && c.verdict !== 'EXCLUDED');
 const count = (arr, f) => arr.filter(f).length;
 const exprC = corp.filter(c => c.expressible);
 const correct = count(exprC, c => c.verdict === 'CORRECT'), driftDoc = count(exprC, c => c.verdict === 'DRIFT' && c.documented), driftUndoc = count(exprC, c => c.verdict === 'DRIFT' && !c.documented);
@@ -180,7 +183,7 @@ const penR = Math.min(30, 3 * (rcCorpus.length + rcCtx.length));
 const Rraw = 100 * (correct + 0.5 * driftDoc) / exprC.length;
 const R = Rraw - penR;
 const C = 100 * exprC.length / corp.length;
-console.log(`CORPUS in-scope=${corp.length} expressible=${exprC.length} CORRECT=${correct} DRIFTdoc=${driftDoc} DRIFTundoc=${driftUndoc} WRONG(all)=${wrongC} WRONG(expr)=${count(exprC, c => c.verdict === 'WRONG')} GAP=${gap} CORRECT-SKIP=${count(corp, c => c.verdict === 'CORRECT-SKIP')}`);
+console.log(`CORPUS in-scope=${corp.length} (EXCLUDED, not XPath: ${count(cases, c => c.verdict === 'EXCLUDED')}) expressible=${exprC.length} CORRECT=${correct} DRIFTdoc=${driftDoc} DRIFTundoc=${driftUndoc} WRONG(all)=${wrongC} WRONG(expr)=${count(exprC, c => c.verdict === 'WRONG')} GAP=${gap} CORRECT-SKIP=${count(corp, c => c.verdict === 'CORRECT-SKIP')}`);
 console.log(`R_raw=100*(${correct}+0.5*${driftDoc})/${exprC.length}=${Rraw.toFixed(2)}  rootCauses corpus=${rcCorpus} ctx=${rcCtx} penalty=-${penR}  R=${R.toFixed(1)}  C=${exprC.length}/${corp.length}=${C.toFixed(1)}%`);
 const W = { A: 15, B: 15, C: 15, D: 12, E: 12, F: 10, G: 10, H: 6, R: 5 };
 let Ssum = 0; const lines = [];
