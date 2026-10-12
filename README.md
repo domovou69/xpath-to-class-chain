@@ -1,10 +1,12 @@
 # xpath-to-class-chain
+
 [![CI](https://github.com/domovou69/xpath-to-class-chain/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/domovou69/xpath-to-class-chain/actions/workflows/test.yml)
 
 Convert and optimize iOS XPath locators to iOS Class Chain selectors for Appium,
 with a built-in linter and an optimizer pass that recovers chains which would otherwise be rejected.
 
 Use it as:
+
 - A **bulk scanner** that rewrites locators across a folder tree
 - A **library** when you need to validate / optimize chains from your own code
 
@@ -28,24 +30,24 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 
 **Two ways to convert**
 
-| | A. This converter | B. An LLM with the rules prompt |
-|---|---|---|
-| Cost and speed | free, offline, seconds | Opus at `low` effort, about $1.7 and 5 minutes for the whole list (one batch run) |
-| How | `npx github:domovou69/xpath-to-class-chain ./tests` | give the model [`audit/llm/prompt-v4-run.md`](audit/llm/prompt-v4-run.md) and your locator list |
-| Wrong chains | none | none for Opus and Sonnet; Haiku sent 5 |
-| Best result | **A is the maximum**: it converted 579 of 676 locators and skipped the rest with a reason | 560 of 676, i.e. 96.7 % of what A converted; nothing the converter misses was found by the model |
+|                | A. This converter                                                                         | B. An LLM with the rules prompt                                                                  |
+| -------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Cost and speed | free, offline, seconds                                                                    | Opus at `low` effort, about $1.7 and 5 minutes for the whole list (one batch run)                |
+| How            | `npx github:domovou69/xpath-to-class-chain ./tests`                                       | give the model [`audit/llm/prompt-v4-run.md`](audit/llm/prompt-v4-run.md) and your locator list  |
+| Wrong chains   | none                                                                                      | none for Opus and Sonnet; Haiku sent 5                                                           |
+| Best result    | **A is the maximum**: it converted 579 of 676 locators and skipped the rest with a reason | 560 of 676, i.e. 96.7 % of what A converted; nothing the converter misses was found by the model |
 
 **Recommendation:** use A. It is free, deterministic, and no model beat it on any case. Use B only for the locators A skips on purpose, and check each chain it returns (with the harness in [`audit/harness`](audit/harness) or on a device) before replacing the XPath: the model's answers were judged by an emulator, not by a device.
 
 **Final results** (one run per model, the converter and `prompt-v4`; R and S defined below the table):
 
-| | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Cost per run (678 locators) |
-|---|---|---|---|---|---|
-| **Converter (A)** | **95.8** | **91.8** | 100 % | 0 | free |
-| Opus, effort low (B) | 95.0 | 86.0 | 96.7 % | 0 | $1.72 |
-| Sonnet, effort low (B) | 95.0 | 83.8 | 96.4 % | 0 | $1.58 |
-| Haiku, effort medium (B) | 94.8 | 71.1 | 95.7 % | 5 | $0.27 |
-| Opus, effort low, no rules (plain request) | 95.0 | 81.9 | 96.7 % | 4 | $2.04 |
+|                                                | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Cost per run (678 locators) |
+| ---------------------------------------------- | ---------------- | ------------- | -------------------------- | ----------------------- | --------------------------- |
+| **Converter (A)**                              | **95.8**         | **91.8**      | 100 %                      | 0                       | free                        |
+| Opus 5.5, effort low, no rules (plain request) | 95.0             | 81.9          | 96.7 %                     | 4                       | $2.04                       |
+| Opus 5.5, effort low (B)                       | 95.0             | 86.0          | 96.7 %                     | 0                       | $1.72                       |
+| Sonnet 5.5, effort low (B)                     | 95.0             | 83.8          | 96.4 %                     | 0                       | $1.58                       |
+| Haiku 5.5, effort medium (B)                   | 94.8             | 71.1          | 95.7 %                     | 5                       | $0.27                       |
 
 **R** is the share of real-world locators that got a correct chain, out of those that have one (a documented approximation counts half; a skipped, wrong or invalid one counts 0). **S** is the same score on the 114 edge cases, weighted by group. Both are out of 100. "Converted vs the converter" counts usable chains against the 579 the converter produces. One run per model, so differences of about 3 points in S are noise.
 
@@ -57,15 +59,15 @@ Caveat: `visible` on the last step can be much slower as a chain; see [On the de
 
 **What this state was checked on** (October 2026; re-check when any of it changes):
 
-| | Version |
-|---|---|
-| Appium | 3.8.0 |
-| appium-xcuitest-driver | 12.16.0 |
-| WebDriverAgent | 16.14.1 |
-| iOS | 27.0 simulator (iPhone 17) and iOS 26.6 on an iPhone 13 Pro Max; same results |
-| Xcode | 27.0 |
-| Node.js | 20 or later (run on 24) |
-| Models for B | `claude-opus-5-5`, `claude-sonnet-5-5`, `claude-haiku-5-5` |
+|                        | Version                                                                 |
+| ---------------------- | ----------------------------------------------------------------------- |
+| Appium                 | 3.8.0                                                                   |
+| appium-xcuitest-driver | 12.16.0                                                                 |
+| WebDriverAgent         | 16.14.1                                                                 |
+| iOS                    | 27.0 simulator (iPhone 17) and iOS 26.6 iPhone 13 Pro Max; same results |
+| Xcode                  | 27.0                                                                    |
+| Node.js                | 20 or later (run on 24)                                                 |
+| Models for B           | `claude-opus-5-5`, `claude-sonnet-5-5`, `claude-haiku-5-5`              |
 
 ## Requirements
 
@@ -134,24 +136,26 @@ The optimizer always runs — in both the preview and `--write` paths, so the pr
 
 1. **`XCUIElementTypeAny` → `*`**. Normalises the verbose API name to the idiomatic wildcard symbol.
 2. **`IN {"single"}` → `==`**. A one-item set degrades to a hash lookup anyway; `==` is clearer and avoids the set-iteration path.
-3. **`**/` deduplication**. `**/**/` is equivalent to `**/`; the second recursive scan adds no filtering but does add overhead.
-4. **Merge sibling predicate blocks**. Adjacent `[\`a\`][\`b\`]` on the same step can be misread by the engine as an index. They are merged into `[\`a AND b\`]`; a block with `OR` keeps its parentheses, `[\`a OR b\`][\`c\`]` → `[\`(a OR b) AND c\`]`. Numeric index brackets like `[2]` are never merged.
-5. **Strip redundant `type ==` from concrete-typed nodes**. XCTest pre-filters by node type before evaluating the predicate, so `XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "OK"\`]` → `XCUIElementTypeButton[\`name == "OK"\`]`. (The wildcard case `*[\`type == "X"\`]` → `X` is handled by the validator in all modes.)
+3. **`**/`deduplication**.`**/**/`is equivalent to`\*\*/`; the second recursive scan adds no filtering but does add overhead.
+4. **Merge sibling predicate blocks**. Adjacent `[\`a\`][\`b\`]`on the same step can be misread by the engine as an index. They are merged into`[\`a AND b\`]`; a block with `OR`keeps its parentheses,`[\`a OR b\`][\`c\`]`→`[\`(a OR b) AND c\`]`. Numeric index brackets like `[2]` are never merged.
+5. **Strip redundant `type ==` from concrete-typed nodes**. XCTest pre-filters by node type before evaluating the predicate, so `XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "OK"\`]`→`XCUIElementTypeButton[\`name == "OK"\`]`. (The wildcard case `\*[\`type == "X"\`]`→`X` is handled by the validator in all modes.)
 6. **AND condition cost reordering**. Compound AND predicates short-circuit on the first false condition. Conditions are sorted cheapest-first: `==`/`!=` → `BEGINSWITH` → `ENDSWITH` → `CONTAINS` → `LIKE` → `MATCHES`.
 
 **Removed rules.** Two earlier rules changed which elements a chain matches and were removed (coverage audit, Phase 5 B4):
-- *Strip `XCUIElementTypeOther` / `XCUIElementTypeWindow` steps without a predicate.* `**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton` → `**/XCUIElementTypeButton` also matched buttons outside any `Other`, and `/XCUIElementTypeOther/` → `/**/` matched elements at any depth.
-- *Move `visible == 1` from intermediate steps to the final step.* The visibility of a container and of an element inside it are independent: a visible cell can hold a button that is not visible, and the reverse.
 
-**Idempotency**. The validator and optimizer re-run until the output is stable. Matters when one rewrite *unlocks* another — e.g.:
-   ```
-   //*[contains(@type,"XCUIElementTypeButton") and contains(@name,"ab") and @enabled="true"]
-     → validator type-collapse: XCUIElementTypeButton[`name CONTAINS "ab" AND enabled == true`]
-     → cost reordering:         XCUIElementTypeButton[`enabled == true AND name CONTAINS "ab"`]
-     → stable, returned
-   ```
+- _Strip `XCUIElementTypeOther` / `XCUIElementTypeWindow` steps without a predicate._ `**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton` → `**/XCUIElementTypeButton` also matched buttons outside any `Other`, and `/XCUIElementTypeOther/` → `/**/` matched elements at any depth.
+- _Move `visible == 1` from intermediate steps to the final step._ The visibility of a container and of an element inside it are independent: a visible cell can hold a button that is not visible, and the reverse.
 
-   The type collapse fires only when exactly one WDA element type matches the test and the clause is ANDed with the rest: `type CONTAINS "XCUIElementTypeText"` (TextField and TextView) or a type test under `OR` stays a predicate.
+**Idempotency**. The validator and optimizer re-run until the output is stable. Matters when one rewrite _unlocks_ another — e.g.:
+
+```
+//*[contains(@type,"XCUIElementTypeButton") and contains(@name,"ab") and @enabled="true"]
+  → validator type-collapse: XCUIElementTypeButton[`name CONTAINS "ab" AND enabled == true`]
+  → cost reordering:         XCUIElementTypeButton[`enabled == true AND name CONTAINS "ab"`]
+  → stable, returned
+```
+
+The type collapse fires only when exactly one WDA element type matches the test and the clause is ANDed with the rest: `type CONTAINS "XCUIElementTypeText"` (TextField and TextView) or a type test under `OR` stays a predicate.
 
 ---
 
@@ -159,17 +163,17 @@ The optimizer always runs — in both the preview and `--write` paths, so the pr
 
 **Previewing is the default.** The bare command converts and optimizes but writes nothing; `--write` is how you opt in to modifying files.
 
-| Flag | Default | Effect |
-|---|---|---|
-| `--dry-run` | **ON** | Preview only, write nothing. Already the default; wins if combined with `--write`. |
-| `--write` | OFF | Save the changes in place. Requires an explicit target folder. |
-| `--json` | OFF | Write a JSON report file in the current working directory and print its path. Implies `--quiet`. |
-| `--quiet` | OFF | Drop per-match diffs and banner; keep the final summary. |
-| `--optimize` | **implied** | Accepted for compatibility — the optimizer always runs. |
-| `-h`, `--help` | — | Print usage and exit. |
-| `-V`, `--version` | — | Print the version and exit. |
+| Flag              | Default     | Effect                                                                                           |
+| ----------------- | ----------- | ------------------------------------------------------------------------------------------------ |
+| `--dry-run`       | **ON**      | Preview only, write nothing. Already the default; wins if combined with `--write`.               |
+| `--write`         | OFF         | Save the changes in place. Requires an explicit target folder.                                   |
+| `--json`          | OFF         | Write a JSON report file in the current working directory and print its path. Implies `--quiet`. |
+| `--quiet`         | OFF         | Drop per-match diffs and banner; keep the final summary.                                         |
+| `--optimize`      | **implied** | Accepted for compatibility — the optimizer always runs.                                          |
+| `-h`, `--help`    | —           | Print usage and exit.                                                                            |
+| `-V`, `--version` | —           | Print the version and exit.                                                                      |
 
-Unknown flags are rejected with exit code 1 rather than ignored — a typo'd `--optimise` would otherwise run the *unoptimised* path while looking like it worked.
+Unknown flags are rejected with exit code 1 rather than ignored — a typo'd `--optimise` would otherwise run the _unoptimised_ path while looking like it worked.
 
 ## What it will not touch
 
@@ -193,16 +197,46 @@ Written to `xpath-to-class-chain.report.json` in the current working directory:
     "locatorsFound": 48,
     "locatorsUpdated": 38,
     "warnings": 1,
-    "skipped": { "android": 0, "xpathStrategy": 1, "validationFailed": 2, "unsupportedLogic": 5, "notXpath": 0, "noChangeNeeded": 2 }
+    "skipped": {
+      "android": 0,
+      "xpathStrategy": 1,
+      "validationFailed": 2,
+      "unsupportedLogic": 5,
+      "notXpath": 0,
+      "noChangeNeeded": 2
+    }
   },
   "updated": [
-    { "file": "login/login.spec.ts", "old": "//XCUIElementTypeButton[@name=\"OK\"]", "new": "-ios class chain:**/XCUIElementTypeButton[`name == \"OK\"`]" },
-    { "file": "cart/cart.spec.ts", "old": "(//XCUIElementTypeButton[@name=\"Remove\"])[2]", "new": "-ios class chain:**/XCUIElementTypeButton[`name == \"Remove\"`][2]", "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths" }
+    {
+      "file": "login/login.spec.ts",
+      "old": "//XCUIElementTypeButton[@name=\"OK\"]",
+      "new": "-ios class chain:**/XCUIElementTypeButton[`name == \"OK\"`]"
+    },
+    {
+      "file": "cart/cart.spec.ts",
+      "old": "(//XCUIElementTypeButton[@name=\"Remove\"])[2]",
+      "new": "-ios class chain:**/XCUIElementTypeButton[`name == \"Remove\"`][2]",
+      "warning": "grouped position: WDA counts class chain matches breadth-first, XPath in document order, so the element can differ when matches sit at different depths"
+    }
   ],
   "skipped": [
-    { "file": "nav/nav.spec.ts", "locator": "//*[last()]", "status": "skipped_unsupported_logic" },
-    { "file": "pages/LoginPage.java", "locator": "//XCUIElementTypeButton[@name=\"OK\"]", "status": "skipped_xpath_strategy", "reason": "xpath strategy: AppiumBy.xpath(" },
-    { "file": "pages/page.spec.ts", "locator": "-ios class chain:**/Btn[`name == \"x`]", "status": "skipped_validation_failed", "reason": "Unbalanced backticks" }
+    {
+      "file": "nav/nav.spec.ts",
+      "locator": "//*[last()]",
+      "status": "skipped_unsupported_logic"
+    },
+    {
+      "file": "pages/LoginPage.java",
+      "locator": "//XCUIElementTypeButton[@name=\"OK\"]",
+      "status": "skipped_xpath_strategy",
+      "reason": "xpath strategy: AppiumBy.xpath("
+    },
+    {
+      "file": "pages/page.spec.ts",
+      "locator": "-ios class chain:**/Btn[`name == \"x`]",
+      "status": "skipped_validation_failed",
+      "reason": "Unbalanced backticks"
+    }
   ]
 }
 ```
@@ -215,51 +249,51 @@ Written to `xpath-to-class-chain.report.json` in the current working directory:
 
 Status values used in `skipped[]`:
 
-| Status | Meaning |
-|---|---|
-| `success` | Converted or lint-fixed; appears in `updated[]`. |
-| `skipped_not_xpath` | Grouped XPath whose outer index isn't a static position, e.g. `(//XCUIElementTypeButton[@name="x"])[position()<=2]`. (Non-locator strings such as URLs are filtered out earlier and never counted at all.) |
-| `skipped_android` | Locator targets Android UI (`android.widget.*`). |
-| `skipped_xpath_strategy` | The string is passed to an explicit XPath strategy (`AppiumBy.xpath(…)`, `(By.XPATH, …)`, …); `reason` names it. |
-| `skipped_unsupported_logic` | XPath uses an axis or function Class Chain can't express. |
-| `skipped_validation_failed` | Output didn't pass NSPredicate validation, even after the optimizer pass. |
-| `skipped_no_change` | Already a valid class chain; nothing to do. |
+| Status                      | Meaning                                                                                                                                                                                                    |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `success`                   | Converted or lint-fixed; appears in `updated[]`.                                                                                                                                                           |
+| `skipped_not_xpath`         | Grouped XPath whose outer index isn't a static position, e.g. `(//XCUIElementTypeButton[@name="x"])[position()<=2]`. (Non-locator strings such as URLs are filtered out earlier and never counted at all.) |
+| `skipped_android`           | Locator targets Android UI (`android.widget.*`).                                                                                                                                                           |
+| `skipped_xpath_strategy`    | The string is passed to an explicit XPath strategy (`AppiumBy.xpath(…)`, `(By.XPATH, …)`, …); `reason` names it.                                                                                           |
+| `skipped_unsupported_logic` | XPath uses an axis or function Class Chain can't express.                                                                                                                                                  |
+| `skipped_validation_failed` | Output didn't pass NSPredicate validation, even after the optimizer pass.                                                                                                                                  |
+| `skipped_no_change`         | Already a valid class chain; nothing to do.                                                                                                                                                                |
 
 ---
 
 ## What gets converted
 
-| XPath | Class Chain |
-|---|---|
-| `//XCUIElementTypeButton[@name="OK"]` | ``**/XCUIElementTypeButton[`name == "OK"`]`` |
-| `//*[contains(@label, "Save")]` | ``**/*[`label CONTAINS "Save"`]`` |
-| `//XCUIElementTypeStaticText[starts-with(@label,"Welcome")]` | ``**/XCUIElementTypeStaticText[`label BEGINSWITH "Welcome"`]`` |
-| `//XCUIElementTypeButton[text()="OK"]` | ``**/XCUIElementTypeButton[`label == "OK" OR value == "OK"`]`` (`text()` maps to label OR value) |
-| `//*[contains(@type,"XCUIElementTypeOther")]` | `**/XCUIElementTypeOther` (type-collapse) |
-| `//XCUIElementTypeCell[@name="a"][@label="b"][3]` | ``**/XCUIElementTypeCell[`name == "a" AND label == "b"`][3]`` (merge + index) |
-| `//*[@name="a" or @label="b"][@value="c"]` | ``**/*[`(name == "a" OR label == "b") AND value == "c"`]`` (each `or` group keeps its parentheses) |
-| `//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"]]` | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` (descendant predicate: a Cell that contains such a Button) |
-| `//XCUIElementTypeCell[descendant::XCUIElementTypeButton]` | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton"$]` (`descendant::X` at the start of a predicate is `.//X`) |
-| `//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell` | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` (every Cell that contains such a Button: `//Cell[.//Button[@name="x"]]`. Only a single `//Type[…]` step before `ancestor::` and a bare type after it) |
-| `//XCUIElementTypeCell[@name="a/b"]` | ``**/XCUIElementTypeCell[`name == "a/b"`]`` (slashes inside values are safe) |
-| `//XCUIElementTypeButton[@name="abc*"]` | ``**/XCUIElementTypeButton[`name == "abc*"`]`` (`*` is a literal character in both languages) |
-| `//XCUIElementTypeButton[contains(@enabled,"false")]` | ``**/XCUIElementTypeButton[`enabled == false`]`` (boolean attributes compare as booleans) |
-| `//XCUIElementTypeCell/./XCUIElementTypeButton` | `**/XCUIElementTypeCell/XCUIElementTypeButton` (`.` steps dropped) |
-| `.//XCUIElementTypeButton[@name="a"]` | ``**/XCUIElementTypeButton[`name == "a"`]`` (a leading `.//` searches below the context node, as `**/` does; `./X` is not converted. Library API only: the CLI scanner picks up strings that start with `//` or `(//`) |
-| `//XCUIElementTypeButton[@x>60]`, `//*[@index="1"]` | ``**/XCUIElementTypeButton[`rect.x > 60`]``, ``**/*[`index == 1`]`` (`x`/`y`/`width`/`height` are `rect.*`; numbers compare as numbers) |
-| `//XCUIElementTypeButton[@enabled=true()]` | `**/XCUIElementTypeButton` (XPath compares `true()` with the attribute itself, which is true whenever it exists, even as `"false"`; WDA always writes `enabled`, `visible` and `accessible`, so the predicate filters nothing. Compare with `"true"` to test the value) |
-| `//XCUIElementTypeButton[@label!="a"]` | ``**/XCUIElementTypeButton[`label != nil AND label != "a"`]`` (XPath `!=` needs the attribute to exist) |
-| `//XCUIElementTypeButton[@name]` | ``**/XCUIElementTypeButton[`name != nil`]`` |
-| `//*[@label="C:\dir"]` | ``**/*[`label == "C:\\dir"`]`` (NSPredicate decodes `\`, so backslashes and newlines are escaped) |
-| `//*[@label=concat("a","b")]` | ``**/*[`label == "ab"`]`` (`concat()` of two or more string literals is folded into one; with an attribute, a number or a function argument it is skipped) |
-| `//*[matches(@name,"ok")]`, `//*[matches(@name,"ok","i")]` | ``**/*[`name CONTAINS "ok"`]``, ``**/*[`name CONTAINS[c] "ok"`]`` (`matches()` searches the text; a pattern without regex metacharacters is a substring test) |
-| `//*[matches(@name,"^a.c$")]` | ``**/*[`name MATCHES "(?s:.*)(?-s:^a.c$)(?s:.*)"`]`` (any other pattern; `"i"` adds `(?i)`. A chain's `MATCHES` must match the whole text and its `.` also matches a newline, so the pattern is wrapped to search with XPath's `.` and `$`) |
-| `//*[lower-case(@label)="ok"]` | ``**/*[`label ==[c] "ok"`]`` (ASCII literal only) |
-| `//*[contains(upper-case(@label),"OK")]`, `contains(translate(@label,"ABC…Z","abc…z"),"ok")` | ``**/*[`label CONTAINS[c] "OK"`]``, ``…CONTAINS[c] "ok"`` (ASCII literal only; `translate` only with the full A–Z → a–z alphabets) |
-| `(//XCUIElementTypeButton[@name="OK"])` | ``**/XCUIElementTypeButton[`name == "OK"`]`` (outer parens stripped) |
-| `(//XCUIElementTypeButton[@name="OK"])[2]` | ``**/XCUIElementTypeButton[`name == "OK"`][2]`` (outer position index appended) |
-| `(//XCUIElementTypeOther[@name="row"])[${index}]` | ``**/XCUIElementTypeOther[`name == "row"`][${index}]`` (template expression preserved) |
-| `(//XCUIElementTypeButton[@name="OK"])[last()]` | ``**/XCUIElementTypeButton[`name == "OK"`][-1]`` (`[last()-n]` becomes `[-(n+1)]`; a chain counts negative positions from the end) |
+| XPath                                                                                        | Class Chain                                                                                                                                                                                                                                                             |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `//XCUIElementTypeButton[@name="OK"]`                                                        | ``**/XCUIElementTypeButton[`name == "OK"`]``                                                                                                                                                                                                                            |
+| `//*[contains(@label, "Save")]`                                                              | ``**/*[`label CONTAINS "Save"`]``                                                                                                                                                                                                                                       |
+| `//XCUIElementTypeStaticText[starts-with(@label,"Welcome")]`                                 | ``**/XCUIElementTypeStaticText[`label BEGINSWITH "Welcome"`]``                                                                                                                                                                                                          |
+| `//XCUIElementTypeButton[text()="OK"]`                                                       | ``**/XCUIElementTypeButton[`label == "OK" OR value == "OK"`]`` (`text()` maps to label OR value)                                                                                                                                                                        |
+| `//*[contains(@type,"XCUIElementTypeOther")]`                                                | `**/XCUIElementTypeOther` (type-collapse)                                                                                                                                                                                                                               |
+| `//XCUIElementTypeCell[@name="a"][@label="b"][3]`                                            | ``**/XCUIElementTypeCell[`name == "a" AND label == "b"`][3]`` (merge + index)                                                                                                                                                                                           |
+| `//*[@name="a" or @label="b"][@value="c"]`                                                   | ``**/*[`(name == "a" OR label == "b") AND value == "c"`]`` (each `or` group keeps its parentheses)                                                                                                                                                                      |
+| `//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="x"]]`                                 | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` (descendant predicate: a Cell that contains such a Button)                                                                                                                                  |
+| `//XCUIElementTypeCell[descendant::XCUIElementTypeButton]`                                   | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton"$]` (`descendant::X` at the start of a predicate is `.//X`)                                                                                                                                                     |
+| `//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell`                           | `**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]` (every Cell that contains such a Button: `//Cell[.//Button[@name="x"]]`. Only a single `//Type[…]` step before `ancestor::` and a bare type after it)                                       |
+| `//XCUIElementTypeCell[@name="a/b"]`                                                         | ``**/XCUIElementTypeCell[`name == "a/b"`]`` (slashes inside values are safe)                                                                                                                                                                                            |
+| `//XCUIElementTypeButton[@name="abc*"]`                                                      | ``**/XCUIElementTypeButton[`name == "abc*"`]`` (`*` is a literal character in both languages)                                                                                                                                                                           |
+| `//XCUIElementTypeButton[contains(@enabled,"false")]`                                        | ``**/XCUIElementTypeButton[`enabled == false`]`` (boolean attributes compare as booleans)                                                                                                                                                                               |
+| `//XCUIElementTypeCell/./XCUIElementTypeButton`                                              | `**/XCUIElementTypeCell/XCUIElementTypeButton` (`.` steps dropped)                                                                                                                                                                                                      |
+| `.//XCUIElementTypeButton[@name="a"]`                                                        | ``**/XCUIElementTypeButton[`name == "a"`]`` (a leading `.//` searches below the context node, as `**/` does; `./X` is not converted. Library API only: the CLI scanner picks up strings that start with `//` or `(//`)                                                  |
+| `//XCUIElementTypeButton[@x>60]`, `//*[@index="1"]`                                          | ``**/XCUIElementTypeButton[`rect.x > 60`]``, ``**/*[`index == 1`]`` (`x`/`y`/`width`/`height` are `rect.*`; numbers compare as numbers)                                                                                                                                 |
+| `//XCUIElementTypeButton[@enabled=true()]`                                                   | `**/XCUIElementTypeButton` (XPath compares `true()` with the attribute itself, which is true whenever it exists, even as `"false"`; WDA always writes `enabled`, `visible` and `accessible`, so the predicate filters nothing. Compare with `"true"` to test the value) |
+| `//XCUIElementTypeButton[@label!="a"]`                                                       | ``**/XCUIElementTypeButton[`label != nil AND label != "a"`]`` (XPath `!=` needs the attribute to exist)                                                                                                                                                                 |
+| `//XCUIElementTypeButton[@name]`                                                             | ``**/XCUIElementTypeButton[`name != nil`]``                                                                                                                                                                                                                             |
+| `//*[@label="C:\dir"]`                                                                       | ``**/*[`label == "C:\\dir"`]`` (NSPredicate decodes `\`, so backslashes and newlines are escaped)                                                                                                                                                                       |
+| `//*[@label=concat("a","b")]`                                                                | ``**/*[`label == "ab"`]`` (`concat()` of two or more string literals is folded into one; with an attribute, a number or a function argument it is skipped)                                                                                                              |
+| `//*[matches(@name,"ok")]`, `//*[matches(@name,"ok","i")]`                                   | ``**/*[`name CONTAINS "ok"`]``, ``**/*[`name CONTAINS[c] "ok"`]`` (`matches()` searches the text; a pattern without regex metacharacters is a substring test)                                                                                                           |
+| `//*[matches(@name,"^a.c$")]`                                                                | ``**/*[`name MATCHES "(?s:.*)(?-s:^a.c$)(?s:.*)"`]`` (any other pattern; `"i"` adds `(?i)`. A chain's `MATCHES` must match the whole text and its `.` also matches a newline, so the pattern is wrapped to search with XPath's `.` and `$`)                             |
+| `//*[lower-case(@label)="ok"]`                                                               | ``**/*[`label ==[c] "ok"`]`` (ASCII literal only)                                                                                                                                                                                                                       |
+| `//*[contains(upper-case(@label),"OK")]`, `contains(translate(@label,"ABC…Z","abc…z"),"ok")` | ``**/*[`label CONTAINS[c] "OK"`]``, `…CONTAINS[c] "ok"` (ASCII literal only; `translate` only with the full A–Z → a–z alphabets)                                                                                                                                        |
+| `(//XCUIElementTypeButton[@name="OK"])`                                                      | ``**/XCUIElementTypeButton[`name == "OK"`]`` (outer parens stripped)                                                                                                                                                                                                    |
+| `(//XCUIElementTypeButton[@name="OK"])[2]`                                                   | ``**/XCUIElementTypeButton[`name == "OK"`][2]`` (outer position index appended)                                                                                                                                                                                         |
+| `(//XCUIElementTypeOther[@name="row"])[${index}]`                                            | ``**/XCUIElementTypeOther[`name == "row"`][${index}]`` (template expression preserved)                                                                                                                                                                                  |
+| `(//XCUIElementTypeButton[@name="OK"])[last()]`                                              | ``**/XCUIElementTypeButton[`name == "OK"`][-1]`` (`[last()-n]` becomes `[-(n+1)]`; a chain counts negative positions from the end)                                                                                                                                      |
 
 > ⚠️ **Positional indexes are not equivalent between the two languages.** In XPath, `//X[2]` means "every `X` that is the 2nd `X` child of its parent" — it can match many elements. In a Class Chain, `**/X[2]` means "the 2nd element of the matched set" — it matches at most one. Indexes are passed through unchanged, so a converted locator that uses `[n]` may select a different element than the original. Review indexed locators by hand after converting.
 >
@@ -267,29 +301,29 @@ Status values used in `skipped[]`:
 
 ## What it skips on purpose
 
-| Pattern | Status |
-|---|---|
-| `following-sibling::`, `preceding-sibling::`, `parent::`, `following::`, `preceding::`, `ancestor-or-self::`, `descendant-or-self::`, `self::` (except a type test in a `*` step's predicate) | `skipped_unsupported_logic` |
-| `ancestor::` in any form but `//T1[…]/ancestor::T2`: a predicate or index on the ancestor step (`ancestor::XCUIElementTypeCell[1]` is the nearest one), a longer path before it, a path after it, `*` or the same type on both steps (the chain's `[$…$]` would also match the element itself), `ancestor::XCUIElementTypeApplication`, or a leading `.//` (it can climb to the context node and above) | `skipped_unsupported_logic` |
-| `count()`, `last()` and `position()` inside a step, e.g. `//XCUIElementTypeButton[last()]` (per parent) | `skipped_unsupported_logic` |
-| Element type that isn't `*` or one of WDA's `XCUIElementType*` names (e.g. `//Btn[...]`, `//XCUIElementTypeLabel[...]`) — WDA would read an unknown name as `Other` | `skipped_unsupported_logic` |
-| Parent step `..` | `skipped_unsupported_logic` |
-| An attribute WDA does not have, e.g. `@text` — the XPath matches nothing and the chain would raise `FBUnknownAttributeException` | `skipped_unsupported_logic` |
-| A numeric comparison on text, e.g. `@value>5` or `@value<5`: `value.doubleValue` reads a numeric prefix (`"10abc"`, `"50%"` → 10, 50) and other text as 0, while XPath gives NaN unless the whole text is a number. Also `@value=5`, `@index="a"`, ordering a boolean | `skipped_unsupported_logic` |
-| `true()` / `false()` other than a whole `[@enabled=true()]` (or `visible`, `accessible`): `[@enabled=false()]` never matches, `@selected` / `@hittable` / `@focused` are not always in the page source, and inside a larger predicate it would have to be dropped from it | `skipped_unsupported_logic` |
-| `normalize-space()` and `string-length()`: a chain's `MATCHES` treats a no-break space as a space, and `.length` counts UTF-16 units where `string-length()` counts characters (`😀` is 2 and 1) | `skipped_unsupported_logic` |
-| `matches()` with a flag other than `i`, a literal space in the pattern (the chain's `MATCHES` would also match a no-break space), a pattern that matches the empty string (XPath reads a missing attribute as `""`), a pattern that is invalid, empty, built at runtime (`${…}`) or holds a host-language escape (`\$`, `\u…`), or a first argument other than a text `@attribute` | `skipped_unsupported_logic` |
-| `lower-case()`, `upper-case()` and `translate()` in any form other than the three above, or with a non-ASCII literal (case mapping beyond ASCII is not checked), e.g. `upper-case(@label)="OK"`, `contains(lower-case(@label),"ok")`, `lower-case(@label)="äb"` | `skipped_unsupported_logic` |
-| Union `a \| b` | `skipped_unsupported_logic` |
-| Grouped XPath with any other function outer index, e.g. `(//XCUIElementTypeButton[@name="x"])[position()<=2]` or `[last()+1]` — not a single position | `skipped_not_xpath` |
-| Grouped `(//XCUIElementTypeCell/XCUIElementTypeButton[2])[last()]` — the inner chain already ends with a position | `skipped_unsupported_logic` |
-| Grouped `(//XCUIElementTypeCell[2])[3]` where the inner chain ends with a positional index and has no named parent to anchor the outer position (parent reduces to `**`) | `skipped_unsupported_logic` |
-| A path inside a predicate other than `.//Type[…]`: child existence `[./X]` / `[X]`, nested descendant paths, `[.//X[2]]` | `skipped_unsupported_logic` |
-| A descendant test that the element itself could pass: `//XCUIElementTypeCell[.//*[@name="x"]]`, `//*[.//XCUIElementTypeButton]`, `//XCUIElementTypeCell[.//XCUIElementTypeCell]`. A chain's `[$…$]` also tests the element itself, so `.//` is converted only when both steps name a type and the types differ | `skipped_unsupported_logic` |
-| An index before a filter, `//XCUIElementTypeCell[2][@name="a"]` — XPath indexes each parent's children first; a chain filters first | `skipped_unsupported_logic` |
-| `//android.widget.*` | `skipped_android` |
-| A string passed straight to an explicit XPath strategy: `AppiumBy.xpath("…")`, `@iOSXCUITFindBy(xpath = "…")` (Java, Kotlin, Groovy), `find_element(AppiumBy.XPATH, '…')` (Python), `MobileBy.XPath("…")` (C#), `find_element(:xpath, '…')` (Ruby), `{ xpath: '…' }` / `findElement('xpath', '…')` (JS/TS), `WebDriverBy::xpath('…')` (PHP). Rewriting only the string would leave the strategy at XPath and break the locator. The full list is in [`lib/strategy.js`](lib/strategy.js). A string kept in a variable or constant and passed to the call later is not recognised and still converts | `skipped_xpath_strategy` |
-| Already a valid `-ios class chain:…` | `skipped_no_change` |
+| Pattern                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Status                      |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| `following-sibling::`, `preceding-sibling::`, `parent::`, `following::`, `preceding::`, `ancestor-or-self::`, `descendant-or-self::`, `self::` (except a type test in a `*` step's predicate)                                                                                                                                                                                                                                                                                                                                                                                                       | `skipped_unsupported_logic` |
+| `ancestor::` in any form but `//T1[…]/ancestor::T2`: a predicate or index on the ancestor step (`ancestor::XCUIElementTypeCell[1]` is the nearest one), a longer path before it, a path after it, `*` or the same type on both steps (the chain's `[$…$]` would also match the element itself), `ancestor::XCUIElementTypeApplication`, or a leading `.//` (it can climb to the context node and above)                                                                                                                                                                                             | `skipped_unsupported_logic` |
+| `count()`, `last()` and `position()` inside a step, e.g. `//XCUIElementTypeButton[last()]` (per parent)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | `skipped_unsupported_logic` |
+| Element type that isn't `*` or one of WDA's `XCUIElementType*` names (e.g. `//Btn[...]`, `//XCUIElementTypeLabel[...]`) — WDA would read an unknown name as `Other`                                                                                                                                                                                                                                                                                                                                                                                                                                 | `skipped_unsupported_logic` |
+| Parent step `..`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `skipped_unsupported_logic` |
+| An attribute WDA does not have, e.g. `@text` — the XPath matches nothing and the chain would raise `FBUnknownAttributeException`                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `skipped_unsupported_logic` |
+| A numeric comparison on text, e.g. `@value>5` or `@value<5`: `value.doubleValue` reads a numeric prefix (`"10abc"`, `"50%"` → 10, 50) and other text as 0, while XPath gives NaN unless the whole text is a number. Also `@value=5`, `@index="a"`, ordering a boolean                                                                                                                                                                                                                                                                                                                               | `skipped_unsupported_logic` |
+| `true()` / `false()` other than a whole `[@enabled=true()]` (or `visible`, `accessible`): `[@enabled=false()]` never matches, `@selected` / `@hittable` / `@focused` are not always in the page source, and inside a larger predicate it would have to be dropped from it                                                                                                                                                                                                                                                                                                                           | `skipped_unsupported_logic` |
+| `normalize-space()` and `string-length()`: a chain's `MATCHES` treats a no-break space as a space, and `.length` counts UTF-16 units where `string-length()` counts characters (`😀` is 2 and 1)                                                                                                                                                                                                                                                                                                                                                                                                    | `skipped_unsupported_logic` |
+| `matches()` with a flag other than `i`, a literal space in the pattern (the chain's `MATCHES` would also match a no-break space), a pattern that matches the empty string (XPath reads a missing attribute as `""`), a pattern that is invalid, empty, built at runtime (`${…}`) or holds a host-language escape (`\$`, `\u…`), or a first argument other than a text `@attribute`                                                                                                                                                                                                                  | `skipped_unsupported_logic` |
+| `lower-case()`, `upper-case()` and `translate()` in any form other than the three above, or with a non-ASCII literal (case mapping beyond ASCII is not checked), e.g. `upper-case(@label)="OK"`, `contains(lower-case(@label),"ok")`, `lower-case(@label)="äb"`                                                                                                                                                                                                                                                                                                                                     | `skipped_unsupported_logic` |
+| Union `a \| b`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `skipped_unsupported_logic` |
+| Grouped XPath with any other function outer index, e.g. `(//XCUIElementTypeButton[@name="x"])[position()<=2]` or `[last()+1]` — not a single position                                                                                                                                                                                                                                                                                                                                                                                                                                               | `skipped_not_xpath`         |
+| Grouped `(//XCUIElementTypeCell/XCUIElementTypeButton[2])[last()]` — the inner chain already ends with a position                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | `skipped_unsupported_logic` |
+| Grouped `(//XCUIElementTypeCell[2])[3]` where the inner chain ends with a positional index and has no named parent to anchor the outer position (parent reduces to `**`)                                                                                                                                                                                                                                                                                                                                                                                                                            | `skipped_unsupported_logic` |
+| A path inside a predicate other than `.//Type[…]`: child existence `[./X]` / `[X]`, nested descendant paths, `[.//X[2]]`                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | `skipped_unsupported_logic` |
+| A descendant test that the element itself could pass: `//XCUIElementTypeCell[.//*[@name="x"]]`, `//*[.//XCUIElementTypeButton]`, `//XCUIElementTypeCell[.//XCUIElementTypeCell]`. A chain's `[$…$]` also tests the element itself, so `.//` is converted only when both steps name a type and the types differ                                                                                                                                                                                                                                                                                      | `skipped_unsupported_logic` |
+| An index before a filter, `//XCUIElementTypeCell[2][@name="a"]` — XPath indexes each parent's children first; a chain filters first                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | `skipped_unsupported_logic` |
+| `//android.widget.*`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `skipped_android`           |
+| A string passed straight to an explicit XPath strategy: `AppiumBy.xpath("…")`, `@iOSXCUITFindBy(xpath = "…")` (Java, Kotlin, Groovy), `find_element(AppiumBy.XPATH, '…')` (Python), `MobileBy.XPath("…")` (C#), `find_element(:xpath, '…')` (Ruby), `{ xpath: '…' }` / `findElement('xpath', '…')` (JS/TS), `WebDriverBy::xpath('…')` (PHP). Rewriting only the string would leave the strategy at XPath and break the locator. The full list is in [`lib/strategy.js`](lib/strategy.js). A string kept in a variable or constant and passed to the call later is not recognised and still converts | `skipped_xpath_strategy`    |
+| Already a valid `-ios class chain:…`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `skipped_no_change`         |
 
 The scanner also gates strings starting with `//` through `isLikelyIosLocator` — protocol-relative URLs (`//cdn.example.com/lib.js`), comments lifted into strings, and plain paths are left untouched even if they live inside a `'…'`/`"…"`/`` `…` `` literal.
 
@@ -302,7 +336,7 @@ Checked on Appium 3.8.0, appium-xcuitest-driver 12.16.0 and WebDriverAgent 16.14
 - **Grouped positions count breadth-first.** XCTest returns query matches breadth-first, for XPath lookups as well as for class chains. An XPath position `(//X)[n]` is still counted in document order. So `(//XCUIElementTypeButton)[2]` → `**/XCUIElementTypeButton[2]` can return a shallower button further down the screen. The same holds for `(//X)[last()]` → `**/X[-1]` and `(//X)[last()-1]` → `**/X[-2]`: they pick the last and second-to-last elements of the breadth-first list, not of the document-order one. No class chain counts in document order. These locators are still converted and are flagged with a `warning` in the console and in the `--json` report; check each one on the screen it is used on. `findElement` without a position returns the same first element on both sides whenever the matched sets are equal.
 - **`MATCHES`, `[c]`, `CONTAINS` and `BEGINSWITH` compare normalized text; `==` and XPath compare code points.** Checked on the simulator (iOS 27.0): `MATCHES` compares NFKC text and stays case-sensitive, so fullwidth letters (`Ｑ`), ligatures (`ﬁ`), circled digits (`①`), `ſ` and the Kelvin sign match their ASCII forms (not `ß`), and a chain's `MATCHES` treats a no-break space as a space. `[c]` does the same and folds case fully (`ß` = `ss`, `ſ` = `s`, Kelvin = `k`). `CONTAINS` and `BEGINSWITH` only treat canonically equivalent text as equal (Kelvin = `K`, decomposed `é` = `é`), and a pattern that ends in a base letter does not match that letter followed by a combining mark (`CONTAINS "Cafe"` misses a decomposed `Café`). So the `matches()`, `lower-case()`, `upper-case()` and `translate()` conversions above, and `contains()` / `starts-with()`, select the same elements as the XPath only when the text holds none of these characters; the `[c]` conversions are not ASCII-only on the device. Details: [`audit/coverage-report.md`](audit/coverage-report.md) ("Device check (Phase 5, D0)").
 - **Selector errors look like "element not found".** appium-xcuitest-driver 12.16.0 catches the error WDA returns for an invalid XPath or class chain (`400 invalid selector`). `findElements` then returns `[]` and `findElement` fails with "no such element". A chain that does not parse therefore looks like a missing element in a test run. This is one reason the tool validates every chain it emits and skips what it cannot convert exactly.
-- **`visible` on the final step can be much slower as a chain.** `**/XCUIElementTypeButton[\`visible == true\`]` took 12.6 s against 2.0 s for `//XCUIElementTypeButton[@visible='true']` on a screen where 32 buttons are visible, because WDA reads visibility for each candidate. Prefer a locator that does not depend on `visible` where lookup time matters. The optimizer leaves `visible` on the step it was written on: moving it to another step changes which elements match. Over all checked locators the chain was faster, ×1.11 (geometric mean).
+- **`visible` on the final step can be much slower as a chain.** `**/XCUIElementTypeButton[\`visible == true\`]`took 12.6 s against 2.0 s for`//XCUIElementTypeButton[@visible='true']`on a screen where 32 buttons are visible, because WDA reads visibility for each candidate. Prefer a locator that does not depend on`visible`where lookup time matters. The optimizer leaves`visible` on the step it was written on: moving it to another step changes which elements match. Over all checked locators the chain was faster, ×1.11 (geometric mean).
 
 ## Configuration
 
@@ -329,18 +363,25 @@ const {
   optimizeClassChain,
   isLikelyIosLocator,
   STATUS,
-} = require('xpath-to-class-chain');
+} = require("xpath-to-class-chain");
 
 // One-shot XPath → class chain
-const { locator, status } = convertXpathToClassChain('//XCUIElementTypeButton[@name="OK"]');
-if (status === STATUS.SUCCESS) { /* … */ }
+const { locator, status } = convertXpathToClassChain(
+  '//XCUIElementTypeButton[@name="OK"]',
+);
+if (status === STATUS.SUCCESS) {
+  /* … */
+}
 
 // With the optimizer pass (what the CLI always runs)
-convertXpathToClassChain('//XCUIElementTypeButton[@name="a" and @enabled="true"]', { optimize: true });
+convertXpathToClassChain(
+  '//XCUIElementTypeButton[@name="a" and @enabled="true"]',
+  { optimize: true },
+);
 
 // Lint an existing chain
 const { valid, fixedLocator, reason } = validateAndFixClassChain(
-  '-ios class chain:**/Btn[`name == "OK"`]'
+  '-ios class chain:**/Btn[`name == "OK"`]',
 );
 
 // Optimize an existing chain (idempotent + all optimizer rules)
