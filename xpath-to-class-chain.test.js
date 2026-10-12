@@ -170,6 +170,12 @@ const CONVERT_CASES = [
   ['//*[starts-with(@visible,"true")]', `${CC}**/*[\`visible == true\`]`],
   // RC10: a `.` step is the same element
   ['//XCUIElementTypeCell/./XCUIElementTypeButton', `${CC}**/XCUIElementTypeCell/XCUIElementTypeButton`], // A11
+  // B4: a leading `.//` searches below the context node, as `**/` does
+  ['.//XCUIElementTypeButton[@name="a"]', `${CC}**/XCUIElementTypeButton[\`name == "a"\`]`], // A12
+  ['.//*', `${CC}**/*`],
+  ['.//XCUIElementTypeCell/./XCUIElementTypeButton', `${CC}**/XCUIElementTypeCell/XCUIElementTypeButton`],
+  ['.//XCUIElementTypeCell//XCUIElementTypeButton', `${CC}**/XCUIElementTypeCell/**/XCUIElementTypeButton`],
+  ['(.//XCUIElementTypeButton[@name="a"])[2]', `${CC}**/XCUIElementTypeButton[\`name == "a"\`][2]`],
   ['//XCUIElementTypeCell//./XCUIElementTypeButton', `${CC}**/XCUIElementTypeCell/**/XCUIElementTypeButton`],
   ['//XCUIElementTypeCell/.//XCUIElementTypeButton', `${CC}**/XCUIElementTypeCell/**/XCUIElementTypeButton`],
   ['//XCUIElementTypeCell/.', `${CC}**/XCUIElementTypeCell`],
@@ -348,6 +354,19 @@ const SKIP_CASES = [
   ['//*[@enabled>0]', 'RC14: ordering a boolean'],
   // RC15: XPath filters after the per-parent index; the chain cannot
   ['//XCUIElementTypeCell[2][@name="a"]', 'RC15: index before a filter (E12)'],
+  // B4: only a leading `.//` converts; any other relative start is left alone
+  ['./XCUIElementTypeButton', 'B4: ./ child of the context node'],
+  ['./XCUIElementTypeCell//XCUIElementTypeButton', 'B4: ./ then //'],
+  ['.', 'B4: the context node itself'],
+  ['.//', 'B4: nothing after .//'],
+  ['.///XCUIElementTypeButton', 'B4: three slashes'],
+  ['..//XCUIElementTypeButton', 'B4: parent of the context node'],
+  ['.//XCUIElementTypeCell/..', 'B4: parent step after .//'],
+  ['.//XCUIElementTypeCell//.', 'B4: trailing //. after .//'],
+  ['.//XCUIElementTypeButton | .//XCUIElementTypeCell', 'B4: union of relative paths'],
+  ['.//XCUIElementTypeButton | //XCUIElementTypeCell', 'B4: union mixing relative and absolute'],
+  ['.//XCUIElementTypeLabel[@name="a"]', 'B4: non-iOS type after .//'],
+  ['.//XCUIElementTypeStaticText[@text="a"]', 'B4: unknown attribute after .//'],
 ];
 
 // =====================================================================
@@ -475,6 +494,28 @@ const OPTIMIZE_CASES = [
     xpath: '//*[contains(@type,"XCUIElementTypeButton") and @name="abc*"]',
     optimized: `${CC}**/XCUIElementTypeButton[\`name == "abc*"\`]`,
   },
+  // B4: Other / Window steps without a predicate are kept; dropping them widened the match
+  {
+    xpath: '/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton', // A07
+    optimized: `${CC}XCUIElementTypeWindow/XCUIElementTypeButton`,
+  },
+  {
+    xpath: '//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[@name="a"]', // A14
+    optimized: `${CC}**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[\`name == "a"\`]`,
+  },
+  {
+    xpath: '//XCUIElementTypeOther/XCUIElementTypeButton[@name="a"]', // A15
+    optimized: `${CC}**/XCUIElementTypeOther/XCUIElementTypeButton[\`name == "a"\`]`,
+  },
+  // B4: visible stays on the step it tests; a visible Cell can hold a Button that is not
+  {
+    xpath: '//XCUIElementTypeCell[@visible="true"]/XCUIElementTypeButton', // A16
+    optimized: `${CC}**/XCUIElementTypeCell[\`visible == true\`]/XCUIElementTypeButton`,
+  },
+  {
+    xpath: './/XCUIElementTypeButton[@name="a"]', // A12
+    optimized: `${CC}**/XCUIElementTypeButton[\`name == "a"\`]`,
+  },
 ];
 
 // Existing-class-chain cases: optimizeClassChain on chains already in the code.
@@ -525,10 +566,6 @@ const OPTIMIZE_CHAIN_CASES = [
     input: `${CC}**/*[\`name == "a" OR label == "b"\`][\`value == "c"\`]`,
     fixed: `${CC}**/*[\`(name == "a" OR label == "b") AND value == "c"\`]`,
   },
-  {
-    input: `${CC}**/XCUIElementTypeCell[\`visible == 1\`]/XCUIElementTypeButton[\`name == "a" OR label == "b"\`]`,
-    fixed: `${CC}**/XCUIElementTypeCell/XCUIElementTypeButton[\`(name == "a" OR label == "b") AND visible == 1\`]`,
-  },
   // Multi-value IN stays untouched — semantics differ
   {
     input: `${CC}**/XCUIElementTypeButton[\`label IN {"Ok", "Okay"}\`]`,
@@ -552,23 +589,26 @@ const OPTIMIZE_CHAIN_CASES = [
     fixed: `${CC}**/XCUIElementTypeTable/XCUIElementTypeCell[\`name == "Row"\`]`,
   },
 
-  // --- Rule 1: strip no-predicate XCUIElementTypeOther / Window intermediates ---
-  // Window + multiple Others before the real target
+  // --- Removed rule 1 (B4): Other / Window steps without a predicate stay ---
+  // `**/Window/Other/Button` also requires the Button to sit in an Other in a Window;
+  // `**/Button` matched every Button (A14, seen on device in Phase 2).
   {
     input: `${CC}**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton[\`name == "Submit"\`]`,
-    fixed: `${CC}**/XCUIElementTypeButton[\`name == "Submit"\`]`,
+    fixed: `${CC}**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton[\`name == "Submit"\`]`,
   },
-  // Other between two semantic nodes: gap becomes /**/
+  // `/Other/` is not `/**/`: a StaticText deeper in the Cell does not match
   {
     input: `${CC}**/XCUIElementTypeCell[\`name == "Account"\`]/XCUIElementTypeOther/XCUIElementTypeStaticText`,
-    fixed: `${CC}**/XCUIElementTypeCell[\`name == "Account"\`]/**/XCUIElementTypeStaticText`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`name == "Account"\`]/XCUIElementTypeOther/XCUIElementTypeStaticText`,
   },
-  // Other WITH a predicate is kept — it genuinely narrows the search
+  {
+    input: `${CC}XCUIElementTypeWindow/XCUIElementTypeButton`,
+    fixed: `${CC}XCUIElementTypeWindow/XCUIElementTypeButton`,
+  },
   {
     input: `${CC}**/XCUIElementTypeOther[\`name == "Container"\`]/XCUIElementTypeButton[\`label == "Go"\`]`,
     fixed: `${CC}**/XCUIElementTypeOther[\`name == "Container"\`]/XCUIElementTypeButton[\`label == "Go"\`]`,
   },
-  // Single-step chain: nothing to strip (final target kept unconditionally)
   {
     input: `${CC}**/XCUIElementTypeOther[\`name == "x"\`]`,
     fixed: `${CC}**/XCUIElementTypeOther[\`name == "x"\`]`,
@@ -618,28 +658,26 @@ const OPTIMIZE_CHAIN_CASES = [
     fixed: `${CC}**/XCUIElementTypeButton[\`type == "XCUIElementTypeStaticText" AND name == "OK"\`]`,
   },
 
-  // --- Rule 7: defer visible == 1 from intermediate steps to the final target ---
-  // Single intermediate with predicate, final has existing predicate
+  // --- Removed rule 7 (B4): visible stays on the step it tests ---
+  // Visibility of an ancestor and of its descendant are independent (A16, seen on
+  // device in Phase 2: the Cell is visible, its Button is not).
   {
     input: `${CC}**/XCUIElementTypeTable[\`visible == 1\`]/XCUIElementTypeCell/XCUIElementTypeButton[\`name == "Submit"\`]`,
-    fixed: `${CC}**/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeButton[\`name == "Submit" AND visible == 1\`]`,
+    fixed: `${CC}**/XCUIElementTypeTable[\`visible == 1\`]/XCUIElementTypeCell/XCUIElementTypeButton[\`name == "Submit"\`]`,
   },
-  // Two intermediates both carry visible — merged once onto final
-  {
-    input: `${CC}**/XCUIElementTypeTable[\`visible == 1\`]/XCUIElementTypeCell[\`visible == 1\`]/XCUIElementTypeButton[\`name == "Submit"\`]`,
-    fixed: `${CC}**/XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeButton[\`name == "Submit" AND visible == 1\`]`,
-  },
-  // Final step has no predicate yet — new predicate block inserted
   {
     input: `${CC}**/XCUIElementTypeTable[\`visible == 1\`]/XCUIElementTypeButton`,
-    fixed: `${CC}**/XCUIElementTypeTable/XCUIElementTypeButton[\`visible == 1\`]`,
+    fixed: `${CC}**/XCUIElementTypeTable[\`visible == 1\`]/XCUIElementTypeButton`,
   },
-  // Final step already has visible == 1 — stripped from intermediate, not duplicated
   {
-    input: `${CC}**/XCUIElementTypeTable[\`visible == 1\`]/XCUIElementTypeButton[\`visible == 1 AND name == "OK"\`]`,
-    fixed: `${CC}**/XCUIElementTypeTable/XCUIElementTypeButton[\`visible == 1 AND name == "OK"\`]`,
+    input: `${CC}**/XCUIElementTypeCell[\`visible == true\`]/XCUIElementTypeButton`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`visible == true\`]/XCUIElementTypeButton`,
   },
-  // Single-step chain — nothing to defer
+  // Other rules still work around it: merge and reorder on the intermediate step
+  {
+    input: `${CC}**/XCUIElementTypeCell[\`visible == 1\`][\`name CONTAINS "a"\`]/XCUIElementTypeButton[\`name == "a" OR label == "b"\`]`,
+    fixed: `${CC}**/XCUIElementTypeCell[\`visible == 1 AND name CONTAINS "a"\`]/XCUIElementTypeButton[\`name == "a" OR label == "b"\`]`,
+  },
   {
     input: `${CC}**/XCUIElementTypeButton[\`visible == 1 AND name == "OK"\`]`,
     fixed: `${CC}**/XCUIElementTypeButton[\`visible == 1 AND name == "OK"\`]`,
@@ -700,10 +738,10 @@ const OPTIMIZE_CHAIN_CASES = [
     input: `${CC}**/XCUIElementTypeTable/**/XCUIElementTypeCell[\`a == "1"\`][\`b == "2"\`]`,
     fixed: `${CC}**/XCUIElementTypeTable/**/XCUIElementTypeCell[\`a == "1" AND b == "2"\`]`,
   },
-  // …and while deferVisibleToFinalStep moves a predicate across the gap.
+  // …and while a predicate on the step before the gap is left in place.
   {
     input: `${CC}**/XCUIElementTypeTable[\`visible == 1\`]/**/XCUIElementTypeCell/XCUIElementTypeButton[\`name == "OK"\`]`,
-    fixed: `${CC}**/XCUIElementTypeTable/**/XCUIElementTypeCell/XCUIElementTypeButton[\`name == "OK" AND visible == 1\`]`,
+    fixed: `${CC}**/XCUIElementTypeTable[\`visible == 1\`]/**/XCUIElementTypeCell/XCUIElementTypeButton[\`name == "OK"\`]`,
   },
   // Multiple gaps in one chain.
   {
@@ -757,6 +795,7 @@ console.log('— WARNINGS —');
 const POSITION_WARNING = /grouped position/;
 for (const [xpath, warned] of [
   ['(//XCUIElementTypeButton)[2]', true], // E02
+  ['(.//XCUIElementTypeButton)[2]', true],
   ['(//XCUIElementTypeOther[@name="row"])[${index}]', true],
   ['(//XCUIElementTypeStaticText/child::XCUIElementTypeStaticText[2])[1]', true], // outer [1] dropped
   ['(//*[contains(@name, "Balance,")]/child::*[2])[${transaction}]', true], // outer index moved to the parent
