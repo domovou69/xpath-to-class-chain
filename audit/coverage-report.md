@@ -713,7 +713,7 @@ On real-world locators (R) no run beats the converter; the best ones tie it. The
 
 ### An improved prompt
 
-**Tested in D3, see [Improved prompt (tested)](#improved-prompt-tested).** This is `audit/llm/prompt-v2.md` (Phase 5, D3a). The first version of this section came from the Phase 4 error types; v2 is rewritten to match what C1, C2 and D0 found on the device. The refuted advice is gone and the confirmed forms are in. General rules, no answers for particular cases. The old `audit/llm/prompt.md` is the prompt Phase 4 ran and is unchanged. v2 was tested first and led to `audit/llm/prompt-v3.md` (one rule changed); results in the section below.
+**Tested in D3, see [Improved prompt (tested)](#improved-prompt-tested).** This is `audit/llm/prompt-v2.md` (Phase 5, D3a). The first version of this section came from the Phase 4 error types; v2 is rewritten to match what C1, C2 and D0 found on the device. The refuted advice is gone and the confirmed forms are in. General rules, no answers for particular cases. The old `audit/llm/prompt.md` is the prompt Phase 4 ran and is unchanged. v2 was tested first and led, in two steps of one rule each, to `audit/llm/prompt-v4.md`; results in the section below.
 
 ```
 Convert each Appium XCUITest XPath into an iOS class chain that finds exactly
@@ -837,25 +837,33 @@ Every rule of `prompt-v2.md` against the case that supports it. **C1/C2/D0** = c
 
 ### Improved prompt (tested)
 
-Phase 5, task D3. The prompt is [`llm/prompt-v3.md`](llm/prompt-v3.md) (rules; the runnable text is [`llm/prompt-v3-run.md`](llm/prompt-v3-run.md): the Phase 4 task paragraph, the rules, the Phase 4 output format; built by `llm/make-run-prompt.js`). It was run on the three cells that Phase 4 ranked first, one run each, everything else as in Phase 4 (same model IDs and effort, tools, empty folder, `input.json`). The three runs went in parallel, started together at 20:12 UTC and took 4.1–5.4 min. The host was on battery (70–71 %), Low Power Mode off, `caffeinate` on. The scoring (about 1 min per cell) ran on battery too.
+Phase 5, task D3. The prompt is [`llm/prompt-v4.md`](llm/prompt-v4.md) (rules; the runnable text is [`llm/prompt-v4-run.md`](llm/prompt-v4-run.md): the Phase 4 task paragraph, the rules, the Phase 4 output format; built by `llm/make-run-prompt.js`). It was run on the three cells that Phase 4 ranked first, one run each, everything else as in Phase 4 (same model IDs and effort, tools, empty folder, `input.json`). The three runs went in parallel, started together at 20:46 UTC and took 5.1–8.9 min. The host was on battery (65–66 %), Low Power Mode off, `caffeinate` on. The scoring (about 1 min per cell) ran on battery too. Run records: `llm/out/<cell>-3.json`, scores `llm/scores/<cell>-3.json`; table: `RUN=3 node llm/compare-v2.js`.
 
-**How v3 came about.** The first version, `prompt-v2.md` (D3a), made no wrong or invalid chain in any of the three cells, but R fell to 79.7–79.9 (Phase 4 prompt: 94.1–95.0). The cause was one rule, "other tests on `@type`: SKIP": the models obeyed it and skipped 76 corpus locators such as `//*[contains(@type,"XCUIElementTypeButton") and contains(@label,"…")]`, which the converter converts and which are CORRECT. A skip of a convertible locator counts as 0 in R, so those skips were the whole drop. v3 changes that rule only: `contains` / `starts-with` / `ends-with` on `@type` with a literal that is a complete real type name become the step too, unless another real type name begins with that literal (Key, Menu, MenuBar, Outline, Picker, Ruler, Tab, Table, Toolbar); partial or invented names stay SKIP. This is the converter's own test (`singleTypeMatch` in `lib/validator.js`: exactly one real type selected). The v2 run is not kept in the tables.
+**How v4 came about.** There were three versions, each changing the previous one in one place:
+
+| Version | Change | Result |
+|---|---|---|
+| v2 (`prompt-v2.md`, D3a) | the rules of C1, C2 and D0 | no wrong chain, but R 79.7–79.9: the rule "other tests on `@type`: SKIP" made the models skip 76 convertible corpus locators (a skip of a convertible locator counts 0 in R) |
+| v3 (`prompt-v3.md`) | `contains` / `starts-with` / `ends-with` on `@type` with a complete real type name give the step too, unless another real name begins with that literal (Key, Menu, MenuBar, Outline, Picker, Ruler, Tab, Table, Toolbar); partial names stay SKIP. This is the converter's own test (`singleTypeMatch` in `lib/validator.js`) | R 94.4–95.0, S 72.6 / 86.8 / 87.8, 96.0–97.1 % of the converter; sonnet skipped the four `contains(@enabled,"false")` locators |
+| v4 (`prompt-v4.md`) | `contains(@a,"true")` / `contains(@a,"false")` on `enabled`, `visible`, `accessible`, `hittable` → `a == true` / `a == false`; never `CONTAINS` on them (the device raises an error, RC2) | the table below |
+
+The v2 runs are not kept; the v3 runs are (`llm/out/<cell>-2.json`).
 
 **Measured against the converter.** 676 locators were compared (562 corpus, 114 spec; L157 and E10 are left out). The converter gives a usable chain (CORRECT or DRIFT) for 579 of them (490 corpus, 89 spec); that is 100 %. Every other row is counted against that number.
 
 | Cell | R | S | Chains | Usable | % of converter (all / corpus / spec) | Missed | Skipped right | Ahead | WRONG + INVALID | Time, min | Cost, $ |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | **converter** | 95.8 | 91.8 | 579 | 579 | 100 / 100 / 100 | — | — | — | 0 | — | — |
-| haiku / medium | 94.8 | 72.6 | 560 | 556 | 96.0 / 98.0 / 85.4 | 9 | 14 | 0 | 4 | 5.4 | 0.25 |
-| sonnet / low | 94.4 | 86.8 | 558 | 558 | 96.4 / 97.6 / 89.9 | 7 | 14 | 0 | 0 | 4.1 | 0.91 |
-| opus / low | 95.0 | 87.8 | 562 | 562 | 97.1 / 98.2 / 91.0 | 3 | 14 | 0 | 0 | 5.2 | 1.73 |
+| haiku / medium | 94.8 | 71.1 | 559 | 554 | 95.7 / 98.0 / 83.1 | 11 | 14 | 0 | 5 | 5.7 | 0.27 |
+| sonnet / low | 95.0 | 83.8 | 558 | 558 | 96.4 / 98.2 / 86.5 | 7 | 14 | 0 | 0 | 8.9 | 1.58 |
+| opus / low | 95.0 | 86.0 | 560 | 560 | 96.7 / 98.2 / 88.8 | 5 | 14 | 0 | 0 | 5.1 | 1.72 |
 
 | Cell | Comment, corpus (562) | Comment, spec (114) |
 |---|---|---|
 | **converter** | Reference. 39 chains are documented approximations (DRIFT: positions, `//X[n]`) | Reference. 13 DRIFT chains; skips what has no exact form |
-| haiku / medium | Skips L012 (parenthesised path with a child step and an inner index) and L220 (child step after a predicate). The 75 `@type` locators are now converted | 4 INVALID: `$…$` written inside backticks (F01, F04, F07, F08; WDA rejects it; the same four were right in the v2 run, so this may be run-to-run noise). Also skips R01 (`ancestor::`), A08 (path with positions), C10 |
-| sonnet / low | Skips L012 and three locators with `contains(@enabled,"false")` (L278, L520, L521: "contains() on a boolean attribute") | Skips X07 (`self::`), C10, B18 (`contains(@enabled,…)`) |
-| opus / low | Skips L012 only | Skips X07 (`self::`) and C10 |
+| haiku / medium | Skips L012 (parenthesised path with an inner index). **1 WRONG: L129** (`contains(@type,"XCUIElementTypeStaticText") and contains(@label,…)` became `**/*[label CONTAINS …]`, the type test was dropped; in v3 it was right) | 4 INVALID: `$…$` written inside backticks (F01, F04, F07, F08; the same four as in v3, right in v2). Skips R01 (`ancestor::`), A08, X07, C10, G13 (a literal with `$`) |
+| sonnet / low | Skips L012. The four `contains(@enabled,"false")` locators are right now (L278, L520, L521; spec B18) | Skips A04 (`XCUIElementTypeAny`), A06 (`descendant::` in the path), A08, A11 (`/./`), X07 (`self::`), C10 |
+| opus / low | Skips L012 | Skips A08, X05 (union of two types), X07 (`self::`), C10 |
 
 **Columns.** *Usable*: chains that are CORRECT or DRIFT on the fixture pages; *% of converter*: usable ÷ the converter's 579, all, corpus only, spec only. *Missed*: the converter has a usable chain and the model skipped the locator or sent a chain that does not work. *Skipped right*: the converter only approximates (DRIFT: positions that have no exact form) and the model skipped it, which the harness counts as right. *Ahead*: a usable model chain where the converter has none; this is where a model can be better than the converter, and the column is there to catch it in later versions. It is 0 in all three cells: the Phase 5 fixes closed the converter's GAPs. *Chains* counts every chain sent, including WRONG and INVALID.
 
@@ -863,14 +871,14 @@ Phase 5, task D3. The prompt is [`llm/prompt-v3.md`](llm/prompt-v3.md) (rules; t
 
 **Findings.**
 
-1. v3 repaired R (94.4–95.0, within 1.4 of the converter's 95.8) and kept the error-free output of v2 for sonnet and opus (WRONG + INVALID 0). Haiku has 4 INVALID, all the same mistake (`$…$` inside backticks), in cases where v2 was right.
-2. Against the converter: 96.0–97.1 % of its usable chains, 97.6–98.2 % on the corpus, 85–91 % on the spec cases. The gap on the corpus is 9, 7 and 3 locators. On the spec cases the gap is the positional and nested forms (haiku) and `self::` / partial `@type` names (all three).
-3. No model is ahead of the converter in any case (Ahead = 0). In 14 cases the models skip where the converter only approximates; the harness counts that as right, but those 14 chains are the converter's documented DRIFT, so it is a tie in practice, not a win.
-4. S: sonnet 86.8 and opus 87.8 are 4–5 points under the converter (91.8); haiku 72.6 is 19 under. With v3 the model choice matters again at the low end: opus / low is 3 locators short of the converter on the corpus, haiku / medium 9 and 4 broken chains.
-5. Cost of one run: $0.25, $0.91, $1.73 (total $2.89) and 4.1–5.4 min.
-6. One run per cell. The v2 and v3 haiku cells differ in the four `$…$` cases and in S (84.7 → 72.6) although v3 changed nothing about `$…$`, so a single run can move S by about 10 points in haiku; sonnet and opus were stable (84.7 → 86.8, 85.7 → 87.8).
+1. **The v4 rule does what it was written for.** Sonnet converts the four `contains(@enabled,"false")` locators now (L278, L520, L521, B18); opus and haiku already did. The rule costs nothing on the corpus: R is 94.8 / 95.0 / 95.0, within 0.8 of the converter's 95.8, and sonnet and opus make no wrong chain.
+2. **v3 and v4 differ in cases the v4 rule does not touch, which is the run-to-run noise.** Between the v3 and the v4 run, S moved by −1.5 (haiku), −3.0 (sonnet) and −1.8 (opus) because single edge cases flipped: sonnet lost A04, A06, A11, opus lost A08 and X05, haiku lost G13, and each of them was right in the other run. One run per cell therefore cannot show differences of about 3 S points. Sonnet's run also took 8.9 min and 32k thinking tokens (v3: 4.1 min, 6k).
+3. **Against the converter.** 95.7–96.7 % of its usable chains (98.0–98.2 % on the corpus, 83–89 % on the spec cases). The gap on the corpus is 11, 7 and 5 locators. Nobody is ahead of the converter in any case (Ahead = 0). In 14 cases the models skip where the converter only approximates; the harness counts that as right, but those are the converter's documented DRIFT, so it is a tie in practice.
+4. **Errors.** Sonnet and opus: none. Haiku: the same `$…$`-in-backticks mistake in four cases (INVALID), and one new WRONG (L129, the type test dropped). Haiku / medium still cannot be used without the harness or a device check.
+5. **What is left that the converter does and the models do not do reliably:** `self::` (X07), partial `@type` names (C10, the model skips; the converter converts), `descendant::`/`/./` in the main path, per-parent positions (A08), the parenthesised path with an inner index (L012). Haiku also needs a clearer `$…$` rule if it is to be used.
+6. **Cost of one run:** $0.27, $1.58, $1.72 (total $3.57).
 
-**Rules that were unverified in "Rule check"** (a model ran the rule; the verdict is mini-WDA only, the device was not used): `/XCUIElementTypeApplication/A/B` → `A/B` (A07 CORRECT in all three, A08 in sonnet and opus, haiku skipped); `ENDSWITH` (H01 CORRECT in all three); `hittable` / `accessible` with `== true` (B14, B17 CORRECT in all three); the doubled backtick (G04 CORRECT in all three); unions with OR (X04, X05, L355, L455, L458, L461 CORRECT in all three). No rule was refuted by a wrong chain. The device checks of these rules are still open. "Other `true()` / `false()` uses SKIP" has no case.
+**Rules that were unverified in "Rule check"** (a model ran the rule; the verdict is mini-WDA only, the device was not used and is not planned): `/XCUIElementTypeApplication/A/B` → `A/B` (A07 CORRECT in all three; A08 skipped by all three in v4, right in two of three in v3); `ENDSWITH` (H01 CORRECT in all three); `hittable` / `accessible` with `== true` (B14, B17 CORRECT in all three); the doubled backtick (G04 CORRECT in all three); unions with OR (X04, L355, L455, L458, L461 CORRECT in all three; X05 in two of three, opus skipped it in v4). All of this is for the v4 run. No rule was refuted by a wrong chain. "Other `true()` / `false()` uses SKIP" has no case.
 
 ### Limits of these measurements
 
