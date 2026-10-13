@@ -34,23 +34,23 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 | -------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | Cost and speed | free, offline, seconds                                                                    | Opus at `low` effort, about $1.7 and 5 minutes for the whole list (one batch run)                |
 | How            | `npx github:domovou69/xpath-to-class-chain ./tests`                                       | give the model [`audit/llm/prompt-v4-run.md`](audit/llm/prompt-v4-run.md) and your locator list  |
-| Wrong chains   | none                                                                                      | none for Opus and Sonnet; Haiku sent 5                                                           |
+| Wrong chains   | none                                                                                      | none for Opus 5.5 and Sonnet 5.5; Haiku 5.5 sent 5                                               |
 | Best result    | **A is the maximum**: it converted 579 of 676 locators and skipped the rest with a reason | 560 of 676, i.e. 96.7 % of what A converted; nothing the converter misses was found by the model |
 
 **Recommendation:** use A. It is free, deterministic, and no model beat it on any case. Use B only for the locators A skips on purpose, and check each chain it returns (with the harness in [`audit/harness`](audit/harness) or on a device) before replacing the XPath: the model's answers were judged by an emulator, not by a device.
 
 **Final results** (one run per model, the converter and `prompt-v4`; R and S defined below the table):
 
-|                                                | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Cost per run (678 locators) |
-| ---------------------------------------------- | ---------------- | ------------- | -------------------------- | ----------------------- | --------------------------- |
-| **Converter (A)**                              | **95.8**         | **91.8**      | 100 %                      | 0                       | free                        |
-| Opus 5.5, effort low, no rules (plain request) | 95.0             | 81.9          | 96.7 %                     | 4                       | $2.04                       |
-| Opus 5.5, effort low (B)                       | 95.0             | 86.0          | 96.7 %                     | 0                       | $1.72                       |
-| Sonnet 5.5, effort low (B)                     | 95.0             | 83.8          | 96.4 %                     | 0                       | $1.58                       |
-| Haiku 5.5, effort medium (B)                   | 94.8             | 71.1          | 95.7 %                     | 5                       | $0.27                       |
-| Sonnet 5, effort low, no rules (plain request)  | 95.2             | 56.3          | 94.5 %                     | 12                      | $2.27                       |
-| Sonnet 4.6, effort low, no rules, 7 × 100 chunks ‡ | 89.1           | 48.6          | 86.5 %                     | 39                      | $2.58 (23.1 min)            |
-| Haiku 4.5, effort medium, no rules (plain request) † | 7.8          | 1.0           | 6.7 %                      | 25                      | $0.66                       |
+|                                                      | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Cost per run (678 locators) |
+| ---------------------------------------------------- | ---------------- | ------------- | -------------------------- | ----------------------- | --------------------------- |
+| **Converter (A)**                                    | **95.8**         | **91.8**      | 100 %                      | 0                       | free                        |
+| Opus 5.5, effort low, no rules (plain request)       | 95.0             | 81.9          | 96.7 %                     | 4                       | $2.04                       |
+| Opus 5.5, effort low (B)                             | 95.0             | 86.0          | 96.7 %                     | 0                       | $1.72                       |
+| Sonnet 5.5, effort low (B)                           | 95.0             | 83.8          | 96.4 %                     | 0                       | $1.58                       |
+| Haiku 5.5, effort medium (B)                         | 94.8             | 71.1          | 95.7 %                     | 5                       | $0.27                       |
+| Sonnet 5, effort low, no rules (plain request)       | 95.2             | 56.3          | 94.5 %                     | 12                      | $2.27                       |
+| Sonnet 4.6, effort low, no rules, 7 × 100 chunks ‡   | 89.1             | 48.6          | 86.5 %                     | 39                      | $2.58 (23.1 min)            |
+| Haiku 4.5, effort medium, no rules (plain request) † | 7.8              | 1.0           | 6.7 %                      | 25                      | $0.66                       |
 
 Sonnet 5 took 21.8 min (Sonnet 5.5: 5.2) and 140k output tokens, 81k of them thinking (Sonnet 5.5: 58k / 15k).
 
