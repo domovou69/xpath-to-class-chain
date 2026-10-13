@@ -51,7 +51,7 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 | Haiku 5.5 - medium, no rules (plain request)   | 94.1             | 63.8          | 93.8 %                     | 4                       | 6.0       | 99k (45k)                | $0.28                       |
 | Haiku 5.5 - medium, with rules                 | 94.8             | 71.1          | 95.7 %                     | 5                       | 5.7       | 102k (45k)               | $0.27                       |
 | Sonnet 5 - low, no rules (plain request) ¹     | 95.2             | 56.3          | 94.5 %                     | 12                      | 21.8      | 140k (81k)               | $2.27                       |
-| Sonnet 4.6 - low, no rules, 7 × 100 chunks ²   | 89.1             | 48.6          | 86.5 %                     | 39                      | 23.1      | ≈100k (51k)              | $2.58                       |
+| Sonnet 4.6 - low, no rules, in chunks ²       | 89.1             | 48.6          | 86.5 %                     | 39                      | 23.1      | ≈100k (51k)              | $2.58                       |
 | Haiku 4.5 - medium, no rules (plain request) ³ | 59.6             | 18.1          | 53.7 %                     | 59                      | 6.0       | 44k (3k)                 | $0.61                       |
 
 ¹ Sonnet 5: took 21.8 min and 140k output tokens (81k thinking) against 5.2 min and 58k / 15k for Sonnet 5.5 in the same plain request.

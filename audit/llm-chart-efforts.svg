@@ -32,7 +32,7 @@
 <text class="tick" x="430.0" y="362" text-anchor="middle">$5</text><line class="grid" x1="430.0" x2="430.0" y1="344" y2="348"/>
 <line class="axis" x1="70" x2="430" y1="344" y2="344"/><line class="axis" x1="70" x2="70" y1="70" y2="344"/>
 <text class="t2" x="250" y="384" text-anchor="middle">Cost per run, 678 locators (up is better, left is cheaper)</text>
-<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases (axis starts at 40)</text>
+<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases</text>
 <line class="ref" x1="70" x2="430" y1="107.4" y2="107.4"/><text class="labb" x="78" y="99.4">Converter <tspan class="lab" font-weight="400">S 91.8 · R 95.8 · free</tspan></text>
 <polyline class="ln l-haiku" points="144.7,292.9 107.6,235.3 135.7,245.8 200.1,265.9"/>
 <polyline class="ln l-sonnet" points="253.3,213.4 255.5,171.4 264.7,174.1 426.6,159.1"/>

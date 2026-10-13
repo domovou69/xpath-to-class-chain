@@ -1,42 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 446" width="840" height="446" role="img" aria-label="Quality vs Cost: 5.5 models with rules">
 <title>Quality vs Cost: 5.5 models with rules</title>
 <style>
-  svg { --surface: #fcfcfb; --ink: #0b0b0b; --ink2: #52514e; --muted: #898781; --grid: #e1e0d9; --axis: #c3c2b7; --conv: #0b0b0b; --opus: #2a78d6; --sonnet: #eb6834; --haiku: #1baf7a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
-  @media (prefers-color-scheme: dark) { svg { --surface: #1a1a19; --ink: #ffffff; --ink2: #c3c2b7; --grid: #2c2c2a; --axis: #383835; --conv: #ffffff; --opus: #3987e5; --sonnet: #d95926; --haiku: #199e70; } }
+  svg { --surface: #fcfcfb; --ink: #0b0b0b; --ink2: #52514e; --muted: #898781; --grid: #e1e0d9; --axis: #c3c2b7; --conv: #0b0b0b; --opus: #2a78d6; --sonnet: #eb6834; --haiku: #1baf7a; --bad: #c9302c; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  @media (prefers-color-scheme: dark) { svg { --surface: #1a1a19; --ink: #ffffff; --ink2: #c3c2b7; --grid: #2c2c2a; --axis: #383835; --conv: #ffffff; --opus: #3987e5; --sonnet: #d95926; --haiku: #199e70; --bad: #ff6b66; } }
   .bg { fill: var(--surface); }
   .t1 { fill: var(--ink); font-size: 16px; font-weight: 600; }
   .t2, .tick { fill: var(--muted); font-size: 11px; }
   .sub { fill: var(--ink2); font-size: 12px; }
   .lab { fill: var(--ink2); font-size: 12px; } .labb { fill: var(--ink); font-size: 12px; font-weight: 600; }
   .grid { stroke: var(--grid); stroke-width: 1; } .axis { stroke: var(--axis); stroke-width: 1; }
-  .dot { stroke: var(--surface); stroke-width: 2; }
+  .bad { fill: var(--bad); font-size: 12px; } .badn { fill: var(--bad); font-size: 11px; }
+  .ref { stroke: var(--conv); stroke-width: 1; stroke-dasharray: 4 4; }
+  .dot { stroke: var(--surface); stroke-width: 2; } .ln { fill: none; stroke-width: 2; stroke-linejoin: round; }
   .c-conv { fill: var(--conv); } .c-opus { fill: var(--opus); } .c-sonnet { fill: var(--sonnet); } .c-haiku { fill: var(--haiku); }
+  .l-opus { stroke: var(--opus); } .l-sonnet { stroke: var(--sonnet); } .l-haiku { stroke: var(--haiku); }
 </style>
 <rect class="bg" width="840" height="446" rx="8"/>
 <text class="t1" x="70" y="28">Quality vs Cost: 5.5 models with rules</text>
-<text class="sub" x="70" y="48">S against cost per run, models with the rules prompt; effort in brackets</text>
-<line class="grid" x1="70" x2="580" y1="344.0" y2="344.0"/><text class="tick" x="62" y="348.0" text-anchor="end">0</text>
-<line class="grid" x1="70" x2="580" y1="289.2" y2="289.2"/><text class="tick" x="62" y="293.2" text-anchor="end">20</text>
-<line class="grid" x1="70" x2="580" y1="234.4" y2="234.4"/><text class="tick" x="62" y="238.4" text-anchor="end">40</text>
-<line class="grid" x1="70" x2="580" y1="179.6" y2="179.6"/><text class="tick" x="62" y="183.6" text-anchor="end">60</text>
-<line class="grid" x1="70" x2="580" y1="124.8" y2="124.8"/><text class="tick" x="62" y="128.8" text-anchor="end">80</text>
-<line class="grid" x1="70" x2="580" y1="70.0" y2="70.0"/><text class="tick" x="62" y="74.0" text-anchor="end">100</text>
+<text class="sub" x="70" y="48">S against cost per run, models with the rules prompt</text>
+<line class="grid" x1="70" x2="410" y1="344.0" y2="344.0"/><text class="tick" x="62" y="348.0" text-anchor="end">60</text>
+<line class="grid" x1="70" x2="410" y1="275.5" y2="275.5"/><text class="tick" x="62" y="279.5" text-anchor="end">70</text>
+<line class="grid" x1="70" x2="410" y1="207.0" y2="207.0"/><text class="tick" x="62" y="211.0" text-anchor="end">80</text>
+<line class="grid" x1="70" x2="410" y1="138.5" y2="138.5"/><text class="tick" x="62" y="142.5" text-anchor="end">90</text>
+<line class="grid" x1="70" x2="410" y1="70.0" y2="70.0"/><text class="tick" x="62" y="74.0" text-anchor="end">100</text>
 <text class="tick" x="70.0" y="362" text-anchor="middle">free</text>
-<text class="tick" x="197.5" y="362" text-anchor="middle">$0.5</text>
-<text class="tick" x="325.0" y="362" text-anchor="middle">$1</text>
-<text class="tick" x="452.5" y="362" text-anchor="middle">$1.5</text>
-<text class="tick" x="580.0" y="362" text-anchor="middle">$2</text>
-<line class="axis" x1="70" x2="580" y1="344" y2="344"/><line class="axis" x1="70" x2="70" y1="70" y2="344"/>
-<text class="t2" x="325.0" y="384" text-anchor="middle">Cost per run, 678 locators (up is better, left is cheaper)</text>
-<text class="t2" transform="translate(16 207.0) rotate(-90)" text-anchor="middle">S, edge cases</text>
-<circle class="dot c-conv" cx="70.0" cy="92.5" r="7"/>
-<text class="labb" x="83.0" y="85.5" text-anchor="start">Converter</text><text class="lab" x="83.0" y="99.5" text-anchor="start">S 91.8 · R 95.8 · free</text>
-<circle class="dot c-opus" cx="508.6" cy="108.4" r="7"/>
-<text class="labb" x="521.6" y="83.4" text-anchor="start">Opus 5.5 (low)</text><text class="lab" x="521.6" y="97.4" text-anchor="start">S 86.0 · R 95.0 · 5.1 min · $1.72</text>
-<circle class="dot c-sonnet" cx="472.9" cy="114.4" r="7"/>
-<text class="labb" x="465.9" y="139.4" text-anchor="start">Sonnet 5.5 (low)</text><text class="lab" x="465.9" y="153.4" text-anchor="start">S 83.8 · R 95.0 · 8.9 min · $1.58</text>
-<circle class="dot c-haiku" cx="138.9" cy="149.2" r="7"/>
-<text class="labb" x="151.9" y="142.2" text-anchor="start">Haiku 5.5 (medium)</text><text class="lab" x="151.9" y="156.2" text-anchor="start">S 71.1 · R 94.8 · 5.7 min · $0.27</text>
-<text class="t2" x="70" y="416"><tspan font-weight="600">S</tspan> = score on 114 edge cases, <tspan font-weight="600">R</tspan> = score on 562 real-world locators that have a chain (0–100 each).</text>
+<text class="tick" x="155.0" y="362" text-anchor="middle">$0.5</text>
+<text class="tick" x="240.0" y="362" text-anchor="middle">$1</text>
+<text class="tick" x="325.0" y="362" text-anchor="middle">$1.5</text>
+<text class="tick" x="410.0" y="362" text-anchor="middle">$2</text>
+<line class="axis" x1="70" x2="410" y1="344" y2="344"/><line class="axis" x1="70" x2="70" y1="70" y2="344"/>
+<text class="t2" x="240" y="384" text-anchor="middle">Cost per run, 678 locators (up is better, left is cheaper)</text>
+<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases</text>
+<text class="t2" x="620" y="76" text-anchor="end">R</text><text class="t2" x="655" y="76" text-anchor="end">S</text><text class="t2" x="732" y="66" text-anchor="end">output tokens</text><text class="t2" x="732" y="78" text-anchor="end">(thinking)</text><text class="t2" x="772" y="76" text-anchor="end">min</text><text class="t2" x="820" y="76" text-anchor="end">cost</text>
+<circle class="dot c-conv" cx="70.0" cy="126.2" r="7"/><text class="lab" x="82.0" y="130.2" text-anchor="start">Converter</text>
+<circle class="dot c-conv" cx="456.0" cy="98.0" r="5"/><text class="labb" x="468" y="102">Converter<tspan class="lab" font-weight="400"> </tspan></text>
+<text class="lab" x="620" y="102" text-anchor="end">95.8</text><text class="lab" x="655" y="102" text-anchor="end">91.8</text><text class="lab" x="732" y="102" text-anchor="end">—</text><text class="lab" x="772" y="102" text-anchor="end">—</text><text class="lab" x="820" y="102" text-anchor="end">free</text>
+<circle class="dot c-opus" cx="362.4" cy="165.9" r="7"/><text class="lab" x="362.4" y="153.9" text-anchor="middle">Opus 5.5</text>
+<circle class="dot c-opus" cx="456.0" cy="118.0" r="5"/><text class="labb" x="468" y="122">Opus 5.5<tspan class="lab" font-weight="400"> low</tspan></text>
+<text class="lab" x="620" y="122" text-anchor="end">95.0</text><text class="lab" x="655" y="122" text-anchor="end">86.0</text><text class="lab" x="732" y="122" text-anchor="end">45k (4k)</text><text class="lab" x="772" y="122" text-anchor="end">5.1</text><text class="lab" x="820" y="122" text-anchor="end">$1.72</text>
+<circle class="dot c-sonnet" cx="338.6" cy="181.0" r="7"/><text class="lab" x="326.6" y="185.0" text-anchor="end">Sonnet 5.5</text>
+<circle class="dot c-sonnet" cx="456.0" cy="138.0" r="5"/><text class="labb" x="468" y="142">Sonnet 5.5<tspan class="lab" font-weight="400"> low</tspan></text>
+<text class="lab" x="620" y="142" text-anchor="end">95.0</text><text class="lab" x="655" y="142" text-anchor="end">83.8</text><text class="lab" x="732" y="142" text-anchor="end">93k (32k)</text><text class="lab" x="772" y="142" text-anchor="end">8.9</text><text class="lab" x="820" y="142" text-anchor="end">$1.58</text>
+<circle class="dot c-haiku" cx="115.9" cy="268.0" r="7"/><text class="lab" x="127.9" y="272.0" text-anchor="start">Haiku 5.5</text>
+<circle class="dot c-haiku" cx="456.0" cy="158.0" r="5"/><text class="labb" x="468" y="162">Haiku 5.5<tspan class="lab" font-weight="400"> medium</tspan></text>
+<text class="lab" x="620" y="162" text-anchor="end">94.8</text><text class="lab" x="655" y="162" text-anchor="end">71.1</text><text class="lab" x="732" y="162" text-anchor="end">102k (45k)</text><text class="lab" x="772" y="162" text-anchor="end">5.7</text><text class="lab" x="820" y="162" text-anchor="end">$0.27</text>
+<text class="t2" x="70" y="416"><tspan font-weight="600">S</tspan> = score on edge cases, <tspan font-weight="600">R</tspan> = score on real-world locators that have a chain (0–100 each).</text>
 <text class="t2" x="70" y="432">A correct chain counts 1, a documented approximation counts 0.5, a skipped, wrong or invalid chain counts 0.</text>
 </svg>
