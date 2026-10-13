@@ -41,22 +41,22 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 
 **Final results** (one run per model, the converter and `prompt-v4`; R and S defined below the table):
 
-|                                                      | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Cost per run (678 locators) |
-| ---------------------------------------------------- | ---------------- | ------------- | -------------------------- | ----------------------- | --------------------------- |
-| **Converter (A)**                                    | **95.8**         | **91.8**      | 100 %                      | 0                       | free                        |
-| Opus 5.5, effort low, no rules (plain request)       | 95.0             | 81.9          | 96.7 %                     | 4                       | $2.04                       |
-| Opus 5.5, effort low (B)                             | 95.0             | 86.0          | 96.7 %                     | 0                       | $1.72                       |
-| Sonnet 5.5, effort low (B)                           | 95.0             | 83.8          | 96.4 %                     | 0                       | $1.58                       |
-| Haiku 5.5, effort medium (B)                         | 94.8             | 71.1          | 95.7 %                     | 5                       | $0.27                       |
-| Sonnet 5, effort low, no rules (plain request)       | 95.2             | 56.3          | 94.5 %                     | 12                      | $2.27                       |
-| Sonnet 4.6, effort low, no rules, 7 × 100 chunks ‡   | 89.1             | 48.6          | 86.5 %                     | 39                      | $2.58 (23.1 min)            |
-| Haiku 4.5, effort medium, no rules (plain request) † | 7.8              | 1.0           | 6.7 %                      | 25                      | $0.66                       |
+|                                                | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Time, min | Output tokens (thinking) | Cost per run (678 locators) |
+| ---------------------------------------------- | ---------------- | ------------- | -------------------------- | ----------------------- | --------- | ------------------------ | --------------------------- |
+| **Converter (A)**                              | **95.8**         | **91.8**      | 100 %                      | 0                       | —         | —                        | free                        |
+| Opus 5.5 - low, no rules (plain request)       | 95.0             | 81.9          | 96.7 %                     | 4                       | 7.1       | 57k (14k)                | $2.04                       |
+| Opus 5.5 - low (B)                             | 95.0             | 86.0          | 96.7 %                     | 0                       | 5.1       | 45k (4k)                 | $1.72                       |
+| Sonnet 5.5 - low (B)                           | 95.0             | 83.8          | 96.4 %                     | 0                       | 8.9       | 93k (32k)                | $1.58                       |
+| Haiku 5.5 - medium (B)                         | 94.8             | 71.1          | 95.7 %                     | 5                       | 5.7       | 102k (45k)               | $0.27                       |
+| Sonnet 5 - low, no rules (plain request) ¹     | 95.2             | 56.3          | 94.5 %                     | 12                      | 21.8      | 140k (81k)               | $2.27                       |
+| Sonnet 4.6 - low, no rules, 7 × 100 chunks ²   | 89.1             | 48.6          | 86.5 %                     | 39                      | 23.1      | ≈100k (51k)              | $2.58                       |
+| Haiku 4.5 - medium, no rules (plain request) ³ | 7.8              | 1.0           | 6.7 %                      | 25                      | 6.0       | 42k (5k)                 | $0.66                       |
 
-Sonnet 5 took 21.8 min (Sonnet 5.5: 5.2) and 140k output tokens, 81k of them thinking (Sonnet 5.5: 58k / 15k).
+¹ Sonnet 5: took 21.8 min and 140k output tokens (81k thinking) against 5.2 min and 58k / 15k for Sonnet 5.5 in the same plain request.
 
-† Older model, same plain request and the same tools (Read and Write only), one run each. Haiku 4.5 answered 100 of 678 locators, spent the rest of the run writing a Python converter and docs, and asked to run the script itself. Of the 99 scored locators it answered, the converter has a usable chain for 86 and Haiku 4.5 for 39.
+² Sonnet 4.6: not the same conditions. It got seven separate runs of 100 locators (the other models get the whole file at once), because the single full-file run wrote nothing in 20 minutes and was stopped. Time and cost are the sum of the seven runs.
 
-‡ Not the same conditions: Sonnet 4.6 got seven separate runs of 100 locators (the other models get the whole file at once), because the single full-file run wrote nothing in 20 minutes and was stopped. The chunked run took 23.1 min; 39 of its chains are WRONG or INVALID (WDA rejects them).
+³ Haiku 4.5: answered 100 of 678 locators, spent the rest of the run writing a Python converter and docs, and asked to run the script itself. Of the 99 scored locators it answered, the converter has a usable chain for 86 and Haiku 4.5 for 39.
 
 **R** is the share of real-world locators that got a correct chain, out of those that have one (a documented approximation counts half; a skipped, wrong or invalid one counts 0). **S** is the same score on the 114 edge cases, weighted by group. Both are out of 100. "Converted vs the converter" counts usable chains against the 579 the converter produces. One run per model, so differences of about 3 points in S are noise.
 
