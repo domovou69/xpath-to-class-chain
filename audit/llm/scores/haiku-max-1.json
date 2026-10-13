@@ -1,12 +1,12 @@
 {
  "summary": {
   "name": "haiku-max-1",
-  "R": 92.2,
-  "S": 54.9,
+  "R": 91.6,
+  "S": 57.1,
   "Scat": {
    "A": 13,
-   "B": 9.375,
-   "C": 13.333333333333334,
+   "B": 10,
+   "C": 15,
    "D": 12,
    "E": 0,
    "F": 0,
@@ -14,7 +14,7 @@
    "H": 0,
    "R": 0
   },
-  "corpusDen": 487,
+  "corpusDen": 490,
   "corpus": {
    "CORRECT": 449,
    "CORRECT-SKIP": 111,
@@ -28,8 +28,8 @@
   },
   "spec": {
    "CORRECT": 56,
-   "CORRECT-SKIP": 33,
-   "GAP": 21,
+   "CORRECT-SKIP": 35,
+   "GAP": 19,
    "DRIFT": 1,
    "WRONG": 2,
    "INVALID": 1,
@@ -598,7 +598,7 @@
    "skip": true,
    "reason": "(...)[last()] picks the last match in document order; a class chain negative index might do this, but its scope couldn't be verified here",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x049": {
    "orig": "L304",
@@ -3485,7 +3485,7 @@
    "skip": true,
    "reason": "(...)[last()] picks the last match in document order; a class chain negative index might do this, but its scope couldn't be verified here",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x300": {
    "orig": "L201",
@@ -5198,8 +5198,8 @@
    "xpath": "//*[normalize-space(@label)=\"a b\"]",
    "skip": true,
    "reason": "normalize-space() trims and collapses whitespace before comparing; class chain predicates compare the raw attribute value, so the match set can differ",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x448": {
    "orig": "L169",
@@ -6658,7 +6658,7 @@
    "skip": true,
    "reason": "(...)[last()] picks the last match in document order; a class chain negative index might do this, but its scope couldn't be verified here",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x575": {
    "orig": "L162",
@@ -6987,7 +6987,7 @@
    "hits": 48,
    "trials": 300,
    "verdict": "CORRECT",
-   "inDen": true
+   "inDen": false
   },
   "x603": {
    "orig": "L140",
@@ -7398,8 +7398,8 @@
    "xpath": "//XCUIElementTypeButton[@value>5]",
    "skip": true,
    "reason": "numeric comparison (@value > 5) on the string value; class chain predicates would compare strings, not numbers, so the match set can differ",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x639": {
    "orig": "L224",

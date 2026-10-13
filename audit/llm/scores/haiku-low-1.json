@@ -1,12 +1,12 @@
 {
  "summary": {
   "name": "haiku-low-1",
-  "R": 91.7,
-  "S": 47.9,
+  "R": 91.3,
+  "S": 51.2,
   "Scat": {
    "A": 13,
-   "B": 6.5625,
-   "C": 10,
+   "B": 7,
+   "C": 12.857142857142858,
    "D": 9.6,
    "E": 0,
    "F": 0,
@@ -14,13 +14,13 @@
    "H": 0.8571428571428571,
    "R": 0
   },
-  "corpusDen": 487,
+  "corpusDen": 490,
   "corpus": {
    "CORRECT": 446,
    "CORRECT-SKIP": 79,
    "GAP": 4,
-   "DRIFT": 1,
-   "WRONG": 19,
+   "DRIFT": 3,
+   "WRONG": 17,
    "INVALID": 13,
    "MISSING": 0,
    "N/A": 0,
@@ -28,10 +28,10 @@
   },
   "spec": {
    "CORRECT": 50,
-   "CORRECT-SKIP": 27,
-   "GAP": 27,
-   "DRIFT": 0,
-   "WRONG": 6,
+   "CORRECT-SKIP": 30,
+   "GAP": 24,
+   "DRIFT": 1,
+   "WRONG": 5,
    "INVALID": 4,
    "MISSING": 0,
    "N/A": 0,
@@ -599,20 +599,12 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"])[last()]",
    "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 79,
    "trials": 200,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\" enabled=\"true\" visible=\"true\" accessible=\"true\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\" enabled=\"false\" visible=\"false\" accessible=\"true\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n4\" value=\"Kuki pefu matumutor\" enabled=\"true\" visible=\"true\" accessible=\"false\" name=\"Kuki pefu matumutor\"><XCUIElementTypeStaticText k=\"n5\" value=\"Vq2\" enabled=\"true\" visible=\"false\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n6\" name=\"Kuki pefu \" label=\"Kuki pefu matumutor\" enabled=\"true\" visible=\"false\" accessible=\"true\"></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" label=\"Kuki pefu matumutor z\" value=\"other\" enabled=\"true\" visible=\"true\" accessible=\"true\" name=\"Kuki pefu matumutor\"></XCUIElementTypeStaticText></XCUIElementTypeStaticText><XCUIElementTypeWindow k=\"n8\" name=\"Kuki pefu \" enabled=\"false\" visible=\"false\" accessible=\"false\"></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n9\" value=\"y Kuki pefu matumutor\" enabled=\"true\" visible=\"true\" accessible=\"false\" name=\"Kuki pefu matumutor\"><XCUIElementTypeWindow k=\"n10\" name=\"Kuki pefu matumutor\" label=\"Kuki pefu matumutor\" value=\"Kuki pefu matumutor\" enabled=\"false\" visible=\"false\" accessible=\"true\"></XCUIElementTypeWindow><XCUIElementTypeWindow k=\"n11\" name=\"other\" enabled=\"true\" visible=\"true\" accessible=\"true\"></XCUIElementTypeWindow><XCUIElementTypeWindow k=\"n12\" value=\"Vq1\" enabled=\"false\" visible=\"true\" accessible=\"false\" name=\"Kuki pefu matumutor\"></XCUIElementTypeWindow></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n9"
-    ],
-    "chainHits": [
-     "n7"
-    ]
-   },
-   "inDen": false
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x049": {
    "orig": "L304",
@@ -3214,10 +3206,12 @@
    "trials": 301,
    "verdict": "WRONG",
    "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeCell k=\"n1\" label=\"A b\" placeholderValue=\"A b\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"50\" width=\"0\"><XCUIElementTypeCell k=\"n2\" name=\"ab\" value=\"a b\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"60\" width=\"60\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"A b\" label=\"a\" value=\"1\" placeholderValue=\"ab\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"50\" width=\"50\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"A\" value=\"5\" enabled=\"false\" visible=\"false\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"100\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" name=\"a\" label=\"A\" value=\"10.5\" placeholderValue=\"a\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"50\" width=\"100\"></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [],
+    "xml": "<XCUIElementTypeApplication k=\"root\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther ><XCUIElementTypeButton k=\"d1\" name=\"a\"></XCUIElementTypeButton></XCUIElementTypeOther><XCUIElementTypeButton k=\"s1\" name=\"a\"></XCUIElementTypeButton><XCUIElementTypeButton k=\"s2\" name=\"a\"></XCUIElementTypeButton></XCUIElementTypeApplication>",
+    "xpathHits": [
+     "s1"
+    ],
     "chainHits": [
-     "n5"
+     "d1"
     ]
    },
    "inDen": true
@@ -3598,20 +3592,12 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@name=\"jila_zugo\"])[last()]",
    "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 77,
    "trials": 200,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\" enabled=\"true\" visible=\"false\" accessible=\"true\"><XCUIElementTypeOther k=\"n2\" name=\"true\" enabled=\"true\" visible=\"false\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" enabled=\"true\" visible=\"false\" accessible=\"true\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\" enabled=\"true\" visible=\"false\" accessible=\"true\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\" enabled=\"true\" visible=\"false\" accessible=\"false\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" name=\"jila_zugo\" label=\"jila_zugo\" value=\"other\" enabled=\"false\" visible=\"true\" accessible=\"true\"></XCUIElementTypeOther></XCUIElementTypeStaticText></XCUIElementTypeOther><XCUIElementTypeStaticText k=\"n7\" name=\"jila_zugo\" label=\"false\" value=\"Vq2\" enabled=\"false\" visible=\"true\" accessible=\"true\"><XCUIElementTypeOther k=\"n8\" label=\"false\" value=\"true\" enabled=\"false\" visible=\"false\" accessible=\"true\" name=\"jila_zugo z\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n9\" name=\"true\" label=\"Vq1\" value=\"y jila_zugo\" enabled=\"true\" visible=\"true\" accessible=\"false\"></XCUIElementTypeButton><XCUIElementTypeStaticText k=\"n10\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeButton k=\"n11\" name=\"true\" label=\"other\" enabled=\"false\" visible=\"false\" accessible=\"true\"></XCUIElementTypeButton><XCUIElementTypeButton k=\"n12\" name=\"jila_zugo\" label=\"Vq2\" enabled=\"true\" visible=\"true\" accessible=\"true\"></XCUIElementTypeButton></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeWindow></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n7"
-    ],
-    "chainHits": [
-     "n3"
-    ]
-   },
-   "inDen": false
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x300": {
    "orig": "L201",
@@ -5390,8 +5376,8 @@
    "xpath": "//*[normalize-space(@label)=\"a b\"]",
    "skip": true,
    "reason": "normalize-space() has no class chain equivalent",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x448": {
    "orig": "L169",
@@ -6488,19 +6474,11 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton)[last()]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[-1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 160,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeCell k=\"n1\" label=\"x\" placeholderValue=\"x\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"50\" width=\"0\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"60\" width=\"60\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\" placeholderValue=\"b\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"50\" width=\"50\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\" enabled=\"false\" visible=\"false\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"100\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" name=\"zabz\" label=\"false\" value=\"10.5\" placeholderValue=\"A b\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"50\" width=\"100\"></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n5"
-    ],
-    "chainHits": [
-     "n3"
-    ]
-   },
+   "verdict": "DRIFT",
+   "documented": true,
    "inDen": false
   },
   "x543": {
@@ -6878,7 +6856,7 @@
    "skip": true,
    "reason": "positional index on a multi-step result has no class chain equivalent",
    "verdict": "CORRECT-SKIP",
-   "inDen": false
+   "inDen": true
   },
   "x575": {
    "orig": "L162",
@@ -7202,8 +7180,8 @@
    "xpath": "//XCUIElementTypeButton[string-length(@label)>3]",
    "skip": true,
    "reason": "string-length() has no class chain equivalent",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x603": {
    "orig": "L140",
@@ -7626,8 +7604,8 @@
    "xpath": "//XCUIElementTypeButton[@value>5]",
    "skip": true,
    "reason": "numeric comparison on @value has no verified class chain equivalent",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x639": {
    "orig": "L224",

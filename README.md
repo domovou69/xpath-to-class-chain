@@ -30,24 +30,26 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 
 **Two ways to convert**
 
-|                | A. This converter                                                                         | B. An LLM with the rules prompt                                                                  |
-| -------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| Cost and speed | free, offline, seconds                                                                    | Opus at `low` effort, about $1.7 and 5 minutes for the whole list (one batch run)                |
-| How            | `npx github:domovou69/xpath-to-class-chain ./tests`                                       | give the model [`audit/llm/prompt-v4-run.md`](audit/llm/prompt-v4-run.md) and your locator list  |
-| Wrong chains   | none                                                                                      | none for Opus 5.5 and Sonnet 5.5; Haiku 5.5 sent 5                                               |
-| Best result    | **A is the maximum**: it converted 579 of 676 locators and skipped the rest with a reason | 560 of 676, i.e. 96.7 % of what A converted; nothing the converter misses was found by the model |
+|                | This converter                                                                                        | An LLM with the rules prompt (prompt-v4)                                                                     |
+| -------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Cost and speed | free, offline, seconds                                                                                | Opus at `low` effort, about $1.7 and 5 minutes for the whole list (one batch run)                            |
+| How            | `npx github:domovou69/xpath-to-class-chain ./tests`                                                   | give the model [`audit/llm/prompt-v4-run.md`](audit/llm/prompt-v4-run.md) and your locator list              |
+| Wrong chains   | none                                                                                                  | none for Opus 5.5 and Sonnet 5.5; Haiku 5.5 sent 5                                                           |
+| Best result    | **The converter is the maximum**: it converted 579 of 676 locators and skipped the rest with a reason | 560 of 676, i.e. 96.7 % of what the converter converted; nothing the converter misses was found by the model |
 
-**Recommendation:** use A. It is free, deterministic, and no model beat it on any case. Use B only for the locators A skips on purpose, and check each chain it returns (with the harness in [`audit/harness`](audit/harness) or on a device) before replacing the XPath: the model's answers were judged by an emulator, not by a device.
+**Recommendation:** use the converter. It is free, deterministic, and no model beat it on any case. Use an LLM only for the locators the converter skips on purpose, and check each chain it returns (with the harness in [`audit/harness`](audit/harness) or on a device) before replacing the XPath: the model's answers were judged by an emulator, not by a device.
 
-**Final results** (one run per model, the converter and `prompt-v4`; R and S defined below the table):
+**Final results** (one run per model; rows "with rules" used the rules prompt `prompt-v4`, rows "no rules" a plain request; R and S defined below the table):
 
 |                                                | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Time, min | Output tokens (thinking) | Cost per run (678 locators) |
 | ---------------------------------------------- | ---------------- | ------------- | -------------------------- | ----------------------- | --------- | ------------------------ | --------------------------- |
-| **Converter (A)**                              | **95.8**         | **91.8**      | 100 %                      | 0                       | —         | —                        | free                        |
+| **Converter**                                  | **95.8**         | **91.8**      | 100 %                      | 0                       | —         | —                        | free                        |
 | Opus 5.5 - low, no rules (plain request)       | 95.0             | 81.9          | 96.7 %                     | 4                       | 7.1       | 57k (14k)                | $2.04                       |
-| Opus 5.5 - low (B)                             | 95.0             | 86.0          | 96.7 %                     | 0                       | 5.1       | 45k (4k)                 | $1.72                       |
-| Sonnet 5.5 - low (B)                           | 95.0             | 83.8          | 96.4 %                     | 0                       | 8.9       | 93k (32k)                | $1.58                       |
-| Haiku 5.5 - medium (B)                         | 94.8             | 71.1          | 95.7 %                     | 5                       | 5.7       | 102k (45k)               | $0.27                       |
+| Opus 5.5 - low, with rules                     | 95.0             | 86.0          | 96.7 %                     | 0                       | 5.1       | 45k (4k)                 | $1.72                       |
+| Sonnet 5.5 - low, no rules (plain request)     | 94.8             | 68.6          | 95.9 %                     | 7                       | 5.2       | 58k (15k)                | $1.03                       |
+| Sonnet 5.5 - low, with rules                   | 95.0             | 83.8          | 96.4 %                     | 0                       | 8.9       | 93k (32k)                | $1.58                       |
+| Haiku 5.5 - medium, no rules (plain request)   | 94.1             | 63.8          | 93.8 %                     | 4                       | 6.0       | 99k (45k)                | $0.28                       |
+| Haiku 5.5 - medium, with rules                 | 94.8             | 71.1          | 95.7 %                     | 5                       | 5.7       | 102k (45k)               | $0.27                       |
 | Sonnet 5 - low, no rules (plain request) ¹     | 95.2             | 56.3          | 94.5 %                     | 12                      | 21.8      | 140k (81k)               | $2.27                       |
 | Sonnet 4.6 - low, no rules, 7 × 100 chunks ²   | 89.1             | 48.6          | 86.5 %                     | 39                      | 23.1      | ≈100k (51k)              | $2.58                       |
 | Haiku 4.5 - medium, no rules (plain request) ³ | 7.8              | 1.0           | 6.7 %                      | 25                      | 6.0       | 42k (5k)                 | $0.66                       |
@@ -59,6 +61,16 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 ³ Haiku 4.5: answered 100 of 678 locators, spent the rest of the run writing a Python converter and docs, and asked to run the script itself. Of the 99 scored locators it answered, the converter has a usable chain for 86 and Haiku 4.5 for 39.
 
 **R** is the share of real-world locators that got a correct chain, out of those that have one (a documented approximation counts half; a skipped, wrong or invalid one counts 0). **S** is the same score on the 114 edge cases, weighted by group. Both are out of 100. "Converted vs the converter" counts usable chains against the 579 the converter produces. One run per model, so differences of about 3 points in S are noise.
+
+The same results as charts: S against cost per run, for the plain request and for the rules prompt.
+
+![Quality vs cost, plain request](audit/llm-chart-plain.svg)
+
+![Quality vs cost, rules prompt](audit/llm-chart-rules.svg)
+
+Effort levels of the three 5.5 models on the plain request: a higher effort does not pay. Opus is flat from `low`, Sonnet gains most from `low` to `medium` and only 2.7 more at `max` for 4.6× the cost, Haiku is best at `medium`.
+
+![Quality vs cost by effort level, plain request](audit/llm-chart-efforts.svg)
 
 **Lookup speed.** A class chain is faster than the XPath it replaces, and the gain grows with the page: on a simulator and an iPhone 13 Pro Max it saved 22–29 % per lookup at every size from 100 to 2000 elements in the tree, which is 25 ms at 100 elements on the simulator and 676 ms at 2000 on the iPhone. The chain was faster in all 240 timed lookups.
 
@@ -76,7 +88,7 @@ Caveat: `visible` on the last step can be much slower as a chain; see [On the de
 | iOS                    | 27.0 simulator (iPhone 17) and iOS 26.6 iPhone 13 Pro Max; same results |
 | Xcode                  | 27.0                                                                    |
 | Node.js                | 20 or later (run on 24)                                                 |
-| Models for B           | `claude-opus-5-5`, `claude-sonnet-5-5`, `claude-haiku-5-5`              |
+| Models with rules      | `claude-opus-5-5`, `claude-sonnet-5-5`, `claude-haiku-5-5`              |
 
 ## Requirements
 
