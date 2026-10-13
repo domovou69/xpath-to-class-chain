@@ -1,5 +1,5 @@
 // D3: the converter and the prompt-test cells (out/<cell>-<RUN>.json, scores/<cell>-<RUN>.json), each counted against the converter.
-// Usage: RUN=3 node compare-v2.js [details]   (RUN: 2 = prompt v3, 3 = prompt v4; default 3; BASELINE=1 adds the Phase 4 run without rules, run 1, above each row). "details" adds the case ids behind the comment column.
+// Usage: RUN=3 node compare-v2.js [details]   (CELLS=a-low,b-medium picks the cells)   (RUN: 2 = prompt v3, 3 = prompt v4; default 3; BASELINE=1 adds the Phase 4 run without rules, run 1, above each row). "details" adds the case ids behind the comment column.
 const fs = require('fs'), path = require('path');
 const S = n => JSON.parse(fs.readFileSync(path.join(__dirname, 'scores', n + '.json'), 'utf8'));
 const O = n => JSON.parse(fs.readFileSync(path.join(__dirname, 'out', n + '.json'), 'utf8'));
@@ -9,8 +9,8 @@ const grp = g => ids.filter(i => conv.cases[i].group === g);
 const base = { all: ids.filter(i => usable(conv.cases[i].verdict)).length, corpus: grp('corpus').filter(i => usable(conv.cases[i].verdict)).length, spec: grp('spec').filter(i => usable(conv.cases[i].verdict)).length };
 const pc = (a, b) => (100 * a / b).toFixed(1);
 const RUN = process.env.RUN || '3';
-const cells = ['opus-low', 'sonnet-low', 'haiku-medium']; // best to worst
-const RUNS = (process.env.BASELINE ? [['1', 'no rules (Phase 4)']] : []).concat([[RUN, 'v' + (+RUN + 1)]]);
+const cells = process.env.CELLS ? process.env.CELLS.split(',') : ['opus-low', 'sonnet-low', 'haiku-medium']; // best to worst; CELLS=sonnet46-low,haiku45-medium RUN=1 for the older models
+const RUNS = (process.env.BASELINE ? [['1', 'no rules (Phase 4)']] : []).concat([[RUN, RUN === '1' ? 'no rules (Phase 4)' : isNaN(+RUN) ? 'no rules (' + RUN + ')' : 'v' + (+RUN + 1)]]);
 const rows = ['| Cell | Prompt | R | S | Chains | Usable (CORRECT + DRIFT) | % of converter (all / corpus / spec) | Missed (converter has it, model skips or errs) | Skipped right (converter only approximates) | Ahead (model right where the converter has a GAP) | WRONG + INVALID | Time, min | Cost, $ |', '|' + '---|'.repeat(13)];
 const details = [];
 const cc = ids.filter(i => emitted(conv.cases[i].verdict)).length;
