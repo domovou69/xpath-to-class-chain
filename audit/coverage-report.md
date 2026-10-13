@@ -711,7 +711,7 @@ A higher effort was never better in proportion to its cost, and for Haiku it was
 | 1 | opus / low | 95.3 | 81.1 | 98.4 % | 83.4 % | 9 | 7.1 min | $2.04 |
 | 2 | sonnet / low | 95.2 | 68.8 | 98.0 % | 83.3 % | 10 | 5.2 min | $1.03 |
 | 3 | haiku / medium | 94.5 | 60.8 | 98.7 % | 80.9 % | 7 | 6.0 min | $0.28 |
-| ref | converter | 95.3 | 61.8 | 100 % | 81.8 % | 0 | seconds | — |
+| ref | converter (as of Phase 4, before Phase 5) | 95.3 | 61.8 | 100 % | 81.8 % | 0 | seconds | — |
 
 On real-world locators (R) no run beats the converter; the best ones tie it. The models are ahead on edge cases (S, up to +20), and they pay for it with wrong chains the converter does not make. In the per-case verdicts, the models' strength lies exactly where the converter skips: on its 25 GAPs, opus / low is right on 19 and wrong on none, sonnet / low right on 22 with one INVALID. A model asked about all skipped locators would also convert the ones that have no exact form: E05, E06, L270–L272 and F03 wrong, E07 and E11 as the grouped-position approximation (DRIFT). This combination was not run as a pipeline.
 
@@ -910,10 +910,10 @@ Each model is shown twice: with the plain Phase 4 prompt (task text and one exam
 
 ### Conclusions
 
-1. On real-world locators, a plain model converts as many as the converter (80–84 % of the input against 81.8 %) and scores the same at best (R 95.3 for opus at every level and sonnet / max). It never scores higher.
-2. Every model run emits wrong chains: 4–43 per run (precision 92–99 %), against none from the converter. The two most common errors are a raw line break in a literal (INVALID in every Sonnet and Opus run) and positions that have no exact form (`last()`, `position()`), which the models convert instead of skipping.
-3. The models are clearly better on edge cases (S up to 82 against 62). Exactly there the converter skips: for all 25 of its GAPs (4 corpus, 21 spec) some run found the exact chain, and 5 converter DRIFTs (A07, A14–A16, B16) are imprecisions with an exact form. These are the converter's next improvements.
-4. A higher effort does not pay: Opus is flat from `low`, Sonnet from `medium`, and Haiku gets worse above `medium`. `max` costs 2–4× and up to 6× the time of the level below for at most +1.6 S, and it spends 80–90 % of its tokens on thinking.
+1. On real-world locators, a plain model converts 75–84 % of the input against the converter's 85.7 % and scores the same at best (R 95.0 for opus at every level and sonnet / max, the converter 95.8). It never scores higher.
+2. Every model run emits wrong chains: 3–39 per run (precision 93–99.5 %), against none from the converter. The two most common errors are a raw line break in a literal (INVALID in every Sonnet and Opus run) and positions that have no exact form (`last()`, `position()`), which the models convert instead of skipping.
+3. The models were clearly better on edge cases than the converter was at the time of Phase 4 (S up to 82 against 62; 25 GAPs, 4 corpus and 21 spec, where some run found the exact chain, and 5 DRIFTs with an exact form: A07, A14–A16, B16). Phase 5 closed that gap: the converter now has S 91.8 and 1 GAP, and the best model run reaches S 82.9 (opus / high), so no model is ahead of it.
+4. A higher effort does not pay: Opus is flat from `low`, Sonnet gains most from `low` to `medium` and Haiku gets worse above `medium`. `max` costs 2–4× and up to 6× the time of the level below for at most +3.3 S (Sonnet), and it spends 80–90 % of its tokens on thinking. Opus `max` did not finish (see Excluded above).
 5. Recommendation: convert with the converter, which never emits a wrong chain. For the locators it skips, a model helps (opus / low or sonnet / low), but its chains need the harness or a device check before they replace the XPath.
 
 ## Device check (Phase 5, C1)
