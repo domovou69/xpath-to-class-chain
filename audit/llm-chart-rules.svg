@@ -31,8 +31,7 @@
 <text class="t2" x="270" y="384" text-anchor="middle">Cost per run, 678 locators (up is better, left is cheaper)</text>
 <text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases</text>
 <text class="t2" x="700" y="148" text-anchor="end">output tokens</text><text class="t2" x="700" y="160" text-anchor="end">(thinking)</text><text class="t2" x="745" y="160" text-anchor="end">min</text><text class="t2" x="800" y="160" text-anchor="end">cost</text>
-<circle class="dot c-conv" cx="70.0" cy="144.9" r="7"/>
-<text class="labb" x="82.0" y="138.9" text-anchor="start">Converter</text><text class="lab" x="82.0" y="152.9" text-anchor="start">S 91.8 · R 95.8 · free</text>
+<line class="ref" x1="70" x2="470" y1="144.9" y2="144.9"/><text class="labb" x="78" y="136.9">Converter <tspan class="lab" font-weight="400">S 91.8 · R 95.8 · free</tspan></text>
 <circle class="dot c-conv" cx="506.0" cy="182.0" r="5"/><text class="labb" x="518" y="186.0">Converter<tspan class="lab" font-weight="400"> </tspan></text>
 <text class="lab" x="700" y="186.0" text-anchor="end">—</text><text class="lab" x="745" y="186.0" text-anchor="end">—</text><text class="lab" x="800" y="186.0" text-anchor="end">free</text>
 <circle class="dot c-opus" cx="414.0" cy="197.9" r="7"/>
