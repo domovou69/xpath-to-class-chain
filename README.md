@@ -52,13 +52,13 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 | Haiku 5.5 - medium, with rules                 | 94.8             | 71.1          | 95.7 %                     | 5                       | 5.7       | 102k (45k)               | $0.27                       |
 | Sonnet 5 - low, no rules (plain request) ¹     | 95.2             | 56.3          | 94.5 %                     | 12                      | 21.8      | 140k (81k)               | $2.27                       |
 | Sonnet 4.6 - low, no rules, 7 × 100 chunks ²   | 89.1             | 48.6          | 86.5 %                     | 39                      | 23.1      | ≈100k (51k)              | $2.58                       |
-| Haiku 4.5 - medium, no rules (plain request) ³ | 7.8              | 1.0           | 6.7 %                      | 25                      | 6.0       | 42k (5k)                 | $0.66                       |
+| Haiku 4.5 - medium, no rules (plain request) ³ | 59.6             | 18.1          | 53.7 %                     | 59                      | 6.0       | 44k (3k)                 | $0.61                       |
 
 ¹ Sonnet 5: took 21.8 min and 140k output tokens (81k thinking) against 5.2 min and 58k / 15k for Sonnet 5.5 in the same plain request.
 
 ² Sonnet 4.6: not the same conditions. It got seven separate runs of 100 locators (the other models get the whole file at once), because the single full-file run wrote nothing in 20 minutes and was stopped. Time and cost are the sum of the seven runs.
 
-³ Haiku 4.5: answered 100 of 678 locators, spent the rest of the run writing a Python converter and docs, and asked to run the script itself. Of the 99 scored locators it answered, the converter has a usable chain for 86 and Haiku 4.5 for 39.
+³ Haiku 4.5: in all three runs it wrote a Python converter instead of converting the locators itself. Only one run (shown) ran its script and returned all 678 answers; the other two answered 100 of 678 and none, and asked to run the script themselves.
 
 **R** is the share of real-world locators that got a correct chain, out of those that have one (a documented approximation counts half; a skipped, wrong or invalid one counts 0). **S** is the same score on the 114 edge cases, weighted by group. Both are out of 100. "Converted vs the converter" counts usable chains against the 579 the converter produces. One run per model, so differences of about 3 points in S are noise.
 

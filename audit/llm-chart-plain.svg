@@ -43,8 +43,8 @@
 <text class="labb" x="468.9" y="164.7" text-anchor="start">Sonnet 5 (low)</text><text class="lab" x="468.9" y="178.7" text-anchor="start">S 56.3 · R 95.2 · 21.8 min · $2.27</text>
 <circle class="dot c-sonnet" cx="508.6" cy="210.8" r="7"/>
 <text class="labb" x="521.6" y="215.8" text-anchor="start">Sonnet 4.6 (low), chunked</text><text class="lab" x="521.6" y="229.8" text-anchor="start">S 48.6 · R 89.1 · 23.1 min · $2.58</text>
-<circle class="dot c-haiku" cx="182.2" cy="341.3" r="7"/>
-<text class="labb" x="195.2" y="316.3" text-anchor="start">Haiku 4.5 (medium)</text><text class="lab" x="195.2" y="330.3" text-anchor="start">S 1.0 · R 7.8 · 6.0 min · $0.66 (100 of 678 answered)</text>
+<circle class="dot c-haiku" cx="173.7" cy="294.4" r="7"/>
+<text class="labb" x="186.7" y="289.4" text-anchor="start">Haiku 4.5 (medium)</text><text class="lab" x="186.7" y="303.4" text-anchor="start">S 18.1 · R 59.6 · 6.0 min · $0.61</text>
 <text class="t2" x="70" y="416"><tspan font-weight="600">S</tspan> = score on 114 edge cases, <tspan font-weight="600">R</tspan> = score on 562 real-world locators that have a chain (0–100 each).</text>
 <text class="t2" x="70" y="432">A correct chain counts 1, a documented approximation counts 0.5, a skipped, wrong or invalid chain counts 0.</text>
 </svg>
