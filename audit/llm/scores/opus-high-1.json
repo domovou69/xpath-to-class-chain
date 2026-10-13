@@ -1,11 +1,11 @@
 {
  "summary": {
   "name": "opus-high-1",
-  "R": 95.3,
-  "S": 82.1,
+  "R": 95,
+  "S": 82.9,
   "Scat": {
    "A": 14,
-   "B": 13.125,
+   "B": 14,
    "C": 15,
    "D": 12,
    "E": 4,
@@ -14,24 +14,24 @@
    "H": 0,
    "R": 5
   },
-  "corpusDen": 487,
+  "corpusDen": 490,
   "corpus": {
    "CORRECT": 450,
    "CORRECT-SKIP": 78,
    "GAP": 0,
-   "DRIFT": 29,
-   "WRONG": 3,
+   "DRIFT": 32,
+   "WRONG": 0,
    "INVALID": 2,
    "MISSING": 0,
    "N/A": 0,
    "EXCLUDED": 1
   },
   "spec": {
-   "CORRECT": 69,
-   "CORRECT-SKIP": 23,
-   "GAP": 10,
-   "DRIFT": 8,
-   "WRONG": 3,
+   "CORRECT": 70,
+   "CORRECT-SKIP": 24,
+   "GAP": 9,
+   "DRIFT": 10,
+   "WRONG": 0,
    "INVALID": 1,
    "MISSING": 0,
    "N/A": 0,
@@ -438,7 +438,7 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeCell)[1]",
    "chain": "-ios class chain:**/XCUIElementTypeCell[1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 152,
    "trials": 300,
    "verdict": "DRIFT",
@@ -599,20 +599,12 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@name=\"Kuki pefu matumutor\"])[last()]",
    "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 79,
    "trials": 200,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeWindow k=\"n1\" name=\"Kuki pefu matumutor\" label=\"y Kuki pefu matumutor\" value=\"Vq1\" enabled=\"true\" visible=\"true\" accessible=\"true\"><XCUIElementTypeWindow k=\"n2\" label=\"y Kuki pefu matumutor\" value=\"Vq2\" enabled=\"false\" visible=\"false\" accessible=\"true\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"Kuki pefu matumutor\" value=\"Vq2\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n4\" value=\"Kuki pefu matumutor\" enabled=\"true\" visible=\"true\" accessible=\"false\" name=\"Kuki pefu matumutor\"><XCUIElementTypeStaticText k=\"n5\" value=\"Vq2\" enabled=\"true\" visible=\"false\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n6\" name=\"Kuki pefu \" label=\"Kuki pefu matumutor\" enabled=\"true\" visible=\"false\" accessible=\"true\"></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" label=\"Kuki pefu matumutor z\" value=\"other\" enabled=\"true\" visible=\"true\" accessible=\"true\" name=\"Kuki pefu matumutor\"></XCUIElementTypeStaticText></XCUIElementTypeStaticText><XCUIElementTypeWindow k=\"n8\" name=\"Kuki pefu \" enabled=\"false\" visible=\"false\" accessible=\"false\"></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n9\" value=\"y Kuki pefu matumutor\" enabled=\"true\" visible=\"true\" accessible=\"false\" name=\"Kuki pefu matumutor\"><XCUIElementTypeWindow k=\"n10\" name=\"Kuki pefu matumutor\" label=\"Kuki pefu matumutor\" value=\"Kuki pefu matumutor\" enabled=\"false\" visible=\"false\" accessible=\"true\"></XCUIElementTypeWindow><XCUIElementTypeWindow k=\"n11\" name=\"other\" enabled=\"true\" visible=\"true\" accessible=\"true\"></XCUIElementTypeWindow><XCUIElementTypeWindow k=\"n12\" value=\"Vq1\" enabled=\"false\" visible=\"true\" accessible=\"false\" name=\"Kuki pefu matumutor\"></XCUIElementTypeWindow></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n9"
-    ],
-    "chainHits": [
-     "n7"
-    ]
-   },
-   "inDen": false
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x049": {
    "orig": "L304",
@@ -794,7 +786,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@name=\"ZejizasAgal.giselolIpefov\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 45,
    "trials": 200,
    "verdict": "DRIFT",
@@ -1208,7 +1200,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[contains(@name, \"Dobe teg\")])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 107,
    "trials": 200,
    "verdict": "DRIFT",
@@ -1231,7 +1223,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@name=\"LohenobEcohazoLasi.sewanecAbifub\"])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 75,
    "trials": 200,
    "verdict": "DRIFT",
@@ -1268,7 +1260,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\"])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 79,
    "trials": 200,
    "verdict": "DRIFT",
@@ -1403,7 +1395,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 41,
    "trials": 200,
    "verdict": "DRIFT",
@@ -1554,7 +1546,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.noraSefili\"])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 80,
    "trials": 200,
    "verdict": "DRIFT",
@@ -1673,7 +1665,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@name=\"WefaniBedufeDanu.gotePebazoh\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 38,
    "trials": 200,
    "verdict": "DRIFT",
@@ -2169,7 +2161,7 @@
    "cat": "corpus",
    "xpath": "(//*[@name=\"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"])[2]",
    "chain": "-ios class chain:**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 104,
    "trials": 200,
    "verdict": "DRIFT",
@@ -2356,7 +2348,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@label=\"Dobe Dubow teg £2.00\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 40,
    "trials": 200,
    "verdict": "DRIFT",
@@ -2553,7 +2545,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@name=\"taka_vawotub_giwap\"])[3]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 15,
    "trials": 200,
    "verdict": "DRIFT",
@@ -2659,7 +2651,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.dijivOdozev\"])[3]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 15,
    "trials": 200,
    "verdict": "DRIFT",
@@ -2822,7 +2814,7 @@
    "cat": "corpus",
    "xpath": "(//*[contains(@name, \"Vq1\")])[2]",
    "chain": "-ios class chain:**/*[`name CONTAINS \"Vq1\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 119,
    "trials": 200,
    "verdict": "DRIFT",
@@ -2835,17 +2827,10 @@
    "cat": "F",
    "xpath": "//XCUIElementTypeCell[.//*[@name=\"x\"]]",
    "chain": "-ios class chain:**/XCUIElementTypeCell[$name == \"x\"$]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 35,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeOther k=\"n1\" value=\"\" placeholderValue=\"yx\" enabled=\"true\" visible=\"true\" accessible=\"false\" hittable=\"true\" selected=\"false\" x=\"100\" width=\"50\"></XCUIElementTypeOther><XCUIElementTypeOther k=\"n2\" name=\"A b\" label=\"other\" placeholderValue=\"x\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"60\" width=\"100\" value=\"10.5\"><XCUIElementTypeOther k=\"n3\" name=\"b\" value=\"abc\" placeholderValue=\"a b\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"100\"><XCUIElementTypeButton k=\"n4\" value=\" a  b \" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"50\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n5\" name=\"false\" value=\"b\" placeholderValue=\"yx\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"60\"><XCUIElementTypeCell k=\"n6\" name=\"x\" label=\" a  b \" value=\"zabz\" enabled=\"false\" visible=\"false\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"100\" width=\"60\"></XCUIElementTypeCell></XCUIElementTypeOther></XCUIElementTypeOther></XCUIElementTypeOther></XCUIElementTypeApplication>",
-    "xpathHits": [],
-    "chainHits": [
-     "n6"
-    ]
-   },
+   "verdict": "CORRECT",
    "inDen": false
   },
   "x239": {
@@ -2972,7 +2957,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@name=\"Hicepe\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 40,
    "trials": 200,
    "verdict": "DRIFT",
@@ -3087,7 +3072,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeOther[@name=\"Luvuce tuve nowam\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 36,
    "trials": 200,
    "verdict": "DRIFT",
@@ -3136,7 +3121,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeOther[@name=\", Nepureze, hilubodamo\"])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 77,
    "trials": 200,
    "verdict": "DRIFT",
@@ -3173,7 +3158,7 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 2,
    "trials": 301,
    "verdict": "DRIFT",
@@ -3558,20 +3543,12 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@name=\"jila_zugo\"])[last()]",
    "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"jila_zugo\"`][-1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 77,
    "trials": 200,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeWindow k=\"n1\" label=\"jila_zugo\" enabled=\"true\" visible=\"false\" accessible=\"true\"><XCUIElementTypeOther k=\"n2\" name=\"true\" enabled=\"true\" visible=\"false\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n3\" value=\"Vq1\" enabled=\"true\" visible=\"false\" accessible=\"true\" name=\"jila_zugo\"><XCUIElementTypeWindow k=\"n4\" enabled=\"true\" visible=\"false\" accessible=\"true\"></XCUIElementTypeWindow><XCUIElementTypeButton k=\"n5\" name=\"jila_zugo z\" label=\"JILA_ZUGO\" enabled=\"true\" visible=\"false\" accessible=\"false\"></XCUIElementTypeButton><XCUIElementTypeOther k=\"n6\" name=\"jila_zugo\" label=\"jila_zugo\" value=\"other\" enabled=\"false\" visible=\"true\" accessible=\"true\"></XCUIElementTypeOther></XCUIElementTypeStaticText></XCUIElementTypeOther><XCUIElementTypeStaticText k=\"n7\" name=\"jila_zugo\" label=\"false\" value=\"Vq2\" enabled=\"false\" visible=\"true\" accessible=\"true\"><XCUIElementTypeOther k=\"n8\" label=\"false\" value=\"true\" enabled=\"false\" visible=\"false\" accessible=\"true\" name=\"jila_zugo z\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n9\" name=\"true\" label=\"Vq1\" value=\"y jila_zugo\" enabled=\"true\" visible=\"true\" accessible=\"false\"></XCUIElementTypeButton><XCUIElementTypeStaticText k=\"n10\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeButton k=\"n11\" name=\"true\" label=\"other\" enabled=\"false\" visible=\"false\" accessible=\"true\"></XCUIElementTypeButton><XCUIElementTypeButton k=\"n12\" name=\"jila_zugo\" label=\"Vq2\" enabled=\"true\" visible=\"true\" accessible=\"true\"></XCUIElementTypeButton></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeWindow></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n7"
-    ],
-    "chainHits": [
-     "n3"
-    ]
-   },
-   "inDen": false
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x300": {
    "orig": "L201",
@@ -3635,7 +3612,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[3]",
    "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 17,
    "trials": 200,
    "verdict": "DRIFT",
@@ -4005,7 +3982,7 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton)[position()=2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 109,
    "trials": 300,
    "verdict": "DRIFT",
@@ -4102,7 +4079,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 41,
    "trials": 200,
    "verdict": "DRIFT",
@@ -4533,7 +4510,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeLink[@name=\"Bemat roki\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 25,
    "trials": 200,
    "verdict": "DRIFT",
@@ -4558,7 +4535,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@name=\"Hero\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 37,
    "trials": 200,
    "verdict": "DRIFT",
@@ -4801,7 +4778,7 @@
    "cat": "G",
    "xpath": "(//*[@label=\"a)b\"])[2]",
    "chain": "-ios class chain:**/*[`label == \"a)b\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 10,
    "trials": 300,
    "verdict": "DRIFT",
@@ -5108,7 +5085,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@name=\"LunaseMinihEsak.vosuzAnomeMevoja\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 38,
    "trials": 200,
    "verdict": "DRIFT",
@@ -5187,7 +5164,7 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton[@name=\"a\"])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 23,
    "trials": 301,
    "verdict": "DRIFT",
@@ -5308,7 +5285,7 @@
    "hits": 120,
    "trials": 300,
    "verdict": "CORRECT",
-   "inDen": true
+   "inDen": false
   },
   "x448": {
    "orig": "L169",
@@ -5783,19 +5760,11 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton)[last()-1]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[-2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 106,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeStaticText k=\"n1\" name=\"a\" value=\"5\" enabled=\"false\" visible=\"true\" accessible=\"false\" hittable=\"true\" selected=\"true\" x=\"100\" width=\"0\"><XCUIElementTypeCell k=\"n2\" label=\"other\" value=\"A b\" placeholderValue=\"a\" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"100\" width=\"50\"><XCUIElementTypeStaticText k=\"n3\" name=\"a\" value=\"zabz\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"0\" width=\"60\"><XCUIElementTypeCell k=\"n4\" label=\"b\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"100\"></XCUIElementTypeCell><XCUIElementTypeOther k=\"n5\" label=\"AB\" value=\"A b\" placeholderValue=\" a  b \" enabled=\"true\" visible=\"false\" accessible=\"true\" hittable=\"false\" selected=\"true\" x=\"100\" width=\"0\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n6\" label=\"zabz\" value=\" a  b \" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"50\" width=\"60\"></XCUIElementTypeButton></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"0\" width=\"0\"></XCUIElementTypeStaticText></XCUIElementTypeCell></XCUIElementTypeStaticText><XCUIElementTypeButton k=\"n8\" name=\"A b\" value=\"b\" placeholderValue=\"c\" enabled=\"true\" visible=\"true\" accessible=\"false\" hittable=\"false\" selected=\"false\" x=\"60\" width=\"50\"></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n6"
-    ],
-    "chainHits": [
-     "n8"
-    ]
-   },
+   "verdict": "DRIFT",
+   "documented": true,
    "inDen": false
   },
   "x489": {
@@ -5874,7 +5843,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@label=\"Taka\"])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Taka\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 74,
    "trials": 200,
    "verdict": "DRIFT",
@@ -6023,7 +5992,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@name=\"HosidoLitokazajiCimo.dijivOdozev\"])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 80,
    "trials": 200,
    "verdict": "DRIFT",
@@ -6046,7 +6015,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeStaticText[@name=\"Vilokor\"])[3]",
    "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 20,
    "trials": 200,
    "verdict": "DRIFT",
@@ -6413,19 +6382,11 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton)[last()]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[-1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 160,
    "trials": 300,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeCell k=\"n1\" label=\"x\" placeholderValue=\"x\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"50\" width=\"0\"><XCUIElementTypeCell k=\"n2\" name=\"b\" value=\"AB\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"false\" x=\"60\" width=\"60\"></XCUIElementTypeCell><XCUIElementTypeButton k=\"n3\" name=\"x\" label=\"A b\" value=\"1\" placeholderValue=\"b\" enabled=\"true\" visible=\"true\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"50\" width=\"50\"></XCUIElementTypeButton><XCUIElementTypeTextField k=\"n4\" label=\"true\" value=\"5\" enabled=\"false\" visible=\"false\" accessible=\"true\" hittable=\"true\" selected=\"true\" x=\"0\" width=\"100\"></XCUIElementTypeTextField></XCUIElementTypeCell><XCUIElementTypeButton k=\"n5\" name=\"zabz\" label=\"false\" value=\"10.5\" placeholderValue=\"A b\" enabled=\"false\" visible=\"true\" accessible=\"true\" hittable=\"false\" selected=\"false\" x=\"50\" width=\"100\"></XCUIElementTypeButton></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n5"
-    ],
-    "chainHits": [
-     "n3"
-    ]
-   },
+   "verdict": "DRIFT",
+   "documented": true,
    "inDen": false
   },
   "x543": {
@@ -6682,7 +6643,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeButton[@name=\"taka_vawotub_giwap\"])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 86,
    "trials": 200,
    "verdict": "DRIFT",
@@ -6806,17 +6767,9 @@
    "outcome": "SET_DIFFERS",
    "hits": 35,
    "trials": 200,
-   "verdict": "WRONG",
-   "example": {
-    "xml": "<XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\" enabled=\"true\" visible=\"true\" accessible=\"false\"><XCUIElementTypeOther k=\"n1\" name=\"false\" label=\"Lenapa gusuri\" enabled=\"true\" visible=\"true\" accessible=\"true\"><XCUIElementTypeWindow k=\"n2\" value=\"Vq1\" enabled=\"false\" visible=\"false\" accessible=\"false\" label=\"Lenapa gusuri Lenapa gusuri\"></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n3\" name=\"true\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"LENAPA GUSURI\" enabled=\"true\" visible=\"false\" accessible=\"false\"><XCUIElementTypeOther k=\"n4\" name=\"Vq2\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"other\" enabled=\"true\" visible=\"true\" accessible=\"true\"><XCUIElementTypeStaticText k=\"n5\" label=\"Lenapa gusuri\" enabled=\"true\" visible=\"false\" accessible=\"false\"></XCUIElementTypeStaticText></XCUIElementTypeOther><XCUIElementTypeOther k=\"n6\" name=\"other\" label=\"other\" enabled=\"false\" visible=\"true\" accessible=\"true\"></XCUIElementTypeOther></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" enabled=\"true\" visible=\"false\" accessible=\"true\" label=\"Lenapa gusuri Lenapa gusuri\"><XCUIElementTypeWindow k=\"n8\" label=\"Lenapa gusuri Lenapa gusuri\" value=\"true\" enabled=\"false\" visible=\"true\" accessible=\"false\"><XCUIElementTypeWindow k=\"n9\" name=\"true\" label=\"Lenapa gusuri Lenapa gusuri\" enabled=\"true\" visible=\"false\" accessible=\"false\"></XCUIElementTypeWindow><XCUIElementTypeOther k=\"n10\" enabled=\"false\" visible=\"true\" accessible=\"true\" label=\"Lenapa gusuri Lenapa gusuri\"></XCUIElementTypeOther><XCUIElementTypeWindow k=\"n11\" name=\"Vq2\" value=\"Vq2\" enabled=\"false\" visible=\"false\" accessible=\"true\" label=\"Lenapa gusuri\"></XCUIElementTypeWindow></XCUIElementTypeWindow><XCUIElementTypeStaticText k=\"n12\" name=\"false\" label=\"Lenapa gusuri Lenapa gusuri\" enabled=\"false\" visible=\"true\" accessible=\"false\"><XCUIElementTypeOther k=\"n13\" label=\"Lenapa gusuri\" value=\"LENAPA GUSURI\" enabled=\"true\" visible=\"false\" accessible=\"false\"></XCUIElementTypeOther><XCUIElementTypeButton k=\"n14\" name=\"false\" label=\"Lenapa gusuri\" value=\"Lenapa gusuri\" enabled=\"false\" visible=\"true\" accessible=\"false\"></XCUIElementTypeButton></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeOther></XCUIElementTypeApplication>",
-    "xpathHits": [
-     "n7"
-    ],
-    "chainHits": [
-     "n5"
-    ]
-   },
-   "inDen": false
+   "verdict": "DRIFT",
+   "documented": true,
+   "inDen": true
   },
   "x575": {
    "orig": "L162",
@@ -7148,7 +7101,7 @@
    "hits": 48,
    "trials": 300,
    "verdict": "CORRECT",
-   "inDen": true
+   "inDen": false
   },
   "x603": {
    "orig": "L140",
@@ -7192,7 +7145,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeOther[@name=\"hilubodamo, lulik gusuri\"])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 81,
    "trials": 200,
    "verdict": "DRIFT",
@@ -7429,7 +7382,7 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeCell)[2]/XCUIElementTypeButton",
    "chain": "-ios class chain:**/XCUIElementTypeCell[2]/XCUIElementTypeButton",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 10,
    "trials": 300,
    "verdict": "DRIFT",
@@ -7464,7 +7417,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeOther[@name=\"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"])[2]",
    "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 39,
    "trials": 200,
    "verdict": "DRIFT",
@@ -7574,8 +7527,8 @@
    "xpath": "//XCUIElementTypeButton[@value>5]",
    "skip": true,
    "reason": "XPath converts the string value attribute to a number (non-numeric values become NaN and fail); NSPredicate compares value as a string, so 'value > 5' would not select the same elements.",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x639": {
    "orig": "L224",
@@ -7643,7 +7596,7 @@
    "cat": "corpus",
    "xpath": "(//XCUIElementTypeOther[contains(@label, \"Dobe teg\")])[1]",
    "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 99,
    "trials": 200,
    "verdict": "DRIFT",
@@ -7842,7 +7795,7 @@
    "cat": "E",
    "xpath": "(//XCUIElementTypeButton)[2]",
    "chain": "-ios class chain:**/XCUIElementTypeButton[2]",
-   "outcome": "SET_DIFFERS",
+   "outcome": "EQUAL",
    "hits": 107,
    "trials": 300,
    "verdict": "DRIFT",

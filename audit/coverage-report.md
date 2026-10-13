@@ -611,26 +611,30 @@ Until Phase 5 the table also had a second pair, R / S over each run's own denomi
 
 Rescored in Phase 5 (task A, branch `fix/harness-expectations`) from the stored answers, after three harness expectations were corrected (see the end of the next section); no model was run again.
 
-| Cell | **R** | **S** | Converted | Skipped | of which GAP | Precision | WRONG | INVALID | Time, min | Cost, $ | Output tokens |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| **converter** | **95.3** | **61.8** | 81.8 % | 18.2 % | 25 | **100.0 %** | 0 | 0 | — | — | — |
-| haiku / low | 91.7 | 47.9 | 79.7 % | 20.3 % | 31 | 92.2 % | 25 | 17 | 8.6 | 0.39 | 139k |
-| haiku / medium | 94.5 | 60.8 | 80.9 % | 19.1 % | 24 | 98.7 % | 7 | 0 | 6.0 | 0.28 | 99k |
-| haiku / high | 94.9 | 57.6 | 80.9 % | 19.1 % | 25 | 98.4 % | 6 | 3 | 7.6 | 0.36 | 131k |
-| haiku / max | 92.2 | 54.9 | 75.4 % | 24.6 % | 22 | 99.2 % | 2 | 2 | 13.5 | 0.64 | 222k |
-| sonnet / low | 95.2 | 68.8 | 83.3 % | 16.7 % | 12 | 98.0 % | 6 | 4 | 5.2 | 1.03 | 58k |
-| sonnet / medium | 94.5 | 76.3 | 82.8 % | 17.2 % | 14 | 98.2 % | 7 | 3 | 5.3 | 1.05 | 58k |
-| sonnet / high | 94.6 | 75.6 | 82.8 % | 17.2 % | 14 | 98.2 % | 6 | 4 | 6.0 | 1.14 | 65k |
-| sonnet / max | 95.3 | 77.2 | 83.9 % | 16.1 % | 8 | 98.4 % | 6 | 3 | 36.0 | 4.85 | 339k |
-| opus / low | 95.3 | 81.1 | 83.4 % | 16.6 % | 11 | 98.4 % | 6 | 3 | 7.1 | 2.04 | 57k |
-| opus / medium | 95.3 | 81.1 | 83.4 % | 16.6 % | 11 | 98.4 % | 6 | 3 | 8.5 | 2.33 | 66k |
-| opus / high | 95.3 | 82.1 | 83.6 % | 16.4 % | 10 | 98.4 % | 6 | 3 | 10.7 | 2.83 | 85k |
+Rescored in Phase 5 (task D2 and a later pass on 2026-10-13): all eleven stored answers and the converter now use the same Phase 5 expectations, so every row is on the same scale (the earlier snapshot had the converter at S 61.8 and the nine cells not rescored in D2 on the old expectations). No model was run again. The converter converts 85.7 % of the input after the Phase 5 fixes (81.8 % before).
+
+| Cell | R | S | Converted | Skipped | of which GAP | Precision | WRONG | INVALID | MISSING | Time, min | Cost, $ | Output tokens |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **converter** | 95.8 | 91.8 | 85.7 % | 14.3 % | 1 | 100.0 % | 0 | 0 | 0 | — | — | — |
+| haiku / low | 91.3 | 51.2 | 79.7 % | 20.3 % | 28 | 92.8 % | 22 | 17 | 0 | 8.6 | 0.39 | 139k |
+| haiku / medium | 94.1 | 63.8 | 80.9 % | 19.1 % | 21 | 99.3 % | 4 | 0 | 0 | 6.0 | 0.28 | 99k |
+| haiku / high | 94.5 | 61.5 | 80.9 % | 19.1 % | 22 | 99.1 % | 2 | 3 | 0 | 7.6 | 0.36 | 131k |
+| haiku / max | 91.6 | 57.1 | 75.4 % | 24.6 % | 20 | 99.2 % | 2 | 2 | 0 | 13.5 | 0.64 | 222k |
+| sonnet / low | 94.8 | 68.6 | 83.3 % | 16.7 % | 11 | 98.6 % | 3 | 4 | 0 | 5.2 | 1.03 | 58k |
+| sonnet / medium | 94.1 | 77.8 | 82.8 % | 17.2 % | 12 | 98.9 % | 3 | 3 | 0 | 5.3 | 1.05 | 58k |
+| sonnet / high | 94.2 | 77.2 | 82.8 % | 17.2 % | 12 | 98.9 % | 2 | 4 | 0 | 6.0 | 1.14 | 65k |
+| sonnet / max | 95.0 | 80.5 | 83.9 % | 16.1 % | 5 | 99.1 % | 2 | 3 | 0 | 36.0 | 4.85 | 339k |
+| opus / low | 95.0 | 81.9 | 83.4 % | 16.6 % | 10 | 99.3 % | 1 | 3 | 0 | 7.1 | 2.04 | 57k |
+| opus / medium | 95.0 | 81.9 | 83.4 % | 16.6 % | 10 | 99.5 % | 0 | 3 | 0 | 8.5 | 2.33 | 66k |
+| opus / high | 95.0 | 82.9 | 83.6 % | 16.4 % | 9 | 99.5 % | 0 | 3 | 0 | 10.7 | 2.83 | 85k |
+
+![S against cost per run for every effort level of the three 5.5 models, plain request](llm-chart-efforts.svg)
 
 *Converted*: share of the 676 compared cases that got a chain (L157 and E10 are left out). *Precision*: share of emitted chains that are CORRECT or DRIFT. Cost is the CLI's API-equivalent figure; the runs used a subscription. Time is wall time and includes the account's rate limiting while three runs shared it.
 
-**Excluded: opus / max.** The run was cut off by the account's 5-hour session limit (HTTP 429) after 38.7 min, $7.57 and 284k output tokens (253k of them thinking), with 460 of 678 answers written. It ran in parallel with sonnet / max, so the limit was shared; how much each run used is not measured. Two earlier `max` attempts (sonnet: session limit; opus: network error) were rerun; their records are in `llm/out/failed/`.
+**Excluded: opus / max.** Not completed, and not run again. The first run was cut off by the account's 5-hour session limit (HTTP 429) after 38.7 min, $7.57 and 284k output tokens (253k of them thinking), with 460 of 678 answers written. It ran in parallel with sonnet / max, so the limit was shared; how much each run used is not measured. A second attempt (2026-10-13) on the 218 locators without an answer, as one request, ran 42.3 min, $5.41 and 256k output tokens (all but 112 of them thinking) and wrote no answer file. Together the two attempts spent 81 min and $12.98 (API equivalent) and used almost the whole 5-hour usage limit, with no usable result. Two earlier `max` attempts (sonnet: session limit; opus: network error) were rerun; their records are in `llm/out/failed/`, the second opus attempt is in `llm/out/opus-max-rest/`.
 
-**Rescored with the Phase 5 expectations (task D2).** The same stored answers, scored again with `audit/llm/score.js` after Phase 5. The table above is the earlier snapshot and is unchanged. Only three cells were rescored, and no model was run; the other nine hold their earlier scores in `scores/`.
+**Rescored with the Phase 5 expectations (task D2).** The same stored answers, scored again with `audit/llm/score.js` after Phase 5. The table above was later rescored in full (see its note); the numbers below are the D2 intermediate step. Only three cells were rescored, and no model was run; the other nine hold their earlier scores in `scores/`.
 
 | Cell | R (before → now) | S (before → now) | WRONG (before → now) |
 |---|---|---|---|
@@ -707,7 +711,7 @@ A higher effort was never better in proportion to its cost, and for Haiku it was
 | 1 | opus / low | 95.3 | 81.1 | 98.4 % | 83.4 % | 9 | 7.1 min | $2.04 |
 | 2 | sonnet / low | 95.2 | 68.8 | 98.0 % | 83.3 % | 10 | 5.2 min | $1.03 |
 | 3 | haiku / medium | 94.5 | 60.8 | 98.7 % | 80.9 % | 7 | 6.0 min | $0.28 |
-| ref | converter | 95.3 | 61.8 | 100 % | 81.8 % | 0 | seconds | — |
+| ref | converter (as of Phase 4, before Phase 5) | 95.3 | 61.8 | 100 % | 81.8 % | 0 | seconds | — |
 
 On real-world locators (R) no run beats the converter; the best ones tie it. The models are ahead on edge cases (S, up to +20), and they pay for it with wrong chains the converter does not make. In the per-case verdicts, the models' strength lies exactly where the converter skips: on its 25 GAPs, opus / low is right on 19 and wrong on none, sonnet / low right on 22 with one INVALID. A model asked about all skipped locators would also convert the ones that have no exact form: E05, E06, L270–L272 and F03 wrong, E07 and E11 as the grouped-position approximation (DRIFT). This combination was not run as a pipeline.
 
@@ -899,17 +903,17 @@ Each model is shown twice: with the plain Phase 4 prompt (task text and one exam
 ### Limits of these measurements
 
 - One run per cell. Run-to-run variation is not measured (Stage 2 was not run), so differences of a few cases between cells, such as sonnet low vs medium on R, may be noise.
-- `xhigh` was not run; opus / `max` is incomplete.
+- `xhigh` was not run; opus / `max` did not complete (see Excluded above).
 - The oracle is mini-WDA, not a device. The converter's outputs were checked on a simulator and an iPhone in Phase 2; the models use forms the converter does not (`MATCHES`, `[c]`, `.length`, `rect.x`, `$…$` with `ancestor::`), and those were not.
 - Times are from parallel runs on one account and include its rate limiting. The scoring ran on a Mac on AC with Low Power Mode off.
 - The input is the audit's own corpus and spec matrix. Many spec cases are deliberately unusual, and the models saw no examples of class chain beyond the one in the prompt.
 
 ### Conclusions
 
-1. On real-world locators, a plain model converts as many as the converter (80–84 % of the input against 81.8 %) and scores the same at best (R 95.3 for opus at every level and sonnet / max). It never scores higher.
-2. Every model run emits wrong chains: 4–43 per run (precision 92–99 %), against none from the converter. The two most common errors are a raw line break in a literal (INVALID in every Sonnet and Opus run) and positions that have no exact form (`last()`, `position()`), which the models convert instead of skipping.
-3. The models are clearly better on edge cases (S up to 82 against 62). Exactly there the converter skips: for all 25 of its GAPs (4 corpus, 21 spec) some run found the exact chain, and 5 converter DRIFTs (A07, A14–A16, B16) are imprecisions with an exact form. These are the converter's next improvements.
-4. A higher effort does not pay: Opus is flat from `low`, Sonnet from `medium`, and Haiku gets worse above `medium`. `max` costs 2–4× and up to 6× the time of the level below for at most +1.6 S, and it spends 80–90 % of its tokens on thinking.
+1. On real-world locators, a plain model converts 75–84 % of the input against the converter's 85.7 % and scores the same at best (R 95.0 for opus at every level and sonnet / max, the converter 95.8). It never scores higher.
+2. Every model run emits wrong chains: 3–39 per run (precision 93–99.5 %), against none from the converter. The two most common errors are a raw line break in a literal (INVALID in every Sonnet and Opus run) and positions that have no exact form (`last()`, `position()`), which the models convert instead of skipping.
+3. The models were clearly better on edge cases than the converter was at the time of Phase 4 (S up to 82 against 62; 25 GAPs, 4 corpus and 21 spec, where some run found the exact chain, and 5 DRIFTs with an exact form: A07, A14–A16, B16). Phase 5 closed that gap: the converter now has S 91.8 and 1 GAP, and the best model run reaches S 82.9 (opus / high), so no model is ahead of it.
+4. A higher effort does not pay: Opus is flat from `low`, Sonnet gains most from `low` to `medium` and Haiku gets worse above `medium`. `max` costs 2–4× and up to 6× the time of the level below for at most +3.3 S (Sonnet), and it spends 80–90 % of its tokens on thinking. Opus `max` did not finish (see Excluded above).
 5. Recommendation: convert with the converter, which never emits a wrong chain. For the locators it skips, a model helps (opus / low or sonnet / low), but its chains need the harness or a device check before they replace the XPath.
 
 ## Device check (Phase 5, C1)
