@@ -1,12 +1,12 @@
 // One Phase 4 cycle: a model converts input.json in an empty folder outside the repository.
-// Usage: node run.js <haiku|sonnet|opus> <low|medium|high|xhigh|max> <run> [input.json]
+// Usage: node run.js <haiku|sonnet|opus|haiku45|sonnet46|sonnet5> <low|medium|high|xhigh|max> <run> [input.json]
 // Writes out/<model>-<effort>-<run>.json: run metadata, the CLI's JSON result and the merged output.
 const fs = require('fs'), os = require('os'), path = require('path'), { spawnSync } = require('child_process');
 
-const MODELS = { haiku: 'claude-haiku-5-5', sonnet: 'claude-sonnet-5-5', opus: 'claude-opus-5-5' };
+const MODELS = { haiku: 'claude-haiku-5-5', sonnet: 'claude-sonnet-5-5', opus: 'claude-opus-5-5', 'haiku45': 'claude-haiku-4-5', 'sonnet46': 'claude-sonnet-4-6', sonnet5: 'claude-sonnet-5' };
 const [model, effort, run, inputArg] = process.argv.slice(2);
 if (!MODELS[model] || !['low', 'medium', 'high', 'xhigh', 'max'].includes(effort) || !run) {
-  console.error('usage: node run.js <haiku|sonnet|opus> <low|medium|high|xhigh|max> <run> [input.json]'); process.exit(2);
+  console.error('usage: node run.js <haiku|sonnet|opus|haiku45|sonnet46|sonnet5> <low|medium|high|xhigh|max> <run> [input.json]'); process.exit(2);
 }
 const CLI = process.env.CLAUDE_BIN || (() => {
   const ext = path.join(os.homedir(), '.vscode/extensions');

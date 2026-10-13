@@ -1,0 +1,2881 @@
+{
+ "model": "sonnet46",
+ "modelId": "claude-sonnet-4-6",
+ "effort": "low",
+ "run": "c100",
+ "chunked": 100,
+ "wallMs": 1388018,
+ "error": null,
+ "parts": [
+  "chunk-1",
+  "chunk-2",
+  "chunk-3",
+  "chunk-4",
+  "chunk-5",
+  "chunk-6",
+  "chunk-7"
+ ],
+ "cli": {
+  "total_cost_usd": 2.5785396,
+  "usage": {
+   "input_tokens": 28,
+   "cache_creation_input_tokens": 170618,
+   "cache_read_input_tokens": 183842,
+   "output_tokens": 85884,
+   "output_tokens_details": {
+    "thinking_tokens": 50833
+   }
+  },
+  "num_turns": 49
+ },
+ "output": [
+  {
+   "id": "x001",
+   "chain": "-ios class chain:**/*[`name == \"Cocutozu cupiz bika mipunaco mi dom Vufutopim keb bi ra'v jebura mi homusabasofek dom vale dosu zov varu ra.\"`]"
+  },
+  {
+   "id": "x002",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.jecejIvoge\" AND label CONTAINS \"Pajap ditar\"`]"
+  },
+  {
+   "id": "x003",
+   "skip": true,
+   "reason": "Uses the following-sibling axis, which is not supported in iOS class chain."
+  },
+  {
+   "id": "x004",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Jeb fabis tuve\"`]"
+  },
+  {
+   "id": "x005",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Leba mazejuz\"`]"
+  },
+  {
+   "id": "x006",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Pejun, Lenapa gusuri, RI\"`]"
+  },
+  {
+   "id": "x007",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• Za zov cuba jumumol teg zihuruni birel, bika jumumol lojo nezate ruliv teg zefub birel.\"`]"
+  },
+  {
+   "id": "x008",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Vq1\"`]"
+  },
+  {
+   "id": "x009",
+   "skip": true,
+   "reason": "Uses the XPath translate() function for case-insensitive matching, which has no equivalent in iOS class chain NSPredicate syntax."
+  },
+  {
+   "id": "x010",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fecirim\"`]"
+  },
+  {
+   "id": "x011",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Jeb fej\" AND label CONTAINS \"rolafa\"`]"
+  },
+  {
+   "id": "x012",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Vale\"`]"
+  },
+  {
+   "id": "x013",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Galufaz Poz Gohaz figuleni\"`]"
+  },
+  {
+   "id": "x014",
+   "skip": true,
+   "reason": "Uses the preceding-sibling axis, which is not supported in iOS class chain."
+  },
+  {
+   "id": "x015",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\" AND label CONTAINS \"pako geviv\" AND label CONTAINS \"Vq2\" AND label CONTAINS \"Bevef Daw\"`]"
+  },
+  {
+   "id": "x016",
+   "chain": "-ios class chain:**/*[`name == \"a\" OR label == \"b\"`]"
+  },
+  {
+   "id": "x017",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Zucubamo wojav\"`]"
+  },
+  {
+   "id": "x018",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Dobe monuw teg\" AND enabled == true`]"
+  },
+  {
+   "id": "x019",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hero Sosedeki laciwuj\"`]"
+  },
+  {
+   "id": "x020",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"TI\"`]"
+  },
+  {
+   "id": "x021",
+   "chain": "-ios class chain:**/*[`(name == \"WefaniBedufeDanu.gotePebazoh\" AND label == \"Kabih\") OR name == \"HetepUriZoviZoniHapa.dijivOdozev\"`]"
+  },
+  {
+   "id": "x022",
+   "skip": true,
+   "reason": "Uses the following axis, which is not supported in iOS class chain."
+  },
+  {
+   "id": "x023",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Dab je tafiz\"`]"
+  },
+  {
+   "id": "x024",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Vebavuh Zumeh\"`]"
+  },
+  {
+   "id": "x025",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• Ror wadutosa, tolacocat nivere goz felawuhuh wepes mi bika tazeviz lojo la muho je bika fabis tuve. Fojo zir foba fivipag 3 goz 5 heciboz lide je kuwub bika nofe tazeviz.\"`]"
+  },
+  {
+   "id": "x026",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Meb cumetakov\"`]"
+  },
+  {
+   "id": "x027",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"a\" AND name == \"b\"`]"
+  },
+  {
+   "id": "x028",
+   "chain": "-ios class chain:**/XCUIElementTypeCell/XCUIElementTypeButton"
+  },
+  {
+   "id": "x029",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Zaruzegi tazeviz gatejese\"`]"
+  },
+  {
+   "id": "x030",
+   "chain": "-ios class chain:**/*[`(name == \"a\" OR label == \"b\") AND value == \"c\"`]"
+  },
+  {
+   "id": "x031",
+   "skip": true,
+   "reason": "Uses the following-sibling axis, which is not supported in iOS class chain."
+  },
+  {
+   "id": "x032",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x033",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nozod hom\"`]"
+  },
+  {
+   "id": "x034",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[1]"
+  },
+  {
+   "id": "x035",
+   "chain": "-ios class chain:**/*[`label == \"Bihi Vq1\"`]"
+  },
+  {
+   "id": "x036",
+   "skip": true,
+   "reason": "Uses XPath 2.0 functions string-join() and tokenize(), which have no equivalent in iOS class chain NSPredicate syntax."
+  },
+  {
+   "id": "x037",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[1]"
+  },
+  {
+   "id": "x038",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"tete(Vq1\" AND label CONTAINS \"Petor Vq2\"`]"
+  },
+  {
+   "id": "x039",
+   "skip": true,
+   "reason": "Uses the following-sibling axis, which is not supported in iOS class chain."
+  },
+  {
+   "id": "x040",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\" AND label == \"Kizik Nabu\"`]"
+  },
+  {
+   "id": "x041",
+   "skip": true,
+   "reason": "Uses position() <= 2 to select multiple elements by positional range; iOS class chain only supports a single exact index, not range predicates."
+  },
+  {
+   "id": "x042",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Fecirim!\"`]"
+  },
+  {
+   "id": "x043",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"TOS, Lenapa gusuri, RI\"`]"
+  },
+  {
+   "id": "x044",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Veg monuw\"`]"
+  },
+  {
+   "id": "x045",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Diteda\"`]"
+  },
+  {
+   "id": "x046",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Zov cuba wedahaviwejofa kudez je doso mi bunuv werog. Teg sosedeki camenup, fojo tazeviz so sid juraja.\"`]"
+  },
+  {
+   "id": "x047",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"kabih pefu\"`]"
+  },
+  {
+   "id": "x048",
+   "skip": true,
+   "reason": "Uses last() to select the last matching element; iOS class chain supports only forward positional indices, not last()."
+  },
+  {
+   "id": "x049",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"je vap bika zucubamo?\"`]"
+  },
+  {
+   "id": "x050",
+   "chain": "-ios class chain:**/*[`name == \"a?\"`]"
+  },
+  {
+   "id": "x051",
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"2 ho 3\"`]"
+  },
+  {
+   "id": "x052",
+   "skip": true,
+   "reason": "Uses the parent axis (parent::XCUIElementTypeOther), which is not supported in iOS class chain; class chain traversal is top-down only."
+  },
+  {
+   "id": "x053",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"true\"`]"
+  },
+  {
+   "id": "x054",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Namatir wepes\"`]"
+  },
+  {
+   "id": "x055",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"buwupudaSomukac\"`]"
+  },
+  {
+   "id": "x056",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Galufaz Poz Gohaz hilubodamo\"`]"
+  },
+  {
+   "id": "x057",
+   "skip": true,
+   "reason": "Uses .. (parent) and following-sibling axes, neither of which is supported in iOS class chain."
+  },
+  {
+   "id": "x058",
+   "skip": true,
+   "reason": "Uses the XPath union operator | and a not() predicate with a nested absolute XPath expression; neither construct is supported in iOS class chain."
+  },
+  {
+   "id": "x059",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Dozur, ti hibimaw rorefek fojo dosu\"`]"
+  },
+  {
+   "id": "x060",
+   "chain": "-ios class chain:**/*[`value CONTAINS \"Vq1\" AND enabled == true`]"
+  },
+  {
+   "id": "x061",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"vosuzAnomeMevoja\"`]"
+  },
+  {
+   "id": "x062",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"di milif dom keb t bafot fej tapu. Foba t wocega je potepiv kop sepuwep, hu gure nasavaje nofu lebojemi.\"`]"
+  },
+  {
+   "id": "x063",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Dab je dobe\"`]"
+  },
+  {
+   "id": "x064",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+  },
+  {
+   "id": "x065",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Kajosa Podu Pefu 2 - Tival t Setizur - Poz £1L-£5L\"`]"
+  },
+  {
+   "id": "x066",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Vq1\" AND name CONTAINS \"Dobe teg\"`]"
+  },
+  {
+   "id": "x067",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Menob\"`]"
+  },
+  {
+   "id": "x068",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"lohu_reneg_zugo\"`]"
+  },
+  {
+   "id": "x069",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"rolafa desuz figuleni\"`]"
+  },
+  {
+   "id": "x070",
+   "chain": "-ios class chain:**/*[`label == \"Leba\" AND enabled == true`]"
+  },
+  {
+   "id": "x071",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Vagu sefasi\"`]"
+  },
+  {
+   "id": "x072",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Riza Vozime Dina\"`]"
+  },
+  {
+   "id": "x073",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Hicepe bihi\"`]"
+  },
+  {
+   "id": "x074",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\" AND label == \"Doso mi\"`]"
+  },
+  {
+   "id": "x075",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[`visible == true`]/XCUIElementTypeButton"
+  },
+  {
+   "id": "x076",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dom colusegoma goz kijical hu dewusines pelu fajoni ce je tonodo goz pobupat gecupiribem dulacoci fuhemoka je zov ri dom Hijareci Logozeb sufaket goz Keb, goz ri fufug fugowome. Heti cog dere nuna je wasaj dom kic zov kizik ri, hu je wasaj dom genilut zov foba zenu zov kizik ri su lu\"`]"
+  },
+  {
+   "id": "x077",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"FetuwozaNihelavAvuv.hamahiduZefopihi\"`]"
+  },
+  {
+   "id": "x078",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\" AND label CONTAINS \"Bevef Daw\" AND label CONTAINS \"mazejuz\"`]"
+  },
+  {
+   "id": "x079",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Pako geviv: Vq1, figuleni\"`]"
+  },
+  {
+   "id": "x080",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Galufaz Poz Gohaz, Lenapa gusuri, RI\"`]"
+  },
+  {
+   "id": "x081",
+   "skip": true,
+   "reason": "Uses text() node test, which does not exist in XCUITest's element tree; the intent is ambiguous and cannot be faithfully mapped to a class chain predicate."
+  },
+  {
+   "id": "x082",
+   "skip": true,
+   "reason": "Uses the following-sibling axis, which is not supported in iOS class chain."
+  },
+  {
+   "id": "x083",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Petor Vq1, Tete Vq2\"`]"
+  },
+  {
+   "id": "x084",
+   "chain": "-ios class chain:**/*[`label == 'say \"hi\"'`]"
+  },
+  {
+   "id": "x085",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name CONTAINS \"VegAluGezamIrez.kusibEtapAjijo\"`]"
+  },
+  {
+   "id": "x086",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Zufeh & Hezujolu\"`]"
+  },
+  {
+   "id": "x087",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Namatir wepes je nehavona\"`]"
+  },
+  {
+   "id": "x088",
+   "chain": "-ios class chain:**/*[`label == \"$5 and @x\"`]"
+  },
+  {
+   "id": "x089",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Namatir\"`]"
+  },
+  {
+   "id": "x090",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pekufes Lowefore fika\"`]"
+  },
+  {
+   "id": "x091",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Gihasem\"`]"
+  },
+  {
+   "id": "x092",
+   "skip": true,
+   "reason": "Uses a descendant-existence predicate [.//XCUIElementTypeButton] to filter cells; iOS class chain predicates cannot test for the presence of descendant elements."
+  },
+  {
+   "id": "x093",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"£Vq1\"`]"
+  },
+  {
+   "id": "x094",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Ge gohaz\"`]"
+  },
+  {
+   "id": "x095",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"a]b\"`]"
+  },
+  {
+   "id": "x096",
+   "skip": true,
+   "reason": "Uses the following-sibling axis, which is not supported in iOS class chain."
+  },
+  {
+   "id": "x097",
+   "chain": "-ios class chain:**/XCUIElementTypeButton"
+  },
+  {
+   "id": "x098",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\" AND label CONTAINS \"Wacisugik mazejuz\"`]"
+  },
+  {
+   "id": "x099",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+  },
+  {
+   "id": "x100",
+   "skip": true,
+   "reason": "Uses the following-sibling axis, which is not supported in iOS class chain."
+  },
+  {
+   "id": "x101",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+  },
+  {
+   "id": "x102",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Pobi sopi goz bogici teg wigobur\"`]"
+  },
+  {
+   "id": "x103",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Tefoku zov bapoh wigobur, wezid cog t mag pujap zov varu je zaruzegi mufig.\"`]"
+  },
+  {
+   "id": "x104",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+  },
+  {
+   "id": "x105",
+   "skip": true,
+   "reason": "Combines sibling-positional index [1] inside with a global result-set index [1] outside: (//StaticText/child::StaticText[1])[1]. Class chain [N] is always sibling-based and cannot replicate a global index over results gathered from multiple parent contexts."
+  },
+  {
+   "id": "x106",
+   "skip": true,
+   "reason": "//XCUIElementTypeButton[@name] tests for attribute existence (name is present). Class chain predicates have no existence/non-null operator; only equality and CONTAINS comparisons are supported."
+  },
+  {
+   "id": "x107",
+   "skip": true,
+   "reason": "Uses the XPath following-sibling:: axis, which has no equivalent in iOS class chain."
+  },
+  {
+   "id": "x108",
+   "skip": true,
+   "reason": "Uses the XPath following-sibling:: axis, which has no equivalent in iOS class chain."
+  },
+  {
+   "id": "x109",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Zekohilodug\"`]"
+  },
+  {
+   "id": "x110",
+   "chain": "-ios class chain:**/XCUIElementTypeImage[`name == \"CidezoGemagak.DamizidOwefesu.jisaroVenupazIcowOmoc\"`]"
+  },
+  {
+   "id": "x111",
+   "chain": "-ios class chain:**/*[`(label CONTAINS \"a\" AND name == \"b\") OR value == \"c\"`]"
+  },
+  {
+   "id": "x112",
+   "skip": true,
+   "reason": "Combines a sibling-positional index inside the path (XCUIElementTypeButton[2]) with a global result-set index outside ((…)[2]). Class chain cannot stack two independent positional selectors on the same element node."
+  },
+  {
+   "id": "x113",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][2]"
+  },
+  {
+   "id": "x114",
+   "skip": true,
+   "reason": "Uses the XPath preceding-sibling:: axis, which has no equivalent in iOS class chain."
+  },
+  {
+   "id": "x115",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca\" AND enabled == false`]"
+  },
+  {
+   "id": "x116",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+  },
+  {
+   "id": "x117",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Rufosi je sadobu bika laciwuj\"`]"
+  },
+  {
+   "id": "x118",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[2]"
+  },
+  {
+   "id": "x119",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dom Revoje Fabis Vimonevob\"`]"
+  },
+  {
+   "id": "x120",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Tolacocat nivere\"`]"
+  },
+  {
+   "id": "x121",
+   "skip": true,
+   "reason": "Uses the XPath following-sibling:: axis, which has no equivalent in iOS class chain."
+  },
+  {
+   "id": "x122",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"TOS, Lenapa gusuri, RIG\"`]"
+  },
+  {
+   "id": "x123",
+   "chain": "-ios class chain:**/XCUIElementTypeTextView[`value CONTAINS \"Rofozopevol dobe goz jotobap kop werunez befa so kop vuvodegu\"`]"
+  },
+  {
+   "id": "x124",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Balovewu\"`]"
+  },
+  {
+   "id": "x125",
+   "skip": true,
+   "reason": "Uses the XPath following-sibling:: axis, which has no equivalent in iOS class chain."
+  },
+  {
+   "id": "x126",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"Bujulo Gugitum\"`]"
+  },
+  {
+   "id": "x127",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Jovime\"`]"
+  },
+  {
+   "id": "x128",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Begeraw kavemag, sepura rigi mazejuz\"`]"
+  },
+  {
+   "id": "x129",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+  },
+  {
+   "id": "x130",
+   "skip": true,
+   "reason": "Uses the XPath parent:: axis (//Button/parent::Cell). Class chain traverses only downward; upward/parent navigation is not supported."
+  },
+  {
+   "id": "x131",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nehavona demimel tazeviz\"`]"
+  },
+  {
+   "id": "x132",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Zufeh & Hezujolu\"`]"
+  },
+  {
+   "id": "x133",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Pi cog rufosi je sadobu dom laciwuj zov cuba wumesok. Picama camavi zov cog sehoj bika koce dovo goz sibo ho munub va pi wikop jigiraz rekivame pelu velotop.\"`]"
+  },
+  {
+   "id": "x134",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Picama kijifas t ruliv husuge rolafa.\"`]"
+  },
+  {
+   "id": "x135",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"tete(Vq1\" AND label CONTAINS \"Petor Vq2, Bevef daw liturefuku\"`]"
+  },
+  {
+   "id": "x136",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Pefu Loresisagi goz dab je dobe\"`]"
+  },
+  {
+   "id": "x137",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"desuz hicepe\"`]"
+  },
+  {
+   "id": "x138",
+   "chain": "-ios class chain:**/XCUIElementTypeTextView[`value == \"Dobe Dubow - dom febafuto cisibosogoz jufoz - hu SukuViduguwa teg zefub jogu marohawe. Poz ri tajeto votu Nig Teg Ruda hu wikop poj kop povup ho Galufaz Poz Gohaz.\"`]"
+  },
+  {
+   "id": "x139",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+  },
+  {
+   "id": "x140",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Mipunaco\"`]"
+  },
+  {
+   "id": "x141",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Dew Deguw: Fana je Pel\"`]"
+  },
+  {
+   "id": "x142",
+   "skip": true,
+   "reason": "//XCUIElementTypeCell[./XCUIElementTypeButton[@name=\"x\"]] selects a Cell based on the existence of a matching child Button. Class chain predicates can only test the element's own attributes; child-existence predicates are not supported."
+  },
+  {
+   "id": "x143",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Gokowuto Nebonozopurus Zih\"`]"
+  },
+  {
+   "id": "x144",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Tonodo Revoje Fabis\"`]"
+  },
+  {
+   "id": "x145",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"hibimaw pamul\"`]"
+  },
+  {
+   "id": "x146",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov sugah'f jukupoja wigobur\"`]"
+  },
+  {
+   "id": "x147",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"FetuwozaNihelavAvuv.funelaFecotu\" AND enabled == false`]"
+  },
+  {
+   "id": "x148",
+   "skip": true,
+   "reason": "(//*[contains(@label,\"Nepureze\")]/child::*[contains(@label,\"Nepureze\")])[2] takes the globally 2nd child-of-matching-parent result across the whole tree. Class chain cannot apply a global positional index over results gathered from multiple independent parent/child pairs."
+  },
+  {
+   "id": "x149",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Jif fojo pefu teg t rurulo je poz koce nivere\"`]"
+  },
+  {
+   "id": "x150",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dom colusegoma goz kijical ho mozirejife pelu fajoni ce je pepuro havilazijik fipic hene jivogesi ri kop sufaket goz keb\"`]"
+  },
+  {
+   "id": "x151",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Lugatej fej mipunaco\"`]"
+  },
+  {
+   "id": "x152",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value == \"Kajepazagopotev, zov cuba jizorawohuni posetog bika tazeviz\"`]"
+  },
+  {
+   "id": "x153",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Jeb namatir\"`]"
+  },
+  {
+   "id": "x154",
+   "chain": "-ios class chain:**/*[`label == \"it's\"`]"
+  },
+  {
+   "id": "x155",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Gohaz wige\"`]"
+  },
+  {
+   "id": "x156",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Nig bika jutal\"`]"
+  },
+  {
+   "id": "x157",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Ra rukul zov'gi cokibif dom NE goz dom Fuve ho Voz\"`]"
+  },
+  {
+   "id": "x158",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Wewodulu wepes je\"`]"
+  },
+  {
+   "id": "x159",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"FetuwozaNihelavAvuv.mipunaco\"`]"
+  },
+  {
+   "id": "x160",
+   "skip": true,
+   "reason": "Uses the XPath following-sibling:: axis, which has no equivalent in iOS class chain."
+  },
+  {
+   "id": "x161",
+   "chain": "-ios class chain:**/*[`name == \"DacinIjaVudaKecemoRisu.kerumemUbiSojuzUlacArewo\" AND label == \"Jaluzamiv\"`]"
+  },
+  {
+   "id": "x162",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Galufaz Poz Gohaz, Lenapa gusuri, RIG\"`]"
+  },
+  {
+   "id": "x163",
+   "skip": true,
+   "reason": "//XCUIElementTypeButton/.. navigates to the parent node using the XPath abbreviated syntax. Class chain traverses only downward; upward/parent navigation is not supported."
+  },
+  {
+   "id": "x164",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Cijahil: Vq1\" OR label CONTAINS \"Dew deguw: Vq1\"`]"
+  },
+  {
+   "id": "x165",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\"`]/**/*[`label CONTAINS \"Vq2\"`]"
+  },
+  {
+   "id": "x166",
+   "chain": "-ios class chain:**/*[`label == \"ab\"`]"
+  },
+  {
+   "id": "x167",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.noraSefili\"`]"
+  },
+  {
+   "id": "x168",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`label CONTAINS \"Fabateli vulasemab hat nehavona je vap nihekomeg\"`]"
+  },
+  {
+   "id": "x169",
+   "skip": true,
+   "reason": "Uses the XPath following-sibling:: axis with a negated predicate [not(@label=\"Jaluzamiv\")][1]. Neither the following-sibling axis nor the XPath not() function are available in iOS class chain."
+  },
+  {
+   "id": "x170",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x171",
+   "chain": "-ios class chain:**/*[`name == \"VavepaGomudatepUvepajImar.lawupe(Vq1)\"`]/*[1]"
+  },
+  {
+   "id": "x172",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Pekufes pubiwehipet\"`]"
+  },
+  {
+   "id": "x173",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"CileDewecidaWutitofOzis.hamahiduZefopihi\"`]"
+  },
+  {
+   "id": "x174",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"bapoh wigobur.\"`]"
+  },
+  {
+   "id": "x175",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Kabih\"`]"
+  },
+  {
+   "id": "x176",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hijareci Logozeb tazeviz\"`]"
+  },
+  {
+   "id": "x177",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Pejun, Lenapa gusuri, RIG\"`]"
+  },
+  {
+   "id": "x178",
+   "chain": "-ios class chain:**/*[`name == \"Zov cuba nififet dom kofodat rolafa ho wajih.\"`]"
+  },
+  {
+   "id": "x179",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Kabih\"`]"
+  },
+  {
+   "id": "x180",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Weten hom\"`]"
+  },
+  {
+   "id": "x181",
+   "chain": "-ios class chain:**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+  },
+  {
+   "id": "x182",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"PofuJiwirupIpuj.tete(Vq1\"`]"
+  },
+  {
+   "id": "x183",
+   "chain": "-ios class chain:**/*[`label == \"Leba je siviminewu\" AND enabled == true`]"
+  },
+  {
+   "id": "x184",
+   "skip": true,
+   "reason": "Uses the XPath preceding-sibling:: axis, which has no equivalent in iOS class chain."
+  },
+  {
+   "id": "x185",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov retoh cuba sab\"`]"
+  },
+  {
+   "id": "x186",
+   "skip": true,
+   "reason": "Uses the XPath following-sibling:: axis, which has no equivalent in iOS class chain."
+  },
+  {
+   "id": "x187",
+   "skip": true,
+   "reason": "Uses the XPath following-sibling:: axis, which has no equivalent in iOS class chain."
+  },
+  {
+   "id": "x188",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"Nebonozopurus gatejese\"`]"
+  },
+  {
+   "id": "x189",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Rajer bika sibo ho munub va DE / LO / KIMO.\"`]"
+  },
+  {
+   "id": "x190",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Taka\"`]"
+  },
+  {
+   "id": "x191",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"milipaCihehol\"`]"
+  },
+  {
+   "id": "x192",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• 2 fecegiv je zocumu t cisibosogoz!\"`]"
+  },
+  {
+   "id": "x193",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Nebonozopurus havilazijik\"`]"
+  },
+  {
+   "id": "x194",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Sori bika wisawu\"`]"
+  },
+  {
+   "id": "x195",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"suledohame_reneg_zugo\"`]"
+  },
+  {
+   "id": "x196",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Galufaz gohaz gusuri\"`]"
+  },
+  {
+   "id": "x197",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+  },
+  {
+   "id": "x198",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Balovewu kared, Vq1\"`]"
+  },
+  {
+   "id": "x199",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vq1\"`]"
+  },
+  {
+   "id": "x200",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.jecejIvoge\" AND label CONTAINS \"Dikasod ditar: £\"`]"
+  },
+  {
+   "id": "x201",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`]"
+  },
+  {
+   "id": "x202",
+   "chain": "-ios class chain:**[`label == \"Hero bihi Vq1\"`]"
+  },
+  {
+   "id": "x203",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Fericow goz pobi fodani, Lenapa gusuri, RIG\"`]"
+  },
+  {
+   "id": "x204",
+   "skip": true,
+   "reason": "Uses preceding-sibling axis, which is not supported in iOS class chain"
+  },
+  {
+   "id": "x205",
+   "skip": true,
+   "reason": "Uses following-sibling axis, which is not supported in iOS class chain"
+  },
+  {
+   "id": "x206",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Lugatej\" AND enabled == true`]"
+  },
+  {
+   "id": "x207",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"CidezoGemagak.RagadiluDujutot.rukomuSaholaKivezideva\"`]"
+  },
+  {
+   "id": "x208",
+   "skip": true,
+   "reason": "Uses following-sibling axis, which is not supported in iOS class chain"
+  },
+  {
+   "id": "x209",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Kimiz ma M saki ge pamul?\"`]"
+  },
+  {
+   "id": "x210",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Luzaf jutal (1 rog je 5 banadi)\"`]"
+  },
+  {
+   "id": "x211",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x212",
+   "skip": true,
+   "reason": "Uses following:: axis, which is not supported in iOS class chain"
+  },
+  {
+   "id": "x213",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Begeraw kavemag\"`]"
+  },
+  {
+   "id": "x214",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+  },
+  {
+   "id": "x215",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"Kefov GohUdip\"`]"
+  },
+  {
+   "id": "x216",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"FetuwozaNihelavAvuv.mipunaco\"`]"
+  },
+  {
+   "id": "x217",
+   "skip": true,
+   "reason": "Uses parent:: and following-sibling axes, which are not supported in iOS class chain"
+  },
+  {
+   "id": "x218",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Zucubamo lenino dutovopa\"`]"
+  },
+  {
+   "id": "x219",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+  },
+  {
+   "id": "x220",
+   "chain": "-ios class chain:**[`label == \"Bika kavemag\" OR label == \"Bika rorefek\"`]"
+  },
+  {
+   "id": "x221",
+   "chain": "-ios class chain:**[`label == 'a\"b'`]"
+  },
+  {
+   "id": "x222",
+   "skip": true,
+   "reason": "Uses following-sibling axis, which is not supported in iOS class chain"
+  },
+  {
+   "id": "x223",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+  },
+  {
+   "id": "x224",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vq1\"`]"
+  },
+  {
+   "id": "x225",
+   "chain": "-ios class chain:**[`name == \"a*?\"`]"
+  },
+  {
+   "id": "x226",
+   "chain": "-ios class chain:**[`label == \"Picama rajer t bevad motezef rari 0.\"`]"
+  },
+  {
+   "id": "x227",
+   "skip": true,
+   "reason": "Uses following-sibling axis and position() function, neither of which are supported in iOS class chain"
+  },
+  {
+   "id": "x228",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"KE\"`]"
+  },
+  {
+   "id": "x229",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Dab je tafiz\"`]"
+  },
+  {
+   "id": "x230",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fej mipunaco\"`]"
+  },
+  {
+   "id": "x231",
+   "chain": "-ios class chain:**[`name CONTAINS \"LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro\" AND enabled == false`]"
+  },
+  {
+   "id": "x232",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Lefe jutal (6 banadi je 5 weboc)\"`]"
+  },
+  {
+   "id": "x233",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\" AND label == \"Veg\"`]"
+  },
+  {
+   "id": "x234",
+   "skip": true,
+   "reason": "Uses following-sibling axis, which is not supported in iOS class chain"
+  },
+  {
+   "id": "x235",
+   "skip": true,
+   "reason": "Uses following-sibling axis, which is not supported in iOS class chain"
+  },
+  {
+   "id": "x236",
+   "skip": true,
+   "reason": "Selects elements whose type is XCUIElementTypeButton OR XCUIElementTypeStaticText; class chain cannot OR across element types in a single expression"
+  },
+  {
+   "id": "x237",
+   "chain": "-ios class chain:**[`name CONTAINS \"Vq1\"`][2]"
+  },
+  {
+   "id": "x238",
+   "skip": true,
+   "reason": "Selects XCUIElementTypeCell elements that have a descendant matching a predicate; iOS class chain does not support descendant-existence predicates on ancestor elements"
+  },
+  {
+   "id": "x239",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Bika mufig miwokub lojo foba hifum ri hu toral\"`]"
+  },
+  {
+   "id": "x240",
+   "chain": "-ios class chain:**[`name CONTAINS \"DacinIjaVudaKecemoRisu.fiwobozokeZutaralEboBerutOzok\" AND label CONTAINS \"Wuwisivopu Galufaz Poz Gohaz dobe\"`]"
+  },
+  {
+   "id": "x241",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• Za zov cuba Dom Hijareci Logozeb keb tukunutev, pi zuvejo gisu zov hicepe fojo rese bika peludur.\"`]"
+  },
+  {
+   "id": "x242",
+   "chain": "-ios class chain:**[`label == \"Veg\" AND enabled == true`]"
+  },
+  {
+   "id": "x243",
+   "chain": "-ios class chain:**[`label CONTAINS \"Petor Vq1, Rurez\" AND label CONTAINS \"mazejuz:\"`]"
+  },
+  {
+   "id": "x244",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"ZimapAjetisImus.dijivOdozev\"`]"
+  },
+  {
+   "id": "x245",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Fecirim\"`]"
+  },
+  {
+   "id": "x246",
+   "skip": true,
+   "reason": "Uses following-sibling axis, which is not supported in iOS class chain"
+  },
+  {
+   "id": "x247",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\" OR name == \"b\"`]"
+  },
+  {
+   "id": "x248",
+   "chain": "-ios class chain:**[`label CONTAINS \"ab\"`]"
+  },
+  {
+   "id": "x249",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+  },
+  {
+   "id": "x250",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Pajap ditar\"`]"
+  },
+  {
+   "id": "x251",
+   "skip": true,
+   "reason": "Selects XCUIElementTypeCell elements that have a specific descendant; iOS class chain does not support descendant-existence predicates on ancestor elements"
+  },
+  {
+   "id": "x252",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"FE\"`]"
+  },
+  {
+   "id": "x253",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"CidezoGemagak.RagadiluDujutot.jisaroVenupazIcowOmoc\"`]"
+  },
+  {
+   "id": "x254",
+   "skip": true,
+   "reason": "Uses following-sibling axis, which is not supported in iOS class chain"
+  },
+  {
+   "id": "x255",
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"Bizinovib\"`]"
+  },
+  {
+   "id": "x256",
+   "skip": true,
+   "reason": "XPath union (|) of two structurally different paths; cannot be expressed as a single iOS class chain expression"
+  },
+  {
+   "id": "x257",
+   "skip": true,
+   "reason": "Uses text() node selector; XCUITest elements have no text nodes, and there is no class chain equivalent"
+  },
+  {
+   "id": "x258",
+   "chain": "-ios class chain:**[`name CONTAINS \"Tete Vq1, mazejuz:\"`]"
+  },
+  {
+   "id": "x259",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+  },
+  {
+   "id": "x260",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label BEGINSWITH \"Ves zov sori gisu fo wigobur zov tosu ce pumed tuvila\"`]"
+  },
+  {
+   "id": "x261",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]"
+  },
+  {
+   "id": "x262",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"CidezoGemagak.Zofamekeki.livejEjaRujefAfadirap\"`]"
+  },
+  {
+   "id": "x263",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+  },
+  {
+   "id": "x264",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"JobikoBemamevuHiba.vecidIwakahejIcabini\"`]"
+  },
+  {
+   "id": "x265",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Bokipefij, fuh fojo sefasi so ti cujowe ruliv, goz zov kevoza lenino luvuzapagu laciwuj.\"`]"
+  },
+  {
+   "id": "x266",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][2]"
+  },
+  {
+   "id": "x267",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Doso mi\"`]"
+  },
+  {
+   "id": "x268",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Foba t jutal\"`]"
+  },
+  {
+   "id": "x269",
+   "chain": "-ios class chain:**[`(name == \"a\" AND label == \"b\") OR value == \"c\"`]"
+  },
+  {
+   "id": "x270",
+   "chain": "-ios class chain:**[`label CONTAINS \"Ganam Zemori Jila\"`]"
+  },
+  {
+   "id": "x271",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\"`]"
+  },
+  {
+   "id": "x272",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Doso poj\"`]"
+  },
+  {
+   "id": "x273",
+   "chain": "-ios class chain:**[`name CONTAINS \"FetuwozaNihelavAvuv.mipunaco\" AND label CONTAINS \"Comu mipunaco\"`]"
+  },
+  {
+   "id": "x274",
+   "chain": "-ios class chain:**[`name CONTAINS \"Wacisugik mazejuz\"`]"
+  },
+  {
+   "id": "x275",
+   "skip": true,
+   "reason": "Uses parent axis (..) and following-sibling axis, neither of which are supported in iOS class chain"
+  },
+  {
+   "id": "x276",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vq1\"`]"
+  },
+  {
+   "id": "x277",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`]"
+  },
+  {
+   "id": "x278",
+   "chain": "-ios class chain:**[`name CONTAINS \"Dew deguw fericow:\"`]"
+  },
+  {
+   "id": "x279",
+   "skip": true,
+   "reason": "XPath union (|) of an element and its first child::*[1]; cannot be expressed as a single iOS class chain — requires two separate queries"
+  },
+  {
+   "id": "x280",
+   "chain": "-ios class chain:**[`name CONTAINS \"DacinIjaVudaKecemoRisu.jibikIhofe\" AND label CONTAINS \"Nig dab veca zov hat namatir ruhe here.\"`]"
+  },
+  {
+   "id": "x281",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Limazene sibo: Vq1\"`]"
+  },
+  {
+   "id": "x282",
+   "skip": true,
+   "reason": "Uses following-sibling axis, which is not supported in iOS class chain"
+  },
+  {
+   "id": "x283",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Vq1\"`]"
+  },
+  {
+   "id": "x284",
+   "chain": "-ios class chain:**[`name CONTAINS \"DacinIjaVudaKecemoRisu.jecejIvoge\" AND label CONTAINS \"Nig dab veca zov hat pajap ruhe here.\"`]"
+  },
+  {
+   "id": "x285",
+   "chain": "-ios class chain:**[`label == \"Fowani wumesok muhevuw bika 75 gohaz kofodat ditar.\"`]"
+  },
+  {
+   "id": "x286",
+   "chain": "-ios class chain:**[`label CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x287",
+   "chain": "-ios class chain:**/XCUIElementTypeTextView[`value == \"Kop sufaket goz keb cog gujowuma bi hom kop werunez hat gogama nozebiwi dom tamu, dobe gohaz goz cac dom havilazijik heti varu.\"`]"
+  },
+  {
+   "id": "x288",
+   "skip": true,
+   "reason": "Uses XPath 2.0 matches() regex function, which is not supported by XCUITest/Appium; iOS class chain has no regex matching capability"
+  },
+  {
+   "id": "x289",
+   "chain": "-ios class chain:**[`label == \"Zov'gi £5 • x\"`]"
+  },
+  {
+   "id": "x290",
+   "skip": true,
+   "reason": "Uses XPath 2.0 replace() string function, which is not supported by XCUITest/Appium; no equivalent exists in iOS class chain"
+  },
+  {
+   "id": "x291",
+   "chain": "-ios class chain:**[`label == \"Bevef Daw - foba bika fecegiv votu conuwafi figuleni mazejuz\"`]"
+  },
+  {
+   "id": "x292",
+   "skip": true,
+   "reason": "Uses parent:: axis to traverse up the tree; iOS class chain only traverses downward"
+  },
+  {
+   "id": "x293",
+   "chain": "-ios class chain:**[`name CONTAINS \"Dozur, wezid zuf t lufotoh votu bika gebison. Za zov cog wuneko je lenino bika tazeviz picama pekufes Lowefore Fika\"`]"
+  },
+  {
+   "id": "x294",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`enabled == true`]"
+  },
+  {
+   "id": "x295",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Dikasod vilokor: £\"`]"
+  },
+  {
+   "id": "x296",
+   "chain": "-ios class chain:**[`name == \"a\" AND label == \"b\"`]"
+  },
+  {
+   "id": "x297",
+   "chain": "-ios class chain:**/XCUIElementTypeWebView"
+  },
+  {
+   "id": "x298",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Doso mi je nehavona\"`]"
+  },
+  {
+   "id": "x299",
+   "skip": true,
+   "reason": "Uses last() XPath function to select the final matching element; iOS class chain only supports static numeric indices, not dynamic last()"
+  },
+  {
+   "id": "x300",
+   "chain": "-ios class chain:**[`name CONTAINS \"tete(Vq1\" AND label CONTAINS \"Petor Vq2, Bevef daw notupisa\"`]"
+  },
+  {
+   "id": "x301",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"Vq1, Nepureze, figuleni\"`]"
+  },
+  {
+   "id": "x302",
+   "skip": true,
+   "reason": "@text is not a valid XCUITest element attribute. Appium's XCUITest driver does not expose a 'text' attribute; the intended attribute is likely 'label' or 'value', but the mapping is ambiguous and cannot be determined safely."
+  },
+  {
+   "id": "x303",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis and self:: node-test inside a union predicate. iOS class chain does not support any XPath axes (following-sibling, preceding-sibling, parent, ancestor, child, etc.)."
+  },
+  {
+   "id": "x304",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"mi pefu risepa\"`]"
+  },
+  {
+   "id": "x305",
+   "skip": true,
+   "reason": "Requires selecting the 3rd match globally across the entire element tree: (//…)[3]. iOS class chain index notation [N] selects the Nth sibling match at a given hierarchy level, not the Nth overall result, so this semantics cannot be replicated."
+  },
+  {
+   "id": "x306",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"FetuwozaNihelavAvuv.jizobawUwohacan\"`]"
+  },
+  {
+   "id": "x307",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Nig ditar\"`]"
+  },
+  {
+   "id": "x308",
+   "chain": "-ios class chain:**/XCUIElementTypeImage[`name == \"kasoc_jijun\"`]"
+  },
+  {
+   "id": "x309",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Hibimaw tival\"`]"
+  },
+  {
+   "id": "x310",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"FetuwozaNihelavAvuv.jizobawUwohacan\"`]"
+  },
+  {
+   "id": "x311",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Ti hibimaw tival\"`]"
+  },
+  {
+   "id": "x312",
+   "chain": "-ios class chain:**/*[`label == \"Hicepe bihi Vq1\"`]"
+  },
+  {
+   "id": "x313",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"GocibozuPenalIgug.voceseruBiful\"`]"
+  },
+  {
+   "id": "x314",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vq1, k2 cazete\"`]"
+  },
+  {
+   "id": "x315",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Hibimaw tival\"`]"
+  },
+  {
+   "id": "x316",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"ab\"`]"
+  },
+  {
+   "id": "x317",
+   "skip": true,
+   "reason": "Uses the XPath union operator (|) to combine two independent queries. iOS class chain has no union operator and a single chain expression cannot match two unrelated element types in one query."
+  },
+  {
+   "id": "x318",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"WidafajivaTorukepumobIpas.bulitiLitopicol\"`]"
+  },
+  {
+   "id": "x319",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Sefasi PO:\"`]"
+  },
+  {
+   "id": "x320",
+   "skip": true,
+   "reason": "@index in XPath refers to the Appium-synthesised DOM position index of an element. This is not a queryable NSPredicate attribute in iOS class chain and has no equivalent predicate."
+  },
+  {
+   "id": "x321",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"NE Cisibosogoz Jufoz bihi\" AND NOT label CONTAINS \"Bika\"`]"
+  },
+  {
+   "id": "x322",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Jeb bika wajih\"`]"
+  },
+  {
+   "id": "x323",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\"`]"
+  },
+  {
+   "id": "x324",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Honamib deguw\"`]"
+  },
+  {
+   "id": "x325",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis. iOS class chain does not support any XPath traversal axes."
+  },
+  {
+   "id": "x326",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Cog zov husu zov noca je hicepe hom dulacoci?\"`]"
+  },
+  {
+   "id": "x327",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Birel nimiwi\"`]"
+  },
+  {
+   "id": "x328",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"• Kop velotop zir meb nul la nahinuh\"`]"
+  },
+  {
+   "id": "x329",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Dobe sid\"`]"
+  },
+  {
+   "id": "x330",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]"
+  },
+  {
+   "id": "x331",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Doso mi\"`]"
+  },
+  {
+   "id": "x332",
+   "skip": true,
+   "reason": "contains(@type,\"XCUIElementTypeText\") matches multiple distinct concrete types (XCUIElementTypeStaticText, XCUIElementTypeTextField, XCUIElementTypeTextView) because they all contain the substring \"XCUIElementTypeText\". There is no single iOS class chain expression that replicates this multi-type substring match."
+  },
+  {
+   "id": "x333",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Minevili\"`]"
+  },
+  {
+   "id": "x334",
+   "skip": true,
+   "reason": "The label value contains a backtick character (`). iOS class chain uses backticks as the predicate delimiter and provides no escape sequence for a literal backtick inside a predicate string, making it impossible to express this locator."
+  },
+  {
+   "id": "x335",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Jeb wajih je dobe ticu\" OR label == \"Wikop wajih teg kavemag\"`]"
+  },
+  {
+   "id": "x336",
+   "skip": true,
+   "reason": "Requires selecting the 2nd XCUIElementTypeButton globally across the entire tree via position()=2. iOS class chain index notation selects the Nth sibling at a specific hierarchy level, not the Nth overall result."
+  },
+  {
+   "id": "x337",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\"`]"
+  },
+  {
+   "id": "x338",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Hicepe hom\"`]"
+  },
+  {
+   "id": "x339",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir ceciful cuba t Hijareci Logozeb tazeviz\"`]"
+  },
+  {
+   "id": "x340",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Roreso pubiwehipet\"`]"
+  },
+  {
+   "id": "x341",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Galufaz Poz Gohaz matumutor\"`]/XCUIElementTypeStaticText"
+  },
+  {
+   "id": "x342",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\" AND label CONTAINS \"mazejuz\"`]"
+  },
+  {
+   "id": "x343",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Lugatej\"`]"
+  },
+  {
+   "id": "x344",
+   "skip": true,
+   "reason": "Requires selecting the 2nd match globally across the entire element tree: (//…)[2]. iOS class chain index notation [N] selects the Nth sibling match at a given hierarchy level, not the Nth overall result."
+  },
+  {
+   "id": "x345",
+   "chain": "-ios class chain:**/XCUIElementTypeButton"
+  },
+  {
+   "id": "x346",
+   "chain": "-ios class chain:**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"a\"`]"
+  },
+  {
+   "id": "x347",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"CidezoGemagak.Zofamekeki.hosipepOvirujAberehiz\"`]"
+  },
+  {
+   "id": "x348",
+   "skip": true,
+   "reason": "XCUIElementTypeLabel is not a valid XCUITest element type. It does not exist in the XCUITest type system, so no equivalent class chain type is available."
+  },
+  {
+   "id": "x349",
+   "chain": "-ios class chain:**/*[`value CONTAINS \"Pako goz tival Vq1 Vq2 je poz £Vq3\"`]"
+  },
+  {
+   "id": "x350",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"FetuwozaNihelavAvuv.jizobawUwohacan\" AND label CONTAINS \"Kuki mipunaco\"`]"
+  },
+  {
+   "id": "x351",
+   "skip": true,
+   "reason": "Uses the parent:: XPath axis to navigate from a button up to its XCUIElementTypeOther parent. iOS class chain does not support upward traversal axes."
+  },
+  {
+   "id": "x352",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`enabled == 0`]"
+  },
+  {
+   "id": "x353",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Jeb fabis tuve\"`]"
+  },
+  {
+   "id": "x354",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"pajap goz dobe gatejese\"`]"
+  },
+  {
+   "id": "x355",
+   "chain": "-ios class chain:**/XCUIElementTypeImage[`name == \"Bakaf pumunuwavube jega kefatigamuj\"`]"
+  },
+  {
+   "id": "x356",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• 2 cazete lov rigi rog teg dom tohof ho kup\"`]"
+  },
+  {
+   "id": "x357",
+   "chain": "-ios class chain:**/*[`label == \"Vale\"`]"
+  },
+  {
+   "id": "x358",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\"`]/**/*[`label CONTAINS \"Vq2\"`]"
+  },
+  {
+   "id": "x359",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis. iOS class chain does not support any XPath traversal axes."
+  },
+  {
+   "id": "x360",
+   "chain": "-ios class chain:**/*[`label == \"Galufaz Poz Gohaz dobe ditar\"`]"
+  },
+  {
+   "id": "x361",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Pefu mosagesotefetuk\"`]"
+  },
+  {
+   "id": "x362",
+   "skip": true,
+   "reason": "Uses the XPath union operator (|) to combine two independent name queries. iOS class chain has no union operator."
+  },
+  {
+   "id": "x363",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Wacisugik mazejuz Vq1, mazejuz:\"`]"
+  },
+  {
+   "id": "x364",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Namatir\"`]"
+  },
+  {
+   "id": "x365",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label != \"a\"`]"
+  },
+  {
+   "id": "x366",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Rofozopevol Dobe\"`]"
+  },
+  {
+   "id": "x367",
+   "chain": "-ios class chain:**/XCUIElementTypeOther"
+  },
+  {
+   "id": "x368",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"FetuwozaNihelavAvuv.mipunaco\"`]"
+  },
+  {
+   "id": "x369",
+   "chain": "-ios class chain:**/*[`name == \"a*b\"`]"
+  },
+  {
+   "id": "x370",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov cuba sab\"`]"
+  },
+  {
+   "id": "x371",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Wacisugik mazejuz\"`]"
+  },
+  {
+   "id": "x372",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Hicepe\"`]"
+  },
+  {
+   "id": "x373",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"fericow\"`]"
+  },
+  {
+   "id": "x374",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis. iOS class chain does not support any XPath traversal axes."
+  },
+  {
+   "id": "x375",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Kihare pefu\" AND label == \"Kihare pefu\"`]"
+  },
+  {
+   "id": "x376",
+   "chain": "-ios class chain:**/*[`name == \"a\"`]"
+  },
+  {
+   "id": "x377",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis. iOS class chain does not support any XPath traversal axes."
+  },
+  {
+   "id": "x378",
+   "skip": true,
+   "reason": "Uses the child:: axis with a positional index on a specific child step, then wraps the whole expression in a global (…)[1] index. Class chain supports neither the child:: axis syntax nor global positional indexing across the full result set."
+  },
+  {
+   "id": "x379",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.lekiPum\" AND label CONTAINS \"Foba t jutal rese wigobur hom gohaz dapisusurel hu peworumezop.\"`]"
+  },
+  {
+   "id": "x380",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"Des Zukefam Nebonozopurus Bifogilenu (GOCU) 2.2JU\"`]"
+  },
+  {
+   "id": "x381",
+   "skip": true,
+   "reason": "Requires selecting the 2nd match globally across the entire element tree: (//…)[2]. iOS class chain index notation [N] selects the Nth sibling match at a given hierarchy level, not the Nth overall result."
+  },
+  {
+   "id": "x382",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Leba wacisugik rolafa\"`]"
+  },
+  {
+   "id": "x383",
+   "skip": true,
+   "reason": "Requires selecting the 2nd match globally across the entire element tree: (//…)[2]. iOS class chain index notation [N] selects the Nth sibling match at a given hierarchy level, not the Nth overall result."
+  },
+  {
+   "id": "x384",
+   "skip": true,
+   "reason": "Uses the ancestor:: XPath axis to navigate from a button up to its containing XCUIElementTypeCell. iOS class chain does not support any upward traversal axes."
+  },
+  {
+   "id": "x385",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Rofozopevol dobe\"`]"
+  },
+  {
+   "id": "x386",
+   "skip": true,
+   "reason": "Uses the following-sibling:: and child:: XPath axes with positional indexing. iOS class chain does not support any XPath traversal axes."
+  },
+  {
+   "id": "x387",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis. iOS class chain does not support any XPath traversal axes."
+  },
+  {
+   "id": "x388",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Dewujumu wezujewab\"`]"
+  },
+  {
+   "id": "x389",
+   "skip": true,
+   "reason": "Uses the parent:: XPath axis to navigate from a static text element up to its XCUIElementTypeOther parent. iOS class chain does not support upward traversal axes."
+  },
+  {
+   "id": "x390",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.lekiPum\" AND label CONTAINS \"Foba t jutal\"`]"
+  },
+  {
+   "id": "x391",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Cog zov husu zov noca je diteda?\"`]"
+  },
+  {
+   "id": "x392",
+   "chain": "-ios class chain:**/*[`label == \"Wacisugik mazejuz - leba goz dobe votu bika siviminewu\"`]"
+  },
+  {
+   "id": "x393",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• Za zov cuba su nonide Revoje Fabis, fojo lojo la homusabasofek bekikalin.\"`]"
+  },
+  {
+   "id": "x394",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Galufaz Poz Gohaz dobe ditar\"`]"
+  },
+  {
+   "id": "x395",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Ra hat foba se je 4 jidur teg bika Revoje Fabis je zocumu nonide\"`]"
+  },
+  {
+   "id": "x396",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Potepiv rigi gohaz\"`]"
+  },
+  {
+   "id": "x397",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"GocibozuPenalIgug.voceseruBiful\"`]/XCUIElementTypeButton"
+  },
+  {
+   "id": "x398",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Funewekid wepes rese\"`]"
+  },
+  {
+   "id": "x399",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x400",
+   "chain": "-ios class chain:**/*[`label ==[c] \"ab\"`]"
+  },
+  {
+   "id": "x401",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"CileDewecidaWutitofOzis.hamahiduZefopihi\"`]"
+  },
+  {
+   "id": "x402",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Kop gohaz cog gujowuma je la kuluso votu matumutor. Dufapil, za zov cog sehoj t rodote wogifo, zov hat keco rig pewipakamo sehoj fojo lenapa. Votu pefu matumutor tecijo rig, zov hat rawi nasavaje je dom rosapo\"`]"
+  },
+  {
+   "id": "x403",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• Hapeto zov cipi je dobe kop gohaz monuw mi dom mivawa, zov'vu varu je pekufes Lowefore Fika.\"`]"
+  },
+  {
+   "id": "x404",
+   "chain": "-ios class chain:**/*[`label == \"a)b\"`][2]"
+  },
+  {
+   "id": "x405",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov'di nofezi je foba t jutal ho\"`]"
+  },
+  {
+   "id": "x406",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Dom mipunaco zov wumesok so disohinid.\"`]"
+  },
+  {
+   "id": "x407",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Tolacocat nivere\"`]"
+  },
+  {
+   "id": "x408",
+   "skip": true,
+   "reason": "@text is not a valid XCUITest/Appium attribute; XCUITest elements expose name, label, and value — there is no 'text' attribute, so this XPath matches nothing and cannot be expressed as a class chain."
+  },
+  {
+   "id": "x409",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Je nehavona je dobe, picama lotahu bika fabis tuve laciwuj tefoku bavori wepes\"`]"
+  },
+  {
+   "id": "x410",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Nepureze\"`]/*[`label CONTAINS \"Nepureze\"`]"
+  },
+  {
+   "id": "x411",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Dobe monuw\"`]"
+  },
+  {
+   "id": "x412",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"cuba jizorawohuni honamib bika deguw.\"`]"
+  },
+  {
+   "id": "x413",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Vq1\"`]"
+  },
+  {
+   "id": "x414",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz\"`]"
+  },
+  {
+   "id": "x415",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HinefovigocEzehefuc.wivEtociliLunuci\"`]"
+  },
+  {
+   "id": "x416",
+   "chain": "-ios class chain:**/XCUIElementTypeCell/XCUIElementTypeButton"
+  },
+  {
+   "id": "x417",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Hom gohaz\"`]"
+  },
+  {
+   "id": "x418",
+   "chain": "-ios class chain:**/*[`label == \"Vale\" AND enabled == true`]"
+  },
+  {
+   "id": "x419",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Meja\"`]"
+  },
+  {
+   "id": "x420",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Fej tete, Wacisugik\"`]"
+  },
+  {
+   "id": "x421",
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"1 ho 3\"`]"
+  },
+  {
+   "id": "x422",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Potepiv dom keb\"`]"
+  },
+  {
+   "id": "x423",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov hat wikop bika pelu colusegoma gatejese tevej goz maceti bika pubiwehipet fo wedocagi dom bilakide ri hu rig.\"`]"
+  },
+  {
+   "id": "x424",
+   "skip": true,
+   "reason": "last() is an XPath positional function with no equivalent in iOS class chain predicate syntax; class chain index predicates require a fixed integer and cannot select the last element dynamically."
+  },
+  {
+   "id": "x425",
+   "skip": true,
+   "reason": "tokenize() is an XPath 2.0 function; it is not available in NSPredicate-based class chain syntax and cannot be reproduced."
+  },
+  {
+   "id": "x426",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`hittable == true`]"
+  },
+  {
+   "id": "x427",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.vufeputekUgucelu\" AND label CONTAINS \"Nig bika tazeviz va t Ricorikup Hohaveh je jif jumumol teg bika ricorikup.\"`]"
+  },
+  {
+   "id": "x428",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Picama bowep bika mipunaco hu pekufes kop Lowefore Fika riba je gepohe lenino je bika tazeviz.\"`]"
+  },
+  {
+   "id": "x429",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Jif sefasi\"`]"
+  },
+  {
+   "id": "x430",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+  },
+  {
+   "id": "x431",
+   "skip": true,
+   "reason": "following-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x432",
+   "skip": true,
+   "reason": "following-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x433",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Rigi buromut:\"`]"
+  },
+  {
+   "id": "x434",
+   "chain": "-ios class chain:**/XCUIElementTypeCell/**/XCUIElementTypeButton"
+  },
+  {
+   "id": "x435",
+   "skip": true,
+   "reason": "following-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x436",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Dobe teg\"`]"
+  },
+  {
+   "id": "x437",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][1]"
+  },
+  {
+   "id": "x438",
+   "skip": true,
+   "reason": "preceding-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x439",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label CONTAINS \"Dobe teg\"`]"
+  },
+  {
+   "id": "x440",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Ceces\"`]"
+  },
+  {
+   "id": "x441",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`enabled == true`]"
+  },
+  {
+   "id": "x442",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Nebonozopurus gatejese\"`]"
+  },
+  {
+   "id": "x443",
+   "chain": "-ios class chain:**/*[`name ENDSWITH \"ab\"`]"
+  },
+  {
+   "id": "x444",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[`name == \"a\"`]/**/XCUIElementTypeButton[`label == \"b\"`]"
+  },
+  {
+   "id": "x445",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"riduco\"`]/XCUIElementTypeStaticText[`name == \"WefaniBedufeDanu.gotePebazoh\"`]"
+  },
+  {
+   "id": "x446",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"FetuwozaNihelavAvuv.mipunaco\" AND label CONTAINS \"Kuki mipunaco\"`]"
+  },
+  {
+   "id": "x447",
+   "skip": true,
+   "reason": "normalize-space() is an XPath function with no equivalent in NSPredicate-based class chain syntax; whitespace normalization cannot be expressed in a class chain predicate."
+  },
+  {
+   "id": "x448",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"dapogec_reneg_zugo\"`]"
+  },
+  {
+   "id": "x449",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Mu je Ge Gohaz\"`]"
+  },
+  {
+   "id": "x450",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Bevef Daw\"`]"
+  },
+  {
+   "id": "x451",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Bowep ge mipunaco\"`]"
+  },
+  {
+   "id": "x452",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Raf ra\" OR name == \"HinefovigocEzehefuc.honeGolepu\"`]"
+  },
+  {
+   "id": "x453",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Tazeviz Tawod & Ruwoz\"`]"
+  },
+  {
+   "id": "x454",
+   "skip": true,
+   "reason": "following-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x455",
+   "chain": "-ios class chain:**/*[`name == \"a\" OR (label == \"b\" AND value == \"c\")`]"
+  },
+  {
+   "id": "x456",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Cijahil:\"`]"
+  },
+  {
+   "id": "x457",
+   "skip": true,
+   "reason": "following-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x458",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Galufaz Poz Gohaz Ruwoz\"`]"
+  },
+  {
+   "id": "x459",
+   "chain": "-ios class chain:**/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"a\"`]"
+  },
+  {
+   "id": "x460",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Sefasi meb ruliv\"`]"
+  },
+  {
+   "id": "x461",
+   "skip": true,
+   "reason": "@accessible is not a valid XCUITest/Appium attribute; XCUITest does not expose an 'accessible' attribute in the element tree, so this XPath matches nothing and cannot be expressed as a class chain."
+  },
+  {
+   "id": "x462",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Nig wisawu\"`]"
+  },
+  {
+   "id": "x463",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x464",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Nebonozopurus gatejese\"`]"
+  },
+  {
+   "id": "x465",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Tosu goz Pekufes ce\"`]"
+  },
+  {
+   "id": "x466",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+  },
+  {
+   "id": "x467",
+   "chain": "-ios class chain:XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]"
+  },
+  {
+   "id": "x468",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Galufaz poz\"`]"
+  },
+  {
+   "id": "x469",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Bedoce mazejuz\"`]"
+  },
+  {
+   "id": "x470",
+   "chain": "-ios class chain:**/*[`label == \"a/b|c(d)\"`]"
+  },
+  {
+   "id": "x471",
+   "skip": true,
+   "reason": "following-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x472",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hijareci Logozeb gohaz hapeto lorope la sih, wigobur mi t loh gisu so kasoc teg zov.\"`]"
+  },
+  {
+   "id": "x473",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Rigi Vq1\"`]"
+  },
+  {
+   "id": "x474",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Wezid so ceciful su tazeviz sehoj fojo husuge rolafa.\"`]"
+  },
+  {
+   "id": "x475",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Bika wajih lojo la rurez mi 2 cazete lov figuleni rigi rog, cohiha zov 2 fecegiv je poz.\"`]"
+  },
+  {
+   "id": "x476",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"WimazatOzuv.kumogigafOsen\"`]"
+  },
+  {
+   "id": "x477",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Diteda\"`]"
+  },
+  {
+   "id": "x478",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]"
+  },
+  {
+   "id": "x479",
+   "chain": "-ios class chain:**/*[`name == \"HaguhoCuzal.marivoDigivo\" AND enabled == false`]"
+  },
+  {
+   "id": "x480",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name CONTAINS \"Sosedeki bihi\"`]"
+  },
+  {
+   "id": "x481",
+   "skip": true,
+   "reason": "following-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x482",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"FetuwozaNihelavAvuv.kamOseberor\"`]"
+  },
+  {
+   "id": "x483",
+   "skip": true,
+   "reason": "@x is an element coordinate attribute; iOS class chain predicates only support accessibility attributes (name, label, value, enabled, visible, hittable, etc.) and cannot filter by position or geometry."
+  },
+  {
+   "id": "x484",
+   "chain": "-ios class chain:**/*[`label == \"a\nb\"`]"
+  },
+  {
+   "id": "x485",
+   "skip": true,
+   "reason": "following-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x486",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\" AND label CONTAINS \"liturefuku Bevef Daw\"`]"
+  },
+  {
+   "id": "x487",
+   "skip": true,
+   "reason": "preceding-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x488",
+   "skip": true,
+   "reason": "last()-1 uses XPath arithmetic on the positional last() function; iOS class chain index predicates require a fixed integer literal and cannot compute a dynamic index."
+  },
+  {
+   "id": "x489",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\" AND label == \"Doso mi je dobe\"`]"
+  },
+  {
+   "id": "x490",
+   "chain": "-ios class chain:**/*[`name == \"a\" AND label == \"b\"`]"
+  },
+  {
+   "id": "x491",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"FetuwozaNihelavAvuv.mipunaco\"`]"
+  },
+  {
+   "id": "x492",
+   "skip": true,
+   "reason": "The outer positional index [2] selects the 2nd element from the complete result set of a multi-step path; iOS class chain index predicates apply to a single step and cannot index the final result of an arbitrary multi-step expression."
+  },
+  {
+   "id": "x493",
+   "chain": "-ios class chain:**/*[`value CONTAINS \"Kup sefasi.\" AND value CONTAINS \"Vik fecegiv je poz.\"`]"
+  },
+  {
+   "id": "x494",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Fiwit Hoj\"`]"
+  },
+  {
+   "id": "x495",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+  },
+  {
+   "id": "x496",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pako geviv: Vq1\"`]"
+  },
+  {
+   "id": "x497",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"CizuBubezotOcahijaLenu.sedunElerozegaCawogeg\"`]"
+  },
+  {
+   "id": "x498",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`value == \"KO\"`]"
+  },
+  {
+   "id": "x499",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"0 hopetanatiden jumumol\"`]"
+  },
+  {
+   "id": "x500",
+   "skip": true,
+   "reason": "following-sibling XPath axis is not supported in iOS class chain; class chain only traverses parent→child (and descendant) relationships."
+  },
+  {
+   "id": "x501",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"T tete goded\"`]"
+  },
+  {
+   "id": "x502",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Nofe tazeviz laciwuj\"`]"
+  },
+  {
+   "id": "x503",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Picama tonodo t roki sedale mipunaco gisu cacu meb lilicep navecuhu havilazijik.\"`]"
+  },
+  {
+   "id": "x504",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis, which has no equivalent in iOS class chain syntax."
+  },
+  {
+   "id": "x505",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"FohuVeluHasIkucilelerovUgit.voceseruBiful\"`]"
+  },
+  {
+   "id": "x506",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis, which has no equivalent in iOS class chain syntax."
+  },
+  {
+   "id": "x507",
+   "skip": true,
+   "reason": "Uses ends-with() on text() node content; class chain predicates do not support text node functions."
+  },
+  {
+   "id": "x508",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+  },
+  {
+   "id": "x509",
+   "skip": true,
+   "reason": "//XCUIElementTypeCell[2][@name=\"a\"] selects the 2nd Cell sibling within each parent that also has name=\"a\"; class chain [N] is a global index over all matches, so the semantics differ and cannot be reproduced faithfully."
+  },
+  {
+   "id": "x510",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+  },
+  {
+   "id": "x511",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Kop velotop zir meb nul la nahinuh\"`]"
+  },
+  {
+   "id": "x512",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis, which has no equivalent in iOS class chain syntax."
+  },
+  {
+   "id": "x513",
+   "skip": true,
+   "reason": "Uses the following-sibling:: axis with a not() predicate; neither the axis nor the not() operator is supported in class chain."
+  },
+  {
+   "id": "x514",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Fej\"`]"
+  },
+  {
+   "id": "x515",
+   "chain": "-ios class chain:**/*[`name BEGINSWITH \"ab\"`]"
+  },
+  {
+   "id": "x516",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Nozod hom\" AND enabled == 1`]"
+  },
+  {
+   "id": "x517",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1, pako geviv\" AND label CONTAINS \"Vq2\"`]"
+  },
+  {
+   "id": "x518",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis, which has no equivalent in iOS class chain syntax."
+  },
+  {
+   "id": "x519",
+   "skip": true,
+   "reason": "//XCUIElementTypeButton[2] selects the 2nd Button within each parent context (may return multiple nodes); class chain [2] is a single global index — semantics are not equivalent."
+  },
+  {
+   "id": "x520",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.vufeputekUgucelu\" AND label CONTAINS \"Ricorikup Hohaveh\"`]"
+  },
+  {
+   "id": "x521",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Namatir wepes je dobe\"`]"
+  },
+  {
+   "id": "x522",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Bika mufig rigi lojo la ri\"`]"
+  },
+  {
+   "id": "x523",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Fericow goz pobi fodani, Lenapa gusuri, RI\"`]"
+  },
+  {
+   "id": "x524",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"FogigIpavoWibi.mipunaco\"`]"
+  },
+  {
+   "id": "x525",
+   "skip": true,
+   "reason": "Uses the following-sibling:: axis combined with a global positional index; neither the axis nor the resulting element set can be expressed in class chain."
+  },
+  {
+   "id": "x526",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Meli bika tazeviz\" OR name CONTAINS \"Jeb fabis tuve\"`]"
+  },
+  {
+   "id": "x527",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vilokor\"`]"
+  },
+  {
+   "id": "x528",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name CONTAINS \"VegAluGezamIrez.kusibEtapAjijo\"`]"
+  },
+  {
+   "id": "x529",
+   "skip": true,
+   "reason": "//XCUIElementTypeCell[XCUIElementTypeButton] uses a child-existence predicate; class chain predicates cannot test for the presence of descendant elements."
+  },
+  {
+   "id": "x530",
+   "skip": true,
+   "reason": "The XPath is syntactically invalid — the trailing 'Vq1' token after the closing parenthesis is not legal XPath, so there is no semantically equivalent locator to produce."
+  },
+  {
+   "id": "x531",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"FetuwozaNihelavAvuv.jizobawUwohacan\"`]"
+  },
+  {
+   "id": "x532",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Vq1 je Vq2.\"`]"
+  },
+  {
+   "id": "x533",
+   "chain": "-ios class chain:**/XCUIElementTypeCell/XCUIElementTypeButton"
+  },
+  {
+   "id": "x534",
+   "skip": true,
+   "reason": "contains(., \"a\") tests the string value of an element's text content via the self node; class chain predicates have no equivalent for inner text / node string-value."
+  },
+  {
+   "id": "x535",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"limazene migewovig.\"`]"
+  },
+  {
+   "id": "x536",
+   "chain": "-ios class chain:**/*[`(name == \"a\" OR name == \"b\") AND (label == \"c\" OR label == \"d\")`]"
+  },
+  {
+   "id": "x537",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Cac luvuzapagu tosu\"`]"
+  },
+  {
+   "id": "x538",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Puba sefasi\"`]"
+  },
+  {
+   "id": "x539",
+   "skip": true,
+   "reason": "Uses the XPath union operator (|) and not() predicates with document-scope sub-expressions and parent:: axis; none of these are expressible in class chain."
+  },
+  {
+   "id": "x540",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`value == \"LO\"`]"
+  },
+  {
+   "id": "x541",
+   "chain": "-ios class chain:**/*[`(name == \"a\" OR label == \"b\") AND value == \"c\"`]"
+  },
+  {
+   "id": "x542",
+   "skip": true,
+   "reason": "Uses last() positional function; class chain has no equivalent for selecting the last match in a result set."
+  },
+  {
+   "id": "x543",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Hero Mipunaco\"`]"
+  },
+  {
+   "id": "x544",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`label CONTAINS \"Fowani je namatir, £2 so dom juguwoj fowani zov hat namatir.\"`]"
+  },
+  {
+   "id": "x545",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Lugatej pejun huregad\"`]"
+  },
+  {
+   "id": "x546",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Lugatej wisawu\"`]"
+  },
+  {
+   "id": "x547",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis, which has no equivalent in iOS class chain syntax."
+  },
+  {
+   "id": "x548",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"DacinIjaVudaKecemoRisu.fiwobozokeZutaralEboBerutOzok\" AND label == \"Jaluzamiv\"`]"
+  },
+  {
+   "id": "x549",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Logozeb gohaz, Lenapa gusuri, RI\"`]"
+  },
+  {
+   "id": "x550",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`visible == 1`]"
+  },
+  {
+   "id": "x551",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Wuwisivopu Galufaz Poz Gohaz dobe\"`]"
+  },
+  {
+   "id": "x552",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Gojo fo\"`]"
+  },
+  {
+   "id": "x553",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Ge birel\"`]"
+  },
+  {
+   "id": "x554",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Luzaf jutal (1 rog je 5 banadi)\"`]"
+  },
+  {
+   "id": "x555",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"2 fecegiv je poz!\"`]"
+  },
+  {
+   "id": "x556",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Picama lugatej bika tuve laciwuj bi pi hat wekukos bika miwokub. Zov cuba 180 lide rese dom rog toral dom rigi sibo je tafiz.\"`]"
+  },
+  {
+   "id": "x557",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pekufes Lowefore Fika\"`]"
+  },
+  {
+   "id": "x558",
+   "skip": true,
+   "reason": "Uses the following-sibling:: axis combined with a global positional index; the axis is not supported in class chain."
+  },
+  {
+   "id": "x559",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Pekufes Ce\"`]"
+  },
+  {
+   "id": "x560",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Rigi gohaz gusuri\"`]"
+  },
+  {
+   "id": "x561",
+   "skip": true,
+   "reason": "Uses the XPath union operator (|); class chain has no union/OR at the locator level."
+  },
+  {
+   "id": "x562",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pajap goz dobe gatejese\"`]"
+  },
+  {
+   "id": "x563",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"FetuwozaNihelavAvuv.jizobawUwohacan\"`]"
+  },
+  {
+   "id": "x564",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+  },
+  {
+   "id": "x565",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"3398\"`]"
+  },
+  {
+   "id": "x566",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dewujumu wezujewab\"`]"
+  },
+  {
+   "id": "x567",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Dab je tafiz\"`]"
+  },
+  {
+   "id": "x568",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Vale kared, Vq1\"`]"
+  },
+  {
+   "id": "x569",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vq1\"`]"
+  },
+  {
+   "id": "x570",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Doso mi\"`]"
+  },
+  {
+   "id": "x571",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Picama rajer t ruliv nepacu.\"`]"
+  },
+  {
+   "id": "x572",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz:\"`]"
+  },
+  {
+   "id": "x573",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Mu je Rigi Gohaz\"`]"
+  },
+  {
+   "id": "x574",
+   "skip": true,
+   "reason": "Uses last() positional function; class chain has no equivalent for selecting the last match."
+  },
+  {
+   "id": "x575",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][1]"
+  },
+  {
+   "id": "x576",
+   "skip": true,
+   "reason": "Uses the parent:: XPath axis to navigate upward; class chain only supports downward traversal and has no parent axis."
+  },
+  {
+   "id": "x577",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Lahe:\"`]"
+  },
+  {
+   "id": "x578",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"FetuwozaNihelavAvuv.hamahiduZefopihi\"`]"
+  },
+  {
+   "id": "x579",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hicepe\"`]"
+  },
+  {
+   "id": "x580",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"WefaniBedufeDanu.gotePebazoh\" AND enabled == 1`]"
+  },
+  {
+   "id": "x581",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]"
+  },
+  {
+   "id": "x582",
+   "skip": true,
+   "reason": "Uses the following-sibling:: XPath axis, which has no equivalent in iOS class chain syntax."
+  },
+  {
+   "id": "x583",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"SihiBi.pusasePejazuweVobofe\"`]"
+  },
+  {
+   "id": "x584",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Dobe teg\" AND enabled == 1`]"
+  },
+  {
+   "id": "x585",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"jila\"`]"
+  },
+  {
+   "id": "x586",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Nebonozopurus\"`]"
+  },
+  {
+   "id": "x587",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Dobe monuw teg \" AND enabled == 0`]"
+  },
+  {
+   "id": "x588",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Bedoce\"`]"
+  },
+  {
+   "id": "x589",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Navecuhu laciwuj\"`]"
+  },
+  {
+   "id": "x590",
+   "skip": true,
+   "reason": "Uses the XPath union operator (|) and the non-standard @accessible attribute; class chain supports neither union locators nor @accessible."
+  },
+  {
+   "id": "x591",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.jibikIhofe\" AND label CONTAINS \"Namatir ditar\"`]"
+  },
+  {
+   "id": "x592",
+   "chain": "-ios class chain:**/*[`value CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x593",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`selected == 1`]"
+  },
+  {
+   "id": "x594",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Bika mipunaco zuf nemu facelan ri\"`]"
+  },
+  {
+   "id": "x595",
+   "skip": true,
+   "reason": "Uses the XPath 2.0 matches() function (regular expression); class chain predicates do not support regex matching."
+  },
+  {
+   "id": "x596",
+   "skip": true,
+   "reason": "Uses not() to negate a contains() predicate; the NOT operator is not available in iOS class chain predicate syntax."
+  },
+  {
+   "id": "x597",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"waviseh risepa\"`]"
+  },
+  {
+   "id": "x598",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Wifepum ho\"`]"
+  },
+  {
+   "id": "x599",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\"`]"
+  },
+  {
+   "id": "x600",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dobe rolafa: \"`]"
+  },
+  {
+   "id": "x601",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Hero Sosedeki laciwuj\"`]"
+  },
+  {
+   "id": "x602",
+   "skip": true,
+   "reason": "XPath function string-length() has no equivalent in iOS class chain / NSPredicate predicate syntax."
+  },
+  {
+   "id": "x603",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Vale\"`]"
+  },
+  {
+   "id": "x604",
+   "skip": true,
+   "reason": "Class chain predicates cannot filter a parent element by the presence of a descendant type; descendant-based existence checks are not supported."
+  },
+  {
+   "id": "x605",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.jibikIhofe\" AND label CONTAINS \"Dikasod ditar: £\"`]"
+  },
+  {
+   "id": "x606",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+  },
+  {
+   "id": "x607",
+   "skip": true,
+   "reason": "XPath 2.0 function upper-case() is not available in NSPredicate; case-insensitive CONTAINS[c] would change semantics."
+  },
+  {
+   "id": "x608",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`enabled == 0`]"
+  },
+  {
+   "id": "x609",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"WOJ\"`]"
+  },
+  {
+   "id": "x610",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Vagohap Runero\"`]"
+  },
+  {
+   "id": "x611",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Vq1\"`]"
+  },
+  {
+   "id": "x612",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Zov cuba hibimaw rorefek mi\"`]"
+  },
+  {
+   "id": "x613",
+   "chain": "-ios class chain:**/XCUIElementTypeImage[`name == \"sibo_gasupe\"`]"
+  },
+  {
+   "id": "x614",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Rurez\" AND label CONTAINS \"mazejuz:\"`]"
+  },
+  {
+   "id": "x615",
+   "skip": true,
+   "reason": "XPath following-sibling axis is not supported in iOS class chain; sibling navigation cannot be expressed."
+  },
+  {
+   "id": "x616",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Sosedeki gatejese\"`]"
+  },
+  {
+   "id": "x617",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov'di nofezi je foba t lefe jutal ho\"`]"
+  },
+  {
+   "id": "x618",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Sehoj dom fabis tuve cejewazipi votu ce, jeb dom namatir zov varu je dobe votu.\"`]"
+  },
+  {
+   "id": "x619",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`]"
+  },
+  {
+   "id": "x620",
+   "skip": true,
+   "reason": "Class chain cannot filter a cell based on a descendant element's attribute value; descendant-conditional parent selection is not supported."
+  },
+  {
+   "id": "x621",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x622",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"lojo la peworumezop vamalul rese bika razuw.\"`]"
+  },
+  {
+   "id": "x623",
+   "chain": "-ios class chain:**/XCUIElementTypeCell/**/XCUIElementTypeButton"
+  },
+  {
+   "id": "x624",
+   "skip": true,
+   "reason": "XPath ancestor axis is not supported in iOS class chain; upward traversal to a parent/ancestor type cannot be expressed."
+  },
+  {
+   "id": "x625",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name != \"a\"`]"
+  },
+  {
+   "id": "x626",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
+  },
+  {
+   "id": "x627",
+   "skip": true,
+   "reason": "XPath following-sibling axis is not supported in iOS class chain; sibling navigation cannot be expressed."
+  },
+  {
+   "id": "x628",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Picama minevili dom fabis tuve zov'vu la wigobur kop gohaz votu. Kame gisu pi kevoza nilani luvuce kesur.\"`]"
+  },
+  {
+   "id": "x629",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+  },
+  {
+   "id": "x630",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Lulik gusuri teg Vq1 jidur figuleni\"`]"
+  },
+  {
+   "id": "x631",
+   "chain": "-ios class chain:**/*[`label == \"Fej tete, Bevef Daw\"`]"
+  },
+  {
+   "id": "x632",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"TinehaniDezirivepomuTija.mipunaco\"`]"
+  },
+  {
+   "id": "x633",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Riza Vozime Dina\"`]"
+  },
+  {
+   "id": "x634",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x635",
+   "chain": "-ios class chain:**/*[`name == \"Bika sefasi zad Vq1 Vq2\"`]"
+  },
+  {
+   "id": "x636",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Bika fabis tuve devihib\"`]"
+  },
+  {
+   "id": "x637",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Bika wacisugik mazejuz cuba zecu jizorawohuni vamalul\"`]"
+  },
+  {
+   "id": "x638",
+   "skip": true,
+   "reason": "XPath numeric comparison @value>5 on a string accessibility attribute cannot be faithfully reproduced; NSPredicate would do lexicographic string comparison, which does not match the same elements."
+  },
+  {
+   "id": "x639",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value == \"Su pejun zad zecu muho je zov.\"`]"
+  },
+  {
+   "id": "x640",
+   "chain": "-ios class chain:**/*[`label == \"Jolezu mazejuz - rajer bika riv mazejuz\"`]"
+  },
+  {
+   "id": "x641",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Bika Fabis tuve so liv je mefizo mi \"`]"
+  },
+  {
+   "id": "x642",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Revoje Fabis nig se so mi gakiwoso\"`]"
+  },
+  {
+   "id": "x643",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"£\"`]"
+  },
+  {
+   "id": "x644",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+  },
+  {
+   "id": "x645",
+   "skip": true,
+   "reason": "XPath following-sibling axis is not supported in iOS class chain; sibling navigation cannot be expressed."
+  },
+  {
+   "id": "x646",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Nepureze hilubodamo\"`]"
+  },
+  {
+   "id": "x647",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Tazeviz dememer\"`]"
+  },
+  {
+   "id": "x648",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Hicepe Wacisugik mazejuz Vq1\"`]"
+  },
+  {
+   "id": "x649",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Lefe jutal (6 banadi je 5 weboc)\"`]"
+  },
+  {
+   "id": "x650",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.jubuferokIzinaw\" AND label == \"Potepiv Galufaz Poz Gohaz\"`]"
+  },
+  {
+   "id": "x651",
+   "chain": "-ios class chain:**/*[`label == \"C:\\dir\"`]"
+  },
+  {
+   "id": "x652",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.dijivOdozev\"`]"
+  },
+  {
+   "id": "x653",
+   "skip": true,
+   "reason": "XPath union operator (|) combined with sibling axes (following-sibling, preceding-sibling) cannot be expressed in iOS class chain."
+  },
+  {
+   "id": "x654",
+   "chain": "-ios class chain:XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton"
+  },
+  {
+   "id": "x655",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x656",
+   "skip": true,
+   "reason": "The placeholderValue attribute is not supported as a predicate property in iOS class chain / NSPredicate element matching."
+  },
+  {
+   "id": "x657",
+   "skip": true,
+   "reason": "XPath following-sibling axis is not supported in iOS class chain; sibling navigation cannot be expressed."
+  },
+  {
+   "id": "x658",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hero Mipunaco\"`]"
+  },
+  {
+   "id": "x659",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.jubuferokIzinaw\" AND label CONTAINS \"Pefu laciwuj\"`]"
+  },
+  {
+   "id": "x660",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Sefasi PO:\"`]"
+  },
+  {
+   "id": "x661",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[2]"
+  },
+  {
+   "id": "x662",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fowani wumesok muhevuw bika namatir ditar. Zov cuba £20.00 felawuhuh ho bika juvira ditar.\"`]"
+  },
+  {
+   "id": "x663",
+   "chain": "-ios class chain:**/*[`name == \"Leba Mipunaco?\"`]"
+  },
+  {
+   "id": "x664",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Zucubamo Wojav Tosu\"`]"
+  },
+  {
+   "id": "x665",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Disu mazejuz\"`]"
+  },
+  {
+   "id": "x666",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Namatir wepes je dobe\" AND enabled == 1`]"
+  },
+  {
+   "id": "x667",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Namatir ditar\"`]"
+  },
+  {
+   "id": "x668",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Tazeviz dememer\"`]"
+  },
+  {
+   "id": "x669",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Sefasi so meb vusalisafe\"`]"
+  },
+  {
+   "id": "x670",
+   "skip": true,
+   "reason": "XPath count() function for counting descendant elements is not supported in iOS class chain predicates."
+  },
+  {
+   "id": "x671",
+   "skip": true,
+   "reason": "XPath following-sibling axis is not supported in iOS class chain; sibling navigation cannot be expressed."
+  },
+  {
+   "id": "x672",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nehavona demimel su tazeviz\"`]"
+  },
+  {
+   "id": "x673",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Ricorikup Hohaveh\"`]"
+  },
+  {
+   "id": "x674",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Nig bika riv wisawu\"`]"
+  },
+  {
+   "id": "x675",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Logozeb gohaz, Lenapa gusuri, RIG\"`]"
+  },
+  {
+   "id": "x676",
+   "chain": "-ios class chain:**/*[`name MATCHES \"^a.c$\"`]"
+  },
+  {
+   "id": "x677",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Tefoku zov hat namatir wepes, zov lojo varu je nig bika juvira wisawu\"`]"
+  },
+  {
+   "id": "x678",
+   "chain": "-ios class chain:**/*[`name == \"a\"`]"
+  }
+ ]
+}
