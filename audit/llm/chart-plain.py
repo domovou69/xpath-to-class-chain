@@ -3,9 +3,10 @@
 Usage: python3 chart-plain.py   (numbers are in POINTS; label positions are set by hand per point)"""
 import os
 
-X0, X1, Y0, Y1 = 70, 470, 344, 70          # plot box: S 0..100 down to up, cost 0..$3 left to right
+X0, X1, Y0, Y1 = 70, 470, 344, 70          # plot box: S 20..100 down to up, cost 0..$3 left to right
 def px(cost): return X0 + cost * (X1 - X0) / 3
-def py(s): return Y0 - s * (Y0 - Y1) / 100
+SMIN = 20   # the axis starts here; a lower S is drawn on the axis line and keeps its true value in the label
+def py(s): return Y0 - (max(s, SMIN) - SMIN) * (Y0 - Y1) / (100 - SMIN)
 
 # name, version-suffix, family, shape, plain, rules, note
 # values: (S, R, cost, tokens, thinking, minutes); label = (anchor, dx, dy) relative to the point for the two lines
@@ -24,7 +25,7 @@ POINTS = [
     dict(name='Sonnet 4.6', sfx=' low', fam='sonnet', shape='diamond',
          plain=(48.6, 89.1, 2.58, '≈100k (51k)', 23.1), lab=('middle', 0, 26), note='run in chunks'),
     dict(name='Haiku 4.5', sfx=' medium', fam='haiku', shape='square',
-         plain=(18.1, 59.6, 0.61, '44k (3k)', 6.0), lab=('start', 12, -2), note='wrote scripts, 1 of 3 runs returned answers', bad=True),
+         plain=(18.1, 59.6, 0.61, '44k (3k)', 6.0), lab=('start', 12, -20), note='wrote scripts, 1 of 3 runs returned answers', bad=True),
 ]
 CONV = dict(S=91.8, R=95.8)
 
@@ -90,14 +91,14 @@ a('''<style>
 a(f'<rect class="bg" width="840" height="{H}" rx="8"/>')
 a('<text class="t1" x="70" y="28">Quality vs Cost: plain request and with rules</text>')
 a('<text class="sub" x="70" y="48">S against cost per run. Filled dot: plain request. Ring: the same model with the rules prompt (dashed line joins them).</text>')
-for s in range(0, 101, 20):
+for s in range(SMIN, 101, 20):
     a(f'<line class="grid" x1="70" x2="470" y1="{py(s):.1f}" y2="{py(s):.1f}"/><text class="tick" x="62" y="{py(s)+4:.1f}" text-anchor="end">{s}</text>')
 for c in [0, .5, 1, 1.5, 2, 2.5, 3]:
     lab = 'free' if c == 0 else f'${c:g}'
     a(f'<text class="tick" x="{px(c):.1f}" y="362" text-anchor="middle">{lab}</text>')
 a(f'<line class="axis" x1="70" x2="470" y1="344" y2="344"/><line class="axis" x1="70" x2="70" y1="70" y2="344"/>')
 a('<text class="t2" x="270" y="384" text-anchor="middle">Cost per run, 678 locators (up is better, left is cheaper)</text>')
-a('<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases</text>')
+a('<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases (axis from 20)</text>')
 a(f'<text class="t2" x="700" y="78" text-anchor="end">output tokens</text><text class="t2" x="700" y="90" text-anchor="end">(thinking)</text><text class="t2" x="745" y="90" text-anchor="end">min</text><text class="t2" x="800" y="90" text-anchor="end">cost</text>')
 a(f'<line class="ref" x1="70" x2="470" y1="{py(CONV["S"]):.1f}" y2="{py(CONV["S"]):.1f}"/><text class="labb" x="78" y="{py(CONV["S"])-8:.1f}">Converter <tspan class="lab" font-weight="400">S {CONV["S"]} · R {CONV["R"]} · free</tspan></text>')
 for p in POINTS:
