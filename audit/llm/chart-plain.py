@@ -43,7 +43,7 @@ def marker(shape, cx, cy, fam, big, ring=False):
 out = []
 a = out.append
 # table first, to know the height
-ROW0, STEP = 142, 20
+ROW0, STEP, GAP = 142, 20, 12   # GAP separates the groups: converter, each model with its rules row, the older models
 rows = [('conv',)]
 for p in POINTS:
     rows.append(('main', p))
@@ -53,7 +53,7 @@ table = []
 t = table.append
 t(f'<circle class="dot c-conv" cx="506.0" cy="{y-4:.1f}" r="5"/><text class="labb" x="518" y="{y}">Converter</text>')
 t(f'<text class="lab" x="700" y="{y}" text-anchor="end">—</text><text class="lab" x="745" y="{y}" text-anchor="end">—</text><text class="lab" x="800" y="{y}" text-anchor="end">free</text>')
-y += STEP
+y += STEP + GAP
 for p in POINTS:
     S, R, c, tok, mn = p['plain']
     t(marker(p['shape'], 506.0, y - 4, p['fam'], False) + f'<text class="labb" x="518" y="{y}">{p["name"]}<tspan class="lab" font-weight="400">{p["sfx"]}</tspan></text>')
@@ -65,7 +65,7 @@ for p in POINTS:
         S, R, c, tok, mn = p['rules']
         t(marker('circle', 506.0, y - 4, p['fam'], False, ring=True) + f'<text class="lab" x="518" y="{y}">+ rules</text>')
         t(f'<text class="lab" x="700" y="{y}" text-anchor="end">{tok}</text><text class="lab" x="745" y="{y}" text-anchor="end">{mn}</text><text class="lab" x="800" y="{y}" text-anchor="end">${c:.2f}</text>')
-        y += STEP
+        y += STEP + GAP
 foot = max(416, y + 24)
 H = foot + 30
 
