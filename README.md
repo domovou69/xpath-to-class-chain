@@ -62,11 +62,9 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 
 **R** is the share of real-world locators that got a correct chain, out of those that have one (a documented approximation counts half; a skipped, wrong or invalid one counts 0). **S** is the same score on the 114 edge cases, weighted by group. Both are out of 100. "Converted vs the converter" counts usable chains against the 579 the converter produces. One run per model, so differences of about 3 points in S are noise.
 
-The same results as charts: S against cost per run, for the plain request and for the rules prompt.
+The same results as a chart: S against cost per run for the plain request (dots) and for the rules prompt (rings, joined to the same model by a dashed line).
 
-![Quality vs cost, plain request](audit/llm-chart-plain.svg)
-
-![Quality vs cost, rules prompt](audit/llm-chart-rules.svg)
+![Quality vs cost, plain request and rules prompt](audit/llm-chart-plain.svg)
 
 Effort levels of the three 5.5 models on the plain request: a higher effort does not pay. Opus is flat from `low`, Sonnet gains most from `low` to `medium` and only 2.7 more at `max` for 4.6× the cost, Haiku is best at `medium`.
 
