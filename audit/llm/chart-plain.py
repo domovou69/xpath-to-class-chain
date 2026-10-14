@@ -3,9 +3,10 @@
 Usage: python3 chart-plain.py   (numbers are in POINTS; label positions are set by hand per point)"""
 import os
 
-X0, X1, Y0, Y1 = 70, 470, 344, 70          # plot box: S 20..100 down to up, cost 0..$6 left to right
-CMAX = 6
-def px(cost): return X0 + cost * (X1 - X0) / CMAX
+X0, X1, Y0, Y1 = 70, 470, 344, 70          # plot box: S 20..100 down to up, cost $0.2..$8 log left to right
+import math
+CMIN, CMAX = 0.2, 8   # log scale
+def px(cost): return X0 + (math.log(cost) - math.log(CMIN)) * (X1 - X0) / (math.log(CMAX) - math.log(CMIN))
 SMIN = 20   # the axis starts here; a lower S is drawn on the axis line and keeps its true value in the label
 def py(s): return Y0 - (max(s, SMIN) - SMIN) * (Y0 - Y1) / (100 - SMIN)
 
@@ -14,19 +15,19 @@ def py(s): return Y0 - (max(s, SMIN) - SMIN) * (Y0 - Y1) / (100 - SMIN)
 POINTS = [
     dict(name='Opus 5.5', sfx=' low', fam='opus', shape='circle',
          plain=(81.9, 95.0, 2.04, '57k (14k)', 7.1), rules=(86.0, 95.0, 1.72, '45k (4k)', 5.1),
-         lab=('middle', 0, 26), rlab=('start', 12, -4)),
+         lab=('start', 12, 12), rlab=('start', 12, -4)),
     dict(name='Sonnet 5.5', sfx=' low', fam='sonnet', shape='circle',
          plain=(68.6, 94.8, 1.03, '58k (15k)', 5.2), rules=(83.8, 95.0, 1.58, '93k (32k)', 8.9),
-         lab=('start', 12, 16), rlab=('end', -11, -8)),
+         lab=('end', -12, 6), rlab=('end', -11, -8)),
     dict(name='Haiku 5.5', sfx=' medium', fam='haiku', shape='circle',
          plain=(63.8, 94.1, 0.28, '99k (45k)', 6.0), rules=(71.1, 94.8, 0.27, '102k (45k)', 5.7),
          lab=('start', -24, 26), rlab=('start', -24, -16)),
     dict(name='Opus 5', sfx=' low', fam='opus', shape='square',
-         plain=(62.6, 94.4, 3.11, '70k (24k)', 11.6), lab=('middle', 0, -22)),
+         plain=(62.6, 94.4, 3.11, '70k (24k)', 11.6), lab=('start', 12, -2)),
     dict(name='Sonnet 5', sfx=' low', fam='sonnet', shape='square',
-         plain=(56.3, 95.2, 2.27, '140k (81k)', 21.8), lab=('start', 12, -2)),
+         plain=(56.3, 95.2, 2.27, '140k (81k)', 21.8), lab=('end', -12, -2)),
     dict(name='Opus 4.6', sfx=' low', fam='opus', shape='diamond',
-         plain=(51.5, 93.9, 5.75, '166k (120k)', 47.1), lab=('end', -12, -2), note='CLI exit 1, all 678 answers present'),
+         plain=(51.5, 93.9, 5.75, '166k (120k)', 47.1), lab=('middle', 0, 26), note='CLI exit 1, all 678 answers present'),
     dict(name='Sonnet 4.6', sfx=' low', fam='sonnet', shape='diamond',
          plain=(48.6, 89.1, 2.58, '≈100k (51k)', 23.1), lab=('middle', 0, 26), note='run in chunks'),
     dict(name='Haiku 4.5', sfx=' medium', fam='haiku', shape='square',
@@ -49,22 +50,16 @@ def marker(shape, cx, cy, fam, big, ring=False):
 out = []
 a = out.append
 # table first, to know the height
-ROW0, STEP, GAP = 116, 20, 12   # GAP separates the groups: converter, each model with its rules row, the older models
-rows = [('conv',)]
-for p in POINTS:
-    rows.append(('main', p))
-    if 'rules' in p: rows.append(('rules', p))
+ROW0, STEP, GAP = 116, 20, 12   # GAP separates the groups: each model with its rules row, the older models
 y = ROW0
 table = []
 t = table.append
-t(f'<circle class="dot c-conv" cx="506.0" cy="{y-4:.1f}" r="5"/><text class="labb" x="518" y="{y}">Converter</text>')
-t(f'<text class="lab" x="700" y="{y}" text-anchor="end">—</text><text class="lab" x="745" y="{y}" text-anchor="end">—</text><text class="lab" x="800" y="{y}" text-anchor="end">free</text>')
-y += STEP + GAP
 for p in POINTS:
     S, R, c, tok, mn = p['plain']
     t(marker(p['shape'], 506.0, y - 4, p['fam'], False) + f'<text class="labb" x="518" y="{y}">{p["name"]}<tspan class="lab" font-weight="400">{p["sfx"]}</tspan></text>')
     t(f'<text class="lab" x="700" y="{y}" text-anchor="end">{tok}</text><text class="lab" x="745" y="{y}" text-anchor="end">{mn}</text><text class="lab" x="800" y="{y}" text-anchor="end">${c:.2f}</text>')
     y += STEP
+    if p['name'] == 'Sonnet 5': y += GAP
     if 'note' in p:
         t(f'<text class="{"badn" if p.get("bad") else "t2"}" x="518" y="{y-4}">{p["note"]}</text>'); y += 16
     if 'rules' in p:
@@ -99,11 +94,11 @@ a('<text class="t1" x="70" y="28">Quality vs Cost: plain request and with rules<
 a('<text class="sub" x="70" y="48">S against cost per run. Filled dot: plain request. Ring: the same model with the rules prompt (dashed line joins them).</text>')
 for s in range(SMIN, 101, 20):
     a(f'<line class="grid" x1="70" x2="470" y1="{py(s):.1f}" y2="{py(s):.1f}"/><text class="tick" x="62" y="{py(s)+4:.1f}" text-anchor="end">{s}</text>')
-for c in [0, 1, 2, 3, 4, 5, 6]:
-    lab = 'free' if c == 0 else f'${c:g}'
+for c in [.2, .5, 1, 2, 5]:
+    lab = f'${c:g}'
     a(f'<text class="tick" x="{px(c):.1f}" y="362" text-anchor="middle">{lab}</text>')
 a(f'<line class="axis" x1="70" x2="470" y1="344" y2="344"/><line class="axis" x1="70" x2="70" y1="70" y2="344"/>')
-a('<text class="t2" x="270" y="384" text-anchor="middle">Cost per run, 678 locators (up is better, left is cheaper)</text>')
+a('<text class="t2" x="270" y="384" text-anchor="middle">Cost per run, 678 locators, log scale (up is better, left is cheaper)</text>')
 a('<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases</text>')
 a(f'<text class="t2" x="700" y="78" text-anchor="end">output tokens</text><text class="t2" x="700" y="90" text-anchor="end">(thinking)</text><text class="t2" x="745" y="90" text-anchor="end">min</text><text class="t2" x="800" y="90" text-anchor="end">cost</text>')
 a(f'<line class="ref" x1="70" x2="470" y1="{py(CONV["S"]):.1f}" y2="{py(CONV["S"]):.1f}"/><text class="labb" x="78" y="{py(CONV["S"])-8:.1f}">Converter <tspan class="lab" font-weight="400">S {CONV["S"]} · R {CONV["R"]} · free</tspan></text>')
