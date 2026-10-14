@@ -3,8 +3,8 @@
 Usage: python3 chart-plain.py   (numbers are in POINTS; label positions are set by hand per point)"""
 import os
 
-X0, X1, Y0, Y1 = 70, 470, 344, 70          # plot box: S 20..100 down to up, cost 0..$3.5 left to right
-CMAX = 3.5
+X0, X1, Y0, Y1 = 70, 470, 344, 70          # plot box: S 20..100 down to up, cost 0..$6 left to right
+CMAX = 6
 def px(cost): return X0 + cost * (X1 - X0) / CMAX
 SMIN = 20   # the axis starts here; a lower S is drawn on the axis line and keeps its true value in the label
 def py(s): return Y0 - (max(s, SMIN) - SMIN) * (Y0 - Y1) / (100 - SMIN)
@@ -17,14 +17,16 @@ POINTS = [
          lab=('middle', 0, 26), rlab=('start', 12, -4)),
     dict(name='Sonnet 5.5', sfx=' low', fam='sonnet', shape='circle',
          plain=(68.6, 94.8, 1.03, '58k (15k)', 5.2), rules=(83.8, 95.0, 1.58, '93k (32k)', 8.9),
-         lab=('middle', 0, 26), rlab=('end', -11, -8)),
+         lab=('start', 12, 16), rlab=('end', -11, -8)),
     dict(name='Haiku 5.5', sfx=' medium', fam='haiku', shape='circle',
          plain=(63.8, 94.1, 0.28, '99k (45k)', 6.0), rules=(71.1, 94.8, 0.27, '102k (45k)', 5.7),
          lab=('start', -24, 26), rlab=('start', -24, -16)),
     dict(name='Opus 5', sfx=' low', fam='opus', shape='square',
-         plain=(62.6, 94.4, 3.11, '70k (24k)', 11.6), lab=('middle', 0, 26)),
+         plain=(62.6, 94.4, 3.11, '70k (24k)', 11.6), lab=('middle', 0, -22)),
     dict(name='Sonnet 5', sfx=' low', fam='sonnet', shape='square',
-         plain=(56.3, 95.2, 2.27, '140k (81k)', 21.8), lab=('end', -12, -2)),
+         plain=(56.3, 95.2, 2.27, '140k (81k)', 21.8), lab=('start', 12, -2)),
+    dict(name='Opus 4.6', sfx=' low', fam='opus', shape='diamond',
+         plain=(51.5, 93.9, 5.75, '166k (120k)', 47.1), lab=('end', -12, -2), note='CLI exit 1, all 678 answers present'),
     dict(name='Sonnet 4.6', sfx=' low', fam='sonnet', shape='diamond',
          plain=(48.6, 89.1, 2.58, '≈100k (51k)', 23.1), lab=('middle', 0, 26), note='run in chunks'),
     dict(name='Haiku 4.5', sfx=' medium', fam='haiku', shape='square',
@@ -67,9 +69,10 @@ for p in POINTS:
         t(f'<text class="{"badn" if p.get("bad") else "t2"}" x="518" y="{y-4}">{p["note"]}</text>'); y += 16
     if 'rules' in p:
         S, R, c, tok, mn = p['rules']
+        nxt = POINTS[POINTS.index(p)+1] if POINTS.index(p)+1 < len(POINTS) else None
         t(marker('circle', 506.0, y - 4, p['fam'], False, ring=True) + f'<text class="lab" x="518" y="{y}">+ rules</text>')
         t(f'<text class="lab" x="700" y="{y}" text-anchor="end">{tok}</text><text class="lab" x="745" y="{y}" text-anchor="end">{mn}</text><text class="lab" x="800" y="{y}" text-anchor="end">${c:.2f}</text>')
-        y += STEP + GAP
+        y += STEP + (GAP if not (nxt and 'rules' in nxt) else 0)
 foot = max(416, y + 24)
 H = foot + 30
 
@@ -96,7 +99,7 @@ a('<text class="t1" x="70" y="28">Quality vs Cost: plain request and with rules<
 a('<text class="sub" x="70" y="48">S against cost per run. Filled dot: plain request. Ring: the same model with the rules prompt (dashed line joins them).</text>')
 for s in range(SMIN, 101, 20):
     a(f'<line class="grid" x1="70" x2="470" y1="{py(s):.1f}" y2="{py(s):.1f}"/><text class="tick" x="62" y="{py(s)+4:.1f}" text-anchor="end">{s}</text>')
-for c in [0, .5, 1, 1.5, 2, 2.5, 3, 3.5]:
+for c in [0, 1, 2, 3, 4, 5, 6]:
     lab = 'free' if c == 0 else f'${c:g}'
     a(f'<text class="tick" x="{px(c):.1f}" y="362" text-anchor="middle">{lab}</text>')
 a(f'<line class="axis" x1="70" x2="470" y1="344" y2="344"/><line class="axis" x1="70" x2="70" y1="70" y2="344"/>')
