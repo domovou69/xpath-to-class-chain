@@ -33,7 +33,7 @@
 <text class="tick" x="470.0" y="362" text-anchor="middle">$3</text>
 <line class="axis" x1="70" x2="470" y1="344" y2="344"/><line class="axis" x1="70" x2="70" y1="70" y2="344"/>
 <text class="t2" x="270" y="384" text-anchor="middle">Cost per run, 678 locators (up is better, left is cheaper)</text>
-<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases (axis from 20)</text>
+<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases</text>
 <text class="t2" x="700" y="78" text-anchor="end">output tokens</text><text class="t2" x="700" y="90" text-anchor="end">(thinking)</text><text class="t2" x="745" y="90" text-anchor="end">min</text><text class="t2" x="800" y="90" text-anchor="end">cost</text>
 <line class="ref" x1="70" x2="470" y1="98.1" y2="98.1"/><text class="labb" x="78" y="90.1">Converter <tspan class="lab" font-weight="400">S 91.8 · R 95.8 · free</tspan></text>
 <line class="join l-opus" x1="342.0" y1="132.0" x2="299.3" y2="117.9"/>

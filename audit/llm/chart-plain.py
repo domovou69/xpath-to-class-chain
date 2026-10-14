@@ -98,7 +98,7 @@ for c in [0, .5, 1, 1.5, 2, 2.5, 3]:
     a(f'<text class="tick" x="{px(c):.1f}" y="362" text-anchor="middle">{lab}</text>')
 a(f'<line class="axis" x1="70" x2="470" y1="344" y2="344"/><line class="axis" x1="70" x2="70" y1="70" y2="344"/>')
 a('<text class="t2" x="270" y="384" text-anchor="middle">Cost per run, 678 locators (up is better, left is cheaper)</text>')
-a('<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases (axis from 20)</text>')
+a('<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases</text>')
 a(f'<text class="t2" x="700" y="78" text-anchor="end">output tokens</text><text class="t2" x="700" y="90" text-anchor="end">(thinking)</text><text class="t2" x="745" y="90" text-anchor="end">min</text><text class="t2" x="800" y="90" text-anchor="end">cost</text>')
 a(f'<line class="ref" x1="70" x2="470" y1="{py(CONV["S"]):.1f}" y2="{py(CONV["S"]):.1f}"/><text class="labb" x="78" y="{py(CONV["S"])-8:.1f}">Converter <tspan class="lab" font-weight="400">S {CONV["S"]} · R {CONV["R"]} · free</tspan></text>')
 for p in POINTS:
