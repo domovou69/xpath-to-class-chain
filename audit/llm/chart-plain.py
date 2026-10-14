@@ -114,7 +114,7 @@ for p in POINTS:
         rs, rr, rc = p['rules'][:3]; rx, ry = px(rc), py(rs)
         a(marker('circle', rx, ry, p['fam'], True, ring=True))
         an, dx, dy = p['rlab']
-        a(f'<text class="lab" x="{rx+dx:.1f}" y="{ry+dy:.1f}" text-anchor="{an}">Ruled (S {rs} · R {rr})</text>')
+        a(f'<text class="lab" x="{rx+dx:.1f}" y="{ry+dy:.1f}" text-anchor="{an}">+ rules (S {rs})</text>')
 out.extend(table)
 a(f'<text class="t2" x="70" y="{foot}"><tspan font-weight="600">S</tspan> = score on edge cases, <tspan font-weight="600">R</tspan> = score on real-world locators that have a chain (0–100 each).</text>')
 a('</svg>')
