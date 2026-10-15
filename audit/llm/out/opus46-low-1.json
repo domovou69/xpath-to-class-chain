@@ -1,0 +1,2970 @@
+{
+ "model": "opus46",
+ "modelId": "claude-opus-4-6",
+ "effort": "low",
+ "run": 1,
+ "started": "2026-10-14T08:47:14.765Z",
+ "wallMs": 2824488,
+ "cliVersion": "2.1.296 (Claude Code)",
+ "exitCode": 1,
+ "signal": null,
+ "stderr": "",
+ "error": null,
+ "files": [
+  "convert.py",
+  "output-1.json",
+  "output-2.json",
+  "output-3.json",
+  "run.sh"
+ ],
+ "parts": [
+  "output-1.json",
+  "output-2.json",
+  "output-3.json"
+ ],
+ "cli": {
+  "duration_api_ms": 2822135,
+  "stop_reason": "stop_sequence",
+  "session_id": "b8563247-2a83-4f0e-affa-c1faceacb7e5",
+  "total_cost_usd": 5.753663500000001,
+  "usage": {
+   "input_tokens": 14,
+   "cache_creation_input_tokens": 134091,
+   "cache_read_input_tokens": 526917,
+   "output_tokens": 165969,
+   "output_tokens_details": {
+    "thinking_tokens": 120272
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 134091,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 1,
+     "output_tokens": 8674,
+     "cache_read_input_tokens": 124498,
+     "cache_creation_input_tokens": 9593,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 9593
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-opus-4-6": {
+    "inputTokens": 14,
+    "outputTokens": 165969,
+    "cacheReadInputTokens": 526917,
+    "cacheCreationInputTokens": 134091,
+    "webSearchRequests": 0,
+    "costUSD": 5.753663500000001,
+    "contextWindow": 200000,
+    "maxOutputTokens": 64000,
+    "thinkingTokens": 120272,
+    "canonicalModel": "claude-opus-4-6",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [],
+  "terminal_reason": "api_error",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+   "spawned": 0,
+   "requested": {
+    "background": 0,
+    "foreground": 0,
+    "unset": 0
+   },
+   "started_in_background": 0,
+   "max_depth": 0,
+   "spawned_by_subagents": 0,
+   "completed": 0,
+   "failed": 0,
+   "killed": {
+    "parent": 0,
+    "user": 0,
+    "system": 0
+   },
+   "refused": {
+    "depth_limit": 0,
+    "concurrency_limit": 0,
+    "budget": 0
+   },
+   "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": true,
+  "num_turns": 10,
+  "subtype": "success",
+  "api_error_status": 429,
+  "api_error": "usage_limit_reached",
+  "result": "You've hit your session limit · resets 2:50pm (Europe/Vilnius)",
+  "type": "result",
+  "duration_ms": 2823334,
+  "uuid": "02b423dd-9eb3-400a-995d-d6e606d03527",
+  "queued_turn_count": 0,
+  "result_index": 0
+ },
+ "output": [
+  {
+   "id": "x001",
+   "chain": "-ios class chain:**/*[`name == \"Cocutozu cupiz bika mipunaco mi dom Vufutopim keb bi ra'v jebura mi homusabasofek dom vale dosu zov varu ra.\"`]"
+  },
+  {
+   "id": "x002",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.jecejIvoge\" AND label CONTAINS \"Pajap ditar\"`]"
+  },
+  {
+   "id": "x003",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x004",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Jeb fabis tuve\"`]"
+  },
+  {
+   "id": "x005",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Leba mazejuz\"`]"
+  },
+  {
+   "id": "x006",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Pejun, Lenapa gusuri, RI\"`]"
+  },
+  {
+   "id": "x007",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• Za zov cuba jumumol teg zihuruni birel, bika jumumol lojo nezate ruliv teg zefub birel.\"`]"
+  },
+  {
+   "id": "x008",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Vq1\"`]"
+  },
+  {
+   "id": "x009",
+   "skip": true,
+   "reason": "translate() function not supported in class chain"
+  },
+  {
+   "id": "x010",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fecirim\"`]"
+  },
+  {
+   "id": "x011",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Jeb fej\" AND label CONTAINS \"rolafa\"`]"
+  },
+  {
+   "id": "x012",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Vale\"`]"
+  },
+  {
+   "id": "x013",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Galufaz Poz Gohaz figuleni\"`]"
+  },
+  {
+   "id": "x014",
+   "skip": true,
+   "reason": "preceding-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x015",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\" AND label CONTAINS \"pako geviv\" AND label CONTAINS \"Vq2\" AND label CONTAINS \"Bevef Daw\"`]"
+  },
+  {
+   "id": "x016",
+   "chain": "-ios class chain:**/*[`name == \"a\" OR label == \"b\"`]"
+  },
+  {
+   "id": "x017",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Zucubamo wojav\"`]"
+  },
+  {
+   "id": "x018",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Dobe monuw teg\" AND enabled == true`]"
+  },
+  {
+   "id": "x019",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hero Sosedeki laciwuj\"`]"
+  },
+  {
+   "id": "x020",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"TI\"`]"
+  },
+  {
+   "id": "x021",
+   "chain": "-ios class chain:**/*[`(name == \"WefaniBedufeDanu.gotePebazoh\" AND label == \"Kabih\") OR name == \"HetepUriZoviZoniHapa.dijivOdozev\"`]"
+  },
+  {
+   "id": "x022",
+   "skip": true,
+   "reason": "following axis not supported in class chain"
+  },
+  {
+   "id": "x023",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Dab je tafiz\"`]"
+  },
+  {
+   "id": "x024",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Vebavuh Zumeh\"`]"
+  },
+  {
+   "id": "x025",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• Ror wadutosa, tolacocat nivere goz felawuhuh wepes mi bika tazeviz lojo la muho je bika fabis tuve. Fojo zir foba fivipag 3 goz 5 heciboz lide je kuwub bika nofe tazeviz.\"`]"
+  },
+  {
+   "id": "x026",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Meb cumetakov\"`]"
+  },
+  {
+   "id": "x027",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"a\" AND name == \"b\"`]"
+  },
+  {
+   "id": "x028",
+   "chain": "-ios class chain:**/XCUIElementTypeCell/XCUIElementTypeButton"
+  },
+  {
+   "id": "x029",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Zaruzegi tazeviz gatejese\"`]"
+  },
+  {
+   "id": "x030",
+   "chain": "-ios class chain:**/*[`(name == \"a\" OR label == \"b\") AND value == \"c\"`]"
+  },
+  {
+   "id": "x031",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x032",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x033",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nozod hom\"`]"
+  },
+  {
+   "id": "x034",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[1]"
+  },
+  {
+   "id": "x035",
+   "chain": "-ios class chain:**/*[`label == \"Bihi Vq1\"`]"
+  },
+  {
+   "id": "x036",
+   "skip": true,
+   "reason": "string-join() and tokenize() functions not supported in class chain"
+  },
+  {
+   "id": "x037",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[1]"
+  },
+  {
+   "id": "x038",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"tete(Vq1\" AND label CONTAINS \"Petor Vq2\"`]"
+  },
+  {
+   "id": "x039",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x040",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\" AND label == \"Kizik Nabu\"`]"
+  },
+  {
+   "id": "x041",
+   "skip": true,
+   "reason": "position() range predicate not supported in class chain"
+  },
+  {
+   "id": "x042",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Fecirim!\"`]"
+  },
+  {
+   "id": "x043",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"TOS, Lenapa gusuri, RI\"`]"
+  },
+  {
+   "id": "x044",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Veg monuw\"`]"
+  },
+  {
+   "id": "x045",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Diteda\"`]"
+  },
+  {
+   "id": "x046",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Zov cuba wedahaviwejofa kudez je doso mi bunuv werog. Teg sosedeki camenup, fojo tazeviz so sid juraja.\"`]"
+  },
+  {
+   "id": "x047",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"kabih pefu\"`]"
+  },
+  {
+   "id": "x048",
+   "skip": true,
+   "reason": "last() positional function not supported in class chain"
+  },
+  {
+   "id": "x049",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"je vap bika zucubamo?\"`]"
+  },
+  {
+   "id": "x050",
+   "chain": "-ios class chain:**/*[`name == \"a?\"`]"
+  },
+  {
+   "id": "x051",
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"2 ho 3\"`]"
+  },
+  {
+   "id": "x052",
+   "skip": true,
+   "reason": "parent:: axis not supported in class chain"
+  },
+  {
+   "id": "x053",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"true\"`]"
+  },
+  {
+   "id": "x054",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Namatir wepes\"`]"
+  },
+  {
+   "id": "x055",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"buwupudaSomukac\"`]"
+  },
+  {
+   "id": "x056",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Galufaz Poz Gohaz hilubodamo\"`]"
+  },
+  {
+   "id": "x057",
+   "skip": true,
+   "reason": "parent (..) and following-sibling axes not supported in class chain"
+  },
+  {
+   "id": "x058",
+   "skip": true,
+   "reason": "XPath union operator '|' with conditional not() cannot be expressed as a single class chain"
+  },
+  {
+   "id": "x059",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Dozur, ti hibimaw rorefek fojo dosu\"`]"
+  },
+  {
+   "id": "x060",
+   "chain": "-ios class chain:**/*[`value CONTAINS \"Vq1\" AND enabled == true`]"
+  },
+  {
+   "id": "x061",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"vosuzAnomeMevoja\"`]"
+  },
+  {
+   "id": "x062",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"di milif dom keb t bafot fej tapu. Foba t wocega je potepiv kop sepuwep, hu gure nasavaje nofu lebojemi.\"`]"
+  },
+  {
+   "id": "x063",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Dab je dobe\"`]"
+  },
+  {
+   "id": "x064",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`][2]"
+  },
+  {
+   "id": "x065",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Kajosa Podu Pefu 2 - Tival t Setizur - Poz £1L-£5L\"`]"
+  },
+  {
+   "id": "x066",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Vq1\" AND name CONTAINS \"Dobe teg\"`]"
+  },
+  {
+   "id": "x067",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Menob\"`]"
+  },
+  {
+   "id": "x068",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"lohu_reneg_zugo\"`]"
+  },
+  {
+   "id": "x069",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"rolafa desuz figuleni\"`]"
+  },
+  {
+   "id": "x070",
+   "chain": "-ios class chain:**/*[`label == \"Leba\" AND enabled == true`]"
+  },
+  {
+   "id": "x071",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Vagu sefasi\"`]"
+  },
+  {
+   "id": "x072",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Riza Vozime Dina\"`]"
+  },
+  {
+   "id": "x073",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Hicepe bihi\"`]"
+  },
+  {
+   "id": "x074",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\" AND label == \"Doso mi\"`]"
+  },
+  {
+   "id": "x075",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[`visible == true`]/XCUIElementTypeButton"
+  },
+  {
+   "id": "x076",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dom colusegoma goz kijical hu dewusines pelu fajoni ce je tonodo goz pobupat gecupiribem dulacoci fuhemoka je zov ri dom Hijareci Logozeb sufaket goz Keb, goz ri fufug fugowome. Heti cog dere nuna je wasaj dom kic zov kizik ri, hu je wasaj dom genilut zov foba zenu zov kizik ri su lu\"`]"
+  },
+  {
+   "id": "x077",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"FetuwozaNihelavAvuv.hamahiduZefopihi\"`]"
+  },
+  {
+   "id": "x078",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\" AND label CONTAINS \"Bevef Daw\" AND label CONTAINS \"mazejuz\"`]"
+  },
+  {
+   "id": "x079",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Pako geviv: Vq1, figuleni\"`]"
+  },
+  {
+   "id": "x080",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Galufaz Poz Gohaz, Lenapa gusuri, RI\"`]"
+  },
+  {
+   "id": "x081",
+   "skip": true,
+   "reason": "text() function not supported in class chain"
+  },
+  {
+   "id": "x082",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x083",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Petor Vq1, Tete Vq2\"`]"
+  },
+  {
+   "id": "x084",
+   "chain": "-ios class chain:**/*[`label == 'say \"hi\"'`]"
+  },
+  {
+   "id": "x085",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name CONTAINS \"VegAluGezamIrez.kusibEtapAjijo\"`]"
+  },
+  {
+   "id": "x086",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Zufeh & Hezujolu\"`]"
+  },
+  {
+   "id": "x087",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Namatir wepes je nehavona\"`]"
+  },
+  {
+   "id": "x088",
+   "chain": "-ios class chain:**/*[`label == \"$5 and @x\"`]"
+  },
+  {
+   "id": "x089",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Namatir\"`]"
+  },
+  {
+   "id": "x090",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pekufes Lowefore fika\"`]"
+  },
+  {
+   "id": "x091",
+   "skip": true,
+   "reason": "backtick predicate syntax is not valid XPath"
+  },
+  {
+   "id": "x092",
+   "skip": true,
+   "reason": "descendant element check in predicate [.//...] not supported in class chain"
+  },
+  {
+   "id": "x093",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"£Vq1\"`]"
+  },
+  {
+   "id": "x094",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Ge gohaz\"`]"
+  },
+  {
+   "id": "x095",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"a]b\"`]"
+  },
+  {
+   "id": "x096",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x097",
+   "chain": "-ios class chain:**/XCUIElementTypeButton"
+  },
+  {
+   "id": "x098",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\" AND label CONTAINS \"Wacisugik mazejuz\"`]"
+  },
+  {
+   "id": "x099",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Dobe teg\"`][1]"
+  },
+  {
+   "id": "x100",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x101",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"LohenobEcohazoLasi.sewanecAbifub\"`][1]"
+  },
+  {
+   "id": "x102",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Pobi sopi goz bogici teg wigobur\"`]"
+  },
+  {
+   "id": "x103",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Tefoku zov bapoh wigobur, wezid cog t mag pujap zov varu je zaruzegi mufig.\"`]"
+  },
+  {
+   "id": "x104",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][1]"
+  },
+  {
+   "id": "x105",
+   "skip": true,
+   "reason": "outer positional index on multi-step parent/child path cannot be expressed in class chain"
+  },
+  {
+   "id": "x106",
+   "skip": true,
+   "reason": "attribute existence check [@name] without value comparison cannot be reliably expressed in class chain"
+  },
+  {
+   "id": "x107",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x108",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x109",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Zekohilodug\"`]"
+  },
+  {
+   "id": "x110",
+   "chain": "-ios class chain:**/XCUIElementTypeImage[`name == \"CidezoGemagak.DamizidOwefesu.jisaroVenupazIcowOmoc\"`]"
+  },
+  {
+   "id": "x111",
+   "chain": "-ios class chain:**/*[`(label CONTAINS \"a\" AND name == \"b\") OR value == \"c\"`]"
+  },
+  {
+   "id": "x112",
+   "skip": true,
+   "reason": "outer positional index on multi-step parent/child path cannot be expressed in class chain"
+  },
+  {
+   "id": "x113",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][2]"
+  },
+  {
+   "id": "x114",
+   "skip": true,
+   "reason": "preceding-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x115",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca\" AND enabled == false`]"
+  },
+  {
+   "id": "x116",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+  },
+  {
+   "id": "x117",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Rufosi je sadobu bika laciwuj\"`]"
+  },
+  {
+   "id": "x118",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[2]"
+  },
+  {
+   "id": "x119",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dom Revoje Fabis Vimonevob\"`]"
+  },
+  {
+   "id": "x120",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Tolacocat nivere\"`]"
+  },
+  {
+   "id": "x121",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x122",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"TOS, Lenapa gusuri, RIG\"`]"
+  },
+  {
+   "id": "x123",
+   "chain": "-ios class chain:**/XCUIElementTypeTextView[`value CONTAINS \"Rofozopevol dobe goz jotobap kop werunez befa so kop vuvodegu\"`]"
+  },
+  {
+   "id": "x124",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Balovewu\"`]"
+  },
+  {
+   "id": "x125",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x126",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"Bujulo Gugitum\"`]"
+  },
+  {
+   "id": "x127",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Jovime\"`]"
+  },
+  {
+   "id": "x128",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Begeraw kavemag, sepura rigi mazejuz\"`]"
+  },
+  {
+   "id": "x129",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+  },
+  {
+   "id": "x130",
+   "skip": true,
+   "reason": "parent:: axis not supported in class chain"
+  },
+  {
+   "id": "x131",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nehavona demimel tazeviz\"`]"
+  },
+  {
+   "id": "x132",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Zufeh & Hezujolu\"`]"
+  },
+  {
+   "id": "x133",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Pi cog rufosi je sadobu dom laciwuj zov cuba wumesok. Picama camavi zov cog sehoj bika koce dovo goz sibo ho munub va pi wikop jigiraz rekivame pelu velotop.\"`]"
+  },
+  {
+   "id": "x134",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Picama kijifas t ruliv husuge rolafa.\"`]"
+  },
+  {
+   "id": "x135",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"tete(Vq1\" AND label CONTAINS \"Petor Vq2, Bevef daw liturefuku\"`]"
+  },
+  {
+   "id": "x136",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Pefu Loresisagi goz dab je dobe\"`]"
+  },
+  {
+   "id": "x137",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"desuz hicepe\"`]"
+  },
+  {
+   "id": "x138",
+   "chain": "-ios class chain:**/XCUIElementTypeTextView[`value == \"Dobe Dubow - dom febafuto cisibosogoz jufoz - hu SukuViduguwa teg zefub jogu marohawe. Poz ri tajeto votu Nig Teg Ruda hu wikop poj kop povup ho Galufaz Poz Gohaz.\"`]"
+  },
+  {
+   "id": "x139",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`][2]"
+  },
+  {
+   "id": "x140",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Mipunaco\"`]"
+  },
+  {
+   "id": "x141",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Dew Deguw: Fana je Pel\"`]"
+  },
+  {
+   "id": "x142",
+   "skip": true,
+   "reason": "child element check in predicate [./...] not supported in class chain"
+  },
+  {
+   "id": "x143",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Gokowuto Nebonozopurus Zih\"`]"
+  },
+  {
+   "id": "x144",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Tonodo Revoje Fabis\"`]"
+  },
+  {
+   "id": "x145",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"hibimaw pamul\"`]"
+  },
+  {
+   "id": "x146",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov sugah'f jukupoja wigobur\"`]"
+  },
+  {
+   "id": "x147",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"FetuwozaNihelavAvuv.funelaFecotu\" AND enabled == false`]"
+  },
+  {
+   "id": "x148",
+   "skip": true,
+   "reason": "outer positional index on multi-step parent/child path cannot be expressed in class chain"
+  },
+  {
+   "id": "x149",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Jif fojo pefu teg t rurulo je poz koce nivere\"`]"
+  },
+  {
+   "id": "x150",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dom colusegoma goz kijical ho mozirejife pelu fajoni ce je pepuro havilazijik fipic hene jivogesi ri kop sufaket goz keb\"`]"
+  },
+  {
+   "id": "x151",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Lugatej fej mipunaco\"`]"
+  },
+  {
+   "id": "x152",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value == \"Kajepazagopotev, zov cuba jizorawohuni posetog bika tazeviz\"`]"
+  },
+  {
+   "id": "x153",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Jeb namatir\"`]"
+  },
+  {
+   "id": "x154",
+   "chain": "-ios class chain:**/*[`label == \"it's\"`]"
+  },
+  {
+   "id": "x155",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Gohaz wige\"`]"
+  },
+  {
+   "id": "x156",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Nig bika jutal\"`]"
+  },
+  {
+   "id": "x157",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Ra rukul zov'gi cokibif dom NE goz dom Fuve ho Voz\"`]"
+  },
+  {
+   "id": "x158",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Wewodulu wepes je\"`]"
+  },
+  {
+   "id": "x159",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"FetuwozaNihelavAvuv.mipunaco\"`]"
+  },
+  {
+   "id": "x160",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x161",
+   "chain": "-ios class chain:**/*[`name == \"DacinIjaVudaKecemoRisu.kerumemUbiSojuzUlacArewo\" AND label == \"Jaluzamiv\"`]"
+  },
+  {
+   "id": "x162",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Galufaz Poz Gohaz, Lenapa gusuri, RIG\"`]"
+  },
+  {
+   "id": "x163",
+   "skip": true,
+   "reason": "parent (..) axis not supported in class chain"
+  },
+  {
+   "id": "x164",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Cijahil: Vq1\" OR label CONTAINS \"Dew deguw: Vq1\"`]"
+  },
+  {
+   "id": "x165",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\"`]/**/*[`label CONTAINS \"Vq2\"`]"
+  },
+  {
+   "id": "x166",
+   "skip": true,
+   "reason": "concat() function not supported in class chain"
+  },
+  {
+   "id": "x167",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.noraSefili\"`]"
+  },
+  {
+   "id": "x168",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`label CONTAINS \"Fabateli vulasemab hat nehavona je vap nihekomeg\"`]"
+  },
+  {
+   "id": "x169",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x170",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x171",
+   "chain": "-ios class chain:**/*[`name == \"VavepaGomudatepUvepajImar.lawupe(Vq1)\"`]/*[1]"
+  },
+  {
+   "id": "x172",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Pekufes pubiwehipet\"`]"
+  },
+  {
+   "id": "x173",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"CileDewecidaWutitofOzis.hamahiduZefopihi\"`]"
+  },
+  {
+   "id": "x174",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"bapoh wigobur.\"`]"
+  },
+  {
+   "id": "x175",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Kabih\"`]"
+  },
+  {
+   "id": "x176",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hijareci Logozeb tazeviz\"`]"
+  },
+  {
+   "id": "x177",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Pejun, Lenapa gusuri, RIG\"`]"
+  },
+  {
+   "id": "x178",
+   "chain": "-ios class chain:**/*[`name == \"Zov cuba nififet dom kofodat rolafa ho wajih.\"`]"
+  },
+  {
+   "id": "x179",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Kabih\"`]"
+  },
+  {
+   "id": "x180",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Weten hom\"`]"
+  },
+  {
+   "id": "x181",
+   "chain": "-ios class chain:**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]"
+  },
+  {
+   "id": "x182",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"PofuJiwirupIpuj.tete(Vq1\"`]"
+  },
+  {
+   "id": "x183",
+   "chain": "-ios class chain:**/*[`label == \"Leba je siviminewu\" AND enabled == true`]"
+  },
+  {
+   "id": "x184",
+   "skip": true,
+   "reason": "preceding-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x185",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov retoh cuba sab\"`]"
+  },
+  {
+   "id": "x186",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x187",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x188",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"Nebonozopurus gatejese\"`]"
+  },
+  {
+   "id": "x189",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Rajer bika sibo ho munub va DE / LO / KIMO.\"`]"
+  },
+  {
+   "id": "x190",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Taka\"`]"
+  },
+  {
+   "id": "x191",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"milipaCihehol\"`]"
+  },
+  {
+   "id": "x192",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• 2 fecegiv je zocumu t cisibosogoz!\"`]"
+  },
+  {
+   "id": "x193",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Nebonozopurus havilazijik\"`]"
+  },
+  {
+   "id": "x194",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Sori bika wisawu\"`]"
+  },
+  {
+   "id": "x195",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"suledohame_reneg_zugo\"`]"
+  },
+  {
+   "id": "x196",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Galufaz gohaz gusuri\"`]"
+  },
+  {
+   "id": "x197",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Dobe Dubow teg £2.00\"`][2]"
+  },
+  {
+   "id": "x198",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Balovewu kared, Vq1\"`]"
+  },
+  {
+   "id": "x199",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vq1\"`]"
+  },
+  {
+   "id": "x200",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.jecejIvoge\" AND label CONTAINS \"Dikasod ditar: £\"`]"
+  },
+  {
+   "id": "x201",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"ZejizasAgal.giselolIpefov\"`]"
+  },
+  {
+   "id": "x202",
+   "chain": "-ios class chain:**/*[`label == \"Hero bihi Vq1\"`]"
+  },
+  {
+   "id": "x203",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Fericow goz pobi fodani, Lenapa gusuri, RIG\"`]"
+  },
+  {
+   "id": "x204",
+   "skip": true,
+   "reason": "preceding-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x205",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x206",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Lugatej\" AND enabled == true`]"
+  },
+  {
+   "id": "x207",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"CidezoGemagak.RagadiluDujutot.rukomuSaholaKivezideva\"`]"
+  },
+  {
+   "id": "x208",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x209",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Kimiz ma M saki ge pamul?\"`]"
+  },
+  {
+   "id": "x210",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Luzaf jutal (1 rog je 5 banadi)\"`]"
+  },
+  {
+   "id": "x211",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x212",
+   "skip": true,
+   "reason": "following axis not supported in class chain"
+  },
+  {
+   "id": "x213",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Begeraw kavemag\"`]"
+  },
+  {
+   "id": "x214",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][3]"
+  },
+  {
+   "id": "x215",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"Kefov GohUdip\"`]"
+  },
+  {
+   "id": "x216",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"FetuwozaNihelavAvuv.mipunaco\"`]"
+  },
+  {
+   "id": "x217",
+   "skip": true,
+   "reason": "parent:: and following-sibling axes not supported in class chain"
+  },
+  {
+   "id": "x218",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Zucubamo lenino dutovopa\"`]"
+  },
+  {
+   "id": "x219",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][10]"
+  },
+  {
+   "id": "x220",
+   "chain": "-ios class chain:**/*[`label == \"Bika kavemag\" OR label == \"Bika rorefek\"`]"
+  },
+  {
+   "id": "x221",
+   "chain": "-ios class chain:**/*[`label == 'a\"b'`]"
+  },
+  {
+   "id": "x222",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x223",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][3]"
+  },
+  {
+   "id": "x224",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vq1\"`]"
+  },
+  {
+   "id": "x225",
+   "chain": "-ios class chain:**/*[`name == \"a*?\"`]"
+  },
+  {
+   "id": "x226",
+   "chain": "-ios class chain:**/*[`label == \"Picama rajer t bevad motezef rari 0.\"`]"
+  },
+  {
+   "id": "x227",
+   "skip": true,
+   "reason": "following-sibling axis and position() range not supported in class chain"
+  },
+  {
+   "id": "x228",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"KE\"`]"
+  },
+  {
+   "id": "x229",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Dab je tafiz\"`]"
+  },
+  {
+   "id": "x230",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fej mipunaco\"`]"
+  },
+  {
+   "id": "x231",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"LofInipaSazAzuwiJuzovUsah.tejazuLimicUbiro\" AND enabled == false`]"
+  },
+  {
+   "id": "x232",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Lefe jutal (6 banadi je 5 weboc)\"`]"
+  },
+  {
+   "id": "x233",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\" AND label == \"Veg\"`]"
+  },
+  {
+   "id": "x234",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x235",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x236",
+   "skip": true,
+   "reason": "self:: axis not supported in class chain"
+  },
+  {
+   "id": "x237",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Vq1\"`][2]"
+  },
+  {
+   "id": "x238",
+   "skip": true,
+   "reason": "descendant element check in predicate [.//*...] not supported in class chain"
+  },
+  {
+   "id": "x239",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Bika mufig miwokub lojo foba hifum ri hu toral\"`]"
+  },
+  {
+   "id": "x240",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.fiwobozokeZutaralEboBerutOzok\" AND label CONTAINS \"Wuwisivopu Galufaz Poz Gohaz dobe\"`]"
+  },
+  {
+   "id": "x241",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• Za zov cuba Dom Hijareci Logozeb keb tukunutev, pi zuvejo gisu zov hicepe fojo rese bika peludur.\"`]"
+  },
+  {
+   "id": "x242",
+   "chain": "-ios class chain:**/*[`label == \"Veg\" AND enabled == true`]"
+  },
+  {
+   "id": "x243",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Petor Vq1, Rurez\" AND label CONTAINS \"mazejuz:\"`]"
+  },
+  {
+   "id": "x244",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"ZimapAjetisImus.dijivOdozev\"`]"
+  },
+  {
+   "id": "x245",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Fecirim\"`]"
+  },
+  {
+   "id": "x246",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x247",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\" OR name == \"b\"`]"
+  },
+  {
+   "id": "x248",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"ab\"`]"
+  },
+  {
+   "id": "x249",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hicepe\"`][2]"
+  },
+  {
+   "id": "x250",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Pajap ditar\"`]"
+  },
+  {
+   "id": "x251",
+   "skip": true,
+   "reason": "descendant element check in predicate [.//...] not supported in class chain"
+  },
+  {
+   "id": "x252",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"FE\"`]"
+  },
+  {
+   "id": "x253",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"CidezoGemagak.RagadiluDujutot.jisaroVenupazIcowOmoc\"`]"
+  },
+  {
+   "id": "x254",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x255",
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"Bizinovib\"`]"
+  },
+  {
+   "id": "x256",
+   "skip": true,
+   "reason": "XPath union operator '|' with different element types/structures cannot be expressed as a single class chain"
+  },
+  {
+   "id": "x257",
+   "skip": true,
+   "reason": "text() function not supported in class chain"
+  },
+  {
+   "id": "x258",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Tete Vq1, mazejuz:\"`]"
+  },
+  {
+   "id": "x259",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]"
+  },
+  {
+   "id": "x260",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label BEGINSWITH \"Ves zov sori gisu fo wigobur zov tosu ce pumed tuvila\"`]"
+  },
+  {
+   "id": "x261",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]"
+  },
+  {
+   "id": "x262",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"CidezoGemagak.Zofamekeki.livejEjaRujefAfadirap\"`]"
+  },
+  {
+   "id": "x263",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \", Nepureze, hilubodamo\"`][1]"
+  },
+  {
+   "id": "x264",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"JobikoBemamevuHiba.vecidIwakahejIcabini\"`]"
+  },
+  {
+   "id": "x265",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Bokipefij, fuh fojo sefasi so ti cujowe ruliv, goz zov kevoza lenino luvuzapagu laciwuj.\"`]"
+  },
+  {
+   "id": "x266",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][2]"
+  },
+  {
+   "id": "x267",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Doso mi\"`]"
+  },
+  {
+   "id": "x268",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Foba t jutal\"`]"
+  },
+  {
+   "id": "x269",
+   "chain": "-ios class chain:**/*[`(name == \"a\" AND label == \"b\") OR value == \"c\"`]"
+  },
+  {
+   "id": "x270",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Ganam Zemori Jila\"`]"
+  },
+  {
+   "id": "x271",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\"`]"
+  },
+  {
+   "id": "x272",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Doso poj\"`]"
+  },
+  {
+   "id": "x273",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"FetuwozaNihelavAvuv.mipunaco\" AND label CONTAINS \"Comu mipunaco\"`]"
+  },
+  {
+   "id": "x274",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Wacisugik mazejuz\"`]"
+  },
+  {
+   "id": "x275",
+   "skip": true,
+   "reason": "parent (..) and following-sibling axes not supported in class chain"
+  },
+  {
+   "id": "x276",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vq1\"`]"
+  },
+  {
+   "id": "x277",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`]"
+  },
+  {
+   "id": "x278",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Dew deguw fericow:\"`]"
+  },
+  {
+   "id": "x279",
+   "skip": true,
+   "reason": "XPath union operator '|' cannot be expressed as a single class chain"
+  },
+  {
+   "id": "x280",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.jibikIhofe\" AND label CONTAINS \"Nig dab veca zov hat namatir ruhe here.\"`]"
+  },
+  {
+   "id": "x281",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Limazene sibo: Vq1\"`]"
+  },
+  {
+   "id": "x282",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x283",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Vq1\"`]"
+  },
+  {
+   "id": "x284",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.jecejIvoge\" AND label CONTAINS \"Nig dab veca zov hat pajap ruhe here.\"`]"
+  },
+  {
+   "id": "x285",
+   "chain": "-ios class chain:**/*[`label == \"Fowani wumesok muhevuw bika 75 gohaz kofodat ditar.\"`]"
+  },
+  {
+   "id": "x286",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x287",
+   "chain": "-ios class chain:**/XCUIElementTypeTextView[`value == \"Kop sufaket goz keb cog gujowuma bi hom kop werunez hat gogama nozebiwi dom tamu, dobe gohaz goz cac dom havilazijik heti varu.\"`]"
+  },
+  {
+   "id": "x288",
+   "skip": true,
+   "reason": "matches() function not supported in class chain"
+  },
+  {
+   "id": "x289",
+   "chain": "-ios class chain:**/*[`label == \"Zov'gi £5 • x\"`]"
+  },
+  {
+   "id": "x290",
+   "skip": true,
+   "reason": "replace() function not supported in class chain"
+  },
+  {
+   "id": "x291",
+   "chain": "-ios class chain:**/*[`label == \"Bevef Daw - foba bika fecegiv votu conuwafi figuleni mazejuz\"`]"
+  },
+  {
+   "id": "x292",
+   "skip": true,
+   "reason": "parent:: axis not supported in class chain"
+  },
+  {
+   "id": "x293",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Dozur, wezid zuf t lufotoh votu bika gebison. Za zov cog wuneko je lenino bika tazeviz picama pekufes Lowefore Fika\"`]"
+  },
+  {
+   "id": "x294",
+   "skip": true,
+   "reason": "XPath true() function not supported in class chain; use string 'true' instead"
+  },
+  {
+   "id": "x295",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Dikasod vilokor: £\"`]"
+  },
+  {
+   "id": "x296",
+   "chain": "-ios class chain:**/*[`name == \"a\" AND label == \"b\"`]"
+  },
+  {
+   "id": "x297",
+   "chain": "-ios class chain:**/XCUIElementTypeWebView"
+  },
+  {
+   "id": "x298",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Doso mi je nehavona\"`]"
+  },
+  {
+   "id": "x299",
+   "skip": true,
+   "reason": "last() positional function not supported in class chain"
+  },
+  {
+   "id": "x300",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"tete(Vq1\" AND label CONTAINS \"Petor Vq2, Bevef daw notupisa\"`]"
+  },
+  {
+   "id": "x301",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"Vq1, Nepureze, figuleni\"`]"
+  },
+  {
+   "id": "x302",
+   "skip": true,
+   "reason": "@text attribute not supported in class chain"
+  },
+  {
+   "id": "x303",
+   "skip": true,
+   "reason": "following-sibling and self:: axes not supported in class chain"
+  },
+  {
+   "id": "x304",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"mi pefu risepa\"`]"
+  },
+  {
+   "id": "x305",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][3]"
+  },
+  {
+   "id": "x306",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"FetuwozaNihelavAvuv.jizobawUwohacan\"`]"
+  },
+  {
+   "id": "x307",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Nig ditar\"`]"
+  },
+  {
+   "id": "x308",
+   "chain": "-ios class chain:**/XCUIElementTypeImage[`name == \"kasoc_jijun\"`]"
+  },
+  {
+   "id": "x309",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Hibimaw tival\"`]"
+  },
+  {
+   "id": "x310",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"FetuwozaNihelavAvuv.jizobawUwohacan\"`]"
+  },
+  {
+   "id": "x311",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Ti hibimaw tival\"`]"
+  },
+  {
+   "id": "x312",
+   "chain": "-ios class chain:**/*[`label == \"Hicepe bihi Vq1\"`]"
+  },
+  {
+   "id": "x313",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"GocibozuPenalIgug.voceseruBiful\"`]"
+  },
+  {
+   "id": "x314",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vq1, k2 cazete\"`]"
+  },
+  {
+   "id": "x315",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Hibimaw tival\"`]"
+  },
+  {
+   "id": "x316",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"ab\"`]"
+  },
+  {
+   "id": "x317",
+   "skip": true,
+   "reason": "XPath union operator '|' with different element types cannot be expressed as a single class chain"
+  },
+  {
+   "id": "x318",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"WidafajivaTorukepumobIpas.bulitiLitopicol\"`]"
+  },
+  {
+   "id": "x319",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Sefasi PO:\"`]"
+  },
+  {
+   "id": "x320",
+   "skip": true,
+   "reason": "@index attribute not supported in class chain"
+  },
+  {
+   "id": "x321",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"NE Cisibosogoz Jufoz bihi\" AND NOT label CONTAINS \"Bika\"`]"
+  },
+  {
+   "id": "x322",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Jeb bika wajih\"`]"
+  },
+  {
+   "id": "x323",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov cog meb zudadilacu lefetec mi dom NE hu Fuve ho Voz\"`]"
+  },
+  {
+   "id": "x324",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Honamib deguw\"`]"
+  },
+  {
+   "id": "x325",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x326",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Cog zov husu zov noca je hicepe hom dulacoci?\"`]"
+  },
+  {
+   "id": "x327",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Birel nimiwi\"`]"
+  },
+  {
+   "id": "x328",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"• Kop velotop zir meb nul la nahinuh\"`]"
+  },
+  {
+   "id": "x329",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Dobe sid\"`]"
+  },
+  {
+   "id": "x330",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\nJomojab, FI16 7TE\"`]"
+  },
+  {
+   "id": "x331",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Doso mi\"`]"
+  },
+  {
+   "id": "x332",
+   "skip": true,
+   "reason": "contains(@type,'XCUIElementTypeText') matches multiple element types and cannot be expressed as a single class chain type"
+  },
+  {
+   "id": "x333",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Minevili\"`]"
+  },
+  {
+   "id": "x334",
+   "skip": true,
+   "reason": "value contains backtick character which conflicts with class chain predicate delimiter syntax"
+  },
+  {
+   "id": "x335",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Jeb wajih je dobe ticu\" OR label == \"Wikop wajih teg kavemag\"`]"
+  },
+  {
+   "id": "x336",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[2]"
+  },
+  {
+   "id": "x337",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\"`]"
+  },
+  {
+   "id": "x338",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Hicepe hom\"`]"
+  },
+  {
+   "id": "x339",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir ceciful cuba t Hijareci Logozeb tazeviz\"`]"
+  },
+  {
+   "id": "x340",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Roreso pubiwehipet\"`]"
+  },
+  {
+   "id": "x341",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Galufaz Poz Gohaz matumutor\"`]/XCUIElementTypeStaticText"
+  },
+  {
+   "id": "x342",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\" AND label CONTAINS \"mazejuz\"`]"
+  },
+  {
+   "id": "x343",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Lugatej\"`]"
+  },
+  {
+   "id": "x344",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]"
+  },
+  {
+   "id": "x345",
+   "chain": "-ios class chain:**/XCUIElementTypeButton"
+  },
+  {
+   "id": "x346",
+   "chain": "-ios class chain:**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"a\"`]"
+  },
+  {
+   "id": "x347",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"CidezoGemagak.Zofamekeki.hosipepOvirujAberehiz\"`]"
+  },
+  {
+   "id": "x348",
+   "skip": true,
+   "reason": "XCUIElementTypeLabel is not a valid XCUITest element type"
+  },
+  {
+   "id": "x349",
+   "chain": "-ios class chain:**/*[`value CONTAINS \"Pako goz tival Vq1 Vq2 je poz £Vq3\"`]"
+  },
+  {
+   "id": "x350",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"FetuwozaNihelavAvuv.jizobawUwohacan\" AND label CONTAINS \"Kuki mipunaco\"`]"
+  },
+  {
+   "id": "x351",
+   "skip": true,
+   "reason": "parent:: axis not supported in class chain"
+  },
+  {
+   "id": "x352",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`enabled == false`]"
+  },
+  {
+   "id": "x353",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Jeb fabis tuve\"`]"
+  },
+  {
+   "id": "x354",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"pajap goz dobe gatejese\"`]"
+  },
+  {
+   "id": "x355",
+   "chain": "-ios class chain:**/XCUIElementTypeImage[`name == \"Bakaf pumunuwavube jega kefatigamuj\"`]"
+  },
+  {
+   "id": "x356",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• 2 cazete lov rigi rog teg dom tohof ho kup\"`]"
+  },
+  {
+   "id": "x357",
+   "chain": "-ios class chain:**/*[`label == \"Vale\"`]"
+  },
+  {
+   "id": "x358",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\"`]/**/*[`label CONTAINS \"Vq2\"`]"
+  },
+  {
+   "id": "x359",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x360",
+   "chain": "-ios class chain:**/*[`label == \"Galufaz Poz Gohaz dobe ditar\"`]"
+  },
+  {
+   "id": "x361",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Pefu mosagesotefetuk\"`]"
+  },
+  {
+   "id": "x362",
+   "chain": "-ios class chain:**/*[`name == \"Veg monuw\" OR name == \"LipohUgicolu.codid\"`]"
+  },
+  {
+   "id": "x363",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Wacisugik mazejuz Vq1, mazejuz:\"`]"
+  },
+  {
+   "id": "x364",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Namatir\"`]"
+  },
+  {
+   "id": "x365",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label != \"a\"`]"
+  },
+  {
+   "id": "x366",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Rofozopevol Dobe\"`]"
+  },
+  {
+   "id": "x367",
+   "chain": "-ios class chain:**/XCUIElementTypeOther"
+  },
+  {
+   "id": "x368",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"FetuwozaNihelavAvuv.mipunaco\"`]"
+  },
+  {
+   "id": "x369",
+   "chain": "-ios class chain:**/*[`name == \"a*b\"`]"
+  },
+  {
+   "id": "x370",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov cuba sab\"`]"
+  },
+  {
+   "id": "x371",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Wacisugik mazejuz\"`]"
+  },
+  {
+   "id": "x372",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Hicepe\"`]"
+  },
+  {
+   "id": "x373",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"fericow\"`]"
+  },
+  {
+   "id": "x374",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x375",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Kihare pefu\" AND label == \"Kihare pefu\"`]"
+  },
+  {
+   "id": "x376",
+   "skip": true,
+   "reason": "XCUIElementTypeAny is not a valid XCUITest element type"
+  },
+  {
+   "id": "x377",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x378",
+   "skip": true,
+   "reason": "outer positional index on multi-step parent/child path cannot be expressed in class chain"
+  },
+  {
+   "id": "x379",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.lekiPum\" AND label CONTAINS \"Foba t jutal rese wigobur hom gohaz dapisusurel hu peworumezop.\"`]"
+  },
+  {
+   "id": "x380",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"Des Zukefam Nebonozopurus Bifogilenu (GOCU) 2.2JU\"`]"
+  },
+  {
+   "id": "x381",
+   "chain": "-ios class chain:**/XCUIElementTypeLink[`name == \"Bemat roki\"`][2]"
+  },
+  {
+   "id": "x382",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Leba wacisugik rolafa\"`]"
+  },
+  {
+   "id": "x383",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hero\"`][2]"
+  },
+  {
+   "id": "x384",
+   "skip": true,
+   "reason": "ancestor:: axis not supported in class chain"
+  },
+  {
+   "id": "x385",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Rofozopevol dobe\"`]"
+  },
+  {
+   "id": "x386",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x387",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x388",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Dewujumu wezujewab\"`]"
+  },
+  {
+   "id": "x389",
+   "skip": true,
+   "reason": "parent:: axis not supported in class chain"
+  },
+  {
+   "id": "x390",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.lekiPum\" AND label CONTAINS \"Foba t jutal\"`]"
+  },
+  {
+   "id": "x391",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Cog zov husu zov noca je diteda?\"`]"
+  },
+  {
+   "id": "x392",
+   "chain": "-ios class chain:**/*[`label == \"Wacisugik mazejuz - leba goz dobe votu bika siviminewu\"`]"
+  },
+  {
+   "id": "x393",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• Za zov cuba su nonide Revoje Fabis, fojo lojo la homusabasofek bekikalin.\"`]"
+  },
+  {
+   "id": "x394",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Galufaz Poz Gohaz dobe ditar\"`]"
+  },
+  {
+   "id": "x395",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Ra hat foba se je 4 jidur teg bika Revoje Fabis je zocumu nonide\"`]"
+  },
+  {
+   "id": "x396",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Potepiv rigi gohaz\"`]"
+  },
+  {
+   "id": "x397",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"GocibozuPenalIgug.voceseruBiful\"`]/XCUIElementTypeButton"
+  },
+  {
+   "id": "x398",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Funewekid wepes rese\"`]"
+  },
+  {
+   "id": "x399",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x400",
+   "skip": true,
+   "reason": "lower-case() function not supported in class chain"
+  },
+  {
+   "id": "x401",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"CileDewecidaWutitofOzis.hamahiduZefopihi\"`]"
+  },
+  {
+   "id": "x402",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Kop gohaz cog gujowuma je la kuluso votu matumutor. Dufapil, za zov cog sehoj t rodote wogifo, zov hat keco rig pewipakamo sehoj fojo lenapa. Votu pefu matumutor tecijo rig, zov hat rawi nasavaje je dom rosapo\"`]"
+  },
+  {
+   "id": "x403",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"• Hapeto zov cipi je dobe kop gohaz monuw mi dom mivawa, zov'vu varu je pekufes Lowefore Fika.\"`]"
+  },
+  {
+   "id": "x404",
+   "chain": "-ios class chain:**/*[`label == \"a)b\"`][2]"
+  },
+  {
+   "id": "x405",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov'di nofezi je foba t jutal ho\"`]"
+  },
+  {
+   "id": "x406",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Dom mipunaco zov wumesok so disohinid.\"`]"
+  },
+  {
+   "id": "x407",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Tolacocat nivere\"`]"
+  },
+  {
+   "id": "x408",
+   "skip": true,
+   "reason": "@text attribute not supported in class chain"
+  },
+  {
+   "id": "x409",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Je nehavona je dobe, picama lotahu bika fabis tuve laciwuj tefoku bavori wepes\"`]"
+  },
+  {
+   "id": "x410",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Nepureze\"`]/*[`label CONTAINS \"Nepureze\"`]"
+  },
+  {
+   "id": "x411",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Dobe monuw\"`]"
+  },
+  {
+   "id": "x412",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"cuba jizorawohuni honamib bika deguw.\"`]"
+  },
+  {
+   "id": "x413",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Vq1\"`]"
+  },
+  {
+   "id": "x414",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz\"`]"
+  },
+  {
+   "id": "x415",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HinefovigocEzehefuc.wivEtociliLunuci\"`]"
+  },
+  {
+   "id": "x416",
+   "chain": "-ios class chain:**/XCUIElementTypeCell/XCUIElementTypeButton"
+  },
+  {
+   "id": "x417",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Hom gohaz\"`]"
+  },
+  {
+   "id": "x418",
+   "chain": "-ios class chain:**/*[`label == \"Vale\" AND enabled == true`]"
+  },
+  {
+   "id": "x419",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Meja\"`]"
+  },
+  {
+   "id": "x420",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Fej tete, Wacisugik\"`]"
+  },
+  {
+   "id": "x421",
+   "chain": "-ios class chain:**/XCUIElementTypeProgressIndicator[`label CONTAINS \"1 ho 3\"`]"
+  },
+  {
+   "id": "x422",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Potepiv dom keb\"`]"
+  },
+  {
+   "id": "x423",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov hat wikop bika pelu colusegoma gatejese tevej goz maceti bika pubiwehipet fo wedocagi dom bilakide ri hu rig.\"`]"
+  },
+  {
+   "id": "x424",
+   "skip": true,
+   "reason": "last() positional function not supported in class chain"
+  },
+  {
+   "id": "x425",
+   "skip": true,
+   "reason": "tokenize() function not supported in class chain"
+  },
+  {
+   "id": "x426",
+   "skip": true,
+   "reason": "@hittable attribute not supported in class chain predicates"
+  },
+  {
+   "id": "x427",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.vufeputekUgucelu\" AND label CONTAINS \"Nig bika tazeviz va t Ricorikup Hohaveh je jif jumumol teg bika ricorikup.\"`]"
+  },
+  {
+   "id": "x428",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value CONTAINS \"Picama bowep bika mipunaco hu pekufes kop Lowefore Fika riba je gepohe lenino je bika tazeviz.\"`]"
+  },
+  {
+   "id": "x429",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Jif sefasi\"`]"
+  },
+  {
+   "id": "x430",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"LunaseMinihEsak.vosuzAnomeMevoja\"`][2]"
+  },
+  {
+   "id": "x431",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x432",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x433",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Rigi buromut:\"`]"
+  },
+  {
+   "id": "x434",
+   "chain": "-ios class chain:**/XCUIElementTypeCell/**/XCUIElementTypeButton"
+  },
+  {
+   "id": "x435",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x436",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Dobe teg\"`]"
+  },
+  {
+   "id": "x437",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`][1]"
+  },
+  {
+   "id": "x438",
+   "skip": true,
+   "reason": "preceding-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x439",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label CONTAINS \"Dobe teg\"`]"
+  },
+  {
+   "id": "x440",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Ceces\"`]"
+  },
+  {
+   "id": "x441",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`enabled == true`]"
+  },
+  {
+   "id": "x442",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Nebonozopurus gatejese\"`]"
+  },
+  {
+   "id": "x443",
+   "skip": true,
+   "reason": "ends-with() function not supported in class chain"
+  },
+  {
+   "id": "x444",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[`name == \"a\"`]/**/XCUIElementTypeButton[`label == \"b\"`]"
+  },
+  {
+   "id": "x445",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"riduco\"`]/XCUIElementTypeStaticText[`name == \"WefaniBedufeDanu.gotePebazoh\"`]"
+  },
+  {
+   "id": "x446",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"FetuwozaNihelavAvuv.mipunaco\" AND label CONTAINS \"Kuki mipunaco\"`]"
+  },
+  {
+   "id": "x447",
+   "skip": true,
+   "reason": "normalize-space() function not supported in class chain"
+  },
+  {
+   "id": "x448",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"dapogec_reneg_zugo\"`]"
+  },
+  {
+   "id": "x449",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Mu je Ge Gohaz\"`]"
+  },
+  {
+   "id": "x450",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Bevef Daw\"`]"
+  },
+  {
+   "id": "x451",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Bowep ge mipunaco\"`]"
+  },
+  {
+   "id": "x452",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Raf ra\" OR name == \"HinefovigocEzehefuc.honeGolepu\"`]"
+  },
+  {
+   "id": "x453",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Tazeviz Tawod & Ruwoz\"`]"
+  },
+  {
+   "id": "x454",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x455",
+   "chain": "-ios class chain:**/*[`name == \"a\" OR (label == \"b\" AND value == \"c\")`]"
+  },
+  {
+   "id": "x456",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Cijahil:\"`]"
+  },
+  {
+   "id": "x457",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x458",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Galufaz Poz Gohaz Ruwoz\"`]"
+  },
+  {
+   "id": "x459",
+   "chain": "-ios class chain:**/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"a\"`]"
+  },
+  {
+   "id": "x460",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Sefasi meb ruliv\"`]"
+  },
+  {
+   "id": "x461",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`accessible == true AND enabled == false`]"
+  },
+  {
+   "id": "x462",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Nig wisawu\"`]"
+  },
+  {
+   "id": "x463",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x464",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Nebonozopurus gatejese\"`]"
+  },
+  {
+   "id": "x465",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Tosu goz Pekufes ce\"`]"
+  },
+  {
+   "id": "x466",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.noraSefili\"`][1]"
+  },
+  {
+   "id": "x467",
+   "chain": "-ios class chain:XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]"
+  },
+  {
+   "id": "x468",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Galufaz poz\"`]"
+  },
+  {
+   "id": "x469",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Bedoce mazejuz\"`]"
+  },
+  {
+   "id": "x470",
+   "chain": "-ios class chain:**/*[`label == \"a/b|c(d)\"`]"
+  },
+  {
+   "id": "x471",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x472",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hijareci Logozeb gohaz hapeto lorope la sih, wigobur mi t loh gisu so kasoc teg zov.\"`]"
+  },
+  {
+   "id": "x473",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Rigi Vq1\"`]"
+  },
+  {
+   "id": "x474",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Wezid so ceciful su tazeviz sehoj fojo husuge rolafa.\"`]"
+  },
+  {
+   "id": "x475",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Bika wajih lojo la rurez mi 2 cazete lov figuleni rigi rog, cohiha zov 2 fecegiv je poz.\"`]"
+  },
+  {
+   "id": "x476",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"WimazatOzuv.kumogigafOsen\"`]"
+  },
+  {
+   "id": "x477",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Diteda\"`]"
+  },
+  {
+   "id": "x478",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]"
+  },
+  {
+   "id": "x479",
+   "chain": "-ios class chain:**/*[`name == \"HaguhoCuzal.marivoDigivo\" AND enabled == false`]"
+  },
+  {
+   "id": "x480",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name CONTAINS \"Sosedeki bihi\"`]"
+  },
+  {
+   "id": "x481",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x482",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"FetuwozaNihelavAvuv.kamOseberor\"`]"
+  },
+  {
+   "id": "x483",
+   "skip": true,
+   "reason": "numeric comparison operator on attribute not supported in class chain predicates"
+  },
+  {
+   "id": "x484",
+   "chain": "-ios class chain:**/*[`label == \"a\nb\"`]"
+  },
+  {
+   "id": "x485",
+   "skip": true,
+   "reason": "following-sibling axis and position() not supported in class chain"
+  },
+  {
+   "id": "x486",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1\" AND label CONTAINS \"liturefuku Bevef Daw\"`]"
+  },
+  {
+   "id": "x487",
+   "skip": true,
+   "reason": "preceding-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x488",
+   "skip": true,
+   "reason": "last() positional function not supported in class chain"
+  },
+  {
+   "id": "x489",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\" AND label == \"Doso mi je dobe\"`]"
+  },
+  {
+   "id": "x490",
+   "chain": "-ios class chain:**/*[`name == \"a\" AND label == \"b\"`]"
+  },
+  {
+   "id": "x491",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"FetuwozaNihelavAvuv.mipunaco\"`]"
+  },
+  {
+   "id": "x492",
+   "skip": true,
+   "reason": "outer positional index on multi-step parent/child path cannot be expressed in class chain"
+  },
+  {
+   "id": "x493",
+   "chain": "-ios class chain:**/*[`value CONTAINS \"Kup sefasi.\" AND value CONTAINS \"Vik fecegiv je poz.\"`]"
+  },
+  {
+   "id": "x494",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Fiwit Hoj\"`]"
+  },
+  {
+   "id": "x495",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Taka\"`][1]"
+  },
+  {
+   "id": "x496",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pako geviv: Vq1\"`]"
+  },
+  {
+   "id": "x497",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name CONTAINS \"CizuBubezotOcahijaLenu.sedunElerozegaCawogeg\"`]"
+  },
+  {
+   "id": "x498",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`value == \"KO\"`]"
+  },
+  {
+   "id": "x499",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"0 hopetanatiden jumumol\"`]"
+  },
+  {
+   "id": "x500",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x501",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"T tete goded\"`]"
+  },
+  {
+   "id": "x502",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Nofe tazeviz laciwuj\"`]"
+  },
+  {
+   "id": "x503",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Picama tonodo t roki sedale mipunaco gisu cacu meb lilicep navecuhu havilazijik.\"`]"
+  },
+  {
+   "id": "x504",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x505",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"FohuVeluHasIkucilelerovUgit.voceseruBiful\"`]"
+  },
+  {
+   "id": "x506",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x507",
+   "skip": true,
+   "reason": "ends-with() and text() functions not supported in class chain"
+  },
+  {
+   "id": "x508",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"HosidoLitokazajiCimo.dijivOdozev\"`][1]"
+  },
+  {
+   "id": "x509",
+   "skip": true,
+   "reason": "positional predicate [2] combined with attribute predicate cannot be reliably expressed in class chain"
+  },
+  {
+   "id": "x510",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vilokor\"`][3]"
+  },
+  {
+   "id": "x511",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Kop velotop zir meb nul la nahinuh\"`]"
+  },
+  {
+   "id": "x512",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x513",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x514",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Fej\"`]"
+  },
+  {
+   "id": "x515",
+   "chain": "-ios class chain:**/*[`name BEGINSWITH \"ab\"`]"
+  },
+  {
+   "id": "x516",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Nozod hom\" AND enabled == true`]"
+  },
+  {
+   "id": "x517",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Tete Vq1, pako geviv\" AND label CONTAINS \"Vq2\"`]"
+  },
+  {
+   "id": "x518",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x519",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[2]"
+  },
+  {
+   "id": "x520",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.vufeputekUgucelu\" AND label CONTAINS \"Ricorikup Hohaveh\"`]"
+  },
+  {
+   "id": "x521",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Namatir wepes je dobe\"`]"
+  },
+  {
+   "id": "x522",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Bika mufig rigi lojo la ri\"`]"
+  },
+  {
+   "id": "x523",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Fericow goz pobi fodani, Lenapa gusuri, RI\"`]"
+  },
+  {
+   "id": "x524",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"FogigIpavoWibi.mipunaco\"`]"
+  },
+  {
+   "id": "x525",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x526",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Meli bika tazeviz\" OR name CONTAINS \"Jeb fabis tuve\"`]"
+  },
+  {
+   "id": "x527",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vilokor\"`]"
+  },
+  {
+   "id": "x528",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name CONTAINS \"VegAluGezamIrez.kusibEtapAjijo\"`]"
+  },
+  {
+   "id": "x529",
+   "skip": true,
+   "reason": "child element existence check in predicate not supported in class chain"
+  },
+  {
+   "id": "x530",
+   "skip": true,
+   "reason": "malformed XPath expression"
+  },
+  {
+   "id": "x531",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`name == \"FetuwozaNihelavAvuv.jizobawUwohacan\"`]"
+  },
+  {
+   "id": "x532",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Vq1 je Vq2.\"`]"
+  },
+  {
+   "id": "x533",
+   "chain": "-ios class chain:**/XCUIElementTypeCell/XCUIElementTypeButton"
+  },
+  {
+   "id": "x534",
+   "skip": true,
+   "reason": "contains(.) references element text content, not an attribute; not supported in class chain"
+  },
+  {
+   "id": "x535",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"limazene migewovig.\"`]"
+  },
+  {
+   "id": "x536",
+   "chain": "-ios class chain:**/*[`(name == \"a\" OR name == \"b\") AND (label == \"c\" OR label == \"d\")`]"
+  },
+  {
+   "id": "x537",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Cac luvuzapagu tosu\"`]"
+  },
+  {
+   "id": "x538",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label == \"Puba sefasi\"`]"
+  },
+  {
+   "id": "x539",
+   "skip": true,
+   "reason": "XPath union operator '|' with conditional not() and parent:: cannot be expressed as a single class chain"
+  },
+  {
+   "id": "x540",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`value == \"LO\"`]"
+  },
+  {
+   "id": "x541",
+   "chain": "-ios class chain:**/*[`(name == \"a\" OR label == \"b\") AND value == \"c\"`]"
+  },
+  {
+   "id": "x542",
+   "skip": true,
+   "reason": "last() positional function not supported in class chain"
+  },
+  {
+   "id": "x543",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Hero Mipunaco\"`]"
+  },
+  {
+   "id": "x544",
+   "chain": "-ios class chain:**/XCUIElementTypeTextField[`label CONTAINS \"Fowani je namatir, £2 so dom juguwoj fowani zov hat namatir.\"`]"
+  },
+  {
+   "id": "x545",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Lugatej pejun huregad\"`]"
+  },
+  {
+   "id": "x546",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.zuzavilEgawiv\" AND label == \"Lugatej wisawu\"`]"
+  },
+  {
+   "id": "x547",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x548",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"DacinIjaVudaKecemoRisu.fiwobozokeZutaralEboBerutOzok\" AND label == \"Jaluzamiv\"`]"
+  },
+  {
+   "id": "x549",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Logozeb gohaz, Lenapa gusuri, RI\"`]"
+  },
+  {
+   "id": "x550",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`visible == true`]"
+  },
+  {
+   "id": "x551",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Wuwisivopu Galufaz Poz Gohaz dobe\"`]"
+  },
+  {
+   "id": "x552",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Gojo fo\"`]"
+  },
+  {
+   "id": "x553",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Ge birel\"`]"
+  },
+  {
+   "id": "x554",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Luzaf jutal (1 rog je 5 banadi)\"`]"
+  },
+  {
+   "id": "x555",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"2 fecegiv je poz!\"`]"
+  },
+  {
+   "id": "x556",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Picama lugatej bika tuve laciwuj bi pi hat wekukos bika miwokub. Zov cuba 180 lide rese dom rog toral dom rigi sibo je tafiz.\"`]"
+  },
+  {
+   "id": "x557",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pekufes Lowefore Fika\"`]"
+  },
+  {
+   "id": "x558",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x559",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Pekufes Ce\"`]"
+  },
+  {
+   "id": "x560",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Rigi gohaz gusuri\"`]"
+  },
+  {
+   "id": "x561",
+   "skip": true,
+   "reason": "XPath union operator '|' cannot be expressed as a single class chain"
+  },
+  {
+   "id": "x562",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Pajap goz dobe gatejese\"`]"
+  },
+  {
+   "id": "x563",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"FetuwozaNihelavAvuv.jizobawUwohacan\"`]"
+  },
+  {
+   "id": "x564",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"taka_vawotub_giwap\"`][1]"
+  },
+  {
+   "id": "x565",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"3398\"`]"
+  },
+  {
+   "id": "x566",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dewujumu wezujewab\"`]"
+  },
+  {
+   "id": "x567",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Dab je tafiz\"`]"
+  },
+  {
+   "id": "x568",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Vale kared, Vq1\"`]"
+  },
+  {
+   "id": "x569",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Vq1\"`]"
+  },
+  {
+   "id": "x570",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Doso mi\"`]"
+  },
+  {
+   "id": "x571",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Picama rajer t ruliv nepacu.\"`]"
+  },
+  {
+   "id": "x572",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Busu camenup kon zov cog rufosi je farowos votu bika tazeviz:\"`]"
+  },
+  {
+   "id": "x573",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Mu je Rigi Gohaz\"`]"
+  },
+  {
+   "id": "x574",
+   "skip": true,
+   "reason": "last() positional function not supported in class chain"
+  },
+  {
+   "id": "x575",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\n7393\"`][1]"
+  },
+  {
+   "id": "x576",
+   "skip": true,
+   "reason": "parent:: axis not supported in class chain"
+  },
+  {
+   "id": "x577",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Lahe:\"`]"
+  },
+  {
+   "id": "x578",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"FetuwozaNihelavAvuv.hamahiduZefopihi\"`]"
+  },
+  {
+   "id": "x579",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hicepe\"`]"
+  },
+  {
+   "id": "x580",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"WefaniBedufeDanu.gotePebazoh\" AND enabled == true`]"
+  },
+  {
+   "id": "x581",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"a\"`]"
+  },
+  {
+   "id": "x582",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x583",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"SihiBi.pusasePejazuweVobofe\"`]"
+  },
+  {
+   "id": "x584",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Dobe teg\" AND enabled == true`]"
+  },
+  {
+   "id": "x585",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"jila\"`]"
+  },
+  {
+   "id": "x586",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Nebonozopurus\"`]"
+  },
+  {
+   "id": "x587",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Dobe monuw teg \" AND enabled == false`]"
+  },
+  {
+   "id": "x588",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Bedoce\"`]"
+  },
+  {
+   "id": "x589",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Navecuhu laciwuj\"`]"
+  },
+  {
+   "id": "x590",
+   "chain": "-ios class chain:**/*[`(name == \"Fej bihi tete Vq1, jeb t fej bihi\" OR name == \"Bihi Vq1\") AND accessible == true`]"
+  },
+  {
+   "id": "x591",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.jibikIhofe\" AND label CONTAINS \"Namatir ditar\"`]"
+  },
+  {
+   "id": "x592",
+   "chain": "-ios class chain:**/*[`value CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x593",
+   "skip": true,
+   "reason": "@selected attribute not reliably supported in class chain predicates"
+  },
+  {
+   "id": "x594",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Bika mipunaco zuf nemu facelan ri\"`]"
+  },
+  {
+   "id": "x595",
+   "skip": true,
+   "reason": "matches() function not supported in class chain"
+  },
+  {
+   "id": "x596",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"a\" AND NOT label CONTAINS \"b\"`]"
+  },
+  {
+   "id": "x597",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"waviseh risepa\"`]"
+  },
+  {
+   "id": "x598",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Wifepum ho\"`]"
+  },
+  {
+   "id": "x599",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Zov zir meb la farucevo teg su rociri Hijareci Logozeb tazeviz\"`]"
+  },
+  {
+   "id": "x600",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Dobe rolafa: \"`]"
+  },
+  {
+   "id": "x601",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Hero Sosedeki laciwuj\"`]"
+  },
+  {
+   "id": "x602",
+   "skip": true,
+   "reason": "string-length() function not supported in class chain"
+  },
+  {
+   "id": "x603",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Vale\"`]"
+  },
+  {
+   "id": "x604",
+   "skip": true,
+   "reason": "descendant element existence check in predicate not supported in class chain"
+  },
+  {
+   "id": "x605",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"DacinIjaVudaKecemoRisu.jibikIhofe\" AND label CONTAINS \"Dikasod ditar: £\"`]"
+  },
+  {
+   "id": "x606",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][1]"
+  },
+  {
+   "id": "x607",
+   "skip": true,
+   "reason": "upper-case() function not supported in class chain"
+  },
+  {
+   "id": "x608",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`enabled == false`]"
+  },
+  {
+   "id": "x609",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"WOJ\"`]"
+  },
+  {
+   "id": "x610",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Vagohap Runero\"`]"
+  },
+  {
+   "id": "x611",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Vq1\"`]"
+  },
+  {
+   "id": "x612",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Zov cuba hibimaw rorefek mi\"`]"
+  },
+  {
+   "id": "x613",
+   "chain": "-ios class chain:**/XCUIElementTypeImage[`name == \"sibo_gasupe\"`]"
+  },
+  {
+   "id": "x614",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Rurez\" AND label CONTAINS \"mazejuz:\"`]"
+  },
+  {
+   "id": "x615",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x616",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Sosedeki gatejese\"`]"
+  },
+  {
+   "id": "x617",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Zov'di nofezi je foba t lefe jutal ho\"`]"
+  },
+  {
+   "id": "x618",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Sehoj dom fabis tuve cejewazipi votu ce, jeb dom namatir zov varu je dobe votu.\"`]"
+  },
+  {
+   "id": "x619",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"WefaniBedufeDanu.gotePebazoh\"`]"
+  },
+  {
+   "id": "x620",
+   "skip": true,
+   "reason": "descendant element check in predicate [.//...] not supported in class chain"
+  },
+  {
+   "id": "x621",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x622",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"lojo la peworumezop vamalul rese bika razuw.\"`]"
+  },
+  {
+   "id": "x623",
+   "chain": "-ios class chain:**/XCUIElementTypeCell/**/XCUIElementTypeButton"
+  },
+  {
+   "id": "x624",
+   "skip": true,
+   "reason": "ancestor:: axis not supported in class chain"
+  },
+  {
+   "id": "x625",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`NOT name == \"a\"`]"
+  },
+  {
+   "id": "x626",
+   "chain": "-ios class chain:**/XCUIElementTypeCell[2]/XCUIElementTypeButton"
+  },
+  {
+   "id": "x627",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x628",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Picama minevili dom fabis tuve zov'vu la wigobur kop gohaz votu. Kame gisu pi kevoza nilani luvuce kesur.\"`]"
+  },
+  {
+   "id": "x629",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`name == \"Lugatej gisu zov cuba meja goz juhilibehu dom sonib, Nepureze, hilubodamo\"`][2]"
+  },
+  {
+   "id": "x630",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Lulik gusuri teg Vq1 jidur figuleni\"`]"
+  },
+  {
+   "id": "x631",
+   "chain": "-ios class chain:**/*[`label == \"Fej tete, Bevef Daw\"`]"
+  },
+  {
+   "id": "x632",
+   "chain": "-ios class chain:**/XCUIElementTypeSecureTextField[`name == \"TinehaniDezirivepomuTija.mipunaco\"`]"
+  },
+  {
+   "id": "x633",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Riza Vozime Dina\"`]"
+  },
+  {
+   "id": "x634",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x635",
+   "chain": "-ios class chain:**/*[`name == \"Bika sefasi zad Vq1 Vq2\"`]"
+  },
+  {
+   "id": "x636",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Bika fabis tuve devihib\"`]"
+  },
+  {
+   "id": "x637",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label == \"Bika wacisugik mazejuz cuba zecu jizorawohuni vamalul\"`]"
+  },
+  {
+   "id": "x638",
+   "skip": true,
+   "reason": "numeric comparison operator on attribute not supported in class chain predicates"
+  },
+  {
+   "id": "x639",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`value == \"Su pejun zad zecu muho je zov.\"`]"
+  },
+  {
+   "id": "x640",
+   "chain": "-ios class chain:**/*[`label == \"Jolezu mazejuz - rajer bika riv mazejuz\"`]"
+  },
+  {
+   "id": "x641",
+   "chain": "-ios class chain:**/*[`name CONTAINS \"Bika Fabis tuve so liv je mefizo mi \"`]"
+  },
+  {
+   "id": "x642",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Revoje Fabis nig se so mi gakiwoso\"`]"
+  },
+  {
+   "id": "x643",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"£\"`]"
+  },
+  {
+   "id": "x644",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Dobe teg\"`][1]"
+  },
+  {
+   "id": "x645",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x646",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label CONTAINS \"Nepureze hilubodamo\"`]"
+  },
+  {
+   "id": "x647",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Tazeviz dememer\"`]"
+  },
+  {
+   "id": "x648",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Hicepe Wacisugik mazejuz Vq1\"`]"
+  },
+  {
+   "id": "x649",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Lefe jutal (6 banadi je 5 weboc)\"`]"
+  },
+  {
+   "id": "x650",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.jubuferokIzinaw\" AND label == \"Potepiv Galufaz Poz Gohaz\"`]"
+  },
+  {
+   "id": "x651",
+   "chain": "-ios class chain:**/*[`label == \"C:\\\\dir\"`]"
+  },
+  {
+   "id": "x652",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"HosidoLitokazajiCimo.dijivOdozev\"`]"
+  },
+  {
+   "id": "x653",
+   "skip": true,
+   "reason": "XPath union operator '|' with different path structures cannot be expressed as a single class chain"
+  },
+  {
+   "id": "x654",
+   "chain": "-ios class chain:XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton"
+  },
+  {
+   "id": "x655",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Vq1\"`]"
+  },
+  {
+   "id": "x656",
+   "skip": true,
+   "reason": "@placeholderValue attribute not supported in class chain predicates"
+  },
+  {
+   "id": "x657",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x658",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Hero Mipunaco\"`]"
+  },
+  {
+   "id": "x659",
+   "chain": "-ios class chain:**/*[`name == \"WefaniBedufeDanu.jubuferokIzinaw\" AND label CONTAINS \"Pefu laciwuj\"`]"
+  },
+  {
+   "id": "x660",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name CONTAINS \"Sefasi PO:\"`]"
+  },
+  {
+   "id": "x661",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[2]"
+  },
+  {
+   "id": "x662",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Fowani wumesok muhevuw bika namatir ditar. Zov cuba £20.00 felawuhuh ho bika juvira ditar.\"`]"
+  },
+  {
+   "id": "x663",
+   "chain": "-ios class chain:**/*[`name == \"Leba Mipunaco?\"`]"
+  },
+  {
+   "id": "x664",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Zucubamo Wojav Tosu\"`]"
+  },
+  {
+   "id": "x665",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name CONTAINS \"Disu mazejuz\"`]"
+  },
+  {
+   "id": "x666",
+   "chain": "-ios class chain:**/*[`label CONTAINS \"Namatir wepes je dobe\" AND enabled == true`]"
+  },
+  {
+   "id": "x667",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Namatir ditar\"`]"
+  },
+  {
+   "id": "x668",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Tazeviz dememer\"`]"
+  },
+  {
+   "id": "x669",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`label CONTAINS \"Sefasi so meb vusalisafe\"`]"
+  },
+  {
+   "id": "x670",
+   "skip": true,
+   "reason": "count() function not supported in class chain"
+  },
+  {
+   "id": "x671",
+   "skip": true,
+   "reason": "following-sibling axis not supported in class chain"
+  },
+  {
+   "id": "x672",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Nehavona demimel su tazeviz\"`]"
+  },
+  {
+   "id": "x673",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`label CONTAINS \"Giji Ricorikup Hohaveh\"`]"
+  },
+  {
+   "id": "x674",
+   "chain": "-ios class chain:**/XCUIElementTypeButton[`name == \"Nig bika riv wisawu\"`]"
+  },
+  {
+   "id": "x675",
+   "chain": "-ios class chain:**/XCUIElementTypeOther[`label == \"Logozeb gohaz, Lenapa gusuri, RIG\"`]"
+  },
+  {
+   "id": "x676",
+   "skip": true,
+   "reason": "matches() function not supported in class chain"
+  },
+  {
+   "id": "x677",
+   "chain": "-ios class chain:**/XCUIElementTypeStaticText[`name == \"Tefoku zov hat namatir wepes, zov lojo varu je nig bika juvira wisawu\"`]"
+  },
+  {
+   "id": "x678",
+   "chain": "-ios class chain:**/*[`name == \"a\"`]"
+  }
+ ]
+}
