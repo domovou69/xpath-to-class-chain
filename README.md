@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/domovou69/xpath-to-class-chain/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/domovou69/xpath-to-class-chain/actions/workflows/test.yml)
 
+**Articles:** [XPath to iOS Class Chain: a converter you can trust, and when it is actually faster](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-a-converter-you-can-trust-and-when-it-is-actually-faster-c6o) (dev.to)
+
 Convert and optimize iOS XPath locators to iOS Class Chain selectors for Appium,
 with a built-in linter and an optimizer pass that recovers chains which would otherwise be rejected.
 
