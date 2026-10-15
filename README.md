@@ -43,15 +43,15 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 
 |                                                | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Time, min | Output tokens (thinking) | Cost per run (678 locators) |
 | ---------------------------------------------- | ---------------- | ------------- | -------------------------- | ----------------------- | --------- | ------------------------ | --------------------------- |
-| **Converter**                                  | **95.8**         | **91.8**      | 100 %                      | 0                       | —         | —                        | free                        |
-| Opus 5.5 - low, no rules (plain request)       | 95.0             | 81.9          | 96.7 %                     | 4                       | 7.1       | 57k (14k)                | $2.04                       |
-| Opus 5.5 - low, with rules                     | 95.0             | 86.0          | 96.7 %                     | 0                       | 5.1       | 45k (4k)                 | $1.72                       |
-| Sonnet 5.5 - low, no rules (plain request)     | 94.8             | 68.6          | 95.9 %                     | 7                       | 5.2       | 58k (15k)                | $1.03                       |
-| Sonnet 5.5 - low, with rules                   | 95.0             | 83.8          | 96.4 %                     | 0                       | 8.9       | 93k (32k)                | $1.58                       |
-| Haiku 5.5 - medium, no rules (plain request)   | 94.1             | 63.8          | 93.8 %                     | 4                       | 6.0       | 99k (45k)                | $0.28                       |
-| Haiku 5.5 - medium, with rules                 | 94.8             | 71.1          | 95.7 %                     | 5                       | 5.7       | 102k (45k)               | $0.27                       |
-| Sonnet 5 - low, no rules (plain request) ¹     | 95.2             | 56.3          | 94.5 %                     | 12                      | 21.8      | 140k (81k)               | $2.27                       |
-| Sonnet 4.6 - low, no rules, 7 × 100 chunks ²   | 89.1             | 48.6          | 86.5 %                     | 39                      | 23.1      | ≈100k (51k)              | $2.58                       |
+| **Converter**                                  | **96.0**         | **93.6**      | 100 %                      | 0                       | —         | —                        | free                        |
+| Opus 5.5 - low, no rules (plain request)       | 95.1             | 81.9          | 96.7 %                     | 4                       | 7.1       | 57k (14k)                | $2.04                       |
+| Opus 5.5 - low, with rules                     | 95.0             | 86.9          | 96.7 %                     | 0                       | 5.1       | 45k (4k)                 | $1.72                       |
+| Sonnet 5.5 - low, no rules (plain request)     | 94.8             | 68.5          | 95.9 %                     | 7                       | 5.2       | 58k (15k)                | $1.03                       |
+| Sonnet 5.5 - low, with rules                   | 95.0             | 84.7          | 96.4 %                     | 0                       | 8.9       | 93k (32k)                | $1.58                       |
+| Haiku 5.5 - medium, no rules (plain request)   | 94.1             | 63.6          | 93.8 %                     | 4                       | 6.0       | 99k (45k)                | $0.28                       |
+| Haiku 5.5 - medium, with rules                 | 94.8             | 72.0          | 95.7 %                     | 5                       | 5.7       | 102k (45k)               | $0.27                       |
+| Sonnet 5 - low, no rules (plain request) ¹     | 95.2             | 56.5          | 94.5 %                     | 12                      | 21.8      | 140k (81k)               | $2.27                       |
+| Sonnet 4.6 - low, no rules, 7 × 100 chunks ²   | 89.1             | 48.9          | 86.5 %                     | 39                      | 23.1      | ≈100k (51k)              | $2.58                       |
 | Haiku 4.5 - medium, no rules (plain request) ³ | 59.6             | 18.1          | 53.7 %                     | 59                      | 6.0       | 44k (3k)                 | $0.61                       |
 
 ¹ Sonnet 5: took 21.8 min and 140k output tokens (81k thinking) against 5.2 min and 58k / 15k for Sonnet 5.5 in the same plain request.
@@ -60,7 +60,7 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 
 ³ Haiku 4.5: in all three runs it wrote a Python converter instead of converting the locators itself. Only one run (shown) ran its script and returned all 678 answers; the other two answered 100 of 678 and none, and asked to run the script themselves.
 
-**R** is the share of real-world locators that got a correct chain, out of those that have one (a documented approximation counts half; a skipped, wrong or invalid one counts 0). **S** is the same score on the 114 edge cases, weighted by group. Both are out of 100. "Converted vs the converter" counts usable chains against the 579 the converter produces. One run per model, so differences of about 3 points in S are noise.
+**R** is the share of real-world locators that got a correct chain, out of those that have one (a documented approximation counts half; a skipped, wrong or invalid one counts 0). **S** is the same score on the 114 edge cases, weighted by group. Both are out of 100. "Converted vs the converter" counts usable chains against the 579 the converter produces. One run per model, so differences of about 3 points in S are noise. The converter's 96.0 and 93.6 are the ceiling of this scheme, not a shortfall: the locators it cannot convert exactly (grouped and per-parent positions, `(…/child::*[2])[n]`, nested matching containers) have no exact class chain, so a documented approximation earns half credit.
 
 The same results as charts: S against cost per run, for the plain request and for the rules prompt.
 
@@ -327,6 +327,8 @@ Status values used in `skipped[]`:
 > ⚠️ **Positional indexes are not equivalent between the two languages.** In XPath, `//X[2]` means "every `X` that is the 2nd `X` child of its parent" — it can match many elements. In a Class Chain, `**/X[2]` means "the 2nd element of the matched set" — it matches at most one. Indexes are passed through unchanged, so a converted locator that uses `[n]` may select a different element than the original. Review indexed locators by hand after converting.
 >
 > A grouped position `(//X)[n]` converts to `**/X[n]`, and `(//X)[last()]` to `**/X[-1]`; both are flagged with a `warning`. XPath counts the matches in document order, while WDA counts a chain's matches breadth-first, so the two pick the same element only when all matches sit at the same depth (for example, the rows of one list). See [On the device](#on-the-device).
+>
+> Two more approximations of the same kind, both flagged with a `warning`. (1) An outer index after a path that continues past a child step, `(//X/child::*[2])[n]` or `(//Cell[@name="a"]/Button[2])[2]`, is moved onto the parent: `**/X[n]/*[2]`. A chain has no way to number the matches of the last step across all parents, so the chain picks the `n`-th matching parent and then its 2nd child. The two agree only when every matching parent has enough children and the matches do not nest. (2) When the matches nest (`(//*[contains(@label,"a")]/child::*[contains(@label,"a")])[n]`, a matching container inside another), the breadth-first order above also reorders them; on a device the chain picked a different element than the XPath. These have no exact class chain, so they count as documented approximations (half credit) in R and S.
 
 ## What it skips on purpose
 

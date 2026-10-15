@@ -1,17 +1,17 @@
 {
  "summary": {
   "name": "converter",
-  "R": 95.8,
-  "S": 91.8,
+  "R": 96,
+  "S": 93.6,
   "Scat": {
    "A": 15,
    "B": 15,
    "C": 15,
    "D": 12,
-   "E": 5,
+   "E": 6,
    "F": 10,
    "G": 9.642857142857142,
-   "H": 5.142857142857143,
+   "H": 6,
    "R": 5
   },
   "corpusDen": 490,
@@ -28,8 +28,8 @@
   },
   "spec": {
    "CORRECT": 76,
-   "CORRECT-SKIP": 24,
-   "GAP": 1,
+   "CORRECT-SKIP": 25,
+   "GAP": 0,
    "DRIFT": 13,
    "WRONG": 0,
    "INVALID": 0,
@@ -1363,7 +1363,7 @@
    "hits": 1,
    "trials": 301,
    "verdict": "DRIFT",
-   "documented": false,
+   "documented": true,
    "inDen": true
   },
   "x113": {
@@ -1788,7 +1788,7 @@
    "hits": 112,
    "trials": 200,
    "verdict": "DRIFT",
-   "documented": false,
+   "documented": true,
    "inDen": true
   },
   "x149": {
@@ -3458,8 +3458,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "skipped_validation_failed",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x291": {
    "orig": "L248",
@@ -5838,7 +5838,7 @@
    "hits": 85,
    "trials": 200,
    "verdict": "DRIFT",
-   "documented": false,
+   "documented": true,
    "inDen": true
   },
   "x493": {

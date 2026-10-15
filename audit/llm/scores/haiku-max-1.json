@@ -28,8 +28,8 @@
   },
   "spec": {
    "CORRECT": 56,
-   "CORRECT-SKIP": 35,
-   "GAP": 19,
+   "CORRECT-SKIP": 36,
+   "GAP": 18,
    "DRIFT": 1,
    "WRONG": 2,
    "INVALID": 1,
@@ -3380,8 +3380,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "replace() is an XPath 2.0 function; WDA's XPath engine is XPath 1.0, so the XPath errors instead of matching",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x291": {
    "orig": "L248",

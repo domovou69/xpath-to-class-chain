@@ -2,7 +2,7 @@
  "summary": {
   "name": "sonnet-low-1",
   "R": 94.8,
-  "S": 68.6,
+  "S": 68.5,
   "Scat": {
    "A": 14,
    "B": 11,
@@ -11,7 +11,7 @@
    "E": 4,
    "F": 0,
    "G": 7.5,
-   "H": 5.142857142857143,
+   "H": 5,
    "R": 0
   },
   "corpusDen": 490,
@@ -3444,7 +3444,7 @@
    "hits": 52,
    "trials": 300,
    "verdict": "CORRECT",
-   "inDen": true
+   "inDen": false
   },
   "x291": {
    "orig": "L248",

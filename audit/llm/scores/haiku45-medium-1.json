@@ -2739,7 +2739,7 @@
    "cat": "H",
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "verdict": "MISSING",
-   "inDen": true
+   "inDen": false
   },
   "x291": {
    "orig": "L248",

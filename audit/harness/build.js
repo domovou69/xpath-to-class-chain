@@ -41,8 +41,8 @@ const CORPUS_WRONG = {
 const CORPUS_DRIFT = {
   L013: [true, 'inner per-parent [2] vs global [2] (README positional warning)'], L120: [true, 'per-parent [1] vs global [1]'],
   L349: [true, 'per-parent [1] vs global [1]'], L350: [true, 'per-parent [2] vs global [2]'], L556: [true, 'child::*[1] per parent vs global [1]'],
-  L174: [false, 'hyp. 7: outer index moved onto the parent; equal only when every matched parent has ≥2 children and matches do not nest'],
-  L225: [false, 'nested matching containers: XCTest query order is breadth-first, not document order (confirmed on device, Phase 2)'],
+  L174: [true, 'hyp. 7: outer index moved onto the parent; equal only when every matched parent has ≥2 children and matches do not nest'],
+  L225: [true, 'nested matching containers: XCTest query order is breadth-first, not document order (confirmed on device, Phase 2)'],
   L062: [true, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
   L070: [true, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
   L081: [true, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order'],
@@ -124,10 +124,10 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
   B09: ['CORRECT'], B10: ['CORRECT'], B11: ['CORRECT'], B12: ['CORRECT'], B13: ['CORRECT-SKIP'], B14: ['CORRECT'], B15: ['CORRECT'], B16: ['CORRECT'], B17: ['CORRECT'], B18: ['CORRECT'],
   C01: ['CORRECT'], C02: ['CORRECT'], C03: ['DRIFT', null, true], C04: ['DRIFT', null, true], C05: ['CORRECT-SKIP'], C06: ['CORRECT-SKIP'], C07: ['CORRECT-SKIP'], C08: ['CORRECT'], C09: ['CORRECT'], C10: ['CORRECT'], C11: ['CORRECT'], C12: ['CORRECT'],
   D01: ['CORRECT'], D02: ['CORRECT'], D03: ['CORRECT'], D04: ['CORRECT'], D05: ['CORRECT'], D06: ['CORRECT'], D07: ['CORRECT'], D08: ['CORRECT'], D09: ['CORRECT'], D10: ['CORRECT'], D11: ['CORRECT'], D12: ['CORRECT'],
-  E01: ['DRIFT', null, true], E02: ['DRIFT', null, true], E03: ['DRIFT', null, true], E04: ['CORRECT-SKIP'], E05: ['DRIFT', null, true], E06: ['DRIFT', null, true], E07: ['CORRECT-SKIP'], E08: ['CORRECT-SKIP'], E09: ['DRIFT', null, true], E10: ['CORRECT-SKIP'], E11: ['CORRECT-SKIP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, false], E14: ['DRIFT', null, true],
+  E01: ['DRIFT', null, true], E02: ['DRIFT', null, true], E03: ['DRIFT', null, true], E04: ['CORRECT-SKIP'], E05: ['DRIFT', null, true], E06: ['DRIFT', null, true], E07: ['CORRECT-SKIP'], E08: ['CORRECT-SKIP'], E09: ['DRIFT', null, true], E10: ['CORRECT-SKIP'], E11: ['CORRECT-SKIP'], E12: ['CORRECT-SKIP'], E13: ['DRIFT', null, true], E14: ['DRIFT', null, true],
   F01: ['CORRECT'], F02: ['CORRECT-SKIP'], F03: ['CORRECT-SKIP'], F04: ['CORRECT'], F05: ['CORRECT-SKIP'], F06: ['CORRECT-SKIP'], F07: ['CORRECT'], F08: ['CORRECT'],
   G01: ['CORRECT'], G02: ['CORRECT'], G03: ['CORRECT'], G04: ['CORRECT'], G05: ['CORRECT'], G06: ['CORRECT'], G07: ['CORRECT'], G08: ['CORRECT'], G09: ['CORRECT'], G10: ['CORRECT'], G11: ['DRIFT', null, true], G12: ['CORRECT'], G13: ['CORRECT'], G14: ['CORRECT'],
-  H01: ['CORRECT'], H02: ['CORRECT'], H03: ['CORRECT'], H04: ['CORRECT'], H05: ['CORRECT'], H06: ['CORRECT'], H07: ['GAP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
+  H01: ['CORRECT'], H02: ['CORRECT'], H03: ['CORRECT'], H04: ['CORRECT'], H05: ['CORRECT'], H06: ['CORRECT'], H07: ['CORRECT-SKIP'], H08: ['CORRECT-SKIP'], H09: ['CORRECT-SKIP'], H10: ['DRIFT', null, true],
   R01: ['CORRECT'], R02: ['CORRECT-SKIP'], R03: ['CORRECT-SKIP'], R04: ['CORRECT-SKIP'],
   X01: ['CORRECT-SKIP'], X02: ['CORRECT-SKIP'], X03: ['CORRECT-SKIP'], X04: ['CORRECT'], X05: ['CORRECT'], X06: ['CORRECT-SKIP'], X07: ['CORRECT'],
 };
@@ -136,7 +136,8 @@ const SPEC = { // id: [verdict, rootCause|null, documented?]
 // an emitted approximation is DRIFT and stays in it (the rule audit/llm/score.js uses)
 // B03: no exact form since RC-D3 (doubleValue reads a numeric prefix), skipped like @value<5
 // C06 / C07: no exact form since C1 (MATCHES and U+00A0, .length in UTF-16 units)
-const NOT_EXPRESSIBLE = new Set(['F03', 'A13', 'B03', 'C06', 'C07', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
+// H07: replace() has no NSPredicate form; a MATCHES chain exists only for this literal pair, so it is not a conversion rule
+const NOT_EXPRESSIBLE = new Set(['H07', 'F03', 'A13', 'B03', 'C06', 'C07', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
 for (const r of spec) {
   let [verdict, rc, doc] = SPEC[r.id] || [];
   const e = r.runExpected, a = r.runActual, f = r.fixtureRun;

@@ -2,7 +2,7 @@
  "summary": {
   "name": "opus-low-2",
   "R": 95,
-  "S": 87.8,
+  "S": 88.7,
   "Scat": {
    "A": 15,
    "B": 15,
@@ -11,7 +11,7 @@
    "E": 4,
    "F": 10,
    "G": 9.642857142857142,
-   "H": 5.142857142857143,
+   "H": 6,
    "R": 5
   },
   "corpusDen": 490,
@@ -28,8 +28,8 @@
   },
   "spec": {
    "CORRECT": 74,
-   "CORRECT-SKIP": 30,
-   "GAP": 3,
+   "CORRECT-SKIP": 31,
+   "GAP": 2,
    "DRIFT": 7,
    "WRONG": 0,
    "INVALID": 0,
@@ -3433,8 +3433,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "replace() has no class chain equivalent",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x291": {
    "orig": "L248",
