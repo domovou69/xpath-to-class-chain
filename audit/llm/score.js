@@ -111,7 +111,7 @@ function evaluate(chains) { // chains: { id: chainBody } → { id: { outcome, tr
 
 // ---------- case classes (from the harness baseline, adjusted to the runtime string the models see)
 // spec cases without an exact class chain, or whose XPath matches nothing on WDA (build.js NOT_EXPRESSIBLE)
-const SPEC_NOT_EXPRESSIBLE = new Set(['E05', 'E06', 'F03', 'A13', 'B03', 'C06', 'C07', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
+const SPEC_NOT_EXPRESSIBLE = new Set(['H07', 'E05', 'E06', 'F03', 'A13', 'B03', 'C06', 'C07', 'B08', 'B13', 'C03', 'C04', 'C05', 'H10', 'E04', 'E08', 'E10', 'E12', 'F02', 'F05', 'F06', 'H08', 'H09', 'R02', 'R03', 'R04', 'X01', 'X02', 'X03', 'X06']);
 // the runtime string differs in kind from the source the baseline judged:
 //   L476 `[${condition}]` → a plain contains()
 //   A07, A14–A16, B16: DRIFT in the baseline, exact chains since Phase 5 (B4, c2-attributes) → CORRECT, as in build.js

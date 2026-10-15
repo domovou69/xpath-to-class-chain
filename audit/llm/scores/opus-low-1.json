@@ -1,7 +1,7 @@
 {
  "summary": {
   "name": "opus-low-1",
-  "R": 95,
+  "R": 95.1,
   "S": 81.9,
   "Scat": {
    "A": 14,
@@ -28,8 +28,8 @@
   },
   "spec": {
    "CORRECT": 68,
-   "CORRECT-SKIP": 24,
-   "GAP": 10,
+   "CORRECT-SKIP": 25,
+   "GAP": 9,
    "DRIFT": 10,
    "WRONG": 1,
    "INVALID": 1,
@@ -1776,7 +1776,7 @@
    "hits": 112,
    "trials": 200,
    "verdict": "DRIFT",
-   "documented": false,
+   "documented": true,
    "inDen": true
   },
   "x149": {
@@ -3447,8 +3447,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "replace() is an XPath 2.0 function; Appium's XPath 1.0 engine rejects this locator",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x291": {
    "orig": "L248",

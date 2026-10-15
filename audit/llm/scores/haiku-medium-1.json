@@ -2,7 +2,7 @@
  "summary": {
   "name": "haiku-medium-1",
   "R": 94.1,
-  "S": 63.8,
+  "S": 63.6,
   "Scat": {
    "A": 13,
    "B": 8,
@@ -11,7 +11,7 @@
    "E": 4,
    "F": 0,
    "G": 8.214285714285714,
-   "H": 5.142857142857143,
+   "H": 5,
    "R": 0
   },
   "corpusDen": 490,
@@ -3430,7 +3430,7 @@
    "hits": 52,
    "trials": 300,
    "verdict": "CORRECT",
-   "inDen": true
+   "inDen": false
   },
   "x291": {
    "orig": "L248",

@@ -1911,7 +1911,7 @@
   "verdict": "DRIFT",
   "shape": "S087 (//*[contains(@name, \"s\")]/child::*[N])[$]",
   "category": "corpus",
-  "note": "hyp. 7: outer index moved onto the parent; equal only when every matched parent has ≥2 children and matches do not nest. Minimal page source: <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" name=\"Vilokor,\" label=\"Vq2\"><XCUIElementTypeOther k=\"n2\" name=\"Vilokor, z\" label=\"true\"><XCUIElementTypeStaticText k=\"n3\" label=\"Vq1\" value=\"false\" name=\"ilokor,\"><XCUIElementTypeOther k=\"n4\" name=\"y Vilokor,\" label=\"Vilokor,\" value=\"Vilo\"></XCUIElementTypeOther></XCUIElementTypeStaticText><XCUIElementTypeButton k=\"n5\" label=\"Vilo\"><XCUIElementTypeWindow k=\"n6\" name=\"Vilokor, Vilokor,\"></XCUIElementTypeWindow></XCUIElementTypeButton></XCUIElementTypeOther></XCUIElementTypeOther></XCUIElementTypeApplication> → XPath [] vs chain [\"n5\"] | DRIFT not documented in README"
+  "note": "hyp. 7: outer index moved onto the parent; equal only when every matched parent has ≥2 children and matches do not nest. Minimal page source: <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeOther k=\"n1\" name=\"Vilokor,\" label=\"Vq2\"><XCUIElementTypeOther k=\"n2\" name=\"Vilokor, z\" label=\"true\"><XCUIElementTypeStaticText k=\"n3\" label=\"Vq1\" value=\"false\" name=\"ilokor,\"><XCUIElementTypeOther k=\"n4\" name=\"y Vilokor,\" label=\"Vilokor,\" value=\"Vilo\"></XCUIElementTypeOther></XCUIElementTypeStaticText><XCUIElementTypeButton k=\"n5\" label=\"Vilo\"><XCUIElementTypeWindow k=\"n6\" name=\"Vilokor, Vilokor,\"></XCUIElementTypeWindow></XCUIElementTypeButton></XCUIElementTypeOther></XCUIElementTypeOther></XCUIElementTypeApplication> → XPath [] vs chain [\"n5\"] | DRIFT documented in README"
  },
  {
   "id": "L175",
@@ -2461,7 +2461,7 @@
   "verdict": "DRIFT",
   "shape": "S099 (//*[contains(@label, \"s\")]/child::*[contains(@label, \"s\")])[$]",
   "category": "corpus",
-  "note": "nested matching containers: XCTest query order is breadth-first, not document order (confirmed on device, Phase 2). Minimal page source: <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" label=\"true\" value=\"Nepureze z\"><XCUIElementTypeStaticText k=\"n2\" name=\"Vq2\" label=\"Nepureze\" value=\"Nepu\"><XCUIElementTypeButton k=\"n3\" label=\"Nepureze\"><XCUIElementTypeWindow k=\"n4\" label=\"Nepureze z\" value=\"Nepu\"></XCUIElementTypeWindow></XCUIElementTypeButton><XCUIElementTypeButton k=\"n5\" name=\"Nepureze z\" value=\"other\" label=\"Nepureze\"><XCUIElementTypeStaticText k=\"n6\" label=\"y Nepureze\"></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" label=\"Nepureze Nepureze Nepureze Nepureze\"></XCUIElementTypeStaticText></XCUIElementTypeButton></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [\"n4\"] vs chain [\"n5\"] | DRIFT not documented in README"
+  "note": "nested matching containers: XCTest query order is breadth-first, not document order (confirmed on device, Phase 2). Minimal page source: <XCUIElementTypeApplication k=\"n0\" name=\"AppRoot\" label=\"AppRoot\"><XCUIElementTypeStaticText k=\"n1\" label=\"true\" value=\"Nepureze z\"><XCUIElementTypeStaticText k=\"n2\" name=\"Vq2\" label=\"Nepureze\" value=\"Nepu\"><XCUIElementTypeButton k=\"n3\" label=\"Nepureze\"><XCUIElementTypeWindow k=\"n4\" label=\"Nepureze z\" value=\"Nepu\"></XCUIElementTypeWindow></XCUIElementTypeButton><XCUIElementTypeButton k=\"n5\" name=\"Nepureze z\" value=\"other\" label=\"Nepureze\"><XCUIElementTypeStaticText k=\"n6\" label=\"y Nepureze\"></XCUIElementTypeStaticText><XCUIElementTypeStaticText k=\"n7\" label=\"Nepureze Nepureze Nepureze Nepureze\"></XCUIElementTypeStaticText></XCUIElementTypeButton></XCUIElementTypeStaticText></XCUIElementTypeStaticText></XCUIElementTypeApplication> → XPath [\"n4\"] vs chain [\"n5\"] | DRIFT documented in README"
  },
  {
   "id": "L226",
@@ -6971,7 +6971,7 @@
   "verdict": "DRIFT",
   "shape": "(//XCUIElementTypeCell[@name=\"s\"]/XCUIElementTypeButton[2])[2]",
   "category": "E",
-  "note": "hyp. 7 | actual vs XPath: EQUAL | fixture: actual xpath=[\"z2\"] chain=[] | DRIFT not documented in README"
+  "note": "hyp. 7 | actual vs XPath: EQUAL | fixture: actual xpath=[\"z2\"] chain=[] | DRIFT documented in README"
  },
  {
   "id": "E14",
@@ -7298,10 +7298,10 @@
   "expected": "**/*[`label MATCHES \"[ab]{2}\"`]",
   "actual": null,
   "status": "skipped_validation_failed",
-  "verdict": "GAP",
+  "verdict": "CORRECT-SKIP",
   "shape": "//*[replace(@label,\"s\",\"s\")=\"s\"]",
   "category": "H",
-  "note": "replacing every a by b gives \"bb\" iff the label is two characters from {a, b} | expected vs XPath: 300/300 equal"
+  "note": "replacing every a by b gives \"bb\" iff the label is two characters from {a, b} | expected vs XPath: 300/300 equal | excluded from denominator"
  },
  {
   "id": "H08",

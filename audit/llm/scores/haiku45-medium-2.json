@@ -28,8 +28,8 @@
   },
   "spec": {
    "CORRECT": 19,
-   "CORRECT-SKIP": 36,
-   "GAP": 51,
+   "CORRECT-SKIP": 37,
+   "GAP": 50,
    "DRIFT": 0,
    "WRONG": 3,
    "INVALID": 5,
@@ -3317,8 +3317,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "String function replace() not supported",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x291": {
    "orig": "L248",

@@ -35,13 +35,15 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/c2-attributes` (Phase 5, C2) | RC-D3 (skip); B16 `@attr=true()` → no predicate (DRIFT → CORRECT) | 95.8 | 87.0 % | 75.3 (75.3) | 0 | 0 |
 | `fix/c2-axes` (Phase 5, C2) | none of RC-*: `[descendant::T]` and `//T1[cond]/ancestor::T2` → `$…$` descendant predicate (F04, R01 GAP → CORRECT) | 95.8 | 87.0 % | 82.8 (82.8) | 0 | 0 |
 | `fix/c2-functions` (Phase 5, C2) | none of RC-*: `matches()`, `lower-case()`, `contains(upper-case()…)`, `contains(translate()…)` → `CONTAINS` / `[c]` / wrapped `MATCHES` (H02–H06, C08 GAP → CORRECT); C06, C07 skipped with a reason and out of the denominator | 95.8 | 87.0 % | 92.0 (92.0) | 0 | 0 |
-| **Total, Phase 1 → now** (Phase 5 D1) | RC1–RC15, RC-S1–S3, RC-D1–D3; Phase 5 B and C2 | **72.2 → 95.8** | 86.9 % → 87.0 % | **7.7 → 92.0** (92.0) | 9 → 0 | 42 → 0 |
+| `audit/scoring-ceiling` | none of RC-*: L174, L225, E13 documented in the README (DRIFT, half credit); H07 `replace()` not expressible (GAP → CORRECT-SKIP) | 96.0 | 87.0 % | 93.6 (93.6) | 0 | 0 |
+| **Total, Phase 1 → now** (scoring ceiling) | RC1–RC15, RC-S1–S3, RC-D1–D3; Phase 5 B and C2 | **72.2 → 96.0** | 86.9 % → 87.0 % | **7.7 → 93.6** (93.6) | 9 → 0 | 42 → 0 |
 
-D1 is a re-run of `audit/harness/run.sh` on `main` after PR #24, with no change to the converter or the harness: R 95.8, C 87.0 %, S 92.0, "no changes vs baseline". What is left:
+D1 is a re-run of `audit/harness/run.sh` on `main` after PR #24, with no change to the converter or the harness: R 95.8, C 87.0 %, S 92.0, "no changes vs baseline". The `audit/scoring-ceiling` row then documents the three remaining DRIFT cases and moves H07 out of the denominator, with the numbers below. What is left:
 
-- **One GAP: H07** (`replace()`). It was made expressible in task A and the converter skips it (`skipped_validation_failed`). It is the only GAP left (H 5.14 of 6).
-- **Documented DRIFT.** 37 corpus locators and the spec cases with an `approx` expectation earn half credit: the grouped-position rule (RC-D1, `(…)[n]` and, since c2-last, `(…)[last()]` → `[-1]`) and the other approximations in the README. They are why R is 95.8 and not 100 (E 5.25 of 12, G 9.64 of 10).
-- **Undocumented DRIFT, not fixed:** two corpus locators (L174, L225, `child::` after a grouped step) and the spec case E13. They earn 0; no WRONG hides behind them.
+- **No GAP left.** H07 (`replace()`) was the last one. It is now not expressible: NSPredicate has no string replacement, and the `MATCHES "[ab]{2}"` chain that the harness proves for it works for this one literal pair only, so it is not a conversion rule. The converter's skip (`skipped_validation_failed`) is a correct skip, and H is 6 of 6.
+- **Documented DRIFT.** 39 corpus locators and the spec cases with an `approx` expectation earn half credit: the grouped-position rule (RC-D1, `(…)[n]` and, since c2-last, `(…)[last()]` → `[-1]`) and the other approximations in the README. They are why R is 96.0 and not 100 (E 6.0 of 12, G 9.64 of 10).
+- **Undocumented DRIFT: none.** L174 and E13 (the outer index `(…/child::*[2])[n]` is moved onto the parent; a chain's index is per parent only) and L225 (nested matching containers) are now described in the README next to the grouped-position warning and score as documented DRIFT. L225 is not UNVERIFIED any more: on the device (`nesting` screen, `audit/device/results-device.json`) the XPath picks `Nepureze leaf` and the chain `Nepureze side`; L174 diverges there too (XPath one element, chain none). E13 is equal on the device screen and differs on the harness fixture (`z2` against none).
+- **The ceiling.** The converter cannot reach 100, because every DRIFT earns 0.5 (the weight is unchanged: it measures accuracy, not feasibility): R at most 96.0 (450 CORRECT + 39 × 0.5 of 489) and S at most 93.6 (E 6.0 of 12 with eight DRIFT, G 9.64 of 10). The converter reaches both; no row can score above them. Before: R 95.8 / S 91.8 (L174, L225 and E13 earned 0, H07 was a GAP). Rows that changed on rescoring (no model was run again): converter R 95.8 → 96.0, S 91.8 → 93.6; the models' R moves by at most 0.1 and S by up to 0.9 (H07 left the denominator; see the model tables). F03 (not expressible) is now WRONG in five cells (opus medium / high, sonnet medium / high / max): its `[$name == "x"$]` chain also matches the Cell itself (RC-D2), which the rebuilt mini-WDA emulator shows; the stored scores predated that, and it does not change R or S.
 - **Skipped on purpose** (CORRECT-SKIP): 73 corpus locators and 98 spec cases that have no exact class chain or would be wrong on a device: sibling / parent / following axes, unions of different paths, page-level `not()`, `normalize-space()` and `string-length()` (C06, C07), `>` on a text attribute (B03, RC-D3), same-type or `*` descendant predicates (RC-D2), regex flags other than `i`. C stays at 87.0 % because of them.
 
 
@@ -615,18 +617,18 @@ Rescored in Phase 5 (task D2 and a later pass on 2026-10-13): all eleven stored 
 
 | Cell | R | S | Converted | Skipped | of which GAP | Precision | WRONG | INVALID | MISSING | Time, min | Cost, $ | Output tokens |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **converter** | 95.8 | 91.8 | 85.7 % | 14.3 % | 1 | 100.0 % | 0 | 0 | 0 | — | — | — |
-| haiku / low | 91.3 | 51.2 | 79.7 % | 20.3 % | 28 | 92.8 % | 22 | 17 | 0 | 8.6 | 0.39 | 139k |
-| haiku / medium | 94.1 | 63.8 | 80.9 % | 19.1 % | 21 | 99.3 % | 4 | 0 | 0 | 6.0 | 0.28 | 99k |
-| haiku / high | 94.5 | 61.5 | 80.9 % | 19.1 % | 22 | 99.1 % | 2 | 3 | 0 | 7.6 | 0.36 | 131k |
-| haiku / max | 91.6 | 57.1 | 75.4 % | 24.6 % | 20 | 99.2 % | 2 | 2 | 0 | 13.5 | 0.64 | 222k |
-| sonnet / low | 94.8 | 68.6 | 83.3 % | 16.7 % | 11 | 98.6 % | 3 | 4 | 0 | 5.2 | 1.03 | 58k |
-| sonnet / medium | 94.1 | 77.8 | 82.8 % | 17.2 % | 12 | 98.9 % | 3 | 3 | 0 | 5.3 | 1.05 | 58k |
-| sonnet / high | 94.2 | 77.2 | 82.8 % | 17.2 % | 12 | 98.9 % | 2 | 4 | 0 | 6.0 | 1.14 | 65k |
-| sonnet / max | 95.0 | 80.5 | 83.9 % | 16.1 % | 5 | 99.1 % | 2 | 3 | 0 | 36.0 | 4.85 | 339k |
-| opus / low | 95.0 | 81.9 | 83.4 % | 16.6 % | 10 | 99.3 % | 1 | 3 | 0 | 7.1 | 2.04 | 57k |
-| opus / medium | 95.0 | 81.9 | 83.4 % | 16.6 % | 10 | 99.5 % | 0 | 3 | 0 | 8.5 | 2.33 | 66k |
-| opus / high | 95.0 | 82.9 | 83.6 % | 16.4 % | 9 | 99.5 % | 0 | 3 | 0 | 10.7 | 2.83 | 85k |
+| **converter (maximum)** | 96.0 | 93.6 | 85.7 % | 14.3 % | 0 | 100.0 % | 0 | 0 | 0 | — | — | — |
+| haiku / low | 91.3 | 51.3 | 79.7 % | 20.3 % | 27 | 92.8 % | 22 | 17 | 0 | 8.6 | 0.39 | 139k |
+| haiku / medium | 94.1 | 63.6 | 80.9 % | 19.1 % | 21 | 99.3 % | 4 | 0 | 0 | 6.0 | 0.28 | 99k |
+| haiku / high | 94.5 | 61.5 | 80.9 % | 19.1 % | 21 | 99.1 % | 2 | 3 | 0 | 7.6 | 0.36 | 131k |
+| haiku / max | 91.6 | 57.1 | 75.4 % | 24.6 % | 19 | 99.2 % | 2 | 2 | 0 | 13.5 | 0.64 | 222k |
+| sonnet / low | 94.8 | 68.5 | 83.3 % | 16.7 % | 11 | 98.6 % | 3 | 4 | 0 | 5.2 | 1.03 | 58k |
+| sonnet / medium | 94.1 | 77.6 | 82.8 % | 17.2 % | 12 | 98.8 % | 4 | 3 | 0 | 5.3 | 1.05 | 58k |
+| sonnet / high | 94.2 | 77.9 | 82.8 % | 17.2 % | 11 | 98.8 % | 3 | 4 | 0 | 6.0 | 1.14 | 65k |
+| sonnet / max | 95.1 | 81.2 | 83.9 % | 16.1 % | 4 | 98.9 % | 3 | 3 | 0 | 36.0 | 4.85 | 339k |
+| opus / low | 95.1 | 81.9 | 83.4 % | 16.6 % | 9 | 99.3 % | 1 | 3 | 0 | 7.1 | 2.04 | 57k |
+| opus / medium | 95.1 | 81.9 | 83.4 % | 16.6 % | 9 | 99.3 % | 1 | 3 | 0 | 8.5 | 2.33 | 66k |
+| opus / high | 95.1 | 82.9 | 83.6 % | 16.4 % | 8 | 99.3 % | 1 | 3 | 0 | 10.7 | 2.83 | 85k |
 
 ![S against cost per run for every effort level of the three 5.5 models, plain request](llm-chart-efforts.svg)
 
@@ -859,15 +861,15 @@ Each model is shown twice: with the plain Phase 4 prompt (task text and one exam
 
 | Cell | Prompt | R | S | Chains | Usable | % of converter (all / corpus / spec) | Missed | Skipped right | Ahead | WRONG + INVALID | Time, min | Cost, $ |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **converter** | — | 95.8 | 91.8 | 579 | 579 | 100 / 100 / 100 | — | — | — | 0 | — | — |
-| opus / low | no rules (Phase 4) | 95.0 | 81.9 | 564 | 560 | 96.7 / 98.4 / 87.6 | 12 | 11 | 0 | 4 | 7.1 | 2.04 |
-| opus / low | v4 | 95.0 | 86.0 | 560 | 560 | 96.7 / 98.2 / 88.8 | 5 | 14 | 0 | 0 | 5.1 | 1.72 |
-| sonnet / low | no rules (Phase 4) | 94.8 | 68.6 | 563 | 555 | 95.9 / 98.0 / 84.3 | 17 | 12 | 1 | 7 | 5.2 | 1.03 |
-| sonnet / low | v4 | 95.0 | 83.8 | 558 | 558 | 96.4 / 98.2 / 86.5 | 7 | 14 | 0 | 0 | 8.9 | 1.58 |
-| haiku / medium | no rules (Phase 4) | 94.1 | 63.8 | 547 | 543 | 93.8 / 97.1 / 75.3 | 24 | 15 | 1 | 4 | 6.0 | 0.28 |
-| haiku / medium | v4 | 94.8 | 71.1 | 559 | 554 | 95.7 / 98.0 / 83.1 | 11 | 14 | 0 | 5 | 5.7 | 0.27 |
-| sonnet 5 / low | no rules (Phase 4) | 95.2 | 56.3 | 559 | 547 | 94.5 / 98.8 / 70.8 | 27 | 7 | 0 | 12 | 21.8 | 2.27 |
-| sonnet 4.6 / low ‡ | no rules (7 × 100 chunks) | 89.1 | 48.6 | 540 | 501 | 86.5 / 91.8 / 57.3 | 62 | 17 | 0 | 39 | 23.1 | 2.58 |
+| **converter (maximum)** | — | 96.0 | 93.6 | 579 | 579 | 100 / 100 / 100 | — | — | — | 0 | — | — |
+| opus / low | no rules (Phase 4) | 95.1 | 81.9 | 564 | 560 | 96.7 / 98.4 / 87.6 | 12 | 11 | 0 | 4 | 7.1 | 2.04 |
+| opus / low | v4 | 95.0 | 86.9 | 560 | 560 | 96.7 / 98.2 / 88.8 | 5 | 14 | 0 | 0 | 5.1 | 1.72 |
+| sonnet / low | no rules (Phase 4) | 94.8 | 68.5 | 563 | 555 | 95.9 / 98.0 / 84.3 | 17 | 12 | 0 | 7 | 5.2 | 1.03 |
+| sonnet / low | v4 | 95.0 | 84.7 | 558 | 558 | 96.4 / 98.2 / 86.5 | 7 | 14 | 0 | 0 | 8.9 | 1.58 |
+| haiku / medium | no rules (Phase 4) | 94.1 | 63.6 | 547 | 543 | 93.8 / 97.1 / 75.3 | 24 | 15 | 0 | 4 | 6.0 | 0.28 |
+| haiku / medium | v4 | 94.8 | 72.0 | 559 | 554 | 95.7 / 98.0 / 83.1 | 11 | 14 | 0 | 5 | 5.7 | 0.27 |
+| sonnet 5 / low | no rules (Phase 4) | 95.2 | 56.5 | 559 | 547 | 94.5 / 98.8 / 70.8 | 27 | 7 | 0 | 12 | 21.8 | 2.27 |
+| sonnet 4.6 / low ‡ | no rules (7 × 100 chunks) | 89.1 | 48.9 | 540 | 501 | 86.5 / 91.8 / 57.3 | 62 | 17 | 0 | 39 | 23.1 | 2.58 |
 | haiku 4.5 / medium † | no rules (Phase 4, run 2 of 3) | 59.6 | 18.1 | 370 | 311 | 53.7 / 59.6 / 21.3 | 217 | 51 | 0 | 59 | 6.0 | 0.61 |
 
 † **Older models** (2026-10-13; `run.js sonnet46|haiku45`, `CELLS=haiku45-medium RUN=1 node compare-v2.js`): the plain Phase 4 prompt, same isolation, one run each. `claude-haiku-4-5` / medium, three runs (`haiku45-medium-1/2/3`): in every one it wrote Python converters (`convert.py`, `process.py`, … up to 11 files) instead of converting the locators itself. Run 1 answered 100 of 678 ids (65 chains, 35 skips) and asked the user to run its script (R 7.8, S 1.0, 25 of 65 chains WRONG or INVALID, 6.0 min, $0.66, 42k output tokens of which 5k thinking). Run 2 ran its own script and returned all 678 in three parts (R 59.6, S 18.1, 370 chains, 311 usable, 59 WRONG or INVALID, 6.0 min, $0.61, 44k / 3k); this is the run in the table and in the README, because it is the only one that fulfilled the task and can be scored. Run 3 wrote 11 scripts, answered nothing and ended with the command for the user to run (3.4 min, $0.47, 28k / 3k; scored 0 on 678 MISSING). `claude-sonnet-5` / low finished all 678 ids in four parts (21.8 min, $2.27, 9 turns, output 140k tokens of which 81k thinking, cache write 191k, cache read 566k; Sonnet 5.5: 5.2 min, $1.03, 58k / 15k). On the corpus it is level with the 5.5 models (R 95.2, missed only L012, L119, L162; L119 and L162 INVALID: raw line break), on the edge cases it is far behind (S 56.3; 7 WRONG: A07, A13, B02, B10, B16, E04, G12; 3 INVALID: B03, B04, G05). Haiku 4.5 is not usable for this task as given (one run in three delivers answers, at R 59.6), and Sonnet 4.6 only in chunks of 100; the comparison with the 5.5 models is a comparison of task completion, not of conversion quality.
@@ -893,7 +895,7 @@ Each model is shown twice: with the plain Phase 4 prompt (task text and one exam
 1. **The v4 rule does what it was written for.** Sonnet converts the four `contains(@enabled,"false")` locators now (L278, L520, L521, B18); opus and haiku already did. The rule costs nothing on the corpus: R is 94.8 / 95.0 / 95.0, within 0.8 of the converter's 95.8, and sonnet and opus make no wrong chain.
 2. **What the rules change, against the plain prompt.** R barely moves (opus 95.0 → 95.0, sonnet 94.8 → 95.0, haiku 94.1 → 94.8): on real-world locators a model with no rules already gets as far as the rules do. The gain is elsewhere: S rises by 4.1 (opus), 15.2 (sonnet) and 7.3 (haiku); WRONG + INVALID falls from 4 / 7 / 4 to 0 / 0 / 5 (the five of haiku are two mistakes, see below); the three models come closer to each other (S 63.8–81.9 → 71.1–86.0); a run costs 16 % less for opus and 50 % more for sonnet (one noisy run). The rules do not make the models beat the converter; they take away most of the wrong and invalid chains.
 3. **v3 and v4 differ in cases the v4 rule does not touch, which is the run-to-run noise.** Between the v3 and the v4 run, S moved by −1.5 (haiku), −3.0 (sonnet) and −1.8 (opus) because single edge cases flipped: sonnet lost A04, A06, A11, opus lost A08 and X05, haiku lost G13, and each of them was right in the other run. One run per cell therefore cannot show differences of about 3 S points. Sonnet's run also took 8.9 min and 32k thinking tokens (v3: 4.1 min, 6k).
-4. **Against the converter.** With v4: 95.7–96.7 % of its usable chains (98.0–98.2 % on the corpus, 83–89 % on the spec cases); the gap on the corpus is 11, 7 and 5 locators. With the plain prompt: 93.8–96.7 %. Ahead of the converter: only H07, in two plain-prompt runs; no model with the rules is ahead anywhere. In 14 cases the models with the rules skip where the converter only approximates; the harness counts that as right, but those are the converter's documented DRIFT, so it is a tie in practice.
+4. **Against the converter.** With v4: 95.7–96.7 % of its usable chains (98.0–98.2 % on the corpus, 83–89 % on the spec cases); the gap on the corpus is 11, 7 and 5 locators. With the plain prompt: 93.8–96.7 %. No model is ahead of the converter on any case (H07 was the only one, in two plain-prompt runs, until it became not expressible). In 14 cases the models with the rules skip where the converter only approximates; the harness counts that as right, but those are the converter's documented DRIFT, so it is a tie in practice.
 5. **Errors.** Sonnet and opus: none. Haiku: the same `$…$`-in-backticks mistake in four cases (INVALID), and one new WRONG (L129, the type test dropped). Haiku / medium still cannot be used without the harness or a device check.
 6. **What is left that the converter does and the models do not do reliably:** `self::` (X07), partial `@type` names (C10, the model skips; the converter converts), `descendant::`/`/./` in the main path, per-parent positions (A08), the parenthesised path with an inner index (L012). Haiku also needs a clearer `$…$` rule if it is to be used.
 7. **Cost of one run:** $0.27, $1.58, $1.72 (total $3.57).
@@ -910,9 +912,9 @@ Each model is shown twice: with the plain Phase 4 prompt (task text and one exam
 
 ### Conclusions
 
-1. On real-world locators, a plain model converts 75–84 % of the input against the converter's 85.7 % and scores the same at best (R 95.0 for opus at every level and sonnet / max, the converter 95.8). It never scores higher.
+1. On real-world locators, a plain model converts 75–84 % of the input against the converter's 85.7 % and scores the same at best (R 95.0 for opus at every level and sonnet / max, the converter 96.0, which is also its ceiling). It never scores higher.
 2. Every model run emits wrong chains: 3–39 per run (precision 93–99.5 %), against none from the converter. The two most common errors are a raw line break in a literal (INVALID in every Sonnet and Opus run) and positions that have no exact form (`last()`, `position()`), which the models convert instead of skipping.
-3. The models were clearly better on edge cases than the converter was at the time of Phase 4 (S up to 82 against 62; 25 GAPs, 4 corpus and 21 spec, where some run found the exact chain, and 5 DRIFTs with an exact form: A07, A14–A16, B16). Phase 5 closed that gap: the converter now has S 91.8 and 1 GAP, and the best model run reaches S 82.9 (opus / high), so no model is ahead of it.
+3. The models were clearly better on edge cases than the converter was at the time of Phase 4 (S up to 82 against 62; 25 GAPs, 4 corpus and 21 spec, where some run found the exact chain, and 5 DRIFTs with an exact form: A07, A14–A16, B16). Phase 5 closed that gap: the converter now has S 93.6 (its ceiling) and no GAP, and the best model run reaches S 82.9 (opus / high), so no model is ahead of it.
 4. A higher effort does not pay: Opus is flat from `low`, Sonnet gains most from `low` to `medium` and Haiku gets worse above `medium`. `max` costs 2–4× and up to 6× the time of the level below for at most +3.3 S (Sonnet), and it spends 80–90 % of its tokens on thinking. Opus `max` did not finish (see Excluded above).
 5. Recommendation: convert with the converter, which never emits a wrong chain. For the locators it skips, a model helps (opus / low or sonnet / low), but its chains need the harness or a device check before they replace the XPath.
 

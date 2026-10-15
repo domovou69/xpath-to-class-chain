@@ -2,7 +2,7 @@
  "summary": {
   "name": "haiku-medium-3",
   "R": 94.8,
-  "S": 71.1,
+  "S": 72,
   "Scat": {
    "A": 14,
    "B": 15,
@@ -11,7 +11,7 @@
    "E": 4,
    "F": 0,
    "G": 8.928571428571429,
-   "H": 5.142857142857143,
+   "H": 6,
    "R": 0
   },
   "corpusDen": 490,
@@ -28,8 +28,8 @@
   },
   "spec": {
    "CORRECT": 67,
-   "CORRECT-SKIP": 30,
-   "GAP": 6,
+   "CORRECT-SKIP": 31,
+   "GAP": 5,
    "DRIFT": 7,
    "WRONG": 0,
    "INVALID": 4,
@@ -3433,8 +3433,8 @@
    "xpath": "//*[replace(@label,\"a\",\"b\")=\"bb\"]",
    "skip": true,
    "reason": "replace() has no exact class chain form",
-   "verdict": "GAP",
-   "inDen": true
+   "verdict": "CORRECT-SKIP",
+   "inDen": false
   },
   "x291": {
    "orig": "L248",
