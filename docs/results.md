@@ -13,20 +13,20 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 
 **Recommendation:** use the converter. It is free, deterministic, and no model beat it on any case. Use an LLM only for the locators the converter skips on purpose, and check each chain it returns (with the harness in [`audit/harness`](../audit/harness) or on a device) before replacing the XPath: the model's answers were judged by an emulator, not by a device.
 
-**Final results** (one run per model; "plain" is a plain request to convert the locators, "with rules" adds the rules prompt `prompt-v4`; R and S defined below the table):
+**Final results** (one run per model over all 678 locators; "plain" is a plain request to convert the locators, "with rules" adds the rules prompt `prompt-v4`; R and S defined below the table):
 
-|                                                | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Time, min | Output tokens (thinking) | Cost per run (678 locators) |
-| ---------------------------------------------- | ---------------- | ------------- | -------------------------- | ----------------------- | --------- | ------------------------ | --------------------------- |
-| **Converter (maximum)**                        | **96.0**         | **93.6**      | 100 %                      | 0                       | —         | —                        | free                        |
-| Opus 5.5 low, plain                            | 95.1             | 81.9          | 96.7 %                     | 4                       | 7.1       | 57k (14k)                | $2.04                       |
-| Opus 5.5 low, with rules                       | 95.0 (−0.1)      | 86.9 (+5.0)   | 96.7 % (±0)                | 0 (−4)                  | 5.1 (−2.0) | 45k (4k), −12k           | $1.72 (−$0.32)              |
-| Sonnet 5.5 low, plain                          | 94.8             | 68.5          | 95.9 %                     | 7                       | 5.2       | 58k (15k)                | $1.03                       |
-| Sonnet 5.5 low, with rules                     | 95.0 (+0.2)      | 84.7 (+16.2)  | 96.4 % (+0.5)              | 0 (−7)                  | 8.9 (+3.7) | 93k (32k), +35k          | $1.58 (+$0.55)              |
-| Haiku 5.5 medium, plain                        | 94.1             | 63.6          | 93.8 %                     | 4                       | 6.0       | 99k (45k)                | $0.28                       |
-| Haiku 5.5 medium, with rules                   | 94.8 (+0.7)      | 72.0 (+8.4)   | 95.7 % (+1.9)              | 5 (+1)                  | 5.7 (−0.3) | 102k (45k), +3k          | $0.27 (−$0.01)              |
-| Sonnet 5 low, plain ¹                          | 95.2             | 56.5          | 94.5 %                     | 12                      | 21.8      | 140k (81k)               | $2.27                       |
-| Sonnet 4.6 low, plain, in chunks ²             | 89.1            | 48.9          | 86.5 %                     | 39                      | 23.1      | ≈100k (51k)              | $2.58                       |
-| Haiku 4.5 medium, plain ³                      | 59.6             | 18.1          | 53.7 %                     | 59                      | 6.0       | 44k (3k)                 | $0.61                       |
+| Model | R | S | Converted vs converter | Wrong or invalid | Time, min | Output tokens (thinking) | Cost |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **Converter (maximum)** | **96.0** | **93.6** | 100 % | 0 | — | — | free |
+| Opus 5.5 low, plain | 95.1 | 81.9 | 96.7 % | 4 | 7.1 | 57k (14k) | $2.04 |
+| Opus 5.5 low, with rules | 95.0 (−0.1) | 86.9 (+5.0) | 96.7 % (±0) | 0 (−4) | 5.1 (−2.0) | 45k (4k), −12k | $1.72 (−$0.32) |
+| Sonnet 5.5 low, plain | 94.8 | 68.5 | 95.9 % | 7 | 5.2 | 58k (15k) | $1.03 |
+| Sonnet 5.5 low, with rules | 95.0 (+0.2) | 84.7 (+16.2) | 96.4 % (+0.5) | 0 (−7) | 8.9 (+3.7) | 93k (32k), +35k | $1.58 (+$0.55) |
+| Haiku 5.5 medium, plain | 94.1 | 63.6 | 93.8 % | 4 | 6.0 | 99k (45k) | $0.28 |
+| Haiku 5.5 medium, with rules | 94.8 (+0.7) | 72.0 (+8.4) | 95.7 % (+1.9) | 5 (+1) | 5.7 (−0.3) | 102k (45k), +3k | $0.27 (−$0.01) |
+| Sonnet 5 low, plain ¹ | 95.2 | 56.5 | 94.5 % | 12 | 21.8 | 140k (81k) | $2.27 |
+| Sonnet 4.6 low, plain, in chunks ² | 89.1 | 48.9 | 86.5 % | 39 | 23.1 | ≈100k (51k) | $2.58 |
+| Haiku 4.5 medium, plain ³ | 59.6 | 18.1 | 53.7 % | 59 | 6.0 | 44k (3k) | $0.61 |
 
 In brackets on the "with rules" rows: the difference from the same model's "plain" row. For wrong chains, time, tokens and cost, a minus is better.
 
