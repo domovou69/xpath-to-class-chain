@@ -1,6 +1,6 @@
 # iOS Class Chain rules
 
-Condensed from this repository's audit: `audit/coverage-report.md`, `audit/llm/prompt-v4.md` and the README sections "What gets converted", "What it skips on purpose" and "On the device". Checked on Appium 3.8.0, appium-xcuitest-driver 12.16.0 and WebDriverAgent 16.14.1, on an iOS 27.0 simulator and an iPhone 13 Pro Max (iOS 26.6). Re-check when any of these change.
+Condensed from this repository's audit: `audit/coverage-report.md`, `audit/llm/prompt-v4.md` and the sections "What gets converted", "What it skips on purpose" and "On the device" of `docs/reference.md`. Checked on Appium 3.8.0, appium-xcuitest-driver 12.16.0 and WebDriverAgent 16.14.1, on an iOS 27.0 simulator and an iPhone 13 Pro Max (iOS 26.6). Re-check when any of these change.
 
 ## What the measurements say
 

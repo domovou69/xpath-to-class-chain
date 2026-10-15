@@ -7,7 +7,7 @@ because they need knowledge of the running app's element hierarchy, which a
 static source-code rewrite cannot have, and 2 more (1 and 7) were implemented
 and then removed because they change which elements a chain matches.
 
-For what actually ships, see [the optimizer section of the README](../README.md#the-optimizer).
+For what actually ships, see [the optimizer section of the reference](reference.md#the-optimizer).
 
 | Spec rule | Status | Implementation |
 |---|---|---|
