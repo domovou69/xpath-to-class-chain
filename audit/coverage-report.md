@@ -617,7 +617,7 @@ Rescored in Phase 5 (task D2 and a later pass on 2026-10-13): all eleven stored 
 
 | Cell | R | S | Converted | Skipped | of which GAP | Precision | WRONG | INVALID | MISSING | Time, min | Cost, $ | Output tokens |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **converter** | 96.0 | 93.6 | 85.7 % | 14.3 % | 0 | 100.0 % | 0 | 0 | 0 | — | — | — |
+| **converter (maximum)** | 96.0 | 93.6 | 85.7 % | 14.3 % | 0 | 100.0 % | 0 | 0 | 0 | — | — | — |
 | haiku / low | 91.3 | 51.3 | 79.7 % | 20.3 % | 27 | 92.8 % | 22 | 17 | 0 | 8.6 | 0.39 | 139k |
 | haiku / medium | 94.1 | 63.6 | 80.9 % | 19.1 % | 21 | 99.3 % | 4 | 0 | 0 | 6.0 | 0.28 | 99k |
 | haiku / high | 94.5 | 61.5 | 80.9 % | 19.1 % | 21 | 99.1 % | 2 | 3 | 0 | 7.6 | 0.36 | 131k |
@@ -861,7 +861,7 @@ Each model is shown twice: with the plain Phase 4 prompt (task text and one exam
 
 | Cell | Prompt | R | S | Chains | Usable | % of converter (all / corpus / spec) | Missed | Skipped right | Ahead | WRONG + INVALID | Time, min | Cost, $ |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **converter** | — | 96.0 | 93.6 | 579 | 579 | 100 / 100 / 100 | — | — | — | 0 | — | — |
+| **converter (maximum)** | — | 96.0 | 93.6 | 579 | 579 | 100 / 100 / 100 | — | — | — | 0 | — | — |
 | opus / low | no rules (Phase 4) | 95.1 | 81.9 | 564 | 560 | 96.7 / 98.4 / 87.6 | 12 | 11 | 0 | 4 | 7.1 | 2.04 |
 | opus / low | v4 | 95.0 | 86.9 | 560 | 560 | 96.7 / 98.2 / 88.8 | 5 | 14 | 0 | 0 | 5.1 | 1.72 |
 | sonnet / low | no rules (Phase 4) | 94.8 | 68.5 | 563 | 555 | 95.9 / 98.0 / 84.3 | 17 | 12 | 0 | 7 | 5.2 | 1.03 |

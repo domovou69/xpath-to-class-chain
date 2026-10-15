@@ -14,26 +14,26 @@ def py(s): return Y0 - (max(s, SMIN) - SMIN) * (Y0 - Y1) / (100 - SMIN)
 # values: (S, R, cost, tokens, thinking, minutes); label = (anchor, dx, dy) relative to the point for the two lines
 POINTS = [
     dict(name='Opus 5.5', sfx=' low', fam='opus', shape='circle',
-         plain=(81.9, 95.0, 2.04, '57k (14k)', 7.1), rules=(86.0, 95.0, 1.72, '45k (4k)', 5.1),
+         plain=(81.9, 95.1, 2.04, '57k (14k)', 7.1), rules=(86.9, 95.0, 1.72, '45k (4k)', 5.1),
          lab=('start', 12, 12), rlab=('start', 12, -4)),
     dict(name='Sonnet 5.5', sfx=' low', fam='sonnet', shape='circle',
-         plain=(68.6, 94.8, 1.03, '58k (15k)', 5.2), rules=(83.8, 95.0, 1.58, '93k (32k)', 8.9),
+         plain=(68.5, 94.8, 1.03, '58k (15k)', 5.2), rules=(84.7, 95.0, 1.58, '93k (32k)', 8.9),
          lab=('start', 12, -2), rlab=('end', -11, -8)),
     dict(name='Haiku 5.5', sfx=' medium', fam='haiku', shape='circle',
-         plain=(63.8, 94.1, 0.28, '99k (45k)', 6.0), rules=(71.1, 94.8, 0.27, '102k (45k)', 5.7),
+         plain=(63.6, 94.1, 0.28, '99k (45k)', 6.0), rules=(72.0, 94.8, 0.27, '102k (45k)', 5.7),
          lab=('start', 12, -2), rlab=('start', -24, -16)),
     dict(name='Opus 5', sfx=' low', fam='opus', shape='square',
-         plain=(62.6, 94.4, 3.11, '70k (24k)', 11.6), lab=('start', 12, -2)),
+         plain=(62.5, 94.5, 3.11, '70k (24k)', 11.6), lab=('start', 12, -2)),
     dict(name='Sonnet 5', sfx=' low', fam='sonnet', shape='square',
-         plain=(56.3, 95.2, 2.27, '140k (81k)', 21.8), lab=('start', 12, -2)),
+         plain=(56.5, 95.2, 2.27, '140k (81k)', 21.8), lab=('start', 12, -2)),
     dict(name='Opus 4.6', sfx=' low', fam='opus', shape='diamond',
          plain=(51.5, 93.9, 5.75, '166k (120k)', 47.1), lab=('middle', 0, 26)),
     dict(name='Sonnet 4.6', sfx=' low', fam='sonnet', shape='diamond',
-         plain=(48.6, 89.1, 2.58, '100k (51k)', 23.1), lab=('middle', 0, 26), note='run in chunks'),
+         plain=(48.9, 89.1, 2.58, '100k (51k)', 23.1), lab=('middle', 0, 26), note='run in chunks'),
     dict(name='Haiku 4.5', sfx=' medium', fam='haiku', shape='diamond',
          plain=(18.1, 59.6, 0.61, '44k (3k)', 6.0), lab=('start', 12, -20), note='wrote scripts, 1 of 3 runs returned answers', bad=True),
 ]
-CONV = dict(S=91.8, R=95.8)
+CONV = dict(S=93.6, R=96.0)
 
 def marker(shape, cx, cy, fam, big, ring=False):
     r = 7 if big else 5
@@ -122,7 +122,7 @@ a(f'<line class="axis" x1="70" x2="470" y1="{Y0}" y2="{Y0}"/><line class="axis" 
 a(f'<text class="axt" x="270" y="{Y0+42}" text-anchor="middle">Cost per run, log scale (up is better, left is cheaper)</text>')
 a(f'<text class="axt" transform="translate(30 {(Y0+Y1)//2}) rotate(-90)" text-anchor="middle">S, edge cases</text>')
 a('<text class="hd" x="672" y="90" text-anchor="end">S</text><text class="hd" x="722" y="90" text-anchor="end">R</text><text class="hd" x="822" y="78" text-anchor="end">output tokens</text><text class="hd" x="822" y="90" text-anchor="end">(thinking)</text><text class="hd" x="868" y="90" text-anchor="end">min</text><text class="hd" x="924" y="90" text-anchor="end">cost</text>')
-a(f'<line class="ref" x1="70" x2="470" y1="{py(CONV["S"]):.1f}" y2="{py(CONV["S"]):.1f}"/><text class="labb" x="78" y="{py(CONV["S"])-8:.1f}">Converter <tspan class="lab" font-weight="400">S {CONV["S"]} · R {CONV["R"]} · free</tspan></text>')
+a(f'<line class="ref" x1="70" x2="470" y1="{py(CONV["S"]):.1f}" y2="{py(CONV["S"]):.1f}"/><text class="labb" x="78" y="{py(CONV["S"])-8:.1f}">Converter <tspan class="lab" font-weight="400">S {CONV["S"]} · R {CONV["R"]} · maximum · free</tspan></text>')
 # one soft shape around all frontier (5.5) points: convex hull, drawn with a thick round-joined outline
 def hull(pts):
     pts = sorted(set(pts))

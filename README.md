@@ -43,7 +43,7 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 
 |                                                | R, real locators | S, edge cases | Converted vs the converter | Wrong or invalid chains | Time, min | Output tokens (thinking) | Cost per run (678 locators) |
 | ---------------------------------------------- | ---------------- | ------------- | -------------------------- | ----------------------- | --------- | ------------------------ | --------------------------- |
-| **Converter**                                  | **96.0**         | **93.6**      | 100 %                      | 0                       | —         | —                        | free                        |
+| **Converter (maximum)**                        | **96.0**         | **93.6**      | 100 %                      | 0                       | —         | —                        | free                        |
 | Opus 5.5 - low, no rules (plain request)       | 95.1             | 81.9          | 96.7 %                     | 4                       | 7.1       | 57k (14k)                | $2.04                       |
 | Opus 5.5 - low, with rules                     | 95.0             | 86.9          | 96.7 %                     | 0                       | 5.1       | 45k (4k)                 | $1.72                       |
 | Sonnet 5.5 - low, no rules (plain request)     | 94.8             | 68.5          | 95.9 %                     | 7                       | 5.2       | 58k (15k)                | $1.03                       |
