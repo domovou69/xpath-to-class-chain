@@ -1,5 +1,7 @@
 # Coverage audit: XPath → iOS class chain (Phase 1, static)
 
+> Where this report says "README", it means the README of the time. Since 2026-10-16 the reference sections it quotes ("What gets converted", "What it skips on purpose", "The optimizer", "On the device") are in [`docs/reference.md`](../docs/reference.md), and "Results at a glance" is [`docs/results.md`](../docs/results.md).
+
 Audit date 2026-10-09/10. Target platform pinned per `audit/prompts/coverage.md`: Appium 3.8.0, appium-xcuitest-driver 12.16.0, WebDriverAgent (WDA) 16.14.1. The npm registry confirms that driver 12.16.0 depends on `appium-webdriveragent` 16.14.1.
 
 **How verdicts were produced.** No verdict here comes from reading the converter and reasoning about it. Each comes from a run:
