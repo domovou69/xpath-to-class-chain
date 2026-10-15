@@ -18,12 +18,11 @@
 <rect class="bg" width="840" height="446" rx="8"/>
 <text class="t1" x="70" y="28">Quality vs Cost by effort: Claude 5.5, plain request</text>
 <text class="sub" x="70" y="48">S against cost per run (log scale), plain request without rules</text>
-<line class="grid" x1="70" x2="430" y1="344.0" y2="344.0"/><text class="tick" x="62" y="348.0" text-anchor="end">40</text>
-<line class="grid" x1="70" x2="430" y1="298.3" y2="298.3"/><text class="tick" x="62" y="302.3" text-anchor="end">50</text>
-<line class="grid" x1="70" x2="430" y1="252.7" y2="252.7"/><text class="tick" x="62" y="256.7" text-anchor="end">60</text>
-<line class="grid" x1="70" x2="430" y1="207.0" y2="207.0"/><text class="tick" x="62" y="211.0" text-anchor="end">70</text>
-<line class="grid" x1="70" x2="430" y1="161.3" y2="161.3"/><text class="tick" x="62" y="165.3" text-anchor="end">80</text>
-<line class="grid" x1="70" x2="430" y1="115.7" y2="115.7"/><text class="tick" x="62" y="119.7" text-anchor="end">90</text>
+<line class="grid" x1="70" x2="430" y1="344.0" y2="344.0"/><text class="tick" x="62" y="348.0" text-anchor="end">50</text>
+<line class="grid" x1="70" x2="430" y1="289.2" y2="289.2"/><text class="tick" x="62" y="293.2" text-anchor="end">60</text>
+<line class="grid" x1="70" x2="430" y1="234.4" y2="234.4"/><text class="tick" x="62" y="238.4" text-anchor="end">70</text>
+<line class="grid" x1="70" x2="430" y1="179.6" y2="179.6"/><text class="tick" x="62" y="183.6" text-anchor="end">80</text>
+<line class="grid" x1="70" x2="430" y1="124.8" y2="124.8"/><text class="tick" x="62" y="128.8" text-anchor="end">90</text>
 <line class="grid" x1="70" x2="430" y1="70.0" y2="70.0"/><text class="tick" x="62" y="74.0" text-anchor="end">100</text>
 <text class="tick" x="95.0" y="362" text-anchor="middle">$0.25</text><line class="grid" x1="95.0" x2="95.0" y1="344" y2="348"/>
 <text class="tick" x="172.5" y="362" text-anchor="middle">$0.5</text><line class="grid" x1="172.5" x2="172.5" y1="344" y2="348"/>
@@ -32,22 +31,22 @@
 <text class="tick" x="430.0" y="362" text-anchor="middle">$5</text><line class="grid" x1="430.0" x2="430.0" y1="344" y2="348"/>
 <line class="axis" x1="70" x2="430" y1="344" y2="344"/><line class="axis" x1="70" x2="70" y1="70" y2="344"/>
 <text class="t2" x="250" y="384" text-anchor="middle">Cost per run, 678 locators (up is better, left is cheaper)</text>
-<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases (axis starts at 40)</text>
-<line class="ref" x1="70" x2="430" y1="107.4" y2="107.4"/><text class="labb" x="78" y="99.4">Converter <tspan class="lab" font-weight="400">S 91.8 · R 95.8 · free</tspan></text>
-<polyline class="ln l-haiku" points="144.7,292.9 107.6,235.3 135.7,245.8 200.1,265.9"/>
-<polyline class="ln l-sonnet" points="253.3,213.4 255.5,171.4 264.7,174.1 426.6,159.1"/>
-<polyline class="ln l-opus" points="329.7,152.7 344.6,152.7 366.3,148.1"/>
-<circle class="dot c-haiku" cx="144.7" cy="292.9" r="6"><title>Haiku 5.5 low: S 51.2 · R 91.3 · 8.6 min · $0.39</title></circle><text class="lab" x="144.7" y="314.9" text-anchor="middle">low</text>
-<circle class="dot c-haiku" cx="107.6" cy="235.3" r="6"><title>Haiku 5.5 medium: S 63.8 · R 94.1 · 6.0 min · $0.28</title></circle><text class="lab" x="95.6" y="232.3" text-anchor="end">medium</text>
-<circle class="dot c-haiku" cx="135.7" cy="245.8" r="6"><title>Haiku 5.5 high: S 61.5 · R 94.5 · 7.6 min · $0.36</title></circle><text class="lab" x="135.7" y="231.8" text-anchor="middle">high</text>
-<circle class="dot c-haiku" cx="200.1" cy="265.9" r="6"><title>Haiku 5.5 max: S 57.1 · R 91.6 · 13.5 min · $0.64</title></circle><text class="lab" x="212.1" y="269.9" text-anchor="start">max</text>
-<circle class="dot c-sonnet" cx="253.3" cy="213.4" r="6"><title>Sonnet 5.5 low: S 68.6 · R 94.8 · 5.2 min · $1.03</title></circle><text class="lab" x="241.3" y="217.4" text-anchor="end">low</text>
-<circle class="dot c-sonnet" cx="255.5" cy="171.4" r="6"><title>Sonnet 5.5 medium: S 77.8 · R 94.1 · 5.3 min · $1.05</title></circle><text class="lab" x="243.5" y="175.4" text-anchor="end">medium</text>
-<circle class="dot c-sonnet" cx="264.7" cy="174.1" r="6"><title>Sonnet 5.5 high: S 77.2 · R 94.2 · 6.0 min · $1.14</title></circle><text class="lab" x="276.7" y="188.1" text-anchor="start">high</text>
-<circle class="dot c-sonnet" cx="426.6" cy="159.1" r="6"><title>Sonnet 5.5 max: S 80.5 · R 95.0 · 36.0 min · $4.85</title></circle><text class="lab" x="426.6" y="145.1" text-anchor="middle">max</text>
-<circle class="dot c-opus" cx="329.7" cy="152.7" r="6"><title>Opus 5.5 low: S 81.9 · R 95.0 · 7.1 min · $2.04</title></circle><text class="lab" x="325.7" y="138.7" text-anchor="end">low</text>
-<circle class="dot c-opus" cx="344.6" cy="152.7" r="6"><title>Opus 5.5 medium: S 81.9 · R 95.0 · 8.5 min · $2.33</title></circle><text class="lab" x="344.6" y="138.7" text-anchor="start">medium</text>
-<circle class="dot c-opus" cx="366.3" cy="148.1" r="6"><title>Opus 5.5 high: S 82.9 · R 95.0 · 10.7 min · $2.83</title></circle><text class="lab" x="378.3" y="152.1" text-anchor="start">high</text>
+<text class="t2" transform="translate(16 207) rotate(-90)" text-anchor="middle">S, edge cases</text>
+<line class="ref" x1="70" x2="430" y1="114.9" y2="114.9"/><text class="labb" x="78" y="106.9">Converter <tspan class="lab" font-weight="400">S 91.8 · R 95.8 · free</tspan></text>
+<polyline class="ln l-haiku" points="144.7,337.4 107.6,268.4 135.7,281.0 200.1,305.1"/>
+<polyline class="ln l-sonnet" points="253.3,242.1 255.5,191.7 264.7,194.9 426.6,176.9"/>
+<polyline class="ln l-opus" points="329.7,169.2 344.6,169.2 366.3,163.7"/>
+<circle class="dot c-haiku" cx="144.7" cy="337.4" r="6"><title>Haiku 5.5 low: S 51.2 · R 91.3 · 8.6 min · $0.39</title></circle><text class="lab" x="156.7" y="341.4" text-anchor="start">low</text>
+<circle class="dot c-haiku" cx="107.6" cy="268.4" r="6"><title>Haiku 5.5 medium: S 63.8 · R 94.1 · 6.0 min · $0.28</title></circle><text class="lab" x="95.6" y="265.4" text-anchor="end">medium</text>
+<circle class="dot c-haiku" cx="135.7" cy="281.0" r="6"><title>Haiku 5.5 high: S 61.5 · R 94.5 · 7.6 min · $0.36</title></circle><text class="lab" x="135.7" y="267.0" text-anchor="middle">high</text>
+<circle class="dot c-haiku" cx="200.1" cy="305.1" r="6"><title>Haiku 5.5 max: S 57.1 · R 91.6 · 13.5 min · $0.64</title></circle><text class="lab" x="212.1" y="309.1" text-anchor="start">max</text>
+<circle class="dot c-sonnet" cx="253.3" cy="242.1" r="6"><title>Sonnet 5.5 low: S 68.6 · R 94.8 · 5.2 min · $1.03</title></circle><text class="lab" x="241.3" y="246.1" text-anchor="end">low</text>
+<circle class="dot c-sonnet" cx="255.5" cy="191.7" r="6"><title>Sonnet 5.5 medium: S 77.8 · R 94.1 · 5.3 min · $1.05</title></circle><text class="lab" x="243.5" y="195.7" text-anchor="end">medium</text>
+<circle class="dot c-sonnet" cx="264.7" cy="194.9" r="6"><title>Sonnet 5.5 high: S 77.2 · R 94.2 · 6.0 min · $1.14</title></circle><text class="lab" x="276.7" y="208.9" text-anchor="start">high</text>
+<circle class="dot c-sonnet" cx="426.6" cy="176.9" r="6"><title>Sonnet 5.5 max: S 80.5 · R 95.0 · 36.0 min · $4.85</title></circle><text class="lab" x="426.6" y="162.9" text-anchor="middle">max</text>
+<circle class="dot c-opus" cx="329.7" cy="169.2" r="6"><title>Opus 5.5 low: S 81.9 · R 95.0 · 7.1 min · $2.04</title></circle><text class="lab" x="325.7" y="155.2" text-anchor="end">low</text>
+<circle class="dot c-opus" cx="344.6" cy="169.2" r="6"><title>Opus 5.5 medium: S 81.9 · R 95.0 · 8.5 min · $2.33</title></circle><text class="lab" x="344.6" y="155.2" text-anchor="start">medium</text>
+<circle class="dot c-opus" cx="366.3" cy="163.7" r="6"><title>Opus 5.5 high: S 82.9 · R 95.0 · 10.7 min · $2.83</title></circle><text class="lab" x="378.3" y="167.7" text-anchor="start">high</text>
 <text class="t2" x="660" y="76" text-anchor="end">output tokens (thinking)</text><text class="t2" x="728" y="76" text-anchor="end">min</text><text class="t2" x="800" y="76" text-anchor="end">cost</text>
 <circle class="dot c-opus" cx="480" cy="96" r="6"/><text class="labb" x="492" y="100">Opus 5.5</text>
 <text class="lab" x="492" y="119">low</text><text class="lab" x="660" y="119" text-anchor="end">57k (14k)</text><text class="lab" x="728" y="119" text-anchor="end">7.1</text><text class="lab" x="800" y="119" text-anchor="end">$2.04</text>

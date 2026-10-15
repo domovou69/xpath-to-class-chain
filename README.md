@@ -51,7 +51,7 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 | Haiku 5.5 - medium, no rules (plain request)   | 94.1             | 63.8          | 93.8 %                     | 4                       | 6.0       | 99k (45k)                | $0.28                       |
 | Haiku 5.5 - medium, with rules                 | 94.8             | 71.1          | 95.7 %                     | 5                       | 5.7       | 102k (45k)               | $0.27                       |
 | Sonnet 5 - low, no rules (plain request) ¹     | 95.2             | 56.3          | 94.5 %                     | 12                      | 21.8      | 140k (81k)               | $2.27                       |
-| Sonnet 4.6 - low, no rules, 7 × 100 chunks ²   | 89.1             | 48.6          | 86.5 %                     | 39                      | 23.1      | ≈100k (51k)              | $2.58                       |
+| Sonnet 4.6 - low, no rules, in chunks ²       | 89.1             | 48.6          | 86.5 %                     | 39                      | 23.1      | ≈100k (51k)              | $2.58                       |
 | Haiku 4.5 - medium, no rules (plain request) ³ | 59.6             | 18.1          | 53.7 %                     | 59                      | 6.0       | 44k (3k)                 | $0.61                       |
 
 ¹ Sonnet 5: took 21.8 min and 140k output tokens (81k thinking) against 5.2 min and 58k / 15k for Sonnet 5.5 in the same plain request.
@@ -62,11 +62,9 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 
 **R** is the share of real-world locators that got a correct chain, out of those that have one (a documented approximation counts half; a skipped, wrong or invalid one counts 0). **S** is the same score on the 114 edge cases, weighted by group. Both are out of 100. "Converted vs the converter" counts usable chains against the 579 the converter produces. One run per model, so differences of about 3 points in S are noise.
 
-The same results as charts: S against cost per run, for the plain request and for the rules prompt.
+The same results as a chart: S against cost per run for the plain request (dots) and for the rules prompt (rings, joined to the same model by a dashed line).
 
-![Quality vs cost, plain request](audit/llm-chart-plain.svg)
-
-![Quality vs cost, rules prompt](audit/llm-chart-rules.svg)
+![Quality vs cost, plain request and rules prompt](audit/llm-chart-plain.svg)
 
 Effort levels of the three 5.5 models on the plain request: a higher effort does not pay. Opus is flat from `low`, Sonnet gains most from `low` to `medium` and only 2.7 more at `max` for 4.6× the cost, Haiku is best at `medium`.
 
