@@ -19,8 +19,8 @@ All numbers come from audit/coverage-report.md and audit/device/results-scale-*.
 - **~87 % of real XPath locators can be converted.** The converter does it with **no wrong chains** and skips or flags the rest.
 
 ```bash
-npx github:domovou69/xpath-to-class-chain ./tests          # preview the diff
-npx github:domovou69/xpath-to-class-chain ./tests --write  # apply it
+npx xpath-to-class-chain ./tests          # preview the diff
+npx xpath-to-class-chain ./tests --write  # apply it
 ```
 
 ---
@@ -193,12 +193,12 @@ My rule of thumb: **convert for speed where the screens are big, and convert loo
 
 ## Try it
 
-You need Node.js 20 or newer, nothing else. Start with the screens that have the most elements: dump the page source of your heaviest screen and count them.
+It is on [npm](https://www.npmjs.com/package/xpath-to-class-chain); you need Node.js 20 or newer, nothing else. Start with the screens that have the most elements: dump the page source of your heaviest screen and count them.
 
 ```bash
-npx github:domovou69/xpath-to-class-chain ./tests          # preview
-npx github:domovou69/xpath-to-class-chain ./tests --write  # save
-npx github:domovou69/xpath-to-class-chain ./tests --json   # report with every skip and warning
+npx xpath-to-class-chain ./tests          # preview
+npx xpath-to-class-chain ./tests --write  # save
+npx xpath-to-class-chain ./tests --json   # report with every skip and warning
 ```
 
 Then review the warnings, run your suite, and check each grouped position and `visible` locator on its screen. Everything behind the numbers in this post (the audit, the emulator, the device app) is in [`audit/`](https://github.com/domovou69/xpath-to-class-chain/tree/main/audit).

@@ -1,6 +1,7 @@
 # xpath-to-class-chain
 
 [![CI](https://github.com/domovou69/xpath-to-class-chain/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/domovou69/xpath-to-class-chain/actions/workflows/test.yml)
+[![npm](https://img.shields.io/npm/v/xpath-to-class-chain)](https://www.npmjs.com/package/xpath-to-class-chain)
 
 **Articles:** [XPath to iOS Class Chain: a converter you can trust, and when it is actually faster](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-a-converter-you-can-trust-and-when-it-is-actually-faster-c6o) (dev.to)
 
@@ -14,12 +15,12 @@ Use it as:
 
 ## Try it now
 
-Runs straight from this GitHub repo — nothing to install. The bare command only
+Runs straight from [npm](https://www.npmjs.com/package/xpath-to-class-chain) — nothing to install. The bare command only
 previews; review the diff, then add `--write`.
 
 ```bash
-npx github:domovou69/xpath-to-class-chain ./tests            # preview
-npx github:domovou69/xpath-to-class-chain ./tests --write    # save it
+npx xpath-to-class-chain ./tests            # preview
+npx xpath-to-class-chain ./tests --write    # save it
 ```
 
 Point `./tests` at the folder holding your Appium/XCUITest locators. It scans the tree, converts every XPath locator to a Class Chain and applies all optimizer rules — printing a `- old / + new` diff, or **saving the files in place** with `--write`.
@@ -35,7 +36,7 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 |                | This converter                                                                                        | An LLM with the rules prompt (prompt-v4)                                                                     |
 | -------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | Cost and speed | free, offline, seconds                                                                                | Opus at `low` effort, about $1.7 and 5 minutes for the whole list (one batch run)                            |
-| How            | `npx github:domovou69/xpath-to-class-chain ./tests`                                                   | give the model [`audit/llm/prompt-v4-run.md`](audit/llm/prompt-v4-run.md) and your locator list              |
+| How            | `npx xpath-to-class-chain ./tests`                                                                    | give the model [`audit/llm/prompt-v4-run.md`](audit/llm/prompt-v4-run.md) and your locator list              |
 | Wrong chains   | none                                                                                                  | none for Opus 5.5 and Sonnet 5.5; Haiku 5.5 sent 5                                                           |
 | Best result    | **The converter is the maximum**: it converted 579 of 676 locators and skipped the rest with a reason | 560 of 676, i.e. 96.7 % of what the converter converted; nothing the converter misses was found by the model |
 
@@ -100,18 +101,25 @@ Node.js ≥ 20. No npm dependencies.
 
 [`.claude/skills/xpath-to-class-chain/`](.claude/skills/xpath-to-class-chain/SKILL.md) wraps the converter for Claude Code. Claude runs the converter first and uses its chains as they are. It then explains each skipped locator and suggests a fix that stays within class chain: an accessibility identifier, a different chain, or two lookups in test code. Chains it writes itself are marked unverified. Without the converter, it converts with the rules alone and says so.
 
-It works as-is inside a clone of this repository. To use it in another project, copy the folder to `~/.claude/skills/`, then set `XPATH_TO_CLASS_CHAIN_HOME` to a clone or install the package (`npm i -g github:domovou69/xpath-to-class-chain`).
+It works as-is inside a clone of this repository. To use it in another project, copy the folder to `~/.claude/skills/`, then set `XPATH_TO_CLASS_CHAIN_HOME` to a clone or install the package (`npm i -g xpath-to-class-chain`).
 
 ---
 
 ## Installation
 
-**Run once without installing** (fetches from registry on the fly):
+**Run once without installing** (fetches from the npm registry on the fly):
 
 ```bash
 npx xpath-to-class-chain ./tests/e2e --write
 pnpm dlx xpath-to-class-chain ./tests/e2e --write
 yarn dlx xpath-to-class-chain ./tests/e2e --write
+```
+
+**Install globally** (then run `xpath-to-class-chain` from anywhere):
+
+```bash
+npm install -g xpath-to-class-chain
+xpath-to-class-chain ./tests/e2e
 ```
 
 ---
