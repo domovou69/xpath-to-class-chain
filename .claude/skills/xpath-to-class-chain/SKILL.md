@@ -64,7 +64,7 @@ Ask for the page source (`driver.getPageSource()`) when a recommendation depends
 
 If `convert.js` exits with code 3:
 
-1. Tell the user and offer the options: clone `github.com/domovou69/xpath-to-class-chain` and set `XPATH_TO_CLASS_CHAIN_HOME`, or `npm i -g github:domovou69/xpath-to-class-chain`. Do not install anything without their agreement.
+1. Tell the user and offer the options: clone `github.com/domovou69/xpath-to-class-chain` and set `XPATH_TO_CLASS_CHAIN_HOME`, or `npm i -g xpath-to-class-chain`. Do not install anything without their agreement.
 2. If they want to continue without it, convert using `references/class-chain-rules.md` only. Label every chain as **rules-only, unverified**. Say that in the audit this approach reached about 96 % of the engine's usable chains, and that weaker models also produced some wrong chains. Skip whatever the rules do not cover.
 
 ## Report format

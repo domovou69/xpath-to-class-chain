@@ -123,7 +123,7 @@ function main(argv) {
 
   const engine = findEngine();
   if (!engine) {
-    console.error('Engine not found. Set XPATH_TO_CLASS_CHAIN_HOME to a checkout of github.com/domovou69/xpath-to-class-chain, or install it: npm i -g github:domovou69/xpath-to-class-chain');
+    console.error('Engine not found. Set XPATH_TO_CLASS_CHAIN_HOME to a checkout of github.com/domovou69/xpath-to-class-chain, or install it: npm i -g xpath-to-class-chain');
     return 3;
   }
   const lib = require(join(engine.root, 'xpath-to-class-chain.js'));
