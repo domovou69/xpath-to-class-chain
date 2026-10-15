@@ -65,6 +65,7 @@ I did not want verdicts based on reading my own code. Every verdict comes from r
 **1. A WDA-in-a-box ("mini-WDA").** I compiled WebDriverAgent's class chain parser, predicate mapping and XPath code from the `v16.14.1` tag and ran them on macOS with libxml2, the same library WDA uses. It passes all 43 queries from WDA's own `FBClassChainTests`.
 
 **2. Two test sets.**
+
 - 563 real locators from production test suites (anonymized), each run against 200 random page sources built from its own literals and element types.
 - 115 hand-made edge cases (positions, axes, functions, quoting, booleans, unicode), each with fixtures and a hand-written "correct" chain.
 
@@ -74,11 +75,11 @@ XPath and class chain had to return the same set of elements and the same first 
 
 **Scores.** R is the share of real locators that got a correct chain, out of those that have one; S is the same on the edge cases, weighted by group. A documented approximation (a case with no exact class chain) counts half.
 
-| | First audit | Now |
-|---|---|---|
-| R, real locators | 72.2 | **96.0** |
-| S, edge cases | 7.7 | **93.6** |
-| Root causes of wrong chains (real / edge) | 9 / 42 | 0 / 0 |
+|                                           | First audit | Now      |
+| ----------------------------------------- | ----------- | -------- |
+| R, real locators                          | 72.2        | **96.0** |
+| S, edge cases                             | 7.7         | **93.6** |
+| Root causes of wrong chains (real / edge) | 9 / 42      | 0 / 0    |
 
 96.0 and 93.6 are the ceiling of the scoring, not a gap: the remaining points are grouped and per-parent positions that have no exact class chain. They are converted with a warning and earn half credit.
 
@@ -92,12 +93,12 @@ Small test screens (36–275 elements) showed the chain about 20 % faster on the
 
 ![Time per element lookup vs. elements in the tree, XPath and class chain, simulator and iPhone](img/scale-chart.png)
 
-| Elements in the tree | Simulator, XPath → chain | Saved | iPhone, XPath → chain | Saved |
-|---|---|---|---|---|
-| ~100 | 115 → 90 ms | 21.9 % | 295 → 225 ms | 23.8 % |
-| ~500 | 453 → 344 ms | 24.1 % | 760 → 582 ms | 23.4 % |
-| ~1000 | 912 → 677 ms | 25.8 % | 1.40 s → 997 ms | 28.9 % |
-| ~2000 | 1.75 → 1.31 s | 25.4 % | 2.72 → 2.04 s | 24.9 % |
+| Elements in the tree | Simulator, XPath → chain | Saved  | iPhone, XPath → chain | Saved  |
+| -------------------- | ------------------------ | ------ | --------------------- | ------ |
+| ~100                 | 115 → 90 ms              | 21.9 % | 295 → 225 ms          | 23.8 % |
+| ~500                 | 453 → 344 ms             | 24.1 % | 760 → 582 ms          | 23.4 % |
+| ~1000                | 912 → 677 ms             | 25.8 % | 1.40 s → 997 ms       | 28.9 % |
+| ~2000                | 1.75 → 1.31 s            | 25.4 % | 2.72 → 2.04 s         | 24.9 % |
 
 What I took from it:
 
@@ -111,11 +112,11 @@ What I took from it:
 
 Not everything got faster. On the small test screens four shapes were slower as a chain:
 
-| Locator | XPath | Chain |
-|---|---|---|
-| `//XCUIElementTypeButton[@visible='true']`, 32 matches | 2.05 s | 12.6 s |
-| `//XCUIElementTypeCell[@visible="true"]/XCUIElementTypeButton` | 3.46 s | 5.14 s |
-| `//XCUIElementTypeButton[@name]`, 36 matches | 1.15 s | 1.78 s |
+| Locator                                                                   | XPath  | Chain  |
+| ------------------------------------------------------------------------- | ------ | ------ |
+| `//XCUIElementTypeButton[@visible='true']`, 32 matches                    | 2.05 s | 12.6 s |
+| `//XCUIElementTypeCell[@visible="true"]/XCUIElementTypeButton`            | 3.46 s | 5.14 s |
+| `//XCUIElementTypeButton[@name]`, 36 matches                              | 1.15 s | 1.78 s |
 | `/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton` | 0.12 s | 0.75 s |
 
 (simulator; the iPhone showed the same pattern)
@@ -139,4 +140,16 @@ npx github:domovou69/xpath-to-class-chain ./tests --json   # report with every s
 
 Review the warnings, run your suite, and check anything with a grouped position or `visible` on the screen it is used on. The full audit, the harness and the device app are in the repo, with every number in this post reproducible from [`audit/`](https://github.com/domovou69/xpath-to-class-chain/tree/main/audit).
 
-Next post: I gave the same 678 locators to Claude models at different effort levels to see whether an LLM can do this conversion instead. Spoiler: none of them beat the converter on real locators.
+## Next: can an LLM do this instead?
+
+Converting locators looks like a perfect job for an LLM, so in the next post I gave the same 678 locators to Claude models and scored their answers with the same harness:
+
+- Opus, Sonnet and Haiku 5.5 at every effort level from `low` to `max`, plus the previous generations (Opus 5, Sonnet 5, Opus 4.6, Sonnet 4.6, Haiku 4.5);
+- a plain "convert these" request against a prompt with the rules from this post;
+- quality against cost and time per run.
+
+Short version: no model beat the converter on real locators, higher effort did not buy what it cost, and the rules prompt mattered more than the model. The details, and where the models were actually useful, are in part 2.
+
+---
+
+*I'm [Mikhail Yesipchuk](<YOUR-LINKEDIN-URL>) and I work on mobile test automation. If you try the converter on your suite, I'd like to hear what it skipped and why: open an issue on [GitHub](https://github.com/domovou69/xpath-to-class-chain/issues) or message me on [LinkedIn](<YOUR-LINKEDIN-URL>).*
