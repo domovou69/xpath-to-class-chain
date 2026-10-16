@@ -65,12 +65,14 @@ One run per model and effort level. Cost is the API-equivalent figure the CLI re
 
 The best effort level of each Claude 5.5 model, plain request:
 
-| Model                   | R        | S        | Usable chains vs converter | Wrong chains | Time, min | Cost      |
-| ----------------------- | -------- | -------- | -------------------------- | ------------ | --------- | --------- |
-| **Converter**           | **96.0** | **93.6** | **100 %**                  | **0**        | seconds   | free      |
-| Opus 5.5, `low`         | 95.1     | 81.9     | 96.7 %                     | 4            | 7.1       | $2.04     |
-| Sonnet 5.5, `low`       | 94.8     | 68.5     | 95.9 %                     | 7            | 5.2       | $1.03     |
-| Haiku 5.5, `medium`     | 94.1     | 63.6     | 93.8 %                     | 4            | 6.0       | $0.28     |
+| Model               | R        | S        | vs conv.  | Wrong | Min     | Cost  |
+| ------------------- | -------- | -------- | --------- | ----- | ------- | ----- |
+| **Converter**       | **96.0** | **93.6** | **100 %** | **0** | seconds | free  |
+| Opus 5.5 low        | 95.1     | 81.9     | 96.7 %    | 4     | 7.1     | $2.04 |
+| Sonnet 5.5 low      | 94.8     | 68.5     | 95.9 %    | 7     | 5.2     | $1.03 |
+| Haiku 5.5 medium    | 94.1     | 63.6     | 93.8 %    | 4     | 6.0     | $0.28 |
+
+"vs conv." is usable chains against the converter's 579, "Wrong" the wrong chains, "Min" the run time in minutes.
 
 - **On real locators the models are close.** R 94–95 against 96.0: most real locators are simple (`name`, `label`, type, `contains`), and every model converts them.
 - **The gap is in edge cases.** S 64–82 against 93.6: positions, string functions, nested predicates, escaping.
@@ -114,6 +116,7 @@ The same plain request to the previous generations, one run each:
 
 | Model               | R    | S    | vs conv. | Wrong | Min  | Cost  |
 | ------------------- | ---- | ---- | -------- | ----- | ---- | ----- |
+| **Converter**       | 96.0 | 93.6 | 100 %    | **0** | —    | free  |
 | Opus 5.5 low        | 95.1 | 81.9 | 96.7 %   | 4     | 7.1  | $2.04 |
 | Opus 5 low          | 94.5 | 62.5 | 94.5 %   | 6     | 11.6 | $3.11 |
 | Opus 4.6 low        | 93.9 | 51.5 | 91.7 %   | 11    | 47.1 | $5.75 |
