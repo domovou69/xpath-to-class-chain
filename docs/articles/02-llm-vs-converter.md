@@ -47,7 +47,7 @@ So I asked Claude to do the same job and scored the answers with the same checks
 
 **Scoring**, as in part 1: an exact chain earns 1 point, a documented approximation 0.5, a skip or a wrong chain 0. **R** is the score on real locators, **S** on edge cases, both out of 100. The converter scores **R 96.0 / S 93.6**, which is the maximum for this scoring (some locators only have an approximation). I also count the converter's **579 usable chains as 100 %** and measure each model against that number.
 
-A **wrong chain** below is one that WDA rejects or that finds other elements. It is worse than a skip: it looks like a valid locator, and the Appium driver reports an invalid chain as "no such element", so it shows up as a flaky test.
+A **wrong chain** below is one that WDA rejects or that finds other elements. It is worse than a skip, because it looks like a valid locator: a chain that finds another element taps the wrong button, and the Appium driver reports an invalid chain as "no such element", so it looks like a flaky test, not a syntax error.
 
 {% details The prompt and the run details %}
 
@@ -65,16 +65,16 @@ One run per model and effort level. Cost is the API-equivalent figure the CLI re
 
 The best effort level of each Claude 5.5 model, plain request:
 
-| Model                   | R        | S        | Usable chains vs converter | Wrong chains | Time    | Cost      |
-| ----------------------- | -------- | -------- | -------------------------- | ------------ | ------- | --------- |
-| **Converter**           | **96.0** | **93.6** | **100 %**                  | **0**        | seconds | free      |
-| Opus 5.5, `low`         | 95.1     | 81.9     | 96.7 %                     | 4            | 7.1 min | $2.04     |
-| Sonnet 5.5, `low`       | 94.8     | 68.5     | 95.9 %                     | 7            | 5.2 min | $1.03     |
-| Haiku 5.5, `medium`     | 94.1     | 63.6     | 93.8 %                     | 4            | 6.0 min | $0.28     |
+| Model                   | R        | S        | Usable chains vs converter | Wrong chains | Time, min | Cost      |
+| ----------------------- | -------- | -------- | -------------------------- | ------------ | --------- | --------- |
+| **Converter**           | **96.0** | **93.6** | **100 %**                  | **0**        | seconds   | free      |
+| Opus 5.5, `low`         | 95.1     | 81.9     | 96.7 %                     | 4            | 7.1       | $2.04     |
+| Sonnet 5.5, `low`       | 94.8     | 68.5     | 95.9 %                     | 7            | 5.2       | $1.03     |
+| Haiku 5.5, `medium`     | 94.1     | 63.6     | 93.8 %                     | 4            | 6.0       | $0.28     |
 
 - **On real locators the models are close.** R 94–95 against 96.0: most real locators are simple (`name`, `label`, type, `contains`), and every model converts them.
 - **The gap is in edge cases.** S 64–82 against 93.6: positions, string functions, nested predicates, escaping.
-- **Every run made wrong chains.** Four of 560 sounds like little, until it is the locator of your checkout button.
+- **Every run made wrong chains.** Four in 564 sounds like little, until one of them is the locator of your checkout button.
 
 ## Does a higher effort help?
 
@@ -132,11 +132,11 @@ Each new generation scored higher on edge cases, made fewer wrong chains, and wa
 
 ## What the models get wrong
 
-The wrong chains are not random. Five mistakes make most of them:
+The wrong chains are not random. The same five mistakes come back from run to run:
 
-| Mistake                                                                                       | Why it is wrong                                                                     | Who                                |
+| Mistake                                                                                       | Why it is wrong                                                                     | Where                              |
 | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------- |
-| A line break inside a literal written as a raw line break                                     | WDA cannot parse the chain                                                          | every Sonnet and Opus 5.5 run      |
+| A line break inside a literal written as a raw line break                                     | WDA cannot parse the chain                                                          | 10 of 11 runs, every Sonnet and Opus |
 | `(//Button)[last()]` → `**/XCUIElementTypeButton[-1]`                                         | WDA counts chain matches breadth-first, XPath top to bottom: another element        | 3–5 per run, more in stronger models |
 | `[@label!="a"]` → ``[`label != "a"`]``                                                        | an element without a label passes in NSPredicate and fails in XPath                 | Haiku, Sonnet `low`–`high`         |
 | `[.//*[@name="x"]]` → ``[$name == "x"$]``                                                     | `$…$` also matches the element itself, not only its descendants                     | Sonnet `medium`–`max`, every Opus run |
@@ -144,11 +144,11 @@ The wrong chains are not random. Five mistakes make most of them:
 
 The models also skip things they could convert: Opus at every level refused `matches()`, `ends-with()` and `lower-case()` as "XPath 2.0 functions". WDA registers them as XPath extensions, so they are valid locators on the driver.
 
-The other direction exists too. At the time of the first runs a model found an exact chain for 30 locators where the converter skipped or approximated (unions as one `OR` predicate, `not()`, quotes and backticks inside literals, string functions). I added those forms to the converter after checking them with the emulator and, where they depend on how XCTest evaluates a predicate, on a simulator and an iPhone. So the LLM runs made the converter better, and after that no model was ahead of it on any locator.
+The other direction exists too. In the first runs, some model found an exact chain for 30 locators that the converter at that time skipped or only approximated (unions as one `OR` predicate, `not()`, quotes and backticks inside literals, string functions). I added those forms to the converter after checking them with the emulator and, where they depend on how XCTest evaluates a predicate, on a simulator and an iPhone. So the LLM runs made the converter better, and after that no model was ahead of it on any locator.
 
 ## A prompt with rules
 
-Most of the mistakes above are about knowing WDA, not about intelligence. So I wrote them down as general rules (structure, escaping, attributes, positions, what to skip) and ran the best effort level of each 5.5 model again with them. The rules: [`audit/llm/prompt-v4.md`](https://github.com/domovou69/xpath-to-class-chain/blob/main/audit/llm/prompt-v4.md), about 90 lines; there are no answers for particular locators in it.
+Most of the mistakes above are about knowing WDA, not about intelligence. So I wrote them down as general rules (structure, escaping, attributes, positions, what to skip) and ran the same three 5.5 runs again with them. The rules: [`audit/llm/prompt-v4.md`](https://github.com/domovou69/xpath-to-class-chain/blob/main/audit/llm/prompt-v4.md), about 90 lines; there are no answers for particular locators in it.
 
 | Model                          | R                | S                 | vs converter          | Wrong         | Min              | Cost               |
 | ------------------------------ | ---------------- | ----------------- | --------------------- | ------------- | ---------------- | ------------------ |
@@ -166,16 +166,16 @@ Upper value: the plain request; lower: the same model with the rules, and the ch
 
 {% details How the rules prompt was built %}
 
-It took three versions, each changing one rule. The first version had no wrong chains but skipped 76 convertible real locators because of one over-cautious rule about `@type`; narrowing that rule fixed it. The third fixed `contains(@enabled,"false")`, which has to become `enabled == false` (`CONTAINS` on a boolean raises an error on the device). The rules came from device checks on a simulator and an iPhone, not from guesses.
+It took three versions, each changing one rule. The first version had no wrong chains but skipped 76 convertible real locators because of one over-cautious rule about `@type`; narrowing that rule fixed it. The third fixed `contains(@enabled,"false")`, which has to become `enabled == false` (`CONTAINS` on a boolean raises an error on the device). The rules come from what the converter's own checks found (the emulator, a simulator and an iPhone), not from guesses.
 
 {% enddetails %}
 
 ## What I would use
 
 1. **The converter first.** It is free, offline, takes seconds, gives the same answer every time and made no wrong chain. Nothing a model did was better.
-2. **A model only for what the converter skips**, and only the latest generation: Opus 5.5 or Sonnet 5.5 at `low` or `medium`, with [the rules](https://github.com/domovou69/xpath-to-class-chain/blob/main/audit/llm/prompt-v4.md) in the prompt. Most skips have no exact chain at all, so expect the model to explain why rather than to convert.
+2. **A model only for what the converter skips**, and only the latest generation: Opus 5.5 or Sonnet 5.5 at `low` or `medium`, with [the rules](https://github.com/domovou69/xpath-to-class-chain/blob/main/audit/llm/prompt-v4.md) in the prompt. Haiku 5.5 is six times cheaper, but even with the rules it made wrong chains. Most skips have no exact chain at all, so expect the model to explain why rather than to convert.
 3. **Check every chain a model writes** on its screen (or with the [harness](https://github.com/domovou69/xpath-to-class-chain/tree/main/audit/harness)) before it replaces the XPath.
-4. **Do not pay for `max`.** It costs several times more, takes up to six times longer and did not get better answers.
+4. **Do not pay for `max`.** It costs several times more, takes up to six times longer and gave at most a few points of S.
 
 If you use Claude Code, the repository has a [skill](https://github.com/domovou69/xpath-to-class-chain/tree/main/.claude/skills/xpath-to-class-chain) that does exactly this: it runs the converter, then explains each skipped locator and suggests a chain only where the rules give one, marked as unverified.
 
