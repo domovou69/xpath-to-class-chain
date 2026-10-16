@@ -150,15 +150,14 @@ The other direction exists too. At the time of the first runs a model found an e
 
 Most of the mistakes above are about knowing WDA, not about intelligence. So I wrote them down as general rules (structure, escaping, attributes, positions, what to skip) and ran the best effort level of each 5.5 model again with them. The rules: [`audit/llm/prompt-v4.md`](https://github.com/domovou69/xpath-to-class-chain/blob/main/audit/llm/prompt-v4.md), about 90 lines; there are no answers for particular locators in it.
 
-| Model                 | Prompt     | R    | S    | Usable chains vs converter | Wrong chains | Time, min | Cost  |
-| --------------------- | ---------- | ---- | ---- | -------------------------- | ------------ | --------- | ----- |
-| **Converter**         | —          | 96.0 | 93.6 | 100 %                      | **0**        | —         | free  |
-| Opus 5.5, `low`       | plain      | 95.1 | 81.9 | 96.7 %                     | 4            | 7.1       | $2.04 |
-| Opus 5.5, `low`       | with rules | 95.0 | 86.9 | 96.7 %                     | **0**        | 5.1       | $1.72 |
-| Sonnet 5.5, `low`     | plain      | 94.8 | 68.5 | 95.9 %                     | 7            | 5.2       | $1.03 |
-| Sonnet 5.5, `low`     | with rules | 95.0 | 84.7 | 96.4 %                     | **0**        | 8.9       | $1.58 |
-| Haiku 5.5, `medium`   | plain      | 94.1 | 63.6 | 93.8 %                     | 4            | 6.0       | $0.28 |
-| Haiku 5.5, `medium`   | with rules | 94.8 | 72.0 | 95.7 %                     | 5            | 5.7       | $0.27 |
+| Model                            | R                     | S                      | Usable chains vs converter | Wrong chains     | Time, min             | Cost                     |
+| -------------------------------- | --------------------- | ---------------------- | -------------------------- | ---------------- | --------------------- | ------------------------ |
+| **Converter**                    | 96.0                  | 93.6                   | 100 %                      | **0**            | —                     | free                     |
+| Opus 5.5, `low`<br>+ rules       | 95.1<br>95.0 (🔴 −0.1) | 81.9<br>86.9 (🟢 +5.0)  | 96.7 %<br>96.7 % (±0)      | 4<br>**0** (🟢 −4) | 7.1<br>5.1 (🟢 −2.0)   | $2.04<br>$1.72 (🟢 −$0.32) |
+| Sonnet 5.5, `low`<br>+ rules     | 94.8<br>95.0 (🟢 +0.2) | 68.5<br>84.7 (🟢 +16.2) | 95.9 %<br>96.4 % (🟢 +0.5)  | 7<br>**0** (🟢 −7) | 5.2<br>8.9 (🔴 +3.7)   | $1.03<br>$1.58 (🔴 +$0.55) |
+| Haiku 5.5, `medium`<br>+ rules   | 94.1<br>94.8 (🟢 +0.7) | 63.6<br>72.0 (🟢 +8.4)  | 93.8 %<br>95.7 % (🟢 +1.9)  | 4<br>5 (🔴 +1)     | 6.0<br>5.7 (🟢 −0.3)   | $0.28<br>$0.27 (🟢 −$0.01) |
+
+In each cell the upper value is the plain request, the lower one the same model with the rules; in brackets the change, 🟢 better, 🔴 worse.
 
 - **R barely moved.** On real locators the models were already as good as they get.
 - **S went up** by 5 (Opus), 16 (Sonnet) and 8 (Haiku), and the three models came closer to each other.
