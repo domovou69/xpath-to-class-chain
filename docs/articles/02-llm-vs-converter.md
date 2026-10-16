@@ -164,6 +164,7 @@ Upper value: the plain request; lower: the same model with the rules, and the ch
 
 - **R barely moved.** On real locators the models were already as good as they get.
 - **S went up** by 5 (Opus), 16 (Sonnet) and 8 (Haiku), and the three models came closer to each other.
+- **Why Opus stays at 96.7 % of the converter.** The rules fixed 12 locators: its 3 wrong chains that could be fixed and 9 skips of things WDA supports (`matches()`, `ends-with()`, `hittable`, `XCUIElementTypeAny`). But the model also got more careful and skipped 12 others: 7 have only an approximation, so skipping them is fine, and 5 the converter does convert (`self::`, a union of two types, an index inside parentheses). 12 in, 12 out. The 4th wrong chain became a correct skip.
 - **Opus and Sonnet made no wrong chains.** Haiku still made two kinds of mistake (one of them four times), so it needs a check.
 - **Still no model is ahead of the converter** on any locator. With one run per model, differences of about 3 points in S are noise.
 
