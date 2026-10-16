@@ -5,7 +5,10 @@
 
 Converts Appium XPath locators in your iOS tests to `-ios class chain` selectors, and refuses to convert the ones that have no exact class chain.
 
-**Articles:** [XPath to iOS Class Chain: a converter you can trust, and when it is actually faster](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-a-converter-you-can-trust-and-when-it-is-actually-faster-c6o) (dev.to) · [XPath to iOS Class Chain: can Claude do it instead of a converter?](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-can-claude-do-it-instead-of-a-converter-17m9) (dev.to)
+**Articles on dev.to:**
+
+- [XPath to iOS Class Chain: a converter you can trust, and when it is actually faster](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-a-converter-you-can-trust-and-when-it-is-actually-faster-c6o): how the converter is checked, and how much faster class chain is on big screens
+- [XPath to iOS Class Chain: can Claude do it instead of a converter?](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-can-claude-do-it-instead-of-a-converter-17m9): Claude models of three generations (5.5 > 5 > 4.X) against the converter on the same locators
 
 ## Try it
 
@@ -46,13 +49,13 @@ Point `./tests` at the folder with your Appium/XCUITest code (JS/TS, Java, Kotli
 
 Checked on 678 locators (563 from real test suites, 115 edge cases) against WebDriverAgent's own code, then on an iOS simulator and an iPhone.
 
-| | |
-| --- | --- |
-| Real locators that have a class chain | 489 of 563 (87 %) |
-| Score on real locators / edge cases | 96.0 / 93.6 of 100, the maximum: positions like `(//X)[2]` only have an approximation |
-| Wrong chains | 0 |
-| Lookup time | class chain 22–29 % faster than XPath at 100–2000 elements in the tree; on small screens only milliseconds |
-| LLMs (Claude 5.5, 5, 4.x) | none beat the converter on real locators |
+|                                       |                                                                                                            |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Real locators that have a class chain | 489 of 563 (87 %)                                                                                          |
+| Score on real locators / edge cases   | 96.0 / 93.6 of 100, the maximum: positions like `(//X)[2]` only have an approximation                      |
+| Wrong chains                          | 0                                                                                                          |
+| Lookup time                           | class chain 22–29 % faster than XPath at 100–2000 elements in the tree; on small screens only milliseconds |
+| LLMs (Claude 5.5, 5, 4.x)             | none beat the converter on real locators                                                                   |
 
 Before converting, check `visible` predicates and lookups of dozens of elements: they can be slower as a chain. Full results, charts and the LLM comparison: [docs/results.md](docs/results.md). Method and evidence: [audit/](audit/README.md).
 
