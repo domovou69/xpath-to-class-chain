@@ -65,12 +65,12 @@ One run per model and effort level. Cost is the API-equivalent figure the CLI re
 
 The best effort level of each Claude 5.5 model, plain request:
 
-| Model               | R        | S        | vs conv.  | Wrong | Min     | Cost  |
-| ------------------- | -------- | -------- | --------- | ----- | ------- | ----- |
-| **Converter**       | **96.0** | **93.6** | **100 %** | **0** | seconds | free  |
-| Opus 5.5 `low`        | 95.1     | 81.9     | 96.7 %    | 4     | 7.1     | $2.04 |
-| Sonnet 5.5 `low`      | 94.8     | 68.5     | 95.9 %    | 7     | 5.2     | $1.03 |
-| Haiku 5.5 `medium`    | 94.1     | 63.6     | 93.8 %    | 4     | 6.0     | $0.28 |
+| Model              | R        | S        | vs conv.  | Wrong | Min     | Cost  |
+| ------------------ | -------- | -------- | --------- | ----- | ------- | ----- |
+| **Converter**      | **96.0** | **93.6** | **100 %** | **0** | seconds | free  |
+| Opus 5.5 `low`     | 95.1     | 81.9     | 96.7 %    | 4     | 7.1     | $2.04 |
+| Sonnet 5.5 `low`   | 94.8     | 68.5     | 95.9 %    | 7     | 5.2     | $1.03 |
+| Haiku 5.5 `medium` | 94.1     | 63.6     | 93.8 %    | 4     | 6.0     | $0.28 |
 
 "vs conv." is usable chains against the converter's 579, "Wrong" the wrong chains, "Min" the run time in minutes.
 
@@ -114,17 +114,17 @@ At `max`, 79–89 % of the output tokens were thinking that did not improve the 
 
 The same plain request to the previous generations, one run each:
 
-| Model               | R    | S    | vs conv. | Wrong | Min  | Cost  |
-| ------------------- | ---- | ---- | -------- | ----- | ---- | ----- |
-| **Converter**       | 96.0 | 93.6 | 100 %    | **0** | —    | free  |
-| Opus 5.5 `low`        | 95.1 | 81.9 | 96.7 %   | 4     | 7.1  | $2.04 |
-| Opus 5 `low`          | 94.5 | 62.5 | 94.5 %   | 6     | 11.6 | $3.11 |
-| Opus 4.6 `low`        | 93.9 | 51.5 | 91.7 %   | 11    | 47.1 | $5.75 |
-| Sonnet 5.5 `low`      | 94.8 | 68.5 | 95.9 %   | 7     | 5.2  | $1.03 |
-| Sonnet 5 `low`        | 95.2 | 56.5 | 94.5 %   | 12    | 21.8 | $2.27 |
-| Sonnet 4.6 `low` ¹    | 89.1 | 48.9 | 86.5 %   | 39    | 23.1 | $2.58 |
-| Haiku 5.5 `medium`    | 94.1 | 63.6 | 93.8 %   | 4     | 6.0  | $0.28 |
-| Haiku 4.5 `medium` ²  | 59.6 | 18.1 | 53.7 %   | 59    | 6.0  | $0.61 |
+| Model                | R    | S    | vs conv. | Wrong | Min  | Cost  |
+| -------------------- | ---- | ---- | -------- | ----- | ---- | ----- |
+| **Converter**        | 96.0 | 93.6 | 100 %    | **0** | —    | free  |
+| Opus 5.5 `low`       | 95.1 | 81.9 | 96.7 %   | 4     | 7.1  | $2.04 |
+| Opus 5 `low`         | 94.5 | 62.5 | 94.5 %   | 6     | 11.6 | $3.11 |
+| Opus 4.6 `low`       | 93.9 | 51.5 | 91.7 %   | 11    | 47.1 | $5.75 |
+| Sonnet 5.5 `low`     | 94.8 | 68.5 | 95.9 %   | 7     | 5.2  | $1.03 |
+| Sonnet 5 `low`       | 95.2 | 56.5 | 94.5 %   | 12    | 21.8 | $2.27 |
+| Sonnet 4.6 `low` ¹   | 89.1 | 48.9 | 86.5 %   | 39    | 23.1 | $2.58 |
+| Haiku 5.5 `medium`   | 94.1 | 63.6 | 93.8 %   | 4     | 6.0  | $0.28 |
+| Haiku 4.5 `medium` ² | 59.6 | 18.1 | 53.7 %   | 59    | 6.0  | $0.61 |
 
 ¹ In seven runs of 100 locators: the full list wrote nothing in 20 minutes.
 ² In all three runs it wrote a Python converter instead of converting; this is the only run that ran its script and returned every answer.
@@ -137,13 +137,13 @@ Each new generation scored higher on edge cases, made fewer wrong chains, and wa
 
 The wrong chains are not random. The same five mistakes come back from run to run:
 
-| Mistake                                                                                       | Why it is wrong                                                                     | Where                              |
-| --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------- |
-| A line break inside a literal written as a raw line break                                     | WDA cannot parse the chain                                                          | 10 of 11 runs, every Sonnet and Opus |
-| `(//Button)[last()]` → `**/XCUIElementTypeButton[-1]`                                         | WDA counts chain matches breadth-first, XPath top to bottom: another element        | 3–5 per run, more in stronger models |
-| `[@label!="a"]` → ``[`label != "a"`]``                                                        | an element without a label passes in NSPredicate and fails in XPath                 | Haiku, Sonnet `low`–`high`         |
-| `[.//*[@name="x"]]` → ``[$name == "x"$]``                                                     | `$…$` also matches the element itself, not only its descendants                     | Sonnet `medium`–`max`, every Opus run |
-| `[1]` → `[0]`                                                                                  | class chain indexes start at 1                                                      | Haiku `low`                        |
+| Mistake                                                   | Why it is wrong                                                              | Where                                 |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------- |
+| A line break inside a literal written as a raw line break | WDA cannot parse the chain                                                   | 10 of 11 runs, every Sonnet and Opus  |
+| `(//Button)[last()]` → `**/XCUIElementTypeButton[-1]`     | WDA counts chain matches breadth-first, XPath top to bottom: another element | 3–5 per run, more in stronger models  |
+| `[@label!="a"]` → ``[`label != "a"`]``                    | an element without a label passes in NSPredicate and fails in XPath          | Haiku, Sonnet `low`–`high`            |
+| `[.//*[@name="x"]]` → `[$name == "x"$]`                   | `$…$` also matches the element itself, not only its descendants              | Sonnet `medium`–`max`, every Opus run |
+| `[1]` → `[0]`                                             | class chain indexes start at 1                                               | Haiku `low`                           |
 
 The models also skip things they could convert: with the plain request, Opus at every level refused `matches()`, `ends-with()` and `lower-case()` as "XPath 2.0 functions". WDA registers them as XPath extensions, so they are valid locators on the driver.
 
@@ -153,12 +153,12 @@ The other direction exists too. In the first runs, some model found an exact cha
 
 Most of the mistakes above are about knowing WDA, not about intelligence. So I wrote them down as general rules (structure, escaping, attributes, positions, what to skip) and ran the same three 5.5 runs again with them. The rules: [`audit/llm/prompt-v4.md`](https://github.com/domovou69/xpath-to-class-chain/blob/main/audit/llm/prompt-v4.md), about 90 lines; there are no answers for particular locators in it.
 
-| Model                          | R                | S                 | vs conv.              | Wrong         | Min              | Cost               |
-| ------------------------------ | ---------------- | ----------------- | --------------------- | ------------- | ---------------- | ------------------ |
-| **Converter**                  | 96.0             | 93.6              | 100 %                 | **0**         | —                | free               |
-| Opus 5.5 `low`<br>+ rules     | 95.1<br>95.0 (−0.1) | 81.9<br>86.9 (+5.0)  | 96.7 %<br>96.7 % (±0)   | 4<br>**0** (−4) | 7.1<br>5.1 (−2.0)   | $2.04<br>$1.72 (−0.32) |
-| Sonnet 5.5 `low`<br>+ rules   | 94.8<br>95.0 (+0.2) | 68.5<br>84.7 (+16.2) | 95.9 %<br>96.4 % (+0.5) | 7<br>**0** (−7) | 5.2<br>8.9 (+3.7)   | $1.03<br>$1.58 (+0.55) |
-| Haiku 5.5 `medium`<br>+ rules | 94.1<br>94.8 (+0.7) | 63.6<br>72.0 (+8.4)  | 93.8 %<br>95.7 % (+1.9) | 4<br>5 (+1)     | 6.0<br>5.7 (−0.3)   | $0.28<br>$0.27 (−0.01) |
+| Model                         | R                   | S                    | vs conv.                | Wrong           | Min               | Cost                   |
+| ----------------------------- | ------------------- | -------------------- | ----------------------- | --------------- | ----------------- | ---------------------- |
+| **Converter**                 | 96.0                | 93.6                 | 100 %                   | **0**           | —                 | free                   |
+| Opus 5.5 `low`<br>+ rules     | 95.1<br>95.0 (−0.1) | 81.9<br>86.9 (+5.0)  | 96.7 %<br>96.7 % (±0)   | 4<br>**0** (−4) | 7.1<br>5.1 (−2.0) | $2.04<br>$1.72 (−0.32) |
+| Sonnet 5.5 `low`<br>+ rules   | 94.8<br>95.0 (+0.2) | 68.5<br>84.7 (+16.2) | 95.9 %<br>96.4 % (+0.5) | 7<br>**0** (−7) | 5.2<br>8.9 (+3.7) | $1.03<br>$1.58 (+0.55) |
+| Haiku 5.5 `medium`<br>+ rules | 94.1<br>94.8 (+0.7) | 63.6<br>72.0 (+8.4)  | 93.8 %<br>95.7 % (+1.9) | 4<br>5 (+1)     | 6.0<br>5.7 (−0.3) | $0.28<br>$0.27 (−0.01) |
 
 Upper value: the plain request; lower: the same model with the rules, and the change in brackets. Column names as in the first table.
 
