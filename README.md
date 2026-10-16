@@ -48,7 +48,7 @@ Checked on 678 locators (563 from real test suites, 115 edge cases) against WebD
 
 | | |
 | --- | --- |
-| Real locators that have a class chain | 489 of 562 (87 %) |
+| Real locators that have a class chain | 489 of 563 (87 %) |
 | Score on real locators / edge cases | 96.0 / 93.6 of 100, the maximum: positions like `(//X)[2]` only have an approximation |
 | Wrong chains | 0 |
 | Lookup time | class chain 22–29 % faster than XPath at 100–2000 elements in the tree; on small screens only milliseconds |

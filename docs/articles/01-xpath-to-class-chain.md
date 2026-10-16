@@ -34,7 +34,8 @@ npx xpath-to-class-chain ./tests --write  # apply it
 5. [How much faster is it?](#how-much-faster-is-it)
 6. [Where the chain is slower](#where-the-chain-is-slower)
 7. [What I took away](#what-i-took-away)
-8. [Try it](#try-it)
+8. [Limits](#limits)
+9. [Try it](#try-it)
 
 ---
 
@@ -43,7 +44,7 @@ If you run Appium tests on iOS, you have probably heard that XPath is slow and t
 1. A tool that converts existing XPath locators to class chain **without silently changing which element they find**.
 2. A real number: how much faster is it, and does that depend on the size of the screen?
 
-This post covers both. The tool is open source: [xpath-to-class-chain](https://github.com/domovou69/xpath-to-class-chain). In short: the chain was faster in **all 240** timed lookups (22–29 %, simulator and iPhone), **489 of 562** real locators have a class chain, and a few shapes (`visible`, lookups of dozens of elements) get **slower**, see below.
+This post covers both. The tool is open source: [xpath-to-class-chain](https://github.com/domovou69/xpath-to-class-chain) on GitHub and [npm](https://www.npmjs.com/package/xpath-to-class-chain). In short: the chain was faster in **all 240** timed lookups (22–29 %, simulator and iPhone), **489 of 563** real locators have a class chain, and a few shapes (`visible`, lookups of dozens of elements) get **slower**, see below.
 
 ## What a class chain is
 
@@ -201,7 +202,7 @@ npx xpath-to-class-chain ./tests --write  # save
 npx xpath-to-class-chain ./tests --json   # report with every skip and warning
 ```
 
-Then review the warnings, run your suite, and check each grouped position and `visible` locator on its screen. Everything behind the numbers in this post (the audit, the emulator, the device app) is in [`audit/`](https://github.com/domovou69/xpath-to-class-chain/tree/main/audit).
+Then review the warnings, run your suite, and check each grouped position and `visible` locator on its screen. Everything behind the numbers in this post (the audit, the emulator, the device app) is in [`audit/`](https://github.com/domovou69/xpath-to-class-chain/tree/main/audit); its README says where to start.
 
 ## Next: can an LLM do this instead?
 
@@ -213,4 +214,4 @@ Thanks to Anthropic: [Claude Code](https://claude.com/claude-code) helped me bui
 
 ---
 
-_[Mikhail Yesipchuk](YOUR-LINKEDIN-URL), SDET/Senior QA Automation Engineer. If you try the converter on your suite, I'd like to hear what it skipped and why: open an issue on [GitHub](https://github.com/domovou69/xpath-to-class-chain/issues) or message me on LinkedIn._
+_[Mikhail Yesipchuk](https://www.linkedin.com/in/mikhail-yesipchuk/), SDET/Senior QA Automation Engineer. If you try the converter on your suite, I'd like to hear what it skipped and why: open an issue on [GitHub](https://github.com/domovou69/xpath-to-class-chain/issues) or message me on [LinkedIn](https://www.linkedin.com/in/mikhail-yesipchuk/)._
