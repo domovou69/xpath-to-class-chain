@@ -57,7 +57,7 @@ The plain request (full text in [`audit/llm/prompt.md`](https://github.com/domov
 
 Then the output format: one JSON entry per id, either a chain with the `-ios class chain:` prefix or `skip` with a reason.
 
-One run per model and effort level. Cost is the API-equivalent figure the CLI reports (I ran it on a subscription). Time is wall time, with three runs sharing one account in parallel. Scripts and raw outputs: [`audit/llm/`](https://github.com/domovou69/xpath-to-class-chain/tree/main/audit/llm).
+One run per model and effort level. Cost is the API-equivalent figure the CLI reports. I actually ran everything on a Claude Pro plan (€20 a month), so its usage limits apply: that is why `xhigh` was skipped and Opus `max` could not finish. Time is wall time, with three runs sharing one account in parallel. Scripts and raw outputs: [`audit/llm/`](https://github.com/domovou69/xpath-to-class-chain/tree/main/audit/llm).
 
 {% enddetails %}
 
@@ -104,7 +104,7 @@ At `max`, 79–89 % of the output tokens were thinking that did not improve the 
 | Opus `medium`    | 95.1 | 81.9 | 4            | 8.5       | $2.33 |
 | Opus `high`      | 95.1 | 82.9 | 4            | 10.7      | $2.83 |
 
-`xhigh` was not run. Opus `max` hit the 5-hour usage limit twice (81 minutes and about $13 in total) without a usable result.
+`xhigh` was not run. Opus `max` hit the Pro plan's 5-hour usage limit twice (81 minutes and about $13 in total) without a usable result.
 
 {% enddetails %}
 
