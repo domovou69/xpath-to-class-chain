@@ -112,16 +112,16 @@ At `max`, 79–89 % of the output tokens were thinking that did not improve the 
 
 The same plain request to the previous generations, one run each:
 
-| Model                 | R    | S    | Usable chains vs converter | Wrong chains | Time, min | Cost  |
-| --------------------- | ---- | ---- | -------------------------- | ------------ | --------- | ----- |
-| Opus 5.5, `low`       | 95.1 | 81.9 | 96.7 %                     | 4            | 7.1       | $2.04 |
-| Opus 5, `low`         | 94.5 | 62.5 | 94.5 %                     | 6            | 11.6      | $3.11 |
-| Opus 4.6, `low`       | 93.9 | 51.5 | 91.7 %                     | 11           | 47.1      | $5.75 |
-| Sonnet 5.5, `low`     | 94.8 | 68.5 | 95.9 %                     | 7            | 5.2       | $1.03 |
-| Sonnet 5, `low`       | 95.2 | 56.5 | 94.5 %                     | 12           | 21.8      | $2.27 |
-| Sonnet 4.6, `low` ¹   | 89.1 | 48.9 | 86.5 %                     | 39           | 23.1      | $2.58 |
-| Haiku 5.5, `medium`   | 94.1 | 63.6 | 93.8 %                     | 4            | 6.0       | $0.28 |
-| Haiku 4.5, `medium` ² | 59.6 | 18.1 | 53.7 %                     | 59           | 6.0       | $0.61 |
+| Model               | R    | S    | vs conv. | Wrong | Min  | Cost  |
+| ------------------- | ---- | ---- | -------- | ----- | ---- | ----- |
+| Opus 5.5 low        | 95.1 | 81.9 | 96.7 %   | 4     | 7.1  | $2.04 |
+| Opus 5 low          | 94.5 | 62.5 | 94.5 %   | 6     | 11.6 | $3.11 |
+| Opus 4.6 low        | 93.9 | 51.5 | 91.7 %   | 11    | 47.1 | $5.75 |
+| Sonnet 5.5 low      | 94.8 | 68.5 | 95.9 %   | 7     | 5.2  | $1.03 |
+| Sonnet 5 low        | 95.2 | 56.5 | 94.5 %   | 12    | 21.8 | $2.27 |
+| Sonnet 4.6 low ¹    | 89.1 | 48.9 | 86.5 %   | 39    | 23.1 | $2.58 |
+| Haiku 5.5 medium    | 94.1 | 63.6 | 93.8 %   | 4     | 6.0  | $0.28 |
+| Haiku 4.5 medium ²  | 59.6 | 18.1 | 53.7 %   | 59    | 6.0  | $0.61 |
 
 ¹ In seven runs of 100 locators: the full list wrote nothing in 20 minutes.
 ² In all three runs it wrote a Python converter instead of converting; this is the only run that ran its script and returned every answer.
