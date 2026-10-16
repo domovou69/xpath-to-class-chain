@@ -1,5 +1,5 @@
 ---
-title: "Can an LLM convert XPath to iOS Class Chain? Claude models against a deterministic converter"
+title: "XPath to iOS Class Chain: can Claude do it instead of a converter?"
 published: false
 description: "I gave the same 678 Appium XPath locators to Claude Opus, Sonnet and Haiku (three generations, every effort level, with and without a rules prompt) and scored their class chains with the same WDA-based checks as my converter."
 tags: ios, appium, testing, ai
@@ -36,7 +36,7 @@ docs/results.md and audit/llm/scores/*.json.
 
 In [part 1](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-a-converter-you-can-trust-and-when-it-is-actually-faster-c6o) I built [xpath-to-class-chain](https://github.com/domovou69/xpath-to-class-chain), a converter from Appium XPath locators to iOS class chain, and checked it on 678 locators. The obvious question: why write a converter at all, if you can paste the locators into an LLM?
 
-So I asked Claude to do the same job and scored the answers with the same checks.
+So I asked Claude to do the same job and scored the answers with the same checks. This is not me against Claude: Claude Code helped me write the converter too. The real question is whether you should let a model convert every locator directly, or use a tool built once and checked on devices.
 
 ## The test
 
