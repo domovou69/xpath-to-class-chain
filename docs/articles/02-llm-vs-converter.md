@@ -145,7 +145,7 @@ The wrong chains are not random. The same five mistakes come back from run to ru
 | `[.//*[@name="x"]]` → ``[$name == "x"$]``                                                     | `$…$` also matches the element itself, not only its descendants                     | Sonnet `medium`–`max`, every Opus run |
 | `[1]` → `[0]`                                                                                  | class chain indexes start at 1                                                      | Haiku `low`                        |
 
-The models also skip things they could convert: Opus at every level refused `matches()`, `ends-with()` and `lower-case()` as "XPath 2.0 functions". WDA registers them as XPath extensions, so they are valid locators on the driver.
+The models also skip things they could convert: with the plain request, Opus at every level refused `matches()`, `ends-with()` and `lower-case()` as "XPath 2.0 functions". WDA registers them as XPath extensions, so they are valid locators on the driver.
 
 The other direction exists too. In the first runs, some model found an exact chain for 30 locators that the converter at that time skipped or only approximated (unions as one `OR` predicate, `not()`, quotes and backticks inside literals, string functions). I added those forms to the converter after checking them with the emulator and, where they depend on how XCTest evaluates a predicate, on a simulator and an iPhone. So the LLM runs made the converter better, and after that no model was ahead of it on any locator.
 
@@ -153,18 +153,18 @@ The other direction exists too. In the first runs, some model found an exact cha
 
 Most of the mistakes above are about knowing WDA, not about intelligence. So I wrote them down as general rules (structure, escaping, attributes, positions, what to skip) and ran the same three 5.5 runs again with them. The rules: [`audit/llm/prompt-v4.md`](https://github.com/domovou69/xpath-to-class-chain/blob/main/audit/llm/prompt-v4.md), about 90 lines; there are no answers for particular locators in it.
 
-| Model                          | R                | S                 | vs converter          | Wrong         | Min              | Cost               |
+| Model                          | R                | S                 | vs conv.              | Wrong         | Min              | Cost               |
 | ------------------------------ | ---------------- | ----------------- | --------------------- | ------------- | ---------------- | ------------------ |
 | **Converter**                  | 96.0             | 93.6              | 100 %                 | **0**         | —                | free               |
 | Opus 5.5 `low`<br>+ rules     | 95.1<br>95.0 (−0.1) | 81.9<br>86.9 (+5.0)  | 96.7 %<br>96.7 % (±0)   | 4<br>**0** (−4) | 7.1<br>5.1 (−2.0)   | $2.04<br>$1.72 (−0.32) |
 | Sonnet 5.5 `low`<br>+ rules   | 94.8<br>95.0 (+0.2) | 68.5<br>84.7 (+16.2) | 95.9 %<br>96.4 % (+0.5) | 7<br>**0** (−7) | 5.2<br>8.9 (+3.7)   | $1.03<br>$1.58 (+0.55) |
 | Haiku 5.5 `medium`<br>+ rules | 94.1<br>94.8 (+0.7) | 63.6<br>72.0 (+8.4)  | 93.8 %<br>95.7 % (+1.9) | 4<br>5 (+1)     | 6.0<br>5.7 (−0.3)   | $0.28<br>$0.27 (−0.01) |
 
-Upper value: the plain request; lower: the same model with the rules, and the change in brackets. "vs converter" is usable chains against the converter's 579, "Wrong" the wrong chains.
+Upper value: the plain request; lower: the same model with the rules, and the change in brackets. Column names as in the first table.
 
 - **R barely moved.** On real locators the models were already as good as they get.
 - **S went up** by 5 (Opus), 16 (Sonnet) and 8 (Haiku), and the three models came closer to each other.
-- **Why Opus stays at 96.7 % of the converter.** The rules fixed 12 locators: its 3 wrong chains that could be fixed and 9 skips of things WDA supports (`matches()`, `ends-with()`, `lower-case()`, `@x`, `@index`, `XCUIElementTypeAny`). But the model also got more careful and skipped 12 others: 7 have only an approximation, so skipping them is fine, and 5 the converter does convert (`self::`, a union of two types, a partial type name, an absolute path with indexes, an index inside parentheses). 12 in, 12 out. The 4th wrong chain became a correct skip.
+- **Why Opus stays at 96.7 % of the converter.** The rules fixed 12 locators: 3 of its 4 wrong chains and 9 skips of things WDA supports (`matches()`, `ends-with()`, `lower-case()`, `@x`, `@index`, `XCUIElementTypeAny`). But the model also got more careful and skipped 12 others: 7 have no exact chain, so skipping them is right, and 5 the converter does convert (`self::`, a union of two types, a partial type name, an absolute path with indexes, an index inside parentheses). 12 in, 12 out; the 4th wrong chain became a correct skip.
 - **Opus and Sonnet made no wrong chains.** Haiku still made two kinds of mistake (one of them four times), so it needs a check.
 - **Still no model is ahead of the converter** on any locator. With one run per model, differences of about 3 points in S are noise.
 
