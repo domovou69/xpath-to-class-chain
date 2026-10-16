@@ -42,7 +42,7 @@ The same results as a chart: S against cost per run for the plain request (dots)
 
 ![Quality vs cost, plain request and rules prompt](../audit/llm-chart-plain.svg)
 
-Effort levels of the three 5.5 models on the plain request: a higher effort does not pay. Opus is flat from `low`, Sonnet gains most from `low` to `medium` and only 2.7 more at `max` for 4.6× the cost, Haiku is best at `medium`.
+Effort levels of the three 5.5 models on the plain request: a higher effort does not pay. Opus is flat from `low`, Sonnet gains most from `low` to `medium` and only 3.6 more at `max` for 4.6× the cost, Haiku is best at `medium`.
 
 ![Quality vs cost by effort level, plain request](../audit/llm-chart-efforts.svg)
 
