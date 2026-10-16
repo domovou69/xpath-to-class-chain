@@ -146,12 +146,14 @@ On small screens (36–275 elements) the chain was about 20 % faster, but that i
 
 ![Time per element lookup vs. elements in the tree, XPath and class chain, simulator and iPhone](img/scale-chart.png)
 
-| Elements in the tree | Simulator, XPath → chain | Saved  | iPhone, XPath → chain | Saved  |
-| -------------------- | ------------------------ | ------ | --------------------- | ------ |
-| ~100                 | 115 → 90 ms              | 21.9 % | 295 → 225 ms          | 23.8 % |
-| ~500                 | 453 → 344 ms             | 24.1 % | 760 → 582 ms          | 23.4 % |
-| ~1000                | 912 → 677 ms             | 25.8 % | 1.40 s → 997 ms       | 28.9 % |
-| ~2000                | 1.75 → 1.31 s            | 25.4 % | 2.72 → 2.04 s         | 24.9 % |
+| Elements | Simulator, ms | Saved  | iPhone, ms  | Saved  |
+| -------- | ------------- | ------ | ----------- | ------ |
+| ~100     | 115 → 90      | 21.9 % | 295 → 225   | 23.8 % |
+| ~500     | 453 → 344     | 24.1 % | 760 → 582   | 23.4 % |
+| ~1000    | 912 → 677     | 25.8 % | 1400 → 997  | 28.9 % |
+| ~2000    | 1750 → 1310   | 25.4 % | 2720 → 2040 | 24.9 % |
+
+Each cell: XPath → class chain, time per lookup.
 
 - **The saving in percent does not depend on the screen size.** The saving in milliseconds grows with it, because both strategies process the whole tree on every lookup.
 - **The locator shape and the target's position do not matter.** A button at the top costs as much as one at depth 39.
