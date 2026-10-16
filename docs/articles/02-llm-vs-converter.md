@@ -1,6 +1,6 @@
 ---
 title: "XPath to iOS Class Chain: can Claude do it instead of a converter?"
-published: false
+published: true
 description: "I gave the same 678 Appium XPath locators to Claude Opus, Sonnet and Haiku (three generations, every effort level, with and without a rules prompt) and scored their class chains with the same WDA-based checks as my converter."
 tags: ios, appium, testing, ai
 # cover_image: upload img/llm-chart-plain.png (or a separate cover) in the dev.to editor
@@ -153,14 +153,17 @@ The other direction exists too. In the first runs, some model found an exact cha
 
 Most of the mistakes above are about knowing WDA, not about intelligence. So I wrote them down as general rules (structure, escaping, attributes, positions, what to skip) and ran the same three 5.5 runs again with them. The rules: [`audit/llm/prompt-v4.md`](https://github.com/domovou69/xpath-to-class-chain/blob/main/audit/llm/prompt-v4.md), about 90 lines; there are no answers for particular locators in it.
 
-| Model                         | R                   | S                    | vs conv.                | Wrong           | Min               | Cost                   |
-| ----------------------------- | ------------------- | -------------------- | ----------------------- | --------------- | ----------------- | ---------------------- |
-| **Converter**                 | 96.0                | 93.6                 | 100 %                   | **0**           | —                 | free                   |
-| Opus 5.5 `low`<br>+ rules     | 95.1<br>95.0 (−0.1) | 81.9<br>86.9 (+5.0)  | 96.7 %<br>96.7 % (±0)   | 4<br>**0** (−4) | 7.1<br>5.1 (−2.0) | $2.04<br>$1.72 (−0.32) |
-| Sonnet 5.5 `low`<br>+ rules   | 94.8<br>95.0 (+0.2) | 68.5<br>84.7 (+16.2) | 95.9 %<br>96.4 % (+0.5) | 7<br>**0** (−7) | 5.2<br>8.9 (+3.7) | $1.03<br>$1.58 (+0.55) |
-| Haiku 5.5 `medium`<br>+ rules | 94.1<br>94.8 (+0.7) | 63.6<br>72.0 (+8.4)  | 93.8 %<br>95.7 % (+1.9) | 4<br>5 (+1)     | 6.0<br>5.7 (−0.3) | $0.28<br>$0.27 (−0.01) |
+| Model                | R    | S           | vs conv. | Wrong      | Min | Cost  |
+| -------------------- | ---- | ----------- | -------- | ---------- | --- | ----- |
+| **Converter**        | 96.0 | 93.6        | 100 %    | **0**      | —   | free  |
+| Opus 5.5 `low`       | 95.1 | 81.9        | 96.7 %   | 4          | 7.1 | $2.04 |
+| + rules              | 95.0 | 86.9 (+5.0) | 96.7 %   | **0** (−4) | 5.1 | $1.72 |
+| Sonnet 5.5 `low`     | 94.8 | 68.5        | 95.9 %   | 7          | 5.2 | $1.03 |
+| + rules              | 95.0 | 84.7 (+16.2)| 96.4 %   | **0** (−7) | 8.9 | $1.58 |
+| Haiku 5.5 `medium`   | 94.1 | 63.6        | 93.8 %   | 4          | 6.0 | $0.28 |
+| + rules              | 94.8 | 72.0 (+8.4) | 95.7 %   | 5 (+1)     | 5.7 | $0.27 |
 
-Upper value: the plain request; lower: the same model with the rules, and the change in brackets. Column names as in the first table.
+Each model is shown twice: with the plain request, and with the rules (change from the plain request in brackets). Column names as in the first table.
 
 - **R barely moved.** On real locators the models were already as good as they get.
 - **S went up** by 5 (Opus), 16 (Sonnet) and 8 (Haiku), and the three models came closer to each other.

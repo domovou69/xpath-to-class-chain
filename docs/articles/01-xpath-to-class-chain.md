@@ -206,7 +206,7 @@ Then review the warnings, run your suite, and check each grouped position and `v
 
 ## Next: can an LLM do this instead?
 
-In part 2 I give the same 678 locators to Claude models (Opus, Sonnet and Haiku, several generations, every effort level) and score them with the same checks. Short version: no model beat the converter on real locators. The best results came from the newest models (Claude 5.5) with a prompt of rules, and a higher effort level did not help.
+In [part 2](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-can-claude-do-it-instead-of-a-converter-17m9) I give the same 678 locators to Claude models (Opus, Sonnet and Haiku, several generations, every effort level) and score them with the same checks. Short version: no model beat the converter on real locators. The best results came from the newest models (Claude 5.5) with a prompt of rules, and a higher effort level did not help.
 
 ## Acknowledgements
 

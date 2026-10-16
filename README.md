@@ -5,7 +5,7 @@
 
 Converts Appium XPath locators in your iOS tests to `-ios class chain` selectors, and refuses to convert the ones that have no exact class chain.
 
-**Articles:** [XPath to iOS Class Chain: a converter you can trust, and when it is actually faster](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-a-converter-you-can-trust-and-when-it-is-actually-faster-c6o) (dev.to)
+**Articles:** [XPath to iOS Class Chain: a converter you can trust, and when it is actually faster](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-a-converter-you-can-trust-and-when-it-is-actually-faster-c6o) (dev.to) · [XPath to iOS Class Chain: can Claude do it instead of a converter?](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-can-claude-do-it-instead-of-a-converter-17m9) (dev.to)
 
 ## Try it
 
