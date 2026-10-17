@@ -1,4 +1,4 @@
-# Upstream watch: analyse the changes
+# Upstream schedule: analyse the changes
 
 You check whether new releases of Appium, appium-xcuitest-driver or WebDriverAgent (WDA) can change the result of `xpath-to-class-chain`, a converter that turns Appium XPath locators into iOS class chain locators, checked on a device with the versions in `audit/upstream.json` `checked`.
 

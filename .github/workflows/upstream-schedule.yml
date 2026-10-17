@@ -1,4 +1,4 @@
-name: Upstream watch
+name: Upstream schedule
 
 # Monthly: did a new Appium, appium-xcuitest-driver or WebDriverAgent release change a file the
 # converter depends on? Opens an issue (label `upstream`) only when Claude judges it important.
@@ -77,11 +77,11 @@ jobs:
 
       - name: Nothing to analyse
         if: steps.check.outputs.has_input != 'true'
-        run: echo "## Upstream watch" >> "$GITHUB_STEP_SUMMARY"; echo "No watched file changed since \`checked\`." >> "$GITHUB_STEP_SUMMARY"
+        run: echo "## Upstream schedule" >> "$GITHUB_STEP_SUMMARY"; echo "No watched file changed since \`checked\`." >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: upstream-watch
+          name: upstream-schedule
           path: out/
           if-no-files-found: ignore

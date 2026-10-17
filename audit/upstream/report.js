@@ -59,7 +59,7 @@ const summaryMd = [
   `Analysis: ${model}, effort ${effort}.`,
 ].join('\n');
 
-if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Upstream watch\n\n${summaryMd}\n`);
+if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Upstream schedule\n\n${summaryMd}\n`);
 console.log(summaryMd);
 if (!report.important) { console.log('\nnot important: no issue'); process.exit(0); }
 

@@ -20,7 +20,7 @@ const override = id => {
 };
 
 async function get(url) {
-  const headers = { 'User-Agent': 'xpath-to-class-chain-upstream-watch', Accept: 'application/json' };
+  const headers = { 'User-Agent': 'xpath-to-class-chain-upstream-schedule', Accept: 'application/json' };
   if (url.startsWith('https://api.github.com/')) {
     headers.Accept = 'application/vnd.github+json';
     if (TOKEN) headers.Authorization = `Bearer ${TOKEN}`;
