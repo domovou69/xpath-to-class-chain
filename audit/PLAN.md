@@ -200,3 +200,20 @@ D3 done (2026-10-12), three prompt versions, one changed rule each: v2 (R 79.7�
 Order: D1 → D2 → D0 → D3a → D3 (D1 and D2 are cheap and need no device; D0 needs the simulator; D3a after D0 because the prompt depends on it). Each task in its own session, as before.
 
 Order: A → B → C1 → C2 → D. Stages A and B do not touch the device; C1 needs the simulator.
+
+## Parked findings (not fixed)
+
+Found after Phase 5 and written down to check in more detail later. Neither affects a valid locator or the R / S numbers.
+
+- **P1 — XPath 2.0 syntax that WDA rejects comes out as `success` (2026-10-17).** WDA evaluates XPath with libxml2, which is XPath 1.0 plus the seven functions from `FBXPathExtensions.m` (`matches`, `ends-with`, `lower-case`, `upper-case`, `replace`, `tokenize`, `string-join`). Other XPath 2.0/3.0 syntax inside a predicate is copied into the chain and marked `success`, though both sides fail on WDA: mini-WDA (`check.js`) gives `InvalidXPath` for the XPath and `Unable to parse the format string` for the chain. So it is a broken locator turned into another broken locator, not a wrong chain for a valid one; the 678-locator corpus has none of these.
+
+  | Input | Output (`status: success`) |
+  |---|---|
+  | `//*[@name eq "a"]` (also `ne`, `gt`) | ``**/*[`name != nil eq "a"`]`` |
+  | `//*[@name=("a","b")]` | ``**/*[`name != nil=("a","b")`]`` |
+  | `//*[(@name,@label)="a"]` | ``**/*[`(name,label != nil)="a"`]`` |
+  | `//*[@name \|\| "a"]` | ``**/*[`name != nil \|\| "a"`]`` |
+  | `//*[some $v in @name satisfies $v="a"]`, `castable as`, `instance of` | the text copied as is |
+
+  Already skipped correctly: `except`, `intersect`, `if … then … else`, `replace`, `tokenize`, `string-join`.
+  Possible fix: the validator rejects bare words and comma sequences that are not class chain syntax, with the reason "XPath 2.0 syntax: WDA evaluates XPath 1.0 (libxml2)"; plus regression rows for the forms above.
