@@ -203,6 +203,8 @@ Order: A → B → C1 → C2 → D. Stages A and B do not touch the device; C1 n
 
 ## Phase 6 — upstream watch (planned)
 
+**Status (2026-10-17): implemented** in `audit/upstream/` and `.github/workflows/upstream-watch.yml`, see [`audit/upstream/README.md`](upstream/README.md). Change from the plan: changed files are found by comparing the git trees of both tags, because the compare API lists at most 300 files (WDA 13.0.0 → 16.15.3 missed `FBXPathExtensions.m`); patches beyond that come from each commit. Large `driver.ts` and `core.ts` count only when the patch mentions locator strategies. Tests 1 and 2 passed with the local CLI (same model and effort): the real pair → not important; WDA 13.0.0 → important, with the commits linked. Tests in Actions (dispatch, issue, broken token) run after the merge, because `workflow_dispatch` needs the workflow on `main`.
+
 Goal: once a month, find out whether a new Appium, appium-xcuitest-driver or WebDriverAgent release changed anything the converter depends on, and email the user only when it did. Agreed with the user on 2026-10-17. One session, about 1–1.5 h. Branch and PR as always.
 
 **Manual check on 2026-10-17 (the first run of this logic, by hand).** Appium 3.8.0 is still the latest. The driver is at 12.18.1 (Duo multi-display, `asAppUnderTest`, screen recording, tvOS tunnels) and WDA at 16.15.3 (Duo gestures and scrolling, `/health`, MJPEG, app launch cleanup). `compare v16.14.1...v16.15.3` touches none of the files below, and the driver's own docs for the new `currentDisplayId` setting say "Page source and element lookup are not affected". Nothing to re-check. The automated job must reach the same verdict on this pair.
