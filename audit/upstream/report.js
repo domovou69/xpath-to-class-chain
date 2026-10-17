@@ -45,14 +45,14 @@ if (process.env.EXECUTION_FILE) {
 }
 const effort = process.env.EFFORT || report.effort || 'unknown';
 
-const versions = meta.components.map(c => `${c.name} ${c.base}${c.newer ? ` → ${c.latest}` : ''}`).join(', ');
+const versions = meta.components.map(c => `- ${c.name}: ${c.base}${c.newer ? ` → ${c.latest}` : ' (no newer release)'}`).join('\n');
 const key = meta.components.filter(c => c.newer).map(c => `${c.id}@${c.latest}`).join(' ');
 const cell = s => String(s).replace(/\|/g, '\\|').replace(/\n+/g, ' ');
 const NAMES = Object.fromEntries(meta.components.map(c => [c.id, c.name]));
 
 const summaryMd = [
   `**${report.important ? 'Important' : 'Not important'}.** ${report.summary}`, '',
-  `Versions: ${versions}.`, '',
+  'Versions:', '', versions, '',
   ...(report.items.length ? ['| Component | Change | Impact | Re-check | Links |', '|---|---|---|---|---|',
     ...report.items.map(it => `| ${NAMES[it.component] || it.component} | ${cell(it.change)} | ${cell(it.impact)} | ${it.recheck ? '**yes**' : 'no'} | ${it.links.map((l, i) => `[${i + 1}](${l})`).join(' ')} |`), ''] : []),
   ...meta.components.filter(c => c.compareUrl).map(c => `- ${c.name} compare: ${c.compareUrl}`), '',
