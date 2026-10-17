@@ -201,6 +201,62 @@ Order: D1 → D2 → D0 → D3a → D3 (D1 and D2 are cheap and need no device; 
 
 Order: A → B → C1 → C2 → D. Stages A and B do not touch the device; C1 needs the simulator.
 
+## Phase 6 — upstream watch (planned)
+
+Goal: once a month, find out whether a new Appium, appium-xcuitest-driver or WebDriverAgent release changed anything the converter depends on, and email the user only when it did. Agreed with the user on 2026-10-17. One session, about 1–1.5 h. Branch and PR as always.
+
+**Manual check on 2026-10-17 (the first run of this logic, by hand).** Appium 3.8.0 is still the latest. The driver is at 12.18.1 (Duo multi-display, `asAppUnderTest`, screen recording, tvOS tunnels) and WDA at 16.15.3 (Duo gestures and scrolling, `/health`, MJPEG, app launch cleanup). `compare v16.14.1...v16.15.3` touches none of the files below, and the driver's own docs for the new `currentDisplayId` setting say "Page source and element lookup are not affected". Nothing to re-check. The automated job must reach the same verdict on this pair.
+
+**Decisions**
+
+- Analysis: **Claude Sonnet, effort `medium`**, through `anthropics/claude-code-action` with the user's subscription token (Pro plan; `claude setup-token`, valid one year), secret `CLAUDE_CODE_OAUTH_TOKEN`. No API key. A Gemini fallback is parked: add it only if Claude runs fail in practice.
+- The report names the model and effort that did the analysis.
+- Notification: a GitHub Issue (label `upstream`) only when the verdict is "important". GitHub emails the repo owner about the issue. No change, or a change judged unimportant, sends nothing.
+- When unsure, the model must answer "important": an extra email is better than a missed break.
+- Failures are loud: if the LLM step, the token or an API call fails, or the report is missing or invalid, the job fails, and GitHub emails the failure of a scheduled workflow. Silence means "checked, nothing important".
+- No duplicates: if an open `upstream` issue already names the same latest versions, do not open another.
+
+**Baseline file `audit/upstream.json`** (new, the single source of truth):
+
+- `checked`: the versions last verified (Appium 3.8.0, driver 12.16.0, WDA 16.14.1, Xcode 27.0, iOS 27.0 sim / 26.6 iPhone) and the date. The job always compares `checked` → latest. After a re-check on the device, the user updates `checked` through a PR. README "Checked with", `docs/results.md` and `audit/harness/wda/VERSION` keep their text; the file says it is the one to update first.
+- `watch`: the files per component.
+  - **WDA** (`appium/WebDriverAgent`, `WebDriverAgentLib/`): the 12 files that mini-WDA compiles (`audit/harness/wda/fetch-wda.sh`: `Utilities/FBClassChainQueryParser.{h,m}`, `Routing/FBElement.h`, `Utilities/FBElementTypeTransformer.{h,m}`, `Routing/FBElementUtils.m`, `Utilities/FBXPathExtensions.{h,m}`, `Categories/NSExpression+FBFormat.{h,m}`, `Utilities/NSPredicate+FBFormat.{h,m}`). Add the lookup and page source code: `XCUIElement+FBClassChain.m`, `FBXPath.{h,m}`, `XCUIElement+FBFind.m`, `FBFindElementCommands.m`, the attribute getters (`XCUIElement+FBWebDriverAttributes.m`). Check each path exists at `v16.14.1`.
+  - **Driver** (`appium/appium-xcuitest-driver`): `lib/commands/find.*`, `lib/commands/source.*`, the locator strategy list in `lib/driver.*` (`locatorStrategies`), and `docs/reference/settings.md` (settings that change lookup or page source). Check the paths at `v12.16.0`.
+  - **Appium** (`appium/appium`): `packages/base-driver` code that validates and routes locator strategies (find helpers). Check the paths at `appium@3.8.0`.
+  - Tags: WDA `vX.Y.Z`, driver `vX.Y.Z`, Appium `appium@X.Y.Z`. Verify with `gh api repos/<repo>/tags`.
+
+**Files to add**
+
+- `audit/upstream/check.js`: the deterministic part, Node 20+ with no dependencies.
+  1. Read the latest versions from the npm registry.
+  2. For each component that has a newer version, call `GET /repos/<repo>/compare/<checked>...<latest>` and keep the commits (title, URL) and the patches of the watched files.
+  3. If no watched file changed, print "nothing to analyse" and exit 0.
+  4. Otherwise write `out/upstream-input.md` with versions, commits with links, and patches. The compare API truncates large patches; then add the file URL and say so.
+- `audit/upstream/prompt.md`: the analysis prompt.
+  - Context: read `.claude/skills/xpath-to-class-chain/references/class-chain-rules.md`, `README.md` "What it does" and `audit/harness/README.md`.
+  - Task: for each change, say whether it can change what a class chain or an XPath finds, the attributes and types the converter relies on, the parser grammar, `MATCHES`/`[c]`/normalization, result order, or "invalid selector" handling.
+  - Output: `out/upstream-report.json` with `{ important: bool, model, effort, summary, items: [{ component, change, links[], impact, recheck }] }`.
+- `audit/upstream/report.js`: validate the JSON. If `important`, build the issue body (summary, a table of items with links, versions `checked → latest`, the model) and run `gh issue create --label upstream`, after the duplicate check. If the JSON is missing or invalid, exit 1.
+- `.github/workflows/upstream-watch.yml`:
+  - triggers: `schedule` on the 1st of each month at 06:00 UTC, and `workflow_dispatch` with optional inputs `wda_base`, `driver_base`, `appium_base` (override `checked` for a test) and `dry_run` (print the issue body instead of creating it);
+  - permissions: `contents: read`, `issues: write`;
+  - steps: checkout → `check.js` → the Claude step, only if there is input (`claude_args: --model <sonnet id> --effort medium`, tools limited to Read/Grep/Glob/Write; the model does not run `gh` or commit) → `report.js`.
+- Short README section in `audit/upstream/README.md`: what it watches, how to update `checked`, how to test.
+
+**Test before the PR**
+
+1. `node audit/upstream/check.js` locally with the real pair 16.14.1 → 16.15.3. Expect "nothing to analyse" for WDA, and the same for the driver 12.16.0 → 12.18.1, unless a watched driver file changed. If one did, the LLM verdict must be "not important".
+2. `workflow_dispatch` with `wda_base` set to an old tag where `FBClassChainQueryParser.m` or `FBXPathExtensions.m` changed (find one with `gh api .../commits?path=…`) and `dry_run=true`: the body must name the change, link the commits and say what to re-check.
+3. The same with `dry_run=false` once: the issue is created and the email arrives. Close the issue.
+4. Break the token on purpose (wrong secret name in a branch run) and confirm the run fails and the failure email arrives.
+
+**What the user does**
+
+- `claude setup-token` locally, then copy the token into repo Settings → Secrets and variables → Actions → `CLAUDE_CODE_OAUTH_TOKEN`.
+- Keep GitHub email notifications on for Issues and for Actions failures. Both are on by default.
+
+**Later, only if needed:** a Gemini Flash fallback (second secret; the report names the model that ran), Xcode release notes as an input, and a PR from the job that bumps `checked`.
+
 ## Parked findings (not fixed)
 
 Found after Phase 5 and written down to check in more detail later. Neither affects a valid locator or the R / S numbers.
