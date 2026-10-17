@@ -1,7 +1,7 @@
 {
   "name": "xpath-to-class-chain",
-  "version": "1.0.1",
-  "description": "Convert and optimize iOS XPath locators to iOS Class Chain selectors for Appium, with a built-in linter and an optional optimizer pass",
+  "version": "1.0.2",
+  "description": "XPath to iOS Class Chain converter for Appium (XCUITest): rewrites the locators that have an exact class chain, skips the rest with a reason",
   "license": "MIT",
   "author": "Mikhail Yesipchuk (https://github.com/domovou69)",
   "keywords": [
@@ -9,9 +9,17 @@
     "ios",
     "xpath",
     "class-chain",
+    "ios-class-chain",
+    "xpath-to-class-chain",
+    "xcuitest",
+    "webdriveragent",
     "locator",
+    "locators",
+    "converter",
+    "codemod",
     "migration",
-    "xcuitest"
+    "test-automation",
+    "mobile-testing"
   ],
   "repository": {
     "type": "git",
