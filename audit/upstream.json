@@ -1,0 +1,61 @@
+{
+  "about": "Single source of truth for the versions the converter was last checked against on a device, and for the upstream files the monthly watch (audit/upstream/) compares. After a device re-check, update `checked` here first, then README 'Checked with', docs/results.md and audit/harness/wda/VERSION.",
+  "checked": {
+    "date": "2026-10-10",
+    "appium": "3.8.0",
+    "driver": "12.16.0",
+    "wda": "16.14.1",
+    "xcode": "27.0",
+    "ios": { "simulator": "27.0", "iphone": "26.6" }
+  },
+  "watch": {
+    "wda": {
+      "name": "WebDriverAgent",
+      "repo": "appium/WebDriverAgent",
+      "npm": "appium-webdriveragent",
+      "tag": "v{version}",
+      "files": [
+        "WebDriverAgentLib/Utilities/FBClassChainQueryParser.h",
+        "WebDriverAgentLib/Utilities/FBClassChainQueryParser.m",
+        "WebDriverAgentLib/Routing/FBElement.h",
+        "WebDriverAgentLib/Utilities/FBElementTypeTransformer.h",
+        "WebDriverAgentLib/Utilities/FBElementTypeTransformer.m",
+        "WebDriverAgentLib/Routing/FBElementUtils.m",
+        "WebDriverAgentLib/Utilities/FBXPathExtensions.h",
+        "WebDriverAgentLib/Utilities/FBXPathExtensions.m",
+        "WebDriverAgentLib/Categories/NSExpression+FBFormat.h",
+        "WebDriverAgentLib/Categories/NSExpression+FBFormat.m",
+        "WebDriverAgentLib/Utilities/NSPredicate+FBFormat.h",
+        "WebDriverAgentLib/Utilities/NSPredicate+FBFormat.m",
+        "WebDriverAgentLib/Categories/XCUIElement+FBClassChain.m",
+        "WebDriverAgentLib/Utilities/FBXPath.h",
+        "WebDriverAgentLib/Utilities/FBXPath.m",
+        "WebDriverAgentLib/Categories/XCUIElement+FBFind.m",
+        "WebDriverAgentLib/Commands/FBFindElementCommands.m",
+        "WebDriverAgentLib/Categories/XCUIElement+FBWebDriverAttributes.m"
+      ]
+    },
+    "driver": {
+      "name": "appium-xcuitest-driver",
+      "repo": "appium/appium-xcuitest-driver",
+      "npm": "appium-xcuitest-driver",
+      "tag": "v{version}",
+      "files": [
+        "lib/commands/find.*",
+        "lib/commands/source.*",
+        { "path": "lib/driver.*", "match": "locatorStrateg" },
+        "docs/reference/settings.md"
+      ]
+    },
+    "appium": {
+      "name": "Appium",
+      "repo": "appium/appium",
+      "npm": "appium",
+      "tag": "appium@{version}",
+      "files": [
+        "packages/base-driver/lib/basedriver/commands/find.*",
+        { "path": "packages/base-driver/lib/basedriver/core.*", "match": "ocatorStrateg" }
+      ]
+    }
+  }
+}

@@ -15,3 +15,6 @@ audit/device/out/
 
 # macOS Finder metadata
 .DS_Store
+
+# Phase 6 upstream watch output (audit/upstream)
+out/

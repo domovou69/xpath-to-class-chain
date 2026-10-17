@@ -203,6 +203,8 @@ Order: A → B → C1 → C2 → D. Stages A and B do not touch the device; C1 n
 
 ## Phase 6 — upstream watch (planned)
 
+**Status (2026-10-17): implemented** in `audit/upstream/` and `.github/workflows/upstream-schedule.yml`, see [`audit/upstream/README.md`](upstream/README.md). Change from the plan: changed files are found by comparing the git trees of both tags, because the compare API lists at most 300 files (WDA 13.0.0 → 16.15.3 missed `FBXPathExtensions.m`); patches beyond that come from each commit. Large `driver.ts` and `core.ts` count only when the patch mentions locator strategies. Tests 1 and 2 passed with the local CLI (same model and effort): the real pair → not important; WDA 13.0.0 → important, with the commits linked. Tests in Actions (dispatch, issue, broken token) run after the merge, because `workflow_dispatch` needs the workflow on `main`.
+
 Goal: once a month, find out whether a new Appium, appium-xcuitest-driver or WebDriverAgent release changed anything the converter depends on, and email the user only when it did. Agreed with the user on 2026-10-17. One session, about 1–1.5 h. Branch and PR as always.
 
 **Manual check on 2026-10-17 (the first run of this logic, by hand).** Appium 3.8.0 is still the latest. The driver is at 12.18.1 (Duo multi-display, `asAppUnderTest`, screen recording, tvOS tunnels) and WDA at 16.15.3 (Duo gestures and scrolling, `/health`, MJPEG, app launch cleanup). `compare v16.14.1...v16.15.3` touches none of the files below, and the driver's own docs for the new `currentDisplayId` setting say "Page source and element lookup are not affected". Nothing to re-check. The automated job must reach the same verdict on this pair.
@@ -237,7 +239,7 @@ Goal: once a month, find out whether a new Appium, appium-xcuitest-driver or Web
   - Task: for each change, say whether it can change what a class chain or an XPath finds, the attributes and types the converter relies on, the parser grammar, `MATCHES`/`[c]`/normalization, result order, or "invalid selector" handling.
   - Output: `out/upstream-report.json` with `{ important: bool, model, effort, summary, items: [{ component, change, links[], impact, recheck }] }`.
 - `audit/upstream/report.js`: validate the JSON. If `important`, build the issue body (summary, a table of items with links, versions `checked → latest`, the model) and run `gh issue create --label upstream`, after the duplicate check. If the JSON is missing or invalid, exit 1.
-- `.github/workflows/upstream-watch.yml`:
+- `.github/workflows/upstream-schedule.yml`:
   - triggers: `schedule` on the 1st of each month at 06:00 UTC, and `workflow_dispatch` with optional inputs `wda_base`, `driver_base`, `appium_base` (override `checked` for a test) and `dry_run` (print the issue body instead of creating it);
   - permissions: `contents: read`, `issues: write`;
   - steps: checkout → `check.js` → the Claude step, only if there is input (`claude_args: --model <sonnet id> --effort medium`, tools limited to Read/Grep/Glob/Write; the model does not run `gh` or commit) → `report.js`.

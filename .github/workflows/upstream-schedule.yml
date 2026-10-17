@@ -1,0 +1,87 @@
+name: Upstream schedule
+
+# Monthly: did a new Appium, appium-xcuitest-driver or WebDriverAgent release change a file the
+# converter depends on? Opens an issue (label `upstream`) only when Claude judges it important.
+# Any failure fails the job, and GitHub emails the failure. See audit/upstream/README.md.
+on:
+  schedule:
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+    inputs:
+      wda_base:
+        description: "Compare WDA from this version instead of `checked` (e.g. 16.10.0)"
+        required: false
+      driver_base:
+        description: "Compare the driver from this version instead of `checked`"
+        required: false
+      appium_base:
+        description: "Compare Appium from this version instead of `checked`"
+        required: false
+      dry_run:
+        description: "Print the issue body instead of creating the issue"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  MODEL: claude-sonnet-5-5
+  EFFORT: medium
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Collect upstream changes
+        id: check
+        run: node audit/upstream/check.js
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          WDA_BASE: ${{ inputs.wda_base }}
+          DRIVER_BASE: ${{ inputs.driver_base }}
+          APPIUM_BASE: ${{ inputs.appium_base }}
+
+      - name: Analyse with Claude
+        id: claude
+        if: steps.check.outputs.has_input == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
+          prompt: |
+            Follow the instructions in audit/upstream/prompt.md.
+            You run as model ${{ env.MODEL }} with effort ${{ env.EFFORT }}.
+          claude_args: >-
+            --model ${{ env.MODEL }} --effort ${{ env.EFFORT }} --max-turns 40
+            --tools Read,Grep,Glob,Write --allowedTools Read,Grep,Glob,Write
+
+      - name: Check Claude wrote the report
+        if: steps.check.outputs.has_input == 'true'
+        run: test -s out/upstream-report.json || { echo "Claude did not write out/upstream-report.json"; exit 1; }
+
+      - name: Report
+        if: steps.check.outputs.has_input == 'true'
+        run: node audit/upstream/report.js
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          EXECUTION_FILE: ${{ steps.claude.outputs.execution_file }}
+
+      - name: Nothing to analyse
+        if: steps.check.outputs.has_input != 'true'
+        run: echo "## Upstream schedule" >> "$GITHUB_STEP_SUMMARY"; echo "No watched file changed since \`checked\`." >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: upstream-schedule
+          path: out/
+          if-no-files-found: ignore
