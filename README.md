@@ -56,8 +56,9 @@ Checked on 678 locators (563 from real test suites, 115 edge cases) against WebD
 | Wrong chains                          | 0                                                                                                          |
 | Lookup time                           | class chain 22–29 % faster than XPath at 100–2000 elements in the tree; on small screens only milliseconds |
 | LLMs (Claude 5.5, 5, 4.x)             | none beat the converter on real locators                                                                   |
+| Checked with                          | Appium 3.8.0, appium-xcuitest-driver 12.16.0, WDA 16.14.1 (latest in October 2026); iOS 26.6 and 27.0      |
 
-Before converting, check `visible` predicates and lookups of dozens of elements: they can be slower as a chain. Full results, charts and the LLM comparison: [docs/results.md](docs/results.md). Method and evidence: [audit/](audit/README.md).
+Older versions were not checked: WDA's class chain and predicate handling may behave differently there. Before converting, check `visible` predicates and lookups of dozens of elements: they can be slower as a chain. Full results, charts and the LLM comparison: [docs/results.md](docs/results.md). Method and evidence: [audit/](audit/README.md).
 
 ## Use it as a library
 
