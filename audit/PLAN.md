@@ -259,6 +259,32 @@ Goal: once a month, find out whether a new Appium, appium-xcuitest-driver or Web
 
 **Later, only if needed:** a Gemini Flash fallback (second secret; the report names the model that ran), Xcode release notes as an input, and a PR from the job that bumps `checked`.
 
+## Phase 7 — GitHub corpus (planned)
+
+Goal: check that the published converter (npm 1.0.2) holds up on other teams' code. Find new XPath forms, new skip reasons, wrong conversions and literals the scanner misses or misreads. Agreed with the user on 2026-10-21. Branch and PR per stage, as always. Fixes go into a patch release (1.0.3) only if something is found.
+
+**Why.** The current R corpus (`audit/corpus/ios-locators.json`, 573 literals) comes from a single production CodeceptJS suite. That is one team, one language (JS) and one way of writing locators. R 96.0 and 0 WRONG hold for that style. Package users also write `@iOSXCUITFindBy` in Java/Kotlin, Python tuples, C#, WebdriverIO and Inspector-recorded absolute paths.
+
+**Not in scope: running the locators on the real apps.** Whether a project's XPath still finds its element tests that project's suite, not the converter. It would also need app builds, logins and navigation. The converter is checked by comparing XPath and class chain on the same tree, as in Phases 1–2.
+
+**Sources: reuse the Android harvest, plus a new search.**
+
+- Reuse: the Android corpus (`../xpath-to-uiselector/audit/corpus/android-locators.json`, kind `xpath-ios`) already has 78 iOS literals from 6 projects. These are session-appium 28, sora2-passport 27, puma 17, metamask-sdk 3, Perfecto samples 2 and appium-unittest 1. They have pinned commits, licenses and anonymization already done, so they cost nothing to use.
+- Reuse alone is not enough. That harvest searched for Android (`"//android.widget"`), so its iOS literals are incidental. They come only from cross-platform suites (TS, Python, Java), with no Kotlin, C#, Ruby or iOS-only projects. 78 literals is also too few to say that no new forms exist.
+- New search: 12–15 more projects chosen by iOS (GitHub code search `XCUIElementType` inside XPath strings, by language, with the per-language counts recorded as in the Android `sources.md`). Mix large/organizational suites with weak ones (courses, practice repos, Inspector recordings). Prefer languages that are missing above. Skip the 6 projects already harvested. Reuse the Android harvest tooling (download filter, scanner contexts, anonymization) instead of writing new tools.
+
+**Stages**
+
+| # | Stage | Result | Estimate |
+| --- | --- | --- | --- |
+| 0 | Pilot | Convert the 78 reused literals, compare their forms (values, types and numbers replaced) with the 573 current ones, list new forms, new skip reasons and scanner problems. Decide on stage 1 from this: new forms or any WRONG → go on; all known forms → the user decides | ≈15 min, ≈3 % |
+| 1 | Harvest | 12–15 new iOS projects, pinned commits, `audit/corpus/sources-github.md` (projects, licenses, languages, search counts), anonymized `audit/corpus/ios-locators-github.json` (same fields as the current corpus, plus `project`, `lang`, `strategy`) | ≈60–75 min, ≈12–15 % |
+| 2 | Offline check | Scanner and converter on all new literals; fuzz in `audit/harness` (random page sources, mini-WDA) on every converted one; per-form table, new skip reasons, scanner misses per language. Fix only what mini-WDA proves; anything else waits for stage 3 | ≈30 min, ≈6 % |
+| 3 | Device | Only new forms and suspicious cases, one representative per form, on the fixed simulator (see `audit/device`), as in Phase 2. Skipped if stage 2 finds no new forms | ≈45 min, ≈10 % |
+| 4 | Report | Section in `audit/coverage-report.md` with a separate R / C for the GitHub corpus. The 573-literal corpus and its scores stay as they are, so README, article and earlier results stay comparable. Patch release only if the converter or scanner changed (npm publish after the user's OK) | ≈20 min, ≈4 % |
+
+Total ≈2.5–3 h, about 30 % of one window. The cheap variant is stage 0 alone, or stages 0–2 without the device.
+
 ## Parked findings (not fixed)
 
 Found after Phase 5 and written down to check in more detail later. Neither affects a valid locator or the R / S numbers.
