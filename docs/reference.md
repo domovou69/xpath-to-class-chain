@@ -1,6 +1,6 @@
 # Reference
 
-Everything about using xpath-to-class-chain beyond the [README](../README.md): commands, flags, what it converts and skips, the report format, device findings and library use.
+Everything about using xpath-to-class-chain beyond the [README](../README.md): commands, flags, what it converts and skips, the report format, device findings, library use and the Claude Code skill.
 
 ## Installation
 
@@ -323,6 +323,12 @@ const { valid, fixedLocator, reason } = validateAndFixClassChain(
 // Optimize an existing chain (idempotent + all optimizer rules)
 optimizeClassChain('-ios class chain:**/Btn[`name == "a*"`]');
 ```
+
+---
+
+## Claude Code skill
+
+[`.claude/skills/xpath-to-class-chain/`](../.claude/skills/xpath-to-class-chain/SKILL.md) wraps the converter for Claude Code: it runs the converter first, then explains each skipped locator and suggests a fix that stays within class chain. Copy the folder to `~/.claude/skills/` and install the package to use it in another project.
 
 ---
 

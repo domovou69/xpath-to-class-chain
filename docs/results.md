@@ -2,6 +2,19 @@
 
 Measured on 676 real and hand-made XPath locators (562 from real test suites, 114 edge cases) against a WebDriverAgent-compatible oracle, and on a simulator and an iPhone. Full method and numbers: [`audit/coverage-report.md`](../audit/coverage-report.md).
 
+**The converter on 1502 locators** (version 1.0.3): 1387 real locators from 23 test suites in 7 languages (one production suite and 22 GitHub projects) and 115 edge cases. The LLM comparison below was run earlier on the first 676 of them and is not rescored.
+
+|                                       |                                                                                                            |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Real locators that have a class chain | 1180 of 1387 (85 %)                                                                                        |
+| Score on real locators / edge cases   | 91.9 / 93.6 of 100, the maximum: positions like `(//X)[2]` only have an approximation (one production suite 96.0, 22 GitHub projects 89.1) |
+| Wrong chains                          | 0                                                                                                          |
+| Lookup time                           | class chain 22–29 % faster than XPath at 100–2000 elements in the tree; on small screens only milliseconds |
+| LLMs (Claude 5.5, 5, 4.x)             | none beat the converter on real locators (the 563 of the production suite)                                 |
+| Checked with                          | Appium 3.8.0, appium-xcuitest-driver 12.16.0, WDA 16.14.1 (latest in October 2026); iOS 26.6 and 27.0      |
+
+Older versions were not checked: WDA's class chain and predicate handling may behave differently there. Before converting, check `visible` predicates and lookups of dozens of elements: they can be slower as a chain. The GitHub corpus, its fixes and the breakdown by source and language: [`audit/coverage-report.md`](../audit/coverage-report.md), "GitHub corpus (Phase 7)".
+
 **Two ways to convert**
 
 |                | This converter                                                                                        | An LLM with the rules prompt (prompt-v4)                                                                     |

@@ -5,11 +5,6 @@
 
 Converts Appium XPath locators in your iOS tests to `-ios class chain` selectors, and refuses to convert the ones that have no exact class chain.
 
-**Articles on dev.to:**
-
-- [XPath to iOS Class Chain: a converter you can trust, and when it is actually faster](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-a-converter-you-can-trust-and-when-it-is-actually-faster-c6o): how the converter is checked, and how much faster class chain is on big screens
-- [XPath to iOS Class Chain: can Claude do it instead of a converter?](https://dev.to/mikhail_yesipchuk/xpath-to-ios-class-chain-can-claude-do-it-instead-of-a-converter-17m9): Claude models of three generations (5.5 > 5 > 4.X) against the converter on the same locators
-
 ## Try it
 
 Nothing to install. The bare command only previews; review the diff, then add `--write`.
@@ -49,16 +44,11 @@ Point `./tests` at the folder with your Appium/XCUITest code (JS/TS, Java, Kotli
 
 Checked on 1502 locators (1387 from 23 real test suites in 7 languages, 115 edge cases) against WebDriverAgent's own code, then on an iOS simulator and an iPhone.
 
-|                                       |                                                                                                            |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| Real locators that have a class chain | 1180 of 1387 (85 %)                                                                                        |
-| Score on real locators / edge cases   | 91.9 / 93.6 of 100, the maximum: positions like `(//X)[2]` only have an approximation (one production suite 96.0, 22 GitHub projects 89.1) |
-| Wrong chains                          | 0                                                                                                          |
-| Lookup time                           | class chain 22–29 % faster than XPath at 100–2000 elements in the tree; on small screens only milliseconds |
-| LLMs (Claude 5.5, 5, 4.x)             | none beat the converter on real locators (the 563 of the production suite)                                 |
-| Checked with                          | Appium 3.8.0, appium-xcuitest-driver 12.16.0, WDA 16.14.1 (latest in October 2026); iOS 26.6 and 27.0      |
+- **0 wrong chains.** 85 % of the real locators have a class chain, and the converter gets the maximum score on them.
+- **Faster lookups:** class chain is 22–29 % faster than XPath at 100–2000 elements in the tree. Exception: `visible` on the last step can be much slower as a chain.
+- **Checked with** Appium 3.8.0, appium-xcuitest-driver 12.16.0, WDA 16.14.1, iOS 26.6 and 27.0. Older versions were not checked.
 
-Older versions were not checked: WDA's class chain and predicate handling may behave differently there. Before converting, check `visible` predicates and lookups of dozens of elements: they can be slower as a chain. Full results, charts and the LLM comparison: [docs/results.md](docs/results.md). Method and evidence: [audit/](audit/README.md).
+Full numbers, the LLM comparison and charts: [docs/results.md](docs/results.md).
 
 ## Use it as a library
 
@@ -75,15 +65,12 @@ const { locator, status } = convertXpathToClassChain(
 
 Install globally to run it without `npx`: `npm install -g xpath-to-class-chain`.
 
-## Claude Code skill
-
-[`.claude/skills/xpath-to-class-chain/`](.claude/skills/xpath-to-class-chain/SKILL.md) wraps the converter for Claude Code: it runs the converter first, then explains each skipped locator and suggests a fix that stays within class chain. Copy the folder to `~/.claude/skills/` and install the package to use it in another project.
-
 ## Documentation
 
-- [Reference](docs/reference.md): flags, what gets converted and skipped, the optimizer, the JSON report, device findings, library API, tests
-- [Results](docs/results.md): scores, LLM comparison, lookup speed, versions checked
+- [Reference](docs/reference.md): flags, what gets converted and skipped, the optimizer, the JSON report, device findings, library API, the Claude Code skill, tests
+- [Results](docs/results.md): scores by source, LLM comparison, lookup speed, versions checked
 - [Audit](audit/README.md): how correctness was proven, with all data and scripts
+- [Articles](docs/articles/README.md): two dev.to articles on the checks and on Claude against the converter
 
 ## License
 
