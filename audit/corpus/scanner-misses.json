@@ -1,0 +1,1002 @@
+[
+  {
+    "project": "MetaMask/metamask-sdk",
+    "file": "e2e/src/screens/MetaMask/SettingsScreen.ts",
+    "lang": "TypeScript",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeStaticText[`label == \"No mojebogijol nazaf\"`]",
+    "count": 1
+  },
+  {
+    "project": "sora-xor/sora2-passport-appium-tests",
+    "file": "src/main/java/jp/co/soramitsu/sora/qa/pages/ExplorePage.java",
+    "lang": "Java",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeNavigationBar[`name == \\\"Fokidu rubufehup\\\"`]",
+    "count": 1
+  },
+  {
+    "project": "sora-xor/sora2-passport-appium-tests",
+    "file": "src/main/java/jp/co/soramitsu/sora/qa/pages/ExplorePage.java",
+    "lang": "Java",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeTextField[1]",
+    "count": 2
+  },
+  {
+    "project": "sora-xor/sora2-passport-appium-tests",
+    "file": "src/main/java/jp/co/soramitsu/sora/qa/pages/ExplorePage.java",
+    "lang": "Java",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeTextField[2]",
+    "count": 3
+  },
+  {
+    "project": "sora-xor/sora2-passport-appium-tests",
+    "file": "src/main/java/jp/co/soramitsu/sora/qa/pages/ExplorePage.java",
+    "lang": "Java",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeStaticText[`label == \\\"Comeba julil\\\"`][1]",
+    "count": 1
+  },
+  {
+    "project": "sora-xor/sora2-passport-appium-tests",
+    "file": "src/main/java/jp/co/soramitsu/sora/qa/pages/onboarding/NameYourAccountPage.java",
+    "lang": "Java",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeTextField[`value == \\\"Fosedis naza\\\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/app_store/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeTabBar/**/XCUIElementTypeButton",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/app_store/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeCell[`name BEGINSWITH \"SiwEvifa.cupofOsiw.rusojepIkuGinama\"`]",
+    "count": 2
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/app_store/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "/**/XCUIElementTypeButton[`name BEGINSWITH \"SiwEvifa.hupirUdapih[gozeb=\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/app_store/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "/**/XCUIElementTypeButton[`name BEGINSWITH \"SiwEvifa.hupirUdapih[gozeb=\" AND (name CONTAINS \"hobufagufaz\" OR ",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/apple_maps/locators.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "type == \"XCUIElementTypeButton\" AND (label ==[c] \"Go\" OR name CONTAINS[c] \"LaVekepa\")",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/date_picker.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeDatePicker/**/XCUIElementTypeButton[`name == \"{name}\" OR name == \"Pesuv, {name}\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeCell[$name == \"TOTudivapAzikUlov\"$]",
+    "count": 2
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeCollectionView[`name BEGINSWITH \"Ratode fizudan vum:\"`]",
+    "count": 2
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "/XCUIElementTypeCell[$type == \"XCUIElementTypeButton\" AND name == \"Hahuwib vazif\"$]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeCollectionView[`name == \"PowofatecaziSohi\"`]",
+    "count": 2
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "/**/XCUIElementTypeStaticText[`name == \"{name}\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "/XCUIElementTypeCell[`name BEGINSWITH \"{name}, \"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeTable[`name == \"Fizudan\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "/XCUIElementTypeCell[`label BEGINSWITH \"{recipient}, \"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "/XCUIElementTypeCell[`name == \"{name}\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeCollectionView[`name == \"MigowunIpulicUzojatigipAcab\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "/XCUIElementTypeCell[`name == \"{reaction}\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/messages/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeTextView[`name == \"TOTudivapAzikUlov\" AND value CONTAINS \"{text}\"`][-1]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/reminders/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeTable[`name == \"TivoviloJacaja.ID.LizeticIdope\"`]/**/XCUIElementTypeTextField[`name == \"Fijic pure lide\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/safari/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeToolbar[$name == \"Gesuluse\"$]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/safari/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "/**/XCUIElementTypeButton[`name == \"Zawu\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/telegram/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeTextView",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/apps/ios/telegram/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeImage[`name BEGINSWITH \"Vazif \" OR name BEGINSWITH \"Kihuk \"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/state_graph/ios_driver.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeNavigationBar/XCUIElementTypeButton[`name == \"JikuJozalu\" OR name == \"Zogu\"`]",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "puma/state_graph/locators.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeCell[",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_messages.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "<XCUIElementTypeTextView type=\"XCUIElementTypeTextView\" name=\"TOTudivapAzikUlov\"/>",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_messages.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "</XCUIElementTypeCell>",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_messages.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "<XCUIElementTypeButton type=\"XCUIElementTypeButton\" name=\"Zemupuz\"/></XCUIElementTypeCell>",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_messages.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "<XCUIElementTypeStaticText type=\"XCUIElementTypeStaticText\" name=\"{name}\" label=\"{name}\"/>",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_messages.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "<XCUIElementTypeCell type=\"XCUIElementTypeCell\"/></AppiumAUT>",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_messages.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "<XCUIElementTypeMap type=\"XCUIElementTypeMap\"/></XCUIElementTypeCell></AppiumAUT>",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_messages.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "<XCUIElementTypeImage type=\"XCUIElementTypeImage\" name=\"webafota-curezi-runu\"/>",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_messages.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "<XCUIElementTypeOther type=\"XCUIElementTypeOther\" name=\"Zemupuz\"/>",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_messages.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "</XCUIElementTypeCell></AppiumAUT>",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_messages.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "</XCUIElementTypeApplication></AppiumAUT>",
+    "count": 1
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_support.py",
+    "lang": "Python",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeCell",
+    "count": 2
+  },
+  {
+    "project": "NetherlandsForensicInstitute/puma",
+    "file": "test/test_ios_telegram.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "<XCUIElementType{element_type} type=\"DAJACidozelOzak{element_type}\" name=\"{name}\" value=\"{value}\"/>",
+    "count": 1
+  },
+  {
+    "project": "PerfectoCode/Community-Samples",
+    "file": "JavaPerfectoUserExperience/src/EtihadPerformanceWeb.java",
+    "lang": "Java",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeButton[`label =='Wilid'`]",
+    "count": 3
+  },
+  {
+    "project": "PerfectoCode/Community-Samples",
+    "file": "JavaPerfectoUserExperience/src/EtihadPerformanceWeb.java",
+    "lang": "Java",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeButton[`label =='Wilid Jisegoj zug Loro'`]",
+    "count": 3
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/App/Util/VP.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeButton[1]",
+    "count": 2
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/inspector/Test.java",
+    "lang": "Java",
+    "reason": "piece of a concatenation or a format string",
+    "source": "For my /XCUIElementTypeCollectionView/ money, /XCUIElementTypeCollectionView/ the important thing ",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/inspector/UiViewer.java",
+    "lang": "Java",
+    "reason": "whole XPath not picked up by the scanner",
+    "source": "//XCUIElementType",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/inspector/UiViewer.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementType",
+    "count": 3
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[3]",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[3]",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[4]",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[4]",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "piece of a concatenation or a format string",
+    "source": "%s//XCUIElementTypeOther[1]/XCUIElementTypeButton[1]",
+    "count": 5
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/DiscoverPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeCollectionView",
+    "count": 2
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/VideoPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeStaticText[1]",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/VideoPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeStaticText[3]",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/VideoPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeStaticText[4]",
+    "count": 1
+  },
+  {
+    "project": "tyokyo/SioeyeIOSAppium",
+    "file": "src/ckt/ios/page/VideoPage.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeStaticText[5]",
+    "count": 1
+  },
+  {
+    "project": "rajatt95/MasterAppiumFramework",
+    "file": "src/main/java/com/appium/pages/LoginPage.java",
+    "lang": "Java",
+    "reason": "piece of a concatenation or a format string",
+    "source": "]/child::XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "project": "eliasnogueira/appium-cross-platform-example",
+    "file": "src/main/java/com/eliasnogueira/screens/LoginScreen.java",
+    "lang": "Java",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeOther[`name == \\\"PUCEK\\\"`][2]",
+    "count": 2
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/main/java/LDSToolsAppium/BasePage.java",
+    "lang": "Java",
+    "reason": "unbalanced brackets (concatenated XPath)",
+    "source": "//XCUIElementTypeStaticText[@name='",
+    "count": 10
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/main/java/LDSToolsAppium/Screen/CalendarsScreen.java",
+    "lang": "Java",
+    "reason": "piece of a concatenation or a format string",
+    "source": "']/gelupudos-wafohec::POPONecazanEdevUgavo[@naza='",
+    "count": 1
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/main/java/LDSToolsAppium/Screen/CalendarsScreen.java",
+    "lang": "Java",
+    "reason": "piece of a concatenation or a format string",
+    "source": "']/preceding-sibling::XCUIElementTypeImage",
+    "count": 1
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/main/java/LDSToolsAppium/Screen/DirectoryScreen.java",
+    "lang": "Java",
+    "reason": "unbalanced brackets (concatenated XPath)",
+    "source": "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@value, '",
+    "count": 1
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/main/java/LDSToolsAppium/Screen/ListsScreen.java",
+    "lang": "Java",
+    "reason": "unbalanced brackets (concatenated XPath)",
+    "source": "//XCUIElementTypeButton[contains(@name, 'Delete ",
+    "count": 2
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/main/java/LDSToolsAppium/Screen/ListsScreen.java",
+    "lang": "Java",
+    "reason": "piece of a concatenation or a format string",
+    "source": "']/following-sibling::XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/main/java/LDSToolsAppium/Screen/ListsScreen.java",
+    "lang": "Java",
+    "reason": "unbalanced brackets (concatenated XPath)",
+    "source": "//XCUIElementTypeStaticText[contains(@name, '",
+    "count": 6
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/main/java/LDSToolsAppium/Screen/MeetinghousesScreen.java",
+    "lang": "Java",
+    "reason": "unbalanced brackets (concatenated XPath)",
+    "source": "//XCUIElementTypeTable//XCUIElementTypeStaticText[contains(@name, '",
+    "count": 1
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/test/java/LDSToolsAppiumTest/steps/ClassAndQuorum.java",
+    "lang": "Java",
+    "reason": "unbalanced brackets (concatenated XPath)",
+    "source": "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[",
+    "count": 1
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/test/java/LDSToolsAppiumTest/steps/MissionLeaderDirectory.java",
+    "lang": "Java",
+    "reason": "unbalanced brackets (concatenated XPath)",
+    "source": "//XCUIElementTypeStaticText[@value='",
+    "count": 1
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/test/java/LDSToolsAppiumTest/steps/ProgressRecord.java",
+    "lang": "Java",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/following-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText[@name='Lide Cetatad']",
+    "count": 1
+  },
+  {
+    "project": "zademaxfield/LDSToolsAppium",
+    "file": "src/test/java/LDSToolsAppiumTest/steps/SacramentAttendance.java",
+    "lang": "Java",
+    "reason": "unbalanced brackets (concatenated XPath)",
+    "source": "//XCUIElementTypeTable/XCUIElementTypeCell[4]//XCUIElementTypeTextField[@name='",
+    "count": 5
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_APP/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[2]//XCUIElementTypeButton",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_APP/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_APP/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201J/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "XCUIElementTypeOther/XCUIElementTypeButton",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201J/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeStaticText",
+    "count": 2
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201J/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "XCUIElementTypeOther/XCUIElementTypeOther",
+    "count": 2
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201J/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "XCUIElementTypeWebView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOth",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201J/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "er/XCUIElementTypeOther[2]/XCUIElementTypeOther",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201S/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "%s/XCUIElementTypeCell[%s]//XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201S/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "%s/XCUIElementTypeCell[%s]//XCUIElementTypeButton",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201S/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "piece of a concatenation or a format string",
+    "source": "%s/XCUIElementTypeCell[%s]//XCUIElementTypeStaticText[2]",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201S/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeCell[2]/XCUIElementTypeOther/XCUIElementTypeImage",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201S/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther[4]/XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "project": "maiyajj/AutoTest_script-Appium_Connect",
+    "file": "src/testcase/GN_Y201S/page/AppPageElement_iOS.py",
+    "lang": "Python",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeOther/XCUIElementTypeStaticText",
+    "count": 11
+  },
+  {
+    "project": "Esmorga-E2E/E2E-APP-Tests",
+    "file": "step-definitions/steps.js",
+    "lang": "JavaScript",
+    "reason": "whole XPath not picked up by the scanner",
+    "source": "//android.widget.TextView | //XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "project": "Esmorga-E2E/E2E-APP-Tests",
+    "file": "step-definitions/steps.js",
+    "lang": "JavaScript",
+    "reason": "whole XPath not picked up by the scanner",
+    "source": "//android.widget.Button | //android.widget.TextView | //android.widget.ImageView | //android.view.View | //XCUIElementTypeButton | //XCUIElementTypeLink",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/helpers/iosOtp.helper.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "-ios predicate string:type == \"XCUIElementTypeStaticText\" AND (label CONTAINS[c] \"tivu is togiluror\" OR label CONTAINS[c] \"vaconic tivu\" OR label CONTAINS[c] \"pil nene gepegasi\" OR label CONTAINS[c] \"tivu zut bituhoh\")",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/AuthenticationPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "-ios predicate string:(type == \"XCUIElementTypeStaticText\" OR type == \"XCUIElementTypeTextView\") AND (name CONTAINS[c] \"sasof\" OR label CONTAINS[c] \"sasof\" OR name CONTAINS[c] \"togiluror\" OR label CONTAINS[c] \"togiluror\" OR name CONTAINS[c] \"vaconic\" OR label CONTAINS[c] \"vaconic\" OR name CONTAINS[c] \"derobaguj\" OR label CONTAINS[c] \"derobaguj\" OR name CONTAINS[c] \"vecahac\" OR label CONTAINS[c] \"vecahac\" OR name CONTAINS[c] \"pil nene\" OR label CONTAINS[c] \"pil nene\" OR name CONTAINS[c] \"nazofu\" OR label CONTAINS[c] \"nazofu\" OR name CONTAINS[c] \"musoguvevoz\" OR label CONTAINS[c] \"musoguvevoz\" OR name CONTAINS[c] \"tof lahor\" OR label CONTAINS[c] \"tof lahor\")",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/AuthenticationPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "-ios predicate string:(type == \"XCUIElementTypeStaticText\" OR type == \"XCUIElementTypeTextView\") AND (name CONTAINS[c] \"nazofu\" OR label CONTAINS[c] \"nazofu\" OR name CONTAINS[c] \"kanacig\" OR label CONTAINS[c] \"kanacig\" OR name CONTAINS[c] \"buhedosew\" OR label CONTAINS[c] \"buhedosew\" OR name CONTAINS[c] \"pil nene\" OR label CONTAINS[c] \"pil nene\" OR name CONTAINS[c] \"musoguvevoz\" OR label CONTAINS[c] \"musoguvevoz\" OR name CONTAINS[c] \"tof lahor kobuz\" OR label CONTAINS[c] \"tof lahor kobuz\")",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/BusinessCardAdminSelfAssignPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "[.//XCUIElementTypeStaticText[@name=\"Sijujise Ceta\" or @label=\"Sijujise Ceta\" or @name=\"Huledap Ceta\" or @label=\"Huledap Ceta\"]][1]",
+    "count": 4
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/BusinessCardAdminSelfAssignPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "[.//XCUIElementTypeStaticText[@name=\"Comeba Poju\" or @label=\"Comeba Poju\" or contains(@name,\"${BH_SELF_NAME}\") or contains(@label,\"${BH_SELF_NAME}\")]][1]",
+    "count": 5
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/BusinessCardRelinkPage.ts",
+    "lang": "TypeScript",
+    "reason": "path piece starting with one / (appended to another string)",
+    "source": "/XCUIElementTypeStaticText",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/CashFundsPage.ts",
+    "lang": "TypeScript",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeWebView",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/CashFundsPage.ts",
+    "lang": "TypeScript",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeLink[`name == \"Hiki Zohes Pugu up to 4.87% PIP, no pezi\" OR label == \"Hiki Zohes Pugu up to 4.87% PIP, no pezi\"`]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/CashFundsPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "type == \"XCUIElementTypeLink\" AND name BEGINSWITH \"Hiki Zohes\" AND name CONTAINS[c] \"Pugu up to\" AND name CONTAINS[c] \"PIP\" AND name CONTAINS[c] \"no pezi\"",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/CashFundsPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "type == \"XCUIElementTypeLink\" AND name CONTAINS[c] \"Hiki Zohes\"",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "(type == \"XCUIElementTypeStaticText\" OR type == \"XCUIElementTypeCell\" OR type == \"XCUIElementTypeLink\" OR type == \"XCUIElementTypeButton\") AND (label CONTAINS[c] \"Hur Ag\" OR name CONTAINS[c] \"Hur Ag\")",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "unbalanced brackets (concatenated XPath)",
+    "source": "//XCUIElementTypeOther[",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": ".//XCUIElementTypeStaticText[contains(@name,\"Hur Ag\") or contains(@label,\"Hur Ag\") or contains(@value,\"Hur Ag\")]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": ".//XCUIElementTypeStaticText[@name=\"(HUR)\" or @label=\"(HUR)\" or @value=\"(HUR)\"]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeOther[`name == \"hase\"`]/**/XCUIElementTypeButton[`name == \"Tun\" OR label == \"Tun\"`]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "${this.dialogXPath()}//XCUIElementTypeButton[contains(@name,\"Tun\") or contains(@label,\"Tun\")]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "${this.dialogXPath()}//XCUIElementTypeStaticText[@name=\"Jebivo Cefif\" or @label=\"Jebivo Cefif\" or @value=\"Jebivo Cefif\"]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "${this.dialogXPath()}//XCUIElementTypeStaticText[@name=\"Vijobuwul cato sasof\" or @label=\"Vijobuwul cato sasof\" or contains(@name,\"Cefif lifujilawata pucegi\") or contains(@label,\"Cefif lifujilawata pucegi\")]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "type == \"XCUIElementTypeStaticText\" AND (label CONTAINS[c] \"Hur Ag\" OR name CONTAINS[c] \"Hur Ag\" OR value CONTAINS[c] \"Hur Ag\")",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "(type == \"XCUIElementTypeStaticText\" OR type == \"XCUIElementTypeCell\" OR type == \"XCUIElementTypeLink\" OR type == \"XCUIElementTypeButton\") AND (label CONTAINS[c] \"${q}\" OR name CONTAINS[c] \"${q}\" OR value CONTAINS[c] \"${q}\")",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeCell",
+    "count": 2
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeLink",
+    "count": 2
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "${dialog}//XCUIElementTypeStaticText[@name=\"Micazicu\" or @label=\"Micazicu\" or @value=\"Micazicu\"]/following::XCUIElementTypeStaticText[@name=\"${quantity}\" or @label=\"${quantity}\" or @value=\"${quantity}\"][1]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "${dialog}//XCUIElementTypeStaticText[@name=\"${quantity}\" or @label=\"${quantity}\" or @value=\"${quantity}\"]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "${dialog}//XCUIElementTypeStaticText[contains(@name,\"${quantity} @\") or contains(@label,\"${quantity} @\") or contains(@value,\"${quantity} @\")]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/OrdersPage.ts",
+    "lang": "TypeScript",
+    "reason": "piece of a concatenation or a format string",
+    "source": "${dialog}//XCUIElementTypeStaticText[contains(@name,\"${quantity} Janon\") or contains(@label,\"${quantity} Janon\") or contains(@value,\"${quantity} Janon\")]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/PortfolioPage.ts",
+    "lang": "TypeScript",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeStaticText[`name == \"Pahogefit\"`]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/PriceAlertsPage.ts",
+    "lang": "TypeScript",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeStaticText[`label == \"Gipat Kutiku\" OR name == \"Gipat Kutiku\"`]",
+    "count": 1
+  },
+  {
+    "project": "KerttSe/moneybase_wdio_",
+    "file": "src/pages/PriceAlertsPage.ts",
+    "lang": "TypeScript",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeOther[`name == \"hase\"`]/XCUIElementTypeOther[10]",
+    "count": 1
+  },
+  {
+    "project": "TestCentricity/tc_mobile_react_native_demo",
+    "file": "features/support/ios/screens/cart_screen.rb",
+    "lang": "Ruby",
+    "reason": "class chain or a piece of one (not an XPath)",
+    "source": "**/XCUIElementTypeOther[`name == \"zozi rigibi\"`]/XCUIElementTypeScrollView",
+    "count": 1
+  }
+]

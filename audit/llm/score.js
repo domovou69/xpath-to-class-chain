@@ -192,7 +192,10 @@ function score(name, entries) {
   }
   // R: corpus, S: spec categories, over one fixed denominator for every run (CLASS[id].inDen): a skip inside it earns 0
   const inDen = id => CLASS[id].inDen;
-  const credit = id => rows[id].verdict === 'CORRECT' ? 1 : rows[id].verdict === 'DRIFT' && rows[id].documented ? 0.5 : 0;
+  // Scoring v2 (Phase 7, 2026-10-21): WRONG and INVALID earn -1 (a chain that silently breaks a test is worse than a
+  // skip). SCORING=v1 gives the scheme of the published article, where they earn 0 like a skip.
+  const V2 = process.env.SCORING !== 'v1';
+  const credit = id => rows[id].verdict === 'CORRECT' ? 1 : rows[id].verdict === 'DRIFT' && rows[id].documented ? 0.5 : V2 && ['WRONG', 'INVALID'].includes(rows[id].verdict) ? -1 : 0;
   const ids = g => Object.keys(key).filter(id => key[id].group === g);
   const corpDen = ids('corpus').filter(inDen);
   const R = 100 * corpDen.reduce((a, id) => a + credit(id), 0) / corpDen.length;

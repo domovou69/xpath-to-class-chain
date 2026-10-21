@@ -182,6 +182,10 @@ const CONVERT_CASES = [
   ['/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton', `${CC}XCUIElementTypeWindow/XCUIElementTypeButton`], // A07
   ['/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]', `${CC}XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]`], // A08
   ['/XCUIElementTypeApplication//XCUIElementTypeButton[@name="x"]', `${CC}**/XCUIElementTypeButton[\`name == "x"\`]`],
+  // //XCUIElementTypeApplication/… is the same root: **/XCUIElementTypeApplication never matches it (Phase 7)
+  ['//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther', `${CC}XCUIElementTypeWindow[1]/XCUIElementTypeOther`],
+  ['//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeButton[2]', `${CC}XCUIElementTypeWindow[1]/XCUIElementTypeButton[2]`],
+  ['//XCUIElementTypeApplication//XCUIElementTypeButton', `${CC}**/XCUIElementTypeButton`],
   ['/*/XCUIElementTypeWindow', `${CC}XCUIElementTypeWindow`],
   // RC2: contains()/starts-with() on a boolean attribute compares the "true"/"false" text
   ['//XCUIElementTypeButton[contains(@enabled,"false")]', `${CC}**/XCUIElementTypeButton[\`enabled == false\`]`], // B18
@@ -253,6 +257,15 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeButton[@name="x" or @label="y"]/ancestor::XCUIElementTypeCell', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND (name == "x" OR label == "y")$]`],
   ['(//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell)[2]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$][2]`],
   ['//XCUIElementTypeButton[@name="ancestor::x"]', `${CC}**/XCUIElementTypeButton[\`name == "ancestor::x"\`]`],
+  // Phase 7 stage 3 (device): only an empty contains() / starts-with() needle is skipped
+  ['//XCUIElementTypeButton[ends-with(@label, "")]', `${CC}**/XCUIElementTypeButton[\`label ENDSWITH ""\`]`],
+  ['//XCUIElementTypeButton[contains(@name, " ")]', `${CC}**/XCUIElementTypeButton[\`name CONTAINS " "\`]`],
+  // Phase 7 P2: function text inside a string value stays a value
+  [`//*[@name='contains(@a,"b")']`, `${CC}**/*[\`name == 'contains(@a,"b")'\`]`],
+  [`//*[@label="starts-with(@x,'y')"]`, `${CC}**/*[\`label == "starts-with(@x,'y')"\`]`],
+  [`//*[@value="text()='a'"]`, `${CC}**/*[\`value == "text()='a'"\`]`],
+  [`//*[contains(@name,"contains(@a,'b')")]`, `${CC}**/*[\`name CONTAINS "contains(@a,'b')"\`]`],
+  [`//*[@name="ends-with(@a,'b')" and contains(@label,"c")]`, `${CC}**/*[\`name == "ends-with(@a,'b')" AND label CONTAINS "c"\`]`],
   // C2 c2-functions: matches() without metacharacters is a substring test; any other
   // pattern keeps XPath's search semantics: `.` not dot-all, `$` before a final \n (C1, device)
   ['//*[matches(@name,"b")]', `${CC}**/*[\`name CONTAINS "b"\`]`], // H03
@@ -305,6 +318,11 @@ const SKIP_CASES = [
   ['//*[not(self::XCUIElementTypeButton)]', 'self:: under not(): //* also returns the Application root'],
   ['//XCUIElementTypeCell[.//*[self::XCUIElementTypeButton]]', 'self:: inside a path predicate'],
   ['//*[descendant-or-self::XCUIElementTypeButton]', 'descendant-or-self::'],
+
+  // incomplete or broken source pieces (Phase 7, GitHub corpus)
+  ['//XCUIElementTypeOther[3]//XCUIElementTypeScrollView/', 'trailing / (Python "…/" "Next/…" concatenation)'],
+  ['//XCUIElementTypeWebView/XCUIElementTypeOther/', 'trailing / after a child step'],
+  ['//XCUIElementTypeOther[@name=\\"test-Error\r\n\t// message\\"]/child::XCUIElementTypeStaticText', 'raw line break inside a source-escaped value'],
 
   // XPath functions with no Class Chain equivalent
   ['//*[last()]', 'last()'],
@@ -375,6 +393,8 @@ const SKIP_CASES = [
   ['/XCUIElementTypeApplication', 'RC9: selects the application element itself'],
   ['/XCUIElementTypeWindow/XCUIElementTypeButton', 'RC9: the root element is always the Application'],
   ['/XCUIElementTypeApplication[@name="App"]/XCUIElementTypeWindow', 'RC9: predicate on the root step'],
+  ['//XCUIElementTypeApplication[@name="App"]/XCUIElementTypeWindow', 'predicate on the root step, relative form'],
+  ['//XCUIElementTypeApplication', 'relative form of the application element itself'],
   // RC6: leftover XPath inside the backtick block must fail validation, not ship as "success"
   ['//XCUIElementTypeButton[contains(., "a")]', 'RC6: contains(.) (C05)'],
   // B5: concat() folds only when every argument is a plain literal; the rest still fails RC6
@@ -504,6 +524,17 @@ const DETECT_CASES = [
   ['(//XCUIElementTypeButton[@name="OK"])[1]', true],
   ['(//XCUIElementTypeButton[@name="OK"])', true],
   ['(//XCUIElementTypeOther[@name="x"])[${option + 1}]', true],
+  // outer [last()]: the group-close is the balancing paren, not the last ')' (Phase 7, PerfectoCode)
+  ['(//XCUIElementTypeButton)[last()]', true],
+  ['(//XCUIElementTypeStaticText[@label=\'Safari\'])[last()]', true],
+  ['(//XCUIElementTypeButton)[last()-1]', true],
+  ['(//XCUIElementTypeButton[@name="a)b"])[last()]', true],
+  ['(//XCUIElementTypeButton[@name="OK"]', false], // group never closed
+  // absolute paths from the page source root (Phase 7: dotnet/maui, Ruby page objects)
+  ['/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypePopover', true],
+  ['/XCUIElementTypeApplication[1]/XCUIElementTypeWindow//XCUIElementTypeButton[2]', true],
+  ['/XCUIElementTypeWindow/XCUIElementTypeButton', false], // a path piece, not from the root
+  ['/XCUIElementTypeApplicationFoo/x', false],
 
   // NOT locators — must be left alone even though they start with '//'
   ['//cdn.example.com/lib.js', false], // protocol-relative URL
@@ -930,6 +961,12 @@ for (const [xpath, why] of [
   ['//*[lower-case(@label)="äb"]', /non-ASCII literal/],
   ['//*[lower-case(@label)="AB"]', /never gives "AB"/],
   ['//*[lower-case(@label)=""]', /empty/],
+  // Phase 7 stage 3 (device): an empty needle is always true in XPath, never in NSPredicate
+  ['//XCUIElementTypeCell[contains(@traits, "")]', /contains\(…, ""\) is always true/],
+  ['//XCUIElementTypeButton[contains(@name, \'\')]', /CONTAINS "" never matches/],
+  ['//XCUIElementTypeButton[starts-with(@value, "")]', /BEGINSWITH "" never matches/],
+  ['//XCUIElementTypeTextField[contains(text(), "")]', /always true/],
+  ['//*[@name="a" and contains(@label,\\"\\")]', /always true/],
   ['//*[lower-case(@label)!="ab"]', /lower-case\(\) other than/],
   ['//*[lower-case(@enabled)="true"]', /@enabled is a boolean/],
   ['//*[lower-case(@index)="1"]', /@index is a number/],
@@ -1202,6 +1239,29 @@ console.log('— SCANNER: processFile —');
 }
 
 {
+  // an absolute XPath from the root is picked up and converted (Phase 7)
+  const root = makeTempRoot('xpath-absolute-');
+  try {
+    const file = join(root, 'alerts.cs');
+    writeFileSync(file, [
+      `var popover = App.FindElement(By.XPath("/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypePopover"));`,
+      `var ok = "/XCUIElementTypeApplication//XCUIElementTypeButton[@name='OK']";`,
+    ].join('\n'));
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: true, quiet: true }, records, stats);
+    const converted = records.find((r) => r.status === 'success');
+
+    if (stats.locatorsFound === 2 && stats.skipped.xpathStrategy === 1 && converted
+      && converted.new === "-ios class chain:**/XCUIElementTypeButton[`name == 'OK'`]") ok();
+    else fail(`processFile absolute: ${JSON.stringify(stats)} ${JSON.stringify(records)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
   // locator under an `android:` key is skipped even without android. in the value
   const root = makeTempRoot('xpath-android-key-');
   try {
@@ -1216,6 +1276,32 @@ console.log('— SCANNER: processFile —');
 
     if (stats.locatorsFound === 2 && stats.locatorsUpdated === 1 && stats.skipped.android === 1) ok();
     else fail(`processFile android-key: stats wrong ${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
+  // an Android id value ("android:id/message") on the line above is not a platform key: the iOS
+  // locator is reported under its XPath strategy, not counted as Android (Phase 7, eliasnogueira)
+  const root = makeTempRoot('xpath-android-id-value-');
+  try {
+    const file = join(root, 'LoginScreen.java');
+    writeFileSync(file, [
+      `    @AndroidFindBy(id = "android:id/message")`,
+      `    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[2]")`,
+      `    WebElement message;`,
+      `    @AndroidFindBy(id = "org.app:id/android:id/edit")`,
+      `    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField")`,
+      `    WebElement edit;`,
+    ].join('\n'));
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: true, quiet: true }, records, stats);
+
+    if (stats.locatorsFound === 2 && stats.skipped.android === 0 && stats.skipped.xpathStrategy === 2) ok();
+    else fail(`processFile android-id-value: stats wrong ${JSON.stringify(stats)}`);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

@@ -1,0 +1,238 @@
+[
+ {
+  "id": "P7-APP1",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeButton",
+  "candidates": [
+   "**/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton"
+  ],
+  "corpus": "G0648",
+  "note": "candidate: the chain before the Phase 7 fix (e4002f9); **/ never returns the Application root"
+ },
+ {
+  "id": "P7-APP2",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[5]/XCUIElementTypeStaticText",
+  "candidates": [
+   "**/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeButton"
+  ],
+  "corpus": "G0674",
+  "note": "candidate: the chain before the Phase 7 fix (e4002f9)"
+ },
+ {
+  "id": "P7-APP3",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]",
+  "candidates": [
+   "**/XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]"
+  ],
+  "corpus": "G0662",
+  "note": "candidate: the chain before the Phase 7 fix (e4002f9)"
+ },
+ {
+  "id": "P7-APP4",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeApplication//XCUIElementTypeButton[@name=\"Leba\"]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "candidates": [
+   "**/XCUIElementTypeApplication/**/XCUIElementTypeButton[`name == \"Leba\"`]"
+  ],
+  "corpus": "prompt",
+  "note": "form from the stage 3 prompt; candidate: the chain before the Phase 7 fix (e4002f9)"
+ },
+ {
+  "id": "P7-APP5",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeApplication[@name='LL']/XCUIElementTypeWindow//XCUIElementTypeOther/XCUIElementTypeButton",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeApplication[@name='Can-Sez-Cob']/XCUIElementTypeWindow//XCUIElementTypeOther/XCUIElementTypeButton",
+  "candidates": [
+   "**/XCUIElementTypeApplication[`name == 'LL'`]/XCUIElementTypeWindow/**/XCUIElementTypeOther/XCUIElementTypeButton"
+  ],
+  "corpus": "G1949",
+  "note": "a predicate on the Application root is skipped; candidate: the chain before the Phase 7 fix (e4002f9)"
+ },
+ {
+  "id": "P7-APP6",
+  "screen": "states",
+  "xpath": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeOther",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypePopover",
+  "corpus": "G1879",
+  "note": "absolute form, as Phase 2 A07"
+ },
+ {
+  "id": "P7-H1",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeStaticText[@height > 10 and (@name=\"Lotto results\" or @label=\"Lotto results\" or @value=\"Lotto results\")]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeStaticText[@height > 10 and (@name=\"My Gipat Zalo\" or @label=\"My Gipat Zalo\" or @value=\"My Gipat Zalo\")]",
+  "corpus": "G1817"
+ },
+ {
+  "id": "P7-H1n",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeStaticText[@height > 15 and (@name=\"Lotto results\" or @label=\"Lotto results\" or @value=\"Lotto results\")]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeStaticText[@height > 10 and (@name=\"My Gipat Zalo\" or @label=\"My Gipat Zalo\" or @value=\"My Gipat Zalo\")]",
+  "dead": true,
+  "corpus": "G1817",
+  "note": "near miss: the StaticText is 15 high"
+ },
+ {
+  "id": "P7-H2",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeCell[@height > 10][.//XCUIElementTypeStaticText[@name=\"Open\" or @label=\"Open\" or @value=\"Open\"]]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeCell[@height > 10][.//XCUIElementTypeStaticText[@name=\"My Gipat Zalo\" or @label=\"My Gipat Zalo\" or @value=\"My Gipat Zalo\"]]",
+  "corpus": "G1816"
+ },
+ {
+  "id": "P7-H2n",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeCell[@height > 44][.//XCUIElementTypeStaticText[@name=\"Open\" or @label=\"Open\" or @value=\"Open\"]]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeCell[@height > 10][.//XCUIElementTypeStaticText[@name=\"My Gipat Zalo\" or @label=\"My Gipat Zalo\" or @value=\"My Gipat Zalo\"]]",
+  "dead": true,
+  "corpus": "G1816",
+  "note": "near miss: the cells are 44 high"
+ },
+ {
+  "id": "P7-Y1",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[(@name=\"covered.open\" or @label=\"covered.open\" or @name=\"Open\" or @label=\"Open\") and @y>600] | //XCUIElementTypeStaticText[(@name=\"covered.open\" or @label=\"covered.open\" or @value=\"covered.open\" or @name=\"Open\" or @label=\"Open\" or @value=\"Open\") and @y>700]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeButton[(@name=\"Mifofaj\" or @label=\"Mifofaj\" or @name=\"Reh Sijujise Ceta\" or @label=\"Reh Sijujise Ceta\") and @y>600] | //XCUIElementTypeStaticText[(@name=\"Mifofaj\" or @label=\"Mifofaj\" or @value=\"Mifofaj\" or @name=\"Reh Sijujise Ceta\" or @label=\"Reh Sijujise Ceta\" or @value=\"Reh Sijujise Ceta\") and @y>700]",
+  "corpus": "G1475"
+ },
+ {
+  "id": "P7-Y1n",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[(@name=\"covered.open\" or @label=\"covered.open\" or @name=\"Open\" or @label=\"Open\") and @y>840] | //XCUIElementTypeStaticText[(@name=\"covered.open\" or @label=\"covered.open\" or @value=\"covered.open\" or @name=\"Open\" or @label=\"Open\" or @value=\"Open\") and @y>851]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeButton[(@name=\"Mifofaj\" or @label=\"Mifofaj\" or @name=\"Reh Sijujise Ceta\" or @label=\"Reh Sijujise Ceta\") and @y>600] | //XCUIElementTypeStaticText[(@name=\"Mifofaj\" or @label=\"Mifofaj\" or @value=\"Mifofaj\" or @name=\"Reh Sijujise Ceta\" or @label=\"Reh Sijujise Ceta\" or @value=\"Reh Sijujise Ceta\") and @y>700]",
+  "dead": true,
+  "corpus": "G1475",
+  "note": "near miss: clip.open is at y 840, its StaticTexts at 807 and 851"
+ },
+ {
+  "id": "P7-T1",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeCell[contains(@traits, \"\")]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeCell[contains(@traits, \"Kakinace\")]",
+  "corpus": "G0235",
+  "note": "probe outside the corpus: LocatorLab cells have traits=\"\", so the Cell form cannot hold a real value. Found a WRONG (contains(x, \"\") always true in XPath, CONTAINS \"\" never matches), fixed: now skipped"
+ },
+ {
+  "id": "P7-T2",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[contains(@traits, \"Selected\")]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeCell[contains(@traits, \"Kakinace\")]",
+  "corpus": "G0235",
+  "note": "G0235 with Button: no LocatorLab cell has traits"
+ },
+ {
+  "id": "P7-T2n",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[contains(@traits, \"Selectedx\")]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeCell[contains(@traits, \"Kakinace\")]",
+  "dead": true,
+  "corpus": "G0235",
+  "note": "near miss"
+ },
+ {
+  "id": "P7-T3",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeSwitch[contains(@traits, \"Toggle\")]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeCell[contains(@traits, \"Kakinace\")]",
+  "corpus": "G0235",
+  "note": "G0235 with Switch: traits \"ToggleButton, Button\""
+ },
+ {
+  "id": "P7-P1",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeTextField[@placeholderValue=\"Email\"]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeTextField[@placeholderValue=\"€0\"]",
+  "corpus": "G1825"
+ },
+ {
+  "id": "P7-P1n",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeTextField[@placeholderValue=\"email\"]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeTextField[@placeholderValue=\"€0\"]",
+  "dead": true,
+  "corpus": "G1825",
+  "note": "near miss: placeholder Email, name email"
+ },
+ {
+  "id": "P7-E1",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[contains(@name, \"\")]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeCell[contains(@traits, \"Kakinace\")]",
+  "corpus": "G0235",
+  "note": "probe: empty needle, see P7-T1"
+ },
+ {
+  "id": "P7-E2",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[starts-with(@value, \"\")]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeCell[contains(@traits, \"Kakinace\")]",
+  "corpus": "G0235",
+  "note": "probe: empty needle, see P7-T1"
+ },
+ {
+  "id": "P7-E3",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeButton[ends-with(@label, \"\")]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeCell[contains(@traits, \"Kakinace\")]",
+  "corpus": "G0235",
+  "note": "probe: WDA's own ends-with() is false for \"\", like ENDSWITH \"\", so the chain is kept",
+  "dead": true
+ },
+ {
+  "id": "P7-E4",
+  "screen": "states",
+  "xpath": "//XCUIElementTypeTextField[contains(text(), \"\")]",
+  "verdict": "CORRECT",
+  "category": "P7",
+  "original": "//XCUIElementTypeCell[contains(@traits, \"Kakinace\")]",
+  "corpus": "G0235",
+  "note": "probe: empty needle on text()"
+ }
+]

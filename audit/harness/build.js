@@ -6,6 +6,8 @@ const corpus = require(path.join(ROOT, 'audit/corpus/ios-locators.json'));
 const coarse = require(P.out('coarse.json'));
 const fuzz = require(P.out('fuzzresults_directed.json'));
 const gapRes = require(P.out('gapresults.json'));
+const positional = require(P.out('positional.json'));
+const planted = require(P.out('planted-verdict.json'));
 const gapExp = require('./gapexpected');
 const spec = require(P.out('specresults.json'));
 const strip = s => s && s.replace(/^-ios class chain:/, '');
@@ -78,6 +80,9 @@ const CORPUS_DRIFT = {
   // same shape as L062 (S006); its random trees never had 10 matches, so the shape's counter-example applies
   L397: [true, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order', 'L062'],
 };
+// Phase 7 stage 3: corpus forms run on the simulator with LocatorLab values (audit/device/cases-p7.json)
+const DEVICE_P7 = { G1816: 'P7-H2', G1818: 'P7-H2', G1817: 'P7-H1', G1819: 'P7-H1', G1475: 'P7-Y1', G0235: 'P7-T2', G1825: 'P7-P1',
+  G0648: 'P7-APP1', G0674: 'P7-APP2', G0662: 'P7-APP3', G1879: 'P7-APP6' };
 const SKIP_REASON = s => /last\(\)/.test(s) ? 'grouped last(): document-order position; [-1] counts in XCTest query order (RC-D1)' : /\|/.test(s) ? 'union of different paths / page-level not()' : /following::/.test(s) ? 'following axis' : /sibling::/.test(s) ? 'sibling axis' : /parent::|\/\.\./.test(s) ? 'parent axis' : 'other';
 for (const x of corpus) {
   if (!['xpath', 'xpath-dynamic', 'xpath-mixed-classchain'].includes(x.kind)) continue;
@@ -93,13 +98,32 @@ for (const x of corpus) {
       const [doc, why, sib] = CORPUS_DRIFT[x.id];
       const v = variants.find(v => v.example) || Object.entries(fuzz).filter(([k]) => k.split('~')[0] === sib).map(([, b]) => b).find(b => b.example);
       Object.assign(c, { verdict: 'DRIFT', documented: doc, expected: 'no exact class chain; ' + why, note: `${why}.${sib && !outs.includes('SET_DIFFERS') ? ` Judged by shape: counter-example from ${sib}.` : ''} Minimal page source: ${v.example.xml.replace(/ (enabled|visible|accessible)="[a-z]+"/g, '')} → XPath ${JSON.stringify(v.example.xpathHits)} vs chain ${JSON.stringify(v.example.chainHits)}` });
+    } else if (outs.includes('SET_DIFFERS') || outs.includes('FIRST_DIFFERS') ? positional[x.id] === 'EQUAL' : false) {
+      // Phase 7: the same XPath without its positions is EQUAL, so the position alone differs (positional.js)
+      const grouped = /^\(.*\)\[[^\]]+\]$/.test(x.source);
+      const why = grouped ? 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order' : 'per-parent [n] vs global [n] (README positional note, E01)';
+      const v = variants.find(v => v.example);
+      Object.assign(c, { verdict: 'DRIFT', documented: true, expected: 'no exact class chain; ' + why, note: `${why}. Without its positions the XPath is EQUAL (positional.js). Minimal page source: ${v.example.xml.replace(/ (enabled|visible|accessible)="[a-z]+"/g, '')} → XPath ${JSON.stringify(v.example.xpathHits)} vs chain ${JSON.stringify(v.example.chainHits)}` });
     } else if (outs.some(o => o !== 'EQUAL')) {
       // not in the baseline maps: a new failure — counted as WRONG with an unclassified root cause
       review.push(`${x.id}: fuzz outcome ${outs.join(',')} — classify by hand (CORPUS_WRONG / CORPUS_DRIFT)`);
       Object.assign(c, { verdict: 'WRONG', rootCause: 'RC-NEW', expected: 'REVIEW', note: 'fuzz: ' + outs.join(',') });
     } else {
       const hits = Math.min(...variants.map(v => v.hits));
-      Object.assign(c, { verdict: 'CORRECT', expected: r.locator, note: `fuzz: ${variants.reduce((a, v) => a + v.trials, 0)} random page sources, equal set+first; min matching trials ${hits}${hits === 0 ? ' (needs 10 matches; same shape verified on siblings)' : ''}` });
+      const p = hits === 0 && x.id[0] === 'G' ? planted[x.id] : null; // Phase 7: never matched in random trees (planted.js)
+      if (p && p.verdict === 'POSITIONAL') {
+        const why = 'per-parent [n] vs global [n] (README positional note, E01)';
+        Object.assign(c, { verdict: 'DRIFT', documented: true, expected: 'no exact class chain; ' + why, note: `${why}. Found with the path planted (planted.js); without its positions the XPath is EQUAL. Minimal page source: ${p.example.xml.replace(/ (enabled|visible|accessible)="[a-z]+"/g, '')} → XPath ${JSON.stringify(p.example.xpathHits)} vs chain ${JSON.stringify(p.example.chainHits)}` });
+      } else if (p && !['EQUAL', 'NO_MATCH', 'NO_SPINE'].includes(p.verdict)) {
+        review.push(`${x.id}: planted fuzz outcome ${p.verdict} — classify by hand (CORPUS_WRONG / CORPUS_DRIFT)`);
+        Object.assign(c, { verdict: 'WRONG', rootCause: 'RC-NEW', expected: 'REVIEW', note: 'planted fuzz: ' + p.verdict });
+      } else {
+        const how = p && p.verdict === 'EQUAL' ? `; no match in random trees, so re-run with the path planted: ${p.trials} page sources, equal set+first, min matching trials ${p.hits}`
+          : p ? ` (no match in random or planted trees: the attribute it tests is not generated${DEVICE_P7[x.id] ? '' : '; device check'})`
+          : hits === 0 ? ' (needs 10 matches; same shape verified on siblings)' : '';
+        const dev = DEVICE_P7[x.id] ? `; device: EQUAL (Phase 7 stage 3, ${DEVICE_P7[x.id]}, audit/device/results-p7.json)` : '';
+        Object.assign(c, { verdict: 'CORRECT', expected: r.locator, note: `fuzz: ${variants.reduce((a, v) => a + v.trials, 0)} random page sources, equal set+first; min matching trials ${hits}${how}${dev}` });
+      }
     }
   } else if (gapExp[x.id]) {
     const g = gapRes[x.id + '~0'];
@@ -187,17 +211,21 @@ const wrongC = count(corp, c => c.verdict === 'WRONG'), gap = count(exprC, c => 
 const rcCorpus = [...new Set(corp.filter(c => c.rootCause).map(c => c.rootCause))];
 const rcCtx = [...new Set(cases.filter(c => c.category === 'context' && c.verdict === 'WRONG').map(c => c.rootCause))];
 const penR = Math.min(30, 3 * (rcCorpus.length + rcCtx.length));
-const Rraw = 100 * (correct + 0.5 * driftDoc) / exprC.length;
+// Scoring v2 (Phase 7, 2026-10-21): a wrong chain earns -1 (it silently breaks a test, worse than a skip);
+// CORRECT 1, documented DRIFT 0.5, skip 0. SCORING=v1 gives the scheme of the published article (WRONG 0).
+const V2 = process.env.SCORING !== 'v1';
+const wrongE = V2 ? count(exprC, c => c.verdict === 'WRONG') : 0;
+const Rraw = 100 * (correct + 0.5 * driftDoc - wrongE) / exprC.length;
 const R = Rraw - penR;
 const C = 100 * exprC.length / corp.length;
 console.log(`CORPUS in-scope=${corp.length} (EXCLUDED, not XPath: ${count(cases, c => c.verdict === 'EXCLUDED')}) expressible=${exprC.length} CORRECT=${correct} DRIFTdoc=${driftDoc} DRIFTundoc=${driftUndoc} WRONG(all)=${wrongC} WRONG(expr)=${count(exprC, c => c.verdict === 'WRONG')} GAP=${gap} CORRECT-SKIP=${count(corp, c => c.verdict === 'CORRECT-SKIP')}`);
-console.log(`R_raw=100*(${correct}+0.5*${driftDoc})/${exprC.length}=${Rraw.toFixed(2)}  rootCauses corpus=${rcCorpus} ctx=${rcCtx} penalty=-${penR}  R=${R.toFixed(1)}  C=${exprC.length}/${corp.length}=${C.toFixed(1)}%`);
+console.log(`R_raw=100*(${correct}+0.5*${driftDoc}-${wrongE})/${exprC.length}=${Rraw.toFixed(2)}  rootCauses corpus=${rcCorpus} ctx=${rcCtx} penalty=-${penR}  R=${R.toFixed(1)}  C=${exprC.length}/${corp.length}=${C.toFixed(1)}%`);
 const W = { A: 15, B: 15, C: 15, D: 12, E: 12, F: 10, G: 10, H: 6, R: 5 };
 let Ssum = 0; const lines = [];
 for (const [cat, w] of Object.entries(W)) {
   const cs = cases.filter(c => c.category === cat && c.expressible);
-  const cc = count(cs, c => c.verdict === 'CORRECT'), dd = count(cs, c => c.verdict === 'DRIFT' && c.documented);
-  const sc = cs.length ? w * (cc + 0.5 * dd) / cs.length : w;
+  const cc = count(cs, c => c.verdict === 'CORRECT'), dd = count(cs, c => c.verdict === 'DRIFT' && c.documented), ww = V2 ? count(cs, c => c.verdict === 'WRONG') : 0;
+  const sc = cs.length ? w * (cc + 0.5 * dd - ww) / cs.length : w;
   Ssum += sc; lines.push(`${cat} w=${w}: ${w}×(${cc}+0.5×${dd})/${cs.length} = ${sc.toFixed(2)}  [all=${count(cases, c => c.category === cat)} excluded=${count(cases, c => c.category === cat && !c.expressible)} DRIFTundoc=${count(cs, c => c.verdict === 'DRIFT' && !c.documented)} WRONG=${count(cases, c => c.category === cat && c.verdict === 'WRONG')} GAP=${count(cs, c => c.verdict === 'GAP')}]`);
 }
 const rcSpec = [...new Set(cases.filter(c => /^[A-HRX]\d\d$/.test(c.id) && c.rootCause).map(c => c.rootCause))];

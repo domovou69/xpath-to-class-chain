@@ -8,6 +8,8 @@ node selftest.js                                                 # mini-WDA vs W
 COARSE=1 node shapes.js --json > "$OUT/coarse.json"              # corpus grouped by shape (used by build.js)
 node shapes.js > "$OUT/shapes.txt"                               # fine-grained shapes, human-readable
 TRIALS=200 DIRECTED=1 RESULT=fuzzresults_directed.json node fuzz.js   # corpus: converter output vs XPath
+node positional.js                                               # flagged entries re-fuzzed without positions (Phase 7)
+node planted.js                                                  # entries that never matched, re-fuzzed with their path planted (Phase 7)
 TRIALS=300 DIRECTED=1 GAPS=1 RESULT=gapresults.json node fuzz.js      # GAP entries: hand-written expected chains vs XPath
 node spec.js > "$OUT/spec.txt"                                   # spec matrix A–H, R, X
 node contexts.js                                                 # scanner over audit/corpus/contexts (copy)

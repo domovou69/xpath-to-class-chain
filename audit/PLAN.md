@@ -259,9 +259,69 @@ Goal: once a month, find out whether a new Appium, appium-xcuitest-driver or Web
 
 **Later, only if needed:** a Gemini Flash fallback (second secret; the report names the model that ran), Xcode release notes as an input, and a PR from the job that bumps `checked`.
 
+## Phase 7 — GitHub corpus (done, PR #55)
+
+Goal: check that the published converter (npm 1.0.2) holds up on other teams' code. Find new XPath forms, new skip reasons, wrong conversions and literals the scanner misses or misreads. Agreed with the user on 2026-10-21. Branch and PR per stage, as always. Fixes go into a patch release (1.0.3) only if something is found.
+
+**Why.** The current R corpus (`audit/corpus/ios-locators.json`, 573 literals) comes from a single production CodeceptJS suite. That is one team, one language (JS) and one way of writing locators. R 96.0 and 0 WRONG hold for that style. Package users also write `@iOSXCUITFindBy` in Java/Kotlin, Python tuples, C#, WebdriverIO and Inspector-recorded absolute paths.
+
+**Not in scope: running the locators on the real apps.** Whether a project's XPath still finds its element tests that project's suite, not the converter. It would also need app builds, logins and navigation. The converter is checked by comparing XPath and class chain on the same tree, as in Phases 1–2.
+
+**Sources: the Android harvest plus a new iOS search, collected in one pass.** There is no separate pilot: the 78 reused literals go into the corpus anyway, and the search costs the same whatever a pilot would show.
+
+- Reuse: the Android corpus (`../xpath-to-uiselector/audit/corpus/android-locators.json`, kind `xpath-ios`) already has 78 iOS literals from 6 projects. These are session-appium 28, sora2-passport 27, puma 17, metamask-sdk 3, Perfecto samples 2 and appium-unittest 1. Their commits are pinned, their licenses recorded and their values anonymized.
+- Reuse alone is not enough. That harvest searched for Android (`"//android.widget"`), so its iOS literals are incidental. They come only from cross-platform suites (TS, Python, Java), with no Kotlin, C#, Ruby or iOS-only projects.
+- New search: 12–15 more projects chosen by iOS (GitHub code search `XCUIElementType` inside XPath strings, by language, with the per-language counts recorded as in the Android `sources.md`). Mix large/organizational suites with weak ones (courses, practice repos, Inspector recordings). Prefer the languages missing above. Skip the 6 projects already harvested. Reuse the Android harvest tooling (download filter, scanner contexts, anonymization) instead of writing new tools.
+
+**One corpus.** The new literals join `audit/corpus/ios-locators.json`, and R / C are computed over the whole file. Later converter changes, new supported forms and the re-check after a version bump (Phase 6) are then measured against one corpus.
+
+- Existing entries keep their ids (`L001`–`L573`) and get `project: "production-codeceptjs"`, `lang: "JavaScript"`. New entries get ids `G0001…` and `project`, `lang`, `strategy`, as in the Android corpus. Duplicate literals stay per project, as in the Android corpus.
+- `coverage-report.md` gives the total R / C and a breakdown by source (production suite / GitHub) and by language. The last 573-only values (R 96.0 / C 87.0 %) stay in the report history, so the README and the articles stay explainable.
+- `audit/llm/build-input.js` keeps the 573 production entries (filter by `project`), so the Phase 4 model tables stay comparable. Re-running models on the new corpus is a separate decision.
+- Harness lists keyed by id (`CORPUS_DRIFT`, documented skips) take new ids the same way.
+
+**Stages**
+
+| # | Stage | Result | Estimate |
+| --- | --- | --- | --- |
+| 1 | Harvest | The 78 reused literals plus 12–15 new iOS projects, pinned commits, `audit/corpus/sources.md` (projects, licenses, languages, search counts), entries merged into `ios-locators.json` as above, `npm test` and the harness still green | ≈60–75 min, ≈12–15 % |
+| 2 | Offline check | Scanner and converter on all new literals; harness fuzz (random page sources, mini-WDA) on every converted one; per-form table, new forms compared with the 573, new skip reasons, scanner misses per language. Fix only what mini-WDA proves; anything else waits for stage 3 | ≈30 min, ≈6 % |
+| 3 | Device | Only new forms and suspicious cases, one representative per form, on the fixed simulator (see `audit/device`), as in Phase 2. Skipped if stage 2 finds no new forms | ≈45 min, ≈10 % |
+| 4 | Report | `coverage-report.md`: total R / C with the breakdown; README numbers updated to the total. Patch release only if the converter or scanner changed (npm publish after the user's OK) | ≈20 min, ≈4 % |
+
+Total ≈2.5–3 h, about 30 % of one window. The cheap variant is stages 1–2 without the device.
+
+**Branch.** All of Phase 7 is done in `docs/phase7-corpus-github` (draft PR #55), one commit per stage, with no merge to `main` in between. After stage 4 the user decides whether the findings go to `main`, and the branch is cleaned up first.
+
+**Cleanup before the merge** (filled in as the stages go) — **done 2026-10-21 (stage 4).** Every file in `git diff --stat main...HEAD` is on the keep list: the corpus, `sources.md`, `harvest.js` with its pinned inputs `harvest-files.json`, `scanner-misses.json` (cited in the report), the fixes and their tests, `positional.js`, `planted.js`, the scoring v2 changes, `cases-p7.json` / `results-p7.json`, the report, the README and the stage prompts. Nothing was removed: no one-off script was committed (the device case generator and the report breakdown ran outside the repository), and the downloaded files, the salt and the harness outputs were never in git. `npm test` 610 passed; `audit/harness/run.sh` exit 0, "no changes vs baseline". The PR title changed to `fix: …` (the branch keeps its name).
+
+- Keep: the merged `ios-locators.json`, `sources.md`, the harvest tool, converter or scanner fixes with their regression tests, the report section and the README numbers.
+- Remove: the downloaded files and the salt (they stay outside git anyway), one-off scripts used only for this phase, intermediate harness outputs that `run.sh` regenerates, and device results for cases that were only spot checks.
+- Rename the branch or the PR title if it ends up holding code (`feat/…` or `fix/…`, not `docs/…`).
+- If nothing is found: merge only the corpus, `sources.md` and the report, or close the PR and keep the branch.
+
+**Scoring decisions (2026-10-21, with the user).**
+
+- R and S depend on the data: the GitHub part has more per-parent `[n]` positions, which have no exact class chain, so R fell from 96.0 to 91.9 without the converter getting worse. The report states that for the current converter R and C are the maximum on these data (R = R_max, no GAP). If a model ever does more, the converter needs work.
+- **Scoring v2** for all new results: CORRECT 1, documented DRIFT 0.5, skip 0, **WRONG / INVALID −1** (a chain that silently breaks a test is worse than a skip). `SCORING=v1` (WRONG 0) reproduces the published article (harness `build.js`, `llm/score.js`, `llm/compare-v2.js`). The converter has 0 WRONG, so its R / S do not change.
+- **Q, % of the converter** for model comparisons: Q = 100 × (0.4 × R / R_converter + 0.6 × S / S_converter), S weighted higher because the models differ there. No separate WRONG term (it is inside R and S) and no cost (the converter is free, prices change; cost and time stay separate columns). Rejected: a weighted geometric mean, the error ratio (reads as "errs twice as often"), Derringer desirability with cost.
+- **No rescoring of past or published results** (the user, 2026-10-21). Phase 4 / D3 tables, charts, `docs/results.md` and the articles keep their v1 numbers. v2 applies from the current converter version on: every new result, where a WRONG chain counts −1. The repository tracks the current state, not one article, so differences from the articles are expected.
+
+**Phase 7, stage 3 (device), 2026-10-21 — done.** The cheap variant: 22 cases on the `states` screen of LocatorLab (no new screen), fixed simulator, `audit/device/cases-p7.json` → `results-p7.json`. Host on AC, Low Power Mode off; Xcode 27.1 (env.json pins 27.0, the rest as pinned).
+
+- Application root: 5 corpus forms (G0648, G0674, G0662 `[1]`, the `//Application//Button[@name]` form, G1879 absolute) with real paths from the screen's page source: EQUAL, 1–25 matches. The chains from before the fix (`**/XCUIElementTypeApplication/…`, converter at e4002f9) found 0 elements in all 5 cases, so the bug is confirmed on the device. `//Application[@name='LL']/…` (G1949 form) is skipped, as designed (XPATH_ONLY).
+- Attributes fuzz cannot generate: `@height > 10` (G1817 plain, G1816 with the descendant predicate), `@y > 600` in a union (G1475), `contains(@traits, …)` (G0235), `@placeholderValue` (G1825): all EQUAL, each with a near-miss case (threshold just above the real value, `Selectedx`, `email`) that is empty on both sides (DEAD). LocatorLab cells have `traits=""`, so G0235 ran on a Button (`Selected`) and a Switch (`Toggle`). `build.js` notes these entries as "device: EQUAL (Phase 7 stage 3)".
+- One WRONG found and fixed, outside the corpus: `contains(x, "")` and `starts-with(x, "")` are true for every element in XPath (libxml2), while `CONTAINS ""` / `BEGINSWITH ""` never match in NSPredicate (cells: XPath 5, chain 0; also on `@name`, `@value`, `text()`). The converter now skips them with a reason; `ends-with(x, "")` keeps its chain, because WDA's own `ends-with()` is false for `""` too (both empty on the device). Regression rows in `xpath-to-class-chain.test.js`. No corpus entry has an empty needle, so R / S do not change.
+- Final run: 11 EQUAL, 6 DEAD (near misses and `ends-with`), 5 XPATH_ONLY (skips), 0 differences.
+- Cleanup: `cases-p7.json` was generated by a one-off script outside the repository (old chains from `git archive e4002f9`), so there is no script to remove; `audit/device/node_modules` and `.appium` were symlinked from the Phase 2 worktree for this run and are not committed.
+
+**Cancelled (2026-10-21): rescoring the published results with v2 and Q.** See "No rescoring" above. Optional and separate: run the models on the GitHub corpus (one session per model, chunked; xhigh not max), scored with v2 and Q.
+
+Stage 1 starts with the candidate list (search hits, license, size, language, profile), which the user approves before anything is downloaded, as in the Android harvest.
+
 ## Parked findings (not fixed)
 
-Found after Phase 5 and written down to check in more detail later. Neither affects a valid locator or the R / S numbers.
+Found after Phase 5 and written down to check in more detail later. None affects the R / S numbers; P1 does not affect a valid locator, P2 did (a rare value form) and is fixed.
 
 - **P1 — XPath 2.0 syntax that WDA rejects comes out as `success` (2026-10-17).** WDA evaluates XPath with libxml2, which is XPath 1.0 plus the seven functions from `FBXPathExtensions.m` (`matches`, `ends-with`, `lower-case`, `upper-case`, `replace`, `tokenize`, `string-join`). Other XPath 2.0/3.0 syntax inside a predicate is copied into the chain and marked `success`, though both sides fail on WDA: mini-WDA (`check.js`) gives `InvalidXPath` for the XPath and `Unable to parse the format string` for the chain. So it is a broken locator turned into another broken locator, not a wrong chain for a valid one; the 678-locator corpus has none of these.
 
@@ -275,3 +335,5 @@ Found after Phase 5 and written down to check in more detail later. Neither affe
 
   Already skipped correctly: `except`, `intersect`, `if … then … else`, `replace`, `tokenize`, `string-join`.
   Possible fix: the validator rejects bare words and comma sequences that are not class chain syntax, with the reason "XPath 2.0 syntax: WDA evaluates XPath 1.0 (libxml2)"; plus regression rows for the forms above.
+
+- **P2 — function text inside a string value was rewritten (2026-10-21, Phase 7 stage 3) — FIXED the same day.** `rewriteStringFunctions` (`lib/predicates.js`) was not quote-aware: `//*[@name='contains(@a,"b")']` → ``**/*[`name == 'a CONTAINS "b"'`]``, and `starts-with(…)`, `ends-with(…)`, `text()=` the same. Now each rewrite skips a match that starts inside a `"…"` / `'…'` literal (backtick blocks are still rewritten, the validator needs that); five regression rows in `xpath-to-class-chain.test.js`. The corpus had none, so R / S do not change.
