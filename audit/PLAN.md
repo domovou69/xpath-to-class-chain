@@ -259,7 +259,7 @@ Goal: once a month, find out whether a new Appium, appium-xcuitest-driver or Web
 
 **Later, only if needed:** a Gemini Flash fallback (second secret; the report names the model that ran), Xcode release notes as an input, and a PR from the job that bumps `checked`.
 
-## Phase 7 — GitHub corpus (planned)
+## Phase 7 — GitHub corpus (done, PR #55)
 
 Goal: check that the published converter (npm 1.0.2) holds up on other teams' code. Find new XPath forms, new skip reasons, wrong conversions and literals the scanner misses or misreads. Agreed with the user on 2026-10-21. Branch and PR per stage, as always. Fixes go into a patch release (1.0.3) only if something is found.
 
@@ -293,7 +293,7 @@ Total ≈2.5–3 h, about 30 % of one window. The cheap variant is stages 1–2 
 
 **Branch.** All of Phase 7 is done in `docs/phase7-corpus-github` (draft PR #55), one commit per stage, with no merge to `main` in between. After stage 4 the user decides whether the findings go to `main`, and the branch is cleaned up first.
 
-**Cleanup before the merge** (filled in as the stages go):
+**Cleanup before the merge** (filled in as the stages go) — **done 2026-10-21 (stage 4).** Every file in `git diff --stat main...HEAD` is on the keep list: the corpus, `sources.md`, `harvest.js` with its pinned inputs `harvest-files.json`, `scanner-misses.json` (cited in the report), the fixes and their tests, `positional.js`, `planted.js`, the scoring v2 changes, `cases-p7.json` / `results-p7.json`, the report, the README and the stage prompts. Nothing was removed: no one-off script was committed (the device case generator and the report breakdown ran outside the repository), and the downloaded files, the salt and the harness outputs were never in git. `npm test` 610 passed; `audit/harness/run.sh` exit 0, "no changes vs baseline". The PR title changed to `fix: …` (the branch keeps its name).
 
 - Keep: the merged `ios-locators.json`, `sources.md`, the harvest tool, converter or scanner fixes with their regression tests, the report section and the README numbers.
 - Remove: the downloaded files and the salt (they stay outside git anyway), one-off scripts used only for this phase, intermediate harness outputs that `run.sh` regenerates, and device results for cases that were only spot checks.
