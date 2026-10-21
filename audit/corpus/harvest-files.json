@@ -1,0 +1,134 @@
+{
+  "MetaMask/metamask-sdk": {
+    "sha": "99d9172e8c436c51f719eb68c3df119989279973",
+    "license": "NOASSERTION",
+    "downloaded": 52,
+    "withLocator": 19
+  },
+  "session-foundation/session-appium": {
+    "sha": "4581c520a09a33c58774e310a5b955dd42231594",
+    "license": "none",
+    "downloaded": 343,
+    "withLocator": 11
+  },
+  "sora-xor/sora2-passport-appium-tests": {
+    "sha": "b5e89407373a01b798249160ffa471a124a30449",
+    "license": "none",
+    "downloaded": 45,
+    "withLocator": 22
+  },
+  "NetherlandsForensicInstitute/puma": {
+    "sha": "10446a5bd75f15a8325483021d10b6b88ec32449",
+    "license": "EUPL-1.2",
+    "downloaded": 132,
+    "withLocator": 16
+  },
+  "TypeLife/appium-unittest": {
+    "sha": "543d8e81b086376944bd64ccad7a7b7da48e794d",
+    "license": "none",
+    "downloaded": 212,
+    "withLocator": 65
+  },
+  "PerfectoCode/Community-Samples": {
+    "sha": "96ca48c011dfbc0ea6e86a967352e5d3021986d1",
+    "license": "none",
+    "downloaded": 173,
+    "withLocator": 67
+  },
+  "tyokyo/SioeyeIOSAppium": {
+    "sha": "9481ae5cfddb8acd43cbeab917dbec55eccf03cc",
+    "license": "none",
+    "downloaded": 122,
+    "withLocator": 16
+  },
+  "rajatt95/MasterAppiumFramework": {
+    "sha": "a2c0e0927c4f595a3e940ab90b07717f70e427bd",
+    "license": "none",
+    "downloaded": 43,
+    "withLocator": 4
+  },
+  "eliasnogueira/appium-cross-platform-example": {
+    "sha": "e94cb564d82ce517b904b38c4ee614032c0805a4",
+    "license": "MIT",
+    "downloaded": 8,
+    "withLocator": 2
+  },
+  "zademaxfield/LDSToolsAppium": {
+    "sha": "d33be069ea8b26ad101b4148cd176b541d213fb3",
+    "license": "none",
+    "downloaded": 111,
+    "withLocator": 24
+  },
+  "kobiton/samples": {
+    "sha": "9f3ae474e497805496f616ec20dcf375e099c607",
+    "license": "MIT",
+    "downloaded": 170,
+    "withLocator": 58
+  },
+  "0xfff0800/Bot-Snapchat": {
+    "sha": "ff526d9045c17606dcab89059b2fa312004cae09",
+    "license": "none",
+    "downloaded": 19,
+    "withLocator": 5
+  },
+  "maiyajj/AutoTest_script-Appium_Connect": {
+    "sha": "f9c2c42c281a9e2f984acb4a72dda0694b053f22",
+    "license": "Apache-2.0",
+    "downloaded": 419,
+    "withLocator": 4
+  },
+  "Esmorga-E2E/E2E-APP-Tests": {
+    "sha": "84b3b811b98119c4dc676a386b8c691c67b49b55",
+    "license": "Apache-2.0",
+    "downloaded": 21,
+    "withLocator": 8
+  },
+  "lynix28/ios-mobileui-appium-wdio-example": {
+    "sha": "3d2476931f9733f679c57bd793548cfc91297bc9",
+    "license": "none",
+    "downloaded": 23,
+    "withLocator": 5
+  },
+  "KerttSe/moneybase_wdio_": {
+    "sha": "2d0955f492f70936233e1980475acb5c9cbf5cce",
+    "license": "MIT",
+    "downloaded": 36,
+    "withLocator": 34
+  },
+  "maxxy4real/MobileAutomationPaydock": {
+    "sha": "3d9b6f9785683498814748010eb78f8918eee5a8",
+    "license": "none",
+    "downloaded": 21,
+    "withLocator": 8
+  },
+  "dotnet/maui": {
+    "sha": "9f607de9aafc88504940f8edbeed95fed8ede634",
+    "license": "MIT",
+    "downloaded": 16,
+    "withLocator": 12
+  },
+  "AutomateThePlanet/BELLATRIX": {
+    "sha": "4e5e187d674d7580bcbd80eaf239d832e1bb64d5",
+    "license": "Apache-2.0",
+    "downloaded": 37,
+    "withLocator": 4
+  },
+  "TestCentricity/tc_mobile_react_native_demo": {
+    "sha": "09d9f98b5391757722003327e21c699d0f185cc7",
+    "license": "none",
+    "downloaded": 80,
+    "withLocator": 16
+  },
+  "courtneyzhan/tic-tac-toe-ui-tests": {
+    "sha": "fe98945a36060d1a3ad395f4829941d3830a664b",
+    "license": "none",
+    "downloaded": 36,
+    "withLocator": 6
+  },
+  "klarna/react-native-klarna-inapp-sdk": {
+    "sha": "11eb9b5e2e07ba91eea8c7bff83f4a2bb4dcaacb",
+    "license": "Apache-2.0",
+    "downloaded": 74,
+    "withLocator": 11
+  }
+}
