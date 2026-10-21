@@ -992,35 +992,11 @@
     "count": 1
   },
   {
-    "project": "dotnet/maui",
-    "file": "src/TestUtils/src/UITest.Appium/Actions/AppiumCatalystAlertActions.cs",
-    "lang": "C#",
-    "reason": "absolute path (/XCUIElementTypeApplication/…)",
-    "source": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypePopover",
-    "count": 1
-  },
-  {
     "project": "TestCentricity/tc_mobile_react_native_demo",
     "file": "features/support/ios/screens/cart_screen.rb",
     "lang": "Ruby",
     "reason": "class chain or a piece of one (not an XPath)",
     "source": "**/XCUIElementTypeOther[`name == \"zozi rigibi\"`]/XCUIElementTypeScrollView",
-    "count": 1
-  },
-  {
-    "project": "courtneyzhan/tic-tac-toe-ui-tests",
-    "file": "ios-tic-tac-toe/pages/game_page.rb",
-    "lang": "Ruby",
-    "reason": "absolute path (/XCUIElementTypeApplication/…)",
-    "source": "/XCUIElementTypeApplication[@name='Can-Sez-Cob']/XCUIElementTypeWindow//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton[#{idx}]",
-    "count": 1
-  },
-  {
-    "project": "courtneyzhan/tic-tac-toe-ui-tests",
-    "file": "ios-tic-tac-toe/pages/game_page.rb",
-    "lang": "Ruby",
-    "reason": "absolute path (/XCUIElementTypeApplication/…)",
-    "source": "/XCUIElementTypeApplication[@name='Can-Sez-Cob']/XCUIElementTypeWindow//XCUIElementTypeOther/XCUIElementTypeButton",
     "count": 1
   }
 ]

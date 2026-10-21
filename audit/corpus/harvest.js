@@ -130,12 +130,13 @@ function structure(source) {
 function kindOf(rec) {
   if (rec.source.startsWith('-ios class chain:')) return 'class-chain';
   const s = structure(rec.source);
+  // UIAutomation types (iOS 9 and older, before XCUITest) are not scored even with an iOS attribute.
+  if (!/XCUIElementType/.test(s) && /(^|\/)UIA[A-Z]/.test(s)) return 'xpath-uia';
   const ios = /XCUIElementType|@(name|label|value|type|visible|accessible|hittable|placeholderValue)\b/.test(s);
   if (!ios && /android\.|@(text|content-desc|resource-id|class|package|checkable|checked|clickable|focusable|long-clickable|scrollable|displayed)\b/.test(s)) return 'xpath-android';
   if (!ios && /(^|\/)(input|div|span|a|button|img|li|ul|label|form|h[1-6]|html|body|p|table|tr|td)(\[|\/|$)|@(id|class|href|aria-[\w-]+|placeholder|role|data-[\w-]+)\b/.test(s)) return 'xpath-web';
-  // UIAutomation types (iOS 9 and older, before XCUITest) and XPaths with no iOS signal at all
-  // (text(), report XML, generic //*[contains(@{},…)]) are kept for the scanner but not scored.
-  if (!ios && /(^|\/)UIA[A-Z]/.test(s)) return 'xpath-uia';
+  // XPaths with no iOS signal at all (text(), report XML, generic //*[contains(@{},…)]) are kept for
+  // the scanner but not scored.
   if (!ios) return 'xpath-other';
   if (/\$\{|#\{|\$[A-Za-z_]|\{[A-Za-z_]?\w*\}|%[sdf]|\{\d+\}/.test(rec.source)) return 'xpath-dynamic';
   return 'xpath';

@@ -6,6 +6,8 @@ const corpus = require(path.join(ROOT, 'audit/corpus/ios-locators.json'));
 const coarse = require(P.out('coarse.json'));
 const fuzz = require(P.out('fuzzresults_directed.json'));
 const gapRes = require(P.out('gapresults.json'));
+const positional = require(P.out('positional.json'));
+const planted = require(P.out('planted-verdict.json'));
 const gapExp = require('./gapexpected');
 const spec = require(P.out('specresults.json'));
 const strip = s => s && s.replace(/^-ios class chain:/, '');
@@ -93,13 +95,31 @@ for (const x of corpus) {
       const [doc, why, sib] = CORPUS_DRIFT[x.id];
       const v = variants.find(v => v.example) || Object.entries(fuzz).filter(([k]) => k.split('~')[0] === sib).map(([, b]) => b).find(b => b.example);
       Object.assign(c, { verdict: 'DRIFT', documented: doc, expected: 'no exact class chain; ' + why, note: `${why}.${sib && !outs.includes('SET_DIFFERS') ? ` Judged by shape: counter-example from ${sib}.` : ''} Minimal page source: ${v.example.xml.replace(/ (enabled|visible|accessible)="[a-z]+"/g, '')} → XPath ${JSON.stringify(v.example.xpathHits)} vs chain ${JSON.stringify(v.example.chainHits)}` });
+    } else if (outs.includes('SET_DIFFERS') || outs.includes('FIRST_DIFFERS') ? positional[x.id] === 'EQUAL' : false) {
+      // Phase 7: the same XPath without its positions is EQUAL, so the position alone differs (positional.js)
+      const grouped = /^\(.*\)\[[^\]]+\]$/.test(x.source);
+      const why = grouped ? 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order' : 'per-parent [n] vs global [n] (README positional note, E01)';
+      const v = variants.find(v => v.example);
+      Object.assign(c, { verdict: 'DRIFT', documented: true, expected: 'no exact class chain; ' + why, note: `${why}. Without its positions the XPath is EQUAL (positional.js). Minimal page source: ${v.example.xml.replace(/ (enabled|visible|accessible)="[a-z]+"/g, '')} → XPath ${JSON.stringify(v.example.xpathHits)} vs chain ${JSON.stringify(v.example.chainHits)}` });
     } else if (outs.some(o => o !== 'EQUAL')) {
       // not in the baseline maps: a new failure — counted as WRONG with an unclassified root cause
       review.push(`${x.id}: fuzz outcome ${outs.join(',')} — classify by hand (CORPUS_WRONG / CORPUS_DRIFT)`);
       Object.assign(c, { verdict: 'WRONG', rootCause: 'RC-NEW', expected: 'REVIEW', note: 'fuzz: ' + outs.join(',') });
     } else {
       const hits = Math.min(...variants.map(v => v.hits));
-      Object.assign(c, { verdict: 'CORRECT', expected: r.locator, note: `fuzz: ${variants.reduce((a, v) => a + v.trials, 0)} random page sources, equal set+first; min matching trials ${hits}${hits === 0 ? ' (needs 10 matches; same shape verified on siblings)' : ''}` });
+      const p = hits === 0 && x.id[0] === 'G' ? planted[x.id] : null; // Phase 7: never matched in random trees (planted.js)
+      if (p && p.verdict === 'POSITIONAL') {
+        const why = 'per-parent [n] vs global [n] (README positional note, E01)';
+        Object.assign(c, { verdict: 'DRIFT', documented: true, expected: 'no exact class chain; ' + why, note: `${why}. Found with the path planted (planted.js); without its positions the XPath is EQUAL. Minimal page source: ${p.example.xml.replace(/ (enabled|visible|accessible)="[a-z]+"/g, '')} → XPath ${JSON.stringify(p.example.xpathHits)} vs chain ${JSON.stringify(p.example.chainHits)}` });
+      } else if (p && !['EQUAL', 'NO_MATCH', 'NO_SPINE'].includes(p.verdict)) {
+        review.push(`${x.id}: planted fuzz outcome ${p.verdict} — classify by hand (CORPUS_WRONG / CORPUS_DRIFT)`);
+        Object.assign(c, { verdict: 'WRONG', rootCause: 'RC-NEW', expected: 'REVIEW', note: 'planted fuzz: ' + p.verdict });
+      } else {
+        const how = p && p.verdict === 'EQUAL' ? `; no match in random trees, so re-run with the path planted: ${p.trials} page sources, equal set+first, min matching trials ${p.hits}`
+          : p ? ' (no match in random or planted trees: the attribute it tests is not generated; device check)'
+          : hits === 0 ? ' (needs 10 matches; same shape verified on siblings)' : '';
+        Object.assign(c, { verdict: 'CORRECT', expected: r.locator, note: `fuzz: ${variants.reduce((a, v) => a + v.trials, 0)} random page sources, equal set+first; min matching trials ${hits}${how}` });
+      }
     }
   } else if (gapExp[x.id]) {
     const g = gapRes[x.id + '~0'];

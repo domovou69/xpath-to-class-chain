@@ -10471,7 +10471,7 @@
   },
   {
     "id": "G0475",
-    "kind": "xpath",
+    "kind": "xpath-uia",
     "quote": "\"",
     "source": "//UIATableCell[@name='Dovufu']",
     "count": 2,
@@ -10481,7 +10481,7 @@
   },
   {
     "id": "G0476",
-    "kind": "xpath",
+    "kind": "xpath-uia",
     "quote": "\"",
     "source": "//UIATableCell[@name='Wilid Jisegoj zug Tokoham Loro']",
     "count": 2,
@@ -10751,7 +10751,7 @@
   },
   {
     "id": "G0503",
-    "kind": "xpath",
+    "kind": "xpath-uia",
     "quote": "\"",
     "source": "//UIAButton[@label=\\\"Pazu\\\"]",
     "count": 1,
@@ -10781,7 +10781,7 @@
   },
   {
     "id": "G0506",
-    "kind": "xpath",
+    "kind": "xpath-uia",
     "quote": "\"",
     "source": "//UIATableCell[@label=\\\"Copucehoj 2017\\\"]/following-sibling::*//UIAButton[@enabled='true']",
     "count": 3,
@@ -11021,7 +11021,7 @@
   },
   {
     "id": "G0530",
-    "kind": "xpath",
+    "kind": "xpath-uia",
     "quote": "\"",
     "source": "//UIATableCell[@name='Wi-Fi']",
     "count": 2,
@@ -15481,7 +15481,7 @@
   },
   {
     "id": "G0976",
-    "kind": "xpath",
+    "kind": "xpath-uia",
     "quote": "\"",
     "source": "//UIAStaticText[@name='Nidigoso Parewohoro']",
     "count": 1,
@@ -24513,7 +24513,7 @@
     "id": "G1879",
     "kind": "xpath",
     "quote": "\"",
-    "source": "//XCUIElementTypeWindow[@visible='true']/XCUIElementTypeOther[@visible='true' and @index > 0]",
+    "source": "/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypePopover",
     "count": 1,
     "project": "dotnet/maui",
     "lang": "C#",
@@ -24523,6 +24523,16 @@
     "id": "G1880",
     "kind": "xpath",
     "quote": "\"",
+    "source": "//XCUIElementTypeWindow[@visible='true']/XCUIElementTypeOther[@visible='true' and @index > 0]",
+    "count": 1,
+    "project": "dotnet/maui",
+    "lang": "C#",
+    "strategy": null
+  },
+  {
+    "id": "G1881",
+    "kind": "xpath",
+    "quote": "\"",
     "source": "//XCUIElementTypeKeyboard",
     "count": 1,
     "project": "dotnet/maui",
@@ -24530,7 +24540,7 @@
     "strategy": "By.XPath("
   },
   {
-    "id": "G1881",
+    "id": "G1882",
     "kind": "xpath-other",
     "quote": "\"",
     "source": "//*[@Name='{identifier}']",
@@ -24540,7 +24550,7 @@
     "strategy": null
   },
   {
-    "id": "G1882",
+    "id": "G1883",
     "kind": "xpath-other",
     "quote": "\"",
     "source": "//*[@AutomationId='{identifier}']",
@@ -24550,7 +24560,7 @@
     "strategy": null
   },
   {
-    "id": "G1883",
+    "id": "G1884",
     "kind": "xpath-other",
     "quote": "\"",
     "source": "//*[contains(@Name, '{identifier}')]",
@@ -24560,7 +24570,7 @@
     "strategy": null
   },
   {
-    "id": "G1884",
+    "id": "G1885",
     "kind": "xpath-dynamic",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[@name='{customBackButtonIdentifier}']",
@@ -24570,7 +24580,7 @@
     "strategy": null
   },
   {
-    "id": "G1885",
+    "id": "G1886",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[@name=\\\"JoverajUjaJakate\\\"]",
@@ -24580,7 +24590,7 @@
     "strategy": null
   },
   {
-    "id": "G1886",
+    "id": "G1887",
     "kind": "xpath-web",
     "quote": "'",
     "source": "//nav[@id=\"fitukaziv\"]",
@@ -24590,7 +24600,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1887",
+    "id": "G1888",
     "kind": "xpath-web",
     "quote": "'",
     "source": "//footer[@id=\"cofanazutova\"]",
@@ -24600,7 +24610,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1888",
+    "id": "G1889",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeStaticText",
@@ -24610,7 +24620,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1889",
+    "id": "G1890",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeImage",
@@ -24620,7 +24630,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1890",
+    "id": "G1891",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"Line Naza*-kazik-robodit\"]/XCUIElementTypeStaticText",
@@ -24630,7 +24640,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1891",
+    "id": "G1892",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"Cuzipac Vupa 1*-kazik-robodit\"]/XCUIElementTypeStaticText",
@@ -24640,7 +24650,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1892",
+    "id": "G1893",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"Zihe*-kazik-robodit\"]/XCUIElementTypeStaticText",
@@ -24650,7 +24660,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1893",
+    "id": "G1894",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"Deh Tivu*-kazik-robodit\"]/XCUIElementTypeStaticText",
@@ -24660,7 +24670,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1894",
+    "id": "G1895",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"Cesagir*-kazik-robodit\"]/XCUIElementTypeStaticText",
@@ -24670,7 +24680,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1895",
+    "id": "G1896",
     "kind": "xpath",
     "quote": "'",
     "source": "(//XCUIElementTypeTextField[@name=\"Line Naza* bomiz razub\"])[1]",
@@ -24680,7 +24690,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1896",
+    "id": "G1897",
     "kind": "xpath",
     "quote": "'",
     "source": "(//XCUIElementTypeTextField[@name=\"Line Naza* bomiz razub\"])[2]",
@@ -24690,7 +24700,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1897",
+    "id": "G1898",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[contains(@name, \"rokesefa\")]",
@@ -24700,7 +24710,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1898",
+    "id": "G1899",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeStaticText[@name=\"Ceta\"]",
@@ -24710,7 +24720,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1899",
+    "id": "G1900",
     "kind": "xpath",
     "quote": "'",
     "source": "(//XCUIElementTypeStaticText[@name=\"Line Naza*\"])[1]",
@@ -24720,7 +24730,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1900",
+    "id": "G1901",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeStaticText[@name=\"My jasokul cuzipac is boz pawu as my wumidemi cuzipac.\"]",
@@ -24730,7 +24740,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1901",
+    "id": "G1902",
     "kind": "xpath",
     "quote": "'",
     "source": "(//XCUIElementTypeOther[@name=\"Line Naza*-kazik-robodit\"])[1]/XCUIElementTypeStaticText",
@@ -24740,7 +24750,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1902",
+    "id": "G1903",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"Ceta Wavehi*-kazik-robodit\"]/XCUIElementTypeStaticText",
@@ -24750,7 +24760,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1903",
+    "id": "G1904",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"Jakenivuna Rune*-kazik-robodit\"]/XCUIElementTypeStaticText",
@@ -24760,7 +24770,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1904",
+    "id": "G1905",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"Hunoragi Tivu*-kazik-robodit\"]/XCUIElementTypeStaticText",
@@ -24770,7 +24780,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1905",
+    "id": "G1906",
     "kind": "xpath",
     "quote": "'",
     "source": "(//XCUIElementTypeOther[@name=\"Line Naza*-kazik-robodit\"])[2]/XCUIElementTypeStaticText",
@@ -24780,7 +24790,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1906",
+    "id": "G1907",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi hidahiso cuzipac\"]/XCUIElementTypeStaticText[1]",
@@ -24790,7 +24800,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1907",
+    "id": "G1908",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi hidahiso cuzipac\"]/XCUIElementTypeStaticText[2]",
@@ -24800,7 +24810,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1908",
+    "id": "G1909",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi hidahiso cuzipac\"]/XCUIElementTypeStaticText[3]",
@@ -24810,7 +24820,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1909",
+    "id": "G1910",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi hidahiso cuzipac\"]/XCUIElementTypeStaticText[4]",
@@ -24820,7 +24830,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1910",
+    "id": "G1911",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi hidahiso cuzipac\"]/XCUIElementTypeStaticText[5]",
@@ -24830,7 +24840,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1911",
+    "id": "G1912",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi kobojed wate\"]/XCUIElementTypeStaticText[1]",
@@ -24840,7 +24850,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1912",
+    "id": "G1913",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi kobojed wate\"]/XCUIElementTypeStaticText[2]",
@@ -24850,7 +24860,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1913",
+    "id": "G1914",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi kobojed wate\"]/XCUIElementTypeStaticText[3]",
@@ -24860,7 +24870,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1914",
+    "id": "G1915",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi kobojed wate\"]/XCUIElementTypeStaticText[4]",
@@ -24870,7 +24880,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1915",
+    "id": "G1916",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi jasokul cuzipac\"]/XCUIElementTypeStaticText[1]",
@@ -24880,7 +24890,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1916",
+    "id": "G1917",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi jasokul cuzipac\"]/XCUIElementTypeStaticText[2]",
@@ -24890,7 +24900,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1917",
+    "id": "G1918",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi jasokul cuzipac\"]/XCUIElementTypeStaticText[3]",
@@ -24900,7 +24910,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1918",
+    "id": "G1919",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi jasokul cuzipac\"]/XCUIElementTypeStaticText[4]",
@@ -24910,7 +24920,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1919",
+    "id": "G1920",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi jasokul cuzipac\"]/XCUIElementTypeStaticText[5]",
@@ -24920,7 +24930,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1920",
+    "id": "G1921",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi hidahiso cetatad\"]/XCUIElementTypeOther/XCUIElementTypeStaticText[1]",
@@ -24930,7 +24940,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1921",
+    "id": "G1922",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi hidahiso cetatad\"]/XCUIElementTypeOther/XCUIElementTypeStaticText[2]",
@@ -24940,7 +24950,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1922",
+    "id": "G1923",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi hidahiso cetatad\"]/XCUIElementTypeStaticText",
@@ -24950,7 +24960,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1923",
+    "id": "G1924",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"zifiluwi wuvuca cefif rigibi\"]/XCUIElementTypeScrollView",
@@ -24960,7 +24970,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1924",
+    "id": "G1925",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"jelezoh cuv\"]",
@@ -24970,7 +24980,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1925",
+    "id": "G1926",
     "kind": "xpath",
     "quote": "'",
     "source": "(//XCUIElementTypeStaticText[@name=\"Keledugi\"])[1]",
@@ -24980,7 +24990,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1926",
+    "id": "G1927",
     "kind": "xpath",
     "quote": "'",
     "source": "(//XCUIElementTypeScrollView)[2]",
@@ -24990,7 +25000,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1927",
+    "id": "G1928",
     "kind": "xpath",
     "quote": "'",
     "source": "(//XCUIElementTypeOther[@name=\"humac jeme\"])",
@@ -25000,7 +25010,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1928",
+    "id": "G1929",
     "kind": "xpath",
     "quote": "'",
     "source": "(//XCUIElementTypeOther[@name=\"jelezoh cuv\"])",
@@ -25010,7 +25020,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1929",
+    "id": "G1930",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeWindow/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther",
@@ -25020,7 +25030,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1930",
+    "id": "G1931",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeStaticText[@name=\"Cego by:\"]",
@@ -25030,7 +25040,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1931",
+    "id": "G1932",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"ketaKeh\"]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText",
@@ -25040,7 +25050,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1932",
+    "id": "G1933",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"horoKoca\"]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText",
@@ -25050,7 +25060,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1933",
+    "id": "G1934",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"redopUri\"]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText",
@@ -25060,7 +25070,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1934",
+    "id": "G1935",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"gogonOvum\"]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText",
@@ -25070,7 +25080,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1935",
+    "id": "G1936",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"ketaKeh\"]/XCUIElementTypeOther[@name=\"nucovu dapenu\"]",
@@ -25080,7 +25090,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1936",
+    "id": "G1937",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"horoKoca\"]/XCUIElementTypeOther[@name=\"nucovu dapenu\"]",
@@ -25090,7 +25100,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1937",
+    "id": "G1938",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"redopUri\"]/XCUIElementTypeOther[@name=\"nucovu dapenu\"]",
@@ -25100,7 +25110,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1938",
+    "id": "G1939",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[@name=\"gogonOvum\"]/XCUIElementTypeOther[@name=\"nucovu dapenu\"]",
@@ -25110,7 +25120,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1939",
+    "id": "G1940",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeOther[contains(@name, \"Mirubon, kam, 1 of 3\")][1]",
@@ -25120,7 +25130,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1940",
+    "id": "G1941",
     "kind": "xpath",
     "quote": "'",
     "source": "//XCUIElementTypeScrollView",
@@ -25130,7 +25140,7 @@
     "strategy": "xpath:"
   },
   {
-    "id": "G1941",
+    "id": "G1942",
     "kind": "xpath-other",
     "quote": "\"",
     "source": "//Window[@Name='#{@title}']",
@@ -25140,7 +25150,7 @@
     "strategy": ":xpath"
   },
   {
-    "id": "G1942",
+    "id": "G1943",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeCollectionView/XCUIElementTypeCell/XCUIElementTypeButton",
@@ -25150,7 +25160,7 @@
     "strategy": ":xpath"
   },
   {
-    "id": "G1943",
+    "id": "G1944",
     "kind": "xpath-dynamic",
     "quote": "\"",
     "source": "//XCUIElementTypeApplication[@name='Can-Sez-Cob']/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton[#{idx}]",
@@ -25160,20 +25170,10 @@
     "strategy": ":xpath"
   },
   {
-    "id": "G1944",
-    "kind": "xpath",
-    "quote": "\"",
-    "source": "//XCUIElementTypeWindow//XCUIElementTypeOther/XCUIElementTypeButton",
-    "count": 1,
-    "project": "courtneyzhan/tic-tac-toe-ui-tests",
-    "lang": "Ruby",
-    "strategy": ":xpath"
-  },
-  {
     "id": "G1945",
-    "kind": "xpath",
+    "kind": "xpath-dynamic",
     "quote": "\"",
-    "source": "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText",
+    "source": "/XCUIElementTypeApplication[@name='Can-Sez-Cob']/XCUIElementTypeWindow//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton[#{idx}]",
     "count": 1,
     "project": "courtneyzhan/tic-tac-toe-ui-tests",
     "lang": "Ruby",
@@ -25183,7 +25183,7 @@
     "id": "G1946",
     "kind": "xpath",
     "quote": "\"",
-    "source": "//XCUIElementTypeApplication[@name='Can-Sez-Cob']/XCUIElementTypeWindow//XCUIElementTypeOther/XCUIElementTypeButton",
+    "source": "/XCUIElementTypeApplication[@name='Can-Sez-Cob']/XCUIElementTypeWindow//XCUIElementTypeOther/XCUIElementTypeButton",
     "count": 1,
     "project": "courtneyzhan/tic-tac-toe-ui-tests",
     "lang": "Ruby",
@@ -25193,6 +25193,36 @@
     "id": "G1947",
     "kind": "xpath",
     "quote": "\"",
+    "source": "//XCUIElementTypeWindow//XCUIElementTypeOther/XCUIElementTypeButton",
+    "count": 1,
+    "project": "courtneyzhan/tic-tac-toe-ui-tests",
+    "lang": "Ruby",
+    "strategy": ":xpath"
+  },
+  {
+    "id": "G1948",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//XCUIElementTypeNavigationBar/XCUIElementTypeStaticText",
+    "count": 1,
+    "project": "courtneyzhan/tic-tac-toe-ui-tests",
+    "lang": "Ruby",
+    "strategy": ":xpath"
+  },
+  {
+    "id": "G1949",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//XCUIElementTypeApplication[@name='Can-Sez-Cob']/XCUIElementTypeWindow//XCUIElementTypeOther/XCUIElementTypeButton",
+    "count": 1,
+    "project": "courtneyzhan/tic-tac-toe-ui-tests",
+    "lang": "Ruby",
+    "strategy": ":xpath"
+  },
+  {
+    "id": "G1950",
+    "kind": "xpath",
+    "quote": "\"",
     "source": "//XCUIElementTypeButton[@name='Zawu']",
     "count": 2,
     "project": "klarna/react-native-klarna-inapp-sdk",
@@ -25200,7 +25230,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1948",
+    "id": "G1951",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeKeyboard//XCUIElementTypeButton[@name='Hefake']",
@@ -25210,7 +25240,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1949",
+    "id": "G1952",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeMenuItem[@name=\\\"Comeba Hah\\\"]",
@@ -25220,7 +25250,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1950",
+    "id": "G1953",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeOther[@name='Kobojed Lide']",
@@ -25230,7 +25260,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1951",
+    "id": "G1954",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[@name='BOWEDUSIK']",
@@ -25240,7 +25270,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1952",
+    "id": "G1955",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeNavigationBar[@name='KabadaMisiteFIT.KaZanEwunoriDezo']",
@@ -25250,7 +25280,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1953",
+    "id": "G1956",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[@name='Cura']",
@@ -25260,7 +25290,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1954",
+    "id": "G1957",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//a[contains(@aria-label, 'Camubiv Wuwaci')]",
@@ -25270,7 +25300,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1955",
+    "id": "G1958",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeLink[@name='Camubiv Wuwaci']",
@@ -25280,7 +25310,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1956",
+    "id": "G1959",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//*[@id=\\\"zinobeh-camubiv-wuwaci\\\"]/span/a[1]",
@@ -25290,7 +25320,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1957",
+    "id": "G1960",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//*[@id=\\\"zac-poju_higan\\\"]",
@@ -25300,7 +25330,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1958",
+    "id": "G1961",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//*[@id=\\\"les-kobuz-mefav-it-mefav-it-by-ceta-camubiv-wuwaci\\\"]/a[1]",
@@ -25310,7 +25340,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1959",
+    "id": "G1962",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//*[@id=\\\"zotu-fosedis-camubiv-wuwaci\\\"]/span/a[1]",
@@ -25320,7 +25350,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1960",
+    "id": "G1963",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//*[contains(@id,'robodit-cuzomurev-kaka') or contains(text(),'Zugasedenekem') or contains(text(),'midij')]",
@@ -25330,7 +25360,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1961",
+    "id": "G1964",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[contains(@name, 'Refila kobojed doduza')]",
@@ -25340,7 +25370,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1962",
+    "id": "G1965",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[contains(@name, 'Joguc')]",
@@ -25350,7 +25380,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1963",
+    "id": "G1966",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//*[@id=\\\"suvufakajetu__fuzoma-zevoju-nihevuc\\\"]/div/button",
@@ -25360,7 +25390,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1964",
+    "id": "G1967",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//*[@id=\\\"les-hon-ceta\\\"]//iframe",
@@ -25370,7 +25400,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1965",
+    "id": "G1968",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[@name='Ceta']",
@@ -25380,7 +25410,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1966",
+    "id": "G1969",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//*[@id=\\\"robodit-cuzomurev-kaka\\\"]",
@@ -25390,7 +25420,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1967",
+    "id": "G1970",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//button[contains(@id,'petudoho-cububadu-kugi-duculagi-zevoju')]",
@@ -25400,7 +25430,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1968",
+    "id": "G1971",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//div[contains(@id,'petudoho-cububadu__fuzoma-zevoju-nihevuc')]",
@@ -25410,7 +25440,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1969",
+    "id": "G1972",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[contains(@name,'Mifofaj')]",
@@ -25420,7 +25450,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1970",
+    "id": "G1973",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//h1[contains(text(),'Nage wezutolumac ceb tibitosu')]",
@@ -25430,7 +25460,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1971",
+    "id": "G1974",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[@name='Vizivig']",
@@ -25440,7 +25470,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1972",
+    "id": "G1975",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[@name='3DS beheroz']",
@@ -25450,7 +25480,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1973",
+    "id": "G1976",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[@name='Joguc']",
@@ -25460,7 +25490,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G1974",
+    "id": "G1977",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[@data-cid=\\\"am.buzic\\\"]",
@@ -25470,7 +25500,7 @@
     "strategy": null
   },
   {
-    "id": "G1975",
+    "id": "G1978",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[@data-cid=\\\"am.hadiva_tivu\\\"]",
@@ -25480,7 +25510,7 @@
     "strategy": null
   },
   {
-    "id": "G1976",
+    "id": "G1979",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[@data-cid=\\\"am.dubisuro_boridanazaveko_wavehi\\\"]",
@@ -25490,7 +25520,7 @@
     "strategy": null
   },
   {
-    "id": "G1977",
+    "id": "G1980",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[contains(@id,'dubisuro-boridanazaveko-wavehi')]",
@@ -25500,7 +25530,7 @@
     "strategy": null
   },
   {
-    "id": "G1978",
+    "id": "G1981",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[@data-cid=\\\"am.lalok_naza\\\"]",
@@ -25510,7 +25540,7 @@
     "strategy": null
   },
   {
-    "id": "G1979",
+    "id": "G1982",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[@data-cid=\\\"am.cinoka_naza\\\"]",
@@ -25520,7 +25550,7 @@
     "strategy": null
   },
   {
-    "id": "G1980",
+    "id": "G1983",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//*[@data-cid=\\\"am.fupom\\\"]",
@@ -25530,7 +25560,7 @@
     "strategy": null
   },
   {
-    "id": "G1981",
+    "id": "G1984",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[@data-cid=\\\"am.tececa_cuzipac\\\"]",
@@ -25540,7 +25570,7 @@
     "strategy": null
   },
   {
-    "id": "G1982",
+    "id": "G1985",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[@data-cid=\\\"am.zihe\\\"]",
@@ -25550,7 +25580,7 @@
     "strategy": null
   },
   {
-    "id": "G1983",
+    "id": "G1986",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[@data-cid=\\\"am.vedubi\\\"]",
@@ -25560,7 +25590,7 @@
     "strategy": null
   },
   {
-    "id": "G1984",
+    "id": "G1987",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[@data-cid=\\\"am.cevuf\\\"]",
@@ -25570,7 +25600,7 @@
     "strategy": null
   },
   {
-    "id": "G1985",
+    "id": "G1988",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[contains(@id,'rune_of_buzam')]",
@@ -25580,7 +25610,7 @@
     "strategy": null
   },
   {
-    "id": "G1986",
+    "id": "G1989",
     "kind": "xpath-web",
     "quote": "\"",
     "source": "//input[contains(@id,'rune-of-buzam')]",
@@ -25590,7 +25620,7 @@
     "strategy": null
   },
   {
-    "id": "G1987",
+    "id": "G1990",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Buzic cuzipac')]",
@@ -25600,7 +25630,7 @@
     "strategy": null
   },
   {
-    "id": "G1988",
+    "id": "G1991",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Komiponi')]",
@@ -25610,7 +25640,7 @@
     "strategy": null
   },
   {
-    "id": "G1989",
+    "id": "G1992",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'ID wavehi')]",
@@ -25620,7 +25650,7 @@
     "strategy": null
   },
   {
-    "id": "G1990",
+    "id": "G1993",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Dubisuro boridanazaveko wavehi')]",
@@ -25630,7 +25660,7 @@
     "strategy": null
   },
   {
-    "id": "G1991",
+    "id": "G1994",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Huvuf Naza')]",
@@ -25640,7 +25670,7 @@
     "strategy": null
   },
   {
-    "id": "G1992",
+    "id": "G1995",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Cemu Naza')]",
@@ -25650,7 +25680,7 @@
     "strategy": null
   },
   {
-    "id": "G1993",
+    "id": "G1996",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Fupom')]",
@@ -25660,7 +25690,7 @@
     "strategy": null
   },
   {
-    "id": "G1994",
+    "id": "G1997",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeOther[contains(@value,'Tececa naza zug wavehi')]",
@@ -25670,7 +25700,7 @@
     "strategy": null
   },
   {
-    "id": "G1995",
+    "id": "G1998",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeOther[contains(@value,'Zihe')]",
@@ -25680,7 +25710,7 @@
     "strategy": null
   },
   {
-    "id": "G1996",
+    "id": "G1999",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Gozeb')]",
@@ -25690,7 +25720,7 @@
     "strategy": null
   },
   {
-    "id": "G1997",
+    "id": "G2000",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Sereko cevuf')]",
@@ -25700,7 +25730,7 @@
     "strategy": null
   },
   {
-    "id": "G1998",
+    "id": "G2001",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Rune of Buzam')]",
@@ -25710,7 +25740,7 @@
     "strategy": null
   },
   {
-    "id": "G1999",
+    "id": "G2002",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Deh tivu')]",
@@ -25720,7 +25750,7 @@
     "strategy": null
   },
   {
-    "id": "G2000",
+    "id": "G2003",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeOther[contains(@value,'Cuzipac')]",
@@ -25730,7 +25760,7 @@
     "strategy": null
   },
   {
-    "id": "G2001",
+    "id": "G2004",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[contains(@name,'Hadiva tivu')]",
@@ -25740,7 +25770,7 @@
     "strategy": null
   },
   {
-    "id": "G2002",
+    "id": "G2005",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeOther[contains(@value,'Zana or zihe')]",
@@ -25750,7 +25780,7 @@
     "strategy": null
   },
   {
-    "id": "G2003",
+    "id": "G2006",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeOther[contains(@name,'Cabahu zilej nage')]",
@@ -25760,7 +25790,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2004",
+    "id": "G2007",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeOther[contains(@name,'Lituso nage cetatad')]",
@@ -25770,7 +25800,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2005",
+    "id": "G2008",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypePickerWheel",
@@ -25780,7 +25810,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2006",
+    "id": "G2009",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[contains(@name,'Zedovu')]",
@@ -25790,7 +25820,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2007",
+    "id": "G2010",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[contains(@name,'Duculagi gujadu')]",
@@ -25800,7 +25830,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2008",
+    "id": "G2011",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[contains(@name,'Duculagi')]",
@@ -25810,7 +25840,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2009",
+    "id": "G2012",
     "kind": "xpath-dynamic",
     "quote": "\"",
     "source": "//XCUIElementTypeOther[contains(@text, '$containText')]",
@@ -25820,7 +25850,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2010",
+    "id": "G2013",
     "kind": "xpath-dynamic",
     "quote": "\"",
     "source": "//*[@name='$id' and contains(@label, '$containText')]",
@@ -25830,7 +25860,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2011",
+    "id": "G2014",
     "kind": "xpath-android",
     "quote": "\"",
     "source": "//*[@content-desc='$id' and contains(@text, '$containText')]",
@@ -25840,7 +25870,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2012",
+    "id": "G2015",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[@name='Ceta Wavehi']",
@@ -25850,7 +25880,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2013",
+    "id": "G2016",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[@name='MM/YY']",
@@ -25860,7 +25890,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2014",
+    "id": "G2017",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeStaticText[@name='NUW']",
@@ -25870,7 +25900,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2015",
+    "id": "G2018",
     "kind": "xpath",
     "quote": "\"",
     "source": "//input[@type='keg']",
@@ -25880,7 +25910,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2016",
+    "id": "G2019",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeButton[contains(@name,'tivu')]",
@@ -25890,7 +25920,7 @@
     "strategy": "By.xpath("
   },
   {
-    "id": "G2017",
+    "id": "G2020",
     "kind": "xpath",
     "quote": "\"",
     "source": "//XCUIElementTypeTextField",

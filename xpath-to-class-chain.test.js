@@ -182,6 +182,10 @@ const CONVERT_CASES = [
   ['/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypeButton', `${CC}XCUIElementTypeWindow/XCUIElementTypeButton`], // A07
   ['/XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]', `${CC}XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]`], // A08
   ['/XCUIElementTypeApplication//XCUIElementTypeButton[@name="x"]', `${CC}**/XCUIElementTypeButton[\`name == "x"\`]`],
+  // //XCUIElementTypeApplication/… is the same root: **/XCUIElementTypeApplication never matches it (Phase 7)
+  ['//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther', `${CC}XCUIElementTypeWindow[1]/XCUIElementTypeOther`],
+  ['//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeButton[2]', `${CC}XCUIElementTypeWindow[1]/XCUIElementTypeButton[2]`],
+  ['//XCUIElementTypeApplication//XCUIElementTypeButton', `${CC}**/XCUIElementTypeButton`],
   ['/*/XCUIElementTypeWindow', `${CC}XCUIElementTypeWindow`],
   // RC2: contains()/starts-with() on a boolean attribute compares the "true"/"false" text
   ['//XCUIElementTypeButton[contains(@enabled,"false")]', `${CC}**/XCUIElementTypeButton[\`enabled == false\`]`], // B18
@@ -306,6 +310,11 @@ const SKIP_CASES = [
   ['//XCUIElementTypeCell[.//*[self::XCUIElementTypeButton]]', 'self:: inside a path predicate'],
   ['//*[descendant-or-self::XCUIElementTypeButton]', 'descendant-or-self::'],
 
+  // incomplete or broken source pieces (Phase 7, GitHub corpus)
+  ['//XCUIElementTypeOther[3]//XCUIElementTypeScrollView/', 'trailing / (Python "…/" "Next/…" concatenation)'],
+  ['//XCUIElementTypeWebView/XCUIElementTypeOther/', 'trailing / after a child step'],
+  ['//XCUIElementTypeOther[@name=\\"test-Error\r\n\t// message\\"]/child::XCUIElementTypeStaticText', 'raw line break inside a source-escaped value'],
+
   // XPath functions with no Class Chain equivalent
   ['//*[last()]', 'last()'],
   // grouped outer last(): only [last()] and [last()-n] with n ≥ 1 convert
@@ -375,6 +384,8 @@ const SKIP_CASES = [
   ['/XCUIElementTypeApplication', 'RC9: selects the application element itself'],
   ['/XCUIElementTypeWindow/XCUIElementTypeButton', 'RC9: the root element is always the Application'],
   ['/XCUIElementTypeApplication[@name="App"]/XCUIElementTypeWindow', 'RC9: predicate on the root step'],
+  ['//XCUIElementTypeApplication[@name="App"]/XCUIElementTypeWindow', 'predicate on the root step, relative form'],
+  ['//XCUIElementTypeApplication', 'relative form of the application element itself'],
   // RC6: leftover XPath inside the backtick block must fail validation, not ship as "success"
   ['//XCUIElementTypeButton[contains(., "a")]', 'RC6: contains(.) (C05)'],
   // B5: concat() folds only when every argument is a plain literal; the rest still fails RC6
@@ -510,6 +521,11 @@ const DETECT_CASES = [
   ['(//XCUIElementTypeButton)[last()-1]', true],
   ['(//XCUIElementTypeButton[@name="a)b"])[last()]', true],
   ['(//XCUIElementTypeButton[@name="OK"]', false], // group never closed
+  // absolute paths from the page source root (Phase 7: dotnet/maui, Ruby page objects)
+  ['/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypePopover', true],
+  ['/XCUIElementTypeApplication[1]/XCUIElementTypeWindow//XCUIElementTypeButton[2]', true],
+  ['/XCUIElementTypeWindow/XCUIElementTypeButton', false], // a path piece, not from the root
+  ['/XCUIElementTypeApplicationFoo/x', false],
 
   // NOT locators — must be left alone even though they start with '//'
   ['//cdn.example.com/lib.js', false], // protocol-relative URL
@@ -1202,6 +1218,29 @@ console.log('— SCANNER: processFile —');
     else fail(`processFile --optimize: rewrite mismatch\n     expected: ${expected}\n     got:      ${after}`);
     if (stats.locatorsUpdated === 1 && stats.skipped.validationFailed === 0) ok();
     else fail(`processFile --optimize: stats wrong ${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
+  // an absolute XPath from the root is picked up and converted (Phase 7)
+  const root = makeTempRoot('xpath-absolute-');
+  try {
+    const file = join(root, 'alerts.cs');
+    writeFileSync(file, [
+      `var popover = App.FindElement(By.XPath("/XCUIElementTypeApplication/XCUIElementTypeWindow/XCUIElementTypePopover"));`,
+      `var ok = "/XCUIElementTypeApplication//XCUIElementTypeButton[@name='OK']";`,
+    ].join('\n'));
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: true, quiet: true }, records, stats);
+    const converted = records.find((r) => r.status === 'success');
+
+    if (stats.locatorsFound === 2 && stats.skipped.xpathStrategy === 1 && converted
+      && converted.new === "-ios class chain:**/XCUIElementTypeButton[`name == 'OK'`]") ok();
+    else fail(`processFile absolute: ${JSON.stringify(stats)} ${JSON.stringify(records)}`);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
