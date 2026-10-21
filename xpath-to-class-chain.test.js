@@ -260,6 +260,12 @@ const CONVERT_CASES = [
   // Phase 7 stage 3 (device): only an empty contains() / starts-with() needle is skipped
   ['//XCUIElementTypeButton[ends-with(@label, "")]', `${CC}**/XCUIElementTypeButton[\`label ENDSWITH ""\`]`],
   ['//XCUIElementTypeButton[contains(@name, " ")]', `${CC}**/XCUIElementTypeButton[\`name CONTAINS " "\`]`],
+  // Phase 7 P2: function text inside a string value stays a value
+  [`//*[@name='contains(@a,"b")']`, `${CC}**/*[\`name == 'contains(@a,"b")'\`]`],
+  [`//*[@label="starts-with(@x,'y')"]`, `${CC}**/*[\`label == "starts-with(@x,'y')"\`]`],
+  [`//*[@value="text()='a'"]`, `${CC}**/*[\`value == "text()='a'"\`]`],
+  [`//*[contains(@name,"contains(@a,'b')")]`, `${CC}**/*[\`name CONTAINS "contains(@a,'b')"\`]`],
+  [`//*[@name="ends-with(@a,'b')" and contains(@label,"c")]`, `${CC}**/*[\`name == "ends-with(@a,'b')" AND label CONTAINS "c"\`]`],
   // C2 c2-functions: matches() without metacharacters is a substring test; any other
   // pattern keeps XPath's search semantics: `.` not dot-all, `$` before a final \n (C1, device)
   ['//*[matches(@name,"b")]', `${CC}**/*[\`name CONTAINS "b"\`]`], // H03

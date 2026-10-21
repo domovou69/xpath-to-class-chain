@@ -321,7 +321,7 @@ Stage 1 starts with the candidate list (search hits, license, size, language, pr
 
 ## Parked findings (not fixed)
 
-Found after Phase 5 and written down to check in more detail later. None affects the R / S numbers; P1 does not affect a valid locator, P2 does (a rare value form).
+Found after Phase 5 and written down to check in more detail later. None affects the R / S numbers; P1 does not affect a valid locator, P2 did (a rare value form) and is fixed.
 
 - **P1 — XPath 2.0 syntax that WDA rejects comes out as `success` (2026-10-17).** WDA evaluates XPath with libxml2, which is XPath 1.0 plus the seven functions from `FBXPathExtensions.m` (`matches`, `ends-with`, `lower-case`, `upper-case`, `replace`, `tokenize`, `string-join`). Other XPath 2.0/3.0 syntax inside a predicate is copied into the chain and marked `success`, though both sides fail on WDA: mini-WDA (`check.js`) gives `InvalidXPath` for the XPath and `Unable to parse the format string` for the chain. So it is a broken locator turned into another broken locator, not a wrong chain for a valid one; the 678-locator corpus has none of these.
 
@@ -336,4 +336,4 @@ Found after Phase 5 and written down to check in more detail later. None affects
   Already skipped correctly: `except`, `intersect`, `if … then … else`, `replace`, `tokenize`, `string-join`.
   Possible fix: the validator rejects bare words and comma sequences that are not class chain syntax, with the reason "XPath 2.0 syntax: WDA evaluates XPath 1.0 (libxml2)"; plus regression rows for the forms above.
 
-- **P2 — function text inside a string value is rewritten (2026-10-21, Phase 7 stage 3).** `rewriteStringFunctions` (`lib/predicates.js`) is not quote-aware: `//*[@name='contains(@a,"b")']` → ``**/*[`name == 'a CONTAINS "b"'`]``, and `starts-with(…)` the same. A wrong chain, but only for a value that holds XPath function syntax; the corpus has none. Possible fix: run the attribute rewrites through `outsideQuotes`-style scanning that skips literals, with regression rows.
+- **P2 — function text inside a string value was rewritten (2026-10-21, Phase 7 stage 3) — FIXED the same day.** `rewriteStringFunctions` (`lib/predicates.js`) was not quote-aware: `//*[@name='contains(@a,"b")']` → ``**/*[`name == 'a CONTAINS "b"'`]``, and `starts-with(…)`, `ends-with(…)`, `text()=` the same. Now each rewrite skips a match that starts inside a `"…"` / `'…'` literal (backtick blocks are still rewritten, the validator needs that); five regression rows in `xpath-to-class-chain.test.js`. The corpus had none, so R / S do not change.
