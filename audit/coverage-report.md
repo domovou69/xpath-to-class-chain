@@ -39,6 +39,7 @@ Sections 1–8 below are the Phase 1 baseline and stay as they were. Each fix br
 | `fix/c2-functions` (Phase 5, C2) | none of RC-*: `matches()`, `lower-case()`, `contains(upper-case()…)`, `contains(translate()…)` → `CONTAINS` / `[c]` / wrapped `MATCHES` (H02–H06, C08 GAP → CORRECT); C06, C07 skipped with a reason and out of the denominator | 95.8 | 87.0 % | 92.0 (92.0) | 0 | 0 |
 | `audit/scoring-ceiling` | none of RC-*: L174, L225, E13 documented in the README (DRIFT, half credit); H07 `replace()` not expressible (GAP → CORRECT-SKIP) | 96.0 | 87.0 % | 93.6 (93.6) | 0 | 0 |
 | **Total, Phase 1 → now** (scoring ceiling) | RC1–RC15, RC-S1–S3, RC-D1–D3; Phase 5 B and C2 | **72.2 → 96.0** | 86.9 % → 87.0 % | **7.7 → 93.6** (93.6) | 9 → 0 | 42 → 0 |
+| `docs/phase7-corpus-github` (Phase 7) | corpus grows to 1386 in scope (+824 GitHub literals), so R / C are not comparable with the rows above; 8 converter and scanner fixes, see "GitHub corpus (Phase 7)" | 91.9 (production 96.0) | 85.1 % (production 87.0 %) | 93.6 (93.6) | 0 | 0 |
 
 D1 is a re-run of `audit/harness/run.sh` on `main` after PR #24, with no change to the converter or the harness: R 95.8, C 87.0 %, S 92.0, "no changes vs baseline". The `audit/scoring-ceiling` row then documents the three remaining DRIFT cases and moves H07 out of the denominator, with the numbers below. What is left:
 
@@ -1082,6 +1083,101 @@ Proposal (a separate task, not part of D0): leave the conversions as they are an
 - Simulator only (as agreed); the iPhone was not run, so iOS 26.6 behaviour is assumed to match, as it did for every C1 case.
 - `MATCHES` with `(?i)` (the converter's `matches(…, "i")` form) and `BEGINSWITH[c]` were not run.
 - Other compatibility characters (halfwidth katakana, roman numerals, superscripts) and other combining marks were not tried.
+
+## GitHub corpus (Phase 7)
+
+Until Phase 7 the R corpus came from one production CodeceptJS suite: one team, one language, one way of writing locators. Phase 7 adds iOS XPath literals from 22 open-source projects in 7 languages, to check the published converter (npm 1.0.2) against other teams' code. The plan, the stages and the decisions are in `PLAN.md`, "Phase 7 — GitHub corpus".
+
+### Setup
+
+- **Sources.** 22 GitHub projects pinned at a commit, with licenses, profiles and the code-search counts in [`corpus/sources.md`](corpus/sources.md). 6 of them were already harvested for the Android sibling project and were downloaded again at the same commit without the Android filter. Large organizational suites (dotnet/maui, klarna, MetaMask) are mixed with courses, samples and practice repos. The locators were not run on the real apps: that would test each project's suite, not the converter.
+- **Harvest.** [`corpus/harvest.js`](corpus/harvest.js) runs the scanner in dry-run mode over the downloaded files ([`corpus/harvest-files.json`](corpus/harvest-files.json) lists them) and anonymizes the values as in the Android corpus. Quoted strings with an `XCUIElementType` that the scanner did not pick up go to [`corpus/scanner-misses.json`](corpus/scanner-misses.json) with a reason (125: class chains 43, concatenation or format pieces 44, path pieces starting with one `/` 26, unbalanced brackets 9, and 3 whole literals the scanner rightly leaves: a bare `//XCUIElementType` and two Android-first unions).
+- **One corpus.** The literals joined `corpus/ios-locators.json`. Production entries keep their ids (`L001`–`L573`) and got `project: "production-codeceptjs"` and `lang: "JavaScript"`. GitHub entries are `G0001…` with `project`, `lang` and `strategy`. A literal repeated in one project is one entry with a `count`; the same literal in two projects is two entries. The LLM input (`audit/llm/build-input.js`) keeps the 573 production entries, so the Phase 4 tables stay comparable.
+
+Scored literals (kinds `xpath`, `xpath-dynamic`, `xpath-mixed-classchain`):
+
+| Source | Projects | Languages | Literals | Occurrences | Other kinds kept (not scored) |
+|---|---:|---:|---:|---:|---|
+| Production | 1 | 1 | 563 | 563 | class chain 5, composed 3, not a locator 2 |
+| GitHub | 22 | 7 | 824 | 1390 | Android 1053, web 75, UIAutomation 23, other 19, class chain 26 |
+| **Total** | 23 | 7 | **1387** | 1953 | |
+
+| Language (GitHub) | Projects | Literals | Occurrences |
+|---|---:|---:|---:|
+| Java | 7 | 234 | 311 |
+| Python | 4 | 208 | 308 |
+| TypeScript | 4 | 194 | 294 |
+| Ruby | 2 | 60 | 69 |
+| JavaScript | 3 | 51 | 57 |
+| Kotlin | 1 | 45 | 109 |
+| C# | 3 | 32 | 242 |
+
+kobiton/samples counts in JavaScript, C# and Java, so the project column adds up to 24.
+
+### Results
+
+Computed from `coverage-cases.json` joined with `corpus/ios-locators.json` by id. Converter at `e3eb568`, scoring v2 (equal to v1 here: 0 WRONG). In scope is every scored literal except L157 (EXCLUDED, not an XPath); expressible is in scope minus the correct skips; C = expressible / in scope.
+
+| | In scope | Expressible | C | CORRECT | DRIFT | Skips | R |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Production | 562 | 489 | 87.0 % | 450 | 39 | 73 | 96.0 |
+| GitHub | 824 | 691 | 83.9 % | 540 | 151 | 133 | 89.1 |
+| **Total** | **1386** | **1180** | **85.1 %** | 990 | 190 | 206 | **91.9** |
+
+| Language (GitHub) | In scope | Expressible | C | CORRECT | DRIFT | Skips | R |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Java | 234 | 186 | 79.5 % | 150 | 36 | 48 | 90.3 |
+| Python | 208 | 193 | 92.8 % | 121 | 72 | 15 | 81.3 |
+| TypeScript | 194 | 142 | 73.2 % | 131 | 11 | 52 | 96.1 |
+| Ruby | 60 | 54 | 90.0 % | 33 | 21 | 6 | 80.6 |
+| JavaScript | 51 | 43 | 84.3 % | 33 | 10 | 8 | 88.4 |
+| Kotlin | 45 | 43 | 95.6 % | 43 | 0 | 2 | 100.0 |
+| C# | 32 | 30 | 93.8 % | 29 | 1 | 2 | 98.3 |
+
+S stays 93.6 (the spec matrix did not change), WRONG 0, GAP 0.
+
+- **R = R_max and C = C_max on these data.** Every expressible entry is CORRECT or documented DRIFT, and a DRIFT has no exact class chain, so its 0.5 is the most any converter can earn. Every skip is a form with no exact chain (no GAP: the harness proves no better chain for any of them). A higher R would need a chain the harness cannot find; if a model ever produces one, the converter needs work.
+- **Why R fell from 96.0.** R = 100 − 50 × (DRIFT share of the expressible). The share is 8.0 % in production (39 of 489) and 21.9 % on GitHub (151 of 691). GitHub code has many more positions: 124 per-parent `[n]` steps from recorded paths (`…/XCUIElementTypeOther[2]/XCUIElementTypeOther[3]/…`; 68 of them in Python, 22 in Java, 16 in Ruby) and 27 grouped `(…)[n]` (RC-D1). A chain's `[n]` counts among all matches, not per parent, so the README documents both as approximations with half credit. 109 of the 151 were found by fuzz and confirmed with `positional.js` (the same XPath without its positions is EQUAL), 42 by `planted.js` (entries that never matched a random tree, fuzzed again with their path planted).
+- **Skips.** 206 in total (production 73, GitHub 133): sibling axis 82, `ancestor::` with an index, a further path or inside `not()` 26, unions of different paths and page-level `not()` 21, non-iOS types or attributes (`//button`, `@text`, `@class`) 21, a predicate on the Application root 14, incomplete XPaths (concatenation pieces, an unclosed quote, a raw line break) 12, a path in a predicate or a same-element descendant predicate 8, following axis 7, parent axis 6, a grouped `(…)[n]` followed by a path 4, a `%s` format placeholder as an index 3, built at runtime 2. All skips carry a reason.
+
+### Fixes found
+
+| Form | What was wrong | How found | Regression rows (`xpath-to-class-chain.test.js`) |
+|---|---|---|---|
+| `//XCUIElementTypeApplication/…` (42 literals, 7 projects) | became `**/XCUIElementTypeApplication/…`, which never matches the root (WRONG); now read as the absolute path. A predicate on the root (`//XCUIElementTypeApplication[@name="…"]/…`) is skipped with its own reason | offline fuzz (mini-WDA), confirmed on the device | 3 conversion rows, 2 skip rows |
+| trailing `/` (`"…/XCUIElementTypeScrollView/"`, a Python concatenation piece) | a chain WDA cannot parse; now skipped | offline fuzz (mini-WDA parse error) | 2 skip rows |
+| raw line break inside a value (source-escaped Java quotes) | the line break was kept in the chain; now skipped | offline fuzz (mini-WDA parse error) | 1 skip row |
+| absolute `/XCUIElementTypeApplication/…` literals (dotnet/maui, Ruby page objects) | the scanner did not pick them up | harvest (scanner misses) | 4 detection rows, 1 scanner row |
+| `(//X)[last()]`, `(//X)[last()-1]` (PerfectoCode) | the scanner gate took the last `)` as the group close, so grouped `last()` literals were never scanned | harvest (scanner misses) | 5 detection rows |
+| `android:id/…` inside a string value on the line above (eliasnogueira) | read as an Android platform key, so the iOS locator was counted as Android | harvest (strategy check) | 1 scanner row |
+| `contains(x, "")`, `starts-with(x, "")` (outside the corpus) | always true in XPath, but `CONTAINS ""` / `BEGINSWITH ""` never match (WRONG); now skipped with a reason. `ends-with(x, "")` keeps its chain: WDA's `ends-with()` is false for `""` too | device (stage 3) | 2 conversion rows, 5 skip rows |
+| function text inside a string value, `//*[@name='contains(@a,"b")']` (P2, outside the corpus) | rewritten to `name == 'a CONTAINS "b"'`; `rewriteStringFunctions` now skips a match inside a quoted literal | code reading in stage 3 | 5 conversion rows |
+
+The corpus had no empty needle and no function text inside a value, so the last two do not change R. Harness changes: fuzz runs in batches (mini-WDA gives up on a 359 MB input), values are sliced by code point (emoji), and `positional.js` and `planted.js` were added (`run.sh` runs both).
+
+### Device check (stage 3)
+
+22 cases on the `states` screen of LocatorLab, fixed simulator (`LocatorLab iPhone 17`, iOS 27.0), Appium 3.8.0 / xcuitest 12.16.0 / WDA 16.14.1, Xcode 27.1 (`env.json` pins 27.0). Mac on AC power, Low Power Mode off; 73 s. `device/cases-p7.json` → `device/results-p7.json`.
+
+| Group | Cases | Outcome |
+|---|---|---|
+| Application root (G0648, G0674, G0662 `[1]`, `//Application//Button[@name]`, G1879 absolute) | 5 | EQUAL, 1–25 matches. The chains from before the fix (`e4002f9`) find 0 elements in all 5 |
+| Predicate on the root (G1949 form) | 1 | skipped (XPATH_ONLY), as designed |
+| `@height > n` (G1817, G1816 with a descendant predicate), `@y > n` in a union (G1475) | 3 + 3 near misses | EQUAL; near misses empty on both sides (DEAD) |
+| `contains(@traits, …)` (G0235) on a Button and a Switch, `@placeholderValue` (G1825) | 3 + 2 near misses | EQUAL; near misses DEAD |
+| empty needle: `contains()` / `starts-with()` on `@traits`, `@name`, `@value`, `text()`; `ends-with()` | 5 | before the fix WRONG (XPath 5–36, chain 0); now 4 skipped (XPATH_ONLY), `ends-with` DEAD on both sides |
+
+Final run: 11 EQUAL, 6 DEAD, 5 XPATH_ONLY, 0 differences. `build.js` notes the attribute entries as "device: EQUAL (Phase 7 stage 3)". The iPhone was not run.
+
+### Scoring v2 and Q
+
+From Phase 7 on, every new result is scored with v2: CORRECT 1, documented DRIFT 0.5, skip 0, WRONG / INVALID −1 (a chain that silently breaks a test is worse than a skip). Model comparisons add Q = 100 × (0.4 × R / R_converter + 0.6 × S / S_converter), the share of the converter's score. `SCORING=v1` reproduces the old scheme (`build.js`, `llm/score.js`, `llm/compare-v2.js`). Past and published results are not rescored: the Phase 4 / D3 tables, the charts, `docs/results.md` and the articles keep their v1 numbers, so differences from the articles are expected. The converter has 0 WRONG, so its R and S are the same under both schemes.
+
+### Not verified in Phase 7
+
+- The locators on their real apps (out of scope, see Setup).
+- The real iPhone (simulator only, as in D0).
+- The models on the GitHub corpus (optional, a separate session per model, scored with v2 and Q).
 
 ## 1. Headline
 
