@@ -300,6 +300,13 @@ Total ≈2.5–3 h, about 30 % of one window. The cheap variant is stages 1–2 
 - Rename the branch or the PR title if it ends up holding code (`feat/…` or `fix/…`, not `docs/…`).
 - If nothing is found: merge only the corpus, `sources.md` and the report, or close the PR and keep the branch.
 
+**Scoring decisions (2026-10-21, with the user).**
+
+- R and S depend on the data: the GitHub part has more per-parent `[n]` positions, which have no exact class chain, so R fell from 96.0 to 91.9 without the converter getting worse. The report states that for the current converter R and C are the maximum on these data (R = R_max, no GAP). If a model ever does more, the converter needs work.
+- **Scoring v2** for all new results: CORRECT 1, documented DRIFT 0.5, skip 0, **WRONG / INVALID −1** (a chain that silently breaks a test is worse than a skip). `SCORING=v1` (WRONG 0) reproduces the published article (harness `build.js`, `llm/score.js`, `llm/compare-v2.js`). The converter has 0 WRONG, so its R / S do not change.
+- **Q, % of the converter** for model comparisons: Q = 100 × (0.4 × R / R_converter + 0.6 × S / S_converter), S weighted higher because the models differ there. No separate WRONG term (it is inside R and S) and no cost (the converter is free, prices change; cost and time stay separate columns). Rejected: a weighted geometric mean, the error ratio (reads as "errs twice as often"), Derringer desirability with cost.
+- The article stays on v1 for now; the user may update it.
+
 Stage 1 starts with the candidate list (search hits, license, size, language, profile), which the user approves before anything is downloaded, as in the Android harvest.
 
 ## Parked findings (not fixed)

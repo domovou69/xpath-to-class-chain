@@ -207,17 +207,21 @@ const wrongC = count(corp, c => c.verdict === 'WRONG'), gap = count(exprC, c => 
 const rcCorpus = [...new Set(corp.filter(c => c.rootCause).map(c => c.rootCause))];
 const rcCtx = [...new Set(cases.filter(c => c.category === 'context' && c.verdict === 'WRONG').map(c => c.rootCause))];
 const penR = Math.min(30, 3 * (rcCorpus.length + rcCtx.length));
-const Rraw = 100 * (correct + 0.5 * driftDoc) / exprC.length;
+// Scoring v2 (Phase 7, 2026-10-21): a wrong chain earns -1 (it silently breaks a test, worse than a skip);
+// CORRECT 1, documented DRIFT 0.5, skip 0. SCORING=v1 gives the scheme of the published article (WRONG 0).
+const V2 = process.env.SCORING !== 'v1';
+const wrongE = V2 ? count(exprC, c => c.verdict === 'WRONG') : 0;
+const Rraw = 100 * (correct + 0.5 * driftDoc - wrongE) / exprC.length;
 const R = Rraw - penR;
 const C = 100 * exprC.length / corp.length;
 console.log(`CORPUS in-scope=${corp.length} (EXCLUDED, not XPath: ${count(cases, c => c.verdict === 'EXCLUDED')}) expressible=${exprC.length} CORRECT=${correct} DRIFTdoc=${driftDoc} DRIFTundoc=${driftUndoc} WRONG(all)=${wrongC} WRONG(expr)=${count(exprC, c => c.verdict === 'WRONG')} GAP=${gap} CORRECT-SKIP=${count(corp, c => c.verdict === 'CORRECT-SKIP')}`);
-console.log(`R_raw=100*(${correct}+0.5*${driftDoc})/${exprC.length}=${Rraw.toFixed(2)}  rootCauses corpus=${rcCorpus} ctx=${rcCtx} penalty=-${penR}  R=${R.toFixed(1)}  C=${exprC.length}/${corp.length}=${C.toFixed(1)}%`);
+console.log(`R_raw=100*(${correct}+0.5*${driftDoc}-${wrongE})/${exprC.length}=${Rraw.toFixed(2)}  rootCauses corpus=${rcCorpus} ctx=${rcCtx} penalty=-${penR}  R=${R.toFixed(1)}  C=${exprC.length}/${corp.length}=${C.toFixed(1)}%`);
 const W = { A: 15, B: 15, C: 15, D: 12, E: 12, F: 10, G: 10, H: 6, R: 5 };
 let Ssum = 0; const lines = [];
 for (const [cat, w] of Object.entries(W)) {
   const cs = cases.filter(c => c.category === cat && c.expressible);
-  const cc = count(cs, c => c.verdict === 'CORRECT'), dd = count(cs, c => c.verdict === 'DRIFT' && c.documented);
-  const sc = cs.length ? w * (cc + 0.5 * dd) / cs.length : w;
+  const cc = count(cs, c => c.verdict === 'CORRECT'), dd = count(cs, c => c.verdict === 'DRIFT' && c.documented), ww = V2 ? count(cs, c => c.verdict === 'WRONG') : 0;
+  const sc = cs.length ? w * (cc + 0.5 * dd - ww) / cs.length : w;
   Ssum += sc; lines.push(`${cat} w=${w}: ${w}×(${cc}+0.5×${dd})/${cs.length} = ${sc.toFixed(2)}  [all=${count(cases, c => c.category === cat)} excluded=${count(cases, c => c.category === cat && !c.expressible)} DRIFTundoc=${count(cs, c => c.verdict === 'DRIFT' && !c.documented)} WRONG=${count(cases, c => c.category === cat && c.verdict === 'WRONG')} GAP=${count(cs, c => c.verdict === 'GAP')}]`);
 }
 const rcSpec = [...new Set(cases.filter(c => /^[A-HRX]\d\d$/.test(c.id) && c.rootCause).map(c => c.rootCause))];
