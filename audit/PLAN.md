@@ -307,6 +307,13 @@ Total ≈2.5–3 h, about 30 % of one window. The cheap variant is stages 1–2 
 - **Q, % of the converter** for model comparisons: Q = 100 × (0.4 × R / R_converter + 0.6 × S / S_converter), S weighted higher because the models differ there. No separate WRONG term (it is inside R and S) and no cost (the converter is free, prices change; cost and time stay separate columns). Rejected: a weighted geometric mean, the error ratio (reads as "errs twice as often"), Derringer desirability with cost.
 - The article stays on v1 for now; the user may update it.
 
+**Later (after Phase 7, agreed 2026-10-21): rescore the published results with v2 and Q.** The results were not yet shared on LinkedIn, so they can still change.
+
+- Recompute the Phase 4 and D3 tables with scoring v2 and the Q column (`llm/compare-v2.js`, `llm/table.js`) and decide which converter numbers to use: the 573-literal corpus, as the models saw it, or the merged one.
+- Redraw the charts (`llm-chart-plain.svg`, `llm-chart-efforts.svg` via `llm/chart-plain.py`; `scale-chart.svg` is unaffected), with Q on them.
+- Update `coverage-report.md` (Phase 4 and D3 sections), `docs/results.md`, the README results table, and both dev.to articles (the user edits dev.to). Keep the v1 numbers in the report history so the old text stays explainable.
+- Optional: run the models on the GitHub corpus too (one session per model, chunked; xhigh not max), so that Q covers the same data as the converter.
+
 Stage 1 starts with the candidate list (search hits, license, size, language, profile), which the user approves before anything is downloaded, as in the Android harvest.
 
 ## Parked findings (not fixed)
