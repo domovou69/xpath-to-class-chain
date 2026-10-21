@@ -257,6 +257,9 @@ const CONVERT_CASES = [
   ['//XCUIElementTypeButton[@name="x" or @label="y"]/ancestor::XCUIElementTypeCell', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND (name == "x" OR label == "y")$]`],
   ['(//XCUIElementTypeButton[@name="x"]/ancestor::XCUIElementTypeCell)[2]', `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$][2]`],
   ['//XCUIElementTypeButton[@name="ancestor::x"]', `${CC}**/XCUIElementTypeButton[\`name == "ancestor::x"\`]`],
+  // Phase 7 stage 3 (device): only an empty contains() / starts-with() needle is skipped
+  ['//XCUIElementTypeButton[ends-with(@label, "")]', `${CC}**/XCUIElementTypeButton[\`label ENDSWITH ""\`]`],
+  ['//XCUIElementTypeButton[contains(@name, " ")]', `${CC}**/XCUIElementTypeButton[\`name CONTAINS " "\`]`],
   // C2 c2-functions: matches() without metacharacters is a substring test; any other
   // pattern keeps XPath's search semantics: `.` not dot-all, `$` before a final \n (C1, device)
   ['//*[matches(@name,"b")]', `${CC}**/*[\`name CONTAINS "b"\`]`], // H03
@@ -952,6 +955,12 @@ for (const [xpath, why] of [
   ['//*[lower-case(@label)="äb"]', /non-ASCII literal/],
   ['//*[lower-case(@label)="AB"]', /never gives "AB"/],
   ['//*[lower-case(@label)=""]', /empty/],
+  // Phase 7 stage 3 (device): an empty needle is always true in XPath, never in NSPredicate
+  ['//XCUIElementTypeCell[contains(@traits, "")]', /contains\(…, ""\) is always true/],
+  ['//XCUIElementTypeButton[contains(@name, \'\')]', /CONTAINS "" never matches/],
+  ['//XCUIElementTypeButton[starts-with(@value, "")]', /BEGINSWITH "" never matches/],
+  ['//XCUIElementTypeTextField[contains(text(), "")]', /always true/],
+  ['//*[@name="a" and contains(@label,\\"\\")]', /always true/],
   ['//*[lower-case(@label)!="ab"]', /lower-case\(\) other than/],
   ['//*[lower-case(@enabled)="true"]', /@enabled is a boolean/],
   ['//*[lower-case(@index)="1"]', /@index is a number/],

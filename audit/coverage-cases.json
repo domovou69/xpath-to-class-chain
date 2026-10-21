@@ -7059,7 +7059,7 @@
   "verdict": "CORRECT",
   "shape": "S411 //T[contains(@traits, \"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated; device check)"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated); device: EQUAL (Phase 7 stage 3, P7-T2, audit/device/results-p7.json)"
  },
  {
   "id": "G0250",
@@ -7741,7 +7741,7 @@
   "verdict": "CORRECT",
   "shape": "S484 //Application/Window[N]/Other/Other[N]/Other/T",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0; no match in random trees, so re-run with the path planted: 200 page sources, equal set+first, min matching trials 92"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0; no match in random trees, so re-run with the path planted: 200 page sources, equal set+first, min matching trials 92; device: EQUAL (Phase 7 stage 3, P7-APP1, audit/device/results-p7.json)"
  },
  {
   "id": "G0649",
@@ -7884,7 +7884,7 @@
   "verdict": "CORRECT",
   "shape": "S493 //Application[N]/Window[N]/Other[N]/Other[N]/Other[N]/Other[N]/Other[N]/T[N]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0; no match in random trees, so re-run with the path planted: 200 page sources, equal set+first, min matching trials 2"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0; no match in random trees, so re-run with the path planted: 200 page sources, equal set+first, min matching trials 2; device: EQUAL (Phase 7 stage 3, P7-APP3, audit/device/results-p7.json)"
  },
  {
   "id": "G0663",
@@ -7961,7 +7961,7 @@
   "verdict": "CORRECT",
   "shape": "S494 //Application/Window[N]/Other/Other/Other/Other/T/T[N]/T",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0; no match in random trees, so re-run with the path planted: 200 page sources, equal set+first, min matching trials 87"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0; no match in random trees, so re-run with the path planted: 200 page sources, equal set+first, min matching trials 87; device: EQUAL (Phase 7 stage 3, P7-APP2, audit/device/results-p7.json)"
  },
  {
   "id": "G0675",
@@ -12592,7 +12592,7 @@
   "verdict": "CORRECT",
   "shape": "S660 //T[(@name=\"s\" or @label=\"s\" or @name=\"s\" or @label=\"s\") and @y>600] | //T[(@name=\"s\" or @label=\"s\" or @value=\"s\" or @name=\"s\" or @label=\"s\" or @value=\"s\") and @y>700]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated; device check)"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated); device: EQUAL (Phase 7 stage 3, P7-Y1, audit/device/results-p7.json)"
  },
  {
   "id": "G1477",
@@ -13483,7 +13483,7 @@
   "verdict": "CORRECT",
   "shape": "S266 //T[@height > 10][.//T[@name=\"s\" or @label=\"s\" or @value=\"s\"]]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated; device check)"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated); device: EQUAL (Phase 7 stage 3, P7-H2, audit/device/results-p7.json)"
  },
  {
   "id": "G1817",
@@ -13494,7 +13494,7 @@
   "verdict": "CORRECT",
   "shape": "S267 //T[@height > 10 and (@name=\"s\" or @label=\"s\" or @value=\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated; device check)"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated); device: EQUAL (Phase 7 stage 3, P7-H1, audit/device/results-p7.json)"
  },
  {
   "id": "G1818",
@@ -13505,7 +13505,7 @@
   "verdict": "CORRECT",
   "shape": "S266 //T[@height > 10][.//T[@name=\"s\" or @label=\"s\" or @value=\"s\"]]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated; device check)"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated); device: EQUAL (Phase 7 stage 3, P7-H2, audit/device/results-p7.json)"
  },
  {
   "id": "G1819",
@@ -13516,7 +13516,7 @@
   "verdict": "CORRECT",
   "shape": "S267 //T[@height > 10 and (@name=\"s\" or @label=\"s\" or @value=\"s\")]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated; device check)"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated); device: EQUAL (Phase 7 stage 3, P7-H1, audit/device/results-p7.json)"
  },
  {
   "id": "G1823",
@@ -13549,7 +13549,7 @@
   "verdict": "CORRECT",
   "shape": "S759 //T[@placeholderValue=\"s\"]",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated; device check)"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 0 (no match in random or planted trees: the attribute it tests is not generated); device: EQUAL (Phase 7 stage 3, P7-P1, audit/device/results-p7.json)"
  },
  {
   "id": "G1826",
@@ -14055,7 +14055,7 @@
   "verdict": "CORRECT",
   "shape": "S778 /Application/Window/T",
   "category": "corpus",
-  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 6"
+  "note": "fuzz: 200 random page sources, equal set+first; min matching trials 6; device: EQUAL (Phase 7 stage 3, P7-APP6, audit/device/results-p7.json)"
  },
  {
   "id": "G1880",

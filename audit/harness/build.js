@@ -80,6 +80,9 @@ const CORPUS_DRIFT = {
   // same shape as L062 (S006); its random trees never had 10 matches, so the shape's counter-example applies
   L397: [true, 'RC-D1: grouped position counts matches in XCTest query order (breadth-first) on device, XPath in document order', 'L062'],
 };
+// Phase 7 stage 3: corpus forms run on the simulator with LocatorLab values (audit/device/cases-p7.json)
+const DEVICE_P7 = { G1816: 'P7-H2', G1818: 'P7-H2', G1817: 'P7-H1', G1819: 'P7-H1', G1475: 'P7-Y1', G0235: 'P7-T2', G1825: 'P7-P1',
+  G0648: 'P7-APP1', G0674: 'P7-APP2', G0662: 'P7-APP3', G1879: 'P7-APP6' };
 const SKIP_REASON = s => /last\(\)/.test(s) ? 'grouped last(): document-order position; [-1] counts in XCTest query order (RC-D1)' : /\|/.test(s) ? 'union of different paths / page-level not()' : /following::/.test(s) ? 'following axis' : /sibling::/.test(s) ? 'sibling axis' : /parent::|\/\.\./.test(s) ? 'parent axis' : 'other';
 for (const x of corpus) {
   if (!['xpath', 'xpath-dynamic', 'xpath-mixed-classchain'].includes(x.kind)) continue;
@@ -116,9 +119,10 @@ for (const x of corpus) {
         Object.assign(c, { verdict: 'WRONG', rootCause: 'RC-NEW', expected: 'REVIEW', note: 'planted fuzz: ' + p.verdict });
       } else {
         const how = p && p.verdict === 'EQUAL' ? `; no match in random trees, so re-run with the path planted: ${p.trials} page sources, equal set+first, min matching trials ${p.hits}`
-          : p ? ' (no match in random or planted trees: the attribute it tests is not generated; device check)'
+          : p ? ` (no match in random or planted trees: the attribute it tests is not generated${DEVICE_P7[x.id] ? '' : '; device check'})`
           : hits === 0 ? ' (needs 10 matches; same shape verified on siblings)' : '';
-        Object.assign(c, { verdict: 'CORRECT', expected: r.locator, note: `fuzz: ${variants.reduce((a, v) => a + v.trials, 0)} random page sources, equal set+first; min matching trials ${hits}${how}` });
+        const dev = DEVICE_P7[x.id] ? `; device: EQUAL (Phase 7 stage 3, ${DEVICE_P7[x.id]}, audit/device/results-p7.json)` : '';
+        Object.assign(c, { verdict: 'CORRECT', expected: r.locator, note: `fuzz: ${variants.reduce((a, v) => a + v.trials, 0)} random page sources, equal set+first; min matching trials ${hits}${how}${dev}` });
       }
     }
   } else if (gapExp[x.id]) {

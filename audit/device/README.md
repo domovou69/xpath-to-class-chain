@@ -118,6 +118,7 @@ A case may list `candidates`: each is looked up after the converter's chain and 
 | `env.json` | The pinned environment, the simulator UDID, and real devices under `devices` (by UDID) |
 | `cases-c1.json` | Phase 5 C1 cases: the Phase 2 case fields plus `candidates` (chains to compare with the XPath) |
 | `results-c1.json`, `results-c1-device.json` | Phase 5 C1 runs on the simulator and on the iPhone 13 Pro Max |
+| `cases-p7.json`, `results-p7.json` | Phase 7 stage 3 (simulator): the Application root fix and attributes fuzz cannot generate, on `states` |
 | `make-cases-d0.js`, `cases-d0.json`, `results-d0.json`, `d0-table.js` | Phase 5 D0: 21 probe strings × 6 operators on the `c1` screen (simulator), and the per-probe summary |
 | `make-scale.js` | Phase 3: builds the `scale` screen (`LocatorLab/scale.json`) and its cases (`scale-cases.json`) from one description |
 | `LocatorLab/ScaleScreen.swift` | The `scale` and `scale-deep` screens; renders `kit` subtrees with UIKit |
