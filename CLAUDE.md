@@ -11,4 +11,5 @@ When a phase or a release adds results, update `docs/` first; touch the README o
 ## Changes
 
 - A new branch and a PR for every change, never a commit on `main`.
+- Commit messages carry no `Co-Authored-By` line. Claude Code is credited once, in the PR description (the closing "Generated with Claude Code" line). The repository squash-merges with the PR title and description as the commit message, so the individual commit messages do not pile up in `main`.
 - Release: a PR that bumps `version` in `package.json` and lists the fixes in its description (no CHANGELOG file); after the merge, an annotated tag `vX.Y.Z` on the merge commit. The user runs `npm publish`.
