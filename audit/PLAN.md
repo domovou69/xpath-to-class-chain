@@ -291,6 +291,17 @@ Goal: check that the published converter (npm 1.0.2) holds up on other teams' co
 
 Total ≈2.5–3 h, about 30 % of one window. The cheap variant is stages 1–2 without the device.
 
+**Branch.** All of Phase 7 is done in `docs/phase7-corpus-github` (draft PR #55), one commit per stage, with no merge to `main` in between. After stage 4 the user decides whether the findings go to `main`, and the branch is cleaned up first.
+
+**Cleanup before the merge** (filled in as the stages go):
+
+- Keep: the merged `ios-locators.json`, `sources.md`, the harvest tool, converter or scanner fixes with their regression tests, the report section and the README numbers.
+- Remove: the downloaded files and the salt (they stay outside git anyway), one-off scripts used only for this phase, intermediate harness outputs that `run.sh` regenerates, and device results for cases that were only spot checks.
+- Rename the branch or the PR title if it ends up holding code (`feat/…` or `fix/…`, not `docs/…`).
+- If nothing is found: merge only the corpus, `sources.md` and the report, or close the PR and keep the branch.
+
+Stage 1 starts with the candidate list (search hits, license, size, language, profile), which the user approves before anything is downloaded, as in the Android harvest.
+
 ## Parked findings (not fixed)
 
 Found after Phase 5 and written down to check in more detail later. Neither affects a valid locator or the R / S numbers.
