@@ -504,6 +504,12 @@ const DETECT_CASES = [
   ['(//XCUIElementTypeButton[@name="OK"])[1]', true],
   ['(//XCUIElementTypeButton[@name="OK"])', true],
   ['(//XCUIElementTypeOther[@name="x"])[${option + 1}]', true],
+  // outer [last()]: the group-close is the balancing paren, not the last ')' (Phase 7, PerfectoCode)
+  ['(//XCUIElementTypeButton)[last()]', true],
+  ['(//XCUIElementTypeStaticText[@label=\'Safari\'])[last()]', true],
+  ['(//XCUIElementTypeButton)[last()-1]', true],
+  ['(//XCUIElementTypeButton[@name="a)b"])[last()]', true],
+  ['(//XCUIElementTypeButton[@name="OK"]', false], // group never closed
 
   // NOT locators — must be left alone even though they start with '//'
   ['//cdn.example.com/lib.js', false], // protocol-relative URL
@@ -1216,6 +1222,32 @@ console.log('— SCANNER: processFile —');
 
     if (stats.locatorsFound === 2 && stats.locatorsUpdated === 1 && stats.skipped.android === 1) ok();
     else fail(`processFile android-key: stats wrong ${JSON.stringify(stats)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+{
+  // an Android id value ("android:id/message") on the line above is not a platform key: the iOS
+  // locator is reported under its XPath strategy, not counted as Android (Phase 7, eliasnogueira)
+  const root = makeTempRoot('xpath-android-id-value-');
+  try {
+    const file = join(root, 'LoginScreen.java');
+    writeFileSync(file, [
+      `    @AndroidFindBy(id = "android:id/message")`,
+      `    @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[2]")`,
+      `    WebElement message;`,
+      `    @AndroidFindBy(id = "org.app:id/android:id/edit")`,
+      `    @iOSXCUITFindBy(xpath = "//XCUIElementTypeTextField")`,
+      `    WebElement edit;`,
+    ].join('\n'));
+
+    const records = [];
+    const stats = makeStats();
+    processFile(file, { dryRun: true, quiet: true }, records, stats);
+
+    if (stats.locatorsFound === 2 && stats.skipped.android === 0 && stats.skipped.xpathStrategy === 2) ok();
+    else fail(`processFile android-id-value: stats wrong ${JSON.stringify(stats)}`);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
