@@ -55,9 +55,11 @@
     else fallback();
   }
 
+  // The optimizer is always checked, so the tag is the same with the box on or off:
+  // optimized (it changed the chain), not optimized (it would change it), already optimal.
   function optimizerTag(r, optimize) {
-    if (optimize) return r.optimizable ? ['optimized', 'optimizer changed the chain'] : ['already optimal', 'the optimizer found nothing to change'];
-    return r.optimizable ? ['not optimized', 'turn on the optimizer to change this chain'] : ['not optimized', 'the optimizer would not change this chain'];
+    if (!r.optimizable) return ['already optimal', 'the optimizer has nothing to change'];
+    return optimize ? ['optimized', 'the optimizer changed the chain'] : ['not optimized', 'turn on the optimizer to change this chain'];
   }
 
   function card(r, optimize) {
@@ -73,7 +75,7 @@
       row.append(el('code', 'ui', r.locator), btn);
       c.append(row);
       const [text, title] = optimizerTag(r, optimize);
-      const tag = el('span', 'tag' + (optimize && r.optimizable ? ' on' : (!optimize && r.optimizable ? ' can' : '')), text);
+      const tag = el('span', 'tag' + (r.optimizable ? (optimize ? ' on' : ' can') : ''), text);
       tag.title = title;
       const note = el('p', 'note');
       note.append(tag);
