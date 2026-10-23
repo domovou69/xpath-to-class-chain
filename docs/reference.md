@@ -355,7 +355,7 @@ Add a row to the relevant `*_CASES` array and re-run.
 
 ## Playground
 
-[domovou69.github.io/xpath-to-class-chain](https://domovou69.github.io/xpath-to-class-chain/) converts XPath locators in the browser, one per line, and shows the class chain, a warning, or the reason for a skip. An optimizer checkbox (off by default) re-runs the conversion with `{ optimize: true }` and tags each chain as optimized or already optimal.
+[domovou69.github.io/xpath-to-class-chain](https://domovou69.github.io/xpath-to-class-chain/) converts XPath locators in the browser, one per line, and shows the class chain, a warning, or the reason for a skip. An optimizer checkbox (off by default) re-runs the conversion with `{ optimize: true }`. Every chain is checked either way and tagged: `already optimal` when the optimizer changes nothing, `not optimized` (highlighted) when it would, `optimized` once the box is on.
 
 The page runs the same `lib/` modules as the package. `site/build.js` wraps `status`, `predicates`, `elementTypes`, `validator`, `optimizer` and `converter` (no `fs`, no Node API) into one browser script, and nothing is copied into the repository. `site/` is not in the npm package. `node site/test.js` checks the built script and the page logic against `convertXpathToClassChain` on every case of [`audit/coverage-cases.json`](../audit/coverage-cases.json), with and without the optimizer; it runs in CI on every pull request and before each deploy. The workflow `.github/workflows/pages.yml` deploys `main` to GitHub Pages.
 
