@@ -17,6 +17,8 @@ npx xpath-to-class-chain ./tests --json     # report with every skip and warning
 
 Point `./tests` at the folder with your Appium/XCUITest code (JS/TS, Java, Kotlin, Python, Ruby, C#, PHP, JSON, YAML…). Requires Node.js 20 or newer; no dependencies.
 
+Or try single XPaths in the [playground](https://domovou69.github.io/xpath-to-class-chain/), in the browser.
+
 ```text
 - //XCUIElementTypeStaticText[@name="Order total"]
 + -ios class chain:**/XCUIElementTypeStaticText[`name == "Order total"`]
@@ -64,8 +66,6 @@ const { locator, status } = convertXpathToClassChain(
 ```
 
 Install globally to run it without `npx`: `npm install -g xpath-to-class-chain`.
-
-Try it in the browser, without installing anything: [the playground](https://domovou69.github.io/xpath-to-class-chain/).
 
 ## Documentation
 
