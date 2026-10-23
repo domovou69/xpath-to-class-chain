@@ -65,6 +65,8 @@ const { locator, status } = convertXpathToClassChain(
 
 Install globally to run it without `npx`: `npm install -g xpath-to-class-chain`.
 
+Try it in the browser, without installing anything: [the playground](https://domovou69.github.io/xpath-to-class-chain/).
+
 ## Documentation
 
 - [Reference](docs/reference.md): flags, what gets converted and skipped, the optimizer, the JSON report, device findings, library API, the Claude Code skill, tests

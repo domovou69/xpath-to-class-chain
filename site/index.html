@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XPath to Class Chain</title>
+<meta name="description" content="Try xpath-to-class-chain in the browser: iOS XPath in, Appium class chain out, or the reason it was skipped.">
+<style>
+:root {
+  --bg: #f7f8fa; --panel: #fff; --text: #1b1f24; --muted: #5a6572; --line: #d8dde4;
+  --accent: #0b5fd6; --code-bg: #eef1f5;
+  --exact: #17692f; --exact-bg: #e1f4e6; --close: #8a5300; --close-bg: #fdf0d5; --skip: #a3262e; --skip-bg: #fbe4e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151a; --panel: #1b2027; --text: #e6e9ee; --muted: #9aa5b3; --line: #2f3742;
+    --accent: #6aa5ff; --code-bg: #262d36;
+    --exact: #7fd99a; --exact-bg: #1c3a27; --close: #f0c168; --close-bg: #3d2f12; --skip: #ff9aa0; --skip-bg: #432024;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { min-width: 0; max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { font-size: 1.6rem; margin: 0 0 4px; }
+.lead { color: var(--muted); margin: 0 0 16px; }
+a { color: var(--accent); }
+nav { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 20px; }
+label { font-weight: 600; display: block; margin-bottom: 6px; }
+textarea { width: 100%; min-height: 120px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--text); font: 14px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; resize: vertical; }
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0 16px; }
+.bar .sum { color: var(--muted); margin-left: auto; }
+button { font: inherit; cursor: pointer; }
+.chip, .copy { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 999px; padding: 4px 12px; }
+.copy { border-radius: 6px; padding: 2px 10px; flex: none; }
+.chip:hover, .copy:hover { border-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-left-width: 4px; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
+.card.exact { border-left-color: var(--exact); } .card.close { border-left-color: var(--close); } .card.skip { border-left-color: var(--skip); }
+.head > *, .out > * { min-width: 0; }
+.head, .out { display: flex; gap: 10px; align-items: flex-start; }
+.out { margin-top: 8px; justify-content: space-between; }
+code { font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+.ui { background: var(--code-bg); padding: 6px 8px; border-radius: 6px; flex: 1; }
+.badge { flex: none; font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 1px 8px; border-radius: 999px; }
+.badge.exact { color: var(--exact); background: var(--exact-bg); } .badge.close { color: var(--close); background: var(--close-bg); } .badge.skip { color: var(--skip); background: var(--skip-bg); }
+.opt { font-weight: 400; margin: 10px 0 0; }
+.opt .muted { color: var(--muted); font-size: 14px; }
+.tag { font-size: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; color: var(--muted); }
+.tag.on { color: var(--exact); border-color: var(--exact); } .tag.can { color: var(--close); border-color: var(--close); }
+.note { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
+footer { margin-top: 28px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>XPath to Class Chain</h1>
+  <p class="lead">Appium iOS XPath in, <code>-ios class chain</code> out, or the reason there is none. Runs in your browser with the same code as the <a href="https://www.npmjs.com/package/xpath-to-class-chain">npm package</a>.</p>
+  <nav>
+    <a href="https://www.npmjs.com/package/xpath-to-class-chain">npm</a>
+    <a href="https://github.com/domovou69/xpath-to-class-chain">GitHub</a>
+    <a href="https://github.com/domovou69/xpath-to-class-chain/blob/main/docs/reference.md">Reference</a>
+    <a href="https://github.com/domovou69/xpath-to-class-chain/blob/main/docs/results.md">Results</a>
+  </nav>
+  <label for="input">XPath locators, one per line</label>
+  <textarea id="input" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+  <label class="opt"><input type="checkbox" id="optimize"> Optimizer <span class="muted">(the CLI always runs it; the library only with <code>{ optimize: true }</code>)</span></label>
+  <div class="bar"><span>Examples:</span><span id="examples"></span><span class="sum" id="summary" aria-live="polite"></span></div>
+  <section id="results" aria-label="Results"></section>
+  <footer>
+    <strong>exact</strong>: same elements, same order. <strong>close</strong>: converts, with a warning about a difference. <strong>skipped</strong>: no exact class chain; the reason says why.
+    Checked with Appium 3.8.0, appium-xcuitest-driver 12.16.0 and WDA 16.14.1; older versions were not checked.
+  </footer>
+</main>
+<script src="converter.js"></script>
+<script src="playground.js"></script>
+</body>
+</html>
