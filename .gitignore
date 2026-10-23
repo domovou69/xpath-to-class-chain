@@ -18,3 +18,6 @@ audit/device/out/
 
 # Phase 6 upstream watch output (audit/upstream)
 out/
+
+# GitHub Pages build output (site/build.js)
+_site/
