@@ -3,7 +3,7 @@ title: "XPath to iOS Class Chain: can Claude do it instead of a converter?"
 published: true
 description: "I gave the same 678 Appium XPath locators to Claude Opus, Sonnet and Haiku (three generations, every effort level, with and without a rules prompt) and scored their class chains with the same WDA-based checks as my converter."
 tags: ios, appium, testing, ai
-# cover_image: upload img/llm-chart-plain.png (or a separate cover) in the dev.to editor
+# cover_image: upload img/cover-02.png in the dev.to editor
 ---
 
 <!--
