@@ -3,7 +3,7 @@ title: "XPath to iOS Class Chain: a converter you can trust, and when it is actu
 published: true
 description: "I built a converter from Appium XPath locators to iOS Class Chain, checked it on 678 locators against WDA's own code, a simulator and an iPhone, and measured how lookup time grows with the size of the screen."
 tags: ios, appium, testing, xcuitest
-# cover_image: upload img/scale-chart.png (or a separate cover) in the dev.to editor
+# cover_image: upload img/cover-01.png in the dev.to editor
 ---
 
 <!--
