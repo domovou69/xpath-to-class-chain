@@ -1300,6 +1300,25 @@ console.log('— SCANNER: scanText —');
   const androidKey = scanText(`const p = { android: '//XCUIElementTypeButton[@name="a"]' };`, '.js');
   eq('android key', [androidKey.stats.skipped.android, androidKey.stats.locatorsFound, androidKey.records.length, androidKey.content.includes('-ios class chain')], [1, 1, 0, false]);
 
+  // the platform key is a real key: not a comment above the locator; in YAML, the key on
+  // the line or the nearest parent by indentation, not any `android:` higher up the file
+  const IOS_B = '"//XCUIElementTypeButton"';
+  for (const [name, ext, text, android, updated] of [
+    ['js line comment', '.js', `// android: separate file\nconst b = ${IOS_B}\n`, 0, 1],
+    ['ts block comment', '.ts', `/**\n * android: not supported\n */\nexport const b = ${IOS_B};\n`, 0, 1],
+    ['py hash comment', '.py', `class Login:\n    # android: see android_login.py\n    BUTTON = ${IOS_B}\n`, 0, 1],
+    ['js key on the line above still counts', '.js', `const p = {\n  android:\n    ${IOS_B}\n}`, 1, 0],
+    ['yaml sibling block above', '.yml', `android:\n  login: login_btn\nlogin_ios: ${IOS_B}\n`, 0, 1],
+    ['yaml ios block after android block', '.yaml', `android:\n  login: login_btn\nios:\n  login: ${IOS_B}\n`, 0, 1],
+    ['yaml every value under android', '.yml', `login:\n  android:\n    a: "//*[@text='x']"\n    b: "//*[@text='y']"\n  ios:\n    a: ${IOS_B}\n`, 2, 1],
+    ['yaml key on the line', '.yml', `login:\n  android: "//*[@text='x']"\n  ios: ${IOS_B}\n`, 1, 1],
+    ['yaml flow mapping', '.yml', `login: { android: "//*[@text='x']", ios: ${IOS_B} }\n`, 1, 1],
+    ['yaml list item under android', '.yml', `android:\n  - "//*[@text='x']"\n  - "//*[@text='y']"\nios:\n  - ${IOS_B}\n`, 2, 1],
+  ]) {
+    const r = scanText(text, ext);
+    eq(`android key: ${name}`, [r.stats.skipped.android, r.stats.locatorsUpdated], [android, updated]);
+  }
+
   // nothing to find
   const none = scanText('const url = "//cdn.example.com/x.js";\n', '.js');
   eq('no locator', [none.content, none.records, none.stats.locatorsFound], ['const url = "//cdn.example.com/x.js";\n', [], 0]);
