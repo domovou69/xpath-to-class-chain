@@ -1101,6 +1101,13 @@ for (const [chain, want] of [
   [`**/*[\`type == "XCUIElementTypeButton"\`]`, '**/XCUIElementTypeButton'],
   [`${CC}**/*[\`type == "XCUIElementTypeButton" OR label == "a"\`]`, `${CC}**/*[\`type == "XCUIElementTypeButton" OR label == "a"\`]`],
   [`${CC}**/*[\`type CONTAINS "XCUIElementTypeText"\`]`, `${CC}**/*[\`type CONTAINS "XCUIElementTypeText"\`]`], // matches TextField and TextView too
+  // a type test inside a quoted value is data: nothing is cut out of the string
+  [`${CC}**/*[\`label == "a type == \\"XCUIElementTypeButton\\" b"\`]`, `${CC}**/*[\`label == "a type == \\"XCUIElementTypeButton\\" b"\`]`],
+  [`${CC}**/*[\`label == "type == 'XCUIElementTypeButton'"\`]`, `${CC}**/*[\`label == "type == 'XCUIElementTypeButton'"\`]`],
+  [`${CC}**/*[\`label == \\"type == 'XCUIElementTypeButton'\\"\`]`, `${CC}**/*[\`label == \\"type == 'XCUIElementTypeButton'\\"\`]`], // JSON-escaped quotes
+  // the real type test after such a value still collapses
+  [`${CC}**/*[\`label == 'type == "XCUIElementTypeButton"' AND type == "XCUIElementTypeButton"\`]`, `${CC}**/XCUIElementTypeButton[\`label == 'type == "XCUIElementTypeButton"'\`]`],
+  [`${CC}**/*[\`label == "type == 'XCUIElementTypeCell'" AND type == "XCUIElementTypeButton"\`]`, `${CC}**/XCUIElementTypeButton[\`label == "type == 'XCUIElementTypeCell'"\`]`],
 ]) {
   const got = collapseWildcardTypes(chain);
   if (got === want) ok();
