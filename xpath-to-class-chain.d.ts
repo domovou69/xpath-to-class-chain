@@ -14,9 +14,13 @@ export type Status =
 
 export interface ConvertOptions {
   /**
-   * Run the optimizer pass instead of plain validation. Recovers chains that
-   * would otherwise fail validation (e.g. wildcard equality `name == "a*"`
-   * becomes `name LIKE "a*"`). Default: `false`.
+   * Run the optimizer pass instead of plain validation: merges sibling
+   * predicates, drops a type test the step already names, simplifies one-value
+   * `IN` sets and puts cheap AND conditions first (e.g. `label CONTAINS "x" AND
+   * enabled == true` becomes `enabled == true AND label CONTAINS "x"`). It does
+   * not change what `==` means: `name == "a*"` stays an exact match.
+   * Default: `false`. The CLI always runs the optimizer; pass
+   * `{ optimize: true }` to get the same output from the library.
    */
   optimize?: boolean;
 }
