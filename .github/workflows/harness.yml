@@ -1,0 +1,53 @@
+name: Coverage harness
+
+# Runs the mini-WDA harness (audit/harness/run.sh): the converter's output and the XPath run on
+# the same page sources, and the verdicts are diffed against audit/coverage-cases.json. The step
+# fails when anything changed or needs review, so a converter change cannot alter a verdict
+# unnoticed. Needs macOS (mini-WDA is WebDriverAgent code compiled with Xcode's clang and libxml2),
+# so it runs only when something it reads changes. ~7 min.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "lib/**"
+      - "xpath-to-class-chain.js"
+      - "audit/harness/**"
+      - "audit/corpus/**"
+      - "audit/coverage-cases.json"
+      - ".github/workflows/harness.yml"
+  pull_request:
+    paths:
+      - "lib/**"
+      - "xpath-to-class-chain.js"
+      - "audit/harness/**"
+      - "audit/corpus/**"
+      - "audit/coverage-cases.json"
+      - ".github/workflows/harness.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  harness:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      # The Java context check needs javac; without it the check reports "tool unavailable".
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Run the harness
+        run: ./audit/harness/run.sh
+      - name: Keep the output on failure
+        if: failure()
+        uses: actions/upload-artifact@v5
+        with:
+          name: harness-out
+          path: audit/harness/out/
+          retention-days: 7
