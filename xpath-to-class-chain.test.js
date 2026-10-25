@@ -513,7 +513,16 @@ const LINT_CASES = [
   { chain: `${CC}**/*[\`type CONTAINS "XCUIElementTypeText"\`]`, valid: true },      // TextField and TextView both match: no collapse
   { chain: `${CC}**/*[\`type == "XCUIElementTypeButton" OR name == "x"\`]`, valid: true }, // OR: dropping the type clause would widen it
   { chain: `${CC}**/*[\`type == "XCUIElementTypeLabel"\`]`, valid: true },         // unknown type name: WDA would read the step as Other
-  { chain: `${CC}**/*[\`type BEGINSWITH "XCUIElementTypeButton" AND name == "x"\`]`, valid: true, fixed: `${CC}**/XCUIElementTypeButton[\`name == "x"\`]` },
+  { chain: `${CC}**/*[\`type BEGINSWITH "XCUIElementTypeButton" AND name == "x"\`]`, valid: true, fixed: `${CC}**/XCUIElementTypeButton[\`name == "x"\`]` },  // --- escaped backticks (a chain inside a JS template literal) are checked and healed like plain ones ---
+  { chain: `${CC}**/XCUIElementTypeButton[\\\`name == "a"\\\`]`, valid: true },
+  { chain: `${CC}**/XCUIElementTypeButton[\\\`name == \\"a\\"\\\`][1]`, valid: true },   // JSON-escaped quotes inside
+  { chain: `${CC}**/*[\\\`name\\\`]`, valid: false },                                     // no comparison
+  { chain: `${CC}**/*[\\\`matches(name, "a")\\\`]`, valid: false },                      // XPath function
+  { chain: `${CC}**/XCUIElementTypeButton[\\\`contains(@name, "a")\\\`]`, valid: true, fixed: `${CC}**/XCUIElementTypeButton[\\\`name CONTAINS "a"\\\`]` },
+  { chain: `${CC}**/XCUIElementTypeButton[\\\`name == "a" or label == "b"\\\`]`, valid: true, fixed: `${CC}**/XCUIElementTypeButton[\\\`name == "a" OR label == "b"\\\`]` },
+  // raw JSON text: \\` is an escaped backslash, then a plain backtick — the predicate is
+  // still found and checked (and rejected), not skipped as it would be with no match
+  { chain: `${CC}**/XCUIElementTypeButton[\\\\\`name == \\"a\\"\\\\\`]`, valid: false },
 ];
 
 // =====================================================================
@@ -2102,6 +2111,13 @@ console.log('— REGEX SAFETY —');
   probe('PREDICATE_REGEX (200 backticks)', `
     const { PREDICATE_REGEX } = require(${JSON.stringify(join(__dirname, 'lib', 'predicates'))});
     ('[' + '\\u0060'.repeat(200)).match(new RegExp(PREDICATE_REGEX.source, 'g'));
+  `);
+
+  // an unclosed escaped-backtick block: quadratic (~17s here) if the plain-character
+  // branch may take the backslash of a \\` opener
+  probe('PREDICATE_REGEX (100000 unclosed escaped backticks)', `
+    const { PREDICATE_REGEX } = require(${JSON.stringify(join(__dirname, 'lib', 'predicates'))});
+    ('[' + '\\\\\\u0060a'.repeat(100000)).match(new RegExp(PREDICATE_REGEX.source, 'g'));
   `);
 
   probe('scanner strictRegex (200 backslashes)', `
