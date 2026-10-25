@@ -179,7 +179,7 @@ Written to `xpath-to-class-chain.report.json` in the current working directory:
 
 `warning` is present only on `updated[]` entries whose chain may still select a different element than the XPath. Today that is a grouped position, `(//X)[n]` (see [On the device](#on-the-device)). `stats.warnings` counts them, and the console prints the warning under the diff (`! …`).
 
-`reason` is only present on `skipped[]` entries where the validator produced a diagnostic (typically class-chain lint failures) and on `skipped_xpath_strategy` entries, where it names the strategy found. It's omitted otherwise — most XPath-conversion skips fall into this category.
+`reason` says why a locator was skipped: the construct with no class chain form (`following-sibling axis has no class chain form`), the validator's diagnostic for an existing chain, or the strategy found for `skipped_xpath_strategy`. Every skipped XPath carries one; only `skipped_no_change` entries never reach `skipped[]`.
 
 Status values used in `skipped[]`:
 
