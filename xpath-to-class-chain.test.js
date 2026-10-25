@@ -1124,6 +1124,28 @@ for (const [text, ch, want] of [
   if (seen === 2) ok(); else fail(`LEXER walk should stop when visit returns true, visited ${seen}`);
 }
 
+// walk: the depth it ends at, a stop, and the quote characters it is given.
+for (const [name, got, want] of [
+  ['balanced brackets end at 0', walk('[a][b]', () => false), 0],
+  ['an open [ ends at 1', walk('[a', () => false), 1],
+  ['a stray ] ends at -1', walk('a]', () => false), -1],
+  ['a [ inside a quote is not counted', walk('"[" ', () => false), 0],
+  ['stopping returns null', walk('abc', () => true), null],
+  ['default quotes include the backtick', walk('`[`', () => false), 0],
+  ['without the backtick it is plain text', walk('`[`', () => false, '"\''), 1],
+]) {
+  if (got === want) ok();
+  else fail(`LEXER walk ${name}\n     expected: ${want}\n     got:      ${got}`);
+}
+// A lone backtick in a grouped locator must not hide the closing paren: the backtick gate
+// still names it (convertXpath runs unwrapGrouped before that gate).
+for (const x of ['(//XCUIElementTypeButton[@label="Taka`"])[1]', '(//XCUIElementTypeButt`on[@label="Taka"])[1]']) {
+  const r = convertXpathToClassChain(x);
+  const quoted = x.includes('Taka`"');
+  if (quoted ? r.status === 'success' : /^backtick outside a quoted value/.test(r.reason || '')) ok();
+  else fail(`GROUPED backtick ${x}\n     got: status=${r.status} reason=${r.reason}`);
+}
+
 console.log('— TOKENIZER —');
 const tokenChecks = [
   ['//Cell[@name="a/b"]/Text', ['//', 'Cell[@name="a/b"]', '/', 'Text']],
