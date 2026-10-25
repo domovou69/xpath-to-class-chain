@@ -8,7 +8,7 @@
 //   node convert.js --stdin < locators.txt  same, from stdin
 //   node convert.js --scan ./src            source files, as the main CLI sees them
 //
-// Exit codes: 0 report printed, 2 bad usage, 3 engine not found (the skill then
+// Exit codes: 0 report printed, 2 bad usage, 3 engine not found or too old for --scan (the skill then
 // falls back to the rules in references/class-chain-rules.md).
 const { existsSync, readFileSync, statSync } = require('fs');
 const { dirname, join, resolve } = require('path');
@@ -77,14 +77,14 @@ function convertOne(input, lib) {
   return out;
 }
 
-function scan(target, lib, scanner) {
+function scan(target, lib) {
   const records = [];
-  const stats = scanner.makeStats();
+  const stats = lib.makeStats();
   const opts = { dryRun: true, quiet: true, optimize: true };
   if (statSync(target).isDirectory()) {
-    scanner.walkDir(target, f => scanner.processFile(f, { ...opts, rootDir: target }, records, stats));
+    lib.walkDir(target, f => lib.processFile(f, { ...opts, rootDir: target }, records, stats));
   } else {
-    scanner.processFile(target, { ...opts, rootDir: dirname(target) }, records, stats);
+    lib.processFile(target, { ...opts, rootDir: dirname(target) }, records, stats);
   }
   return records.map(r => {
     const out = { file: r.file, input: r.old, status: r.status };
@@ -132,9 +132,11 @@ function main(argv) {
   if (scanTarget) {
     const target = resolve(scanTarget);
     if (!existsSync(target)) { console.error(`Not found: ${target}`); return 2; }
-    // Engines before the scanner became public (1.0.3 and older) only have it at lib/scanner.js.
-    const scanner = lib.processFile ? lib : require(join(engine.root, 'lib', 'scanner.js'));
-    results.push(...scan(target, lib, scanner));
+    if (!lib.processFile) {
+      console.error(`--scan needs a newer engine than ${engine.version} (${engine.root}). Update it: npm i -g xpath-to-class-chain`);
+      return 3;
+    }
+    results.push(...scan(target, lib));
   }
 
   const summary = { total: results.length, converted: 0, withWarning: 0, unchanged: 0, skipped: 0 };
