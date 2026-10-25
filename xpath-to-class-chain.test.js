@@ -516,6 +516,9 @@ const LINT_CASES = [
   { chain: `${CC}**/*[\`type BEGINSWITH "XCUIElementTypeButton" AND name == "x"\`]`, valid: true, fixed: `${CC}**/XCUIElementTypeButton[\`name == "x"\`]` },  // --- escaped backticks (a chain inside a JS template literal) are checked and healed like plain ones ---
   { chain: `${CC}**/XCUIElementTypeButton[\\\`name == "a"\\\`]`, valid: true },
   { chain: `${CC}**/XCUIElementTypeButton[\\\`name == \\"a\\"\\\`][1]`, valid: true },   // JSON-escaped quotes inside
+  { chain: `${CC}**/XCUIElementTypeButton[\\\`name == "a]b"\\\`]`, valid: true },        // a bracket in a value is text
+  { chain: `${CC}**/XCUIElementTypeButton[\\\`name == "a[b" AND label == 'c]'\\\`][1]`, valid: true },
+  { chain: `${CC}**/XCUIElementTypeButton[\\\`name == "a"\\\`]]`, valid: false },        // extra ]
   { chain: `${CC}**/*[\\\`name\\\`]`, valid: false },                                     // no comparison
   { chain: `${CC}**/*[\\\`matches(name, "a")\\\`]`, valid: false },                      // XPath function
   { chain: `${CC}**/XCUIElementTypeButton[\\\`contains(@name, "a")\\\`]`, valid: true, fixed: `${CC}**/XCUIElementTypeButton[\\\`name CONTAINS "a"\\\`]` },
@@ -1132,6 +1135,10 @@ for (const [chain, want] of [
   // the real type test after such a value still collapses
   [`${CC}**/*[\`label == 'type == "XCUIElementTypeButton"' AND type == "XCUIElementTypeButton"\`]`, `${CC}**/XCUIElementTypeButton[\`label == 'type == "XCUIElementTypeButton"'\`]`],
   [`${CC}**/*[\`label == "type == 'XCUIElementTypeCell'" AND type == "XCUIElementTypeButton"\`]`, `${CC}**/XCUIElementTypeButton[\`label == "type == 'XCUIElementTypeCell'"\`]`],
+  // an OR right after a closing quote is still an OR: the type test stays
+  [`${CC}**/*[\`name == "x"OR type == "XCUIElementTypeButton"\`]`, `${CC}**/*[\`name == "x"OR type == "XCUIElementTypeButton"\`]`],
+  [`${CC}**/*[\`name == 'x'OR type == "XCUIElementTypeButton"\`]`, `${CC}**/*[\`name == 'x'OR type == "XCUIElementTypeButton"\`]`],
+  [`${CC}**/*[\`type == "XCUIElementTypeButton"OR name == "x"\`]`, `${CC}**/*[\`type == "XCUIElementTypeButton"OR name == "x"\`]`],
 ]) {
   const got = collapseWildcardTypes(chain);
   if (got === want) ok();
@@ -1144,6 +1151,10 @@ for (const [chain, want] of [
   [`${CC}**/XCUIElementTypeButton[\`not (name beginswith "a")\`]`, `${CC}**/XCUIElementTypeButton[\`NOT (name BEGINSWITH "a")\`]`],
   [`${CC}**/XCUIElementTypeButton[\`label == "a and b" or name == 'c or d'\`]`, `${CC}**/XCUIElementTypeButton[\`label == "a and b" OR name == 'c or d'\`]`],
   [`${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" and name == "x"$]`, `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]`],
+  // a `${…}` interpolation is code in the host language (Kotlin, JS): nothing in it changes
+  [`${CC}**/XCUIElementTypeCell[\`name == \${ids.contains(x)} and label == "a"\`]`, `${CC}**/XCUIElementTypeCell[\`name == \${ids.contains(x)} AND label == "a"\`]`],
+  [`${CC}**/XCUIElementTypeCell[\`name == \${i or 0}\`]`, `${CC}**/XCUIElementTypeCell[\`name == \${i or 0}\`]`],
+  [`${CC}**/XCUIElementTypeCell[\`name == \${f({ a: "x" }) or b} and label == "c"\`]`, `${CC}**/XCUIElementTypeCell[\`name == \${f({ a: "x" }) or b} AND label == "c"\`]`], // nested braces
 ]) {
   const res = validateAndFixClassChain(chain);
   if (res.valid && res.fixedLocator === want) ok();
