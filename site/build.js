@@ -6,7 +6,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, '_site');
 // Everything convertXpathToClassChain needs. scanner.js and strategy.js use fs/Buffer and stay out.
-const MODULES = ['status', 'predicates', 'elementTypes', 'validator', 'optimizer', 'converter'];
+const MODULES = ['status', 'predicates', 'elementTypes', 'lexer', 'validator', 'optimizer', 'converter'];
 
 function bundle() {
   const defs = MODULES.map(name => {
