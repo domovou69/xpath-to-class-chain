@@ -1233,6 +1233,21 @@ for (const { argv, expect } of FLAGS_CASES) {
   else fail(`FLAGS ${JSON.stringify(argv)}\n     key '${mismatch}' expected: ${JSON.stringify(expect[mismatch])}\n     got:      ${JSON.stringify(got[mismatch])}`);
 }
 
+console.log('— NON-STRING INPUT —');
+// a library caller may pass null / undefined / a number: a skip or false, never a TypeError
+for (const v of [null, undefined, 42]) {
+  const run = (name, fn, check) => {
+    let got;
+    try { got = fn(v); } catch (e) { got = `throws ${e.message}`; }
+    if (check(got)) ok();
+    else fail(`NON-STRING ${name}(${String(v)})\n     got: ${JSON.stringify(got)}`);
+  };
+  run('convertXpathToClassChain', convertXpathToClassChain, r => r && r.status === 'skipped_not_xpath' && r.locator === v && /^not a string/.test(r.reason));
+  run('validateAndFixClassChain', validateAndFixClassChain, r => r && r.valid === false && r.fixedLocator === null && /^not a string/.test(r.reason));
+  run('optimizeClassChain', optimizeClassChain, r => r && r.valid === false && r.fixedLocator === null && /^not a string/.test(r.reason));
+  run('isLikelyIosLocator', isLikelyIosLocator, r => r === false);
+}
+
 console.log('— OPTIMIZE: XPath path —');
 for (const { xpath, optimized } of OPTIMIZE_CASES) {
   const opt = convertXpathToClassChain(xpath, { optimize: true });
