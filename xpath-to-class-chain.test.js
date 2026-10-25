@@ -903,6 +903,30 @@ for (const [xpath, why] of SKIP_CASES) {
   else fail(`SKIP (${why}) ${xpath}\n     expected: skip+unchanged\n     got:      status=${status} locator=${locator}`);
 }
 
+// Every skip says why: the JSON report and the playground show the reason, not only the status.
+for (const [xpath] of SKIP_CASES) {
+  const res = convertXpathToClassChain(xpath);
+  if (res.status === 'success' || res.reason) ok();
+  else fail(`SKIP WITHOUT REASON ${xpath}\n     got: status=${res.status}`);
+}
+for (const [xpath, why] of [
+  ['//*[@name="x"]/following-sibling::*[1]', /^following-sibling axis has no class chain form$/],
+  ['//XCUIElementTypeCell/parent::*', /^parent axis has no class chain form$/],
+  ['//XCUIElementTypeCell/attribute::name', /^attribute axis has no class chain form$/],
+  ['//XCUIElementTypeCell[count(*)>1]', /^count\(\) has no class chain form here$/],
+  ['(//XCUIElementTypeCell[1])[last()]', /^grouped last\(\) over an inner index$/],
+  ['(//*[@name="x"]/following-sibling::*)[2]', /^following-sibling axis/],
+  ['(//XCUIElementTypeButton[2])[3]', /^grouped position over an inner index/],
+  ['./XCUIElementTypeButton', /^not an absolute XPath/],
+  ['//android.widget.Button', /^Android class name/],
+  ['//XCUIElementTypeButton[`name == "x"`]', /^backtick outside a quoted value/],
+  ['//XCUIElementTypeButton[replace(@name, "a", "b")="c"]', /^Leftover XPath syntax detected \(XPath function replace\(\)\)/],
+]) {
+  const res = convertXpathToClassChain(xpath);
+  if (res.status !== 'success' && why.test(res.reason || '')) ok();
+  else fail(`SKIP REASON ${xpath}\n     expected: ${why}\n     got:      status=${res.status} reason=${res.reason}`);
+}
+
 // RC-D3: a numeric comparison on text says why it is skipped.
 for (const xpath of ['//XCUIElementTypeButton[@value>5]', '//XCUIElementTypeSlider[@value>="0.5"]']) {
   const res = convertXpathToClassChain(xpath);

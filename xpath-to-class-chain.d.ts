@@ -25,7 +25,7 @@ export interface ConvertResult {
   /** The converted class chain on success, or the original input when skipped. */
   locator: string;
   status: Status;
-  /** Diagnostic message when available; absent for the common skip cases. */
+  /** Why the input was skipped; set on every skip, absent on success. */
   reason?: string | null;
   /**
    * Set on a successful conversion that may still select a different element:
