@@ -241,6 +241,12 @@ const CONVERT_CASES = [
   ['//*[@label="caf\\u00e9"]', `${CC}**/*[\`label == "caf\\u00e9"\`]`],
   // type collapse also works on JSON-escaped quotes (raw .json / .java source)
   ['//*[contains(@type,\\"XCUIElementTypeButton\\") and contains(@label,\\"Nozod\\")]', `${CC}**/XCUIElementTypeButton[\`label CONTAINS \\"Nozod\\"\`]`],
+  // `@attr = v` inside a quoted value is data: it is neither rewritten nor checked
+  ['//XCUIElementTypeButton[contains(@label,"email @name=\'y\' ok")]', `${CC}**/XCUIElementTypeButton[\`label CONTAINS "email @name='y' ok"\`]`],
+  ['//XCUIElementTypeButton[contains(@label,"user @foo=\'x\'")]', `${CC}**/XCUIElementTypeButton[\`label CONTAINS "user @foo='x'"\`]`],
+  ['//*[@name="a" and contains(@label,\'x @value="1" y\')]', `${CC}**/*[\`name == "a" AND label CONTAINS 'x @value="1" y'\`]`],
+  ['//*[starts-with(@label,"a @enabled=\'true\'")]', `${CC}**/*[\`label BEGINSWITH "a @enabled='true'"\`]`],
+  ['//*[contains(@label,\\"a @name=\'y\'\\")]', `${CC}**/*[\`label CONTAINS \\"a @name='y'\\"\`]`], // JSON-escaped quotes
   // RC7: predicates joined with AND keep each OR group intact
   ['//*[@name="a" or @label="b"][@value="c"]', `${CC}**/*[\`(name == "a" OR label == "b") AND value == "c"\`]`], // D06
   ['//*[@name="a" or @name="b"][@label="c" or @label="d"]', `${CC}**/*[\`(name == "a" OR name == "b") AND (label == "c" OR label == "d")\`]`], // D12
