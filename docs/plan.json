@@ -4,8 +4,16 @@
   "repo": "domovou69/xpath-to-class-chain",
   "updated": "2026-10-25",
   "here": {
-    "stage": "Maintenance mode. Release 1.0.4 is merged (#85), tagged v1.0.4 and on npm; every Definition of Done target is at its ceiling.",
-    "next": "Nothing is planned. Work starts on a trigger: a new Appium, xcuitest-driver or WDA release, a user report, or the next release. First: the post-publish check of 1.0.4, if it is not done."
+    "stage": [
+      "Maintenance mode since 2026-10-25.",
+      "Release 1.0.4 is merged (#85), tagged v1.0.4 and on npm.",
+      "Every Definition of Done target is at its ceiling."
+    ],
+    "next": [
+      "Nothing is planned: work starts only on a trigger.",
+      "Triggers: a new Appium, xcuitest-driver or WDA release, a user report, the next release.",
+      "First, if it is not done yet: the post-publish check of 1.0.4."
+    ]
   },
   "dod": [
     {
@@ -57,7 +65,8 @@
       "pr": "#2–#7",
       "note": "Baseline R 72.2 / S 7.7, root causes RC1–RC15, fixes in five PRs. mini-WDA is WDA 16.14.1 code compiled for macOS.",
       "started": "2026-10-10",
-      "finished": "2026-10-10"
+      "finished": "2026-10-10",
+      "importance": "high"
     },
     {
       "id": "p2",
@@ -72,7 +81,8 @@
           "status": "done",
           "pr": "#8–#10",
           "started": "2026-10-10",
-          "finished": "2026-10-10"
+          "finished": "2026-10-10",
+          "importance": "high"
         },
         {
           "id": "p2b",
@@ -80,11 +90,13 @@
           "status": "done",
           "pr": "#11",
           "started": "2026-10-11",
-          "finished": "2026-10-11"
+          "finished": "2026-10-11",
+          "importance": "medium"
         }
       ],
       "started": "2026-10-10",
-      "finished": "2026-10-11"
+      "finished": "2026-10-11",
+      "importance": "high"
     },
     {
       "id": "p3",
@@ -93,7 +105,8 @@
       "pr": "#12–#13",
       "note": "Class chain 22–29 % faster at 100–2000 elements; 70 to 676 ms per lookup on the iPhone.",
       "started": "2026-10-11",
-      "finished": "2026-10-11"
+      "finished": "2026-10-11",
+      "importance": "medium"
     },
     {
       "id": "p4",
@@ -102,7 +115,8 @@
       "pr": "#14",
       "note": "No model beats the converter on R; models win S but emit 4–43 wrong chains.",
       "started": "2026-10-12",
-      "finished": "2026-10-12"
+      "finished": "2026-10-12",
+      "importance": "medium"
     },
     {
       "id": "p5",
@@ -117,7 +131,8 @@
           "status": "done",
           "pr": "#15",
           "started": "2026-10-12",
-          "finished": "2026-10-12"
+          "finished": "2026-10-12",
+          "importance": "medium"
         },
         {
           "id": "p5b",
@@ -125,7 +140,8 @@
           "status": "done",
           "pr": "#16–#19",
           "started": "2026-10-12",
-          "finished": "2026-10-12"
+          "finished": "2026-10-12",
+          "importance": "high"
         },
         {
           "id": "p5c1",
@@ -133,7 +149,8 @@
           "status": "done",
           "pr": "#20",
           "started": "2026-10-12",
-          "finished": "2026-10-12"
+          "finished": "2026-10-12",
+          "importance": "medium"
         },
         {
           "id": "p5c2",
@@ -141,7 +158,8 @@
           "status": "done",
           "pr": "#21–#24",
           "started": "2026-10-12",
-          "finished": "2026-10-12"
+          "finished": "2026-10-12",
+          "importance": "high"
         },
         {
           "id": "p5d",
@@ -149,11 +167,13 @@
           "status": "done",
           "pr": "#25–#31",
           "started": "2026-10-12",
-          "finished": "2026-10-12"
+          "finished": "2026-10-12",
+          "importance": "medium"
         }
       ],
       "started": "2026-10-12",
-      "finished": "2026-10-12"
+      "finished": "2026-10-12",
+      "importance": "high"
     },
     {
       "id": "p6",
@@ -165,7 +185,8 @@
       },
       "note": "Estimate was about 1–1.5 h. A GitHub Action compares Appium, driver and WDA releases and opens an issue only when something important changed.",
       "started": "2026-10-17",
-      "finished": "2026-10-17"
+      "finished": "2026-10-17",
+      "importance": "medium"
     },
     {
       "id": "p7",
@@ -188,7 +209,8 @@
           },
           "note": "Estimate was 60–75 min, 12–15 %.",
           "started": "2026-10-21",
-          "finished": "2026-10-21"
+          "finished": "2026-10-21",
+          "importance": "high"
         },
         {
           "id": "p7-2",
@@ -199,7 +221,8 @@
             "window_pct": 6
           },
           "started": "2026-10-21",
-          "finished": "2026-10-21"
+          "finished": "2026-10-21",
+          "importance": "high"
         },
         {
           "id": "p7-3",
@@ -210,7 +233,8 @@
             "window_pct": 10
           },
           "started": "2026-10-21",
-          "finished": "2026-10-21"
+          "finished": "2026-10-21",
+          "importance": "medium"
         },
         {
           "id": "p7-4",
@@ -221,11 +245,13 @@
             "window_pct": 4
           },
           "started": "2026-10-21",
-          "finished": "2026-10-21"
+          "finished": "2026-10-21",
+          "importance": "medium"
         }
       ],
       "started": "2026-10-21",
-      "finished": "2026-10-21"
+      "finished": "2026-10-21",
+      "importance": "medium"
     },
     {
       "id": "pub",
@@ -234,7 +260,8 @@
       "pr": "#32–#63",
       "note": "npm 1.0.0–1.0.2, short README, dev.to articles on the converter and on the LLM comparison, GitHub Pages playground (#60).",
       "started": "2026-10-12",
-      "finished": "2026-10-24"
+      "finished": "2026-10-24",
+      "importance": "medium"
     },
     {
       "id": "arch",
@@ -243,7 +270,8 @@
       "pr": "#64–#70",
       "note": "Reasons for every skip, CI harness, validator split, one XPath lexer in two steps, scanText. Changed nothing on the corpus.",
       "started": "2026-10-25",
-      "finished": "2026-10-25"
+      "finished": "2026-10-25",
+      "importance": "low"
     },
     {
       "id": "cr1",
@@ -252,7 +280,8 @@
       "pr": "#71–#79",
       "note": "Ten findings in lib/: eight fixed in nine PRs, one a no-op, one left to fix-on-touch. Changed nothing on the corpus.",
       "started": "2026-10-25",
-      "finished": "2026-10-25"
+      "finished": "2026-10-25",
+      "importance": "low"
     },
     {
       "id": "cr2",
@@ -261,7 +290,8 @@
       "pr": "#80–#83",
       "note": "A review of #70–#78: five of its eight findings were regressions of review 1. This is what produced the Scope of fixes rule and the stop criterion.",
       "started": "2026-10-25",
-      "finished": "2026-10-25"
+      "finished": "2026-10-25",
+      "importance": "low"
     },
     {
       "id": "scope",
@@ -269,7 +299,8 @@
       "status": "done",
       "pr": "#84",
       "started": "2026-10-25",
-      "finished": "2026-10-25"
+      "finished": "2026-10-25",
+      "importance": "medium"
     },
     {
       "id": "rel104",
@@ -278,7 +309,8 @@
       "pr": "#85",
       "note": "Tag v1.0.4, GitHub release, npm latest is 1.0.4.",
       "started": "2026-10-25",
-      "finished": "2026-10-25"
+      "finished": "2026-10-25",
+      "importance": "high"
     },
     {
       "id": "maint",
