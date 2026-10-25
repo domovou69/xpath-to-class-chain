@@ -1,6 +1,6 @@
 {
   "name": "xpath-to-class-chain",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "XPath to iOS Class Chain converter for Appium (XCUITest): rewrites the locators that have an exact class chain, skips the rest with a reason",
   "license": "MIT",
   "author": "Mikhail Yesipchuk (https://github.com/domovou69)",
