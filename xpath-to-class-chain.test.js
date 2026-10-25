@@ -4,6 +4,7 @@
 // Add a row and re-run.
 const { convertXpathToClassChain, validateAndFixClassChain, optimizeClassChain, tokenizeXpath, isLikelyIosLocator, parseFlags } = require('./xpath-to-class-chain');
 const { checkChain, collapseWildcardTypes } = require('./lib/validator');
+const { walk, topLevelIndexes, OUTSIDE, DELIMITER, INSIDE } = require('./lib/lexer');
 
 const CC = '-ios class chain:'; // prefix shorthand to keep rows readable
 
@@ -1095,6 +1096,32 @@ for (const [chain, want] of [
   const strict = optimizeClassChain(legacy, { heal: false });
   if (healed.valid && !strict.valid) ok();
   else fail(`OPTIMIZE heal option\n     healed: ${JSON.stringify(healed)}\n     strict: ${JSON.stringify(strict)}`);
+}
+
+// lib/lexer.js: the one scan that knows quotes and predicate brackets.
+console.log('— LEXER —');
+for (const [text, ch, want] of [
+  ['//A|//B', '|', [3]],
+  ['//A[@l="a|b"]|//B', '|', [13]],        // a | inside a value is not top-level
+  ['//A[.//B|.//C]', '|', []],             // nor one inside a predicate
+  ["//A[@l='a/b']/B", '/', [0, 1, 13]],
+  ['//A[`x/y`]/B', '/', [0, 1, 10]],        // a backtick quotes too
+  ['//A[@l="a[1"]/B', '/', [0, 1, 13]],    // a [ inside a quote does not open a predicate
+  ['//A]/B', '/', [0, 1]],                 // a stray ] leaves depth -1, so the later / is not top-level
+]) {
+  const got = topLevelIndexes(text, ch);
+  if (JSON.stringify(got) === JSON.stringify(want)) ok();
+  else fail(`LEXER topLevelIndexes(${JSON.stringify(text)}, ${ch})\n     expected: ${JSON.stringify(want)}\n     got:      ${JSON.stringify(got)}`);
+}
+{
+  const kinds = [];
+  walk('a"b"[c]', (c, i, depth, kind) => { kinds.push(`${c}${depth}${kind}`); });
+  const want = ['a00', '"01', 'b02', '"01', '[00', 'c10', ']10'];
+  if (JSON.stringify(kinds) === JSON.stringify(want)) ok();
+  else fail(`LEXER walk kinds\n     expected: ${want}\n     got:      ${kinds}`);
+  let seen = 0;
+  walk('abc', () => ++seen === 2);
+  if (seen === 2) ok(); else fail(`LEXER walk should stop when visit returns true, visited ${seen}`);
 }
 
 console.log('— TOKENIZER —');

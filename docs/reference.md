@@ -369,6 +369,7 @@ xpath-to-class-chain.test.js  ← all tests in one file
 site/              ← GitHub Pages playground (build.js, playground.js, test.js, index.html); not published
 lib/
   status.js        ← STATUS enum
+  lexer.js         ← walk / topLevelIndexes: the one scan that knows quotes and predicate brackets
   predicates.js    ← PREDICATE_REGEX + shared rewrites (rewriteStringFunctions, upperCaseLogicOps)
   validator.js     ← validateAndFixClassChain (heals chains found in code), checkChain (rewrites nothing; the converter's own output), collapseWildcardTypes
   optimizer.js     ← optimizeClassChain (`{ heal: false }` for the converter) + all optimizer rules
@@ -376,4 +377,4 @@ lib/
   scanner.js       ← walkDir + processFile + isLikelyIosLocator + makeStats
 ```
 
-Dependency graph (acyclic): `status ← predicates ← validator ← optimizer ← converter ← scanner ← entry`.
+Dependency graph (acyclic): `status ← lexer ← predicates ← validator ← optimizer ← converter ← scanner ← entry`.
