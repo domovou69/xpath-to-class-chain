@@ -8,6 +8,16 @@ Everything else goes to `docs/`: full result tables and per-source breakdowns, L
 
 When a phase or a release adds results, update `docs/` first; touch the README only if one of its few headline numbers changes.
 
+## Scope of fixes
+
+A fix must be worth the code it adds: every special case makes the converter harder to read, and the fixes themselves have caused more regressions than they removed (code reviews 1 and 2, PRs #70–#83: five of eight findings in review 2 were regressions of review 1).
+
+- Fix now only what gives a silently wrong result (a broken or changed locator reported as `success`, a file written wrongly) on realistic input, or a crash. Show it with an input a real test suite could contain.
+- Anything else (a vague skip reason, a rare construction, performance on absurd sizes, code that could be tidier) goes to `docs/known-issues.md` with a priority, a note on whether the corpus hits it and when to fix it. A finding that only a synthetic input reproduces goes there by default.
+- Fix-on-touch: a listed item is fixed together with a change that already edits that code.
+- One review round per change set. Review the fixes of a review only when one of them is P1.
+- A refactor needs a result the user can see (fewer wrong outputs, faster, smaller); "cleaner" alone does not count.
+
 ## Changes
 
 - A new branch and a PR for every change, never a commit on `main`.
