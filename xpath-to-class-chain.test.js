@@ -632,11 +632,28 @@ const OPTIMIZE_CASES = [
   {
     xpath: './/XCUIElementTypeButton[@name="a"]', // A12
     optimized: `${CC}**/XCUIElementTypeButton[\`name == "a"\`]`,
+  },  // AND is split only at the top level: an AND inside not(...) or (...) stays in its group
+  {
+    xpath: '//XCUIElementTypeButton[not(contains(@name,"x") and @label="y") and @value="z"]',
+    optimized: `${CC}**/XCUIElementTypeButton[\`value == "z" AND NOT (name CONTAINS "x" AND label == "y")\`]`,
+  },
+  {
+    xpath: '//XCUIElementTypeButton[@enabled="true" and (contains(@name,"x") and @label="y")]',
+    optimized: `${CC}**/XCUIElementTypeButton[\`enabled == true AND (name CONTAINS "x" AND label == "y")\`]`,
+  },
+  {
+    xpath: '//XCUIElementTypeButton[(contains(@name,"x") and @label="y") or @value="z"]',
+    optimized: `${CC}**/XCUIElementTypeButton[\`(name CONTAINS "x" AND label == "y") OR value == "z"\`]`,
   },
 ];
 
 // Existing-class-chain cases: optimizeClassChain on chains already in the code.
 const OPTIMIZE_CHAIN_CASES = [
+  // the redundant type check goes at the top level; the AND inside NOT (...) is kept whole
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`NOT (name CONTAINS "x" AND label == "y") AND type == "XCUIElementTypeButton"\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`NOT (name CONTAINS "x" AND label == "y")\`]`,
+  },
   // `==` with `*` is a valid literal match — left alone
   {
     input: `${CC}**/XCUIElementTypeButton[\`name == "abc*"\`]`,
