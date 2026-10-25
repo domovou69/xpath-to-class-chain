@@ -1088,6 +1088,10 @@ for (const [xpath, why] of [
   // WDA's class chain parser ends a $…$ block at any `$`, even inside a string literal
   ['//XCUIElementTypeCell[.//XCUIElementTypeButton[matches(@name,"a$")]]', /\$ inside a descendant predicate/],
   ['//XCUIElementTypeCell[.//XCUIElementTypeButton[@name="a$b"]]', /\$ inside a descendant predicate/],
+  // an interpolation without quotes is not a value the chain can carry: `name != nil=${id}` was the result
+  ['//*[@name=${id}]', /unquoted interpolation in a comparison/],
+  ['//XCUIElementTypeButton[@label = ${text} and @enabled="true"]', /unquoted interpolation in a comparison/],
+  ['//XCUIElementTypeButton[@name!=${id}]', /unquoted interpolation in a comparison/],
 ]) {
   const res = convertXpathToClassChain(xpath);
   if (res.status !== 'success' && res.locator === xpath && why.test(res.reason || '')) ok();
@@ -1175,6 +1179,14 @@ for (const [chain, want] of [
   [`${CC}**/*[\`name == "x"OR type == "XCUIElementTypeButton"\`]`, `${CC}**/*[\`name == "x"OR type == "XCUIElementTypeButton"\`]`],
   [`${CC}**/*[\`name == 'x'OR type == "XCUIElementTypeButton"\`]`, `${CC}**/*[\`name == 'x'OR type == "XCUIElementTypeButton"\`]`],
   [`${CC}**/*[\`type == "XCUIElementTypeButton"OR name == "x"\`]`, `${CC}**/*[\`type == "XCUIElementTypeButton"OR name == "x"\`]`],
+  // && is AND: the type test moves out and no operator is left behind
+  [`${CC}**/*[\`type == "XCUIElementTypeButton" && name == "a"\`]`, `${CC}**/XCUIElementTypeButton[\`name == "a"\`]`],
+  [`${CC}**/*[\`name == "a" && type == "XCUIElementTypeButton"\`]`, `${CC}**/XCUIElementTypeButton[\`name == "a"\`]`],
+  [`${CC}**/*[\`name == "a" && type == "XCUIElementTypeButton" && label == "b"\`]`, `${CC}**/XCUIElementTypeButton[\`name == "a" AND label == "b"\`]`],
+  [`${CC}**/*[\`name == "a" AND type == "XCUIElementTypeButton" && label == "b"\`]`, `${CC}**/XCUIElementTypeButton[\`name == "a" AND label == "b"\`]`],
+  [`${CC}**/*[\`type == "XCUIElementTypeButton" && name == "a && b"\`]`, `${CC}**/XCUIElementTypeButton[\`name == "a && b"\`]`],
+  [`${CC}**/*[\`type == "XCUIElementTypeButton" && name == "a"\`]`.replace(/`/g, '\\`'), `${CC}**/XCUIElementTypeButton[\\\`name == "a"\\\`]`], // escaped backticks (JS template literal)
+  [`${CC}**/*[\`type == "XCUIElementTypeButton" && name == "a" || label == "b"\`]`, `${CC}**/*[\`type == "XCUIElementTypeButton" && name == "a" || label == "b"\`]`], // a top-level || keeps the type test
 ]) {
   const got = collapseWildcardTypes(chain);
   if (got === want) ok();
