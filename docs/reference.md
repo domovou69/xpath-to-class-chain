@@ -322,7 +322,16 @@ const { valid, fixedLocator, reason } = validateAndFixClassChain(
 
 // Optimize an existing chain (idempotent + all optimizer rules)
 optimizeClassChain('-ios class chain:**/Btn[`name == "a*"`]');
+
+// Convert the locators in a piece of source text: no file system, no printing
+const { scanText } = require('xpath-to-class-chain');
+const { content, records, stats } = scanText(sourceText, '.java', { optimize: true });
+// content: the text with the converted locators; records: one { changed, old, new, status, reason, warning }
+// per locator found. The extension picks the XPath-strategy markers, so a string passed to
+// AppiumBy.xpath("…") is left alone and reported as skipped_xpath_strategy.
 ```
+
+`walkDir`, `processFile` and `makeStats` (the file walk, the read and the atomic write around `scanText`) are exported too; the CLI is built from them.
 
 ---
 
@@ -347,7 +356,7 @@ Zero-dependency runner, exits non-zero on any failure. Sections:
 - `DETECT` — `isLikelyIosLocator` gating
 - `FLAGS` — `parseFlags` CLI parsing
 - `OPTIMIZE` — the optimizer pass: rewrite rules + idempotency
-- `SCANNER` — `walkDir`, `processFile`, `makeStats` against real on-disk fixtures
+- `SCANNER` — `scanText` (text in, text out), `walkDir`, `processFile`, `makeStats` against real on-disk fixtures, and the atomic write
 
 Add a row to the relevant `*_CASES` array and re-run.
 
@@ -374,7 +383,8 @@ lib/
   validator.js     ← validateAndFixClassChain (heals chains found in code), checkChain (rewrites nothing; the converter's own output), collapseWildcardTypes
   optimizer.js     ← optimizeClassChain (`{ heal: false }` for the converter) + all optimizer rules
   converter.js     ← tokenizeXpath + convertXpathToClassChain
-  scanner.js       ← walkDir + processFile + isLikelyIosLocator + makeStats
+  scantext.js      ← scanText + isLikelyIosLocator + makeStats: the scanner's core, no fs, no console
+  scanner.js       ← walkDir + processFile (read, print, atomic write) around scantext; re-exports it
 ```
 
-Dependency graph (acyclic): `status ← lexer ← predicates ← validator ← optimizer ← converter ← scanner ← entry`.
+Dependency graph (acyclic): `status ← lexer ← predicates ← validator ← optimizer ← converter ← scantext ← scanner ← entry`.

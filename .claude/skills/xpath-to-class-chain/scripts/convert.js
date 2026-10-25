@@ -132,7 +132,9 @@ function main(argv) {
   if (scanTarget) {
     const target = resolve(scanTarget);
     if (!existsSync(target)) { console.error(`Not found: ${target}`); return 2; }
-    results.push(...scan(target, lib, require(join(engine.root, 'lib', 'scanner.js'))));
+    // Engines before the scanner became public (1.0.3 and older) only have it at lib/scanner.js.
+    const scanner = lib.processFile ? lib : require(join(engine.root, 'lib', 'scanner.js'));
+    results.push(...scan(target, lib, scanner));
   }
 
   const summary = { total: results.length, converted: 0, withWarning: 0, unchanged: 0, skipped: 0 };

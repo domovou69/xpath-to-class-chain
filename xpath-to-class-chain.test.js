@@ -1215,6 +1215,69 @@ console.log('— SCANNER: walkDir —');
   }
 }
 
+console.log('— SCANNER: scanText —');
+{
+  const { scanText, makeStats: stats0 } = require('./xpath-to-class-chain');
+  const eq = (name, got, want) => {
+    if (JSON.stringify(got) === JSON.stringify(want)) ok();
+    else fail(`scanText ${name}\n     expected: ${JSON.stringify(want)}\n     got:      ${JSON.stringify(got)}`);
+  };
+
+  // text in, text and records out; no file, no console
+  const converted = scanText(`const l = '//XCUIElementTypeButton[@name="OK"]';`, '.js');
+  eq('converts', converted.content, `const l = '-ios class chain:**/XCUIElementTypeButton[\`name == "OK"\`]';`);
+  eq('record', converted.records, [{ changed: true, old: '//XCUIElementTypeButton[@name="OK"]', new: '-ios class chain:**/XCUIElementTypeButton[`name == "OK"`]', status: 'success', reason: null, warning: null }]);
+  eq('stats', [converted.stats.locatorsFound, converted.stats.locatorsUpdated, converted.stats.filesScanned], [1, 1, 0]);
+
+  // an explicit XPath strategy around the string: left alone, reported
+  const java = `driver.findElement(AppiumBy.xpath("//XCUIElementTypeButton[@name=\\"OK\\"]"));`;
+  const strategy = scanText(java, '.java');
+  eq('strategy: text', strategy.content, java);
+  eq('strategy: record', [strategy.records.length, strategy.records[0].status, strategy.records[0].changed], [1, 'skipped_xpath_strategy', false]);
+
+  // the same text in a language the marker list has no entry for is not a strategy call
+  eq('unknown extension converts', scanText(java, '.swift').records[0].status, 'success');
+
+  // an Android key: counted in stats only, no record
+  const androidKey = scanText(`const p = { android: '//XCUIElementTypeButton[@name="a"]' };`, '.js');
+  eq('android key', [androidKey.stats.skipped.android, androidKey.stats.locatorsFound, androidKey.records.length, androidKey.content.includes('-ios class chain')], [1, 1, 0, false]);
+
+  // nothing to find
+  const none = scanText('const url = "//cdn.example.com/x.js";\n', '.js');
+  eq('no locator', [none.content, none.records, none.stats.locatorsFound], ['const url = "//cdn.example.com/x.js";\n', [], 0]);
+
+  // the caller's stats accumulate across calls
+  const shared = stats0();
+  scanText(`'//XCUIElementTypeButton[@name="a"]'`, '.js', {}, shared);
+  scanText(`'//XCUIElementTypeButton[@name="b"]'`, '.js', {}, shared);
+  eq('shared stats', [shared.locatorsFound, shared.locatorsUpdated], [2, 2]);
+
+  // opts.optimize reaches the optimizer
+  const text = `'//*[@type="XCUIElementTypeButton" and @name="a" and @label="b"]'`;
+  eq('optimize reaches the converter', scanText(text, '.js', { optimize: true }).records.length, 1);
+
+  // the core stays free of the file system and of printing
+  const core = readFileSync(join(__dirname, 'lib', 'scantext.js'), 'utf8').replace(/\/\/[^\n]*/g, '');
+  eq('scantext.js has no fs or console', [/require\(['"](?:fs|path)['"]\)/.test(core), /console\./.test(core)], [false, false]);
+}
+
+console.log('— SCANNER: atomic write —');
+{
+  const root = makeTempRoot('xpath-atomic-');
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, `const l = '//XCUIElementTypeButton[@name="OK"]';`);
+    require('fs').chmodSync(file, 0o640);
+    processFile(file, { dryRun: false, quiet: true }, [], makeStats());
+    const left = require('fs').readdirSync(root);
+    const mode = require('fs').statSync(file).mode & 0o777;
+    if (left.length === 1 && left[0] === 'a.js' && mode === 0o640 && readFileSync(file, 'utf8').includes('-ios class chain:')) ok();
+    else fail(`atomic write: expected only a.js with mode 640, rewritten; got ${JSON.stringify(left)} mode ${mode.toString(8)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
 console.log('— SCANNER: processFile —');
 {
   // dry-run: source stays untouched even when locators get converted
