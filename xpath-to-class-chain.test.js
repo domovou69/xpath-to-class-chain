@@ -1353,10 +1353,35 @@ console.log('— SCANNER: scanText —');
     ['yaml key on the line', '.yml', `login:\n  android: "//*[@text='x']"\n  ios: ${IOS_B}\n`, 1, 1],
     ['yaml flow mapping', '.yml', `login: { android: "//*[@text='x']", ios: ${IOS_B} }\n`, 1, 1],
     ['yaml list item under android', '.yml', `android:\n  - "//*[@text='x']"\n  - "//*[@text='y']"\nios:\n  - ${IOS_B}\n`, 2, 1],
+    // a block sequence may sit at its key's indentation: `- ` there is the key's child
+    ['yaml compact list under android', '.yml', `android:\n- '//*[@name="Login"]'\nios:\n- ${IOS_B}\n`, 1, 1],
+    ['yaml compact list of maps under android', '.yml', `android:\n- login: '//*[@name="Login"]'\n  back: '//*[@name="Back"]'\nios:\n- login: ${IOS_B}\n`, 2, 1],
+    ['yaml compact list item is not a parent', '.yml', `pages:\n- android\n- name: ${IOS_B}\n`, 0, 1],
+    // an apostrophe in a comment does not pair with a quote below it
+    ['js apostrophe in a comment, quoted key', '.js', `const L = {\n  // it's\n  'android': '//*[@name="Login"]',\n  ios: ${IOS_B},\n};`, 1, 1],
+    ['py apostrophe in a comment, quoted key', '.py', `L = {\n  # doesn't exist\n  'android': '//*[@name="Login"]',\n  'ios': ${IOS_B},\n}`, 1, 1],
+    ['js apostrophe in a comment, ternary', '.js', `const L = {\n  // it's\n  android: c ? 'x' : '//*[@name="Login"]',\n  ios: ${IOS_B},\n};`, 1, 1],
+    ['js apostrophe in a block comment', '.js', `const L = {\n  /* it's, ok */\n  'android': '//*[@name="Login"]',\n};`, 1, 0],
+    ['js comment marker inside a string', '.js', `const L = { url: 'http://x', android: '//*[@name="Login"]' };`, 1, 0],
   ]) {
     const r = scanText(text, ext);
     eq(`android key: ${name}`, [r.stats.skipped.android, r.stats.locatorsUpdated], [android, updated]);
   }
+
+  // the YAML parent lookup is linear: when each list item walked back over all the
+  // siblings above it, 16000 items took 25 s; the time grows ~4x for 4x the items, not ~16x
+  const timeList = (n) => {
+    let list = 'root:\n';
+    for (let i = 0; i < n; i++) list += `  - '//XCUIElementTypeButton[@name="b${i}"]'\n`;
+    const started = process.hrtime.bigint();
+    const r = scanText(list, '.yml');
+    return [r.stats.locatorsUpdated, Number(process.hrtime.bigint() - started)];
+  };
+  const [smallUpdated, small] = timeList(4000);
+  const [bigUpdated, big] = timeList(16000);
+  eq('yaml long list converts', [smallUpdated, bigUpdated], [4000, 16000]);
+  if (big / small < 10) ok();
+  else fail(`scanText yaml long list: 16000 items took ${(big / small).toFixed(1)}x the time of 4000, expected under 10x`);
 
   // nothing to find
   const none = scanText('const url = "//cdn.example.com/x.js";\n', '.js');
