@@ -949,6 +949,9 @@ for (const [xpath, why] of [
   ['(//*[@name="x"]/following-sibling::*)[2]', /^following-sibling axis/],
   ['(//XCUIElementTypeButton[2])[3]', /^grouped position over an inner index/],
   ['./XCUIElementTypeButton', /^not an absolute XPath/],
+  // a step after a grouped (…)[n] is not a relative XPath: the reason names the group
+  ['(//XCUIElementTypeCell)[1]/XCUIElementTypeButton', /^a path after a grouped \(…\)\[n\]/],
+  ['(//XCUIElementTypeCell)[1]//XCUIElementTypeButton', /^a path after a grouped \(…\)\[n\]/],
   ['//android.widget.Button', /^Android class name/],
   ['//XCUIElementTypeButton[`name == "x"`]', /^backtick outside a quoted value/],
   ['//XCUIElementTypeButton[replace(@name, "a", "b")="c"]', /^Leftover XPath syntax detected \(XPath function replace\(\)\)/],
@@ -1124,6 +1127,18 @@ for (const [chain, want] of [
   const got = collapseWildcardTypes(chain);
   if (got === want) ok();
   else fail(`COLLAPSE ${chain}\n     expected: ${want}\n     got:      ${got}`);
+}
+// healing an existing chain upper-cases lower-case keywords inside the backtick block too,
+// as it already did inside `$…$`; text in quoted values is left as it is
+for (const [chain, want] of [
+  [`${CC}**/XCUIElementTypeButton[\`name == "a" and label contains "b"\`]`, `${CC}**/XCUIElementTypeButton[\`name == "a" AND label CONTAINS "b"\`]`],
+  [`${CC}**/XCUIElementTypeButton[\`not (name beginswith "a")\`]`, `${CC}**/XCUIElementTypeButton[\`NOT (name BEGINSWITH "a")\`]`],
+  [`${CC}**/XCUIElementTypeButton[\`label == "a and b" or name == 'c or d'\`]`, `${CC}**/XCUIElementTypeButton[\`label == "a and b" OR name == 'c or d'\`]`],
+  [`${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" and name == "x"$]`, `${CC}**/XCUIElementTypeCell[$type == "XCUIElementTypeButton" AND name == "x"$]`],
+]) {
+  const res = validateAndFixClassChain(chain);
+  if (res.valid && res.fixedLocator === want) ok();
+  else fail(`HEAL ${chain}\n     expected: ${want}\n     got:      ${res.fixedLocator}  (valid=${res.valid}, reason=${res.reason})`);
 }
 // Without healing the converter path keeps `heal: false` all the way through the optimizer.
 {
