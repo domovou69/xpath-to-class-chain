@@ -103,6 +103,42 @@ export interface ScanRecord {
   warning?: string | null;
 }
 
+/** One locator found by `scanText`: a `ScanRecord` without the file. */
+export type ScanTextRecord = Omit<ScanRecord, 'file'>;
+
+export interface ScanTextResult {
+  /** The text with the converted locators; equal to the input when nothing changed. */
+  content: string;
+  /** One entry per locator found, in file order. Android locators are counted in `stats` only. */
+  records: ScanTextRecord[];
+  stats: ScanStats;
+}
+
+/**
+ * The scanner's core, with no file system and no console: finds the locator literals in
+ * `content` and converts them. `ext` ('.java', '.js', …) picks the XPath-strategy markers, so a
+ * string passed to `AppiumBy.xpath(…)` is left alone and reported. `stats` is updated in place
+ * (a fresh one by default).
+ */
+export function scanText(content: string, ext: string, opts?: ConvertOptions, stats?: ScanStats): ScanTextResult;
+
+/** A zeroed `ScanStats`. */
+export function makeStats(): ScanStats;
+
+/** Calls `callback` with the path of every regular file under `dir`; symlinks are not followed. */
+export function walkDir(dir: string, callback: (filePath: string) => void): void;
+
+/**
+ * Scan one file and, unless `opts.dryRun`, rewrite it in place (through a temporary file and a
+ * rename). Appends to `records` and updates `stats`; prints a diff unless `opts.quiet`.
+ */
+export function processFile(
+  filePath: string,
+  opts: { dryRun?: boolean; quiet?: boolean; optimize?: boolean; rootDir?: string },
+  records: ScanRecord[],
+  stats: ScanStats,
+): void;
+
 export interface MainResult {
   stats: ScanStats;
   records: ScanRecord[];

@@ -14,7 +14,7 @@ const STATUS = require('./lib/status');
 const { tokenizeXpath, convertXpathToClassChain } = require('./lib/converter');
 const { validateAndFixClassChain } = require('./lib/validator');
 const { optimizeClassChain } = require('./lib/optimizer');
-const { isLikelyIosLocator, walkDir, processFile, makeStats } = require('./lib/scanner');
+const { isLikelyIosLocator, scanText, walkDir, processFile, makeStats } = require('./lib/scanner');
 
 // ⚠️ REQUIRED: point this at your source folder, or pass one on the command line:
 //      node xpath-to-class-chain.js ./src
@@ -206,6 +206,10 @@ module.exports = {
   optimizeClassChain,
   tokenizeXpath,
   isLikelyIosLocator,
+  scanText,
+  walkDir,
+  processFile,
+  makeStats,
   parseFlags,
   main,
   STATUS,
