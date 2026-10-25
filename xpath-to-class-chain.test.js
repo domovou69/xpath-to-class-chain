@@ -550,6 +550,12 @@ const DETECT_CASES = [
   ['//foo/bar/baz', false], // path-like, no iOS signal
   ['#bottom_bar_tab_scanner', false], // android resource-id, no '//'
   ['//XCUIElementTypeButton[@name="OK"', false], // unbalanced bracket
+  // brackets inside a quoted value are data, not predicate brackets
+  ['//XCUIElementTypeButton[@name="a[b"]', true],
+  ['//XCUIElementTypeButton[@label=\'x]\']', true],
+  ['(//XCUIElementTypeCell[@name="[1]"])[2]', true],
+  ['//XCUIElementTypeButton[@name="a]"', true], // malformed, but passed on: the converter reports it
+  ["//*[contains(@text, 'Goto's New')]", true], // quotes do not pair: the plain count balances
 ];
 
 // =====================================================================
@@ -1723,6 +1729,7 @@ console.log('— SCANNER: audit regressions —');
     ['a.py', `e = driver.find_element_by_xpath('${SQ}')`, 'find_element_by_xpath('],
     // C#
     ['A.cs', `var e = driver.FindElement(MobileBy.XPath("${DQ}"));`, 'MobileBy.XPath('],
+    ['A.cs', `var e = driver.FindElement(AppiumBy.XPath("${DQ}"));`, 'AppiumBy.XPath('], // dotnet-client 5: AppiumBy extends By
     ['A.cs', `var e = driver.FindElement(By.XPath("${DQ}"));`, 'By.XPath('],
     ['A.cs', `var e = driver.FindElement("xpath", "${DQ}");`, '"xpath"'],
     ['A.cs', `[FindsByIOSUIAutomation(XPath = "${DQ}")]\nprivate IWebElement e;`, 'FindsByIOSUIAutomation(XPath ='],
