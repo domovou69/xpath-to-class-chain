@@ -3,6 +3,7 @@
 // and cover the documented iOS Class Chain / NSPredicate conversion rules.
 // Add a row and re-run.
 const { convertXpathToClassChain, validateAndFixClassChain, optimizeClassChain, tokenizeXpath, isLikelyIosLocator, parseFlags } = require('./xpath-to-class-chain');
+const { checkChain, collapseWildcardTypes } = require('./lib/validator');
 
 const CC = '-ios class chain:'; // prefix shorthand to keep rows readable
 
@@ -1059,6 +1060,41 @@ for (const { chain, valid, fixed } of LINT_CASES) {
   const wantFixed = fixed === undefined ? chain : fixed;
   if (res.valid === valid && (!valid || res.fixedLocator === wantFixed)) ok();
   else fail(`LINT ${chain}\n     expected: valid=${valid} fixed=${wantFixed}\n     got:      valid=${res.valid} fixed=${res.fixedLocator} reason=${res.reason}`);
+}
+
+// checkChain judges the converter's own output: it rewrites nothing, so leftover XPath syntax
+// is reported where validateAndFixClassChain would heal it (an existing chain in code).
+console.log('— CHECK (no healing) —');
+for (const [chain, valid, why] of [
+  [`${CC}**/Cell[\`name == "a"\`]`, true],
+  [`${CC}**/Cell[\`@name == "a"\`]`, false, /XPath attribute or path/],
+  [`${CC}**/Cell[\`contains(name, "a")\`]`, false, /XPath function contains\(\)/],
+  [`${CC}**/Cell[\`enabled == "true"\`]`, true],
+  [`${CC}**/Cell[\`name == "a"`, false, /Unbalanced/],
+]) {
+  const res = checkChain(chain);
+  if (res.valid !== valid) fail(`CHECK ${chain}\n     expected: valid=${valid}\n     got:      valid=${res.valid} reason=${res.reason}`);
+  else if (valid && res.fixedLocator !== chain) fail(`CHECK ${chain}\n     expected: unchanged\n     got:      ${res.fixedLocator}`);
+  else if (why && !why.test(res.reason || '')) fail(`CHECK ${chain}\n     expected reason: ${why}\n     got:             ${res.reason}`);
+  else ok();
+}
+for (const [chain, want] of [
+  [`${CC}**/*[\`type == "XCUIElementTypeButton" AND label == "a"\`]`, `${CC}**/XCUIElementTypeButton[\`label == "a"\`]`],
+  [`**/*[\`type == "XCUIElementTypeButton"\`]`, '**/XCUIElementTypeButton'],
+  [`${CC}**/*[\`type == "XCUIElementTypeButton" OR label == "a"\`]`, `${CC}**/*[\`type == "XCUIElementTypeButton" OR label == "a"\`]`],
+  [`${CC}**/*[\`type CONTAINS "XCUIElementTypeText"\`]`, `${CC}**/*[\`type CONTAINS "XCUIElementTypeText"\`]`], // matches TextField and TextView too
+]) {
+  const got = collapseWildcardTypes(chain);
+  if (got === want) ok();
+  else fail(`COLLAPSE ${chain}\n     expected: ${want}\n     got:      ${got}`);
+}
+// Without healing the converter path keeps `heal: false` all the way through the optimizer.
+{
+  const legacy = `${CC}**/Cell[\`@name == "a"\`]`;
+  const healed = optimizeClassChain(legacy);
+  const strict = optimizeClassChain(legacy, { heal: false });
+  if (healed.valid && !strict.valid) ok();
+  else fail(`OPTIMIZE heal option\n     healed: ${JSON.stringify(healed)}\n     strict: ${JSON.stringify(strict)}`);
 }
 
 console.log('— TOKENIZER —');

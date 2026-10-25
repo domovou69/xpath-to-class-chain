@@ -370,8 +370,8 @@ site/              ← GitHub Pages playground (build.js, playground.js, test.js
 lib/
   status.js        ← STATUS enum
   predicates.js    ← PREDICATE_REGEX + shared rewrites (rewriteStringFunctions, upperCaseLogicOps)
-  validator.js     ← validateAndFixClassChain
-  optimizer.js     ← optimizeClassChain + all optimizer rules
+  validator.js     ← validateAndFixClassChain (heals chains found in code), checkChain (rewrites nothing; the converter's own output), collapseWildcardTypes
+  optimizer.js     ← optimizeClassChain (`{ heal: false }` for the converter) + all optimizer rules
   converter.js     ← tokenizeXpath + convertXpathToClassChain
   scanner.js       ← walkDir + processFile + isLikelyIosLocator + makeStats
 ```
