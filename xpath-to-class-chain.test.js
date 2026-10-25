@@ -678,6 +678,42 @@ const OPTIMIZE_CHAIN_CASES = [
     input: `${CC}**/XCUIElementTypeButton[\`NOT (name CONTAINS "x" AND label == "y") AND type == "XCUIElementTypeButton"\`]`,
     fixed: `${CC}**/XCUIElementTypeButton[\`NOT (name CONTAINS "x" AND label == "y")\`]`,
   },
+  // a top-level OR, spelled `||` too, keeps the AND clauses in place: AND binds tighter
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`name CONTAINS "a" || label == "b" AND value == "c"\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`name CONTAINS "a" || label == "b" AND value == "c"\`]`,
+  },
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`name CONTAINS "a" AND label == "b" || value == "c"\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`name CONTAINS "a" AND label == "b" || value == "c"\`]`,
+  },
+  // an OR inside a group or a value is not top level: the AND clauses are still sorted
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`name CONTAINS "x" AND (label == "a" || label == "b")\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`(label == "a" || label == "b") AND name CONTAINS "x"\`]`,
+  },
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`name CONTAINS "x" AND label == "a OR b"\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`label == "a OR b" AND name CONTAINS "x"\`]`,
+  },
+  // an AND inside a value with an escaped quote, or inside \"…\" (JSON / Java), is not split
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`name CONTAINS "say \\"hi AND bye\\"" AND label == "c"\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`label == "c" AND name CONTAINS "say \\"hi AND bye\\""\`]`,
+  },
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`name CONTAINS \\"a AND b\\" AND label == \\"c\\"\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`label == \\"c\\" AND name CONTAINS \\"a AND b\\"\`]`,
+  },
+  // the redundant type check goes from beside a group with OR, not beside a top-level OR
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND (name == "a" || label == "b")\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`(name == "a" || label == "b")\`]`,
+  },
+  {
+    input: `${CC}**/XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "a" || label == "b"\`]`,
+    fixed: `${CC}**/XCUIElementTypeButton[\`type == "XCUIElementTypeButton" AND name == "a" || label == "b"\`]`,
+  },
   // `==` with `*` is a valid literal match — left alone
   {
     input: `${CC}**/XCUIElementTypeButton[\`name == "abc*"\`]`,
