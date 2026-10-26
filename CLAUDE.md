@@ -28,6 +28,6 @@ A fix must be worth the code it adds: every special case makes the converter har
 
 Work is tracked on the GitHub Project board (https://github.com/users/domovou69/projects/1); the maintainer does not fill it by hand.
 
-- Every finding that goes to `docs/known-issues.md` also becomes an issue (label `P2` or `P3`), and the row carries its `#N`.
-- Every PR description has `Closes #N` (or `Refs #N`). The board's built-in workflows move the card to Done on merge.
-- When a stage starts, set `Window`, `Model`, `Effort`, `Est %`, `Est min` with `scripts/board.sh <N> --window … --model … --effort … --est-pct … --est-min …`; when it ends, set `Actual %` and `Actual min`. `Actual %` is the agent's estimate of the 5-hour window unless the maintainer gives a figure from `/usage`.
+- A finding becomes an issue (label `P2` or `P3`) only after the maintainer confirms it; the agent proposes, the maintainer says yes. A P1 finding gets an issue automatically. A row in `docs/known-issues.md` carries its `#N` once the issue exists.
+- Every PR description has `Closes #N` (or `Refs #N`) when an issue exists. The board's built-in workflows move the card to Done on merge.
+- When a stage starts, set `Window`, `Model`, `Effort`, `Est %`, `Est min` with `scripts/board.sh <N> --window … --model … --effort … --est-pct … --est-min …`. `Est %` is a theoretical figure. When the stage ends, set `Actual %` and `Actual min`: a real figure if one is available (the maintainer's `/usage`), otherwise the agent's estimate. The values are approximate; high precision is not needed.
