@@ -6,14 +6,16 @@ Problems that were found and deliberately not fixed, sorted by priority. The rul
 - **P2** — wrong or confusing, but visible to the user (a skip with a poor reason, a surprising default), or a decision that is the maintainer's.
 - **P3** — cosmetic, internal, or needs input that real code does not contain.
 
+Each row is tracked as an issue on the project board (#N); the table is the index agents read.
+
 Last reviewed: 2026-10-25.
 
-| Priority | Item | Seen in the corpus | Fix when |
-|---|---|---|---|
-| P2 | The library default is `optimize: false`, the CLI always optimizes. The same XPath gives different chains depending on the entry point. | n/a (API decision) | When the API is next touched; the recommendation is to keep `false` |
-| P3 | `contains(@name, ${id})` with an unquoted interpolation is skipped as `skipped_validation_failed` ("Leftover XPath syntax") instead of a reason that names the interpolation. The result is right (a skip), only the text is vague. | no | When `rewriteStringFunctions` is touched |
-| P3 | Hand-written quote/bracket scanners that are not on `lib/lexer.js`: `callArguments`, `escapeStringLiterals`, `lastStructuralSlash`, `predicates.outsideQuotes`, `validator.blankBlockLiterals` / `hasUnclosedQuote`, `optimizer.parseChainSteps`. Some differ on purpose (they read finished chains or JSON/Java-escaped text). | no | Fix-on-touch: move a scanner onto the lexer only when a bug is found in it |
-| P3 | `collapseWildcardTypes` rejoins the remaining clauses with ` AND `, so `&&` and lower-case `and` in them are rewritten to `AND` (same meaning in NSPredicate). | no | Never, unless a user needs the original spelling |
+| Priority | Title | Item | Seen in the corpus | Fix when |
+|---|---|---|---|---|
+| P2 | Library and CLI differ on `optimize` (#87) | The library default is `optimize: false`, the CLI always optimizes. The same XPath gives different chains depending on the entry point. | n/a (API decision) | When the API is next touched; the recommendation is to keep `false` |
+| P3 | Vague skip reason for an unquoted `${id}` (#88) | `contains(@name, ${id})` with an unquoted interpolation is skipped as `skipped_validation_failed` ("Leftover XPath syntax") instead of a reason that names the interpolation. The result is right (a skip), only the text is vague. | no | When `rewriteStringFunctions` is touched |
+| P3 | Quote and bracket scanners outside `lib/lexer.js` (#89) | Hand-written quote/bracket scanners that are not on `lib/lexer.js`: `callArguments`, `escapeStringLiterals`, `lastStructuralSlash`, `predicates.outsideQuotes`, `validator.blankBlockLiterals` / `hasUnclosedQuote`, `optimizer.parseChainSteps`. Some differ on purpose (they read finished chains or JSON/Java-escaped text). | no | Fix-on-touch: move a scanner onto the lexer only when a bug is found in it |
+| P3 | `&&` and `and` rewritten to `AND` in a collapsed type test (#90) | `collapseWildcardTypes` rejoins the remaining clauses with ` AND `, so `&&` and lower-case `and` in them are rewritten to `AND` (same meaning in NSPredicate). | no | Never, unless a user needs the original spelling |
 
 ## Not bugs
 
