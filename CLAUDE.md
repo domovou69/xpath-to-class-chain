@@ -23,3 +23,11 @@ A fix must be worth the code it adds: every special case makes the converter har
 - A new branch and a PR for every change, never a commit on `main`.
 - Commit messages carry no `Co-Authored-By` line. Claude Code is credited once, in the PR description (the closing "Generated with Claude Code" line). The repository squash-merges with the PR title and description as the commit message, so the individual commit messages do not pile up in `main`.
 - Release: a PR that bumps `version` in `package.json` and lists the fixes in its description (no CHANGELOG file); after the merge, an annotated tag `vX.Y.Z` on the merge commit. The user runs `npm publish`.
+
+## Task board
+
+Work is tracked on the GitHub Project board (https://github.com/users/domovou69/projects/1); the maintainer does not fill it by hand.
+
+- Every finding that goes to `docs/known-issues.md` also becomes an issue (label `P2` or `P3`), and the row carries its `#N`.
+- Every PR description has `Closes #N` (or `Refs #N`). The board's built-in workflows move the card to Done on merge.
+- When a stage starts, set `Window`, `Model`, `Effort`, `Est %`, `Est min` with `scripts/board.sh <N> --window … --model … --effort … --est-pct … --est-min …`; when it ends, set `Actual %` and `Actual min`. `Actual %` is the agent's estimate of the 5-hour window unless the maintainer gives a figure from `/usage`.
