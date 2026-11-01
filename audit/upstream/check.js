@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Phase 6, deterministic part: compares the versions in audit/upstream.json `checked` with the latest
-// npm releases and collects the changes to the watched upstream files. No dependencies, Node 20+.
+// Phase 6, deterministic part: compares the versions in audit/upstream.json `checked` with the pair users can
+// install (latest stable Appium, the newest driver whose peer range accepts it, the WDA that driver depends on) and collects the changes to the watched upstream files. No dependencies, Node 20+.
 // Usage: node audit/upstream/check.js [--wda-base 16.10.0] [--driver-base ...] [--appium-base ...]
 // (the same overrides as env WDA_BASE, DRIVER_BASE, APPIUM_BASE; empty means `checked`).
 // Writes out/upstream-meta.json always and out/upstream-input.md only when a watched file changed.
@@ -37,24 +37,49 @@ const cmp = (a, b) => {
 };
 const globRe = g => new RegExp('^' + g.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '[^/]*') + '$');
 
-async function component(id, spec) {
+const stable = v => /^\d+\.\d+\.\d+$/.test(v);
+// `^X.Y.Z[-pre] || ^...` is the only peer range form the drivers use; anything else fails loudly
+const satisfiesCaret = (v, range) => range.split('||').some(part => {
+  const m = /^\s*\^(\d+)\.(\d+)\.(\d+)(-[\w.]+)?\s*$/.exec(part);
+  if (!m) throw new Error(`unsupported peer range "${range}"`);
+  return Number(m[1]) === Number(v.split('.')[0]) && cmp(v, `${m[1]}.${m[2]}.${m[3]}`) >= 0;
+});
+
+// The pair users can install: the latest stable Appium, the newest stable driver whose peer range accepts it,
+// and the WebDriverAgent that driver depends on. Returns { id: { target, candidates, note } } (candidates: stable versions <= target).
+async function targets() {
+  const pack = name => get(`https://registry.npmjs.org/${name}`);
+  const [appium, driver] = [await pack(baseline.watch.appium.npm), await pack(baseline.watch.driver.npm)];
+  const appiumTarget = appium['dist-tags'].latest;
+  // newest first; stops at the first match, so the old releases with other range forms are never parsed
+  const fits = Object.keys(driver.versions).filter(v => stable(v) && driver.versions[v].peerDependencies?.appium).sort(cmp).reverse();
+  const driverTarget = fits.find(v => satisfiesCaret(appiumTarget, driver.versions[v].peerDependencies.appium));
+  if (!driverTarget) throw new Error(`no ${baseline.watch.driver.npm} release accepts Appium ${appiumTarget}`);
+  const wdaTarget = (driver.versions[driverTarget].dependencies?.[baseline.watch.wda.npm] || '').replace(/^[\^~]/, '');
+  if (!stable(wdaTarget)) throw new Error(`${baseline.watch.driver.npm} ${driverTarget} depends on ${baseline.watch.wda.npm} "${wdaTarget}", not an exact version`);
+  const wda = await pack(baseline.watch.wda.npm);
+  const upTo = (versions, target) => versions.filter(v => stable(v) && cmp(v, target) <= 0);
+  const driverLatest = driver['dist-tags'].latest;
+  return {
+    appium: { target: appiumTarget, candidates: upTo(Object.keys(appium.versions), appiumTarget) },
+    driver: { target: driverTarget, candidates: fits.filter(v => cmp(v, driverTarget) <= 0),
+      note: driverLatest !== driverTarget ? `npm latest ${driverLatest} needs Appium ${driver.versions[driverLatest]?.peerDependencies?.appium}, not ${appiumTarget}` : undefined },
+    wda: { target: wdaTarget, candidates: upTo(Object.keys(wda.versions), wdaTarget) },
+  };
+}
+
+async function component(id, spec, t) {
   const base = override(id) || baseline.checked[id];
   const tag = v => spec.tag.replace('{version}', v);
-  const npmLatest = (await get(`https://registry.npmjs.org/${spec.npm}/latest`)).version;
-  // npm can be ahead of the GitHub tags (WebDriverAgent 16.17.7 had none): use the newest release that has a tag
-  let latest = npmLatest;
-  if (cmp(npmLatest, base) > 0) {
-    const versions = Object.keys((await get(`https://registry.npmjs.org/${spec.npm}`)).versions)
-      .filter(v => /^\d+\.\d+\.\d+$/.test(v) && cmp(v, base) > 0 && cmp(v, npmLatest) <= 0).sort(cmp).reverse();
-    latest = base;
-    for (const v of versions) {
-      const res = await fetch(`https://api.github.com/repos/${spec.repo}/git/ref/tags/${encodeURIComponent(tag(v))}`,
-        { headers: { 'User-Agent': 'xpath-to-class-chain-upstream-schedule', ...(TOKEN && { Authorization: `Bearer ${TOKEN}` }) } });
-      if (res.ok) { latest = v; break; }
-      if (res.status !== 404) throw new Error(`GET git/ref/tags/${tag(v)}: ${res.status} ${res.statusText}`);
-    }
+  // the pair's version may have no GitHub tag yet (WebDriverAgent 16.17.7 had none): use the newest one that has
+  let latest = base;
+  for (const v of t.candidates.filter(v => cmp(v, base) > 0).sort(cmp).reverse()) {
+    const res = await fetch(`https://api.github.com/repos/${spec.repo}/git/ref/tags/${encodeURIComponent(tag(v))}`,
+      { headers: { 'User-Agent': 'xpath-to-class-chain-upstream-schedule', ...(TOKEN && { Authorization: `Bearer ${TOKEN}` }) } });
+    if (res.ok) { latest = v; break; }
+    if (res.status !== 404) throw new Error(`GET git/ref/tags/${tag(v)}: ${res.status} ${res.statusText}`);
   }
-  const r = { id, name: spec.name, repo: spec.repo, base, latest, npmLatest, newer: cmp(latest, base) > 0, files: [], commits: [] };
+  const r = { id, name: spec.name, repo: spec.repo, base, latest, target: t.target, note: t.note, newer: cmp(latest, base) > 0, files: [], commits: [] };
   if (!r.newer) return r;
   r.compareUrl = `https://github.com/${spec.repo}/compare/${tag(base)}...${tag(latest)}`;
 
@@ -141,7 +166,8 @@ function inputMd(results) {
 
 (async () => {
   const results = [];
-  for (const [id, spec] of Object.entries(baseline.watch)) results.push(await component(id, spec));
+  const t = await targets();
+  for (const [id, spec] of Object.entries(baseline.watch)) results.push(await component(id, spec, t[id]));
   const hasInput = results.some(r => r.files.length);
   fs.mkdirSync(OUT, { recursive: true });
   const meta = { checkedDate: baseline.checked.date, components: results.map(({ commits, ...r }) =>
@@ -149,7 +175,7 @@ function inputMd(results) {
   fs.writeFileSync(path.join(OUT, 'upstream-meta.json'), JSON.stringify(meta, null, 2) + '\n');
   fs.rmSync(path.join(OUT, 'upstream-input.md'), { force: true });
   for (const r of results)
-    console.log(`${r.name}: ${r.base} → ${r.latest}: ${!r.newer ? 'no newer release' : r.files.length ? `${r.files.length} watched file(s) changed: ${r.files.map(f => f.filename).join(', ')}` : 'no watched file changed'}`);
+    console.log(`${r.name}: ${r.base} → ${r.latest}${r.target !== r.latest && r.newer ? ` (the pair has ${r.target}, no GitHub tag yet)` : ''}${r.note ? ` [${r.note}]` : ''}: ${!r.newer ? 'no newer release' : r.files.length ? `${r.files.length} watched file(s) changed: ${r.files.map(f => f.filename).join(', ')}` : 'no watched file changed'}`);
   if (hasInput) {
     fs.writeFileSync(path.join(OUT, 'upstream-input.md'), inputMd(results));
     console.log(`wrote ${path.relative(ROOT, path.join(OUT, 'upstream-input.md'))}`);
