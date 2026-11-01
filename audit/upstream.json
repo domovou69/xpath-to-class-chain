@@ -1,5 +1,5 @@
 {
-  "about": "Single source of truth for the versions the converter was last checked against on a device, and for the upstream files the monthly watch (audit/upstream/) compares. After a device re-check, update `checked` here first, then README 'Checked with', docs/results.md and audit/harness/wda/VERSION.",
+  "about": "Single source of truth for the versions the converter was last checked against on a device, and for the upstream files the quarterly watch (audit/upstream/) compares. After a device re-check, update `checked` here first, then README 'Checked with', docs/results.md and audit/harness/wda/VERSION.",
   "checked": {
     "date": "2026-11-01",
     "appium": "3.9.0",
