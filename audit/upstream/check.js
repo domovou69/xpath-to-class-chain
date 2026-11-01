@@ -39,9 +39,22 @@ const globRe = g => new RegExp('^' + g.replace(/[.+^${}()|[\]\\]/g, '\\$&').repl
 
 async function component(id, spec) {
   const base = override(id) || baseline.checked[id];
-  const latest = (await get(`https://registry.npmjs.org/${spec.npm}/latest`)).version;
   const tag = v => spec.tag.replace('{version}', v);
-  const r = { id, name: spec.name, repo: spec.repo, base, latest, newer: cmp(latest, base) > 0, files: [], commits: [] };
+  const npmLatest = (await get(`https://registry.npmjs.org/${spec.npm}/latest`)).version;
+  // npm can be ahead of the GitHub tags (WebDriverAgent 16.17.7 had none): use the newest release that has a tag
+  let latest = npmLatest;
+  if (cmp(npmLatest, base) > 0) {
+    const versions = Object.keys((await get(`https://registry.npmjs.org/${spec.npm}`)).versions)
+      .filter(v => /^\d+\.\d+\.\d+$/.test(v) && cmp(v, base) > 0 && cmp(v, npmLatest) <= 0).sort(cmp).reverse();
+    latest = base;
+    for (const v of versions) {
+      const res = await fetch(`https://api.github.com/repos/${spec.repo}/git/ref/tags/${encodeURIComponent(tag(v))}`,
+        { headers: { 'User-Agent': 'xpath-to-class-chain-upstream-schedule', ...(TOKEN && { Authorization: `Bearer ${TOKEN}` }) } });
+      if (res.ok) { latest = v; break; }
+      if (res.status !== 404) throw new Error(`GET git/ref/tags/${tag(v)}: ${res.status} ${res.statusText}`);
+    }
+  }
+  const r = { id, name: spec.name, repo: spec.repo, base, latest, npmLatest, newer: cmp(latest, base) > 0, files: [], commits: [] };
   if (!r.newer) return r;
   r.compareUrl = `https://github.com/${spec.repo}/compare/${tag(base)}...${tag(latest)}`;
 
