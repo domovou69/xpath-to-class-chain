@@ -11,12 +11,12 @@ Recorded in [`env.json`](env.json); `run.js` writes the versions it actually saw
 | Component | Version |
 |---|---|
 | macOS | 26.6.2 (25G83), Apple silicon |
-| Xcode | 27.0 (27A266a) |
+| Xcode | 27.2 (27B52) |
 | iOS simulator runtime | iOS 27.0 (24A434) |
 | Simulator | `LocatorLab iPhone 17` (iPhone 17), UDID `208FA758-C937-49C4-ADE6-E16B0D7E0630` |
-| Appium | 3.8.0 (local, `node_modules/`) |
-| appium-xcuitest-driver | 12.16.0 (`APPIUM_HOME=./.appium`) |
-| WebDriverAgent | 16.14.1 (bundled by the driver; `appium-webdriveragent` 16.14.2 exists, not used) |
+| Appium | 3.9.0 (local, `node_modules/`) |
+| appium-xcuitest-driver | 12.22.8 (`APPIUM_HOME=./.appium`) |
+| WebDriverAgent | 16.17.7 (bundled by the driver) |
 | Node | 24.21.0 (≥ 20 works) |
 | XcodeGen | 2.46.0 (Homebrew) |
 
@@ -26,9 +26,9 @@ WDA settings are the defaults. The only capability that differs from a minimal s
 
 ```sh
 cd audit/device
-npm install                                    # Appium 3.8.0 into ./node_modules
+npm install                                    # Appium 3.9.0 into ./node_modules
 export APPIUM_HOME=$PWD/.appium
-npx appium driver install xcuitest@12.16.0    # bundles WDA 16.14.1
+npx appium driver install xcuitest@12.22.8    # bundles WDA 16.17.7; 13.x needs Appium 4 beta
 brew install xcodegen                          # once
 xcodegen generate                              # LocatorLab.xcodeproj from project.yml
 # the simulator: reuse the UDID in env.json; on another machine create one and put its UDID in env.json
@@ -150,7 +150,7 @@ For each case:
 | `DEAD` | expected empty: the XPath can never match on WDA (`@text`, `text()`, `@selected`, unknown type) |
 | `NONE` | neither side finds anything: a fixture problem, not a verdict |
 
-**Errors are invisible through Appium.** appium-xcuitest-driver 12.16.0 swallows every WDA error in element lookup (`build/lib/commands/find.js`, `doNativeFind`: `catch { els = [] }`), so `findElements` returns `[]` and `findElement` "no such element" for an invalid XPath or class chain. When Appium returns nothing, `run.js` sends the same request straight to WDA (`webDriverAgentUrl`, strategy `class chain`/`xpath`) to tell an error from an empty result.
+**Errors are invisible through Appium.** appium-xcuitest-driver 12.16.0 and 12.22.8 swallow every WDA error in element lookup (`build/lib/commands/find.js`, `doNativeFind`: `catch { els = [] }`), so `findElements` returns `[]` and `findElement` "no such element" for an invalid XPath or class chain. When Appium returns nothing, `run.js` sends the same request straight to WDA (`webDriverAgentUrl`, strategy `class chain`/`xpath`) to tell an error from an empty result.
 
 ## Timing
 

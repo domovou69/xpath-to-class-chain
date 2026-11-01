@@ -27,4 +27,4 @@ Evidence that the converter is correct and measurements of what it gains. Nothin
 | `*.svg` | Charts used in the main README and the report |
 | [`prompts/`](prompts), [`PLAN.md`](PLAN.md) | The audit brief and the work plan, kept for history |
 
-Versions used throughout: Appium 3.8.0, appium-xcuitest-driver 12.16.0, WebDriverAgent 16.14.1 (kept in [`upstream.json`](upstream.json) `checked`).
+Versions used throughout: Appium 3.8.0, appium-xcuitest-driver 12.16.0, WebDriverAgent 16.14.1 for the audit phases; the current check is Appium 3.9.0, driver 12.22.8, WDA 16.17.7 (kept in [`upstream.json`](upstream.json) `checked`).
