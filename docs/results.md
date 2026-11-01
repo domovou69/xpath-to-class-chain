@@ -11,7 +11,7 @@ Measured on 676 real and hand-made XPath locators (562 from real test suites, 11
 | Wrong chains                          | 0                                                                                                          |
 | Lookup time                           | class chain 22–29 % faster than XPath at 100–2000 elements in the tree; on small screens only milliseconds |
 | LLMs (Claude 5.5, 5, 4.x)             | none beat the converter on real locators (the 563 of the production suite)                                 |
-| Checked with                          | Appium 3.8.0, appium-xcuitest-driver 12.16.0, WDA 16.14.1 (latest in October 2026); iOS 26.6 and 27.0      |
+| Checked with                          | Appium 3.9.0, appium-xcuitest-driver 12.22.8, WDA 16.17.7 on an iOS 27.0 simulator (re-checked 2026-11-01); an iPhone with iOS 26.6 on Appium 3.8.0 / 12.16.0 / 16.14.1      |
 
 Older versions were not checked: WDA's class chain and predicate handling may behave differently there. Before converting, check `visible` predicates and lookups of dozens of elements: they can be slower as a chain. The GitHub corpus, its fixes and the breakdown by source and language: [`audit/coverage-report.md`](../audit/coverage-report.md), "GitHub corpus (Phase 7)".
 

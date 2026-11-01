@@ -3,6 +3,6 @@
   "private": true,
   "description": "Phase 2 on-device verification. Installs the pinned Appium server locally; run.js itself has no dependencies.",
   "devDependencies": {
-    "appium": "3.8.0"
+    "appium": "3.9.0"
   }
 }
