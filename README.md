@@ -5,6 +5,16 @@
 
 Converts Appium XPath locators in your iOS tests to `-ios class chain` selectors, and refuses to convert the ones that have no exact class chain.
 
+## Checked with
+
+- Appium 3.9.0
+- appium-xcuitest-driver 12.22.8 / WebDriverAgent 16.17.7
+- iOS 27.0 simulator (iPhone 17), Xcode 27.2
+- iPhone 13 Pro Max with iOS 26.6: Appium 3.8.0, appium-xcuitest-driver 12.16.0 / WebDriverAgent 16.14.1
+
+Older versions were not checked. A quarterly [upstream watch](audit/upstream/README.md) follows the Sauce Labs Appium
+image and opens an issue when its Appium, driver or WebDriverAgent changes a file the converter depends on.
+
 ## Try it
 
 Nothing to install. The bare command only previews; review the diff, then add `--write`.
@@ -48,7 +58,6 @@ Checked on 1502 locators (1387 from 23 real test suites in 7 languages, 115 edge
 
 - **0 wrong chains.** 85 % of the real locators have a class chain, and the converter gets the maximum score on them.
 - **Faster lookups:** class chain is 22–29 % faster than XPath at 100–2000 elements in the tree. Exception: `visible` on the last step can be much slower as a chain.
-- **Checked with** Appium 3.9.0, appium-xcuitest-driver 12.22.8, WDA 16.17.7 on an iOS 27.0 simulator (an iPhone with iOS 26.6 was checked with Appium 3.8.0, driver 12.16.0, WDA 16.14.1). Older versions were not checked.
 
 Full numbers, the LLM comparison and charts: [docs/results.md](docs/results.md).
 
