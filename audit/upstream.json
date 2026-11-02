@@ -8,6 +8,11 @@
     "xcode": "27.2",
     "ios": { "simulator": "27.0", "iphone": "26.6" }
   },
+  "saucelabs": {
+    "docs": "https://docs.saucelabs.com/mobile-apps/automated-testing/appium/appium-versions/",
+    "repo": "saucelabs/sauce-docs",
+    "path": "docs/mobile-apps/automated-testing/appium/appium-versions.md"
+  },
   "watch": {
     "wda": {
       "name": "WebDriverAgent",
