@@ -1,12 +1,12 @@
 name: Upstream schedule
 
-# Quarterly (the 3rd of January, April, July, October, two days after the Sauce Labs Appium image release):
-# did a new Appium, appium-xcuitest-driver or WebDriverAgent release change a file the
-# converter depends on? Opens an issue (label `upstream`) only when Claude judges it important.
+# Quarterly (the 7th of January, April, July, October, a week after the Sauce Labs Appium image release):
+# did the Appium and appium-xcuitest-driver of the newest Sauce Labs image, or the WebDriverAgent that driver
+# depends on, change a file the converter depends on? No image for this quarter yet fails the job. Opens an issue (label `upstream`) only when Claude judges it important.
 # Any failure fails the job, and GitHub emails the failure. See audit/upstream/README.md.
 on:
   schedule:
-    - cron: "0 6 3 1,4,7,10 *"
+    - cron: "0 6 7 1,4,7,10 *"
   workflow_dispatch:
     inputs:
       wda_base:

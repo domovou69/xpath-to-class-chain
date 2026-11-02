@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-// Phase 6, deterministic part: compares the versions in audit/upstream.json `checked` with the pair users can
-// install (latest stable Appium, the newest driver whose peer range accepts it, the WDA that driver depends on) and collects the changes to the watched upstream files. No dependencies, Node 20+.
+// Phase 6, deterministic part: compares the versions in audit/upstream.json `checked` with the newest Sauce Labs
+// Appium image (its Appium and appium-xcuitest-driver, the WDA that driver depends on) and collects the changes to
+// the watched upstream files. No dependencies, Node 20+.
 // Usage: node audit/upstream/check.js [--wda-base 16.10.0] [--driver-base ...] [--appium-base ...]
 // (the same overrides as env WDA_BASE, DRIVER_BASE, APPIUM_BASE; empty means `checked`).
 // Writes out/upstream-meta.json always and out/upstream-input.md only when a watched file changed.
-// Sets the GitHub Actions output `has_input=true|false`. Exit 1 on any registry or API failure.
+// Sets the GitHub Actions output `has_input=true|false`. Exit 1 on any registry or API failure, or when the
+// Sauce Labs image of this quarter is not out yet.
 const fs = require('fs'), path = require('path');
 
 const ROOT = path.resolve(__dirname, '../..');
@@ -38,40 +40,56 @@ const cmp = (a, b) => {
 const globRe = g => new RegExp('^' + g.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '[^/]*') + '$');
 
 const stable = v => /^\d+\.\d+\.\d+$/.test(v);
-// `^X.Y.Z[-pre] || ^...` is the only peer range form the drivers use; anything else fails loudly
-const satisfiesCaret = (v, range) => range.split('||').some(part => {
-  const m = /^\s*\^(\d+)\.(\d+)\.(\d+)(-[\w.]+)?\s*$/.exec(part);
-  if (!m) throw new Error(`unsupported peer range "${range}"`);
-  return Number(m[1]) === Number(v.split('.')[0]) && cmp(v, `${m[1]}.${m[2]}.${m[3]}`) >= 0;
-});
 
-// The pair users can install: the latest stable Appium, the newest stable driver whose peer range accepts it,
-// and the WebDriverAgent that driver depends on. Returns { id: { target, candidates, note } } (candidates: stable versions <= target).
+// The newest Sauce Labs real-device image (`appiumX-YYYY-MM`, read from the sauce-docs source): its name and the
+// versions of the given packages. Images come out in January, April, July and October; the one of the current
+// quarter must be listed, else the run fails (GitHub emails the failure).
+async function sauceImage(packages) {
+  const src = baseline.saucelabs;
+  const md = Buffer.from((await get(`https://api.github.com/repos/${src.repo}/contents/${src.path}`)).content, 'base64').toString('utf8');
+  const a = md.indexOf('### Real Device Appium Images'), b = md.indexOf('## Virtual Devices', a);
+  if (a < 0 || b < 0) throw new Error(`${src.path}: no "Real Device Appium Images" section`);
+  const real = md.slice(a, b);
+  const names = [...real.matchAll(/<code>(appium\d+-(\d{4})-(\d{2}))<\/code>/g)];
+  if (!names.length) throw new Error(`${src.path}: no appiumX-YYYY-MM image`);
+  const newest = names.reduce((x, y) => (`${y[2]}${y[3]}` > `${x[2]}${x[3]}` ? y : x));
+  const next = names.find(n => n.index > newest.index);
+  const block = real.slice(newest.index, next ? next.index : undefined);
+  const image = { name: newest[1], url: src.docs };
+  for (const pkg of packages) {
+    image[pkg] = (new RegExp(`<code>${pkg}</code>:\\s*(\\d+\\.\\d+\\.\\d+)`).exec(block) || [])[1];
+    if (!image[pkg]) throw new Error(`${src.path}: ${image.name} lists no ${pkg} version`);
+  }
+  const now = new Date(), quarter = `${now.getUTCFullYear()}${String(now.getUTCMonth() - (now.getUTCMonth() % 3) + 1).padStart(2, '0')}`;
+  if (`${newest[2]}${newest[3]}` < quarter) throw new Error(`Sauce Labs has no image for ${quarter.slice(0, 4)}-${quarter.slice(4)} yet (newest: ${image.name}); run the workflow again once it is listed at ${src.docs}`);
+  return image;
+}
+
+// The versions to compare with: Appium and appium-xcuitest-driver of the newest Sauce Labs image, and the
+// WebDriverAgent that driver depends on (Sauce Labs does not list it). Returns { id: { target, candidates, note } }
+// (candidates: stable versions <= target).
 async function targets() {
   const pack = name => get(`https://registry.npmjs.org/${name}`);
-  const [appium, driver] = [await pack(baseline.watch.appium.npm), await pack(baseline.watch.driver.npm)];
-  const appiumTarget = appium['dist-tags'].latest;
-  // newest first; stops at the first match, so the old releases with other range forms are never parsed
-  const fits = Object.keys(driver.versions).filter(v => stable(v) && driver.versions[v].peerDependencies?.appium).sort(cmp).reverse();
-  const driverTarget = fits.find(v => satisfiesCaret(appiumTarget, driver.versions[v].peerDependencies.appium));
-  if (!driverTarget) throw new Error(`no ${baseline.watch.driver.npm} release accepts Appium ${appiumTarget}`);
-  const wdaTarget = (driver.versions[driverTarget].dependencies?.[baseline.watch.wda.npm] || '').replace(/^[\^~]/, '');
-  if (!stable(wdaTarget)) throw new Error(`${baseline.watch.driver.npm} ${driverTarget} depends on ${baseline.watch.wda.npm} "${wdaTarget}", not an exact version`);
-  const wda = await pack(baseline.watch.wda.npm);
+  const [appiumNpm, driverNpm, wdaNpm] = ['appium', 'driver', 'wda'].map(id => baseline.watch[id].npm);
+  const image = await sauceImage([appiumNpm, driverNpm]);
+  const [appium, driver, wda] = [await pack(appiumNpm), await pack(driverNpm), await pack(wdaNpm)];
+  const driverTarget = image[driverNpm];
+  if (!driver.versions[driverTarget]) throw new Error(`${driverNpm} ${driverTarget} (Sauce Labs ${image.name}) is not on npm`);
+  const wdaTarget = (driver.versions[driverTarget].dependencies?.[wdaNpm] || '').replace(/^[\^~]/, '');
+  if (!stable(wdaTarget)) throw new Error(`${driverNpm} ${driverTarget} depends on ${wdaNpm} "${wdaTarget}", not an exact version`);
   const upTo = (versions, target) => versions.filter(v => stable(v) && cmp(v, target) <= 0);
-  const driverLatest = driver['dist-tags'].latest;
+  const note = `Sauce Labs image ${image.name}: Appium ${image[appiumNpm]}, ${driverNpm} ${driverTarget}`;
   return {
-    appium: { target: appiumTarget, candidates: upTo(Object.keys(appium.versions), appiumTarget) },
-    driver: { target: driverTarget, candidates: fits.filter(v => cmp(v, driverTarget) <= 0),
-      note: driverLatest !== driverTarget ? `npm latest ${driverLatest} needs Appium ${driver.versions[driverLatest]?.peerDependencies?.appium}, not ${appiumTarget}` : undefined },
-    wda: { target: wdaTarget, candidates: upTo(Object.keys(wda.versions), wdaTarget) },
+    appium: { target: image[appiumNpm], candidates: upTo(Object.keys(appium.versions), image[appiumNpm]), note },
+    driver: { target: driverTarget, candidates: upTo(Object.keys(driver.versions), driverTarget), note },
+    wda: { target: wdaTarget, candidates: upTo(Object.keys(wda.versions), wdaTarget), note: `the version ${driverNpm} ${driverTarget} depends on` },
   };
 }
 
 async function component(id, spec, t) {
   const base = override(id) || baseline.checked[id];
   const tag = v => spec.tag.replace('{version}', v);
-  // the pair's version may have no GitHub tag yet (WebDriverAgent 16.17.7 had none): use the newest one that has
+  // the target version may have no GitHub tag yet (WebDriverAgent 16.17.7 had none): use the newest one that has
   let latest = base;
   for (const v of t.candidates.filter(v => cmp(v, base) > 0).sort(cmp).reverse()) {
     const res = await fetch(`https://api.github.com/repos/${spec.repo}/git/ref/tags/${encodeURIComponent(tag(v))}`,
@@ -175,7 +193,7 @@ function inputMd(results) {
   fs.writeFileSync(path.join(OUT, 'upstream-meta.json'), JSON.stringify(meta, null, 2) + '\n');
   fs.rmSync(path.join(OUT, 'upstream-input.md'), { force: true });
   for (const r of results)
-    console.log(`${r.name}: ${r.base} → ${r.latest}${r.target !== r.latest && r.newer ? ` (the pair has ${r.target}, no GitHub tag yet)` : ''}${r.note ? ` [${r.note}]` : ''}: ${!r.newer ? 'no newer release' : r.files.length ? `${r.files.length} watched file(s) changed: ${r.files.map(f => f.filename).join(', ')}` : 'no watched file changed'}`);
+    console.log(`${r.name}: ${r.base} → ${r.latest}${r.target !== r.latest && r.newer ? ` (the target is ${r.target}, no GitHub tag yet)` : ''}${r.note ? ` [${r.note}]` : ''}: ${!r.newer ? 'no newer release' : r.files.length ? `${r.files.length} watched file(s) changed: ${r.files.map(f => f.filename).join(', ')}` : 'no watched file changed'}`);
   if (hasInput) {
     fs.writeFileSync(path.join(OUT, 'upstream-input.md'), inputMd(results));
     console.log(`wrote ${path.relative(ROOT, path.join(OUT, 'upstream-input.md'))}`);
