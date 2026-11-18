@@ -274,6 +274,16 @@ Checked on Appium 3.8.0, appium-xcuitest-driver 12.16.0 and WebDriverAgent 16.14
 - **Selector errors look like "element not found".** appium-xcuitest-driver 12.16.0 (and 12.22.8) catches the error WDA returns for an invalid XPath or class chain (`400 invalid selector`). `findElements` then returns `[]` and `findElement` fails with "no such element". A chain that does not parse therefore looks like a missing element in a test run. This is one reason the tool validates every chain it emits and skips what it cannot convert exactly.
 - **`visible` on the final step can be much slower as a chain.** `**/XCUIElementTypeButton[\`visible == true\`]`took 12.6 s against 2.0 s for`//XCUIElementTypeButton[@visible='true']`on a screen where 32 buttons are visible, because WDA reads visibility for each candidate. Prefer a locator that does not depend on`visible`where lookup time matters. The optimizer leaves`visible` on the step it was written on: moving it to another step changes which elements match. Over all checked locators the chain was faster, ×1.11 (geometric mean).
 
+## Sources
+
+The rules come from what WebDriverAgent does, checked by running it: mini-WDA compiles WDA's own class chain, predicate and XPath code at a pinned tag ([`audit/harness/wda/fetch-wda.sh`](../audit/harness/wda/fetch-wda.sh)), and the cases above were run on a simulator and an iPhone. Where the documentation and the code differ, the code wins. The documentation, for reading:
+
+- Class chain grammar: [Class Chain Queries Construction Rules](https://github.com/facebookarchive/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules) (the original WDA wiki, archived and last edited in 2017; the driver docs still point to it, and the grammar is unchanged in the Appium fork). Not in it: position `[0]` (all matches) and the error for an unknown attribute.
+- Locator strategies: [appium-xcuitest-driver, Locator Strategies](https://appium.github.io/appium-xcuitest-driver/latest/reference/locator-strategies/).
+- Predicate operators and modifiers (`==`, `CONTAINS`, `MATCHES`, `[c]`, `[d]`, `IN`, `BETWEEN`): [iOS Predicate](https://appium.github.io/appium-xcuitest-driver/latest/reference/ios-predicate/).
+- Attributes (`name`, `label`, `value`, `enabled`, `visible`, `index`, `rect`, …): [Element Attributes](https://appium.github.io/appium-xcuitest-driver/latest/reference/element-attributes/).
+- The code: [`appium/WebDriverAgent`](https://github.com/appium/WebDriverAgent), `WebDriverAgentLib/Utilities/FBClassChainQueryParser.m` and `NSPredicate+FBFormat.m`.
+
 ## Configuration
 
 The target directory is always passed as a CLI argument. Defaults (for contributors running scripts directly):
