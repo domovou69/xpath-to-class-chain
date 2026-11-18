@@ -1,0 +1,9 @@
+{
+  "name": "wdio-optimizer-offline",
+  "private": true,
+  "description": "Offline comparison of the WebdriverIO Native Mobile Selector Performance Optimizer with the converter. Installs only the two libraries the optimizer's conversion code imports; the optimizer itself is fetched by extract.js.",
+  "dependencies": {
+    "@xmldom/xmldom": "0.9.12",
+    "xpath": "0.0.36"
+  }
+}
