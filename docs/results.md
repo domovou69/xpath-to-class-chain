@@ -65,6 +65,35 @@ Effort levels of the three 5.5 models on the plain request: a higher effort does
 
 Caveat: `visible` on the last step can be much slower as a chain; see [On the device](reference.md#on-the-device).
 
+## WebdriverIO selector optimizer (offline)
+
+`@wdio/appium-service` 10.2.0 has a BETA "Native Mobile Selector Performance Optimizer". During a test run it takes the element an XPath finds on the current page source and builds a new selector from that element's attributes (`~name`, a `type == …` predicate string or a class chain), unique on that one snapshot. If the new selector finds anything, the test gets its element, and the report proposes it as a replacement in the code. It is not a translation of the XPath. We ran its code offline on the device corpus and compared each suggestion with the XPath on all 8 saved LocatorLab screens in mini-WDA, and the converter's chain the same way. Method, classes and script: [`audit/wdio`](../audit/wdio).
+
+414 cases where the XPath finds something on its own screen; "real locators" are the 131 from real test suites:
+
+| Optimizer suggestion | All 414 | Real locators |
+| --- | --- | --- |
+| Same elements on all 8 screens | 175 (42 %) | 66 (50 %) |
+| Same on its screen, different on another | 32 (8 %): 30 find nothing there (a loud failure), 2 find something else | 7 |
+| Different on its own screen | 31 (7 %): 13 return another element, 10 return extra elements to `$$`, 8 find nothing (the service keeps the XPath) | 17: 6 / 7 / 4 |
+| No suggestion: the XPath matched several elements (a warning only) | 148 (36 %) | 36 |
+| No suggestion: its own XPath engine found nothing | 28 (7 %) | 5 |
+| **Converter on the same cases** | 269 same everywhere (65 %), 67 documented approximations (positions, `last()`, text normalization), 78 skipped, 0 wrong | 96 / 22 / 13 / 0 |
+
+With scoring v2 (correct 1, documented approximation 0.5, skip 0, wrong −1) on these cases the optimizer reaches 35 on real locators against the converter's 82, which is 40 % of the converter by the Q formula. These numbers are for this subset and are not comparable with R and S above.
+
+Examples, each with a converter chain that finds the same elements as the XPath everywhere:
+
+- `//*[@label="Leba" and @enabled="false"]` → `type == 'XCUIElementTypeButton' AND name == 'Leba'`. The screen has an enabled and a disabled "Leba"; `$` returns the enabled one. The optimizer adds state only as `== 'true'`, so it cannot describe a disabled element. Converter: `**/*[`label == "Leba" AND enabled == false`]`.
+- `//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[@name="Close"]` → `type == 'XCUIElementTypeButton' AND name == 'Close'`. The path is dropped; three "Close" buttons match and `$` returns another one.
+- `…/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeButton` (from a GitHub suite) → `type == 'XCUIElementTypeButton' AND name == 'covered.open' AND label == 'Open'`. Every row has this button; the row index is lost and `$` returns another row's.
+- `//XCUIElementTypeOther[contains(@label, "Bevef Daw")]` → `~Bevef Daw summary`. The suggestion is the full label of the one match on this screen; on the list screen the XPath finds three rows and the suggestion none.
+- `//*[@name="…kesoZugop"]/following-sibling::*[1]/child::*[1]` → `~Kup`. On another screen the XPath finds nothing and `~Kup` finds a button (the converter skips this XPath).
+
+In all 13 "another element" cases but one, the optimizer had marked its selector "may match multiple elements", and the service used it anyway without logging the warning.
+
+**Limits.** The corpus was built to test the converter, so it is rich in positions, sibling axes and XPath 2.0 functions, and 126 cases are text-normalization probes on one screen; the real-locator column is the closer estimate. There are only 8 screens of one test app. The optimizer looks at one page-source snapshot during a run, not at a whole test suite, and a difference on another screen only matters once its suggestion is copied into the code, as its report proposes. Everything ran in mini-WDA, which agrees with the simulator on 322 of 323 converter cases; the optimizer's `enabled == 'true'` and raw-newline predicates were not checked on a device.
+
 **What this state was checked on** (October 2026; re-check when any of it changes):
 
 |                        | Version                                                                 |
