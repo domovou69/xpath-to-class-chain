@@ -1,0 +1,112 @@
+[
+ {
+  "case": "L032",
+  "command": "$",
+  "strictSelectors": true,
+  "xpath": "//*[@label=\"Leba\" and @enabled=\"false\"]",
+  "xpathFinds": [
+   {
+    "type": "XCUIElementTypeButton",
+    "name": "Leba",
+    "label": "Leba",
+    "enabled": "false",
+    "rect": {
+     "y": 62,
+     "x": 173,
+     "width": 26,
+     "height": 14
+    }
+   }
+  ],
+  "error": "StrictSelectorError: strict mode violation: `$(\"-ios predicate string:type == 'XCUIElementTypeButton' AND name == 'Leba'\")` resolved to 2 elements, expected 1."
+ },
+ {
+  "case": "P7-APP2",
+  "command": "$",
+  "strictSelectors": true,
+  "xpath": "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeButton",
+  "xpathFinds": [
+   {
+    "type": "XCUIElementTypeButton",
+    "name": "covered.open",
+    "label": "Open",
+    "enabled": "true",
+    "rect": {
+     "y": 706,
+     "x": 8,
+     "width": 60,
+     "height": 36
+    }
+   }
+  ],
+  "error": "StrictSelectorError: strict mode violation: `$(\"-ios predicate string:type == 'XCUIElementTypeButton' AND name == 'covered.open' AND label == 'Open'\")` resolved to 2 elements, expected 1."
+ },
+ {
+  "case": "L158",
+  "command": "$$",
+  "strictSelectors": true,
+  "xpath": "//*[@name=\"HaguhoCuzal.marivoDigivo\" and @enabled=\"false\"]",
+  "xpathFinds": [
+   {
+    "type": "XCUIElementTypeButton",
+    "name": "HaguhoCuzal.marivoDigivo",
+    "label": "Marivo",
+    "enabled": "false",
+    "rect": {
+     "y": 76,
+     "x": 8,
+     "width": 36,
+     "height": 14
+    }
+   }
+  ],
+  "dollarReturns": [
+   {
+    "type": "XCUIElementTypeButton",
+    "name": "HaguhoCuzal.marivoDigivo",
+    "label": "Marivo",
+    "enabled": "false",
+    "rect": {
+     "y": 76,
+     "x": 8,
+     "width": 36,
+     "height": 14
+    }
+   },
+   {
+    "type": "XCUIElementTypeButton",
+    "name": "HaguhoCuzal.marivoDigivo",
+    "label": "Marivo",
+    "enabled": "true",
+    "rect": {
+     "y": 76,
+     "x": 47,
+     "width": 36,
+     "height": 14
+    }
+   }
+  ],
+  "sameAsXpath": false
+ },
+ {
+  "case": "A14",
+  "command": "$",
+  "strictSelectors": true,
+  "xpath": "//XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[@name=\"Close\"]",
+  "xpathFinds": [
+   {
+    "type": "XCUIElementTypeButton",
+    "name": "Close",
+    "label": "Close",
+    "enabled": "true",
+    "rect": {
+     "y": 794,
+     "x": 8,
+     "width": 386,
+     "height": 9
+    }
+   }
+  ],
+  "error": "StrictSelectorError: strict mode violation: `$(\"-ios predicate string:type == 'XCUIElementTypeButton' AND name == 'Close'\")` resolved to 3 elements, expected 1."
+ }
+]

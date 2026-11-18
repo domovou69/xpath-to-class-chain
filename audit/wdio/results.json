@@ -69,6 +69,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "falls back to XPath",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeStaticText[`name == \"19, Juzo Kabih\\nJomojab, FI16 7TE\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -86,6 +87,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "falls back to XPath",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeStaticText[`name == \"Romor wepes je robo\\n7393\"`][1]",
    "convClass": "DIFFERS_HERE",
    "verdict": "DRIFT",
@@ -889,6 +891,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "falls back to XPath",
+   "onDevice": "same class",
    "converter": "**/*[`label == \"a\\nb\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -986,6 +989,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "extra matches",
+   "onDevice": "same class",
    "converter": "**/*[`label == \"a)b\"`][2]",
    "convClass": "DIFFERS_HERE",
    "verdict": "DRIFT",
@@ -1223,6 +1227,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "replaced",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`name == \"row.edit\"`][1]",
    "convClass": "DIFFERS_HERE",
    "verdict": "DRIFT",
@@ -1240,6 +1245,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "replaced",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`label == \"Taka\"`][1]",
    "convClass": "DIFFERS_HERE",
    "verdict": "DRIFT",
@@ -1477,6 +1483,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "extra matches",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeOther[`name == \"Luvuce tuve nowam\"`][2]",
    "convClass": "DIFFERS_HERE",
    "verdict": "DRIFT",
@@ -1527,6 +1534,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "replaced",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeStaticText[`name == \"Line 1\"`][3]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "DRIFT",
@@ -1615,6 +1623,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "replaced",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
    "convClass": "DIFFERS_HERE",
    "verdict": "CORRECT-SKIP",
@@ -1656,6 +1665,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "extra matches",
+   "onDevice": "same class",
    "converter": "**/*[`name == \"Woj, ge sefasi zad t jivuho bihi, Nepureze, hilubodamo\"`][2]",
    "convClass": "DIFFERS_HERE",
    "verdict": "DRIFT",
@@ -1743,6 +1753,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "extra matches",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeOther[`name == \"hilubodamo, lulik gusuri\"`][2]",
    "convClass": "DIFFERS_HERE",
    "verdict": "DRIFT",
@@ -2150,6 +2161,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[2]",
    "convClass": "DIFFERS_HERE",
    "verdict": "DRIFT",
@@ -2167,6 +2179,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "replaced",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`name == \"row.edit\"`][1]",
    "convClass": "DIFFERS_HERE",
    "verdict": "DRIFT",
@@ -2438,6 +2451,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": null,
    "convClass": "SKIP",
    "verdict": "CORRECT-SKIP",
@@ -2517,6 +2531,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "extra matches",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`name == \"row.edit\"`][2]",
    "convClass": "DIFFERS_HERE",
    "verdict": "DRIFT",
@@ -2534,6 +2549,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "extra matches",
+   "onDevice": "same class",
    "converter": null,
    "convClass": "SKIP",
    "verdict": "CORRECT-SKIP",
@@ -2599,6 +2615,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "replaced",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeCell[`name == \"row.1\"`][2]/XCUIElementTypeButton[2]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "DRIFT",
@@ -2809,6 +2826,7 @@
    "optimizer": "-ios predicate string:type == 'XCUIElementTypeButton' AND name == 'Lugatej now' AND enabled == 'true'",
    "optClass": "DIFFERS_HERE",
    "runtime": "falls back to XPath",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`enabled == true AND label CONTAINS \"Lugatej\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -2826,6 +2844,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "replaced",
+   "onDevice": "same class",
    "converter": "**/*[`label == \"Leba\" AND enabled == false`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -2842,6 +2861,7 @@
    "optimizer": "-ios predicate string:type == 'XCUIElementTypeButton' AND name == 'Nozod hom' AND enabled == 'true'",
    "optClass": "DIFFERS_HERE",
    "runtime": "falls back to XPath",
+   "onDevice": "same class",
    "converter": "**/*[`enabled == true AND label CONTAINS \"Nozod hom\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -2859,6 +2879,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "extra matches",
+   "onDevice": "same class",
    "converter": "**/*[`name == \"HaguhoCuzal.marivoDigivo\" AND enabled == false`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -2892,6 +2913,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "extra matches",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`name == \"FetuwozaNihelavAvuv.funelaFecotu\" AND enabled == false`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -2925,6 +2947,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "extra matches",
+   "onDevice": "same class",
    "converter": "**/*[`enabled == false AND value CONTAINS \"Lotto\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -2942,6 +2965,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "extra matches",
+   "onDevice": "same class",
    "converter": "**/*[`enabled == false AND name CONTAINS \"LofInipaSazAzuwiJuzovUsah.fufikuJugehOvuca\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -3099,6 +3123,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`label != nil AND label != \"Qty\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -3246,6 +3271,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`enabled == true`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -3332,6 +3358,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`visible == true`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -3409,6 +3436,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`name != nil`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -3502,6 +3530,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "DRIFT",
@@ -4041,6 +4070,7 @@
      "got": 2
     }
    ],
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeButton[`name == \"Close\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "DRIFT",
@@ -5012,6 +5042,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/*[`index == 1`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -5977,6 +6008,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/*[`index == 1`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -6209,6 +6241,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/*[`label CONTAINS[c] \"ab\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "GAP",
@@ -6233,6 +6266,7 @@
      "got": 1
     }
    ],
+   "onDevice": "same class",
    "converter": null,
    "convClass": "SKIP",
    "verdict": "CORRECT",
@@ -6355,6 +6389,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/*[`index == 1`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -6448,6 +6483,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/*[`index == 1`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -6644,6 +6680,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "replaced",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`][-1]",
    "convClass": "DIFFERS_HERE",
    "verdict": "CORRECT-SKIP",
@@ -6764,6 +6801,7 @@
    "warning": "XPath matched 3 elements. The suggested selector may not be unique. You can use this selector but be aware it may match multiple elements.",
    "optClass": "MULTI",
    "multiOwn": "different first",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeStaticText[`name == \"Kuki pefu matumutor\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "ORDER",
@@ -6869,6 +6907,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "DRIFT",
@@ -9871,6 +9910,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "**/*[`label CONTAINS[c] \"a\"`]",
    "convClass": "DIFFERS_HERE",
    "verdict": "GAP",
@@ -10149,6 +10189,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeButton",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -10166,6 +10207,7 @@
    "warning": "Selector may match multiple elements. Consider adding more specific attributes.",
    "optClass": "DIFFERS_HERE",
    "runtime": "replaced",
+   "onDevice": "same class",
    "converter": "XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeButton",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -10190,6 +10232,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": "XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -10207,6 +10250,7 @@
    "warning": "XPath matched 2 elements. The suggested selector may not be unique. You can use this selector but be aware it may match multiple elements.",
    "optClass": "MULTI",
    "multiOwn": "different first",
+   "onDevice": "same class",
    "converter": "**/XCUIElementTypeButton[`name == \"Leba\"`]",
    "convClass": "SAME_EVERYWHERE",
    "verdict": "CORRECT",
@@ -10268,6 +10312,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": null,
    "convClass": "SKIP",
    "verdict": "CORRECT",
@@ -10566,6 +10611,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": null,
    "convClass": "SKIP",
    "verdict": "CORRECT",
@@ -10627,6 +10673,7 @@
      "got": 0
     }
    ],
+   "onDevice": "same class",
    "converter": null,
    "convClass": "SKIP",
    "verdict": "CORRECT",

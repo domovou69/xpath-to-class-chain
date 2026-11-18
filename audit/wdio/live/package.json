@@ -1,0 +1,20 @@
+{
+  "name": "wdio-optimizer-live",
+  "private": true,
+  "type": "module",
+  "description": "Live reproduction of the WebdriverIO Native Mobile Selector Performance Optimizer returning another element than the XPath. Runs against the LocatorLab simulator of audit/device.",
+  "scripts": {
+    "test": "wdio run wdio.conf.js",
+    "test:strict-off": "STRICT_OFF=1 wdio run wdio.conf.js",
+    "test:no-report-path": "NO_REPORT_PATH=1 wdio run wdio.conf.js"
+  },
+  "devDependencies": {
+    "@wdio/appium-service": "10.2.0",
+    "@wdio/cli": "10.2.0",
+    "@wdio/local-runner": "10.2.0",
+    "@wdio/mocha-framework": "10.2.0",
+    "@wdio/spec-reporter": "10.2.0",
+    "appium": "3.9.0",
+    "webdriverio": "10.2.0"
+  }
+}

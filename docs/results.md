@@ -92,7 +92,16 @@ Examples, each with a converter chain that finds the same elements as the XPath 
 
 In all 13 "another element" cases but one, the optimizer had marked its selector "may match multiple elements", and the service used it anyway without logging the warning.
 
-**Limits.** The corpus was built to test the converter, so it is rich in positions, sibling axes and XPath 2.0 functions, and 126 cases are text-normalization probes on one screen; the real-locator column is the closer estimate. There are only 8 screens of one test app. The optimizer looks at one page-source snapshot during a run, not at a whole test suite, and a difference on another screen only matters once its suggestion is copied into the code, as its report proposes. Everything ran in mini-WDA, which agrees with the simulator on 322 of 323 converter cases; the optimizer's `enabled == 'true'` and raw-newline predicates were not checked on a device.
+**On the simulator and in a live run.** The 47 suggestions mini-WDA could not judge or that change the element (18 with `enabled == 'true'`, 6 with a raw newline, the 13 "another element", the 10 "extra elements") were run through Appium on the LocatorLab simulator: all 47 fall into the same class, so no number above changes. `enabled == 'true'` finds nothing on WDA either, and a raw newline is a predicate parse error that the driver turns into "nothing found". A minimal WebdriverIO 10.2.0 project with `trackSelectorPerformance` shows the effect in a real run (4 cases):
+
+- With `strictSelectors: false`, `$` returns another element (WebdriverIO 9 has no strict `$`, and its 9.33.1 service replaces the element with the same code; not run live): the enabled "Leba" instead of the disabled one, the "Open" button of row 1 instead of row 2, another "Close". Nothing is logged above INFO, and the end-of-run report proposes the three selectors as replacements.
+- With the 10.x default, `$` is strict, so the same three tests fail with a `StrictSelectorError` about a selector that is not in the test.
+- `$$` is never strict: it silently gets the enabled twin as an extra element.
+- Without `reportPath` the worker does not start, and the reason is only in the log files (webdriverio issue #16311); `reportPath` works around it.
+
+Details: [`audit/wdio`](../audit/wdio#device-check).
+
+**Limits.** The corpus was built to test the converter, so it is rich in positions, sibling axes and XPath 2.0 functions, and 126 cases are text-normalization probes on one screen; the real-locator column is the closer estimate. There are only 8 screens of one test app. The optimizer looks at one page-source snapshot during a run, not at a whole test suite, and a difference on another screen only matters once its suggestion is copied into the code, as its report proposes. The classes come from mini-WDA, which agrees with the simulator on 322 of 323 converter cases and on all 47 optimizer suggestions checked on the simulator; the other optimizer suggestions were not run on a device.
 
 **What this state was checked on** (October 2026; re-check when any of it changes):
 
