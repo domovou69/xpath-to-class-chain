@@ -46,7 +46,7 @@ jobs:
         run: ./audit/harness/run.sh
       - name: Keep the output on failure
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: harness-out
           path: audit/harness/out/
