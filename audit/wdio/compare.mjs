@@ -164,10 +164,16 @@ const R = [mean(corpus, c => c.optCredit), mean(corpus, c => c.convCredit)], S =
 console.log(`\nv2 credit, actionable cases: corpus (${corpus.length}) optimizer ${R[0].toFixed(1)} / converter ${R[1].toFixed(1)}; spec+probes (${spec.length}) optimizer ${S[0].toFixed(1)} / converter ${S[1].toFixed(1)}`);
 console.log(`Q-analog (0.4·R/Rc + 0.6·S/Sc) = ${(100 * (0.4 * R[0] / R[1] + 0.6 * S[0] / S[1])).toFixed(1)} % of the converter`);
 
+// device.mjs: the class of the suggestions checked on the simulator ('same class' = the mini-WDA class above)
+const DEVICE_RUN = path.join(HERE, 'device.json');
+const onDevice = fs.existsSync(DEVICE_RUN) ? Object.fromEntries(JSON.parse(fs.readFileSync(DEVICE_RUN, 'utf8')).rows.map(r => [r.key, r.agrees ? 'same class' : r.device])) : {};
+const checked = Object.values(onDevice);
+if (checked.length) console.log(`device check (device.json): ${checked.length} suggestions, same class as mini-WDA in ${checked.filter(v => v === 'same class').length}`);
+
 const slim = cases.map(c => ({
   key: c.key, category: c.category, screen: c.screen, xpath: c.xpath, xpathHere: c.xpathHere, xpathError: c.xpathError,
   optimizer: c.opt.selector || c.opt.suggestion || null, warning: c.opt.warning, optClass: c.optClass, runtime: c.runtime, multiOwn: c.multiOwn,
-  optElsewhere: c.optCmp?.elsewhere.length ? c.optCmp.elsewhere : undefined, altClass: c.altClass,
+  optElsewhere: c.optCmp?.elsewhere.length ? c.optCmp.elsewhere : undefined, altClass: c.altClass, onDevice: onDevice[c.key],
   converter: c.chain, convClass: c.convClass, convElsewhere: c.convCmp?.elsewhere.length ? c.convCmp.elsewhere : undefined,
   verdict: c.verdict, device: c.device, optCredit: c.optCredit, convCredit: c.convCredit,
 }));
