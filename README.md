@@ -7,9 +7,9 @@ Converts Appium XPath locators in your iOS tests to `-ios class chain` selectors
 
 ## Checked with
 
-- Appium 3.9.0
-- appium-xcuitest-driver 12.22.8 / WebDriverAgent 16.17.7
-- simulator iPhone 17 (iOS 27.0, Xcode 27.2) / real device iPhone 13 Pro Max (iOS 26.6)
+- Appium 4.0.1 / appium-xcuitest-driver 13.8.0 / WebDriverAgent 17.1.4 (2026-11-26)
+- Appium 3.9.0 / appium-xcuitest-driver 12.22.8 / WebDriverAgent 16.17.7 (2026-11-01, the Sauce Labs stack)
+- simulator iPhone 17 (iOS 27.0, Xcode 27.2) / real device iPhone 13 Pro Max (iOS 26.6, Appium 3.8.0)
 
 Older versions were not checked. A quarterly [upstream watch](audit/upstream/README.md) follows the Sauce Labs Appium
 image and opens an issue when its Appium, driver or WebDriverAgent changes a file the converter depends on.

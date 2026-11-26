@@ -31,7 +31,11 @@ If `checked` is not updated, the next quarter compares the same `checked` with t
 
 ## After an issue
 
-Re-check the items marked "yes" (`audit/device` on the simulator or iPhone, `audit/harness/wda` for the mini-WDA self-test). When the converter still behaves the same, update `checked` in `audit/upstream.json` first through a PR, then README "Checked with", `docs/results.md` and `audit/harness/wda/VERSION`. Close the issue.
+Re-check in this order (the rule is in the project `CLAUDE.md`, "Re-checking a new Appium / driver / WDA"):
+
+1. **mini-WDA.** `audit/harness/wda/fetch-wda.sh <version>` with the WDA the new driver bundles, `build.sh`, `node audit/harness/selftest.js` (43/43), `./audit/harness/run.sh` (must end with "no changes vs baseline"). Always for a new WDA major version, and whenever a mini-WDA file is listed as changed. If a patch no longer applies or a verdict changes, that is the finding.
+2. **Simulator.** `audit/device` (the Appium 4 stack lives in `audit/device/appium4/`), compared with the previous results via `node run.js --diff`. Check the items marked "yes" (the iPhone if the report says so). Stop Appium and the WDA runner afterwards.
+3. When the converter still behaves the same, update `checked` in `audit/upstream.json` first through a PR, then README "Checked with", `docs/results.md` and `audit/harness/wda/VERSION`. Close the issue.
 
 ## Test
 

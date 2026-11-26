@@ -24,6 +24,17 @@ A fix must be worth the code it adds: every special case makes the converter har
 - Commit messages carry no `Co-Authored-By` line. Claude Code is credited once, in the PR description (the closing "Generated with Claude Code" line). The repository squash-merges with the PR title and description as the commit message, so the individual commit messages do not pile up in `main`.
 - Release: a PR that bumps `version` in `package.json` and lists the fixes in its description (no CHANGELOG file); after the merge, an annotated tag `vX.Y.Z` on the merge commit. The user runs `npm publish`.
 
+## Re-checking a new Appium / driver / WDA
+
+A device re-check always has two parts, in this order. Neither is optional.
+
+1. **Refresh and run mini-WDA first.** Fetch the WDA the new driver bundles (`audit/harness/wda/fetch-wda.sh <version>`), build it, then `node audit/harness/selftest.js` (43/43) and `./audit/harness/run.sh` (it must end with "no changes vs baseline"). This is the check that sees a changed class chain parser, predicate or attribute code across the whole corpus. Do it for every new WDA major version, and for any release in which the upstream watch lists a changed mini-WDA file.
+2. **Then the simulator run** (`audit/device`, the fixed simulator), compared with the previous results via `node run.js --diff`.
+
+mini-WDA compiles only 12 WDA files and models the rest by hand (result order, snapshots, attribute reads). Only the device run sees a change there, so a green harness never replaces the simulator run.
+
+After a run, stop what it started: the Appium server and the WDA runner (`pgrep -fl "appium|xcodebuild|WebDriverAgent"`, port 8100 free). Leave the simulator booted.
+
 ## Task board
 
 Work is tracked on the GitHub Project board (https://github.com/users/domovou69/projects/1); the maintainer does not fill it by hand.
