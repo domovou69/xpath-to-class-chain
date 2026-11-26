@@ -89,7 +89,7 @@ async function targets() {
 async function component(id, spec, t) {
   const base = override(id) || baseline.checked[id];
   const tag = v => spec.tag.replace('{version}', v);
-  // the target version may have no GitHub tag yet (WebDriverAgent 16.17.7 had none): use the newest one that has
+  // the target version may have no GitHub tag yet (WebDriverAgent 16.16-16.17.7 had none in appium/WebDriverAgent): use the newest one that has
   let latest = base;
   for (const v of t.candidates.filter(v => cmp(v, base) > 0).sort(cmp).reverse()) {
     const res = await fetch(`https://api.github.com/repos/${spec.repo}/git/ref/tags/${encodeURIComponent(tag(v))}`,
