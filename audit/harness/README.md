@@ -89,7 +89,7 @@ To add a spec case, append `{ id, cat, xpath, expected }` to `speccases.js`. `ex
 
 ## mini-WDA (`wda/`)
 
-- `upstream/`: 12 files copied unchanged from WebDriverAgent `v16.14.1` (`VERSION` has the commit), plus WDA's BSD `LICENSE`. They cover:
+- `upstream/`: 12 files copied unchanged from WebDriverAgent `appium-webdriveragent@17.1.4` (appium-ios monorepo, `packages/webdriveragent`; `VERSION` has the commit), plus WDA's BSD `LICENSE`. The files of 16.14.1 and 16.17.7 are identical to each other; 17.1.4 differs only in the class chain parser, and the harness verdicts are the same on both. They cover:
   - the class chain parser (`FBClassChainQueryParser`)
   - predicate formatting and the attribute-name mapping (`NSPredicate+FBFormat`, `NSExpression+FBFormat`, `FBElementUtils`)
   - element types (`FBElementTypeTransformer`)
@@ -102,9 +102,9 @@ To add a spec case, append `{ id, cat, xpath, expected }` to `speccases.js`. `ex
   - Builds the element tree from XML.
   - XPath side: libxml2, run the way `FBXPath.m` does it (attribute order, only the attributes the query uses, `"true"`/`"false"` booleans, WDA's extension functions).
   - Chain side: both lookup strategies of `XCUIElement+FBClassChain.m`. WDA uses the snapshot walk only when an intermediate step has a position (`fb_hasIntermediatePosition`); every other chain is an `XCUIElementQuery`. The query stand-in returns matches breadth-first and lets `$…$` (`containingPredicate`) test the element itself, as observed on the iOS 27 simulator in Phase 2.
-  - Result order: WDA returns XPath matches through a query as well, so both sides come back breadth-first. Positions inside an XPath (`(//X)[2]`, `last()`) still count in document order (libxml2).
+  - Result order: WDA returns XPath matches through a query as well, so both sides come back breadth-first. Positions inside an XPath (`(//X)[2]`, `last()`) still count in document order (libxml2). This is the order of WDA up to 16.17.7. WDA 17.1.4 returns XPath matches in document order (simulator, [`../device/README.md`](../device/README.md)); mini-WDA does not model that, because it does not compile `FBXPath.m` or `XCUIElement+FBFind.m`. Trying it (XPath in document order, chain breadth-first) turned 941 of the 1180 expressible corpus verdicts into FIRST_DIFFERS on the random trees, against 8 of 246 on real screens, so the harness would only add noise there.
 - `build.sh`: copies `upstream/`, applies `patches/`, and compiles to `out/wdaemu`.
-- `fetch-wda.sh <tag>`: refreshes `upstream/` to another WDA release. Afterwards run `build.sh` (the patches must still apply), `node selftest.js` and `./run.sh`, then update `VERSION`.
+- `fetch-wda.sh <version>`: refreshes `upstream/` to another WDA release (e.g. `17.1.4`; WDA is in the `appium/appium-ios` monorepo, the old `appium/WebDriverAgent` repo stops at v16.15.3). Afterwards run `build.sh` (the patches must still apply), `node selftest.js` and `./run.sh` (it must end with "no changes vs baseline"), then update `VERSION`. **Do this before the device run for every new WDA major version**, and whenever the upstream watch lists a changed mini-WDA file: the harness is the only check that runs the real parser over the whole corpus. It cannot see what `main.m` models by hand (result order, snapshots, attribute reads); only the device run does.
 
 Direct use: `out/wdaemu cases.json` where `cases.json` is `[{ "id", "xml", "xpath"?, "chain"? }]`. It prints `[{ "id", "xpath": [ids] | {"error"}, "chain": [ids] | {"error"} }]`.
 

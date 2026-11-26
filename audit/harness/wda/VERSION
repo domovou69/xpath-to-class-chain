@@ -1,4 +1,5 @@
-repo:   https://github.com/appium/WebDriverAgent
-tag:    v16.14.1
-commit: 2e98ac0ad4dbc99ab7c8bb01b7216fde252afb54
-pinned: Appium 3.8.0 / appium-xcuitest-driver 12.16.0 bundle WDA 16.14.1
+repo:   https://github.com/appium/appium-ios (packages/webdriveragent)
+tag:    appium-webdriveragent@17.1.4
+commit: 60dddf7a64a1ec536100e8e41d79d737113f22a3
+pinned: Appium 4.0.1 / appium-xcuitest-driver 13.8.0 bundle WDA 17.1.4 (checked 2026-11-26)
+note:   the 12 files of 16.14.1 (the pin before) and of 16.17.7 (Appium 3.9.0 / driver 12.22.8) are byte-identical; 17.1.4 changes only FBClassChainQueryParser.{h,m} (the rewrite and the axis steps). Harness verdicts are identical on both ("no changes vs baseline").

@@ -9,6 +9,8 @@ xpath-to-class-chain.report.json
 # Phase 2 device harness (audit/device): local Appium install, build output, generated project
 audit/device/node_modules/
 audit/device/.appium/
+audit/device/appium4/node_modules/
+audit/device/appium4/.appium/
 audit/device/DerivedData/
 audit/device/LocatorLab.xcodeproj/
 audit/device/out/

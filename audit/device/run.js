@@ -224,7 +224,8 @@ async function runCase(s, k, n = 0) {
 // versions as reported by the running components themselves
 async function versions(s) {
   const w = (await (await fetch((s.caps.webDriverAgentUrl || WDA_FALLBACK_URL).replace(/\/$/, '') + '/status')).json()).value;
-  const pkg = p => readJson(path.join(HERE, '.appium/node_modules', p, 'package.json')).version;
+  // the driver is read from the APPIUM_HOME the server was started with (default: ./.appium, the Appium 3.9.0 stack)
+  const pkg = p => readJson(path.join(process.env.APPIUM_HOME || path.join(HERE, '.appium'), 'node_modules', p, 'package.json')).version;
   const common = {
     xcode: execFileSync('xcodebuild', ['-version'], { encoding: 'utf8' }).trim().replace(/\n/g, ' '),
     appium: (await wd('GET', '/status')).build.version, xcuitestDriver: pkg('appium-xcuitest-driver'),

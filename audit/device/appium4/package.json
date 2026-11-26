@@ -1,0 +1,8 @@
+{
+  "name": "locatorlab-device-harness-appium4",
+  "private": true,
+  "description": "Appium 4 stack for the 2026-11-26 re-check. Same harness (run.js); a separate folder so the Appium 3.9.0 stack in ../ (also used by audit/wdio/live) stays untouched.",
+  "devDependencies": {
+    "appium": "4.0.1"
+  }
+}

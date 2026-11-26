@@ -43,6 +43,40 @@ node run.js                                    # all cases → results.json
 node run.js --out out/run2.json && node run.js --diff results.json out/run2.json
 ```
 
+## Appium 4 stack (re-check 2026-11-26)
+
+Appium 4 needs driver 13.x (`peerDependencies.appium ^4.0.0`; 13.8.0 bundles WDA 17.1.4) and Node `^22.22.2 || ^24.15.0 || >=26`. It lives in [`appium4/`](appium4), so the Appium 3.9.0 stack above (which [`../wdio/live`](../wdio/live) uses) stays as it is. The same `run.js` and cases; WDA is rebuilt into the same `DerivedData/WDA` when the stack changes.
+
+```sh
+cd audit/device/appium4
+npm install                                          # Appium 4.0.1
+export APPIUM_HOME=$PWD/.appium
+npx appium driver install xcuitest@13.8.0            # bundles WDA 17.1.4
+npx appium --port 4733 &                             # another port, so the Appium 3.9.0 stack's 4723 stays free
+cd .. && APPIUM_URL=http://127.0.0.1:4733 APPIUM_HOME=$PWD/appium4/.appium node run.js --out results-recheck-2026-11-26.json
+# when done: stop what the run started, the server and the WDA runner
+pkill -f "appium --port 4733"; pkill -f "xcodebuild build-for-testing test-without-building"
+```
+
+`run.js` warns that the environment differs from `env.json` (it pins the Appium 3.9.0 stack); that is expected here. `APPIUM_HOME` tells it where to read the driver version from.
+
+Result: [`results-recheck-2026-11-26.json`](results-recheck-2026-11-26.json), 246 cases in 636 s (a first run, from a copy of this setup outside the repository, gave identical outcomes and hits). Compared with [`results-recheck-2026-11.json`](results-recheck-2026-11.json) (Appium 3.9.0 / 12.22.8 / WDA 16.17.7, 2026-11-01), by `node run.js --diff`:
+
+| | Appium 3.9.0 / 12.22.8 / WDA 16.17.7 | Appium 4.0.1 / 13.8.0 / WDA 17.1.4 |
+|---|---|---|
+| Chains made by the converter | 246 | the same 246 |
+| Elements found by each chain | | identical in all 246 |
+| Outcomes | EQUAL 173, SET_DIFFERS 32, DEAD 4, XPATH_ERROR 2, XPATH_ONLY 35 | EQUAL 163, SET_DIFFERS 34, FIRST_DIFFERS 8, DEAD 4, XPATH_ERROR 2, XPATH_ONLY 35 (236 of 246 as before) |
+| XPath results | | 226 identical; 18 differ only in order, 2 in the set |
+
+Every difference is on the XPath side, none in what a chain finds:
+
+- **XPath results come back in document order on WDA 17.1.4; class chain results stay breadth-first.** On WDA 16.17.7 both were breadth-first. 8 cases went from EQUAL to FIRST_DIFFERS (same elements, another first one), e.g. `//XCUIElementTypeCell/XCUIElementTypeButton` on a list that has a nested `deep.cell`: the XPath now returns that cell's button first, the chain the button of `row.1`.
+- **XPath no longer merges the two identical `Vertical scroll bar` elements.** The page source has both (also on WDA 16); the XPath used to return one, now returns both, the chain still returns one. L240 and H03 went from EQUAL to SET_DIFFERS; only system scroll indicators.
+- **`%` in predicate text** (`name == "a %% b"`, `CONTAINS "50%"`, `== "%@"`): the new class chain parser no longer treats the text as a printf format; the same queries give the same results on both stacks and none raises.
+- The driver still swallows selector errors in `findElements` (13.8.0 returns `[]` for an invalid class chain, for the parse error of WDA 17 on `**XCUIElementTypeButton`, and for an invalid XPath).
+- Timings on this run (XPath median 81 ms, class chain 57 ms) are not comparable with 2026-11-01 (182 / 150 ms): single cold lookups under another host state. Only the ratio between the strategies is meaningful.
+
 ## Real device (Phase 2b)
 
 A UDID listed under `devices` in `env.json` switches `run.js` to real-device mode. Signing works with a free Apple ID (Xcode → Settings → Accounts); the team id is passed in `XCODE_ORG_ID` and stays out of the repository.
